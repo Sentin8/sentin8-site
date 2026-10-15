@@ -1,0 +1,29 @@
+{
+  "name": "sentin8-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "sentin8.dev — the Sentin8 platform public website (Docusaurus on @sentin8/site-engine).",
+  "license": "Apache-2.0",
+  "scripts": {
+    "harvest": "node node_modules/@sentin8/site-engine/scripts/harvest.mjs .",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "writeTranslations": "docusaurus write-translations",
+    "writeHeadingIds": "docusaurus write-heading-ids"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.10.0",
+    "@docusaurus/preset-classic": "^3.10.0",
+    "@docusaurus/theme-mermaid": "^3.10.0",
+    "@easyops-cn/docusaurus-search-local": "^0.50.0",
+    "@mdx-js/react": "^3.0.0",
+    "@mermaid-js/layout-elk": "^0.1.9",
+    "@sentin8/site-engine": "file:../sentin8-site-engine",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}

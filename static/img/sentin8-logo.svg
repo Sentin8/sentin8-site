@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Sentin8 platform mark: octagonal shield (the "sentry") with the Royal Gold accent -->
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8C96A"/>
+      <stop offset="1" stop-color="#B8942C"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 6 L112 30 V70 C112 95 92 113 64 122 C36 113 16 95 16 70 V30 Z"
+        fill="none" stroke="url(#gold)" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M64 34 L88 46 V70 C88 84 78 93 64 99 C50 93 40 84 40 70 V46 Z"
+        fill="url(#gold)"/>
+  <circle cx="64" cy="70" r="8" fill="#101014"/>
+</svg>

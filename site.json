@@ -1,0 +1,338 @@
+{
+  "vertical": "sentin8",
+  "name": "Sentin8",
+  "org": "Sentin8",
+  "domain": "sentin8.dev",
+  "tagline": "The post-quantum, zero-static-secret platform for regulated multi-vertical software — one identity plane, live authorization, mandatory tenant isolation.",
+  "accent": "#D4AF37",
+  "logo": "img/sentin8-logo.svg",
+  "pillarsLead": "Every service — platform or vertical — inherits the five pillars by construction, not configuration.",
+  "pillars": [
+    {
+      "title": "Post-quantum cryptography, exclusively",
+      "summary": "Every TLS connection negotiates X25519MLKEM768 with ML-DSA-65 certificate signatures, anchored by an SLH-DSA-SHA2-128s root CA. No classical fallback exists."
+    },
+    {
+      "title": "One identity plane",
+      "summary": "Sentin8:Auth is the only token issuer, JWKS authority, and authentication authority. No service mints its own credentials — no second issuer to compromise."
+    },
+    {
+      "title": "Live authorization — Shield",
+      "summary": "RBAC + ABAC + ReBAC decided per request. Roles are never embedded in tokens: a demoted administrator loses access on the next request."
+    },
+    {
+      "title": "Mandatory tenant isolation",
+      "summary": "Every tenant table FORCE-RLS'd; no role carries BYPASSRLS. PostgreSQL runs the same certificate identity as the service plane — no database passwords exist."
+    },
+    {
+      "title": "Certificate-only workload identity",
+      "summary": "A workload's only identity is its Acme-issued client certificate. No client secrets, no static API keys, no password files anywhere."
+    }
+  ],
+  "units": [
+    {
+      "slug": "auth",
+      "kind": "service",
+      "name": "Sentin8:Auth",
+      "repo": "sentin8-auth",
+      "org": "Sentin8",
+      "summary": "The identity plane: OAuth 2.1/OIDC/FAPI issuer, JWKS authority, token families, SCIM, wallet credentials, lockout & bot protection.",
+      "scopes": [
+        "sentin8:auth:*",
+        "sys:admin"
+      ]
+    },
+    {
+      "slug": "acme",
+      "kind": "service",
+      "name": "Sentin8:Acme",
+      "repo": "sentin8-acme",
+      "org": "Sentin8",
+      "summary": "The internal ACME certificate authority: PQ server/client leaf minting, the root CA, enrollment claims, revocation.",
+      "scopes": [
+        "acme:enroll",
+        "acme:admin"
+      ]
+    },
+    {
+      "slug": "proxy",
+      "kind": "service",
+      "name": "Sentin8:Proxy",
+      "repo": "sentin8-proxy",
+      "org": "Sentin8",
+      "summary": "The single ingress: L4 SNI router + L7 bridge; every connection PQ-TLS-terminated and round-robined across healthy instances.",
+      "scopes": [
+        "sentin8:proxy:*"
+      ]
+    },
+    {
+      "slug": "bus",
+      "kind": "service",
+      "name": "Sentin8:Bus",
+      "repo": "sentin8-bus",
+      "org": "Sentin8",
+      "summary": "The durable event backbone: local outbox + produce API, Valkey Streams, consumer groups, DLQ, SSE consume.",
+      "scopes": [
+        "sentin8:bus:produce",
+        "sentin8:bus:consume"
+      ]
+    },
+    {
+      "slug": "db",
+      "kind": "service",
+      "name": "Sentin8:DB",
+      "repo": "sentin8-db",
+      "org": "Sentin8",
+      "summary": "SQL execution & data service over Sentin8-authorized queries — no direct database access from apps.",
+      "scopes": [
+        "sentin8:db:query",
+        "sentin8:db:schema"
+      ]
+    },
+    {
+      "slug": "storage",
+      "kind": "service",
+      "name": "Sentin8:Storage",
+      "repo": "sentin8-storage",
+      "org": "Sentin8",
+      "summary": "Object storage: S3-compatible buckets, presigned upload/download, tenant-scoped prefixes.",
+      "scopes": [
+        "sentin8:storage:objects:read",
+        "sentin8:storage:objects:write"
+      ]
+    },
+    {
+      "slug": "post",
+      "kind": "service",
+      "name": "Sentin8:Post",
+      "repo": "sentin8-post",
+      "org": "Sentin8",
+      "summary": "Multi-channel message delivery: email, SMS, push, webhooks — templated, idempotent, retry-scheduled.",
+      "scopes": [
+        "sentin8:post:send",
+        "sentin8:post:templates:write"
+      ]
+    },
+    {
+      "slug": "secrets",
+      "kind": "service",
+      "name": "Sentin8:Secrets",
+      "repo": "sentin8-secrets",
+      "org": "Sentin8",
+      "summary": "Secret reference store & resolver — plaintext never lands in application tables; every credential is a pointer.",
+      "scopes": [
+        "sentin8:secrets:read",
+        "sentin8:secrets:write"
+      ]
+    },
+    {
+      "slug": "stat",
+      "kind": "service",
+      "name": "Sentin8:Stat",
+      "repo": "sentin8-stat",
+      "org": "Sentin8",
+      "summary": "Metrics & analytics: MemBus telemetry ingest, aggregation, dashboards for the platform's operational truth.",
+      "scopes": [
+        "sentin8:stat:measure",
+        "sentin8:stat:read"
+      ]
+    },
+    {
+      "slug": "func",
+      "kind": "service",
+      "name": "Sentin8:Func",
+      "repo": "sentin8-func",
+      "org": "Sentin8",
+      "summary": "Standalone WASM execution: tenant-authored functions, idempotent by key, proxy-back for domain data.",
+      "scopes": [
+        "sentin8:func:modules:write",
+        "sentin8:func:execute"
+      ]
+    },
+    {
+      "slug": "flow",
+      "kind": "service",
+      "name": "Sentin8:Flow",
+      "repo": "sentin8-flow",
+      "org": "Sentin8",
+      "summary": "Durable workflow engine: multi-step sagas with compensation, declarative triggers, workflow state machines.",
+      "scopes": [
+        "sentin8:flow:write",
+        "sentin8:flow:read"
+      ]
+    },
+    {
+      "slug": "cron",
+      "kind": "service",
+      "name": "Sentin8:Cron",
+      "repo": "sentin8-cron",
+      "org": "Sentin8",
+      "summary": "Distributed scheduler: declarative schedule enrollment, one-shot deferrals, proxy-back execution.",
+      "scopes": [
+        "sentin8:cron:schedules:write",
+        "sentin8:cron:tick"
+      ]
+    },
+    {
+      "slug": "ai",
+      "kind": "service",
+      "name": "Sentin8:AI",
+      "repo": "sentin8-ai",
+      "org": "Sentin8",
+      "summary": "The AI capability layer: embeddings, chat, completions, document ingestion — behind the same authorization pipeline as everything else.",
+      "scopes": [
+        "sentin8:ai:embed",
+        "sentin8:ai:chat"
+      ]
+    },
+    {
+      "slug": "sys",
+      "kind": "service",
+      "name": "Sentin8:Sys",
+      "repo": "sentin8-sys",
+      "org": "Sentin8",
+      "summary": "The control plane: orgs, environments, vertical enrollment, service enablement, audit ingestion, branding.",
+      "scopes": [
+        "sentin8:sys:orgs:write",
+        "sentin8:sys:audit:write"
+      ]
+    },
+    {
+      "slug": "app",
+      "kind": "service",
+      "name": "Sentin8:App",
+      "repo": "sentin8-app",
+      "org": "Sentin8",
+      "summary": "Third-party app store & instance management: listings, installs, runtime context bootstrap for every app shell.",
+      "scopes": [
+        "sentin8:app:listings:write",
+        "sentin8:app:instances:read"
+      ]
+    },
+    {
+      "slug": "bff",
+      "kind": "service",
+      "name": "Sentin8:BFF",
+      "repo": "sentin8-bff",
+      "org": "Sentin8",
+      "summary": "Backend-for-frontend & delegation gateway: OAuth tokens held server-side, session cookies to clients, scope downscoping.",
+      "scopes": [
+        "sentin8:bff:proxy",
+        "sentin8:delegate:read"
+      ]
+    },
+    {
+      "slug": "web",
+      "kind": "service",
+      "name": "Sentin8:Web",
+      "repo": "sentin8-web",
+      "org": "Sentin8",
+      "summary": "The single Flutter web static host: runtime app discovery, same-origin bootstrap proxy, SPA fallback, COOP/COEP.",
+      "scopes": [
+        "sentin8:web:serve"
+      ]
+    }
+  ],
+  "starters": [
+    {
+      "slug": "cli",
+      "kind": "starter",
+      "name": "sentin8-cli",
+      "repo": "sentin8-cli",
+      "org": "Sentin8",
+      "summary": "Platform bootstrap & enrollment: db bootstrap, vertical init/enroll, captain control, catalog plumbing."
+    },
+    {
+      "slug": "captain",
+      "kind": "starter",
+      "name": "Sentin8:Captain",
+      "repo": "sentin8-captain",
+      "org": "Sentin8",
+      "summary": "Process supervisor: health-gated tier spawning, rolling zero-downtime upgrades, fleet placement, provisioning backends."
+    }
+  ],
+  "apps": [
+    {
+      "slug": "dash",
+      "kind": "app",
+      "name": "Sentin8:Dash",
+      "repo": "sentin8-dash",
+      "org": "Sentin8",
+      "summary": "The pure rendering host for every RFW admin UI — zero compile-time vertical knowledge."
+    },
+    {
+      "slug": "auth-ui",
+      "kind": "app",
+      "name": "Sentin8:Auth-UI",
+      "repo": "sentin8-auth-ui",
+      "org": "Sentin8",
+      "summary": "The identity app: sign-in/up, consent, wallet binding, branding-aware user flows."
+    }
+  ],
+  "sdks": [
+    {
+      "slug": "sdk",
+      "kind": "sdk",
+      "name": "sentin8 Rust SDK",
+      "repo": "sentin8-sdk",
+      "org": "Sentin8",
+      "summary": "The shared workspace: core/identity/TLS/bus/shield/shell crates + the `sentin8` namespace facade. Consumed as a pinned git tag.",
+      "href": "/docs/sdk/rust"
+    },
+    {
+      "slug": "flutter",
+      "kind": "sdk",
+      "name": "sentin8 Flutter SDK",
+      "repo": "sentin8-flutter",
+      "org": "Sentin8",
+      "summary": "The one Flutter package: bootstrap, Bff8ApiClient, shell, theme, RFW renderer — native + web from a single import.",
+      "href": "/docs/sdk/flutter"
+    }
+  ],
+  "showcaseLead": "Seven verticals, one platform: every domain composes the same services with zero platform changes.",
+  "showcase": [
+    {
+      "slug": "bank8",
+      "name": "Bank8",
+      "accent": "#1B6CA8",
+      "summary": "Banking, payments & open banking — core ledger, ISO 20022 orchestration, FDX v6.5."
+    },
+    {
+      "slug": "hotel8",
+      "name": "Hotel8",
+      "accent": "#C08A3E",
+      "summary": "Hospitality — PMS, POS, distribution, loyalty, upsell across properties."
+    },
+    {
+      "slug": "exchange8",
+      "name": "Exchange8",
+      "accent": "#2E9B8F",
+      "summary": "Capital markets — matching engine, OMS, SOR, clearing, surveillance."
+    },
+    {
+      "slug": "trade8",
+      "name": "Trade8",
+      "accent": "#B85450",
+      "summary": "Trading — desk, router, risk, market data, bars, P&L."
+    },
+    {
+      "slug": "bill8",
+      "name": "Bill8",
+      "accent": "#7B4FBF",
+      "summary": "Billing & payments — merchants, checkout, subscriptions, webhooks."
+    },
+    {
+      "slug": "email8",
+      "name": "Email8",
+      "accent": "#3E8FB0",
+      "summary": "Email — MTA, store, access, gate, webmail on the platform's security model."
+    },
+    {
+      "slug": "health8",
+      "name": "Health8",
+      "accent": "#5FA85F",
+      "summary": "Health — in design; the eighth vertical of the platform."
+    }
+  ],
+  "crossrefs": []
+}

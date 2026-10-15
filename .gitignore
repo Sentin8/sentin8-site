@@ -1,0 +1,6 @@
+node_modules/
+.docusaurus/
+build/
+docs/reference/
+.tmp/
+.DS_Store
