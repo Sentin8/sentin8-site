@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:DB — Architecture (DDD)"
+title: "Sentin8:DB - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-db/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:DB — Detailed Design Document
+# DESIGN.md: Sentin8:DB - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -24,7 +24,7 @@ transaction-local tenant context.
 - **Does NOT own**: business schema design (callers define tables and
   rows), identity (bearer verify via the shared Auth SDK), Shield policy
   storage (sys's `policy_sets` substrate; an engine runs on it), and raw
-  SQL access (there is no free-form SQL endpoint — the surface is
+  SQL access (there is no free-form SQL endpoint - the surface is
   tables + data CRUD + posture).
 
 ```mermaid
@@ -63,7 +63,7 @@ context must be set inside the caller's transaction.
 | Module | Role |
 |---|---|
 | `handlers.rs` | Table lifecycle (create/alter/archive/drop/restore), data CRUD (query/insert/update/delete), posture, audit log, health; `emit_event_tx` (outbox inside the domain tx); `sanitize_identifier`, `resolve_physical_table`, `row_to_json`. |
-| `rls.rs` | `set_rls_context(_ext)` — tenant context setters (6-arg and 8-arg forms) run inside the caller's transaction. |
+| `rls.rs` | `set_rls_context(_ext)` - tenant context setters (6-arg and 8-arg forms) run inside the caller's transaction. |
 | `admin_ui.rs` | RFW pages (overview, tables/new form, posture, audit, settings) + admin data + POST aliases delegating to the domain handlers. |
 | `server.rs` / `config.rs` / `policy.rs` / `registration.rs` / `openapi.rs` | Router; env config; Shield bridge; self-description. |
 
@@ -180,20 +180,20 @@ erDiagram
     }
 ```
 
-- `table_registry` — `UNIQUE (env_id, physical_name)` and
+- `table_registry` - `UNIQUE (env_id, physical_name)` and
   `UNIQUE (env_id, logical_name, status)`; RLS FORCE with 4 env-scoped
   policies. Lifecycle state machine below; prior `dropped` rows for a
   logical name are purged on reuse.
-- `ddl_audit` — append-only (select + insert policies); one row per DDL
+- `ddl_audit` - append-only (select + insert policies); one row per DDL
   operation with actor + detail.
-- **Dynamic tenant tables** — system columns (`id`, `env_id`, `data`
+- **Dynamic tenant tables** - system columns (`id`, `env_id`, `data`
   JSONB, `created_at`, `updated_at`, `resource_version`,
   `deleted_at`) plus user-typed columns; every table gets `ENABLE +
   FORCE RLS` and exactly four policies
   (`{physical}_select|insert|update|delete`) gated on
   `(sentin8_context_initialized(), env_id)`. Posture flags drift
   (`rls_not_enabled`, `rls_not_forced`, `missing_policies` < 4).
-- `db.outbox` / `db.audit_journal` — generated DBX tables; the shell
+- `db.outbox` / `db.audit_journal` - generated DBX tables; the shell
   relay drains `db.outbox` to Bus produce (idempotency = row id);
   `audit_journal` is the Sys spill journal (pusher not yet wired in this
   service).
@@ -220,7 +220,7 @@ stateDiagram-v2
 | `/v1/tables` | POST / GET | `sentin8:db:table:admin` / `data:read` | create vs list. |
 | `/v1/tables/{id}` | GET | `data:read` | env-scoped (foreign env → 404). |
 | `/v1/tables/{id}/alter` · `/archive` · `/drop` | POST | `table:admin` | alter adds columns; drop = `pending_delete` → physical DROP. |
-| `/v1/data/query` | POST | `data:read` | scalar filters, declared-column sorts, limit ≤ 1000; keyset pagination — `pagination.after` (a UUID cursor on `id`) takes precedence over `offset` and pins the order to `(sort, id)`, with `next_cursor` in the response. The binder supplies exactly what the chosen SQL form declares (filter binds → limit → keyset cursor or an explicit offset 0) — a bind/SQL mismatch aborts the statement. |
+| `/v1/data/query` | POST | `data:read` | scalar filters, declared-column sorts, limit ≤ 1000; keyset pagination - `pagination.after` (a UUID cursor on `id`) takes precedence over `offset` and pins the order to `(sort, id)`, with `next_cursor` in the response. The binder supplies exactly what the chosen SQL form declares (filter binds → limit → keyset cursor or an explicit offset 0) - a bind/SQL mismatch aborts the statement. |
 | `/v1/data/insert` · `/update` · `/delete` | POST | `data:write` | soft-delete only; `resource_version` optimistic predicate. |
 | `/v1/posture` | GET | `posture:read` | RLS enable/force + policy count drift per table. |
 | `/v1/audit` | GET | `audit:read` | DDL audit trail. |
@@ -246,7 +246,7 @@ Event types: `sentin8:db:table:created|altered|archived|dropped`
   token-tp/user context rides the RLS context (subject, token_tp,
   scopes, admin flags).
 - **Tenant resolution + RLS**: `target_env_id` resolved explicitly
-  (`resolve_admin_env` — 400 when missing); cross-env targeting requires
+  (`resolve_admin_env` - 400 when missing); cross-env targeting requires
   platform admin or RBAC membership checked under `SYSTEM_ENV_ID`;
   context always inside the same explicit transaction (pinned by the
   fail-closed test).
@@ -256,7 +256,7 @@ Event types: `sentin8:db:table:created|altered|archived|dropped`
 - **Injection safety**: identifiers sanitized to `[A-Za-z0-9_]` (empty →
   `_invalid_`); reserved columns (`id, env_id, data, created_at,
   updated_at, resource_version, deleted_at, usr_id, visibility`) never
-  writable/filterable; only sanitized names interpolate — values are
+  writable/filterable; only sanitized names interpolate - values are
   always bound parameters.
 - **Audit journaling**: `ddl_audit` for every DDL (actor + scope +
   detail); Shield denies land in `audit_journal` (fire-and-forget,
@@ -319,7 +319,7 @@ graph LR
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
 1. RLS context must be set inside the same explicit transaction as the
-   statement — a bare-pool statement filters to 0 rows (fail-closed,
+   statement - a bare-pool statement filters to 0 rows (fail-closed,
    test-pinned).
 2. Every dynamic tenant table ships `ENABLE + FORCE RLS` + exactly 4
    env policies; posture endpoints detect drift.
@@ -334,7 +334,7 @@ graph LR
    automatic increment on update/soft-delete.
 7. Registry + audit + event commit atomically with the DDL; event-emit
    failure aborts the domain change.
-8. `env_id` on the wire is never trusted for identity filters — the RLS
+8. `env_id` on the wire is never trusted for identity filters - the RLS
    context and the token env are authoritative.
 9. No `unsafe` code; all dynamic SQL interpolation is limited to
    sanitized identifiers.
@@ -359,7 +359,7 @@ graph TD
 ## 10. Open Questions
 
 - The README's §3/§4 is aligned to the implemented surface (table lifecycle +
-  data CRUD + posture); no new endpoint — arbitrary SQL is prohibited by
+  data CRUD + posture); no new endpoint - arbitrary SQL is prohibited by
   design and the prohibition is documented as the security posture it is.
 - `emit_event_tx` uses the `DB_STREAM_FAMILY` config value (default `"db"`
   unchanged); the dead config is removed.

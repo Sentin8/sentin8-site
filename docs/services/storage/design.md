@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Storage — Architecture (DDD)"
+title: "Sentin8:Storage - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-storage/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Storage — Detailed Design Document
+# DESIGN.md: Sentin8:Storage - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -14,14 +14,14 @@ persistence for every vertical flows through it. It owns the adapter
 abstraction (local FS today, pluggable backends), the HMAC signed-URL
 codec for browser-direct transfers, the public read surface (images for
 branding/logos), and the DBX event emission for object lifecycle. The
-service holds no object metadata of its own — owning services store
+service holds no object metadata of its own - owning services store
 references (keys) in their schemas.
 
 - **Owns** (schema `storage`): `outbox` (DBX producer), `audit_journal`
   (generated; no code path writes it today), plus every physical object
   under the adapter root (`org/{org_id}/env/{env_id}/{object_path}`).
 - **Does NOT own**: object semantics (callers decide what a key means),
-  the bucket registry (admin buckets are marker-based — `.keep`), and
+  the bucket registry (admin buckets are marker-based - `.keep`), and
   tenant identity (env from the verified token; org resolved server-side).
 
 ```mermaid
@@ -146,7 +146,7 @@ erDiagram
     }
 ```
 
-- No domain tables — objects live in the adapter; the two shared-helper
+- No domain tables - objects live in the adapter; the two shared-helper
   tables are the DBX surfaces (`outbox` with NOTIFY trigger
   `storage_outbox_changed`; `audit_journal`, unwired).
 - **Key layout**: `org/{org_id}/env/{env_id}/{object_path}`;
@@ -203,7 +203,7 @@ flowchart LR
 ```
 
 Event types: `sentin8:storage:object:created` (`{key, content_type,
-size}`), `:deleted` (`{key}`), `:moved` (`{from_key, to_key}`) — copy and
+size}`), `:deleted` (`{key}`), `:moved` (`{from_key, to_key}`) - copy and
 move both emit `moved`.
 
 ## 5. Cross-Cutting Concerns
@@ -213,7 +213,7 @@ move both emit `moved`.
   Authorization header is present, the TLS-injected client-certificate
   workload identity (`x-sentin8-client-cert-subject`, CA-verified by the
   TLS layer, client-supplied copies stripped) resolves against the
-  boot-loaded registry map (`m2m:workloads`) — the certificate IS the
+  boot-loaded registry map (`m2m:workloads`) - the certificate IS the
   authentication and the map IS the authorization record (auth DESIGN
   §4.3f). The `func-storage` workload (func's WASM-binary PUT, cert-
   presenting `StorageClient::with_workload_identity`, no bearer) rides
@@ -221,13 +221,13 @@ move both emit `moved`.
   contract (token-authenticated / image-allowlist).
 - **Tenant resolution + RLS**: `resolve_org_id` runs inside one explicit
   transaction with the context set on the same connection
-  (fail-closed: 500/404 — never a system-org fallback, test-pinned);
+  (fail-closed: 500/404 - never a system-org fallback, test-pinned);
   `org_id` never appears in client-facing paths.
 - **Idempotency**: `X-If-Absent: true` / `If-None-Match: *` dedup hit
   returns 200 + `X-Storage-Deduped: true` without byte verification
   (caller opted in; content-addressing makes collisions negligible).
 - **Path safety**: component-level traversal rejection pre-IO +
-  canonicalize-deepest-existing + `starts_with(root)` containment —
+  canonicalize-deepest-existing + `starts_with(root)` containment -
   symlink escapes rejected.
 - **Audit journaling**: lifecycle events carry the publisher token +
   subject; `audit_journal` exists but is unwired in this service.
@@ -248,7 +248,7 @@ flowchart TD
     C -->|PathTraversal| REJ[rejected pre-IO]
     C -->|Io| E500X[500]
     D[outbox emit] -->|fail| W[warn + continue]
-    E[signing key unset] --> EPH[ephemeral random key<br/>URLs reset on restart — logged]
+    E[signing key unset] --> EPH[ephemeral random key<br/>URLs reset on restart - logged]
     REL[relay] -->|Bus down| RT[rows unrelayed; 5s retry; 2s backoff]
     MOVE[move] --> CP[copy] --> DELE[delete original<br/>no partial state]
 ```
@@ -260,7 +260,7 @@ flowchart TD
 - **Signing key reset**: an ephemeral key on restart invalidates issued
   URLs (deliberately loud in logs); production sets
   `SENTIN8_STORAGE_SIGNING_KEY`.
-- **Copy/move** is copy-then-delete — no partial state; both emit
+- **Copy/move** is copy-then-delete - no partial state; both emit
   `object:moved`.
 
 ## 7. Concurrency & Performance Model
@@ -277,7 +277,7 @@ graph LR
 ```
 
 - All spawned tasks are shell-owned (relay, hot-reload, two metrics
-  publishers) — storage spawns none itself.
+  publishers) - storage spawns none itself.
 - Hot path: adapter get/put (streamed), one `sys.environments` lookup per
   request (short tx), one outbox insert per lifecycle mutation.
 - Local FS root: `{SENTIN8_STATE_DIR:-/var/lib/sentin8}/storage`;
@@ -289,22 +289,22 @@ graph LR
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
 1. **Key containment validated pre-IO** (component-level + canonicalized
-   existing base + `starts_with(root)`) — traversal and symlink escapes
+   existing base + `starts_with(root)`) - traversal and symlink escapes
    are rejected before any filesystem IO.
-2. **Fail-closed tenant resolution** — unknown env → 404 (never the
+2. **Fail-closed tenant resolution** - unknown env → 404 (never the
    system org), pool/context errors → 500; context and lookup share one
    transaction on one connection.
 3. **Signed URLs are token-embedded** (not path-embedded), HMAC-tamper-
    proof, method-scoped, expiry-checked before IO; unsigned legacy
    tokens rejected.
-4. **Dedup semantics opt-in**: a dedup hit never verifies bytes — safe
+4. **Dedup semantics opt-in**: a dedup hit never verifies bytes - safe
    because keys are content-addressed by callers who opt in.
-5. **Public reads are image-only** (extension allowlist) — arbitrary
+5. **Public reads are image-only** (extension allowlist) - arbitrary
    object leakage through the public route is impossible; the platform
    variant is pinned to the system org/env.
 6. Move is copy-then-delete (no partial state); copy/move require the
    admin scope.
-7. `org_id` never appears in URL paths — resolved server-side from
+7. `org_id` never appears in URL paths - resolved server-side from
    `env_id`.
 8. Step 5 (Shield `require_policy`) is the only access gate; the
    `require_*_scope` JWT re-checks are trivially `Ok(())` (kept for

@@ -1,16 +1,16 @@
 ---
-title: "sentin8 Rust SDK — Architecture (DDD)"
+title: "sentin8 Rust SDK - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-sdk/edit/main/DESIGN.md
 ---
-# DESIGN.md: sentin8-sdk — Detailed Design Document
+# DESIGN.md: sentin8-sdk - Detailed Design Document
 
 > Audience: maintainers, reviewers, and architects modifying the shared
 > library workspace. For overview read `README.md`; for business
 > capabilities read `BUSINESS.md`. Design of record:
-> `../../design/sentin8-sdk-dependency-cleanup-design.md` (SDD) — this
+> `../../design/sentin8-sdk-dependency-cleanup-design.md` (SDD) - this
 > document implements its §2 and §3 for the SDK repo.
 
 ## 1. Scope & Context
@@ -22,21 +22,21 @@ custom_edit_url: https://github.com/Sentin8/sentin8-sdk/edit/main/DESIGN.md
   service-discovery), identity ×4 (jwt, fapi, m2m, auth-client), tls ×2
   (tls, tls-contracts), bus ×4 (bus-contracts, bus-client, membus, outbox),
   shield ×1, shell ×2 (shell, audit), facade ×1 (`sentin8`).
-- **The telemetry helper** — shield's `stat_emit` module generalized to
+- **The telemetry helper** - shield's `stat_emit` module generalized to
   the shared `stat.telemetry` MemBus publish path used by shield
   (policy decisions + shared metric emission) and by services emitting
   metric frames directly (auth/ai/app/email8-mta class).
-- **`ScheduleDecl`** in `core/registration` — the declarative schedules
+- **`ScheduleDecl`** in `core/registration` - the declarative schedules
   section consumed by `sentin8-cli vertical enroll`.
 
 ### 1.2 What it explicitly does NOT own
 
-- Service-scoped SDK crates — every `{svc}-client`/`{svc}-contracts`
+- Service-scoped SDK crates - every `{svc}-client`/`{svc}-contracts`
   crate lives in its owner service repo behind a mini-facade
   (`sdk/`, package `sentin8-{svc}-sdk`).
 - Service binaries, service registration files, vertical knowledge of
   any kind (architecture-principles §4.14).
-- Scheduled work execution — Cron's ticker owns firing; the SDK only
+- Scheduled work execution - Cron's ticker owns firing; the SDK only
   declares the schema for enrollment.
 
 ### 1.3 System context
@@ -125,7 +125,7 @@ graph TD
 
 ### 2.1 The telemetry publish path (replaces the stat-client edge)
 
-`shield/src/stat_emit.rs` — public API unchanged, transport changed:
+`shield/src/stat_emit.rs` - public API unchanged, transport changed:
 
 | Function | Before | After |
 |---|---|---|
@@ -137,9 +137,9 @@ The frame payload is flat JSON matching stat's ingest contract
 (`EventEnvelope` fields: `client_id` = service, `client_type` = `"server"`,
 `property_slug` = short name, `event_name`, `metrics`, `props`,
 `subject_id?`, `timestamp`). Publish failure → log-only (tracing::warn),
-never fatal — the decision path is unaffected by a Valkey outage.
+never fatal - the decision path is unaffected by a Valkey outage.
 
-### 2.2 Request lifecycle — policy decision emission
+### 2.2 Request lifecycle - policy decision emission
 
 ```mermaid
 sequenceDiagram
@@ -158,15 +158,15 @@ sequenceDiagram
     SH-->>REQ: Permit / Deny
 ```
 
-### 2.3 Component view — shield after the change
+### 2.3 Component view - shield after the change
 
 ```mermaid
 graph TD
     subgraph SHIELD[shield]
-        ADM[admin.rs — policy-admin surface]
-        RT[runtime.rs — LIVE role resolution + evaluation]
-        SUB[substrate.rs — relations]
-        SE[stat_emit.rs — telemetry publisher<br/>membus EnvBus, no HTTP]
+        ADM[admin.rs - policy-admin surface]
+        RT[runtime.rs - LIVE role resolution + evaluation]
+        SUB[substrate.rs - relations]
+        SE[stat_emit.rs - telemetry publisher<br/>membus EnvBus, no HTTP]
         RT --> SE
         ADM --> RT
         RT --> SUB
@@ -192,7 +192,7 @@ pub struct ScheduleDecl {
 }
 ```
 
-`Registration.schedules: &[ScheduleDecl]` — serialized by
+`Registration.schedules: &[ScheduleDecl]` - serialized by
 `--print-registration --section=schedules`; the CLI upserts
 `cron.schedules` rows (env-scoped, `schedule_type` unique per
 (env, domain)).
@@ -227,9 +227,9 @@ No endpoint changes; the SDK ships no servers.
 
 ## 5. Cross-Cutting Concerns
 
-- **Authentication**: `m2m` + `auth-client` unchanged — cert-bound
+- **Authentication**: `m2m` + `auth-client` unchanged - cert-bound
   (RFC 8705) cached token sourcing; the SDK itself performs no DCR for
-  telemetry (MemBus needs none — tenant isolation by key derivation).
+  telemetry (MemBus needs none - tenant isolation by key derivation).
 - **Outbox relay rate-limit discipline (WARN-5)**: a retryable produce
   failure (429/5xx/transport) sets the row's `next_retry_at` (Bus's 429
   body carries `retry-after: 60`; other retryables take the 2s tick) and
@@ -237,22 +237,22 @@ No endpoint changes; the SDK ships no servers.
   A burst backlog then drains at the Bus rate limit instead of burning
   the 10-attempt budget against it; permanent 4xx keeps parking
   immediately. The `next_retry_at` column ships in the shared
-  `outbox_table_sql` DDL (greenfield — no migration).
+  `outbox_table_sql` DDL (greenfield - no migration).
 - **Tenant resolution**: unchanged; telemetry frames carry no env in the
-  payload — the channel key derives from the `EnvBus` binding.
+  payload - the channel key derives from the `EnvBus` binding.
 - **Idempotency**: MemBus `sq` per-(service, family) sequence for
   dedupe/gap detection.
-- **Audit**: unchanged — the shell's audit push loop (§6.8 journal→Sys)
+- **Audit**: unchanged - the shell's audit push loop (§6.8 journal→Sys)
   is untouched.
 - **TLS**: `sentin8-tls` post-quantum posture unchanged.
 - **PostgreSQL certificate identity (group DESIGN.md §3.2)**:
-  `core/config`'s `pg_pool` module is the fleet's ONE connection factory —
+  `core/config`'s `pg_pool` module is the fleet's ONE connection factory -
   every service pool AND the CLI/operator tooling route through it.
   `connect_options_for` builds the transport: `ssl_mode(VerifyFull)`
-  (forced; `sslmode=disable` rejected — no plaintext listener exists),
+  (forced; `sslmode=disable` rejected - no plaintext listener exists),
   the published Acme root+intermediate chain as `ssl_root_cert`, and the
   workload's m2m client pair (`ssl_client_cert_from_pem` /
-  `ssl_client_key_from_pem`) resolved by ROLE name — `sentin8_*_service`
+  `ssl_client_key_from_pem`) resolved by ROLE name - `sentin8_*_service`
   roles read the pair named after the binary/workload identity, the DDL
   role `sentin8` reads the fixed `postgres-ops` infra pair. A DSN whose
   userinfo carries a password is REJECTED at construction: the plane is
@@ -271,7 +271,7 @@ sequenceDiagram
     P->>P: resolve CA chain + workload pair (role-named)
     P->>PG: SSLRequest → TLS handshake (verify-full, client cert)
     PG->>PG: cert auth: CN m2m-{workload} → pgm map → {role}
-    PG-->>S: connection as {role} — no password exists
+    PG-->>S: connection as {role} - no password exists
 ```
 
 ## 6. Failure Modes & Recovery
@@ -280,21 +280,21 @@ sequenceDiagram
 flowchart TD
     EMIT[emit_decision / emit_metric_event] --> PUB{publish_pubsub}
     PUB -->|Err Valkey| LOG[tracing::warn, log-only]
-    PUB -->|Ok 0 receivers| DROP[frame dropped — ephemeral contract]
+    PUB -->|Ok 0 receivers| DROP[frame dropped - ephemeral contract]
     PUB -->|Ok n receivers| DONE[stat ingests]
 ```
 
 - **Valkey down**: log-only; no retry queue (loss-tolerant class by
-  contract — "non-important updates").
+  contract - "non-important updates").
 - **No live subscriber**: frame gone (Pub/Sub contract); stat outage =
   telemetry loss, never a decision failure.
 - **Pool/conn**: `EnvBus` clones the shared multiplexed command
-  connection — no per-emit connection churn.
+  connection - no per-emit connection churn.
 
 ## 7. Concurrency & Performance Model
 
 - Init-once: `OnceLock<Option<Arc<EnvBus>>>` replaces the old
-  `OnceLock<Option<Arc<StatClient>>>` — emit path remains lock-free.
+  `OnceLock<Option<Arc<StatClient>>>` - emit path remains lock-free.
 - Emit is fire-and-forget on the shared command connection; no dedicated
   subscriber connections on the producer side.
 - Hot paths (policy evaluation) unchanged; emission adds one RESP PUBLISH
@@ -303,7 +303,7 @@ flowchart TD
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
 - **SDD-1**: placement by shared-plane linkage; the shared plane links no
-  service-scoped client — a future need is a design defect, route through
+  service-scoped client - a future need is a design defect, route through
   MemBus/domain events.
 - **SDD-6**: facade never re-exports a mini-facade.
 - **CERTFREE-1 (identity/m2m → workload-identity)**: the platform M2M plane
@@ -313,8 +313,8 @@ flowchart TD
   cert-presenting HTTP client builders consumers dial each other with.
   The token source, DCR helper, credential cache (`dcr_*.json`), boot
   probe, scope-drift re-registration, and 401 self-heal machinery are
-  DELETED (their synchronization burden — cache vs `oauth_clients` vs
-  JWT — was the recurring DB-reset 401 storm's root cause; the TLS
+  DELETED (their synchronization burden - cache vs `oauth_clients` vs
+  JWT - was the recurring DB-reset 401 storm's root cause; the TLS
   handshake already proves possession on every call). Authorization
   inputs travel via the enroll-published `m2m:workloads` Valkey hash
   (workload → {vertical, service_type, scopes, enabled}), boot-loaded +
@@ -350,8 +350,8 @@ graph TD
 
 ## 10. Open Questions
 
-- Frame-schema registry for payload validation at decode — deferred.
-- Pin-freshness automation for per-service sdk tags — aggregation CI.
+- Frame-schema registry for payload validation at decode - deferred.
+- Pin-freshness automation for per-service sdk tags - aggregation CI.
 
 ---
 

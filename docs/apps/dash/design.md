@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Dash — Architecture (DDD)"
+title: "Sentin8:Dash - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8 Dash — Detailed Design Document
+# DESIGN.md: Sentin8 Dash - Detailed Design Document
 
 > Audience: maintainers, reviewers, and architects modifying the operator
 > console. For the overview read `dash/README.md`; for the business view read
@@ -32,16 +32,16 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/DESIGN.md
 
 **Does NOT own (delegated):**
 
-- Authentication, OAuth/PKCE, token issuance and transparent refresh —
+- Authentication, OAuth/PKCE, token issuance and transparent refresh -
   Sentin8:BFF + Sentin8:Auth.
 - Organization/env domain data, memberships, service toggles, vertical
-  registry, audit store — Sentin8:Sys.
-- Enforcement of authorization (RLS + Shield policy) — every backend service.
-- Admin UI definitions and admin data endpoints — each service exposes its
+  registry, audit store - Sentin8:Sys.
+- Enforcement of authorization (RLS + Shield policy) - every backend service.
+- Admin UI definitions and admin data endpoints - each service exposes its
   own `/v1/admin/*`.
-- Static hosting and multi-instance routing — Sentin8:Web + Sentin8:Captain
+- Static hosting and multi-instance routing - Sentin8:Web + Sentin8:Captain
   registry.
-- Notification delivery, stat aggregation, logging storage — their owning
+- Notification delivery, stat aggregation, logging storage - their owning
   services.
 
 ```mermaid
@@ -141,7 +141,7 @@ graph TD
     BRIDGE -.-> Pages
 ```
 
-### 2.2 Request Lifecycle — Session bootstrap and first-run routing
+### 2.2 Request Lifecycle - Session bootstrap and first-run routing
 
 ```mermaid
 sequenceDiagram
@@ -170,7 +170,7 @@ sequenceDiagram
     note over P,BFF: 401-family during bootstrap → sign-out + #/sign-in · 403/404 → retry up to 5 attempts (identity settle window)
 ```
 
-### 2.3 Request Lifecycle — Login via BFF redirect
+### 2.3 Request Lifecycle - Login via BFF redirect
 
 ```mermaid
 sequenceDiagram
@@ -190,7 +190,7 @@ sequenceDiagram
     B->>App: reload → BootstrapPage (see §2.2)
 ```
 
-### 2.4 Request Lifecycle — RFW admin page render + action
+### 2.4 Request Lifecycle - RFW admin page render + action
 
 ```mermaid
 sequenceDiagram
@@ -200,7 +200,7 @@ sequenceDiagram
     participant BFF as Sentin8:BFF
     participant SVC as Owning service
     B->>R: #/{service}/{page}?env=...
-    R->>R: resolve DynamicServiceInfo (GET /v1/verticals/services) — page tabs
+    R->>R: resolve DynamicServiceInfo (GET /v1/verticals/services) - page tabs
     loop retries: 6 × 750ms on 403 (policy identity invalidation) / 502·503·504 (fresh-env TLS)
         R->>BFF: GET /proxy/{svc}/v1/admin/ui/{page} (+target headers)
     end
@@ -216,7 +216,7 @@ sequenceDiagram
     end
 ```
 
-### 2.5 Request Lifecycle — Organization creation
+### 2.5 Request Lifecycle - Organization creation
 
 ```mermaid
 sequenceDiagram
@@ -231,7 +231,7 @@ sequenceDiagram
     C->>BFF: PUT-targeted POST /v1/o {slug, display_name, custom_domain}
     SYS-->>BFF: org created
     BFF-->>C: organization
-    C->>P: refreshAndInit() — POST /auth/refresh + re-init (new scopes)
+    C->>P: refreshAndInit() - POST /auth/refresh + re-init (new scopes)
     C->>B: route #/home?org={id}
 ```
 
@@ -294,7 +294,7 @@ carry `X-BFF-CSRF`; scoped calls carry `X-BFF-Target-Env-Id` or
 (`listing_id, instance_id, app_id, app_instance_id, type`); unresolved routes →
 `NotFoundPage`.
 
-**Emits:** none — the console is a consumer; domain events are emitted by the
+**Emits:** none - the console is a consumer; domain events are emitted by the
 services it operates (observed client-side over `/ws`).
 
 ## 5. Cross-Cutting Concerns
@@ -374,7 +374,7 @@ flowchart TD
 2. `X-BFF-Target-Env-Id` and `X-BFF-Target-Org-Id` are never sent together.
 3. Every mutation carries `X-BFF-CSRF`; session token never leaves HttpOnly
    cookie storage.
-4. No service/vertical name is compiled into routes, widgets, or clients —
+4. No service/vertical name is compiled into routes, widgets, or clients -
    everything is runtime metadata.
 5. RFW admin mutations are POSTs; renderer never issues direct
    `DELETE`/`PUT` to services.
@@ -388,7 +388,7 @@ flowchart TD
 
 ```mermaid
 graph TD
-    U["Widget/unit tests (test/) — page behavior, slug derivation, selectors"]
+    U["Widget/unit tests (test/) - page behavior, slug derivation, selectors"]
     E["E2E browser tests (e2e-ts, Playwright + chrome platform)<br/>driven via semantics DOM + window.sentin8Test* bridges<br/>real BFF → real services; no direct SQL/backend calls"]
     U --> E
 ```
@@ -414,7 +414,7 @@ graph TD
 - **Unused dependencies** (`provider`, `http`) and dead statics
   (`DefaultBaseUrl`, org/env funnel metrics) should be removed or wired.
 - **Theme consolidation** with `sdk/flutter/sentin8` (dash currently hides the
-  SDK's tokens) — unify tokens/buttons/tables into the SDK.
+  SDK's tokens) - unify tokens/buttons/tables into the SDK.
 - **Idempotency keys** for mutating console operations (org/env creation,
   listing install) are not client-generated; the platform's idempotency story
   for BFF proxies is pending.

@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Post — Business rules (BRD)"
+title: "Sentin8:Post - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-post/edit/main/BUSINESS.md
 ---
-# Sentin8:Post — Business Requirements & Functionality
+# Sentin8:Post - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Post **does for the business**. For architecture read `README.md`;
@@ -23,14 +23,14 @@ one durable message record. The business value it delivers:
   inbox-first pattern makes the notification as durable as the domain
   fact itself (a Post outage never loses a message).
 - **One delivery surface, many channels.** In-app, push, email, and SMS
-  compose over one message record — the sender declares the message;
+  compose over one message record - the sender declares the message;
   channel resolution is Post's job.
 - **Real-time plus reliability.** Users expect millisecond in-app
   notifications; the hybrid relay (LISTEN/NOTIFY wake + 5s safety poll)
   gives latency without depending on notifications for correctness.
 - **Gateway credentials by reference.** External channel credentials
   (SMTP keys, device tokens) resolve through the shared Secrets chain
-  at delivery time — never stored in rows, so a DB dump never contains
+  at delivery time - never stored in rows, so a DB dump never contains
   provider keys and rotation needs no restart.
 - **Template-branded messaging.** Messages render from per-env
   templates with branding overrides (org base → env override,
@@ -40,18 +40,18 @@ one durable message record. The business value it delivers:
 
 | Area | Capabilities |
 |---|---|
-| Message intake | `POST /v1/send` (M2M, Shield-gated) and the producer-side `post_outbox` + pusher DBX path — the inbox row commits with the producer's domain change |
+| Message intake | `POST /v1/send` (M2M, Shield-gated) and the producer-side `post_outbox` + pusher DBX path - the inbox row commits with the producer's domain change |
 | Durable inbox | `post.inbox` (RLS env-scoped) with category (`transaction|security|marketing|system`), priority (`low|normal|high`), body format (text/html/markdown), recipient fields, metadata |
-| View channel | In-app delivery that ALWAYS delivers (the record of truth) — before any external gateway attempt |
+| View channel | In-app delivery that ALWAYS delivers (the record of truth) - before any external gateway attempt |
 | External gateways | Email (SMTP HTTP relay when `gateway_url` is declared), push/sms/web_push/mail (stub dispatch behind the same seam); scope-tiered gateway config (`sys`/`org`/`env`) |
-| Delivery records | Per-channel `post.deliveries` with retry state — backoff curve 1s → 5s → 30s → 2m → 10m, max 3 retries |
+| Delivery records | Per-channel `post.deliveries` with retry state - backoff curve 1s → 5s → 30s → 2m → 10m, max 3 retries |
 | Dead-letter queue | Failed external deliveries land in `post.dlq`; replay resets the inbox row and re-pends the delivery |
 | Events | `notification.received` on View delivery (direct Bus produce); read receipts via the local outbox in the same transaction as the read |
 | Templates | `post.templates` (`(env, key, locale)` → subject/body) with `{{var}}` substitution; branding resolves into render vars |
-| Preferences | Per-user `notification_preferences` — muted categories, quiet-hours windows; consulted before external channels attempt (the View channel always delivers) |
+| Preferences | Per-user `notification_preferences` - muted categories, quiet-hours windows; consulted before external channels attempt (the View channel always delivers) |
 | Message management | List/get/content/read (idempotent, COALESCE), unread counts |
 | Admin surfaces | RFW admin UI (messages, gateways, DLQ, relations, attributes) + a LOCAL Shield policy-admin surface |
-| Gateway test | `POST /v1/gateways/test` — dispatch smoke through the adapter seam |
+| Gateway test | `POST /v1/gateways/test` - dispatch smoke through the adapter seam |
 
 ### What the service does NOT own (business boundary)
 
@@ -70,10 +70,10 @@ one durable message record. The business value it delivers:
 |---|---|
 | Send | Inbox-first insert; producer identity from the verified token (`stream_family = sub`), never caller input |
 | Relay | Hybrid LISTEN/NOTIFY (millisecond wake) + 5s safety poll; batch ≤ 50 undelivered in created_at order; startup drains pre-existing undelivered rows |
-| View channel | Always delivered first — the record of truth; a FCM/SMTP outage never loses the message |
+| View channel | Always delivered first - the record of truth; a FCM/SMTP outage never loses the message |
 | External channels | Additive: dispatch through the gateway adapter seam; email rides the SMTP HTTP relay when configured; stubs otherwise |
-| Terminal delivery | Delivered rows are terminal — no double delivery; replayed relay passes skip delivered rows |
-| Read receipts | `notification:read` emitted via the local outbox in the SAME transaction as the read — badge counters update on every device within one hop |
+| Terminal delivery | Delivered rows are terminal - no double delivery; replayed relay passes skip delivered rows |
+| Read receipts | `notification:read` emitted via the local outbox in the SAME transaction as the read - badge counters update on every device within one hop |
 | Unread counts | Computed per recipient; degrades to 0 on error (understates, never fails the read) |
 
 ### 3.2 Channels & Gateways
@@ -93,7 +93,7 @@ one durable message record. The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Admin UI (RFW) | Messages, gateways/new, DLQ, relations, attributes pages; `target_env_id` required |
-| Local policy admin | Full Shield surface (policy sets, relations, attributes, decisions) — write-time validation (422), 64 KiB caps (413), platform-origin rows enroll-managed (409 on overwrite), tenant sets start in `shadow`, version bumps on upsert |
+| Local policy admin | Full Shield surface (policy sets, relations, attributes, decisions) - write-time validation (422), 64 KiB caps (413), platform-origin rows enroll-managed (409 on overwrite), tenant sets start in `shadow`, version bumps on upsert |
 | Gateway test | Dispatch smoke through the adapter seam |
 
 ## 4. Business Events (Outbound)
@@ -108,14 +108,14 @@ one durable message record. The business value it delivers:
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **Inbox-first** — the producer's domain change and the inbox row commit atomically; producer identity rides the verified token, never caller input.
+1. **Inbox-first** - the producer's domain change and the inbox row commit atomically; producer identity rides the verified token, never caller input.
 2. **The View channel always delivers** before any external gateway attempt; delivered rows are terminal.
-3. **Gateway credentials are secret references only** — plaintext provider tokens never touch the database; resolution failures proceed rather than fail the notification.
+3. **Gateway credentials are secret references only** - plaintext provider tokens never touch the database; resolution failures proceed rather than fail the notification.
 4. **RLS context on the same connection as every query**; event names colon-only; envelopes payload-complete (test-pinned).
 5. **`target_env_id` required** on policy admin + admin data (400 when missing).
 6. **Idempotent mark-read** (COALESCE) + idempotency keys on events → effectively-once badge counting.
 7. **Sys/org gateway scope changes require platform admin** before any tenant mapping happens.
-8. **Read receipts commit with the read** (outbox-first — exactly once with the domain change).
+8. **Read receipts commit with the read** (outbox-first - exactly once with the domain change).
 9. **Credential material is zeroize-on-drop** via the shared secrets crate; never in responses or logs.
 10. **No `unsafe` code.**
 
@@ -156,7 +156,7 @@ one durable message record. The business value it delivers:
 3. Read receipts update every device's badge via events (effectively-once).
 4. External channels dispatch through the configured gateway; email rides the SMTP relay when configured; failures retry on the 1s→5s→30s→2m→10m curve and land in the DLQ.
 5. DLQ replay resets and re-delivers; missing replays 404.
-6. Gateway credentials resolve from secret references at delivery time — never stored, never logged.
+6. Gateway credentials resolve from secret references at delivery time - never stored, never logged.
 7. Templates render with `{{var}}` substitution and branding overrides; fallbacks work.
 8. User preferences (muted categories, quiet hours) gate external channels; the View channel always delivers.
 9. Gateway config changes (including sys/org scope) are platform-admin-gated; dispatch is testable via the gateway test endpoint.

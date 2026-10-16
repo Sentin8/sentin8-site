@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Secrets — Business rules (BRD)"
+title: "Sentin8:Secrets - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-secrets/edit/main/BUSINESS.md
 ---
-# Sentin8:Secrets — Business Requirements & Functionality
+# Sentin8:Secrets - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Secrets **does for the business**. For architecture read `README.md`;
@@ -14,17 +14,17 @@ custom_edit_url: https://github.com/Sentin8/sentin8-secrets/edit/main/BUSINESS.m
 ## 1. Business Purpose
 
 Sentin8:Secrets is the platform's **secret-reference store and
-resolver**. It is the single place credential material lives —
+resolver**. It is the single place credential material lives -
 everything else in the platform stores only a reference
 (`backend://path`). The business value it delivers:
 
 - **Secret references only.** Application tables store
-  `backend://path` references, never credential material — a database
+  `backend://path` references, never credential material - a database
   dump or backup must never contain a usable provider key, PAN, PIN, or
   OAuth client secret.
 - **Two access paths, both audited.** Machines resolve values
   programmatically (with a workload-scoped token); humans reveal for
-  inspection — every reveal writes a `reads` audit row. An unaudited
+  inspection - every reveal writes a `reads` audit row. An unaudited
   reveal is the classic secret-store failure.
 - **Zeroize-on-drop plaintext.** Plaintext values live only inside
   request/response handling; metadata projections never serialize
@@ -34,7 +34,7 @@ everything else in the platform stores only a reference
   version rotation retains the previous value through the prune window
   so consumers mid-upgrade keep resolving.
 - **Compliance-grade visibility.** The reveal audit trail is
-  append-only and never pruned — who, what, when, operator-attributable.
+  append-only and never pruned - who, what, when, operator-attributable.
 
 ## 2. Business Scope (What the Service Provides)
 
@@ -43,9 +43,9 @@ everything else in the platform stores only a reference
 | Secret storage | Named secrets (`stripe/api_key` style) envelope-encrypted at rest (AES-256-GCM, `v2:` prefix, fresh nonce per seal) with key-version epochs |
 | CRUD | Create/upsert, list/get (metadata only), soft-disable (delete), name validation (charset, length, no traversal) |
 | Rotation | `rotate` bumps the version and retains the previous one until the prune window; the active pointer flips atomically |
-| Machine resolve | `POST /v1/secrets/resolve` (M2M, `secret:read`) — accepts `secrets://`, `sentin8-secrets://`, or bare name; value returned once, never logged |
-| Human reveal | Admin `reveal` (`secret:admin`) — audited; surfaced in the admin UI history |
-| Reveal audit | Append-only, never-pruned `reads` table — reader subject, service, type (user/m2m) |
+| Machine resolve | `POST /v1/secrets/resolve` (M2M, `secret:read`) - accepts `secrets://`, `sentin8-secrets://`, or bare name; value returned once, never logged |
+| Human reveal | Admin `reveal` (`secret:admin`) - audited; surfaced in the admin UI history |
+| Reveal audit | Append-only, never-pruned `reads` table - reader subject, service, type (user/m2m) |
 | Version history | Append-only `versions` table per secret |
 | Expiry | `expires_at` with an expiring-soon event window (T-14d) and the daily expiry scan |
 | Maintenance | Prune (Cron-driven, daily at boot-registered 05:30) + re-encrypt (manual post-key-rotation step) |
@@ -70,10 +70,10 @@ everything else in the platform stores only a reference
 |---|---|
 | Upsert | Idempotent create/update (version++, history row appended); plaintext accepted once and encrypted immediately |
 | Names | Fail-closed validation: non-empty, ≤256 chars, `[a-zA-Z0-9/_-]`, no empty segments (traversal refused) |
-| Rotation | Version++ with retained previous value until the prune window — consumers mid-upgrade keep resolving |
-| Soft-disable | DELETE disables; resolve/reveal refuse as 404 — disabled state cannot be distinguished from absence (no existence oracle) |
+| Rotation | Version++ with retained previous value until the prune window - consumers mid-upgrade keep resolving |
+| Soft-disable | DELETE disables; resolve/reveal refuse as 404 - disabled state cannot be distinguished from absence (no existence oracle) |
 | Expiry | `expires_at` + daily expiry scan + T-14d expiring-soon event |
-| Key epochs | `key_version` per cipher; re-encrypt rewraps lazily (per-row continue-on-failure, resumable) — rotation never bricks readers |
+| Key epochs | `key_version` per cipher; re-encrypt rewraps lazily (per-row continue-on-failure, resumable) - rotation never bricks readers |
 
 ### 3.2 Reveal (the security-critical family)
 
@@ -81,9 +81,9 @@ everything else in the platform stores only a reference
 |---|---|
 | M2M resolve | Shield `secret:read`; envelope opened, value wrapped in `SecretValue` (zeroize-on-drop), returned once |
 | Human reveal | Shield `secret:admin`; audited, visible in the admin history page |
-| Audit-before-response | The audit INSERT runs inside the same transaction as the value SELECT; audit failure → 500 — the value is never returned unaudited |
+| Audit-before-response | The audit INSERT runs inside the same transaction as the value SELECT; audit failure → 500 - the value is never returned unaudited |
 | Audit trail | Append-only, never pruned; reader subject, service, type; LIMIT 100 listing per secret |
-| Metadata safety | `SecretRow::metadata()` serializes id/name/description/version/key_version/status/creator/env/timestamps — `value_cipher` never leaves the resolve path |
+| Metadata safety | `SecretRow::metadata()` serializes id/name/description/version/key_version/status/creator/env/timestamps - `value_cipher` never leaves the resolve path |
 
 ### 3.3 Maintenance
 
@@ -95,7 +95,7 @@ everything else in the platform stores only a reference
 
 ## 4. Business Events (Outbound)
 
-Event family `secrets`; metadata-only payloads — values never.
+Event family `secrets`; metadata-only payloads - values never.
 
 | Event | When |
 |---|---|
@@ -106,15 +106,15 @@ Event family `secrets`; metadata-only payloads — values never.
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **Plaintext only in request scope** — decrypted values live in `SecretValue` (zeroize-on-drop); the master key is `Zeroizing` and never prints.
-2. **Metadata is value-free by construction** — a future field addition cannot leak ciphertext because the value never enters the projection.
+1. **Plaintext only in request scope** - decrypted values live in `SecretValue` (zeroize-on-drop); the master key is `Zeroizing` and never prints.
+2. **Metadata is value-free by construction** - a future field addition cannot leak ciphertext because the value never enters the projection.
 3. **Every reveal is audited** (m2m / user / admin) into the append-only, never-pruned `reads` table.
-4. **Envelope discipline** — `v2:` prefix, fresh 12-byte nonce per seal, AES-256-GCM; ciphertext is non-deterministic.
-5. **Names fail closed** — traversal and malformed names rejected.
-6. **Disabled refusal = 404** — callers cannot distinguish disabled from absent.
-7. **Rotation via versioning, not overwrite** — history is append-only; hard delete is not exposed.
-8. **Master key fail-closed** — absent/invalid key panics in production; dev mode is an explicit, loudly-warned escape hatch (ephemeral key, values unreadable after restart).
-9. **Tenant context from claims only** — never URL path segments; cross-env requires admin roles validated at the authorization layer.
+4. **Envelope discipline** - `v2:` prefix, fresh 12-byte nonce per seal, AES-256-GCM; ciphertext is non-deterministic.
+5. **Names fail closed** - traversal and malformed names rejected.
+6. **Disabled refusal = 404** - callers cannot distinguish disabled from absent.
+7. **Rotation via versioning, not overwrite** - history is append-only; hard delete is not exposed.
+8. **Master key fail-closed** - absent/invalid key panics in production; dev mode is an explicit, loudly-warned escape hatch (ephemeral key, values unreadable after restart).
+9. **Tenant context from claims only** - never URL path segments; cross-env requires admin roles validated at the authorization layer.
 10. **RLS context set on the same connection, same transaction** as every secret read/write.
 11. **No `unsafe` code**; crypto is the shared envelope crate.
 
@@ -148,11 +148,11 @@ Event family `secrets`; metadata-only payloads — values never.
 
 ## 9. Acceptance Criteria (what "done" looks like for the business)
 
-1. A service can store a provider credential by name and resolve it at call time — the plaintext exists only within the request.
-2. Every application table in the platform holds only `backend://path` references — no credential material outside Secrets.
+1. A service can store a provider credential by name and resolve it at call time - the plaintext exists only within the request.
+2. Every application table in the platform holds only `backend://path` references - no credential material outside Secrets.
 3. Every resolve and reveal lands in the never-pruned audit trail with reader attribution; an audit failure blocks the response.
 4. Rotation retains the previous version through the prune window; consumers mid-upgrade never fail.
-5. Disabled secrets resolve as 404 — no existence oracle.
+5. Disabled secrets resolve as 404 - no existence oracle.
 6. Key rotation + re-encrypt rewrap rows without downtime; failures are per-row isolated and resumable.
 7. The daily prune and expiry scans run via Cron proxy-back.
 8. Metadata surfaces (lists, admin pages, events) never contain values.
@@ -163,7 +163,7 @@ Event family `secrets`; metadata-only payloads — values never.
 
 - Hardware-backed key storage as another `KeyProvider` impl behind the existing master-key seam.
 - Per-scope secret ACLs keep scope-gating as the contract (`sentin8:secrets:{scope}:read` per scope).
-- Secret sharing (split-knowledge / Shamir) is a non-goal — operational ceremony without a consumer.
+- Secret sharing (split-knowledge / Shamir) is a non-goal - operational ceremony without a consumer.
 
 
 ---

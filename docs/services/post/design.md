@@ -1,16 +1,16 @@
 ---
-title: "Sentin8:Post — Architecture (DDD)"
+title: "Sentin8:Post - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-post/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Post — Detailed Design Document
+# DESIGN.md: Sentin8:Post - Detailed Design Document
 
 ## 1. Scope & Context
 
 Sentin8:Post is the multi-channel notification service: producers enqueue
-into their OWN local `post_outbox` queue (DBX — same transaction as
+into their OWN local `post_outbox` queue (DBX - same transaction as
 their domain change), a per-service pusher drains it to Post's
 `POST /v1/send` (M2M, Shield-gated), the relay drains `post.inbox`, the
 View channel always delivers (in-app messages), external gateways
@@ -19,7 +19,7 @@ produces `sentin8:notification:*` events on the Bus. Post also carries a
 **local** Shield admin surface (policy sets, relations, attributes,
 decisions) rather than mounting the shared generic one.
 
-- **Owns** (schema `post`): `inbox` (message queue — the domain record),
+- **Owns** (schema `post`): `inbox` (message queue - the domain record),
   `deliveries` (per-channel delivery records + retry state), `gateways`
   (provider config by scope, secret-reference-only credentials),
   `dlq` (failed external deliveries), `outbox` (DBX producer for policy
@@ -27,12 +27,12 @@ decisions) rather than mounting the shared generic one.
 - **Does NOT own**: the sending services' domain changes (they write the
   inbox in their own transactions), gateway providers' credentials
   (referenced via `secret_ref`, resolved at delivery time), and the
-  Shield substrate (`sys.policy_sets` — post stores tenant sets there
+  Shield substrate (`sys.policy_sets` - post stores tenant sets there
   through its admin surface and reads for evaluation).
 
 ```mermaid
 graph TD
-    subgraph PRODUCERS["Producers (DBX — local post_outbox + pusher)"]
+    subgraph PRODUCERS["Producers (DBX - local post_outbox + pusher)"]
         SYS["sentin8:sys (sys.post_outbox → sys-post pusher)"]
         AUTH["sentin8:auth (auth.post_outbox → auth-post pusher)"]
         API_C["any service via POST /v1/send"]
@@ -64,7 +64,7 @@ graph TD
 ```
 
 Trust boundary: gateway credentials never live in `gateways.config` as
-plaintext — only secret references; the producer identity of an inbox
+plaintext - only secret references; the producer identity of an inbox
 row is derived from the verified token (`stream_family = claims.sub`),
 never from caller-supplied fields.
 
@@ -128,11 +128,11 @@ sequenceDiagram
     P->>I: INSERT (same tx as domain change)<br/>stream_family = token sub
     Note over I: AFTER INSERT → pg_notify post_inbox_changed
     R->>I: drain ≤ 50 undelivered (created_at order)
-    R->>D: deliveries (view, delivered) — source of truth
+    R->>D: deliveries (view, delivered) - source of truth
     R->>G: dispatch per channel matrix
     G->>G: resolve secret_ref (zeroize-on-drop)
     alt gateway failure (retry curve → DLQ)
-        Note over G: log only — no retry enqueue yet
+        Note over G: log only - no retry enqueue yet
     end
     R->>I: UPDATE delivered = true, delivered_at
     R->>B2["bus: POST /v1/produce"] 
@@ -213,28 +213,28 @@ erDiagram
     }
 ```
 
-- `post.inbox` — the domain queue: category/priority/body_format CHECKs,
+- `post.inbox` - the domain queue: category/priority/body_format CHECKs,
   undelivered + unread partial indexes, env + recipient indexes, INSERT
   NOTIFY trigger. RLS FORCE with select/insert/update (no delete policy).
-- `post.deliveries` — one row per channel attempt with the retry
+- `post.deliveries` - one row per channel attempt with the retry
   machinery (`retry_count`, `max_retries` 3, `next_retry_at` partial
   index), driven by the relay: the first attempt stamps the in-flight
   count, the failure path schedules the backoff curve
   (1s → 5s → 30s → 2m → 10m) and lands the row in DLQ when the budget
   is spent.
-- `post.gateways` — scope-tiered (`sys`/`org`/`env`); the handler's
+- `post.gateways` - scope-tiered (`sys`/`org`/`env`); the handler's
   sys/org 403 gate is mirrored in RLS: every row is env-pinned (sys/org
   rows live in the system env), and platform-tier mutations additionally
   require the `sentin8:sys:admin` scope stamp on the writing context
-  (`sentin8_has_scope`) — the former `sentin8_bypass_rls()` branches are
+  (`sentin8_has_scope`) - the former `sentin8_bypass_rls()` branches are
   dead (§6.7) and removed. Gateway delete is row-aware: read the row's
   env/scope, re-stamp the ROW's env as the deleting context, delete with
   the explicit predicate.
   explicit WHERE is the primary filter (sys/org forced to
   `SYSTEM_ENV_ID`; sys/org writes are platform-admin-gated).
-- `post.dlq` — landed external failures; replay resets the inbox row to
+- `post.dlq` - landed external failures; replay resets the inbox row to
   undelivered and re-pends the delivery.
-- `post.outbox` / `post.audit_journal` — generated DBX tables (policy
+- `post.outbox` / `post.audit_journal` - generated DBX tables (policy
   events + journal).
 
 ```mermaid
@@ -289,20 +289,20 @@ flowchart LR
 
 Emitted notification events:
 
-- **`sentin8:notification:received`** — produced directly by the inbox
+- **`sentin8:notification:received`** - produced directly by the inbox
   relay on View delivery (fire-and-forget). Payload is complete:
   `{user_id, title, body, category, resource_type, resource_id, metadata, unread_count}`
   with `publisher_subject: "sentin8:post"`.
-- **`sentin8:post:notification:read`** — the read receipt:
+- **`sentin8:post:notification:read`** - the read receipt:
   `mark_message_read` inserts a local `post.outbox` row in the SAME
-  transaction as the `read_at` update (outbox-first §6.7 — exactly once
+  transaction as the `read_at` update (outbox-first §6.7 - exactly once
   with the domain change; the shell relay produces it to the
   `notifications` family). Payload is complete:
   `{user_id, notification_id, env_id, read_at, unread_count}` with
   `publisher_subject` = the caller's token subject. ENV CONTRACT: the
   outbox row carries `SYSTEM_ENV_ID` (the relay produces with post's
   system-env M2M token; a caller-env row is rejected 403 cross-tenant)
-  — the target env rides the payload, the same discipline as sys's
+  - the target env rides the payload, the same discipline as sys's
   `audit_tx` fan-out. The BFF's SSE consumer filters on `user_id` and
   reads `unread_count`, so a device badge updates within one hop.
 
@@ -387,7 +387,7 @@ graph LR
   work short; view-channel first keeps the record authoritative.
 - Hot paths: unread/unread-count queries (partial indexes), the relay
   drain (undelivered partial index), policy evaluation (relation slice
-  capped at 10,000 tuples — over-cap fails closed).
+  capped at 10,000 tuples - over-cap fails closed).
 - No Valkey dependency in post itself (metrics channels are shell-owned);
   `PostConfig.valkey_url` is parsed but unused.
 
@@ -398,7 +398,7 @@ graph LR
    rides the verified token (`stream_family = sub`), never caller input.
 2. The View channel always delivers (record of truth) before any
    external gateway attempt; delivered rows are terminal.
-3. Gateway credentials are secret references only — plaintext provider
+3. Gateway credentials are secret references only - plaintext provider
    tokens never touch the database; resolution failures proceed without
    credentials rather than failing the notification.
 4. RLS context is set on the same connection as every query; event names

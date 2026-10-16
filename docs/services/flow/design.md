@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Flow — Architecture (DDD)"
+title: "Sentin8:Flow - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-flow/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Flow — Detailed Design Document
+# DESIGN.md: Sentin8:Flow - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -16,14 +16,14 @@ scheduled workflows when Sentin8:Cron calls the internal run endpoint,
 and publishes lifecycle events through the DBX outbox path.
 
 - **Owns** (schema `flow`): `workflows` (definition + state + step
-  results + correlation), `outbox` (DBX producer table — the runtime
+  results + correlation), `outbox` (DBX producer table - the runtime
   event write goes here; the shell-spawned relay drains it to Bus),
   `audit_journal`, and the PG sequences created by `SequenceStep`
   (`sentin8_flow_seq_{key}`).
 - **Does NOT own**: the domain logic inside steps (proxy-back to owning
   services), schedule due-ness (driven externally by Sentin8:Cron), the
   WASM modules (Sentin8:Func executes them), and event-triggered starts
-  (`event_triggers` is declared empty — starts are API-triggered).
+  (`event_triggers` is declared empty - starts are API-triggered).
 
 ```mermaid
 graph TD
@@ -56,7 +56,7 @@ graph TD
 ```
 
 Trust boundary: proxy-back requests carry the workflow's `env_id` (the
-tenant carrier — the M2M bearer identifies the service); the owning
+tenant carrier - the M2M bearer identifies the service); the owning
 service re-verifies the caller and enforces its own Shield gate.
 
 ## 2. Runtime Architecture
@@ -176,7 +176,7 @@ erDiagram
     }
 ```
 
-- `flow.workflows` — RLS FORCE
+- `flow.workflows` - RLS FORCE
   (`sentin8_context_initialized() AND (sentin8_bypass_rls() OR env_id =
   sentin8_current_env_id())`); indexes by env/domain/state/correlation;
   the due index covers `scheduled_at WHERE state='waiting' AND
@@ -184,12 +184,12 @@ erDiagram
   stored inline so retry/resume/schedule/callback can re-load the
   remaining steps without a second source of truth. No `org_id` column
   (pinned by test).
-- `flow.outbox` — generated DBX table (`sentin8-outbox::
+- `flow.outbox` - generated DBX table (`sentin8-outbox::
   outbox_table_sql("flow")`) with NOTIFY trigger (`flow_outbox_changed`)
   and FORCE-RLS; the shell-spawned relay (shell boot step 8b) drains it
   env-by-env via `sentin8_outbox_unrelayed_envs()` and pushes rows to Bus
   `POST /v1/produce` (M2M, scope `sentin8:bus:produce`).
-- `flow.audit_journal` — shared journal shape (unpushed index).
+- `flow.audit_journal` - shared journal shape (unpushed index).
 
 ```mermaid
 stateDiagram-v2
@@ -209,7 +209,7 @@ stateDiagram-v2
 ```
 
 Step-result statuses: `success | failed | waiting`; a failed step is a
-*data* outcome governed by `on_error` — engine transport errors become
+*data* outcome governed by `on_error` - engine transport errors become
 failed results, not exceptions.
 
 ## 4. API Surface
@@ -232,11 +232,11 @@ failed results, not exceptions.
 
 Env addressing (uniform across the workflow surface): every handler accepts
 `?target_env_id` and resolves the tenant as query param -> token env claim ->
-system default (user tokens carry no env claim — without the param they
+system default (user tokens carry no env claim - without the param they
 address the system env, the platform plane). Transitions are
 optimistic-concurrency guarded: the UPDATE only lands on pending/processing/
 waiting rows matching what the caller read; a raced transition (the engine
-completing a run between a caller's read and its cancel) is a 409 Conflict —
+completing a run between a caller's read and its cancel) is a 409 Conflict -
 terminal states (completed/failed/cancelled) reject cancel/retry/resume with
 409, never a surfaced RowNotFound 500.
 
@@ -256,10 +256,10 @@ Event types: `sentin8:flow:workflow:created|started|completed|failed|waiting|upd
 ## 5. Cross-Cutting Concerns
 
 - **Authentication**: certificate-first `verify_cert_or_token` for
-  lifecycle verbs — an enrolled platform workload presents its Acme
+  lifecycle verbs - an enrolled platform workload presents its Acme
   client certificate in the TLS handshake (the TLS layer CA-verifies
   and injects `X-Sentin8-Client-Cert-Subject/-Thumbprint`; the
-  boot-loaded registry map is the authorization record — scopes,
+  boot-loaded registry map is the authorization record - scopes,
   vertical, `enabled`). Bearer tokens remain the fallback for
   user/delegated callers. Shield gates on the API surface; platform
   admins bypass scope checks on internal verbs; proxy-back
@@ -276,7 +276,7 @@ Event types: `sentin8:flow:workflow:created|started|completed|failed|waiting|upd
 - **Audit journaling**: `flow.audit_journal` for the shared pusher;
   workflow lifecycle events carry the audit trail (step_results are kept
   on failure/cancel).
-- **Graceful drain**: shell TLS serve; engine tasks are fire-and-forget —
+- **Graceful drain**: shell TLS serve; engine tasks are fire-and-forget -
   a crash resumes from `current_step` + inline `logic` on the next
   retry/resume.
 - **TLS posture**: PQ provider at shell boot; proxy-back + HTTP steps ride
@@ -287,7 +287,7 @@ Event types: `sentin8:flow:workflow:created|started|completed|failed|waiting|upd
 ```mermaid
 flowchart TD
     A[engine spawn] --> B[set processing]
-    B -->|persist fails| L[log; record unchanged — no advance]
+    B -->|persist fails| L[log; record unchanged - no advance]
     B -->|ok| C[execute step]
     C -->|generic ok| D[advance / complete]
     C -->|http non-2xx| F1[failed StepResult → on_error policy]
@@ -306,7 +306,7 @@ flowchart TD
 - **Waiting without a deadline parks indefinitely** (no expiry path
   implemented).
 - **Proxy-back auth fallback**: M2M token fetch failure → warn + static
-  profile token fallback (scope-verifying owners reject it — surfaced as
+  profile token fallback (scope-verifying owners reject it - surfaced as
   a failed step).
 - **Scheduled resumes** rely on Cron's `/v1/internal/schedules/run`
   (≤50 per call); a Cron outage delays, never loses (rows stay
@@ -331,7 +331,7 @@ graph LR
 
 - One engine task per workflow run; steps run sequentially (no
   parallelism inside a logic version); persistence per transition.
-- Registry (handler profiles) is process-local RwLock — not durable;
+- Registry (handler profiles) is process-local RwLock - not durable;
   env profiles re-seed at boot.
 - Pool cap 3; engine persistence is short transactions (state +
   step-result append), so throughput is bounded by persistence latency,
@@ -345,16 +345,16 @@ graph LR
    tenant context set transaction-local on the same connection; a crash
    resumes from `current_step` (`logic` stored inline).
 2. The proxy-back tenant context comes from the workflow record's
-   `env_id` — never from the caller's token (the bearer identifies the
+   `env_id` - never from the caller's token (the bearer identifies the
    service only).
 3. `WorkflowRecord` has no `org_id`; state wire values match the SQL
    CHECK constraint (both test-pinned).
 4. `completed_at` is stamped once (`COALESCE`) for terminal states.
 5. Failed/cancelled workflows keep their `step_results` (audit trail);
    repair truncates deliberately and records `workflow:repaired`.
-6. Branch targets must exist (`branch target not found` → Failed) — no
+6. Branch targets must exist (`branch target not found` → Failed) - no
    silent skips; `next_step` from the step def or the result may jump.
-7. `SequenceStep` takes the PG sequence after tenant context —
+7. `SequenceStep` takes the PG sequence after tenant context -
    sequence names are per-env keys but the sequences themselves are
    schema-global (`sentin8_flow_seq_{key}`).
 8. Waiting is durable: `scheduled_at` + the due index mean a parked
@@ -392,12 +392,12 @@ graph TD
   step definition (the config default covers it).
 - The `flow.outbox` drain surface is wired to the standard DBX path:
   `store::insert_outbox` writes `flow.outbox` via the shared crate helper,
-  and the shell-spawned relay (shell boot step 8b) drains it — matching
+  and the shell-spawned relay (shell boot step 8b) drains it - matching
   the producer path every shell service uses (principles §6.7).
-- `SENTIN8_FLOW_STREAM_FAMILY` is removed — events are family `flow` by
+- `SENTIN8_FLOW_STREAM_FAMILY` is removed - events are family `flow` by
   convention.
 - `InitiateInstructionStep` spawns the child via the store's insert path
-  (`store::insert_workflow`) — the child's `domain` comes from the step
+  (`store::insert_workflow`) - the child's `domain` comes from the step
   config (`domain`, defaulting to the parent's), and the child inherits
   the parent's `correlation_id` so the create-dedupe index covers replays
   of the parent create.

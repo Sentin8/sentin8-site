@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:App — Architecture (DDD)"
+title: "Sentin8:App - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-app/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:App — Detailed Design Document
+# DESIGN.md: Sentin8:App - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -14,7 +14,7 @@ Sentin8:App owns the app marketplace and the app-instance runtime surface:
 - **Owns** (schema `app`): `store_listings` (visibility-tiered store
   catalog), `audit_events`, plus the DBX producer tables `outbox` and
   `audit_journal`. It also owns **instance lifecycle writes** to
-  `sys.app_instances` (declared cross-schema DML grant — app is the
+  `sys.app_instances` (declared cross-schema DML grant - app is the
   instance owner by design; sys owns the table and reads it for the
   resolver).
 - **Does NOT own**: identity/roles/groups (provisioning verbs ride auth's
@@ -90,7 +90,7 @@ graph TD
     STORE --> ST2["outbox/audit"]
 ```
 
-**Request lifecycle — install (`POST /v1/app/setup`, the atomic path):**
+**Request lifecycle - install (`POST /v1/app/setup`, the atomic path):**
 
 ```mermaid
 sequenceDiagram
@@ -109,7 +109,7 @@ sequenceDiagram
     H->>SYS: INSERT app_instances status='provisioning'<br/>group_gate='strict', hostnames derived
     H->>SYS: SELECT listing oauth_defaults (allow-list check)
     alt oauth_defaults.redirect_uris present AND derived callback off-list
-        H-->>OP: 400 (install FAILS — no off-list callback registered)
+        H-->>OP: 400 (install FAILS - no off-list callback registered)
     end
     H->>AUTH: DCR register_oauth_client_with_grants<br/>(public PKCE, auth_code+refresh,<br/>redirect_uri = derived bff.{hostname}/auth/callback)
     Note over H: DCR failure = warn + continue<br/>(BFF fallback client)
@@ -161,7 +161,7 @@ erDiagram
     STORE_LISTINGS {
         uuid id PK
         string app_slug
-        string channel "stable|beta|dev — release train"
+        string channel "stable|beta|dev - release train"
         string version "advisory release version"
         jsonb media "typed by-reference entries (bytes in Storage)"
         string status "draft|published|disabled|archived"
@@ -203,7 +203,7 @@ erDiagram
 - **Visibility-scoped RLS on `store_listings`** (visibility tiers):
   `public` → everyone; `env` → `env_id = current`; `usr` → owner subject
   or env-admin; all gated on `sentin8_context_initialized()`. Writes:
-  owner or bypass. The `org` tier does not exist — org-wide reach is
+  owner or bypass. The `org` tier does not exist - org-wide reach is
   achieved via `public` or per-env installs.
 - **Instance state machine** (`sys.app_instances.status`, maintained by
   app):
@@ -224,7 +224,7 @@ stateDiagram-v2
 - **Secrets**: `env_vars_ref` stored by reference; the resolve endpoint
   returns the value once and never logs it.
 - **Ownership note**: `sys.app_instances` is Sys-owned DDL with app as the
-  declared DML owner — the only sanctioned cross-schema write grant
+  declared DML owner - the only sanctioned cross-schema write grant
   (instance provisioning is app's domain by design).
 
 ## 4. API Surface
@@ -233,12 +233,12 @@ stateDiagram-v2
 |----------|----------|------|-------|
 | store | `POST/GET/PUT/DELETE /v1/app/store/listings[/{id}]` | Shield `app:store:admin` / `app:store:read` (RLS visibility under read) | `sentin8:app:listing:created\|updated\|archived` |
 | setup | `POST /v1/app/setup`, `GET /v1/app/setup/{id}/status` | `app:instances:write` / read | `sentin8:app:instance:created` |
-| runtime | `GET /v1/app/runtime/context` | **public** (TLS-injected instance headers) | — |
+| runtime | `GET /v1/app/runtime/context` | **public** (TLS-injected instance headers) | - |
 | admin | `/v1/app/admin/instances/{id}/(domain\|env-vars\|feature-flags\|status)`, `GET …/oauth-client`, `GET …/env-vars/resolve` | `app:instances:admin` | `instance:domain:updated`, `envvars:updated/resolved`, `featureflags:updated`, `status:updated` |
 | uninstall | `POST /v1/admin/instances/uninstall` | Shield + target env RBAC | `sentin8:app:instance:uninstalled` |
-| RFW | `GET /v1/admin/ui/{page}`, `GET /v1/admin/{resource}` | any of `store:read/store:admin/sys:admin/org:admin/env:admin` | — |
-| internal | `POST /v1/internal/steps/execute` | Flow M2M bearer (`sentin8:app:steps:execute`-profile) | — |
-| health | `GET /v1/health` | none | — |
+| RFW | `GET /v1/admin/ui/{page}`, `GET /v1/admin/{resource}` | any of `store:read/store:admin/sys:admin/org:admin/env:admin` | - |
+| internal | `POST /v1/internal/steps/execute` | Flow M2M bearer (`sentin8:app:steps:execute`-profile) | - |
+| health | `GET /v1/health` | none | - |
 
 **Event flow (outbox → Bus → trigger):**
 
@@ -265,14 +265,14 @@ sequenceDiagram
 ## 5. Cross-Cutting Concerns
 
 - **Auth**: shared `AuthClient` (5-min JWKS/discovery caches) + Shield on
-  every guarded route; runtime context is intentionally unauthenticated —
+  every guarded route; runtime context is intentionally unauthenticated -
   the TLS-injected instance headers are the caller identity.
 - **Tenant resolution + RLS**: context set on the same connection inside
   one explicit transaction; uninitialized context sees nothing
   (fail-closed).
 - **Idempotency**: install is retryable (provisioning verbs are
   idempotent); DCR re-registers on retry. Aggregate events are
-  at-least-once (Bus SSE) — a redelivered event may double-apply a
+  at-least-once (Bus SSE) - a redelivered event may double-apply a
   metric within the day-bucket (accepted for usage analytics; Stat's
   ingest dedupes per event id).
 - **Rate limiting**: none (BFF/edge responsibility).
@@ -291,7 +291,7 @@ flowchart TD
     B --> C{DCR register}
     C -- fail --> D[warn + continue<br/>BFF fallback client]
     C -- ok --> E[provision role+group via auth API]
-    E -- fail --> F[500 — instance stays provisioning<br/>retry re-runs whole saga]
+    E -- fail --> F[500 - instance stays provisioning<br/>retry re-runs whole saga]
     E -- ok --> G[status=active + emit + audit]
     H[Bus SSE down] --> I[listener retries 2s backoff]
     I --> H
@@ -300,7 +300,7 @@ flowchart TD
 ```
 
 - Install is atomic in `sys.app_instances` but the HTTP provisioning calls
-  are intentionally NOT transaction-wrapped (auth's tables) — retry
+  are intentionally NOT transaction-wrapped (auth's tables) - retry
   resumption is idempotency-based.
 - Event emission: in-tx for listing mutations (commit-atomic); best-effort
   post-tx for instance events.
@@ -323,25 +323,25 @@ graph LR
   lists) are single-query + RLS filtered.
 - The stat listener is the only continuously consuming task; reconnect
   backoff 2s; ACK per message.
-- Runtime context is read-per-request (no cache) — it is the app's
+- Runtime context is read-per-request (no cache) - it is the app's
   first-paint call; single indexed hostname lookup.
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-1. **Tokens never reach the client** — runtime context returns metadata
+1. **Tokens never reach the client** - runtime context returns metadata
    only; OAuth flows ride the BFF.
-2. **Visibility tiers enforced by RLS, not handler filters** — a
+2. **Visibility tiers enforced by RLS, not handler filters** - a
    `usr`/`env` listing is invisible (404) outside its tier; env-admin
    override is explicit (`sentin8_is_env_admin()`).
-3. **`visibility` immutable after publish** — 400 on change (listing
+3. **`visibility` immutable after publish** - 400 on change (listing
    audience can't be silently widened).
-4. **Role graph integrity** — `default_signup_role` must be a declared
+4. **Role graph integrity** - `default_signup_role` must be a declared
    role; includes-graph is cycle-checked before save.
-5. **Env vars are references** — resolved values are returned once, never
+5. **Env vars are references** - resolved values are returned once, never
    logged, never stored plaintext.
 6. **target_env_id required + RBAC-in-target check** on admin/setup
-   surfaces — no cross-env writes without membership.
-7. **Install hostnames derived deterministically** — default
+   surfaces - no cross-env writes without membership.
+7. **Install hostnames derived deterministically** - default
    `{app_slug}.{env_slug}.{org_domain}`, BFF always `bff.{hostname}`;
    custom domains verified via TXT token before activation.
 8. `group_gate='strict'` is fixed at install (fail-closed app-group gate;
@@ -359,7 +359,7 @@ graph TD
 ```
 
 - ~69 tests across 8 files; integration connects as the real
-  `sentin8_app_service` role (NOBYPASSRLS) with sys-role fixtures —
+  `sentin8_app_service` role (NOBYPASSRLS) with sys-role fixtures -
   RLS tier assertions include the uninitialized-context fail-closed case.
 - Deliberately not covered in-service: Stat property creation against the
   live service (error-path tests only), full Flow saga execution

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Samples
 
-First calls against a running Sentin8 deployment — through the BFF
+First calls against a running Sentin8 deployment - through the BFF
 proxy (the only client path), from cURL, Rust, and Dart.
 
 ## 1. Sign in and list your orgs
@@ -71,7 +71,7 @@ let resp = transport
     .await?;
 ```
 
-A workload's only identity is its certificate — there is no token to
+A workload's only identity is its certificate - there is no token to
 configure, no secret to leak.
 
 ## 5. From Dart (app consumer)
@@ -88,10 +88,10 @@ The BFF holds the tokens; the app holds a cookie.
 
 Whichever language you call from, the platform guarantees:
 
-1. **PQ-TLS** — X25519MLKEM768 + ML-DSA-65, no classical fallback.
-2. **Verified identity** — issuer, signature, expiry, audience, type.
-3. **Live authorization** — Shield decides against roles resolved now,
+1. **PQ-TLS** - X25519MLKEM768 + ML-DSA-65, no classical fallback.
+2. **Verified identity** - issuer, signature, expiry, audience, type.
+3. **Live authorization** - Shield decides against roles resolved now,
    not embedded in tokens.
-4. **Tenant isolation** — FORCE RLS + explicit `WHERE env_id` on the
+4. **Tenant isolation** - FORCE RLS + explicit `WHERE env_id` on the
    same connection.
-5. **Audit** — the action is journaled before it returns.
+5. **Audit** - the action is journaled before it returns.

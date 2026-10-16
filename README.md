@@ -1,4 +1,4 @@
-# README.md: Sentin8:Site — sentin8.dev
+# README.md: Sentin8:Site - sentin8.dev
 
 > The public platform website at [sentin8.dev](https://sentin8.dev):
 > every platform service, app, and SDK explained for developers and
@@ -14,14 +14,14 @@ grids; per-service pages with use cases and API surface tables; the
 five security pillars; developer quickstarts; sample code; Remote UI
 (RFW) explained; and a **Reference** section harvested at build time
 from every unit repo's own `README.md`/`DESIGN.md`/`BUSINESS.md`/
-`SECURITY.md` — the repositories stay the source of truth.
+`SECURITY.md` - the repositories stay the source of truth.
 
 ## 2. Motivation
 
 The tree's ~98 public repos carry maintainer-grade docs (366 files, 334
 Mermaid diagrams) with no curated public surface. Developers evaluating
 the platform need the "what is this and how do I build on it" layer:
-product overviews, use cases, API surfaces, security guarantees — and
+product overviews, use cases, API surfaces, security guarantees - and
 they need it to never drift from the code, which the build-time
 harvester guarantees by construction.
 

@@ -2,7 +2,7 @@
 sidebar_position: 14
 ---
 
-# Sentin8:AI — Platform AI Capability Layer
+# Sentin8:AI - Platform AI Capability Layer
 
 AI with the same authorization discipline as everything else:
 embeddings, chat, completions, and document ingestion behind Shield
@@ -11,12 +11,12 @@ knowledge bases, and audit on every call.
 
 ## Use cases
 
-- **Semantic search** — embed documents per tenant; queries retrieve
+- **Semantic search** - embed documents per tenant; queries retrieve
   only that env's vectors.
-- **Assistants** — chat surfaces in vertical apps (teller support,
+- **Assistants** - chat surfaces in vertical apps (teller support,
   front-desk guest help) call the platform's AI through the BFF with
   user tokens.
-- **Document intelligence** — ingestion pipelines chunk, embed, and
+- **Document intelligence** - ingestion pipelines chunk, embed, and
   index uploads from Sentin8:Storage.
 
 ## API surface
@@ -33,8 +33,8 @@ knowledge bases, and audit on every call.
 
 The complete detail lives in this product's sub-pages:
 
-- [Architecture (DDD)](design) — the full document, harvested from the unit's repository at build time.
-- [Business rules (BRD)](business) — the full document, harvested from the unit's repository at build time.
-- [Security](security) — the full document, harvested from the unit's repository at build time.
-- [Overview (repo README)](/docs/reference/ai/) — the maintainer's README in the consolidated reference section.
+- [Architecture (DDD)](design) - the full document, harvested from the unit's repository at build time.
+- [Business rules (BRD)](business) - the full document, harvested from the unit's repository at build time.
+- [Security](security) - the full document, harvested from the unit's repository at build time.
+- [Overview (repo README)](/docs/reference/ai/) - the maintainer's README in the consolidated reference section.
 

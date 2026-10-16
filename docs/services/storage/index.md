@@ -2,22 +2,22 @@
 sidebar_position: 7
 ---
 
-# Sentin8:Storage — Object Storage Service
+# Sentin8:Storage - Object Storage Service
 
 Tenant-scoped object storage: buckets, versioned objects, presigned
 upload/download tokens, server-side copy/move, dedup-on-write. Every
-object path is env-scoped and Shield-gated — a read of another
+object path is env-scoped and Shield-gated - a read of another
 tenant's prefix is a 403, never an empty list.
 
 ## Use cases
 
-- **Documents & statements** — ledger statement PDFs, compliance
+- **Documents & statements** - ledger statement PDFs, compliance
   filings, generated reports land in Storage (the platform's
   generated-document sink).
-- **WASM module hosting** — Sentin8:Func stores tenant-authored
+- **WASM module hosting** - Sentin8:Func stores tenant-authored
   modules via `put_if_absent` (content-addressed dedup).
-- **Media & branding assets** — logos, themes, attachments.
-- **Presigned handoff** — browser-direct upload/download for large
+- **Media & branding assets** - logos, themes, attachments.
+- **Presigned handoff** - browser-direct upload/download for large
   payloads without proxying bytes through the app.
 
 ## API surface
@@ -33,8 +33,8 @@ tenant's prefix is a 403, never an empty list.
 
 The complete detail lives in this product's sub-pages:
 
-- [Architecture (DDD)](design) — the full document, harvested from the unit's repository at build time.
-- [Business rules (BRD)](business) — the full document, harvested from the unit's repository at build time.
-- [Security](security) — the full document, harvested from the unit's repository at build time.
-- [Overview (repo README)](/docs/reference/storage/) — the maintainer's README in the consolidated reference section.
+- [Architecture (DDD)](design) - the full document, harvested from the unit's repository at build time.
+- [Business rules (BRD)](business) - the full document, harvested from the unit's repository at build time.
+- [Security](security) - the full document, harvested from the unit's repository at build time.
+- [Overview (repo README)](/docs/reference/storage/) - the maintainer's README in the consolidated reference section.
 

@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Dash — Business rules (BRD)"
+title: "Sentin8:Dash - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 ---
-# BUSINESS.md: Sentin8 Dash — Business Requirements & Functionality
+# BUSINESS.md: Sentin8 Dash - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what the
 > Sentin8 operator console **does for the business**. For architecture read
@@ -16,7 +16,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 - Give organizations a single, secure control room to run their entire
   platform presence: create and govern organizations and environments, decide
   which services are available in each environment, and manage tenant
-  branding — all without engineering involvement.
+  branding - all without engineering involvement.
 - Eliminate the per-service admin-app cost: every platform and vertical
   service publishes its admin screens as data and dash renders them, so new
   services appear in the console automatically at registration time.
@@ -34,7 +34,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 | First-run onboarding | Zero-membership users are guided straight to organization creation. |
 | Organization management | Create orgs (slug + auto-derived domain with availability check), rename, set custom domains, delete (danger zone). |
 | Environment management | Create environments per org (click-to-edit subdomain), list, enable/disable services, delete. |
-| Service discovery | Dynamic, runtime-registered service catalog per env/org — the console updates without releases. |
+| Service discovery | Dynamic, runtime-registered service catalog per env/org - the console updates without releases. |
 | Remote admin applications | Every service's admin pages (tables, forms, dashboards, native widgets) rendered generically from RFW definitions. |
 | App store administration | Browse/create/publish/uninstall app listings and app instances (server-rendered RFW pages today; rich native pages exist unwired). |
 | Branding management | Org-level and env-level logo/colors/fonts/theme mode with a merged preview. |
@@ -67,7 +67,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 | Orgs | Destructive control | Deleting an organization requires explicit confirmation and ends the session's membership context. |
 | Environments | Scoped segregation | Environments are the unit of isolation; each gets its own subdomain derived from the org's domain. |
 | Environments | Service enablement | Operators choose which registered services exist in an environment; changes reflect instantly in navigation. |
-| Admin surfaces | Zero-code admin | Admin screen content, forms, and data come from the owning service at runtime — the console cannot and does not hardcode service logic. |
+| Admin surfaces | Zero-code admin | Admin screen content, forms, and data come from the owning service at runtime - the console cannot and does not hardcode service logic. |
 | Admin surfaces | Deterministic navigation | Service pages appear as tabs and tree entries exactly as registered; deep links to any service page work. |
 | Branding | Layered identity | Environment branding overrides organization branding; merged previews show the final result before commit. |
 | Governance | Transparency | Audit entries expose who did what and when within an environment. |
@@ -76,7 +76,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 
 ## 4. Business Events (Outbound)
 
-The console emits no domain events — it is a consumer and actuator.
+The console emits no domain events - it is a consumer and actuator.
 
 **Inbound (consumed, live):**
 
@@ -88,11 +88,11 @@ The console emits no domain events — it is a consumer and actuator.
 
 ## 5. Business Rules & Invariants
 
-1. Every backend interaction of the console goes through the BFF proxy — the
+1. Every backend interaction of the console goes through the BFF proxy - the
    console never addresses services directly, never touches databases, and
    never holds OAuth tokens.
 2. Exactly one tenant target applies per request: an environment target when
-   one is set, otherwise an organization target — never both.
+   one is set, otherwise an organization target - never both.
 3. Service availability and admin screens come only from runtime
    registration; installing a new service makes it (and its admin pages)
    appear with zero console releases.
@@ -143,7 +143,7 @@ The console emits no domain events — it is a consumer and actuator.
 ## 9. Acceptance Criteria
 
 1. A new user can register through the delegated flow, create an organization
-   with a validated unique slug/domain, and land in it with correct scoping —
+   with a validated unique slug/domain, and land in it with correct scoping -
    no manual URL handling.
 2. An owner can create environments, enable services, and immediately see and
    use those services' admin pages.

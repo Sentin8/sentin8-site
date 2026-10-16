@@ -3,10 +3,10 @@
   "name": "Sentin8",
   "org": "Sentin8",
   "domain": "sentin8.dev",
-  "tagline": "The post-quantum, zero-static-secret platform for regulated multi-vertical software — one identity plane, live authorization, mandatory tenant isolation.",
+  "tagline": "The post-quantum, zero-static-secret platform for regulated multi-vertical software - one identity plane, live authorization, mandatory tenant isolation.",
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
-  "pillarsLead": "Every service — platform or vertical — inherits the five pillars by construction, not configuration.",
+  "pillarsLead": "Every service - platform or vertical - inherits the five pillars by construction, not configuration.",
   "pillars": [
     {
       "title": "Post-quantum cryptography, exclusively",
@@ -14,15 +14,15 @@
     },
     {
       "title": "One identity plane",
-      "summary": "Sentin8:Auth is the only token issuer, JWKS authority, and authentication authority. No service mints its own credentials — no second issuer to compromise."
+      "summary": "Sentin8:Auth is the only token issuer, JWKS authority, and authentication authority. No service mints its own credentials - no second issuer to compromise."
     },
     {
-      "title": "Live authorization — Shield",
+      "title": "Live authorization - Shield",
       "summary": "RBAC + ABAC + ReBAC decided per request. Roles are never embedded in tokens: a demoted administrator loses access on the next request."
     },
     {
       "title": "Mandatory tenant isolation",
-      "summary": "Every tenant table FORCE-RLS'd; no role carries BYPASSRLS. PostgreSQL runs the same certificate identity as the service plane — no database passwords exist."
+      "summary": "Every tenant table FORCE-RLS'd; no role carries BYPASSRLS. PostgreSQL runs the same certificate identity as the service plane - no database passwords exist."
     },
     {
       "title": "Certificate-only workload identity",
@@ -83,7 +83,7 @@
       "name": "Sentin8:DB",
       "repo": "sentin8-db",
       "org": "Sentin8",
-      "summary": "SQL execution & data service over Sentin8-authorized queries — no direct database access from apps.",
+      "summary": "SQL execution & data service over Sentin8-authorized queries - no direct database access from apps.",
       "scopes": [
         "sentin8:db:query",
         "sentin8:db:schema"
@@ -107,7 +107,7 @@
       "name": "Sentin8:Post",
       "repo": "sentin8-post",
       "org": "Sentin8",
-      "summary": "Multi-channel message delivery: email, SMS, push, webhooks — templated, idempotent, retry-scheduled.",
+      "summary": "Multi-channel message delivery: email, SMS, push, webhooks - templated, idempotent, retry-scheduled.",
       "scopes": [
         "sentin8:post:send",
         "sentin8:post:templates:write"
@@ -119,7 +119,7 @@
       "name": "Sentin8:Secrets",
       "repo": "sentin8-secrets",
       "org": "Sentin8",
-      "summary": "Secret reference store & resolver — plaintext never lands in application tables; every credential is a pointer.",
+      "summary": "Secret reference store & resolver - plaintext never lands in application tables; every credential is a pointer.",
       "scopes": [
         "sentin8:secrets:read",
         "sentin8:secrets:write"
@@ -179,7 +179,7 @@
       "name": "Sentin8:AI",
       "repo": "sentin8-ai",
       "org": "Sentin8",
-      "summary": "The AI capability layer: embeddings, chat, completions, document ingestion — behind the same authorization pipeline as everything else.",
+      "summary": "The AI capability layer: embeddings, chat, completions, document ingestion - behind the same authorization pipeline as everything else.",
       "scopes": [
         "sentin8:ai:embed",
         "sentin8:ai:chat"
@@ -258,7 +258,7 @@
       "name": "Sentin8:Dash",
       "repo": "sentin8-dash",
       "org": "Sentin8",
-      "summary": "The pure rendering host for every RFW admin UI — zero compile-time vertical knowledge."
+      "summary": "The pure rendering host for every RFW admin UI - zero compile-time vertical knowledge."
     },
     {
       "slug": "auth-ui",
@@ -285,7 +285,7 @@
       "name": "sentin8 Flutter SDK",
       "repo": "sentin8-flutter",
       "org": "Sentin8",
-      "summary": "The one Flutter package: bootstrap, Bff8ApiClient, shell, theme, RFW renderer — native + web from a single import.",
+      "summary": "The one Flutter package: bootstrap, Bff8ApiClient, shell, theme, RFW renderer - native + web from a single import.",
       "href": "/docs/sdk/flutter"
     }
   ],
@@ -295,43 +295,43 @@
       "slug": "bank8",
       "name": "Bank8",
       "accent": "#1B6CA8",
-      "summary": "Banking, payments & open banking — core ledger, ISO 20022 orchestration, FDX v6.5."
+      "summary": "Banking, payments & open banking - core ledger, ISO 20022 orchestration, FDX v6.5."
     },
     {
       "slug": "hotel8",
       "name": "Hotel8",
       "accent": "#C08A3E",
-      "summary": "Hospitality — PMS, POS, distribution, loyalty, upsell across properties."
+      "summary": "Hospitality - PMS, POS, distribution, loyalty, upsell across properties."
     },
     {
       "slug": "exchange8",
       "name": "Exchange8",
       "accent": "#2E9B8F",
-      "summary": "Capital markets — matching engine, OMS, SOR, clearing, surveillance."
+      "summary": "Capital markets - matching engine, OMS, SOR, clearing, surveillance."
     },
     {
       "slug": "trade8",
       "name": "Trade8",
       "accent": "#B85450",
-      "summary": "Trading — desk, router, risk, market data, bars, P&L."
+      "summary": "Trading - desk, router, risk, market data, bars, P&L."
     },
     {
       "slug": "bill8",
       "name": "Bill8",
       "accent": "#7B4FBF",
-      "summary": "Billing & payments — merchants, checkout, subscriptions, webhooks."
+      "summary": "Billing & payments - merchants, checkout, subscriptions, webhooks."
     },
     {
       "slug": "email8",
       "name": "Email8",
       "accent": "#3E8FB0",
-      "summary": "Email — MTA, store, access, gate, webmail on the platform's security model."
+      "summary": "Email - MTA, store, access, gate, webmail on the platform's security model."
     },
     {
       "slug": "health8",
       "name": "Health8",
       "accent": "#5FA85F",
-      "summary": "Health — in design; the eighth vertical of the platform."
+      "summary": "Health - in design; the eighth vertical of the platform."
     }
   ],
   "crossrefs": []

@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Cron — Business rules (BRD)"
+title: "Sentin8:Cron - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-cron/edit/main/BUSINESS.md
 ---
-# Sentin8:Cron — Business Requirements & Functionality
+# Sentin8:Cron - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Cron **does for the business**. For architecture read `README.md`;
@@ -23,10 +23,10 @@ of running embedded schedulers. The business value it delivers:
   owns all timing, retry policy, and schedule inspection.
 - **Callbacks, not coupling.** Cron never imports domain logic; each
   schedule carries its callback target and calls back the owning service
-  — the owner's data access stays with the owner.
+  - the owner's data access stays with the owner.
 - **Idempotent execution.** Missed/duplicate ticks happen; schedules
   carry a retry budget, consumers must be idempotent, and exhausted
-  retries land in a DLQ with manual replay — matching the platform's
+  retries land in a DLQ with manual replay - matching the platform's
   at-least-once + idempotent-consumer posture.
 - **No shadow clocks.** The ticker is one loop with advisory locking;
   schedule state changes (pause/delete) take effect before the next tick.
@@ -38,7 +38,7 @@ of running embedded schedulers. The business value it delivers:
 
 | Area | Capabilities |
 |---|---|
-| Schedule management | Create/list/get/patch/delete schedules — 5-field cron expressions (aliases `@hourly`…, lists, ranges, steps, Vixie dom/dow semantics) and one-shot schedules |
+| Schedule management | Create/list/get/patch/delete schedules - 5-field cron expressions (aliases `@hourly`…, lists, ranges, steps, Vixie dom/dow semantics) and one-shot schedules |
 | Timezone support | Per-schedule IANA `timezone` (default UTC, validated at create); DST-safe local-wall evaluation mapped to UTC `next_run_at` |
 | Pause/resume | PATCH status-based pause/resume; resume recomputes the next fire from now |
 | Execution | Single ticker loop (60s default): due-schedule scan (≤50), claim-conditional execution, authenticated proxy-back to the owner's internal API |
@@ -55,7 +55,7 @@ of running embedded schedulers. The business value it delivers:
 |---|---|
 | The scheduled work itself | the owning service (Cron proxy-calls its internal `/schedules/run`; the owner enforces its own authorization) |
 | Business retry semantics | the owner (Cron provides mechanical backoff only) |
-| Domain data | tenant data stays in the owner's schema — Cron's rows are execution bookkeeping |
+| Domain data | tenant data stays in the owner's schema - Cron's rows are execution bookkeeping |
 | Database/table creation | `vertical init` applies the schema (Cron starts on an existing schema) |
 
 ## 3. Business Capabilities
@@ -76,10 +76,10 @@ of running embedded schedulers. The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Ticker | One loop per process (60s default): due schedules (≤50) + retryable-pending drain (≤50) per pass |
-| Mutual exclusion | Advisory lock per schedule + unique open-job index + claim-conditional UPDATE — a schedule never runs concurrently with itself |
+| Mutual exclusion | Advisory lock per schedule + unique open-job index + claim-conditional UPDATE - a schedule never runs concurrently with itself |
 | Proxy-back | Authenticated M2M POST to the owner's internal path with a payload-complete envelope; `idempotency_key = "schedule:{schedule_id}:{job_id}"` (the owner dedupes) |
 | Job timeout | Proxy-back wrapped in a per-job timeout; timeout → failure → retry path (a hung callback never holds its claim) |
-| Advancement | `next_run_at` advances on success, retry, and DLQ landing — a persistently failing schedule never hot-loops; `retry_count` resets on success/DLQ |
+| Advancement | `next_run_at` advances on success, retry, and DLQ landing - a persistently failing schedule never hot-loops; `retry_count` resets on success/DLQ |
 | Misfire | Missed ticks are skipped, never back-filled; `next_fire` is strictly after the reference time |
 
 ### 3.3 Failure Handling
@@ -93,7 +93,7 @@ of running embedded schedulers. The business value it delivers:
 
 ## 4. Business Events (Outbound)
 
-Event family `cron`; outbox-first (same transaction as the change — a
+Event family `cron`; outbox-first (same transaction as the change - a
 failed emission aborts the domain write).
 
 | Event | When |
@@ -106,15 +106,15 @@ failed emission aborts the domain write).
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
 1. **Every tenant write sets the RLS context in the same transaction**; the ticker's cross-tenant read goes only through the SECURITY DEFINER `cron.due_schedules()`.
-2. **`target_env_id` is required** wherever an env is addressed — 400 when missing, never a token-env fallback.
+2. **`target_env_id` is required** wherever an env is addressed - 400 when missing, never a token-env fallback.
 3. **Exactly one open job per schedule** (unique partial index + advisory lock + claim-conditional UPDATE).
-4. **`next_run_at` always advances** — no hot-looping; retry counters reset on success and DLQ landing.
-5. **Events are outbox-first and commit-atomic** — a failed emission aborts the domain write (fail-closed).
-6. **Soft-delete retention** — DLQ and audit references always resolve.
+4. **`next_run_at` always advances** - no hot-looping; retry counters reset on success and DLQ landing.
+5. **Events are outbox-first and commit-atomic** - a failed emission aborts the domain write (fail-closed).
+6. **Soft-delete retention** - DLQ and audit references always resolve.
 7. **Cron math is UTC-based** with per-schedule IANA timezone evaluation (DST-safe, earliest-fold mapping); bad zones are rejected at create.
-8. **DLQ landing never stops the schedule** — republish is manual.
-9. **No static auth tokens in `target_config`** — the M2M token source is the only proxy-back bearer; the dev static token is a fallback real deployments must not rely on.
-10. **Cron does not create its own database/tables** — the schema is applied by `vertical init`.
+8. **DLQ landing never stops the schedule** - republish is manual.
+9. **No static auth tokens in `target_config`** - the M2M token source is the only proxy-back bearer; the dev static token is a fallback real deployments must not rely on.
+10. **Cron does not create its own database/tables** - the schema is applied by `vertical init`.
 11. **No `unsafe` code.**
 
 ## 6. Target-User Roles & Use Cases
@@ -149,7 +149,7 @@ failed emission aborts the domain write).
 1. A service can register a recurring schedule with a validated cron expression and timezone; it fires at the right local wall-clock time, DST-safe.
 2. At each due tick, exactly one job runs: the owner's internal API receives an authenticated, idempotent-keyed envelope.
 3. A failed callback retries with exponential backoff up to the per-schedule budget; exhaustion lands in the DLQ with the failure reason while the schedule advances.
-4. An operator can pause/resume a schedule (effective before the next tick), retry a failed job, and republish a DLQ entry — all from the admin UI or API.
+4. An operator can pause/resume a schedule (effective before the next tick), retry a failed job, and republish a DLQ entry - all from the admin UI or API.
 5. Every schedule/job/DLQ lifecycle change emits a payload-complete event in the same transaction as the change.
 6. Cross-tenant access is denied; `target_env_id` is always explicit.
 7. A hung callback cannot hold its claim (per-job timeout).
@@ -158,7 +158,7 @@ failed emission aborts the domain write).
 ## 10. Open Business Questions
 
 - The single in-process ticker is the documented concurrency contract; a distributed lease is the open question if multi-instance cron arrives.
-- Schedule versioning is an update-in-place with an audit event (effective on the next tick) — version tables are a non-goal.
+- Schedule versioning is an update-in-place with an audit event (effective on the next tick) - version tables are a non-goal.
 - Callback result capture retains status + duration per tick; response-body capture is capped to the failure path.
 
 

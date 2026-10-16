@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Flow — Business rules (BRD)"
+title: "Sentin8:Flow - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-flow/edit/main/BUSINESS.md
 ---
-# Sentin8:Flow — Business Requirements & Functionality
+# Sentin8:Flow - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Flow **does for the business**. For architecture read `README.md`;
@@ -26,7 +26,7 @@ The business value it delivers:
   templates; Flow executes them uniformly (state machine, retries,
   audit) instead of each service embedding its own.
 - **Human-in-the-loop is a first-class step.** Approvals park a workflow
-  (`Waiting`) and `resume` injects the decision — approval applies the
+  (`Waiting`) and `resume` injects the decision - approval applies the
   approver's authorization at execution time.
 - **Event-triggered and API-triggered.** Workflows start from explicit
   API calls (with declarative event-triggered starts as the registered
@@ -40,7 +40,7 @@ The business value it delivers:
 | Workflow lifecycle | Create (with idempotency dedupe), list, get, retry, repair (rewind), cancel, resume (decision injection) |
 | Logic definitions | Versioned, per-instance-pinned `LogicVersion` templates with named steps, `next_step` chaining, `on_error` jumps, branch targets |
 | Built-in executors | 8 generic step kinds: basic, http, http_async, manual decision, schedule, wait, initiate (sub-workflow), sequence |
-| Domain steps | Proxy-back to the owning service's internal API (tenant context from the workflow record — never the caller) |
+| Domain steps | Proxy-back to the owning service's internal API (tenant context from the workflow record - never the caller) |
 | WASM hooks | Steps delegate logic to Sentin8:Func modules (import name → proxy-back mapping) |
 | Scheduled resumes | `waiting` workflows with `scheduled_at` are resumed by Sentin8:Cron (≤50 due per call) |
 | Async callbacks | `/v1/internal/callbacks/async` completes a waiting async step |
@@ -57,7 +57,7 @@ The business value it delivers:
 | Schedule due-ness | Sentin8:Cron (drives resumes) |
 | WASM modules | Sentin8:Func (executes them) |
 | Saga orchestration logic | Sentin8:Sys (delegates sagas to Flow) |
-| Event-triggered starts | declared per-vertical in `event_triggers` (Flow's registration declares none today — starts are API-triggered) |
+| Event-triggered starts | declared per-vertical in `event_triggers` (Flow's registration declares none today - starts are API-triggered) |
 
 ## 3. Business Capabilities
 
@@ -68,10 +68,10 @@ The business value it delivers:
 | Create | `LogicVersion` + input + optional correlation id + callback config; idempotency via unique partial index `(env_id, logic_id, correlation_id) WHERE state='pending'` |
 | State machine | `pending → processing → completed / failed / waiting / cancelled`; `failed → pending` on retry; `waiting → processing` on resume/callback/Cron |
 | Retry | Only from `failed`; resumes from `current_step` |
-| Repair | Rewind to a step with optional replacement input — truncates step results deliberately (recorded `workflow:repaired`); does NOT auto-spawn the engine |
+| Repair | Rewind to a step with optional replacement input - truncates step results deliberately (recorded `workflow:repaired`); does NOT auto-spawn the engine |
 | Cancel | Terminal cancel; step results retained |
 | Resume | Only from `waiting`; the decision becomes the last step's output |
-| Waiting durability | `scheduled_at` + due index — a parked workflow survives restarts; undated waits get a default deadline (7d config default) |
+| Waiting durability | `scheduled_at` + due index - a parked workflow survives restarts; undated waits get a default deadline (7d config default) |
 
 ### 3.2 Step Execution
 
@@ -79,9 +79,9 @@ The business value it delivers:
 |---|---|
 | Sequential loop | One engine task per run; steps run in order; every transition persisted in its own transaction before the next step |
 | Built-in executors | basic · http · http_async (park until callback) · manual decision (park for a human) · schedule (park until a time) · wait · initiate (spawn a child workflow inheriting correlation) · sequence (PG-sequence numbers) |
-| `on_error` policies | `fail` (workflow failed) / `continue` (next step) / `branch:<step>` (jump); unknown targets → failed — no silent skips |
+| `on_error` policies | `fail` (workflow failed) / `continue` (next step) / `branch:<step>` (jump); unknown targets → failed - no silent skips |
 | Proxy-back | Domain steps call the owner's internal API with the DCR-issued cert-bound M2M token; `ProxyBackRequest.env_id` carries the tenant from the record |
-| Optimistic concurrency | `update_workflow` guarded by `WHERE state = $expected AND updated_at = $last_seen` — concurrent lifecycle verbs cannot clobber each other |
+| Optimistic concurrency | `update_workflow` guarded by `WHERE state = $expected AND updated_at = $last_seen` - concurrent lifecycle verbs cannot clobber each other |
 | Crash recovery | Inline `logic` + `current_step` + step results: a crash mid-run resumes on retry/resume; step-level idempotency dedupes side effects |
 
 ### 3.3 Failure Handling
@@ -90,13 +90,13 @@ The business value it delivers:
 |---|---|
 | No in-service DLQ | Failure is an operator path: retry from the failed step, or repair to rewind further |
 | Step-result audit | Failed/cancelled workflows keep all step results |
-| Proxy-back fallback | M2M failure → warn + static profile token fallback (scope-verifying owners reject it — surfaced as a failed step) |
+| Proxy-back fallback | M2M failure → warn + static profile token fallback (scope-verifying owners reject it - surfaced as a failed step) |
 | Cron outage | Delays scheduled resumes, never loses them (rows stay `waiting`) |
 | Deadline expiry | Expired waits move to `failed` with the timeout reason |
 
 ## 4. Business Events (Outbound)
 
-Event family `flow`; outbox-first (same transaction as the transition —
+Event family `flow`; outbox-first (same transaction as the transition -
 commit-atomic).
 
 | Event | When |
@@ -109,14 +109,14 @@ commit-atomic).
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
 1. **Every state transition is persisted in its own transaction** with tenant context set transaction-local on the same connection; a crash resumes from `current_step`.
-2. **The proxy-back tenant context comes from the workflow record's `env_id`** — never from the caller's token.
-3. **Logic versions are pinned per instance** — re-runs replay a stable template (no silent template drift).
+2. **The proxy-back tenant context comes from the workflow record's `env_id`** - never from the caller's token.
+3. **Logic versions are pinned per instance** - re-runs replay a stable template (no silent template drift).
 4. **Failed/cancelled workflows keep their step results** (audit trail); repair truncates deliberately and is event-recorded.
-5. **Branch targets must exist** — no silent skips.
+5. **Branch targets must exist** - no silent skips.
 6. **`completed_at` is stamped once** for terminal states.
-7. **Waiting is durable** — `scheduled_at` + the due index; parked workflows survive restarts.
+7. **Waiting is durable** - `scheduled_at` + the due index; parked workflows survive restarts.
 8. **Create is idempotent** via the pending-state unique index; the outbox rides row-id keys.
-9. **No static auth tokens in production paths** — the static profile token is a fallback that scope-verifying owners reject.
+9. **No static auth tokens in production paths** - the static profile token is a fallback that scope-verifying owners reject.
 10. **No `unsafe` code.**
 
 ## 6. Target-User Roles & Use Cases
@@ -125,7 +125,7 @@ commit-atomic).
 |---|---|
 | Owning service | Defines logic templates (steps, on_error, branches); implements proxy-back step endpoints idempotently; registers handler profiles |
 | Platform operator | Watches workflow state in the RFW admin UI; retries failed runs; repairs with rewind; cancels; resumes waiting approvals |
-| Approver (human) | Makes the manual decision that resumes a `waiting` workflow — their authorization applies at execution time |
+| Approver (human) | Makes the manual decision that resumes a `waiting` workflow - their authorization applies at execution time |
 | Compliance/audit | Reads lifecycle events and retained step results (even for failed/cancelled runs) |
 
 ## 7. KPIs / Success Criteria
@@ -152,7 +152,7 @@ commit-atomic).
 
 1. A service can create a workflow from a versioned logic template and receive a workflow id; duplicate creates (same correlation, pending state) dedupe.
 2. The engine advances step by step, persisting each transition; a crash mid-run resumes from `current_step` on retry.
-3. Domain steps proxy-back to the owner's internal API with tenant context from the record — the owner re-verifies and enforces its own gate.
+3. Domain steps proxy-back to the owner's internal API with tenant context from the record - the owner re-verifies and enforces its own gate.
 4. A manual-decision step parks the workflow in `waiting`; the approver's resume decision re-enters the state machine deterministically; their authorization applies.
 5. `on_error` policies (fail/continue/branch) behave exactly as declared; unknown branch targets fail loudly.
 6. Operators can retry failed runs, repair (rewind + replace input), cancel, and list/filter workflows from the admin UI or API.

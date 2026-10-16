@@ -2,27 +2,27 @@
 sidebar_position: 15
 ---
 
-# Sentin8:Sys — Platform Control Plane
+# Sentin8:Sys - Platform Control Plane
 
 Domain truth for the platform: organizations, environments, the
 vertical registry, service enablement, branding, and the central
 audit journal. Org and env creation is **synchronous and in-process**
-— a 200 means the caller's next request already carries its
+- a 200 means the caller's next request already carries its
 membership (read-your-writes on the fundamental path).
 
 ## Use cases
 
-- **Tenant onboarding** — sign-up creates the org, provisions the
+- **Tenant onboarding** - sign-up creates the org, provisions the
   access model through auth's membership API (idempotent upserts),
   seeds the env's policy template, and returns 200 only when fully
   provisioned; failures compensate by deleting the record.
-- **Vertical enrollment** — `sentin8-cli vertical enroll` registers
+- **Vertical enrollment** - `sentin8-cli vertical enroll` registers
   services, scopes, admin UIs, triggers, and app listings from each
-  vertical's own declarative `vertical-registry.json` — the platform
+  vertical's own declarative `vertical-registry.json` - the platform
   holds zero compile-time vertical knowledge.
-- **Service enablement** — `service:updated` events over Bus let each
+- **Service enablement** - `service:updated` events over Bus let each
   vertical service perform its own per-tenant initialization.
-- **Audit ingestion** — every service's local `audit_journal` relays
+- **Audit ingestion** - every service's local `audit_journal` relays
   to Sys's ingest API; a Sys outage never drops audit (journals
   retry).
 
@@ -40,8 +40,8 @@ membership (read-your-writes on the fundamental path).
 
 The complete detail lives in this product's sub-pages:
 
-- [Architecture (DDD)](design) — the full document, harvested from the unit's repository at build time.
-- [Business rules (BRD)](business) — the full document, harvested from the unit's repository at build time.
-- [Security](security) — the full document, harvested from the unit's repository at build time.
-- [Overview (repo README)](/docs/reference/sys/) — the maintainer's README in the consolidated reference section.
+- [Architecture (DDD)](design) - the full document, harvested from the unit's repository at build time.
+- [Business rules (BRD)](business) - the full document, harvested from the unit's repository at build time.
+- [Security](security) - the full document, harvested from the unit's repository at build time.
+- [Overview (repo README)](/docs/reference/sys/) - the maintainer's README in the consolidated reference section.
 

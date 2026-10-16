@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Stat — Business rules (BRD)"
+title: "Sentin8:Stat - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-stat/edit/main/BUSINESS.md
 ---
-# Sentin8:Stat — Business Requirements & Functionality
+# Sentin8:Stat - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Stat **does for the business**. For architecture read `README.md`;
@@ -20,19 +20,19 @@ token usage are comparable across the platform. The business value it
 delivers:
 
 - **One metrics plane.** Cross-vertical comparison (cost per model,
-  traffic per service, conversion funnels) is the point — one
+  traffic per service, conversion funnels) is the point - one
   vocabulary + one query API beats N silos.
 - **M2M-only ingest for machine traffic.** Measurement ingestion is
   machine traffic (`sentin8:stat:measure` claimed at DCR); user roles
-  never gain ingest — the user/M2M boundary stays clean.
+  never gain ingest - the user/M2M boundary stays clean.
 - **PII never enters analytics.** The ingest deny-list strips
   credential-ish keys (email, pan, pin, token…) before persistence and
-  flags stripped payloads — metrics are aggregates, not personal data.
+  flags stripped payloads - metrics are aggregates, not personal data.
 - **Cheap fire-and-forget.** Producers never block on analytics; a Stat
   outage costs dashboards, not the business path.
 - **One process for ingest + aggregation.** The worker pipeline
   (7-stage transform, rollups, alerts, archive) runs as background
-  tasks inside the same service — one identity, one deployment unit.
+  tasks inside the same service - one identity, one deployment unit.
 
 ## 2. Business Scope (What the Service Provides)
 
@@ -45,7 +45,7 @@ delivers:
 | Read API | Canned reports, daily metrics, traffic summaries, sessions, retention, realtime (5-min window), funnels, DSL query over 8 daily tables |
 | Embedded worker | Bus SSE consumer (group `stat`) + 30s DB fallback; 7-stage pipeline (clean → attribute → stitch → enrich → aggregate → emit); 60s rollup loop (hour→year); 60s alert evaluator; Valkey pub/sub republisher; hourly archive sweep to Storage |
 | Alerts | Curated spike/drop rules (event spike ×3 over volume ≥100; conversion drop ≤0.5) + per-property custom rules (`threshold`, `anomaly`) with admin CRUD |
-| Events | Ingest notices, CRUD events, `aggregate:updated` (payload-complete), alert events — via direct produce and the shared inbox/outbox |
+| Events | Ingest notices, CRUD events, `aggregate:updated` (payload-complete), alert events - via direct produce and the shared inbox/outbox |
 | Audit volume metrics | Consumes `sentin8:sys:audit:recorded` and increments per-service audit-volume counters |
 | Admin surfaces | RFW admin UI (overview, properties/new, accounts/new, events, metrics, policy) + alert-rule CRUD + reaggregate; Shield policy-admin API |
 
@@ -67,10 +67,10 @@ delivers:
 |---|---|
 | Collect | Optional bearer (Shield evaluated when present) + rate limit; batch ≤ 100 / 1 MiB |
 | Pixel | Unauthenticated 1×1 GIF beacon (browsers can't carry tokens); query-string envelope; rate-limited per IP |
-| Shorthands | pageview / event / conversion — optional bearer + rate limit |
+| Shorthands | pageview / event / conversion - optional bearer + rate limit |
 | Metric / batch | **Strict M2M** (`sentin8:stat:measure`); batch ≤ 200 / 4 MiB |
 | Rate limits | Web 1000/min, server 10000/min (per-identity Valkey buckets, TTL 120); 429 with `Retry-After: 60` |
-| Dedupe | `ON CONFLICT (id, timestamp) DO NOTHING` — replays idempotent |
+| Dedupe | `ON CONFLICT (id, timestamp) DO NOTHING` - replays idempotent |
 | PII strip | 13-key deny-list (email, phone, pan, pin, cvv, ssn, password, token, secret, apikey, api_key, iban, account_number, card_number) stripped before persistence; `props_pii_stripped` flag persisted; raw IPs never persisted |
 
 ### 3.2 Aggregation & Worker Pipeline
@@ -78,11 +78,11 @@ delivers:
 | Capability | Business rule |
 |---|---|
 | Pipeline | 7 stages: clean → attribute (fixed 30-min sessions) → stitch → enrich → aggregate → emit; stage-1 rejects events >5 min future / >24 h past |
-| Metric semantics | Counter (SUM) when the name ends `.issued/.created/.completed`; else gauge (last-write-wins) — determined once |
+| Metric semantics | Counter (SUM) when the name ends `.issued/.created/.completed`; else gauge (last-write-wins) - determined once |
 | Rollups | 60s loop: hour (last 2d) → day (400d) → week (2y) → month (10y) → year; idempotent upserts; each updated day-bucket emits `sentin8:stat:aggregate:updated` (payload-complete) |
 | Realtime | 5-minute ZSET window per property |
 | Valkey republish | `stat:metrics:{tls,log}` consumed; `stat:rollups:{minute,hour,day}` republished for Dash/BFF/Captain |
-| Archive | Hourly sweep: JSONL PUT to Storage (batches ≤ 1000/property), rows marked `archived=true` — never deleted before archive verification |
+| Archive | Hourly sweep: JSONL PUT to Storage (batches ≤ 1000/property), rows marked `archived=true` - never deleted before archive verification |
 | Failure handling | Bus produce is fire-and-forget (DB fallback covers); poison messages nack ×3 then ACK → Bus DLQ owns them (never hot-looped) |
 
 ### 3.3 Read & Analysis
@@ -98,9 +98,9 @@ delivers:
 
 | Capability | Business rule |
 |---|---|
-| Curated rules | Event spike (×3 over volume ≥100) and conversion drop (≤0.5) — evaluated each 60s pass |
+| Curated rules | Event spike (×3 over volume ≥100) and conversion drop (≤0.5) - evaluated each 60s pass |
 | Custom rules | Per-property `threshold` (value vs comparator) and `anomaly` (moving-average deviation) rules; admin CRUD; create-time metric validation (400 on unknown) + static evaluator allowlist |
-| Noise floor | `min_sample` (default 10) — rules below the floor never fire; anomaly rules need a non-empty baseline bucket |
+| Noise floor | `min_sample` (default 10) - rules below the floor never fire; anomaly rules need a non-empty baseline bucket |
 | Dedupe | Payload `dedup_key` per rule per day bucket (`rule:{id}:{day}`); consumer-side dedupe contract |
 | Delivery | Alert → Post path (`sentin8:stat:alert:*` on the `stat-pipeline` family) |
 
@@ -119,19 +119,19 @@ metrics, group `stat-audit`), and Valkey `stat:metrics:{tls,log}`.
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **PII never stored** — the 13-key deny-list strips before persistence; non-numeric metrics dropped; raw IPs never persisted.
-2. **Dedupe by event id** — replays are idempotent.
-3. **Rate limiting per identity bucket** — a compromised client cannot exhaust the ingest plane.
-4. **Env from the token, org via lookup** — a body `env_id` mismatch is 403; admin requires explicit `target_env_id` (400 when missing).
-5. **Property slugs resolve server-side** — emitters never need UUID pools.
-6. **Metric type stability** — counter vs gauge determined once at first upsert.
-7. **Poison messages reach the Bus DLQ** — never silently dropped, never hot-looped.
-8. **Rollups are idempotent upserts** — the 60s pass can rerun safely.
-9. **Alerts carry dedup keys** — consumer-side dedupe is the contract.
-10. **Custom rule metrics are allowlisted twice** — create-time validation + static evaluator allowlist; caller input never reaches SQL outside the allowlist.
+1. **PII never stored** - the 13-key deny-list strips before persistence; non-numeric metrics dropped; raw IPs never persisted.
+2. **Dedupe by event id** - replays are idempotent.
+3. **Rate limiting per identity bucket** - a compromised client cannot exhaust the ingest plane.
+4. **Env from the token, org via lookup** - a body `env_id` mismatch is 403; admin requires explicit `target_env_id` (400 when missing).
+5. **Property slugs resolve server-side** - emitters never need UUID pools.
+6. **Metric type stability** - counter vs gauge determined once at first upsert.
+7. **Poison messages reach the Bus DLQ** - never silently dropped, never hot-looped.
+8. **Rollups are idempotent upserts** - the 60s pass can rerun safely.
+9. **Alerts carry dedup keys** - consumer-side dedupe is the contract.
+10. **Custom rule metrics are allowlisted twice** - create-time validation + static evaluator allowlist; caller input never reaches SQL outside the allowlist.
 11. **Custom rules below the noise floor never fire.**
-12. **Minute-granularity rollups stay Valkey-only** (DB holds hour→year) — no double-write.
-13. **Fire-and-forget ingest** — a Stat outage never blocks business paths; the DB fallback covers missed Bus produces.
+12. **Minute-granularity rollups stay Valkey-only** (DB holds hour→year) - no double-write.
+13. **Fire-and-forget ingest** - a Stat outage never blocks business paths; the DB fallback covers missed Bus produces.
 14. **No `unsafe` code.**
 
 ## 6. Target-User Roles & Use Cases
@@ -183,7 +183,7 @@ metrics, group `stat-audit`), and Valkey `stat:metrics:{tls,log}`.
 ## 10. Open Business Questions
 
 - Per-workload ingest quotas extend the token-bucket key to `(env_id, workload)` with depth surfaced in the admin UI.
-- Rule edit/update (PUT) is a future refinement — rules are created, listed, and deleted today (disable via delete + recreate).
+- Rule edit/update (PUT) is a future refinement - rules are created, listed, and deleted today (disable via delete + recreate).
 - Partition maintenance beyond the seeded today+7 days is an operational concern (no auto-partition loop).
 - OpenTelemetry-compatible export defers to the middleware crate's OTel seam.
 

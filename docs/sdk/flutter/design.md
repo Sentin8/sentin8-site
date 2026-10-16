@@ -1,11 +1,11 @@
 ---
-title: "sentin8 Flutter SDK — Architecture (DDD)"
+title: "sentin8 Flutter SDK - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-flutter/edit/main/DESIGN.md
 ---
-# DESIGN.md: sentin8-flutter — Detailed Design Document
+# DESIGN.md: sentin8-flutter - Detailed Design Document
 
 > Wire-level construction of the platform Flutter package. Overview in
 > `README.md`; business framing in `BUSINESS.md`.
@@ -21,11 +21,11 @@ services directly.
 ```mermaid
 graph TD
     subgraph PKG["sentin8_flutter (this package)"]
-        THEME["theme — 4px grid · glass · Royal Gold #D4AF37<br/>Inter · WCAG AA"]
-        SHELL["shell — boot · nav · tenant branding load"]
-        BFFC["Bff8ApiClient — token-holding BFF client<br/>/proxy/{service}/…"]
+        THEME["theme - 4px grid · glass · Royal Gold #D4AF37<br/>Inter · WCAG AA"]
+        SHELL["shell - boot · nav · tenant branding load"]
+        BFFC["Bff8ApiClient - token-holding BFF client<br/>/proxy/{service}/…"]
         WIDGETS["shared widgets"]
-        GUARD["conditional imports — native-only guarded"]
+        GUARD["conditional imports - native-only guarded"]
     end
     APP["any app repo<br/>(dash, auth-ui, vertical apps)"] --> PKG
     BFFC -->|"HTTPS"| BFF["Sentin8:BFF"]
@@ -38,10 +38,10 @@ graph TD
 | Module | Role |
 |---|---|
 | `theme/` | The design system implementation: grid, panels, accent, typography, accessibility floor. Tenant branding (`sentin8_sys_branding`) overrides at load: org base → env override, non-empty wins. |
-| `shell/` | Boot sequence, navigation shell, session bootstrap — apps start from here. |
+| `shell/` | Boot sequence, navigation shell, session bootstrap - apps start from here. |
 | `bff/` | `Bff8ApiClient`: the token-holding client; all traffic → `Bff8ApiClient → Sentin8:BFF /proxy/{service}/…`. The standalone direct-HTTP SDK pattern is deprecated. |
 | `widgets/` | Shared components; Material Icons by code point (hex strings), not names. |
-| conditional imports | `*.web.dart` / `*.io.dart` pairs — native-only features (e.g. platform channels) never compile into the web build and vice versa. |
+| conditional imports | `*.web.dart` / `*.io.dart` pairs - native-only features (e.g. platform channels) never compile into the web build and vice versa. |
 
 ## 3. Backend Traffic Contract
 
@@ -66,20 +66,20 @@ material server-side; the package's client carries only the session.
 
 ## 4. Invariants
 
-1. **One package** — no app re-implements theme/boot/BFF-client.
-2. **No direct backend calls from apps** — every request exits through
+1. **One package** - no app re-implements theme/boot/BFF-client.
+2. **No direct backend calls from apps** - every request exits through
    `Bff8ApiClient`; a direct-HTTP import is a defect.
-3. **Design system by construction** — off-grid/off-palette styling
+3. **Design system by construction** - off-grid/off-palette styling
    fails review, not just taste.
-4. **Web builds stay web-safe** — native-only code hides behind
+4. **Web builds stay web-safe** - native-only code hides behind
    conditional imports.
-5. **Icons are code points** — Material Icons hex strings, never
+5. **Icons are code points** - Material Icons hex strings, never
    font-name lookups.
 
 ## 5. Testing Strategy
 
 - Widget tests per shared component (golden-safe where layout-critical).
-- BFF-client tests: request shaping, error mapping — against a mocked
+- BFF-client tests: request shaping, error mapping - against a mocked
   BFF, never a live fleet.
 - App repos own their journey tests; the package owns only its units.
   Web builds exercise the web halves of every conditional import.

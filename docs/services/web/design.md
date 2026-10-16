@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Web — Architecture (DDD)"
+title: "Sentin8:Web - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-web/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Web — Detailed Design Document
+# DESIGN.md: Sentin8:Web - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -17,9 +17,9 @@ script for in-app webviews, sets cross-origin isolation headers for
 multi-threaded WASM, and proxies the pre-login runtime-context call to
 Sentin8:App on the app's own origin.
 
-- **Owns**: nothing persistent — no tables, no outbox, no Bus events.
+- **Owns**: nothing persistent - no tables, no outbox, no Bus events.
   Runtime state is the Valkey app-dir mapping (read-only) and the
-  Shield engine (booted, hot-reloaded, never evaluated — no
+  Shield engine (booted, hot-reloaded, never evaluated - no
   token-bearing handler).
 - **Does NOT own**: app binaries (built by each vertical's app),
   the app registry (`captain:app_dir:{slug}` keys written by
@@ -157,9 +157,9 @@ per-service DSN identity**, not the shared dev role:
   tier SCRAM password `sentin8` by `platform.sql`).
 - DSN source: `SENTIN8_WEB_DATABASE_URL` (operator env), falling back to
   the shared `sentin8_app` dev DSN only when the per-service variable is
-  unset — the shared-fallback keeps local test harnesses working but the
+  unset - the shared-fallback keeps local test harnesses working but the
   deployed posture is the dedicated role.
-- Privileges: USAGE + EXECUTE on `public` (the helper function) — read
+- Privileges: USAGE + EXECUTE on `public` (the helper function) - read
   only, no tables, no outbox.
 
 ```mermaid
@@ -182,9 +182,9 @@ stateDiagram-v2
 | `/v1/health` | GET | none | `{status, service, version, build}`; bypasses the traffic counter. |
 | `/v1/app/runtime/context` | GET | **public, pre-login** | proxies to app with `x-sentin8-*` + `host` headers only; instance metadata only (auth domain, branding, feature flags); 502 on app outage. |
 | `fallback(any)` | any | none | static/SPA handler (multi- or single-app). |
-| `/openapi.json` | — | — | registration spec closure → null (no utoipa surface). |
+| `/openapi.json` | - | - | registration spec closure → null (no utoipa surface). |
 
-Event/metric flow (transport-level only — web emits no domain events):
+Event/metric flow (transport-level only - web emits no domain events):
 
 ```mermaid
 flowchart LR
@@ -195,7 +195,7 @@ flowchart LR
 
 ## 5. Cross-Cutting Concerns
 
-- **Authentication**: none on any surface — static assets are the app
+- **Authentication**: none on any surface - static assets are the app
   shell; the runtime-context proxy is public pre-login (the caller
   identity is the TLS-injected app instance, not a bearer principal; a
   bearer/Shield gate would 401 every app bootstrap). The Shield engine
@@ -206,7 +206,7 @@ flowchart LR
   HTTP `Host` header is the fallback under the L4 proxy (which injects
   no headers).
 - **Path safety**: canonicalize-based containment (`requested` must stay
-  under the resolved web root) — encoded `..%2F` sequences are decoded
+  under the resolved web root) - encoded `..%2F` sequences are decoded
   first, so canonicalization is the enforcement point, not string
   matching (test-pinned).
 - **SPA + browser constraints**: extensionless paths → `index.html`;
@@ -238,7 +238,7 @@ flowchart TD
   `index.html`; policy boot refuses invalid text; a failed/unreachable
   policy-boot connection aborts boot (the engine cannot authorize
   anything without its policy rows). A missing or password-drifted PG
-  role resurfaces exactly here — web exits with
+  role resurfaces exactly here - web exits with
   `password authentication failed for user …` rather than starting
   policy-less.
 - **Discovery degradation**: a Valkey outage degrades to 404s for
@@ -268,30 +268,30 @@ graph LR
 - No caching layer: static reads hit the FS; `Cache-Control` on the
   bootstrap is `no-store` so a rebuilt app is never shadowed.
 - Tasks: traffic-counter flush (10s), error-metrics publisher, policy
-  hot-reload consumer — all shell/policy-owned.
+  hot-reload consumer - all shell/policy-owned.
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-1. **Zero compile-time vertical knowledge** — app directories resolve
+1. **Zero compile-time vertical knowledge** - app directories resolve
    from Valkey keys at request time; a newly enrolled app is served
    without a restart.
-2. **Canonicalize-based traversal protection** — component-level decode +
+2. **Canonicalize-based traversal protection** - component-level decode +
    `starts_with(web_root)` containment; escapes are 404s, never served
    (test-pinned incl. percent-encoded).
-3. **Tokens never to the client** — web holds no tokens and forwards
+3. **Tokens never to the client** - web holds no tokens and forwards
    none; the runtime-context proxy forwards only `x-sentin8-*` + `host`
    headers (arbitrary client headers are not re-emitted by construction).
 4. **The context proxy stays public** by contract (pre-login bootstrap);
-   its response carries only instance metadata — same trust basis as the
+   its response carries only instance metadata - same trust basis as the
    app shell.
-5. **Bootstrap patch is string-safe** (brace-depth counter — a literal
+5. **Bootstrap patch is string-safe** (brace-depth counter - a literal
    `}` inside a string cannot end the object) and served `no-store`.
 6. **WASM-thread headers** on the bootstrap, `main.dart.js`, and `.wasm`
-   (COOP/COEP) — required for multi-threaded WASM.
+   (COOP/COEP) - required for multi-threaded WASM.
 7. **Single-app mode fails fast** without `index.html`; multi-app
    requests without a resolvable app are 404 (never a wrong app's
    content).
-8. **No tables, no migrations, no outbox** — the policy boot pool is
+8. **No tables, no migrations, no outbox** - the policy boot pool is
    read-only. The pool's DSN is the per-service `SENTIN8_WEB_DATABASE_URL`
    when set (backed by the `sentin8_web_service` role); the shared dev DSN
    (`sentin8_app`) is a local-harness fallback only, never the deployed
@@ -304,7 +304,7 @@ graph LR
 ```mermaid
 graph TD
     U["Unit (11)<br/>bootstrap patch (4) · serving (4: index/mime/SPA/404) ·<br/>traversal (3 vectors) · COOP/COEP · slug rule"]
-    I["Integration (runtime-skip, tests/discovery.rs)<br/>discovery: registered app 200 · unknown 404 · Host fallback (port stripped)<br/>proxy: opt-in SENTIN8_APP_URL — contract fields echoed"]
+    I["Integration (runtime-skip, tests/discovery.rs)<br/>discovery: registered app 200 · unknown 404 · Host fallback (port stripped)<br/>proxy: opt-in SENTIN8_APP_URL - contract fields echoed"]
     L["Live / e2e<br/>TLS termination · full router with context middleware"]
     U --> I --> L
 ```
@@ -312,12 +312,12 @@ graph TD
 - The pure suite pins the four no-op/stripping cases, the four serving
   cases, three traversal vectors, the bootstrap patch + isolation
   headers, and the slug rule.
-- The integration target (`tests/discovery.rs`, binary-only crate —
+- The integration target (`tests/discovery.rs`, binary-only crate -
   `src/main.rs` included via `#[path]`, cron test-crate pattern) drives
   the REAL multi-app handler with a `MultiAppState` over live Valkey:
   `captain:app_dir:{slug}` is SET to a tempdir root (unique slug per
   test, key DELeted in teardown), requests go through a router with the
-  handler attached via state — Host header `{slug}.test` → 200 fixture
+  handler attached via state - Host header `{slug}.test` → 200 fixture
   content; unregistered slug → 404 naming the hostname; the L4-proxy
   Host fallback resolves with the port stripped. Skip gating uses hard
   connect timeouts (3s Valkey / 5s PostgreSQL): `ConnectionManager::new`
@@ -334,11 +334,11 @@ graph TD
 
 - Multi-app discovery and the runtime-context proxy integration tests are
   written (`tests/discovery.rs`, testing-strategy §3 runtime-skip gating
-  with hard connect timeouts) — remaining uncovered: TLS/context-middleware
+  with hard connect timeouts) - remaining uncovered: TLS/context-middleware
   wiring (live stack) and the proxy 502 outage path (e2e).
 - Only the local serving mode exists by design (the web design defines only
   the two local modes); the adapter pattern from storage is the seam when a
-  CDN/object-store backend is needed — a recorded non-goal.
+  CDN/object-store backend is needed - a recorded non-goal.
 
 ---
 

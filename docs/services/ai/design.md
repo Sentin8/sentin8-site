@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:AI — Architecture (DDD)"
+title: "Sentin8:AI - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-ai/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:AI — Detailed Design Document
+# DESIGN.md: Sentin8:AI - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -96,7 +96,7 @@ graph TD
     POOL --> OUTBOX
 ```
 
-**Request lifecycle — buffered inference (`POST /v1/chat`):**
+**Request lifecycle - buffered inference (`POST /v1/chat`):**
 
 ```mermaid
 sequenceDiagram
@@ -111,7 +111,7 @@ sequenceDiagram
     C->>H: POST /v1/chat (Idempotency-Key?)
     H->>A: verify bearer → require_policy(sentin8:ai:chat:write)
     A-->>H: AuthContext / 403
-    H->>H: resolve target_env_id (REQUIRED — 400 if missing)
+    H->>H: resolve target_env_id (REQUIRED - 400 if missing)
     H->>H: input moderation (filters + PII)
     alt Idempotency-Key present
         H->>V: GET ai:idem:{env}:{key}
@@ -204,7 +204,7 @@ erDiagram
 - **RLS**: every table `ENABLE`+`FORCE`, per-op policies keyed on
   `sentin8_current_env_id() = env_id`; outbox/journal policies additionally
   require `sentin8_context_initialized()`.
-- **State machines**: prompt lifecycle —
+- **State machines**: prompt lifecycle -
 
 ```mermaid
 stateDiagram-v2
@@ -216,7 +216,7 @@ stateDiagram-v2
     note right of retired: versions are immutable<br/>409 on duplicate (name, version)
 ```
 
-- **Secrets**: `providers.credential_ref` holds a secret *reference* —
+- **Secrets**: `providers.credential_ref` holds a secret *reference* -
   material never lands in application tables (resolved via Secrets or the
   env backend `SENTIN8_AI_PROVIDER_KEY_*`).
 - **Indexes**: HNSW cosine on `ai.embeddings.embedding` (pgvector-guarded),
@@ -236,8 +236,8 @@ required for data surfaces, no in-handler scope checks):
 | ops | `/v1/budgets/{feature}`, `/v1/dlq[/replay]`, `/v1/evaluations/run`, `/v1/costs`, `/v1/traces` | prompt scopes | `sentin8:ai:{job_type}:job` (replay) |
 | agents | `POST /v1/agent/execute` | `ai:chat:write` | Flow workflow + audit journal |
 | internal | `/v1/internal/traces/archive` (Cron proxy-back), `/v1/internal/schedules/run` (stale re-embed scan) | `ai:embedding:write` | archive events |
-| admin/RFW | `/v1/admin/ui/{page}`, `/v1/admin/{resource}`, shared policy admin | Shield | — |
-| health | `GET /v1/health` | none | — |
+| admin/RFW | `/v1/admin/ui/{page}`, `/v1/admin/{resource}`, shared policy admin | Shield | - |
+| health | `GET /v1/health` | none | - |
 
 **Event flow (outbox → Bus → trigger):**
 
@@ -271,10 +271,10 @@ Registration-declared triggers: `*:document:uploaded` → document-pipeline;
 ## 5. Cross-Cutting Concerns
 
 - **Auth**: every route `verify_bearer_token` → Shield `require_policy`
-  (live roles/scopes from auth); step 5 is the only gate — no handler
+  (live roles/scopes from auth); step 5 is the only gate - no handler
   scope checks.
 - **Tenant resolution**: `target_env_id` query REQUIRED on admin/data
-  endpoints (no fallback to token env — rejects with 400).
+  endpoints (no fallback to token env - rejects with 400).
 - **RLS context**: transaction-local `sentin8_set_tenant_context` on the
   caller's env inside each write transaction; trace insert shares the
   request's transaction.
@@ -287,8 +287,8 @@ Registration-declared triggers: `*:document:uploaded` → document-pipeline;
   429, `degrade`/`queue` → cost-labelled traces (`{feature}:cost-{mode}`).
 - **Audit journaling**: agent executions, DLQ writes, and every inference
   land in `ai.audit_journal` (pushed to the shared audit ingest). The
-  inference row carries cache provenance — `cache: "hit"|"miss"` plus the
-  prompt-hash key that produced it — so a cache replay is distinguishable
+  inference row carries cache provenance - `cache: "hit"|"miss"` plus the
+  prompt-hash key that produced it - so a cache replay is distinguishable
   from a fresh generation in audit.
 - **Graceful drain**: shell-owned graceful shutdown; relay fail-open.
 
@@ -338,33 +338,33 @@ graph LR
     INFER --> POOL
 ```
 
-- Pool capped (`sentin8_config::pg_pool::connect`, max 3 default) —
+- Pool capped (`sentin8_config::pg_pool::connect`, max 3 default) -
   inference trace writes and job upserts share the cap; budget check runs
   once per logical request.
 - Retrieval `top_k` clamped 1–100; archives bounded (`LIMIT 10000`);
   trace lists 1–500; DLQ listing 200.
 - Hot paths cached: exact-match response cache (1h TTL; the key covers env,
-  model, messages, temperature, max_tokens, and the tool set — hashed to a
+  model, messages, temperature, max_tokens, and the tool set - hashed to a
   bounded sha256 prompt-hash, so a near-hit can never replay a response
   generated under different sampling params); embeddings via HNSW; keyword
   via GIN tsvector.
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-1. **Prompt versions immutable** — an update creates a new version; 409 on
+1. **Prompt versions immutable** - an update creates a new version; 409 on
    duplicate `(env_id, name, version)`; `origin platform` rows are
    enroll-owned, `tenant` rows never touched by enroll.
-2. **`target_env_id` REQUIRED** on data endpoints — no silent fallback to
+2. **`target_env_id` REQUIRED** on data endpoints - no silent fallback to
    the token env (cross-tenant read guard).
-3. **Credential references only** — provider keys never stored in
+3. **Credential references only** - provider keys never stored in
    `ai.providers`; resolution order: Secrets ref → env backend.
 4. **Filters run both directions** (input + output) with a persistent PII
    deny-list; output moderation cannot be skipped by model_override.
-5. **Budget checks precede provider spend** — a rejected request never
+5. **Budget checks precede provider spend** - a rejected request never
    reaches a provider.
-6. **DLQ replay is manual** — failed jobs never auto-retry past the
+6. **DLQ replay is manual** - failed jobs never auto-retry past the
    consumer redelivery; malformed payloads are acked (poison-pill guard).
-7. Traces insert in the same transaction as the response decision — a
+7. Traces insert in the same transaction as the response decision - a
    trace row exists for every completed or failed inference.
 8. No `unsafe` blocks in the service.
 
@@ -372,9 +372,9 @@ graph LR
 
 ```mermaid
 graph TD
-    U[Unit — pure seams<br/>agent intent parse, allowlist,<br/>safety filters, PII strip]
-    I[Integration — runtime-skip<br/>provider adapters via mock HTTP,<br/>router retry/fallback,<br/>RLS isolation, prompt immutability,<br/>secret-ref resolution, registration]
-    E[E2E — e2e-ts<br/>dash AI surface through BFF]
+    U[Unit - pure seams<br/>agent intent parse, allowlist,<br/>safety filters, PII strip]
+    I[Integration - runtime-skip<br/>provider adapters via mock HTTP,<br/>router retry/fallback,<br/>RLS isolation, prompt immutability,<br/>secret-ref resolution, registration]
+    E[E2E - e2e-ts<br/>dash AI surface through BFF]
     U --> I --> E
 ```
 
@@ -395,7 +395,7 @@ graph TD
 - Embedding model versioning is live (AI-2): `ai.embeddings.model_version`
   stamps every write with the registry-active version (`ai_version_for`);
   the Cron `model_migration` sweep (`POST /v1/internal/schedules/run`)
-  re-enqueues jobs for rows trailing the registry — the dual-read
+  re-enqueues jobs for rows trailing the registry - the dual-read
   discriminator. Per-model DIMENSIONS remain a pgvector-typmod concern:
   changing the pinned dimension is a greenfield re-init (the registry row
   + version sweep govern which rows are current).

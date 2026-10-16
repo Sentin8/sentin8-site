@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Web — Business rules (BRD)"
+title: "Sentin8:Web - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-web/edit/main/BUSINESS.md
 ---
-# Sentin8:Web — Business Requirements & Functionality
+# Sentin8:Web - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Web **does for the business**. For architecture read `README.md`;
@@ -14,8 +14,8 @@ custom_edit_url: https://github.com/Sentin8/sentin8-web/edit/main/BUSINESS.md
 ## 1. Business Purpose
 
 Sentin8:Web is the platform's **single static host for every Flutter web
-app**. One process serves all apps across all verticals — the dash, vertical
-admin apps, and tenant apps — with app locations discovered at request
+app**. One process serves all apps across all verticals - the dash, vertical
+admin apps, and tenant apps - with app locations discovered at request
 time. The business value it delivers:
 
 - **One process per machine for all app shells.** The platform hosts
@@ -26,7 +26,7 @@ time. The business value it delivers:
 - **Zero compile-time vertical knowledge.** App directories exist in
   every workspace (`sentin8/apps/`, `bank8/apps/`, `hotel8/apps/`…);
   hardcoding those paths would couple the platform to its verticals.
-  Registry-key discovery keeps the host generic — a newly enrolled app
+  Registry-key discovery keeps the host generic - a newly enrolled app
   is served the moment its key exists.
 - **Same-origin bootstrap.** Flutter apps must fetch their runtime
   context (auth domain, branding, feature flags) before any user signs
@@ -46,7 +46,7 @@ time. The business value it delivers:
 | Single-app mode (dash) | `--web-root` / `SENTIN8_WEB_ROOT` serves one fixed directory for all requests; fail-fast without `index.html` |
 | Static/SPA serving | Path traversal protection (canonicalize containment), SPA fallback (extensionless → index.html; missing-with-extension → 404), MIME handling, streamed asset bodies |
 | Flutter bootstrap patching | In-memory `serviceWorkerSettings → {}` patch (brace-depth scanner, string-safe), served `no-store, must-revalidate` |
-| Cross-origin isolation | `COOP: same-origin` + `COEP: require-corp` on the bootstrap, `main.dart.js`, and `.wasm` files — required for multi-threaded WASM |
+| Cross-origin isolation | `COOP: same-origin` + `COEP: require-corp` on the bootstrap, `main.dart.js`, and `.wasm` files - required for multi-threaded WASM |
 | Runtime-context proxy | `GET /v1/app/runtime/context` → Sentin8:App (public, pre-login; forwards only `x-sentin8-*` + `host` headers; relays response; 502 on app outage) |
 | Health | `/v1/health` with status + build hash (bypasses the traffic counter) |
 | TLS posture | In-process PQ-TLS termination, on-demand SNI cert resolution, context middleware (strip client `X-Sentin8-*`, inject authoritative ones) |
@@ -60,8 +60,8 @@ time. The business value it delivers:
 | The app registry | `vertical enroll` writes the `captain:app_dir:{slug}` keys (web only reads) |
 | Runtime context data | Sentin8:App (web relays it) |
 | TLS certificates | Resolved per-SNI via `sentin8-tls` (Acme issues) |
-| Persistent state | None — no tables, no outbox, no Bus events, no DB role |
-| User authentication | None — static assets are the app shell; the context proxy is public pre-login by contract |
+| Persistent state | None - no tables, no outbox, no Bus events, no DB role |
+| User authentication | None - static assets are the app shell; the context proxy is public pre-login by contract |
 
 ## 3. Business Capabilities
 
@@ -70,8 +70,8 @@ time. The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Hostname → app | Slug = first DNS label before `.{env}.{org}.{domain}`; app slugs cannot contain dots (enforced at registration) |
-| Discovery | `captain:app_dir:{slug}` lookup per request — O(1), no sys API hop, no restart for newly built/registered apps |
-| Unresolvable app | 404 naming the hostname — never a wrong app's content (empty hostname, missing key, missing index, or no Valkey all 404) |
+| Discovery | `captain:app_dir:{slug}` lookup per request - O(1), no sys API hop, no restart for newly built/registered apps |
+| Unresolvable app | 404 naming the hostname - never a wrong app's content (empty hostname, missing key, missing index, or no Valkey all 404) |
 | Dash mode | Single fixed web root for all requests; boot fails fast without `index.html` (run `flutter build web` first) |
 | One code path | Both modes share `serve_from_web_root`: decode → canonicalize → containment → stream / SPA fallback → 404 |
 
@@ -79,17 +79,17 @@ time. The business value it delivers:
 
 | Capability | Business rule |
 |---|---|
-| Traversal protection | Canonicalize-based containment — encoded `..%2F` sequences decoded first; escapes 404, never served (test-pinned) |
+| Traversal protection | Canonicalize-based containment - encoded `..%2F` sequences decoded first; escapes 404, never served (test-pinned) |
 | SPA fallback | Extensionless paths serve `index.html` (client-side routing); missing files WITH an extension 404 |
 | Bootstrap patch | Service-worker settings replaced in memory; `no-store` guarantees a rebuilt app is never shadowed by a cached bootstrap |
 | WASM isolation | COOP/COEP on the three wasm-thread-critical file kinds |
-| Streaming | Large WASM bundles stream (`ReaderStream`); content-length from metadata — never fully buffered |
+| Streaming | Large WASM bundles stream (`ReaderStream`); content-length from metadata - never fully buffered |
 
 ### 3.3 Bootstrap Proxy & Operations
 
 | Capability | Business rule |
 |---|---|
-| Context proxy | Public, pre-login (instance metadata only — same trust basis as the app shell itself; a bearer gate would 401 every first paint) |
+| Context proxy | Public, pre-login (instance metadata only - same trust basis as the app shell itself; a bearer gate would 401 every first paint) |
 | Header hygiene | Only `x-sentin8-*` + `host` forwarded; arbitrary client headers are not re-emitted by construction |
 | Host fallback | Under the L4 proxy (no header injection), the `Host` header (port stripped) is the hostname source |
 | Degradation | Valkey outage → app-hostname 404s only (dash mode + health unaffected); app outage → 502 |
@@ -102,19 +102,19 @@ only: the traffic counter (every request except health) and error
 metrics, flushed to Valkey every 10s.
 
 **Inbound (consumed):** the `policy` family SSE stream (Shield hot-reload,
-M2M `sentin8:web-policy` — the uniform enforced posture even with no
+M2M `sentin8:web-policy` - the uniform enforced posture even with no
 token-bearing handler to gate).
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **Zero compile-time vertical knowledge** — app directories resolve from Valkeys at request time; a newly enrolled app is served without a restart.
-2. **Canonicalize-based traversal protection** — escapes are 404s, never served.
-3. **Tokens never to the client** — web holds no tokens and forwards none; the proxy forwards only the instance headers.
-4. **The context proxy stays public** by contract — its response carries only instance metadata (nothing user-scoped).
-5. **The bootstrap patch is string-safe** (brace-depth counter — a literal `}` inside a string cannot end the object) and served `no-store`.
+1. **Zero compile-time vertical knowledge** - app directories resolve from Valkeys at request time; a newly enrolled app is served without a restart.
+2. **Canonicalize-based traversal protection** - escapes are 404s, never served.
+3. **Tokens never to the client** - web holds no tokens and forwards none; the proxy forwards only the instance headers.
+4. **The context proxy stays public** by contract - its response carries only instance metadata (nothing user-scoped).
+5. **The bootstrap patch is string-safe** (brace-depth counter - a literal `}` inside a string cannot end the object) and served `no-store`.
 6. **WASM-thread headers (COOP/COEP) on the three critical file kinds.**
-7. **Single-app mode fails fast** without `index.html`; unresolvable apps 404 — never wrong-app content.
-8. **No tables, no migrations, no outbox** — the policy boot opens a read-only connection under web's OWN declared service role; deployments never authenticate web to the database with another service's shared role.
+7. **Single-app mode fails fast** without `index.html`; unresolvable apps 404 - never wrong-app content.
+8. **No tables, no migrations, no outbox** - the policy boot opens a read-only connection under web's OWN declared service role; deployments never authenticate web to the database with another service's shared role.
 9. **No `unsafe` code**; TLS termination rides the platform TLS crate.
 
 ## 6. Target-User Roles & Use Cases
@@ -122,7 +122,7 @@ token-bearing handler to gate).
 | Persona | What they do with Sentin8:Web |
 |---|---|
 | App visitor | Loads any installed app's shell (SPA) from its own hostname; the app bootstraps via the same-origin context proxy |
-| Vertical developer | Builds a Flutter web app and enrolls it — it is served immediately, no host restart |
+| Vertical developer | Builds a Flutter web app and enrolls it - it is served immediately, no host restart |
 | Platform operator | Runs the dash in single-app mode; monitors health + traffic metrics; relies on fleet-wide TLS posture |
 | Compliance | Verifies traversal protection, no-token posture, and header hygiene |
 
@@ -132,7 +132,7 @@ token-bearing handler to gate).
 - **Safety**: zero traversal escapes; zero token exposure; zero wrong-app content.
 - **First-paint reliability**: the runtime-context bootstrap always answers (public by contract; 502 only on a real app outage).
 - **Browser correctness**: multi-threaded WASM works (COOP/COEP); in-app webviews work (service-worker stripped); SPA deep links work.
-- **Fleet economy**: one process for all app shells — minimal processes, certificates, monitoring.
+- **Fleet economy**: one process for all app shells - minimal processes, certificates, monitoring.
 
 ## 8. Dependencies & Reliance on Other Services
 
@@ -156,7 +156,7 @@ token-bearing handler to gate).
 5. Multi-threaded WASM apps run (COOP/COEP present on the critical files).
 6. In-app webviews work (service-worker registration stripped from the bootstrap).
 7. The `/v1/app/runtime/context` bootstrap answers pre-login on the app's origin (relayed from Sentin8:App), with 502 only on a genuine app outage.
-8. Unresolvable app hostnames 404 naming the hostname — never another app's content.
+8. Unresolvable app hostnames 404 naming the hostname - never another app's content.
 9. Health reports status + build hash; traffic metrics publish every 10s.
 10. Zero tokens reach any client.
 
@@ -164,7 +164,7 @@ token-bearing handler to gate).
 
 - Long-lived immutable asset caching (`main.dart.js`, `.wasm`, fonts served with 1-year immutable headers; bootstrap stays `no-store`) is a pure header change plus test.
 - ETag/If-None-Match support (`{size}-{mtime}` ETag → 304) rides the same handler change.
-- A CDN/object-store backend would slot behind the same adapter seam as storage's — a recorded non-goal until needed.
+- A CDN/object-store backend would slot behind the same adapter seam as storage's - a recorded non-goal until needed.
 
 
 ---

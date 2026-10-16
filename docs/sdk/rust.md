@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Rust SDK — the `sentin8` facade
+# Rust SDK - the `sentin8` facade
 
 One cargo workspace, one facade crate, every shared plane:
 
@@ -18,10 +18,10 @@ graph TD
     end
     subgraph PLANES["tls + bus + shield"]
         TLS[tls] --- BUSC[bus plane]
-        SHIELD["shield — the policy engine"]
+        SHIELD["shield - the policy engine"]
     end
-    SHELL["shell — service shell + audit"]
-    FACADE["sentin8 — namespace facade"]
+    SHELL["shell - service shell + audit"]
+    FACADE["sentin8 - namespace facade"]
     CORE & ID & PLANES & SHELL --> FACADE
 ```
 
@@ -58,11 +58,11 @@ use sentin8::middleware;     // valkey_client(workload), etc.
 
 Per-service SDK crates (`{svc}-client`/`{svc}-contracts`) live in each
 service's repo behind mini-facades (`sdk/` directory, package
-`sentin8-{svc}-sdk`) — shared-plane linkage decides what stays in the
+`sentin8-{svc}-sdk`) - shared-plane linkage decides what stays in the
 workspace (SDD boundary).
 
 ## Deep dive
 
-[SDK reference section](/docs/reference/sdk/) — harvested from
+[SDK reference section](/docs/reference/sdk/) - harvested from
 `Sentin8/sentin8-sdk` (architecture, the full crate map, wire-level
 detail).

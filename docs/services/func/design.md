@@ -1,19 +1,19 @@
 ---
-title: "Sentin8:Func — Architecture (DDD)"
+title: "Sentin8:Func - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-func/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Func — Detailed Design Document
+# DESIGN.md: Sentin8:Func - Detailed Design Document
 
 ## 1. Scope & Context
 
 Sentin8:Func is the platform's standalone WASM execution service:
 user-authored and service-authored modules are uploaded to Storage,
 validated (imports/hooks), activated per (domain, product, environment),
-and executed per hook under hard resource bounds — fuel, memory limiter,
-epoch/wall-clock timeout, 1 MiB response caps — with host functions
+and executed per hook under hard resource bounds - fuel, memory limiter,
+epoch/wall-clock timeout, 1 MiB response caps - with host functions
 proxy-calling back to owning services for domain data.
 
 - **Owns** (schema `func`): `modules` (metadata + lifecycle +
@@ -22,7 +22,7 @@ proxy-calling back to owning services for domain data.
   (`func/{domain}/{id}.wasm`, content-addressed by sha256).
 - **Does NOT own**: the WASM source/toolchain (uploads are compiled
   binaries), the hooks' business semantics (proxy-back to the owner), and
-  trigger registration (declared empty — execution is API-triggered
+  trigger registration (declared empty - execution is API-triggered
   today, e.g. by Flow's `BasicStep`).
 
 ```mermaid
@@ -53,7 +53,7 @@ graph TD
     OB -- "relay" --> BUS
 ```
 
-Trust boundary: a module can never escape the sandbox — linear memory
+Trust boundary: a module can never escape the sandbox - linear memory
 only, no WASI, imports restricted to the builtin namespace or
 declared host functions, all host calls go through explicit
 `CallbackConfig` URLs owned by the registering service.
@@ -64,7 +64,7 @@ declared host functions, all host calls go through explicit
 |---|---|
 | `runtime.rs` | Wasmtime engine: fresh `Store` per invocation, fuel accounting, `ResourceLimiter` (memory), epoch deadline + ticker, LRU module cache, host builtins (`malloc`, `free`, `log`, `util_now`, `util_date_add`, `util_round`), dynamic-import proxy-back, `substitute_args` templating. |
 | `handlers.rs` | Upload (Storage `put_if_absent` before row), list/get/delete/activate/validate/execute, feature gate, event emission, health. |
-| `store.rs` | Module metadata CRUD — every op = explicit tx + `set_rls` on the same connection; duplicate checks + unique indexes. |
+| `store.rs` | Module metadata CRUD - every op = explicit tx + `set_rls` on the same connection; duplicate checks + unique indexes. |
 | `admin_ui.rs` | RFW overview/versions pages + data endpoints (`target_env_id` required). |
 | `server.rs` / `config.rs` / `registration.rs` | State (runtime + Storage M2M client + cache warm-up), routes, self-description. |
 
@@ -129,7 +129,7 @@ sequenceDiagram
     else ok
         W-->>H: response JSON (≤ 1 MiB brace scan)
         H-->>C: ExecuteResponse {result, fuel_used, duration_ms, …}
-        note over H: FUNC-5 — the same {duration_ms, fuel_used}<br/>emits a `func.execute` Stat metric (fire-and-forget)
+        note over H: FUNC-5 - the same {duration_ms, fuel_used}<br/>emits a `func.execute` Stat metric (fire-and-forget)
     end
     Note over H: dynamic imports proxy-back:<br/>2s timeout, 1 MiB response cap, bearer from CallbackConfig
 ```
@@ -162,16 +162,16 @@ erDiagram
     }
 ```
 
-- `func.modules` — `UNIQUE (domain, product_id, version_label, env_id)`
+- `func.modules` - `UNIQUE (domain, product_id, version_label, env_id)`
   (409 on duplicates) + unique partial `func_modules_active_idx`
-  `(domain, product_id, env_id) WHERE status='active'` — exactly one
+  `(domain, product_id, env_id) WHERE status='active'` - exactly one
   active version per product. Version identity is CONTENT-addressed:
   `wasm_hash` (sha256) is verified server-side at upload, and a
   re-upload of identical content for the same (env, domain, product)
   returns the existing row instead of storing duplicate content. RLS
   FORCE with 4 env policies; binary content lives in Storage
   (`sentin8_storage_object_key`).
-- `func.outbox` / `func.audit_journal` — generated DBX tables; the shell
+- `func.outbox` / `func.audit_journal` - generated DBX tables; the shell
   relay drains the outbox; the journal is best-effort (note: audit rows
   are currently written with a hardcoded `action='policy.decision'`).
 
@@ -250,7 +250,7 @@ flowchart TD
     REL[relay] -->|Bus down| RT2[row unrelayed; 2s backoff; 5s poll]
     POL[Shield boot load fails] --> NS[refuse to start]
     SSE[hot-reload stream down] --> RC[2s reconnect; cache retained]
-    DEL[delete active] --> R404[404 — active modules undeletable]
+    DEL[delete active] --> R404[404 - active modules undeletable]
 ```
 
 - **Object-before-row**: an orphaned Storage object is harmless (deleted
@@ -289,10 +289,10 @@ graph LR
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
 1. **Sandbox hard caps**: fuel, memory limiter, epoch + wall timeout, and
-   1 MiB response caps — a module cannot loop forever, exhaust memory, or
+   1 MiB response caps - a module cannot loop forever, exhaust memory, or
    return unbounded data.
 2. **No WASI**: `wasi_snapshot_preview1|wasi|wasi_unstable` imports are
-   rejected at validate — no filesystem/network escape.
+   rejected at validate - no filesystem/network escape.
 3. **Hook vocabulary closed**: uploads reject hooks outside
    `KNOWN_HOOKS = [pre_posting, post_posting, scheduled_event,
    activation, deactivation]`; execution requires the exact
@@ -303,7 +303,7 @@ graph LR
 5. **Object-before-row**: Storage put is idempotent and precedes the
    metadata row; orphans are cleaned best-effort.
 6. **Lifecycle integrity**: one active version per (domain, product,
-   env) — enforced by the partial unique index; active modules cannot be
+   env) - enforced by the partial unique index; active modules cannot be
    deleted (no traffic teardown); deletes clean row + cache + object.
 7. **RLS discipline**: context on the same transaction; gate reads
    (`sys.services`) are schema-qualified because the role's search_path

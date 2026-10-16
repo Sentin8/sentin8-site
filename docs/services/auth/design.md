@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Auth — Architecture (DDD)"
+title: "Sentin8:Auth - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-auth/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Auth — Detailed Design Document
+# DESIGN.md: Sentin8:Auth - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -28,7 +28,7 @@ OID4VCI/SD-JWT wallet surface.
   calls back via the provisioning API), tenant app instances, Shield
   policy storage (sys's `policy_sets` is the substrate; auth runs an
   engine on it), invitations (proxied to sys), e-signature (QES delegated
-  to bank8-payments — `signature_request` returns NOT IMPLEMENTED).
+  to bank8-payments - `signature_request` returns NOT IMPLEMENTED).
 
 ```mermaid
 graph TD
@@ -71,12 +71,12 @@ graph TD
         MW["correlation · host-context · TLS-context ·<br/>logging · CORS · outbox relay (5s)"]
     end
     subgraph ROUTES["Router groups (no extra middleware)"]
-        OAUTH["oauth.rs — authorize/par/token/mtls/<br/>device/ciba/introspect/grants/revoke/userinfo"]
-        DCR["dcr.rs — register/manage clients"]
-        ID["identity handlers — sign-in/up, sessions,<br/>MFA, passkeys, recovery, app-passwords"]
-        ADM["admin.rs — users/roles/groups/clients/<br/>sessions/api-keys/memberships/audit + RFW"]
-        PROV["provision.rs — /v1/admin/provision/*"]
-        SCIMR["scim.rs — SCIM 2.0"]
+        OAUTH["oauth.rs - authorize/par/token/mtls/<br/>device/ciba/introspect/grants/revoke/userinfo"]
+        DCR["dcr.rs - register/manage clients"]
+        ID["identity handlers - sign-in/up, sessions,<br/>MFA, passkeys, recovery, app-passwords"]
+        ADM["admin.rs - users/roles/groups/clients/<br/>sessions/api-keys/memberships/audit + RFW"]
+        PROV["provision.rs - /v1/admin/provision/*"]
+        SCIMR["scim.rs - SCIM 2.0"]
         WALLET["wallet.rs + sd_jwt.rs"]
         SSO["enterprise SSO + SAML"]
         HOOKS["webhooks.rs admin"]
@@ -100,7 +100,7 @@ graph TD
     HOOKS --> POOL
 ```
 
-**Request lifecycle — authorization-code token issuance (FAPI 2.0
+**Request lifecycle - authorization-code token issuance (FAPI 2.0
 posture, platform profile):**
 
 ```mermaid
@@ -115,7 +115,7 @@ sequenceDiagram
     CL->>T: grant_type=authorization_code + code + PKCE verifier
     T->>T: authenticate_client (method per client:<br/>secret/basic/private_key_jwt/tls/thumbprint/none)
     alt client auth fails
-        T-->>CL: 401 invalid_client (uniform — no existence oracle)
+        T-->>CL: 401 invalid_client (uniform - no existence oracle)
     end
     T->>VK: GETDEL auth:authcode:{code} (one-time)
     T->>T: PKCE verify + redirect allowlist + profile flags<br/>(PAR consumed, JARM, DPoP proof optional→cnf)
@@ -213,7 +213,7 @@ erDiagram
   role's env). **No-RLS exceptions** (platform-internal): `m2m_dcr_credentials`
   (auth's own workloads only), `m2m_scope_grants` (anonymous DCR endpoint
   evaluates server-side), `webhook_attempts` (relay-written), and
-  `actor_revocations` (`USING (true)` — revocation is jti-scoped, not
+  `actor_revocations` (`USING (true)` - revocation is jti-scoped, not
   env-scoped).
 - **State machines**:
 
@@ -238,8 +238,8 @@ stateDiagram-v2
 | Audience | Group | Gate |
 |----------|-------|------|
 | public | `/.well-known/*`, `/oauth/authorize(+continue)`, `/oauth/par`, `/oauth/token`, `/oauth/device`+`/device/verify`, `/oauth/userinfo`, `/oauth/logout`, `/v1/sign-in\|up\|out`, `/v1/branding`, `/v1/health` | session/cookie or client auth per flow; bot protection + lockout on sign-in |
-| mTLS | `/mtls/oauth/token`, `/mtls/oauth/revoke` | cert-presence guard; client auth per DCR method — retained for out-of-band/tenant clients only; **platform workloads never fetch tokens (§4.3f)** |
-| workload | `POST /oauth/register` (DCR) | interactive clients open; **client_credentials-only requires mTLS cert** + CN ∈ `m2m_scope_grants` + scopes ⊆ grant — retained for out-of-band tenant clients; platform workloads never DCR (§4.3f) |
+| mTLS | `/mtls/oauth/token`, `/mtls/oauth/revoke` | cert-presence guard; client auth per DCR method - retained for out-of-band/tenant clients only; **platform workloads never fetch tokens (§4.3f)** |
+| workload | `POST /oauth/register` (DCR) | interactive clients open; **client_credentials-only requires mTLS cert** + CN ∈ `m2m_scope_grants` + scopes ⊆ grant - retained for out-of-band tenant clients; platform workloads never DCR (§4.3f) |
 | delegated | `POST /delegate/access-token` | verified M2M bearer + `sentin8:delegate:read` + cnf match |
 | wallet | `/oauth/credentials*`, `/oauth/vp/response`, `/v1/auth/wallet/metadata` | bearer / VP verified (SD-JWT key binding + status list) |
 | consent | `/v1/auth/consent/*` | session-validated; proxied to owning vertical |
@@ -271,9 +271,9 @@ sequenceDiagram
     end
 ```
 
-Event family `auth`; names `sentin8:auth:{user,role,group,client,credential,apikey,session,membership,dcr,connection,mfa,passkey,actortoken,securityprofile,webhook,grant,ciba}:{action}` — payload-complete envelopes. Session revocations
+Event family `auth`; names `sentin8:auth:{user,role,group,client,credential,apikey,session,membership,dcr,connection,mfa,passkey,actortoken,securityprofile,webhook,grant,ciba}:{action}` - payload-complete envelopes. Session revocations
 (`sign-out`, OAuth refresh-token revoke, password reset, admin terminate) emit
-`sentin8:auth:session:revoked` — payload-complete envelope `{subject_id,
+`sentin8:auth:session:revoked` - payload-complete envelope `{subject_id,
 env_id, session_id, revoked_by, reason}` (continuous access evaluation,
 README §7): the BFF session-reaper subscription (bff DESIGN §10) consumes the
 `auth` family (group `bff-session-reaper`) and kills every cached BFF session
@@ -283,13 +283,13 @@ the store TTL.
 Grant lifecycle (FAPI 2.0 Grant Management, grants.rs): every standing
 authorization emits its transition. Code issuance records/merges the grant
 (`record_grant` at the authorization-code exchange) and emits
-`sentin8:auth:grant:created` — payload `{grant_id, client_id, user_id,
+`sentin8:auth:grant:created` - payload `{grant_id, client_id, user_id,
 env_id, scope, state, selected_account_ids}` where `state` is the client's
 opaque OAuth state (the consent handle a vertical's consent flow packed into
 PAR) and `selected_account_ids` are the accounts the customer selected on a
 hosted consent screen. Downstream consent authorities (e.g. Bank8:FDX's
 provider plane, fdx DESIGN §1) seed their data-holder grant ledgers from this
-event — the authorization server is the seed of open-banking grant truth.
+event - the authorization server is the seed of open-banking grant truth.
 Grant revocation emits `sentin8:auth:grant:revoked`
 (`{grant_id, user_id, client_id}`).
 
@@ -306,7 +306,7 @@ graph LR
 ```
 
 - **Token verification** is SDK-reused by every service
-  (`sentin8::auth::client`) — auth is the only JWKS authority.
+  (`sentin8::auth::client`) - auth is the only JWKS authority.
 - **Rate limiting / bot protection**: IP 10/min, email 5/min sliding
   windows; 5 failures → durable `locked` status (config TTL); dummy bcrypt
   compare on unknown accounts (no email enumeration).
@@ -321,14 +321,14 @@ graph LR
 - **Back-channel logout**: logout token issued to registered
   `backchannel_logout_uri` per client.
 
-### 4.3f Token-free platform M2M (CERTFREE-1) — the certificate is the service identity
+### 4.3f Token-free platform M2M (CERTFREE-1) - the certificate is the service identity
 
 Platform workloads authenticate with **no token at all**: the caller presents
 its Acme-issued client certificate (`CN=m2m-{workload}`) in the TLS
 handshake, `sentin8-tls` CA-verifies it and injects
 `X-Sentin8-Client-Cert-Subject` / `-Thumbprint` headers (client-supplied
 copies stripped), and the receiving service trusts those headers exactly as
-it trusts `X-Sentin8-Env-Id` — the TLS layer is the authentication. Auth's
+it trusts `X-Sentin8-Env-Id` - the TLS layer is the authentication. Auth's
 role in platform M2M shrinks to **issuing identity material (the
 certificate, via Acme) and provisioning the authorization record (the
 grant rows, via `vertical enroll`)**. No M2M JWT is minted, fetched,
@@ -337,8 +337,8 @@ cached, or verified for platform service→service calls.
 **Why (the defect class this closes):** the M2M token was a second identity
 surface that had to stay synchronized with the certificate identity across
 three stores (SDK credential cache → `oauth_clients` → JWT claims). A
-database reset desynchronized them by construction — cached `client_id`s
-outlived their rows — producing the fleet-wide
+database reset desynchronized them by construction - cached `client_id`s
+outlived their rows - producing the fleet-wide
 `M2M token fetch failed: status 401` storm after every reset. A token is
 also a redundant proof: the TLS handshake ALREADY establishes exclusive
 possession of the certificate's private key on every call; a bearer minted
@@ -363,16 +363,16 @@ sequenceDiagram
 
 **The authorization record travels as the registry map.** `sentin8-cli
 vertical enroll` already provisions `auth.m2m_scope_grants` and publishes
-`captain:*` Valkey keys; it additionally publishes a `m2m:workloads` hash —
-`{workload} → {vertical, service_type, scopes[], enabled}` — and every
+`captain:*` Valkey keys; it additionally publishes a `m2m:workloads` hash -
+`{workload} → {vertical, service_type, scopes[], enabled}` - and every
 service boot-loads it and TTL-caches it (the platform's mandated pattern:
 owner data is seeded on cold start / cache miss, never read on the request
-path — §4.14/§6.6). This answers the three consumers the token previously
+path - §4.14/§6.6). This answers the three consumers the token previously
 fed:
 
 | Consumer | Was (token claim) | Now (map field) |
 |---|---|---|
-| Shield `RequestCtx` (scope-gated rules) | `scope` | `scopes` (roles: none — M2M workloads never had role assignments) |
+| Shield `RequestCtx` (scope-gated rules) | `scope` | `scopes` (roles: none - M2M workloads never had role assignments) |
 | Bus VDC-2 event-ownership gate | `vertical` | `vertical` (produce + consume identity checks) |
 | Audit `service` stamp / Sys tenant-snapshot | `sub` (opaque hex) / `service_type` | CN directly / `service_type` |
 
@@ -381,10 +381,10 @@ surface) flips it, every service's cache observes it within the TTL, and the
 workload's calls are refused. This is *more immediate* than the token path
 (a minted token lives to expiry regardless) and is bounded by the cache
 TTL. Handshake-level certificate revocation (a stolen cert's *validity*)
-remains a follow-up (CERTFREE-2) — a pre-existing gap, not a regression.
+remains a follow-up (CERTFREE-2) - a pre-existing gap, not a regression.
 
 **Security posture vs the token design (2026-10-07 review):** the move is a
-net improvement — per-call proof-of-possession (the token was a pure bearer
+net improvement - per-call proof-of-possession (the token was a pure bearer
 at the target; `verify_cert_binding` was a stub) and fleet-wide revocation
 where none existed for M2M JWTs. The multi-tenant boundary does not move:
 tenancy was never carried by machine identity (WARN-21: the request's env
@@ -393,9 +393,9 @@ remain the tenant gates. Two new risks are ACCEPTED-AND-FILED:
 
 - **The map's write surface is authorization escalation.** Any process
   with Valkey write access can `HSET m2m:workloads` itself any scope set,
-  and the 30s TTL propagates it fleet-wide — a primitive the
+  and the 30s TTL propagates it fleet-wide - a primitive the
   signature-verified token design denied (scopes were minted from a DB row
-  Auth signed). Countermeasure: Valkey ACLs (CERTFREE-4) — m2m:* writes
+  Auth signed). Countermeasure: Valkey ACLs (CERTFREE-4) - m2m:* writes
   restricted to the operator/enroll writer identity; services hold a
   read-only reader identity.
 - **Certificate lifetime bounds the theft window.** The 365-day default
@@ -403,31 +403,31 @@ remain the tenant gates. Two new risks are ACCEPTED-AND-FILED:
   tightened to a 30-day default with load-path NotAfter verification and
   auto re-mint (CERTFREE-5), alongside CERTFREE-2's CRL.
 - Per-instance distinguishability collapses to the workload name (two
-  instances share `{workload}.crt`) — accepted; audit identifies
+  instances share `{workload}.crt`) - accepted; audit identifies
   workloads, never instances.
 
 **Invariants (CERTFREE-1):**
 
 - The certificate is the *only* platform-workload credential: no secret, no
   bearer, no assertion. The `m2m-` CN prefix is minted exclusively by
-  Acme's guarded issuance channels (bootstrap enrollment — pinned to the
+  Acme's guarded issuance channels (bootstrap enrollment - pinned to the
   declared set by CERTFREE-3; self-issuance `sub == service_name`; the
   enroll operator scope).
 - The TLS-injected headers are trustworthy because (a) `sentin8-tls`
   injects them only after CA verification, (b) client-supplied copies are
   stripped before the app sees them, and (c) they exist only on
-  TLS-terminated platform hops — the same trust model `X-Sentin8-Env-Id`
+  TLS-terminated platform hops - the same trust model `X-Sentin8-Env-Id`
   already carries.
 - A workload can only ever exercise scopes its map entry allows (Shield
   evaluates from the map; policy rules are unchanged).
 - `oauth_clients` and DCR survive for interactive clients (auth-code,
   device flow, BFF apps, dash) and out-of-band tenant clients
-  (`client_secret_basic`/`private_key_jwt` per registration) — Auth
+  (`client_secret_basic`/`private_key_jwt` per registration) - Auth
   remains the single identity plane for every HUMAN-facing flow; the
   token-free plane covers machine-to-machine platform calls only.
 - **Rejected:** keeping the token as "extra" (it was the storm's root
   cause and adds no proof beyond the handshake); services reading
-  `auth.m2m_scope_grants` directly (§4.7 — the map is the transport, no
+  `auth.m2m_scope_grants` directly (§4.7 - the map is the transport, no
   cross-schema grants); a live Auth resolve API per request (per-request
   dependency, banned by the runtime discipline).
 
@@ -439,7 +439,7 @@ its real job); `build_with_dcr` background DCR retries in bus-client; every
 service's boot-time DCR block; the `cli-producer` / `cli-delegator` /
 `bff-delegator` token workloads (the CLI and BFF present certificates);
 BFF's env-credential fallback. Delegated tokens keep their `cnf`
-cert-binding (unchanged) — BFF presents its certificate and receives a
+cert-binding (unchanged) - BFF presents its certificate and receives a
 delegated JWT as today; only the *workload's own* M2M JWT disappears.
 
 ## 6. Failure Modes & Recovery
@@ -447,24 +447,24 @@ delegated JWT as today; only the *workload's own* M2M JWT disappears.
 ```mermaid
 flowchart TD
     A[refresh replay] --> B{denylist hit?}
-    B -- yes --> C[invalid_grant — replay detected]
+    B -- yes --> C[invalid_grant - replay detected]
     B -- no --> D[rotate + denylist old jti]
     E[Valkey down] --> F[denylist fail-open = false<br/>rate-limit checks skip]
     F --> G[DB predicates backstop expiry]
     H[webhook delivery fail] --> I[retry 30s·2^n ×5]
     I --> J[failed_at marked]
-    K[master key wrong] --> L[boot failure — refuse to start]
+    K[master key wrong] --> L[boot failure - refuse to start]
     M[Bus down] --> N[outbox rows persist<br/>5s safety poll]
     O[Post down] --> P[post_outbox unpushed rows retried]
 ```
 
 - **JWKS rotation**: insert-new-key overlap (all persisted keys published);
-  no scheduled rotation task — old tokens verify until expiry.
+  no scheduled rotation task - old tokens verify until expiry.
 - **Session expiry**: enforced by predicates; no sweeper (rows are
   harmless after expiry).
 - **DCR storm protection**: anonymous DCR gated by `m2m_scope_grants`
   (service must be enrolled) + cert channel possession proof. Platform
-  workloads never DCR and never fetch tokens (§4.3f) — a DB reset can no
+  workloads never DCR and never fetch tokens (§4.3f) - a DB reset can no
   longer strand cached `client_id`s; a missing grant row surfaces as a
   named workload refusal (`workload not enrolled`) from the registry map,
   fixed by enrollment.
@@ -499,7 +499,7 @@ graph LR
   `TokenSource` is resolved once and reused across passes (audit-pusher
   pattern, `crates/audit` §6.8): the cached token covers ~10 passes
   before the 60s-before-expiry refresh, and a 401 triggers the m2m
-  crate's single-flight self-heal (re-issue + re-DCR, 60s cooldown) —
+  crate's single-flight self-heal (re-issue + re-DCR, 60s cooldown) -
   never a per-pass `register_or_load_m2m_client` load + credential
   probe + fresh mTLS client. A per-pass rebuild would run two PQ TLS
   handshakes + two token POSTs every 10s whose transient allocations
@@ -510,9 +510,9 @@ graph LR
 
 Identity-cache invalidation (policy runtime's recognized triggers:
 `sentin8:sys:identity:updated`, `sentin8:auth:membership:created|deleted`
-— sentin8-policy runtime.rs `invalidation_env_id`) rides the SYSTEM-env
+- sentin8-policy runtime.rs `invalidation_env_id`) rides the SYSTEM-env
 `policy` stream because policy consumers (every service's M2M workload)
-are registered in the SYSTEM env — that is the transport, not a policy
+are registered in the SYSTEM env - that is the transport, not a policy
 choice. The shell outbox relay holds exactly one M2M workload
 (SYSTEM-env, `sentin8:bus:produce`), and Bus's produce gate
 (`env_id does not match the authenticated tenant`) rejects any row whose
@@ -521,7 +521,7 @@ never reach the `policy` stream**. Therefore every mutation that grants
 or revokes access emits, in the SAME transaction as the domain change,
 a SYSTEM-env row (`SENTIN8_SYSTEM_ENV_ID`, family `policy`, event
 `sentin8:auth:membership:created`/`sentin8:auth:membership:deleted`,
-payload `{"env_id": <affected tenant env>, "user_id": <subject>}`) —
+payload `{"env_id": <affected tenant env>, "user_id": <subject>}`) -
 env to sweep rides the payload (the tenant-env fan-out row for domain
 consumers stays, on the `auth` family). Covered mutations: sign-up
 closure provisioning (`auto_add_to_app_groups`, one invalidation per
@@ -530,27 +530,27 @@ provisioning endpoint `provision_group_member`. Emission is
 best-effort: an RLS/failure drop logs and degrades to the RoleResolver
 30s TTL. The tenant context on the emitting transaction is switched to
 SYSTEM for the invalidation INSERT (`set_config` is transaction-local)
-and restored for any subsequent tenant-plane statement — policies on
+and restored for any subsequent tenant-plane statement - policies on
 `auth.outbox` match `env_id = current`, so the row must be written
 under the env it carries.
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-1. **Single identity plane** — no other service mints tokens/JWKS; the
+1. **Single identity plane** - no other service mints tokens/JWKS; the
    provisioning API is the only cross-service write path to `auth.*`
    (cross-schema INSERTs retired).
-2. **M2M is certificate-bound by default** — a stolen token without the
+2. **M2M is certificate-bound by default** - a stolen token without the
    key is useless; DCR for `client_credentials` requires the mTLS cert
    channel (no dev fallback).
-3. **`scope` is not the decision** — handlers never re-check scopes; step
+3. **`scope` is not the decision** - handlers never re-check scopes; step
    5 resolves live identity.
-4. **Refresh rotation + jti denylist** — replay within TTL is detectable;
+4. **Refresh rotation + jti denylist** - replay within TTL is detectable;
    fail-open only on cache outage (expiry predicates backstop).
-5. **No existence oracle** — uniform `invalid_client`; dummy bcrypt on
+5. **No existence oracle** - uniform `invalid_client`; dummy bcrypt on
    unknown accounts.
-6. **Tenant-scoped uniqueness** — emails/roles/groups unique per
+6. **Tenant-scoped uniqueness** - emails/roles/groups unique per
    `(env_id, …)`; sessions carry `token_id` UNIQUE.
-7. **Actor tokens are time-boxed and audited** — TTL clamp ≤ 3600s,
+7. **Actor tokens are time-boxed and audited** - TTL clamp ≤ 3600s,
    `auth.actor_events` + jti revocation table.
 8. **Keys persisted + encrypted**; wrong/rotated master key refuses boot.
 9. No `unsafe` in the service; manual ML-DSA-65 signing wrapped in the
@@ -563,17 +563,17 @@ under the env it carries.
     invalidation row is written under the SYSTEM tenant context with
     `env_id = SENTIN8_SYSTEM_ENV_ID`; a tenant-env row is silently
     dropped by RLS at emit time (policy `outbox_insert`: `env_id =
-    current`) and denied at the Bus produce gate — both fail closed
+    current`) and denied at the Bus produce gate - both fail closed
     (DESIGN §7.1).
 12. **Auth reads `sys.app_instances` only through Sentin8:App's owner
     API.** The sign-up closure provisioning needs the env's
     customer-mode (allow_signup) instance ids: the former direct-table
     read violated DBX §6.6a (auth held no grant on `sys.app_instances`
-    after the sys.* grant retirement — the read failed RLS-grantless
+    after the sys.* grant retirement - the read failed RLS-grantless
     and "provisioned NO permission closure" on every customer-env
     sign-up). Target state: `auto_add_to_app_groups` calls Sentin8:App
     `GET /v1/app/instances/customer-mode?env_id=…` (M2M workload
-    `auth-sys`, scope `sentin8:app:instances:read`, env-bound) — the
+    `auth-sys`, scope `sentin8:app:instances:read`, env-bound) - the
     owner never shares tables (DESIGN §7.1).
 
 ## 9. Testing Strategy
@@ -584,7 +584,7 @@ graph TD
     I1["integration.rs (21)<br/>flows, tenant isolation, admin gates,<br/>consent, DCR cert gate"]
     I2["conformance.rs (11)<br/>PAR single-use, rotation replay,<br/>DPoP/PKCE replay, CSRF"]
     I3["conformance_profiles + sec_auth2 +<br/>publisher_exchange (17)<br/>profile overrides, forged tokens,<br/>act chains"]
-    E["E2E — browser auth flows via BFF"]
+    E["E2E - browser auth flows via BFF"]
     U --> I1 & I2 & I3
     I1 --> E
 ```
@@ -606,7 +606,7 @@ graph TD
   relying only on TTL polling.
 
 > JWKS rotation is internal: a daily in-process timer (03:00, 30-day
-> staleness gate) calls the in-process rotate path directly — auth links
+> staleness gate) calls the in-process rotate path directly - auth links
 > no scheduler client and makes no cross-service calls (SDD §2.5, root
 > service rule).
 

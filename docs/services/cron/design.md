@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Cron — Architecture (DDD)"
+title: "Sentin8:Cron - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-cron/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Cron — Detailed Design Document
+# DESIGN.md: Sentin8:Cron - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -21,14 +21,14 @@ runs domain logic itself.
   producer table), `audit_journal`, and the `cron.due_schedules()`
   SECURITY DEFINER read helper.
 - **Provisions** (does not author): recurring internal schedules declared
-  by services in their registration (`schedules` section — `ScheduleDecl`,
+  by services in their registration (`schedules` section - `ScheduleDecl`,
   SDD §2.4). `sentin8-cli vertical enroll` reads
   `--print-registration --section=schedules` and upserts `cron.schedules`
   rows idempotently (`schedule_type` unique per (env, domain)); the CLI
   resolves `target_config.baseUrl` from the platform domain. Services
   make no boot-time cron registration calls (SDD D2/D3).
 - **Does NOT own**: the scheduled work itself (proxy-back to the owning
-  service's internal API), leader election (single in-process ticker —
+  service's internal API), leader election (single in-process ticker -
   no Valkey lease), policy evaluation of targets, or retries' business
   semantics (mechanical backoff only).
 
@@ -64,7 +64,7 @@ graph TD
 Trust boundary: cron holds an M2M identity for the proxy-back bearer; the
 target service enforces its own authorization on
 `/v1/internal/schedules/run`. Tenant data stays in the owning service's
-schema — cron's rows are execution bookkeeping only.
+schema - cron's rows are execution bookkeeping only.
 
 ## 2. Runtime Architecture
 
@@ -168,7 +168,7 @@ erDiagram
         int retry_count "attempt tracking lives HERE"
         int max_retries
         uuid env_id
-        composite env_id_domain_schedule_type UK "natural key: re-enroll converges (full UK — backs the enroll upsert's ON CONFLICT; a deleted/completed row keeps the key, so API re-creation REVIVES it with the new definition; a live row conflicts 409)"
+        composite env_id_domain_schedule_type UK "natural key: re-enroll converges (full UK - backs the enroll upsert's ON CONFLICT; a deleted/completed row keeps the key, so API re-creation REVIVES it with the new definition; a live row conflicts 409)"
     }
     JOBS {
         uuid id PK
@@ -200,17 +200,17 @@ erDiagram
     }
 ```
 
-- `schedules` — RLS FORCE (policies match `env_id`); partial indexes for
+- `schedules` - RLS FORCE (policies match `env_id`); partial indexes for
   due selection (`next_run_at WHERE status='active'`) and per-domain
   listing. Soft delete (`status='deleted'`) retains rows so audit/DLQ
   references resolve.
-- `jobs` — unique partial index `sentin8_cron_jobs_open_per_schedule ON
-  (schedule_id) WHERE status IN ('pending','running')` — exactly one open
+- `jobs` - unique partial index `sentin8_cron_jobs_open_per_schedule ON
+  (schedule_id) WHERE status IN ('pending','running')` - exactly one open
   job per schedule (mutual-exclusion backstop to the advisory lock). No
   DELETE policy (rows retained).
-- `dlq` — landed after retry exhaustion; `republish_dlq` inserts a fresh
+- `dlq` - landed after retry exhaustion; `republish_dlq` inserts a fresh
   pending job and deletes the DLQ row in one transaction.
-- `cron.due_schedules()` — SECURITY DEFINER (the service role is
+- `cron.due_schedules()` - SECURITY DEFINER (the service role is
   NOBYPASSRLS): the only cross-tenant read; returns ≤50 due active
   schedules ordered by `next_run_at`.
 
@@ -247,7 +247,7 @@ stateDiagram-v2
 | `/v1/schedules` | GET | verify_token | list (excludes deleted). |
 | `/v1/schedules/{id}` | GET | verify_token | single row. |
 | `/v1/schedules/{id}` | DELETE | Shield `sentin8:cron:write` | soft delete. |
-| `/v1/schedules/{id}` | PATCH | Shield `sentin8:cron:write` | `{status: "paused" | "active"}` — pause/resume via status; resume recomputes `next_run_at` from now. |
+| `/v1/schedules/{id}` | PATCH | Shield `sentin8:cron:write` | `{status: "paused" | "active"}` - pause/resume via status; resume recomputes `next_run_at` from now. |
 | `/v1/schedules/{id}/pause` · `/resume` | POST | verify_token | resume recomputes `next_run_at` from now. |
 | `/v1/schedules/{id}/delete` | POST | Shield `sentin8:cron:write` | RFW row-action alias. |
 | `/v1/jobs`, `/v1/jobs/{id}` | GET | verify_token | filters `schedule_id`/`status`, LIMIT 100. |
@@ -268,7 +268,7 @@ flowchart LR
 ```
 
 Event types: `sentin8:cron:schedule:created|deleted|paused|resumed|completed|failed`,
-`sentin8:cron:job:retried`, `sentin8:cron:dlq:republished` — payload-complete
+`sentin8:cron:job:retried`, `sentin8:cron:dlq:republished` - payload-complete
 (schedule_id, job_id, domain, schedule_type, env_id, result/error,
 retry_count, `correlation_id = schedule_id`, `idempotency_key =
 "schedule:{schedule_id}:{job_id}"` for proxy-back).
@@ -281,13 +281,13 @@ retry_count, `correlation_id = schedule_id`, `idempotency_key =
   with the service's own M2M token (DCR TokenSource when wired; dev
   fallback `SENTIN8_CRON_TOKEN`).
 - **Tenant resolution + RLS**: `target_env_id` is REQUIRED on env-scoped
-  handlers and admin data (400 when missing — never a token-env
+  handlers and admin data (400 when missing - never a token-env
   fallback); all tenant reads/writes set the transaction-local context on
   the same connection; ticker reads ride the SECURITY DEFINER
   `cron.due_schedules()` because the role is NOBYPASSRLS.
   Transaction-locality rule (§5, applies to the ticker too):
   `sentin8_set_tenant_context` and every statement that must see/check
-  that context run inside ONE transaction — sqlx statements outside
+  that context run inside ONE transaction - sqlx statements outside
   `begin()` are autocommit, and `set_config(..., true)` evaporates at
   the context-set statement's own commit. The ticker's job record
   (context + `INSERT INTO cron.jobs`) is a single transaction on the
@@ -327,13 +327,13 @@ flowchart TD
 - **Proxy-back failures** map to precise errors (`missing baseUrl in
   target_config`, `proxy-back status {n}`, `proxy-back decode: …`,
   `no M2M token source configured (set SENTIN8_CRON_TOKEN for dev)`).
-- **Misfire semantics**: missed ticks are skipped, never hot-looped —
+- **Misfire semantics**: missed ticks are skipped, never hot-looped -
   `next_fire` is strictly after the reference time; unparseable stored
   expressions fall back to `now + 1h`.
 - **Ticker error** logs and continues (next interval); a per-schedule
   failure never aborts the batch.
 - **Relay failure**: Bus outage leaves rows unrelayed in `cron.outbox`
-  (2s push backoff, 5s safety poll) — the event survives and retries.
+  (2s push backoff, 5s safety poll) - the event survives and retries.
 
 ## 7. Concurrency & Performance Model
 
@@ -350,14 +350,14 @@ graph LR
     REL["shell outbox relay<br/>(cron_outbox_changed · batch 100 · 5s poll)"] --> OB
 ```
 
-- **Single ticker task** (default 60s interval) — no leader election: the
+- **Single ticker task** (default 60s interval) - no leader election: the
   advisory lock + claim-conditional UPDATE make concurrent multi-instance
   deployment safe, but today only one loop exists per process.
 - **Pool cap 3**; each schedule processing takes a dedicated pooled
   connection for the advisory lock (unlock always on the same connection,
   warning if the lock was not held).
 - **Hot paths**: the due-index and retryable-index queries (partial
-  indexes), one claim UPDATE, one HTTP call per schedule — O(due) per
+  indexes), one claim UPDATE, one HTTP call per schedule - O(due) per
   tick, batched at 50.
 - **No Valkey dependency** at all: no lease, no metrics channel beyond the
   shell-owned middleware publishers.
@@ -370,9 +370,9 @@ graph LR
 2. `target_env_id` is required everywhere an env is addressed (400 when
    missing; no silent fallback).
 3. Exactly one open job per schedule (unique partial index) + advisory
-   lock + claim-conditional UPDATE — a schedule never runs concurrently
+   lock + claim-conditional UPDATE - a schedule never runs concurrently
    with itself.
-4. `next_run_at` advances on success, retry, and DLQ — no hot-looping;
+4. `next_run_at` advances on success, retry, and DLQ - no hot-looping;
    `retry_count` resets on success and DLQ landing.
 5. Events are outbox-first: the event + domain change commit atomically;
    a failed emission aborts the domain write (fail-closed).
@@ -385,7 +385,7 @@ graph LR
    and the result maps back to the earliest UTC fold (DST-safe); the
    ticker (`next_fire_in_tz`) and both resume paths use it. Bad zones are
    400s at create; stored fallback is UTC evaluation.
-8. DLQ landing never stops the schedule — the schedule advances to its
+8. DLQ landing never stops the schedule - the schedule advances to its
    next fire; republish is manual.
 9. No `unsafe` code; no static auth tokens in `target_config` (the M2M
    token source is the only bearer for proxy-back; the dev static token

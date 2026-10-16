@@ -1,44 +1,44 @@
 ---
-title: "Sentin8:Proxy — Architecture (DDD)"
+title: "Sentin8:Proxy - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-proxy/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Proxy — Detailed Design Document
+# DESIGN.md: Sentin8:Proxy - Detailed Design Document
 
 ## 1. Scope & Context
 
 Sentin8:Proxy is the platform's **single ingress**: an L4 SNI router on
 port 443 with an optional L7 TLS-bridging path. Internal (private) traffic
-pipes raw TLS bytes to the backend (byte-piping — the backend terminates
+pipes raw TLS bytes to the backend (byte-piping - the backend terminates
 PQ-TLS in-process); external traffic is bridged (TLS terminated at the
 edge, HTTP parsed, WAF/rate-limit evaluated, tenant headers injected,
-forwarded). The proxy holds no domain state — routing data comes from
+forwarded). The proxy holds no domain state - routing data comes from
 sys's lifecycle tables (deduced from orgs/envs/app instances) and the
 Valkey instance registry.
 
-- **Owns**: nothing persistent — no tables, no outbox, no Bus producer.
+- **Owns**: nothing persistent - no tables, no outbox, no Bus producer.
   Runtime state is the backend registry (from `captain:svc:*`), the
   domain resolver caches, the in-memory rate limiter, L7 metrics, and
   the optional plain-HTTP `:80` listener that exists solely to hand
   `/.well-known/acme-challenge/*` requests to acme (everything else a
-  fixed 404 — DEVDOM-2, acme DESIGN §4.3).
+  fixed 404 - DEVDOM-2, acme DESIGN §4.3).
 - **Does NOT own**: tenant data (read-only `sys.*` caches), TLS
   certificates (resolved per-SNI via `sentin8-tls`; a self-signed 24h
   bootstrap cert breaks the first-boot chicken-and-egg), and
-  authorization of the data plane (transport only — Shield gates only
+  authorization of the data plane (transport only - Shield gates only
   the management API).
 - **Startup dependency on Sentin8:Sys (domain-truth plane, one-way)**:
-  the ingress arms FULLY only once Sys is Active — the boot tier order
+  the ingress arms FULLY only once Sys is Active - the boot tier order
   starts sys (15) before proxy (20) so the two sys-backed resolve paths
   are live before the ingress takes traffic: (1) the resolver seed /
   30s-poll reload reads `sys.vertical_services` (the one declared
-  SELECT — table rows come from `vertical enroll`, so the seeding is
+  SELECT - table rows come from `vertical enroll`, so the seeding is
   fail-open and never blocks liveness, but a fresh bootstrap boots
   tenant-blind until seeded), and (2) tenant-SNI resolve misses call
   Sys's owner API `GET /v1/resolve/hostname` (M2M `sentin8-proxy-tls`)
-  — a per-miss call, sanctioned as the cold-start/cache-miss edge
+  - a per-miss call, sanctioned as the cold-start/cache-miss edge
   (AGENTS rule 3), never a per-request hot-path dependency. Platform-
   plane SNIs (`{label}.ops.sys.{domain}`) resolve statically regardless.
 
@@ -79,7 +79,7 @@ graph TD
 ```
 
 Trust boundary: the edge strips all eleven client-supplied
-`X-Sentin8-*` headers before injecting the resolved context — clients
+`X-Sentin8-*` headers before injecting the resolved context - clients
 can never spoof tenant identity. The L4 path never decrypts anything.
 
 ## 2. Runtime Architecture
@@ -95,7 +95,7 @@ can never spoof tenant identity. The L4 path never decrypts anything.
 | `header_injector.rs` | Strip client `X-Sentin8-*` (11 headers) → inject `env-id`, `app-id`, `service`, `hostname`, `correlation-id`, `caller-service: proxy`. |
 | `policy_engine.rs` | WAF (SQLi/XSS/path-traversal), per-IP token-bucket rate limit, header-count cap. |
 | `upstream_tls.rs` | Backend connect: `Offload` (plain TCP) / `Bridge` (rustls + optional mTLS + native root store incl. Acme Root CA). |
-| `upstream_idle_pool.rs` | Per-`(backend_addr, sni)` idle-connection pool for L7 upstreams (PROXY-5): warmed TLS/TCP sessions reused across requests; stale pooled connections fail transport once and the request **retries once on a fresh connection** — a handoff-warm pool, not a per-request handshake. |
+| `upstream_idle_pool.rs` | Per-`(backend_addr, sni)` idle-connection pool for L7 upstreams (PROXY-5): warmed TLS/TCP sessions reused across requests; stale pooled connections fail transport once and the request **retries once on a fresh connection** - a handoff-warm pool, not a per-request handshake. |
 | `bootstrap_cert.rs` | Self-signed 24h leaf for `proxy.ops.sys.{domain}` (SAN = local IP) until Acme is healthy. |
 | `l7_metrics.rs` / `mapping_cache.rs` / `pipe.rs` / `traffic_split.rs` | Counters + flush; always-empty mapping stats; bidirectional copy; internal/external decision. |
 
@@ -199,12 +199,12 @@ The proxy owns no tables; its working state is caches:
 
 | Cache | Source | Contents |
 |---|---|---|
-| `DomainResolver` (apps/known_services/subdomain_map, `RwLock`) | `sys.vertical_services` (declared SELECT); platform-plane handled statically | reload on `sentin8:sys:domain:changed` + 30s poll. Tenant hostnames are **deduced** — the former `sentin8_domains` table is retired. |
+| `DomainResolver` (apps/known_services/subdomain_map, `RwLock`) | `sys.vertical_services` (declared SELECT); platform-plane handled statically | reload on `sentin8:sys:domain:changed` + 30s poll. Tenant hostnames are **deduced** - the former `sentin8_domains` table is retired. |
 | `ServiceBackendRegistry` | `captain:svc:*` hashes | addr per `{ip}:{port}` for Active + fresh instances; suspect marks with TTL 30s. |
 | `MappingCache` | resolver | always empty (stats surface for the mgmt API only). |
 | Rate limiter | in-memory | per-IP token bucket (`rate_limit_rps`, default 100). |
 
-**Platform-plane SNIs resolve statically — no domain-model read (TLS-RLS-4
+**Platform-plane SNIs resolve statically - no domain-model read (TLS-RLS-4
 parity, story D7-PXY).** A `{label}.ops.sys.{domain}` hostname resolves
 in-process from well-known constants: `SYSTEM_ORG_ID` / `SYSTEM_ENV_ID`
 (sentin8-config) + the `SENTIN8_TLS_PLATFORM_LABELS` label→service map
@@ -215,7 +215,7 @@ cross-schema SELECT (the retired `organizations`/`environments`/`
 app_instances` reads) is deleted rather than worked around. Tenant SNIs
 (`{service}.{env}.{org}.{domain}`) still walk the Sys owner API
 (`GET /v1/resolve/hostname`, M2M `sentin8:sys:instances:read` via the
-existing `sentin8-proxy-tls` workload) on cache miss — the sanctioned
+existing `sentin8-proxy-tls` workload) on cache miss - the sanctioned
 D7 owner-API path, same as every service's embedded sentin8-tls resolver.
 
 ```mermaid
@@ -234,7 +234,7 @@ Acme cert once Acme is healthy.
 
 **Sanctioned cross-schema read.** The ONE remaining `sys.*` read is
 DECLARED in `registration.rs` `cross_schema_grants`:
-`vertical_services` (SELECT) — it feeds the subdomain map read by
+`vertical_services` (SELECT) - it feeds the subdomain map read by
 `sentin8_config::load_subdomain_map` on domain-event reload + the 30s
 poll, and by the tls crate's `resolve_service_name_in_tx` on the
 first-label lookup. The retired `organizations`/`environments`/
@@ -249,13 +249,13 @@ the data plane is a raw TCP accept loop with no routes.
 
 | Endpoint | Method | Gate |
 |---|---|---|
-| `/v1/health` | GET | none (status, version, build, mapping stats, service counts, `active_connections` L7 gauge — drain signal). |
+| `/v1/health` | GET | none (status, version, build, mapping stats, service counts, `active_connections` L7 gauge - drain signal). |
 | `/v1/prox/backends` | GET | Shield `sentin8:proxy:backends:read`. |
 | `/v1/prox/mappings` | GET | Shield `sentin8:proxy:mappings:read`. |
 | `/v1/admin/policy-sets|relations|attributes…` | mixed | shared Shield admin surface. |
-| `/openapi.json` | GET | shell (`openapi_url` declared; spec closure → null — the proxy carries no utoipa spec). |
+| `/openapi.json` | GET | shell (`openapi_url` declared; spec closure → null - the proxy carries no utoipa spec). |
 
-Event/metric flow (transport-level only — the proxy produces no domain
+Event/metric flow (transport-level only - the proxy produces no domain
 events):
 
 ```mermaid
@@ -289,9 +289,9 @@ flowchart LR
 - **Graceful drain**: `shutdown_signal("proxy")` on the accept loop;
   mgmt API shuts down with its own signal; in-flight pipes complete
   naturally. The L7 bridge counts in-flight connections
-  (`L7ConnectionGauge` — RAII guard per accepted connection, decremented
+  (`L7ConnectionGauge` - RAII guard per accepted connection, decremented
   on every exit path) and exposes the count as `active_connections` in
-  the mgmt `/v1/health` payload — captain's rolling-upgrade
+  the mgmt `/v1/health` payload - captain's rolling-upgrade
   drain polls this gauge (captain README §7): the drain ends when the gauge hits 0
   or the 30s cap hits. L4 passthrough connections are opaque TLS pipes
   and carry no gauge.
@@ -317,7 +317,7 @@ flowchart TD
 - **Failover**: `connect_with_failover` marks suspects on failure and
   tries remaining instances; when every instance is suspect it falls
   back to plain round-robin rather than failing.
-- **Resolver degradation**: MemBus loss degrades to the 30s poll —
+- **Resolver degradation**: MemBus loss degrades to the 30s poll -
   routing continues (stale mappings) instead of failing closed.
 - **Bootstrap certificates**: Acme outage at first boot is bridged by the
   self-signed 24h leaf (management-plane reachability for enrollment);
@@ -346,18 +346,18 @@ graph LR
 ```
 
 - Per-connection tasks; the hot path is `peek` + cache hit + `pick` +
-  byte copy (L4) or terminate-parse-inject-forward (L7) — no queuing
+  byte copy (L4) or terminate-parse-inject-forward (L7) - no queuing
   infrastructure, backpressure is inherent to TCP.
 - **Upstream connection pooling (PROXY-5)**: L7 upstreams are served
   from a per-`(backend_addr, sni_hostname)` idle pool before a fresh
-  `upstream_tls::connect` — a warm pooled session removes the ~40 ms
+  `upstream_tls::connect` - a warm pooled session removes the ~40 ms
   PQ-handshake (X25519MLKEM768 + ML-DSA-65) from every proxied request
-  (the L4 path never pays it — it never terminates). One pooled
+  (the L4 path never pays it - it never terminates). One pooled
   connection serves ONE request per take (the L7 pipe closes the
   upstream after the response, connection-per-request HTTP/1.0-style);
   the pool refills as fresh connects complete. A stale pooled send
   (backend respawned) fails once and the request retries on a fresh
-  connection — identical stale-conn semantics to the captain probe
+  connection - identical stale-conn semantics to the captain probe
   retry, so respawns cannot surface as repeated 502s.
 - L4 pipe is timeout-free by design (SSE/WebSocket safe).
 - Metrics are drained (snapshot) every 10s to `stat:metrics:tls`;
@@ -370,7 +370,7 @@ graph LR
 1. **Single ingress**: backends never bind public ports; port 443 is the
    only data-plane entry; SNI is the routing key.
 2. **Client-supplied `X-Sentin8-*` headers are always stripped** before
-   any injection (anti-spoofing boundary — test-pinned for the 3 core
+   any injection (anti-spoofing boundary - test-pinned for the 3 core
    cases).
 3. Only `Active` + health-fresh (<30s) instances receive traffic; the L4
    path never decrypts (backend terminates in-process).
@@ -378,10 +378,10 @@ graph LR
    (24h) bridge for management-plane reachability only.
 5. ACME challenge passthrough bypasses policy and header injection by
    contract (CA requirement).
-6. Metrics carry counts/statuses/latency only — never payload bytes.
+6. Metrics carry counts/statuses/latency only - never payload bytes.
 7. The data plane performs no authorization (transport, not policy);
    Shield gates the management API only.
-8. Fail-closed tenant resolution — an unresolvable hostname is rejected,
+8. Fail-closed tenant resolution - an unresolvable hostname is rejected,
    never defaulted to a system mapping.
 9. `internal_port` is config-only today (no second listener bound);
    internal traffic is detected by source IP on the single listener.
@@ -401,7 +401,7 @@ graph TD
   generation.
 - **Gaps (no tests today)**: `sni.rs` parsing, `backend_registry`,
   `domain_resolver` deduction rules, the accept loop, and L7 end-to-end
-  bridging — all exercised only via the live fleet.
+  bridging - all exercised only via the live fleet.
 - **Deliberately NOT tested here**: TLS crypto (platform suite), backend
   service behavior (owner suites).
 

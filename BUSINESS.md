@@ -1,4 +1,4 @@
-# BUSINESS.md: Sentin8:Site — Business Requirements & Functionality
+# BUSINESS.md: Sentin8:Site - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating
 > what sentin8.dev **does for the business**. For architecture read
@@ -7,16 +7,16 @@
 ## 1. Business Purpose
 
 - **Explain the platform to the market**: every service, app, and SDK
-  with its use cases and API surface — the "what is this and why
+  with its use cases and API surface - the "what is this and why
   should I build on it" layer the repos don't carry.
 - **Differentiate on security**: the five pillars (post-quantum TLS,
   one identity plane, live authorization, mandatory tenant isolation,
-  zero static secrets) are the platform's main selling point — they get
+  zero static secrets) are the platform's main selling point - they get
   first-page placement.
 - **Funnel to verticals**: one showcase section routes visitors to
   each `{vertical}.dev` product site.
 - **Never drift from the truth**: architecture/business deep-dives are
-  harvested from the unit repositories at build time — the site can't
+  harvested from the unit repositories at build time - the site can't
   overpromise what the code doesn't do.
 
 ## 2. Business Scope
@@ -25,10 +25,10 @@
 |---|---|
 | Landing with every unit | `site.json`-driven card grids (17 services, 2 starters, 2 apps, 2 SDKs) |
 | Security showcase | `/docs/security` + landing pillar strip |
-| Per-product detail | `/docs/services/{svc}` — use cases + API tables |
+| Per-product detail | `/docs/services/{svc}` - use cases + API tables |
 | Developer onboarding | `/docs/developers` (single-repo story), `/docs/samples` |
 | Remote UI explanation | `/docs/developers/remote-ui` |
-| Harvested deep-dives | `/docs/reference/{unit}` — README/DESIGN/BUSINESS/SECURITY per unit |
+| Harvested deep-dives | `/docs/reference/{unit}` - README/DESIGN/BUSINESS/SECURITY per unit |
 | Vertical routing | showcase cards → `{vertical}.dev` |
 
 **Not owned (business boundary):**
@@ -44,14 +44,14 @@
 
 | Area | Rule |
 |---|---|
-| Product pages | Every platform unit gets: overview, use cases, API surface with scopes, deep-dive links — no orphan units |
-| Security claims | Only what canonical `SECURITY.md` states — never stronger marketing |
+| Product pages | Every platform unit gets: overview, use cases, API surface with scopes, deep-dive links - no orphan units |
+| Security claims | Only what canonical `SECURITY.md` states - never stronger marketing |
 | Cross-links | Vertical showcase links are absolute `https://{vertical}.dev/` URLs |
 | Freshness | Weekly scheduled rebuild harvests current repo docs without site commits |
 
 ## 4. Events (Outbound)
 
-None — this is a static site; no platform events are emitted or
+None - this is a static site; no platform events are emitted or
 consumed.
 
 ## 5. Business Rules & Invariants

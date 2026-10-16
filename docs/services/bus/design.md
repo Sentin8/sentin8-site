@@ -1,16 +1,16 @@
 ---
-title: "Sentin8:Bus — Architecture (DDD)"
+title: "Sentin8:Bus - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-bus/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Bus — Detailed Design Document
+# DESIGN.md: Sentin8:Bus - Detailed Design Document
 
 ## 1. Scope & Context
 
 Sentin8:Bus is the platform's durable event fabric: the produce/consume
-API over Valkey Streams (single or batched — `POST /v1/produce` and
+API over Valkey Streams (single or batched - `POST /v1/produce` and
 `POST /v1/produce/batch` share one single-produce core), the inbox that
 guarantees bus-side durability of every accepted event, the SSE consume
 surface for direct consumers, the DLQ + replay surface, and the Shield
@@ -20,14 +20,14 @@ persists to `bus.inbox`, XADDs to `bus:{env_id}:{stream_family}`, and
 relays any missed rows from the inbox.
 
 - **Owns** (schema `bus`): `inbox` (bus-internal durability), `outbox`
-  (bus's own DBX producer table — for events the bus service itself
+  (bus's own DBX producer table - for events the bus service itself
   emits), `audit_journal` (local journal), the `bus:{env}:{family}`
   stream namespace, the DLQ/delayed/retry keys, and the `bus:jti:{jti}`
   replay guard.
 - **Does NOT own**: producers' outboxes (each service owns its own schema's
   table), trigger registration (declared by verticals in
   `vertical-registry.json`), business payloads, and WebSocket chat
-  (a `ws.rs` module exists in the source tree but is not routed —
+  (a `ws.rs` module exists in the source tree but is not routed -
   WebSocket is reserved for chat on the BFF).
 
 ```mermaid
@@ -64,7 +64,7 @@ graph TD
     ACK --> STREAMS
 ```
 
-Trust boundary: `bus.inbox` is bus-internal — no producer holds grants on
+Trust boundary: `bus.inbox` is bus-internal - no producer holds grants on
 it. Every tenant boundary is the stream key suffix (`{env_id}`) plus RLS
 on the persistence side.
 
@@ -72,7 +72,7 @@ on the persistence side.
 
 | Module | Role |
 |---|---|
-| `handlers.rs` | Produce/consume/ack/nack/DLQ/streams/lag/schedule/metrics + `validate_stream_family` + `stream_key` + **event-type ownership gate** (`event_vertical_prefix()` — see VDC §VDC.4). |
+| `handlers.rs` | Produce/consume/ack/nack/DLQ/streams/lag/schedule/metrics + `validate_stream_family` + `stream_key` + **event-type ownership gate** (`event_vertical_prefix()` - see VDC §VDC.4). |
 | `inbox_relay.rs` | Bus-internal durability: LISTEN/NOTIFY (`bus_inbox_changed`) + 2s safety poll; drain batch 1000; startup drain-until-empty. |
 | `sse.rs` | `GET /v1/consume/sse`: dedicated connection per client, `XGROUP CREATE … "$"`, 5s `XAUTOCLAIM` sweep (min-idle 60s, COUNT 20), `XREADGROUP COUNT 10 BLOCK 10s`, 15s heartbeat, pending-depth warn > 100. |
 | `auth.rs` | Bearer verify (JWKS) + token-tp filter (`access|m2m|delegated`) + jti replay guard + audience check + TLS-header cross-check (skipped for delegated). |
@@ -112,7 +112,7 @@ equals the authenticated producer's M2M token `vertical` claim (embedded
 by Auth at issuance from the `auth.m2m_scope_grants` row's vertical stamp,
 upserted by `vertical enroll`). Mismatch or missing claim → **403
 fail-closed**. Platform producers carry `vertical = "sentin8"`. Consumption
-is unrestricted — the gate is produce-side provenance only.
+is unrestricted - the gate is produce-side provenance only.
 ```mermaid
 sequenceDiagram
     autonumber
@@ -175,13 +175,13 @@ erDiagram
     }
 ```
 
-- `bus.inbox` — durability record; `UNIQUE (env_id, event_type,
+- `bus.inbox` - durability record; `UNIQUE (env_id, event_type,
   publisher_subject, created_at)` is the structural duplicate backstop;
   partial indexes on `relayed = false` (by created_at, by family, by
   publisher). RLS FORCE with select/insert/update policies on
   `(context_initialized, env_id)`. INSERT + NOTIFY trigger
   (`bus_inbox_changed`). Only `sentin8_bus_service` has DML (no DELETE).
-- `bus.outbox` / `bus.audit_journal` — generated DBX tables; the shared
+- `bus.outbox` / `bus.audit_journal` - generated DBX tables; the shared
   shell relay drains `bus.outbox` to the produce API (idempotency key =
   row id); `audit_journal` is a retry journal (pushed flag).
 - Cross-tenant reads are impossible for the service role: every read is
@@ -202,7 +202,7 @@ erDiagram
 ```mermaid
 stateDiagram-v2
     direction LR
-    [*] --> Inbox: INSERT (same tx as producer's outbox relay? no — produce API)
+    [*] --> Inbox: INSERT (same tx as producer's outbox relay? no - produce API)
     Inbox --> Streamed: inline XADD
     Inbox --> Relayed: relay XADD + mark relayed
     Streamed --> Pending: XREADGROUP >
@@ -221,7 +221,7 @@ stateDiagram-v2
 | Endpoint | Audience | Gate | Notes |
 |---|---|---|---|
 | `POST /v1/produce` | producers (M2M) | Shield `sentin8:bus:produce` | 200 `{message_id, stream}`; body `env_id` must equal token env (403). VDC-2 event-ownership: the event type's FIRST colon segment must equal the producer token's `vertical` claim (mint-stamped from `auth.m2m_scope_grants`); user tokens carry no claim → fail-closed 403 `event_ownership`. |
-| `POST /v1/produce/batch` | producers (M2M) | Shield `sentin8:bus:produce` | N ≤ 100 events in ONE call; per-row results in request order — a failed row carries `error` and no `message_id`, siblings are unaffected (rows are independent, not a transaction). |
+| `POST /v1/produce/batch` | producers (M2M) | Shield `sentin8:bus:produce` | N ≤ 100 events in ONE call; per-row results in request order - a failed row carries `error` and no `message_id`, siblings are unaffected (rows are independent, not a transaction). |
 | `POST /v1/consume` | consumers | Shield `sentin8:bus:consume` | `XGROUP CREATE … 0 MKSTREAM`; reads new entries. |
 | `POST /v1/ack`, `POST /v1/nack` | consumers | Shield `sentin8:bus:consume` | NACK enqueues `bus:retry:{env}` (+`retry_after_secs`, default 30). |
 | `GET /v1/consume/sse` | direct consumers | scope check `sentin8:bus:consume` (+ token via `?token=`) | XAUTOCLAIM sweep + heartbeat; ACK via API. |
@@ -230,7 +230,7 @@ stateDiagram-v2
 | `POST /v1/schedule`, `GET /v1/scheduled` | producers/consumers | Shield produce/consume | delayed-delivery sorted set. |
 | `GET /v1/admin/ui/{page}`, `GET /v1/admin/{resource}` | admins | `has_any_scope(bus:read|bus:admin|bus:consume|bus:produce|sys:admin|sys:org:admin|sys:env:admin|env:admin)` | `target_env_id` required (400). |
 | Shield admin API (`/v1/admin/policy-sets|relations|attributes…`) | admins | Shield policy-admin surface | shared `sentin8::policy::admin`. |
-| `GET /v1/health` | — | none | status + build hash. |
+| `GET /v1/health` | - | none | status + build hash. |
 
 ### The produce env contract (tenancy per request)
 
@@ -238,18 +238,18 @@ For M2M (and delegated) tokens the **request's** `env_id` is authoritative:
 the stream key `bus:{env_id}:{family}`, the per-family rate bucket, and the
 audit row follow it. Tenancy travels per request (the outbox relay drains
 env-by-env and produces tenant-family rows its system-env token could never
-claim); ownership stays per identity (`enforce_event_ownership` — the
+claim); ownership stays per identity (`enforce_event_ownership` - the
 `vertical` claim). A workload is cert-bound (RFC 8705), so the body env is
 the producer's declaration, not an escalation surface. USER tokens keep the
-strict check: they produce only into the env their token carries — cross-env
+strict check: they produce only into the env their token carries - cross-env
 access must come from a role, never a body field. `produce_batch` resolves
 env per row, so one batch may mix tenant envs.
 
 ### The CLI-producer path (operator tooling)
 
 One-shot produces from operator tooling (e2e suits, ops scripts) cannot go
-through an outbox relay — the caller is not a service with a schema. The gate
-stays M2M-only (a user token carries no `vertical` claim by design —
+through an outbox relay - the caller is not a service with a schema. The gate
+stays M2M-only (a user token carries no `vertical` claim by design -
 ownership is a workload property, so `cli-producer` is a workload):
 
 1. A grant row `('cli-producer', {sentin8:bus:produce}, vertical 'sentin8',
@@ -263,7 +263,7 @@ ownership is a workload property, so `cli-producer` is a workload):
    `{run_dir}/bootstrap-enrollment.json.enc`) so a first-birth cert mint
    rides the same admission channel captain-spawned workloads use.
 3. Both CLI dispatch paths (`call`, declarative `do`) retry the dispatch
-   ONCE with the producer token when the 403 body names `event_ownership` —
+   ONCE with the producer token when the 403 body names `event_ownership` -
    the tenant contract is unchanged: tenancy is per-request
    (`target_env_id` → stream key `bus:{env_id}:{family}`), NOT baked into
    credentials; one M2M workload serves all tenant envs.
@@ -307,7 +307,7 @@ sequenceDiagram
   would resolve the hop's workload instead of the delegated JWT and
   silently drop the acting user.
   **No one-shot jti replay guard**: `access` and `delegated` tokens are
-  REUSABLE credentials — OAuth access tokens are valid until expiry by
+  REUSABLE credentials - OAuth access tokens are valid until expiry by
   definition, and delegated tokens are cached by the Delegation
   Gateway (BFF, Valkey, TTL = token expiry) and legitimately re-presented
   for every request in a session. A one-shot `SET NX` guard on their
@@ -318,7 +318,7 @@ sequenceDiagram
   key); all inbox writes set `sentin8_set_tenant_context($1, …,
   $stream_family)` on the same transaction; the relay sets context per
   discovered env before reading.
-- **Idempotency**: structural — produce accepts (and persists) an
+- **Idempotency**: structural - produce accepts (and persists) an
   `idempotency_key` on the stream; the inbox UNIQUE tuple prevents exact
   duplicates; consumers dedupe on `idempotency_key` (the outbox row id).
 - **Rate limiting / abuse**: family validation (charset, length,
@@ -353,7 +353,7 @@ flowchart TD
 ```
 
 - **Produce persistence failure** returns a precise 500 reason
-  (`pool:`/`context:`/`inbox persist:`/`inbox commit:`/`XADD failed:`) —
+  (`pool:`/`context:`/`inbox persist:`/`inbox commit:`/`XADD failed:`) -
   the producer's outbox row stays unrelayed and the shared relay retries.
 - **Relay mark failure** yields a duplicate stream entry on the next
   drain (at-least-once; dedupe downstream).
@@ -401,23 +401,23 @@ graph LR
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-1. Stream keys are `bus:{env_id}:{family}` — tenant isolation by key;
+1. Stream keys are `bus:{env_id}:{family}` - tenant isolation by key;
    family names validated (`^[a-zA-Z0-9._-]{1,64}$`, reserved `dlq`,
    `delayed`, `jti`).
 2. `bus.inbox` is bus-internal: no producer role holds grants; the only
    producer path is `POST /v1/produce` with a verified token.
 3. RLS context is transaction-local and always set on the same
    connection/transaction as the write; the relay reads env-by-env.
-4. Consumer groups are namespaced `{sub}.{group}` — cross-tenant group
+4. Consumer groups are namespaced `{sub}.{group}` - cross-tenant group
    collision impossible; group creation idempotent.
 5. Delivery is at-least-once: PEL + XAUTOCLAIM + ack-by-id; dedupe by
    `idempotency_key` downstream.
-6. Token `env_id` is authoritative — a body `env_id` mismatch is a 403;
+6. Token `env_id` is authoritative - a body `env_id` mismatch is a 403;
    admin data requires explicit `target_env_id` (no token-env fallback).
-7. Listing paths use SCAN (COUNT 100) — never KEYS.
+7. Listing paths use SCAN (COUNT 100) - never KEYS.
 8. No `unsafe` code anywhere in the service.
 9. DLQ replay always re-emits with the `.replayed` event type and a
-   `replayed_from_dlq` marker — a replayed event can never be mistaken
+   `replayed_from_dlq` marker - a replayed event can never be mistaken
    for the original.
 
 ## 9. Testing Strategy
@@ -443,12 +443,12 @@ graph TD
 - The design intent is manual replay (admin-gated); the mechanical loop is the
   reaper task (10s): drain `bus:retry:{env}` (re-XADD to the source stream +
   ZREM, bounded retries → ZADD `bus:dlq:{env}` after `max_retries`) and
-  `bus:delayed:{env}` → XADD + ZREM — the existing sorted-set surfaces
+  `bus:delayed:{env}` → XADD + ZREM - the existing sorted-set surfaces
   self-drain without changing the manual-replay contract.
 - Keep inline delivery for latency and have the relay skip rows already
   written (the relay stores `message_id` on the inbox row and skips rows
   already inline-written).
-- The unrouted WebSocket consume handler is removed — principles §4.7a
+- The unrouted WebSocket consume handler is removed - principles §4.7a
   reserves WebSocket for the chat tier only.
 
 ---

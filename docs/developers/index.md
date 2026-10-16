@@ -19,7 +19,7 @@ cargo build            # fetches the SDK pin, builds, done
 cargo test             # offline (SQLX_OFFLINE)
 ```
 
-Vertical repos work identically — clone any service from its vertical
+Vertical repos work identically - clone any service from its vertical
 org and build.
 
 ## The full tree (aggregation)
@@ -34,13 +34,13 @@ make status            # fleet status (KEY=<ip:port>)
 ```
 
 Lifecycle: `db bootstrap` → `vertical init` → `vertical enroll` →
-`start`. No migration code exists — schema changes rewrite the init
+`start`. No migration code exists - schema changes rewrite the init
 SQL and re-run init (greenfield platform).
 
 ## Restart discipline
 
 Restart services only through Sentin8:Captain (never `pkill` or
-Ctrl+C — stale registry entries break TLS round-robin):
+Ctrl+C - stale registry entries break TLS round-robin):
 
 ```bash
 make status                          # find KEY=<ip:port>
@@ -61,17 +61,17 @@ make upgrade-instance-debug KEY=…    # swap one instance
 |---|---|
 | Unit | per-crate Rust tests, offline |
 | Integration | per-repo `tests/` against local infra |
-| E2E (UI-only) | Playwright suites through the browser + BFF proxy — no direct SQL or backend calls, ever |
+| E2E (UI-only) | Playwright suites through the browser + BFF proxy - no direct SQL or backend calls, ever |
 
 ## CI
 
 Every repo runs the shared `sentin8-ci` reusable workflows
 (`rust.yml` / `flutter-app.yml` / `e2e-repo.yml` / `docs-group.yml`)
-with blocking build/test and advisory fmt/clippy — plus the nightly
+with blocking build/test and advisory fmt/clippy - plus the nightly
 aggregation build and e2e sweep across the whole public tree.
 
 ## Further reading
 
-- [Remote UI](/docs/developers/remote-ui) — the RFW contract
-- [Samples](/docs/samples) — first calls against the platform
-- [Security](/docs/security) — what your code inherits by construction
+- [Remote UI](/docs/developers/remote-ui) - the RFW contract
+- [Samples](/docs/samples) - first calls against the platform
+- [Security](/docs/security) - what your code inherits by construction

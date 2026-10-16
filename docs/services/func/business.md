@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Func — Business rules (BRD)"
+title: "Sentin8:Func - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-func/edit/main/BUSINESS.md
 ---
-# Sentin8:Func — Business Requirements & Functionality
+# Sentin8:Func - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Func **does for the business**. For architecture read `README.md`;
@@ -15,16 +15,16 @@ custom_edit_url: https://github.com/Sentin8/sentin8-func/edit/main/BUSINESS.md
 
 Sentin8:Func is the platform's **serverless WASM execution service**. It
 executes user-authored and service-authored modules (compiled to
-WebAssembly) with hard resource bounds — the one class of logic no
+WebAssembly) with hard resource bounds - the one class of logic no
 platform service owns. The business value it delivers:
 
 - **User-defined logic without deployment.** Custom hooks, compliance
   rules, and tenant-authored functions need a host that runs them with
-  hard resource bounds — no interpreter escape, no arbitrary syscalls.
+  hard resource bounds - no interpreter escape, no arbitrary syscalls.
   Tenants extend platform behavior without code deployments.
 - **Event-triggered execution.** "Event first, API second": when a
   service needs a reaction no service owns, a trigger invokes a module
-  — the hook receives a self-contained envelope (payload-completeness).
+  - the hook receives a self-contained envelope (payload-completeness).
 - **Determinism + safety.** The same module + input produces the same
   result (idempotency keys dedupe replays), and a malicious or buggy
   module cannot escape (linear memory only, fuel-based gas, no WASI
@@ -33,7 +33,7 @@ platform service owns. The business value it delivers:
   broken binary can never receive traffic without passing validation
   and an explicit activation.
 - **Per-environment control.** The WASM engine is feature-gated per env
-  (platform default open, explicitly closable) — tenants decide
+  (platform default open, explicitly closable) - tenants decide
   whether untrusted code runs in their environment at all.
 
 ## 2. Business Scope (What the Service Provides)
@@ -58,8 +58,8 @@ platform service owns. The business value it delivers:
 | WASM source/toolchain | Uploads are compiled binaries (Rust/TS compile to WASM) |
 | The hooks' business semantics | The owning service (proxy-back carries the domain logic) |
 | Module blob storage | Sentin8:Storage (`func/{domain}/{id}.wasm`, content-addressed) |
-| Trigger registration | Verticals declare `event_triggers` (Func's registration declares none — execution is API-triggered today) |
-| Domain data access | Never direct — host functions are the only bridge (proxy-back to the owner) |
+| Trigger registration | Verticals declare `event_triggers` (Func's registration declares none - execution is API-triggered today) |
+| Domain data access | Never direct - host functions are the only bridge (proxy-back to the owner) |
 
 ## 3. Business Capabilities
 
@@ -67,9 +67,9 @@ platform service owns. The business value it delivers:
 
 | Capability | Business rule |
 |---|---|
-| Upload | Binary + language + hooks + parameters; Storage object written BEFORE the metadata row (best-effort rollback on failure — a row can never point at a missing object) |
+| Upload | Binary + language + hooks + parameters; Storage object written BEFORE the metadata row (best-effort rollback on failure - a row can never point at a missing object) |
 | Content addressing | sha256 `wasm_hash` verified server-side; identical content re-registers the existing version (no duplicate storage) |
-| Validation | Compile + import/hook checks without status change — a dry-run gate |
+| Validation | Compile + import/hook checks without status change - a dry-run gate |
 | Activation | Explicit draft → active; supersedes the previous active version (unique partial index enforces exactly one active per product) |
 | Deletion | Draft/deprecated only; active modules must be deprecated first (no traffic teardown while serving); delete cleans row + cache + object |
 | Hook vocabulary | Closed set (`pre_posting`, `post_posting`, `scheduled_event`, `activation`, `deactivation`); undeclared hook executions rejected |
@@ -79,8 +79,8 @@ platform service owns. The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Execute | `POST /v1/modules/{id}/execute` (or product's active version) with hook + args + optional callback config; fresh Store per invocation |
-| Sandbox caps | Fuel, memory limiter, epoch + wall-clock timeout, 1 MiB response ceilings — a module cannot loop forever, exhaust memory, or return unbounded data |
-| No WASI | Filesystem/network imports rejected at validate — no host escape |
+| Sandbox caps | Fuel, memory limiter, epoch + wall-clock timeout, 1 MiB response ceilings - a module cannot loop forever, exhaust memory, or return unbounded data |
+| No WASI | Filesystem/network imports rejected at validate - no host escape |
 | Import coverage | Non-builtin `env` imports must be declared in the callback's host-function map (validate-time or execute-time error) |
 | Proxy-back | Host functions call the owning service's internal API; non-2xx results fail the execution (the error propagates) |
 | Idempotency | Optional `idempotency_key` replays the recorded response within the dedupe window |
@@ -103,17 +103,17 @@ hooks from verticals).
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **Sandbox hard caps**: fuel, memory limiter, epoch + wall timeout, 1 MiB response caps — a module cannot DoS the platform.
-2. **No WASI** — no filesystem/network escape; imports are restricted to builtins or declared host functions.
-3. **Hook vocabulary is closed** — uploads reject unknown hooks; execution requires the exact export signature.
-4. **Object-before-row** — Storage put is idempotent and precedes the metadata row; orphaned objects (not rows) are the only possible inconsistency.
-5. **One active version per (domain, product, env)** — enforced by partial unique index; active modules are undeletable.
-6. **Two-phase promotion** — validate (dry-run) then activate; traffic never routes to unverified binaries.
-7. **RLS discipline** — context set on the same transaction; the feature-gate query is schema-qualified (the role's search_path is `func, public`).
-8. **Feature gate defaults OPEN** — a fresh env is not broken by a missing gate row; an explicit disabled row closes the engine.
-9. **Bounded responses** — module JSON and proxy-back bodies are brace-scanned with a 1 MiB ceiling before parse.
-10. **Only the module owner (or admin) may upload/activate/delete** — Shield decides (no handler scope checks).
-11. **No `unsafe` code** — sandboxing is Wasmtime's; host functions are the only bridge to platform data.
+1. **Sandbox hard caps**: fuel, memory limiter, epoch + wall timeout, 1 MiB response caps - a module cannot DoS the platform.
+2. **No WASI** - no filesystem/network escape; imports are restricted to builtins or declared host functions.
+3. **Hook vocabulary is closed** - uploads reject unknown hooks; execution requires the exact export signature.
+4. **Object-before-row** - Storage put is idempotent and precedes the metadata row; orphaned objects (not rows) are the only possible inconsistency.
+5. **One active version per (domain, product, env)** - enforced by partial unique index; active modules are undeletable.
+6. **Two-phase promotion** - validate (dry-run) then activate; traffic never routes to unverified binaries.
+7. **RLS discipline** - context set on the same transaction; the feature-gate query is schema-qualified (the role's search_path is `func, public`).
+8. **Feature gate defaults OPEN** - a fresh env is not broken by a missing gate row; an explicit disabled row closes the engine.
+9. **Bounded responses** - module JSON and proxy-back bodies are brace-scanned with a 1 MiB ceiling before parse.
+10. **Only the module owner (or admin) may upload/activate/delete** - Shield decides (no handler scope checks).
+11. **No `unsafe` code** - sandboxing is Wasmtime's; host functions are the only bridge to platform data.
 
 ## 6. Target-User Roles & Use Cases
 
@@ -151,7 +151,7 @@ hooks from verticals).
 1. A tenant can upload a compiled module; identical content re-registers the same version; validation catches malformed binaries before any traffic.
 2. Activation is explicit and supersedes; exactly one active version serves per product.
 3. Execution runs under fuel/memory/timeout caps; a non-terminating module dies deterministically with a structured error.
-4. A module can access domain data ONLY via declared host functions that proxy-back to the owning service — and never the filesystem or network.
+4. A module can access domain data ONLY via declared host functions that proxy-back to the owning service - and never the filesystem or network.
 5. Idempotent executions replay the recorded response within the dedupe window.
 6. The feature gate closes the engine per env (409 on mutating endpoints); a fresh env defaults open.
 7. Active modules cannot be deleted; deletion cleans the metadata row, cache, and Storage object.

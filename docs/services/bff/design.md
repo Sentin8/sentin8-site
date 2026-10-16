@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:BFF — Architecture (DDD)"
+title: "Sentin8:BFF - Architecture (DDD)"
 sidebar_label: "Architecture (DDD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-bff/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:BFF — Detailed Design Document
+# DESIGN.md: Sentin8:BFF - Detailed Design Document
 
 ## 1. Scope & Context
 
@@ -20,13 +20,13 @@ proxy.
 
 - **Owns** (schema `bff`): `dcr_clients` (per-auth-domain DCR client
   registry for app-instance OAuth clients). Session state is deliberately
-  **not** in PostgreSQL — sessions live in Valkey (`bff:session:{session_id}`)
+  **not** in PostgreSQL - sessions live in Valkey (`bff:session:{session_id}`)
   as AES-256-GCM envelopes. Stat tagging configuration rides
   `sys.app_instances` (sys-owned; read context-first).
 - **Does NOT own**: identity (Sentin8:Auth issues/verifies every token),
-  tenant records (`sys.environments`/`sys.organizations` — read-only,
+  tenant records (`sys.environments`/`sys.organizations` - read-only,
   context-first), app instances and scope whitelists (`sys.app_instances`),
-  domain events (the BFF produces none — it consumes and relays), Shield
+  domain events (the BFF produces none - it consumes and relays), Shield
   policy storage (it boots an engine and evaluates only the
   `/bff/action/{action}` registry surface).
 
@@ -74,7 +74,7 @@ graph TD
 Trust boundaries: everything inside `sentin8:BFF` holds session secrets
 and cert-bound M2M identities; the browser holds only opaque cookies and
 never receives a token (the CIBA delegation token response is the one
-contractual exception — it is the customer's own delegated credential,
+contractual exception - it is the customer's own delegated credential,
 delivered to the delegating staff app).
 
 ## 2. Runtime Architecture
@@ -87,13 +87,13 @@ delivered to the delegating staff app).
 | Proxy | `proxy.rs` | Catch-all `/proxy/{service}/*`: session validation → CSRF → token resolution (transparent refresh / delegation / RFC 8693 exchange) → forward. |
 | CIBA + SCIM | `ciba.rs` | `POST /delegate/start|poll|status|send-link`; six SCIM handlers with the delegator M2M token. |
 | Subscription tier | `subscribe/*` | SSE handler, Bus consumer per session, subscription mutations, delegation poll push, stat pub/sub,
-session-reaper Bus subscription (`auth` family, group `bff-session-reaper` —
+session-reaper Bus subscription (`auth` family, group `bff-session-reaper` -
 kills cached sessions on `sentin8:auth:session:revoked`), telemetry stub. |
 | Chat tier | `chat/*` | `/ws` WebSocket, conversation rooms, ping loop. |
 | Tenant resolution | `tenant.rs` | Header-first context, service identity + backend URL resolution, scope whitelist cache (5-min TTL). |
 | Stat tagging | `tagging.rs` | `ServerTagger` trait (`NoopTagger` default / `StatTagger`), fire-and-forget. |
 | Key rotation | `key_rotation.rs` | KeyRing blob format `v1:{key_id}:{hex}` with retained old keys. |
-| DCR client | `dcr.rs` | RFC 7591 register/update/delete client (compiled, available for future wiring — boot-time DCR rides `sentin8::auth::m2m`). |
+| DCR client | `dcr.rs` | RFC 7591 register/update/delete client (compiled, available for future wiring - boot-time DCR rides `sentin8::auth::m2m`). |
 
 ```mermaid
 graph TD
@@ -216,7 +216,7 @@ sequenceDiagram
 
 ## 3. Data Model
 
-The BFF's own schema is minimal — the session store is deliberately in
+The BFF's own schema is minimal - the session store is deliberately in
 Valkey, and the tenant/app-instance data it reads belongs to sys.
 
 ```mermaid
@@ -236,7 +236,7 @@ erDiagram
     }
 ```
 
-- `bff.dcr_clients` — per `sentin8_auth_domain` OAuth client used by the
+- `bff.dcr_clients` - per `sentin8_auth_domain` OAuth client used by the
   CIBA backchannel (app-instance client, public PKCE). `env_id` scopes the
   row; the proxy's per-app scope/service whitelists live on
   `sys.app_instances` and are read context-first.
@@ -273,7 +273,7 @@ stateDiagram-v2
 
 | Endpoint | Gate | Emits |
 |---|---|---|
-| `GET /auth/session` | session cookie | metadata + csrf token only — never tokens. |
+| `GET /auth/session` | session cookie | metadata + csrf token only - never tokens. |
 | `POST /auth/sign-out` | session cookie | refresh revoked at `/oauth/revoke`; session destroyed; both cookies cleared. |
 | `POST /auth/refresh` | session cookie | token/scope/expiry updated in place. |
 | `POST /bff/action/{action}` | session + Shield `evaluate_full` + `service_actions` registry lookup | registry-defined downstream call. |
@@ -288,9 +288,9 @@ stateDiagram-v2
 | Endpoint | Gate | Flow |
 |---|---|---|
 | `POST /delegate/start` | staff BFF session | `POST /oauth/bc-authorize` at the customer auth; `act` claims from the session, never the body. |
-| `POST /delegate/poll` | — | CIBA grant + DPoP proof; caches the approved customer token. |
-| `GET /delegate/status` | — | cached token + meta. |
-| `POST /delegate/send-link` | — | stub (logs + acknowledges). |
+| `POST /delegate/poll` | - | CIBA grant + DPoP proof; caches the approved customer token. |
+| `GET /delegate/status` | - | cached token + meta. |
+| `POST /delegate/send-link` | - | stub (logs + acknowledges). |
 | `/delegate/scim/users…` (6 verbs) | delegator M2M (`sentin8:scim:read/write`) | proxied to `{auth}/scim/v2/Users`. |
 
 ### Subscriptions
@@ -303,7 +303,7 @@ D2 on upgrade). The BFF emits the internal push types
 (`{vertical}:{service}:{resource}:{operation}`) through the per-service
 stream-family map.
 
-### Event flow (consume path — the BFF produces no domain events)
+### Event flow (consume path - the BFF produces no domain events)
 
 ```mermaid
 sequenceDiagram
@@ -331,11 +331,11 @@ sequenceDiagram
 - **Authentication**: the browser holds only the `bff-session` cookie
   (`HttpOnly; Secure; SameSite=None`, domain scoped to the app instance by
   stripping the leading `bff.`; ≥4 labels required, otherwise exact-host).
-  The BFF verifies nothing from the client except the session — bearer
+  The BFF verifies nothing from the client except the session - bearer
   verification of the stored tokens happens server-side when forwarded.
 - **Tenant resolution + RLS context**: TLS-injected `X-Sentin8-*` headers
   first (hostname fallback only behind `SENTIN8_BFF_HOSTNAME_FALLBACK`);
-  `org_id` is never accepted from clients — it is derived from `env_id` in
+  `org_id` is never accepted from clients - it is derived from `env_id` in
   a context-first transaction (`sentin8_set_tenant_context` → query →
   rollback, one connection).
 - **CSRF**: mutations require `x-bff-csrf` equal to the session's stored
@@ -343,17 +343,17 @@ sequenceDiagram
 - **Cert-bound M2M**: the delegator identity is minted via DCR at boot
   (fast path loads the credential file; failure spawns a 30×/3s retry
   task); every delegation call goes to `/mtls/oauth/token` with the
-  client-cert thumbprint presented — RFC 8705 sender-constraining is
+  client-cert thumbprint presented - RFC 8705 sender-constraining is
   enforced by auth, not by the BFF.
 - **Idempotency**: session writes are keyed by `session_id` (last-write
   wins); delegation caches are keyed by
-  `{session_id}:{env_id}:{service}` / `{delegation_id}` — re-polls reuse
+  `{session_id}:{env_id}:{service}` / `{delegation_id}` - re-polls reuse
   the same key without duplicate side effects downstream.
 - **Audit journaling**: `/audit` is a P0 log-only sink; the BFF writes no
   `audit_events` rows itself (all domain audit rides the owning services).
 - **TLS posture**: PQ provider installed before any outbound call;
   inbound termination in-process via `Sentin8Tls` (same posture as every
-  service); the proxy forwards a fixed header allowlist — arbitrary client
+  service); the proxy forwards a fixed header allowlist - arbitrary client
   headers are not re-emitted by construction.
 - **Graceful drain**: `Sentin8Tls::serve` handles shutdown; background
   tasks (Bus consumers, stat pub/sub, delegation polls) are spawned
@@ -371,10 +371,10 @@ flowchart TD
     R2 --> BUS
     C[stat pub/sub] -->|connection lost| R3[3s retry loop]
     R3 --> C
-    D[Delegation Gateway call] -->|403| DENY[403 to client — fail closed]
-    D -->|transient error| E502[502 — no admin fallback token]
+    D[Delegation Gateway call] -->|403| DENY[403 to client - fail closed]
+    D -->|transient error| E502[502 - no admin fallback token]
     P[Proxy refresh] -->|refresh fails| FWD[forward expired token<br/>upstream 401 decides]
-    S[Session GET] -->|missing/decryption failure| R401[401 — no session]
+    S[Session GET] -->|missing/decryption failure| R401[401 - no session]
 ```
 
 - **Session loss** (Valkey restart): the cookie points at a missing
@@ -420,7 +420,7 @@ graph LR
 - **One Valkey connection manager** shared by sessions, delegation caches,
   SSE consumer, and stat pub/sub (cloned per use); session get/put are
   O(1) `get`/`set_ex`.
-- **Pool cap 3** (platform rule) — the BFF's DB reads are small
+- **Pool cap 3** (platform rule) - the BFF's DB reads are small
   (tenant resolution, whitelist cache, SSE RBAC, service-action registry).
 - **Shared pooled HTTP client** for all proxy forwards (a per-request
   client caused socket-exhaustion 502s); body cap 10 MB.
@@ -435,7 +435,7 @@ graph LR
 1. **Tokens never reach the browser.** Sessions store encrypted token
    blobs; `/auth/session` returns metadata + CSRF token only; the Bus
    relay strips `publisher_id_token` before forwarding. (The CIBA
-   delegation token response is the delegated customer credential itself —
+   delegation token response is the delegated customer credential itself -
    delivered once to the delegating staff app, cached only in Valkey.)
 2. **Fail-closed binding.** D2 (session ↔ application) must match or both
    be absent; D3 (token auth-env ↔ app instance) mismatches reject at the
@@ -453,19 +453,19 @@ graph LR
 5. **App-BFF service blocklist.** App BFFs never proxy `auth`, `app`,
    `sys`, or `tls` (those surfaces are reached by the browser through the
    platform flows, not the generic proxy).
-6. **org_id never trusted from the wire** — always resolved server-side
+6. **org_id never trusted from the wire** - always resolved server-side
    from `env_id` under a context-first transaction.
 7. **Cookie scoping.** The session cookie domain is the app instance's
    domain (never the platform root), preventing cross-app replay;
    non-conforming hosts get an exact-host cookie.
 8. **No `unsafe` code.** Encryption is AES-256-GCM via the shared crypto
    crate; key material comes from `SENTIN8_BFF_ENCRYPTION_KEY` (the
-   built-in development default is rejected operationally — production
+   built-in development default is rejected operationally - production
    must set a real key; the KeyRing rotation module exists for re-wraps).
 9. **Multi-session revocation keeps the current session.**
    `DELETE /v1/auth/sessions` and `/sessions/{id}` destroy only records
    whose `user_id` equals the caller's (`user_id` ownership predicate,
-   404 otherwise — no cross-user destroy) and always preserve the
+   404 otherwise - no cross-user destroy) and always preserve the
    caller's current session id; each destroyed record's encrypted
    refresh token is revoked at Auth so no orphaned live grant survives
    the store delete.
@@ -496,7 +496,7 @@ graph TD
 ## 10. Open Questions
 
 - The telemetry fan-out task implements its consumer against
-  `stat:rollups:minute` (Valkey pub/sub) instead of per-session Stat SSE —
+  `stat:rollups:minute` (Valkey pub/sub) instead of per-session Stat SSE -
   fewer connections, same data, reusing the existing subscribe spawn pattern.
 - Transparent refresh converges on the shared FAPI client with DPoP (the
   process DPoP key already exists); the plain-POST path remains only as the
@@ -504,7 +504,7 @@ graph TD
 - `bff.dcr_clients` gains the standard ENABLE/FORCE RLS policy set on
   `env_id`, generated the same way the other tenant tables' policies are.
 - The session path wires the KeyRing at session-write time (encrypt with the
-  current `date_key_id`, decrypt trying `all_keys` — both implemented) plus a
+  current `date_key_id`, decrypt trying `all_keys` - both implemented) plus a
   background re-wrap task (batch 100, mark by key id).
 
 ---

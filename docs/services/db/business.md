@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:DB — Business rules (BRD)"
+title: "Sentin8:DB - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-db/edit/main/BUSINESS.md
 ---
-# Sentin8:DB — Business Requirements & Functionality
+# Sentin8:DB - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:DB **does for the business**. For architecture read `README.md`;
@@ -15,7 +15,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-db/edit/main/BUSINESS.md
 
 Sentin8:DB is the platform's **structured-persistence service** for dynamic,
 tenant-isolated data. Verticals and apps that need ad-hoc structured
-storage — without designing their own physical schema — create logical
+storage - without designing their own physical schema - create logical
 tables through it, and every table ships with the platform's full
 tenant-isolation guarantees by construction. The business value it
 delivers:
@@ -26,7 +26,7 @@ delivers:
   concurrency.
 - **Tenant isolation by construction.** Every dynamic table is created
   per environment with `ENABLE + FORCE` row-level security and exactly
-  four env-scoped policies — a table cannot be created unsafe, and a
+  four env-scoped policies - a table cannot be created unsafe, and a
   posture surface detects drift if anyone tries.
 - **One persistence plane.** Direct PostgreSQL access from domain services
   is prohibited; Sentin8:DB centralizes connectivity, credentials, and
@@ -42,20 +42,20 @@ delivers:
 
 | Area | Capabilities |
 |---|---|
-| Table lifecycle | Create, list, get, alter (add columns), archive, drop (pending_delete → physical DROP), restore — logical↔physical registry with lifecycle statuses |
+| Table lifecycle | Create, list, get, alter (add columns), archive, drop (pending_delete → physical DROP), restore - logical↔physical registry with lifecycle statuses |
 | Dynamic tenant tables | Per-env physical tables (`sentin8_db_{env8}_{logical}`) with system columns (id, env_id, data JSONB, timestamps, `resource_version`, `deleted_at`) + user-typed columns; mandatory RLS |
 | Data API | Query (scalar filters, declared-column sorts, limit ≤ 1000, keyset pagination), insert, update, delete (soft-delete only), optimistic concurrency via `resource_version` |
 | Posture surface | RLS drift detection per table (not enabled, not forced, missing policies) |
-| DDL audit trail | Append-only `ddl_audit` — one row per DDL operation with actor + detail |
+| DDL audit trail | Append-only `ddl_audit` - one row per DDL operation with actor + detail |
 | Admin surfaces | RFW admin UI (overview, tables/new form, posture, audit, settings) + Shield policy-admin API |
-| Events | Outbox-first lifecycle events (`sentin8:db:table:*`) — same transaction as the DDL |
+| Events | Outbox-first lifecycle events (`sentin8:db:table:*`) - same transaction as the DDL |
 
 ### What the service does NOT own (business boundary)
 
 | Out of scope | Owner |
 |---|---|
 | Business schema design | Callers define their own tables/rows (DB provides the machinery) |
-| Free-form SQL execution | **Prohibited by design** — there is no arbitrary SQL endpoint; the surface is tables + data CRUD + posture |
+| Free-form SQL execution | **Prohibited by design** - there is no arbitrary SQL endpoint; the surface is tables + data CRUD + posture |
 | Identity | Sentin8:Auth (bearer verification via the shared SDK) |
 | Shield policy storage | Sentin8:Sys (`policy_sets` substrate; DB runs an engine on it) |
 | Database/table creation for the platform | `sentin8-cli db bootstrap` / `vertical init` (services start on existing schemas) |
@@ -66,7 +66,7 @@ delivers:
 
 | Capability | Business rule |
 |---|---|
-| Create | Logical name + column definitions; identifiers sanitized; the physical table is created with RLS FORCE + 4 env policies — an unsafe table cannot exist |
+| Create | Logical name + column definitions; identifiers sanitized; the physical table is created with RLS FORCE + 4 env policies - an unsafe table cannot exist |
 | Registry | `table_registry` maps logical ↔ physical names per env; uniqueness enforced (409 on collision) |
 | Alter | Adds columns only |
 | Archive / restore | Archived tables can be restored to active |
@@ -84,7 +84,7 @@ delivers:
 | Optimistic concurrency | Optional `resource_version` predicate on update/delete; automatic increment on mutation |
 | Reserved columns | System columns (`id, env_id, data, created_at, updated_at, resource_version, deleted_at, usr_id, visibility`) are never writable or filterable through the API |
 | Injection safety | Only sanitized identifiers interpolate; values are always bound parameters |
-| Cross-env safety | `target_env_id` explicit (400 when missing); cross-env targeting requires platform admin or RBAC membership; foreign-env ids 404 (never 403 — no existence leak) |
+| Cross-env safety | `target_env_id` explicit (400 when missing); cross-env targeting requires platform admin or RBAC membership; foreign-env ids 404 (never 403 - no existence leak) |
 
 ### 3.3 Posture & Audit
 
@@ -96,7 +96,7 @@ delivers:
 
 ## 4. Business Events (Outbound)
 
-Event family `db`; outbox-first (same transaction as the DDL — commit-atomic).
+Event family `db`; outbox-first (same transaction as the DDL - commit-atomic).
 
 | Event | When |
 |---|---|
@@ -107,16 +107,16 @@ Event family `db`; outbox-first (same transaction as the DDL — commit-atomic).
 
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
-1. **RLS context is set inside the same explicit transaction as the statement** — a bare-pool statement filters to 0 rows (fail-closed, test-pinned).
-2. **Every dynamic tenant table ships `ENABLE + FORCE RLS` + exactly 4 env policies** — posture endpoints detect drift.
+1. **RLS context is set inside the same explicit transaction as the statement** - a bare-pool statement filters to 0 rows (fail-closed, test-pinned).
+2. **Every dynamic tenant table ships `ENABLE + FORCE RLS` + exactly 4 env policies** - posture endpoints detect drift.
 3. **Explicit `WHERE env_id = $N` on every query in addition to RLS.**
 4. **Soft-delete only** for data; physical removal only via the drop flow.
 5. **Reserved columns are never writable/filterable**; identifiers sanitized before interpolation; filter values scalar-only.
 6. **Optimistic concurrency** via `resource_version` (optional predicate, auto-increment).
-7. **Registry + audit + event commit atomically with the DDL** — event-emit failure aborts the domain change.
-8. **`env_id` on the wire is never trusted for identity filters** — the RLS context and token env are authoritative.
+7. **Registry + audit + event commit atomically with the DDL** - event-emit failure aborts the domain change.
+8. **`env_id` on the wire is never trusted for identity filters** - the RLS context and token env are authoritative.
 9. **The service role carries NO BYPASSRLS.**
-10. **No free-form SQL** — the prohibition is the security posture, documented as such.
+10. **No free-form SQL** - the prohibition is the security posture, documented as such.
 11. **No `unsafe` code**; all dynamic SQL interpolation is limited to sanitized identifiers.
 
 ## 6. Target-User Roles & Use Cases
@@ -161,8 +161,8 @@ Event family `db`; outbox-first (same transaction as the DDL — commit-atomic).
 ## 10. Open Business Questions
 
 - Read-replica routing is deferred until multi-node deployment (a pool-level routing option, not a per-statement contract).
-- Statement timeouts are set per acquired connection from the request class (interactive 5s, batch 60s) — one `SET LOCAL` in the tenant transaction.
-- Row-level audit includes affected row ids in the existing audit envelope's `resource`/`resource_id` fields — no new audit surface.
+- Statement timeouts are set per acquired connection from the request class (interactive 5s, batch 60s) - one `SET LOCAL` in the tenant transaction.
+- Row-level audit includes affected row ids in the existing audit envelope's `resource`/`resource_id` fields - no new audit surface.
 
 
 ---

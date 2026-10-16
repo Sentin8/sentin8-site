@@ -1,11 +1,11 @@
 ---
-title: "Sentin8:Auth — Business rules (BRD)"
+title: "Sentin8:Auth - Business rules (BRD)"
 sidebar_label: "Business rules (BRD)"
 mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-auth/edit/main/BUSINESS.md
 ---
-# Sentin8:Auth — Business Requirements & Functionality
+# Sentin8:Auth - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:Auth **does for the business**. For architecture read `README.md`;
@@ -14,17 +14,17 @@ custom_edit_url: https://github.com/Sentin8/sentin8-auth/edit/main/BUSINESS.md
 ## 1. Business Purpose
 
 Sentin8:Auth is the platform's **single identity plane**. It is the only
-issuer of every credential the platform trusts — no other service can mint
+issuer of every credential the platform trusts - no other service can mint
 tokens or publish signing keys. The business value it delivers:
 
 - **One sign-in plane for every product.** A single user identity works
-  across the platform dashboard, native apps, CLI, and every vertical —
+  across the platform dashboard, native apps, CLI, and every vertical -
   users sign in once, tokens are issued per product with the exact
   permissions that user holds.
 - **Regulatory-grade security posture by default.** Financial-grade
   (FAPI 2.0) security profiles, sender-constrained tokens (DPoP, mTLS
   certificate binding), and post-quantum signing keys are the default
-  posture — not add-ons.
+  posture - not add-ons.
 - **Zero-trust authorization.** A user's actual permissions are resolved
   live at request time; demoting an employee takes effect on their next
   request, not at token expiry. Revoking a session kills downstream cached
@@ -49,7 +49,7 @@ tokens or publish signing keys. The business value it delivers:
 | Webhooks | Webhook endpoint registry, signed (HMAC) delivery with retries, delivery attempt history |
 | Security profiles | Per-platform / per-org / per-env security profile configuration (FAPI 2.0 default) |
 | Brandable sign-in | Per-tenant branded sign-in experience via branding metadata |
-| Notification emails | Transactional email (via Sentin8:Post) — sign-up, reset, and MFA emails |
+| Notification emails | Transactional email (via Sentin8:Post) - sign-up, reset, and MFA emails |
 | Audit | Local audit journal with spill-to-Sys; admin audit query surface |
 
 ### What the service does NOT own (business boundary)
@@ -57,7 +57,7 @@ tokens or publish signing keys. The business value it delivers:
 | Out of scope | Owner |
 |---|---|
 | Organization/environment/app records | Sentin8:Sys |
-| Authorization policy storage & decisions | Shield (Sentin8:Policy — storage substrate in Sys) |
+| Authorization policy storage & decisions | Shield (Sentin8:Policy - storage substrate in Sys) |
 | Sending emails | Sentin8:Post (auth only enqueues + pushes `post_outbox`) |
 | E-signature / QES ceremonies | delegated to the bank8 vertical (returns NOT IMPLEMENTED until then) |
 | Invitations records | Sentin8:Sys (auth proxies to sys) |
@@ -90,11 +90,11 @@ tokens or publish signing keys. The business value it delivers:
 | API-client tokens | API keys for non-OAuth programmatic access |
 | Actor tokens | Time-boxed (≤3600s), fully audited, revocable by jti |
 | Delegated tokens | BFF-issued delegated access via `/delegate/access-token` (M2M + `sentin8:delegate:read` + cnf match) |
-| Authorization grants | Standing consent records per (env, user, client); idempotent — widened/narrowed not duplicated; grant_id embedded in tokens |
+| Authorization grants | Standing consent records per (env, user, client); idempotent - widened/narrowed not duplicated; grant_id embedded in tokens |
 | CIBA | Decoupled approval bound to the approving user's session (body user/org/env ids ignored) |
 | Device flow | CLI and device-based sign-in with verification page |
 | Token exchange | OAuth token exchange grant |
-| Introspection | Honest introspection — `none`-auth clients hard-rejected; signed JWT responses per profile |
+| Introspection | Honest introspection - `none`-auth clients hard-rejected; signed JWT responses per profile |
 | Revocation | OAuth refresh/access revocation with family cascade |
 | Token binding | DPoP proof validation with jti replay protection; mTLS cert thumbprint binding; HTTP message signatures (RFC 9421) |
 | Wallet/SD-JWT | SD-JWT issuance, selective disclosure, key binding (embedded jwk + sd_hash), status-list revocation enforcement |
@@ -109,7 +109,7 @@ tokens or publish signing keys. The business value it delivers:
 | OAuth clients | Full CRUD, authentication method, grant types, TLS subject DN/thumbprint, consent requirement, DPoP exemption |
 | API keys | Issuance and lifecycle management |
 | Sessions admin | Listing, inspection, termination of any user's session |
-| Provisioning API | `POST /v1/admin/provision/*` — idempotent upserts of roles, role nesting, groups, group roles, group members, user roles into a target environment (env-scoped header) |
+| Provisioning API | `POST /v1/admin/provision/*` - idempotent upserts of roles, role nesting, groups, group roles, group members, user roles into a target environment (env-scoped header) |
 | Admin UI (RFW) | Remote UI pages for all admin surfaces |
 | Security profiles admin | Platform/org/env-level security profile configuration |
 | Audit | Admin-facing audit query surface |
@@ -150,19 +150,19 @@ Event family `auth`; names follow `sentin8:auth:{resource}:{operation}`.
 ## 5. Business Rules & Invariants (the "always true" guarantees)
 
 1. **Single issuer.** No other service mints tokens or publishes JWKS.
-2. **M2M tokens are certificate-bound by default** — a stolen token without the private key is useless.
-3. **Authorization decisions are live** — no roles/groups embedded in JWTs; Shield resolves per request.
-4. **Refresh token replay is detectable and denied** — rotation + jti denylist.
-5. **No existence oracles** — uniform error responses prevent email enumeration.
-6. Tenant-scoped uniqueness — emails/roles/groups unique per `(env_id, …)`.
+2. **M2M tokens are certificate-bound by default** - a stolen token without the private key is useless.
+3. **Authorization decisions are live** - no roles/groups embedded in JWTs; Shield resolves per request.
+4. **Refresh token replay is detectable and denied** - rotation + jti denylist.
+5. **No existence oracles** - uniform error responses prevent email enumeration.
+6. Tenant-scoped uniqueness - emails/roles/groups unique per `(env_id, …)`.
 7. Actor tokens are time-boxed (≤ 3600s) and fully audited; revocable by jti.
 8. **Signing keys are encrypted at rest**; a wrong/rotated master key refuses boot.
 9. No `unsafe` code in the service.
 10. Sessions, grants, and admin listings always resolve the tenant inside one transaction (RLS context is transaction-local).
-11. Webhook deliveries and audit events ride the durable outbox — never fire-and-forget HTTP.
+11. Webhook deliveries and audit events ride the durable outbox - never fire-and-forget HTTP.
 12. CIBA approval binds to the session; approval cannot be replayed across sessions.
-13. DCR for `client_credentials` requires an mTLS client certificate — there is no plaintext M2M credential path.
-14. **No per-pass identity churn in background pushers** — long-lived pushers bind their M2M identity for the process lifetime (token-source self-heal on 401, not per-pass rebuilds).
+13. DCR for `client_credentials` requires an mTLS client certificate - there is no plaintext M2M credential path.
+14. **No per-pass identity churn in background pushers** - long-lived pushers bind their M2M identity for the process lifetime (token-source self-heal on 401, not per-pass rebuilds).
 
 ## 6. Target-User Roles & Use Cases
 
@@ -180,7 +180,7 @@ Event family `auth`; names follow `sentin8:auth:{resource}:{operation}`.
 ## 7. KPIs / Success Criteria
 
 - **Security**: zero plaintext M2M credentials anywhere; refresh-token replay attempts denied; no account-enumeration oracles; TOTP secrets encrypted at rest.
-- **Availability**: identity plane outage = platform outage — health endpoint up, JWKS continuously available, boot fails closed on missing master key.
+- **Availability**: identity plane outage = platform outage - health endpoint up, JWKS continuously available, boot fails closed on missing master key.
 - **Authorization freshness**: role/consent changes take effect on the next request; session revocation kills cached access immediately.
 - **Compliance**: FAPI 2.0 posture by default; post-quantum-signed keys; status-list revocation enforced.
 
@@ -212,7 +212,7 @@ Event family `auth`; names follow `sentin8:auth:{resource}:{operation}`.
 
 ## 10. Open Business Questions
 
-- QES e-signature ceremonies stay delegated to the bank8 vertical — the `signature_request` endpoint returns NOT IMPLEMENTED until that integration lands.
+- QES e-signature ceremonies stay delegated to the bank8 vertical - the `signature_request` endpoint returns NOT IMPLEMENTED until that integration lands.
 - Webhook deliveries gain a DLQ replay surface mirroring post's `replay_dlq` shape.
 - Automated JWKS rotation scheduling delegates to Sentin8:Cron (a recurring schedule targeting the internal rotation endpoint).
 - Continuous access evaluation: risk-signal gating of new token issuance layers on top of the live authorization already implemented.
