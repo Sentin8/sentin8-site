@@ -139,7 +139,7 @@ sequenceDiagram
         H-->>C: 200 OrgResponse - fully provisioned (+audit)
     end
     Note over H,A: 200 means DONE: the caller's next request<br/>already carries its membership (read-your-writes)
-    Note over H,H: The bus event is the FLEET-WIDE channel<br/>(other services' resolver caches); the local sweep closes<br/>THIS process's window - sys's own RoleResolver was primed<br/>with the creator's pre-grant identity during the request's<br/>own Shield evaluation, and until the SSE event lands<br/>(outbox→relay→bus→SSE, seconds) every read would<br/>evaluate against the stale 30s-TTL entry and 403.
+    Note over C,OB: The bus event is the FLEET-WIDE channel<br/>(other services' resolver caches), the local sweep closes<br/>THIS process's window - sys's own RoleResolver was primed<br/>with the creator's pre-grant identity during the request's<br/>own Shield evaluation, and until the SSE event lands<br/>(outbox→relay→bus→SSE, seconds) every read would<br/>evaluate against the stale 30s-TTL entry and 403.
 ```
 
 ## 3. Data Model
@@ -406,7 +406,8 @@ service `*`, scope-mirror, version, mode, `seeded: true`).
 
 ```mermaid
 flowchart TD
-    A[invitation accept] -->|status != pending| R409[409 invitation is {status}]
+    A["invitation accept"]
+    A -->|status != pending| R409["409 invitation is {status}"]
     A -->|expired| R410[410 GONE]
     A -->|no email claim or mismatch| R403[403 email binding enforced]
     A -->|group_member written == 0| R409B[409 org access model not provisioned]

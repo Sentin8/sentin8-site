@@ -115,7 +115,7 @@ sequenceDiagram
     Note over H: DCR failure = warn + continue<br/>(BFF fallback client)
     H->>AUTH: provision role + group + binding<br/>(sentin8:app:{instance_id}:*)
     alt provisioning fails
-        H-->>OP: 500 (instance stays provisioning; retryable)
+        H-->>OP: 500 (instance stays provisioning, retryable)
     end
     H->>SYS: UPDATE status='active'
     H--)OUT: outbox event sentin8:app:instance:created

@@ -109,13 +109,13 @@ sequenceDiagram
 
     B->>P: GET https://{app}.{env}.{org}.{tld}/route
     P-->>W: raw TLS bytes (SNI)
-    W->>CM2["context middleware"]
+    Note over B,FS: W->>CM2["context middleware"]
     W->>CM: strip client X-Sentin8-* → inject hostname/app-id
-    CM2["CM → handler"]
+    Note over B,FS: CM2["CM → handler"]
     alt GET /v1/health
         W-->>B: {status, service, version, build}
     else GET /v1/app/runtime/context
-        W->>A2["app service (HTTPS, platform CA)"]
+    Note over B,FS: W->>A2["app service (HTTPS, platform CA)"]
         A2-->>W: instance metadata (auth domain, branding, flags)
         W-->>B: relayed response (or 502)
     else static path

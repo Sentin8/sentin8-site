@@ -140,7 +140,7 @@ sequenceDiagram
     end
     I->>S: tx: context + INSERT events ON CONFLICT (id,timestamp) DO NOTHING
     I->>B: produce sentin8:stat:event:ingested (family stat-events)
-    Note over B: failure → warn only; DB fallback in worker covers
+    Note over C,B: failure → warn only, DB fallback in worker covers
     I-->>C: 200/204
 ```
 

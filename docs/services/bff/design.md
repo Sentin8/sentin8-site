@@ -210,7 +210,7 @@ sequenceDiagram
     loop 15s
         S-->>B: : heartbeat
     end
-    B->>S: POST /subscribe (change types; 409 if no stream)
+    B->>S: POST /subscribe (change types, 409 if no stream)
     B->>S: DELETE /subscribe (stream ends)
 ```
 

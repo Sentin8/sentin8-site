@@ -138,7 +138,7 @@ sequenceDiagram
     R->>B2["bus: POST /v1/produce"] 
     R->>B: sentin8:notification:received<br/>family notifications · idempotency_key = id
     alt produce fails
-        Note over R: debug log; delivery already terminal
+    Note over P,G: debug log, delivery already terminal
     end
 ```
 

@@ -126,7 +126,7 @@ sequenceDiagram
         alt lock acquired
             T->>J: claim: UPDATE jobs SET status='running' WHERE status='pending'
             alt claim 0 rows (open job exists)
-                T->>T: unlock; skip
+                T->>T: unlock, skip
             else claimed
                 T->>OW: POST {base}{internal}/schedules/run<br/>(M2M bearer, envelope + idempotency_key)
                 alt 2xx
@@ -321,7 +321,8 @@ flowchart TD
     F --> A
     G[tick error] --> W[warn; next tick after interval]
     H[Bus outage] --> I[outbox rows unrelayed; relay retries 2s/5s]
-    J[Service outage] --> K[retries → DLQ → manual /v1/dlq/{id}/republish]
+    J["Service outage"]
+    J --> K["retries → DLQ → manual /v1/dlq/{id}/republish"]
 ```
 
 - **Proxy-back failures** map to precise errors (`missing baseUrl in

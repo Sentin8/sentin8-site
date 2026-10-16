@@ -306,7 +306,7 @@ flowchart TD
     J[Async job failure] --> K{job kind}
     K -- embedding --> L[non-ack → redelivery]
     K -- summary/classification/document --> M[ai.dlq row]
-    M --> N[manual POST /v1/dlq/{id}/replay]
+    M --> N["manual POST /v1/dlq/{id}/replay"]
     N --> O[re-emit job event + delete row]
 ```
 

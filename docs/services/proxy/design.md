@@ -189,8 +189,7 @@ sequenceDiagram
     end
     B-->>P: response piped to client
     P->>POOL: put(conn) (single-use cycle: no pipelining)
-    Note over POOL: idle timeout evicts; respawned backend → stale → retry-once covers
-end
+    Note over P,B: idle timeout evicts, respawned backend → stale → retry-once covers
 ```
 
 ## 3. Data Model

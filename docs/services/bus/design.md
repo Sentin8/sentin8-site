@@ -289,7 +289,7 @@ sequenceDiagram
         B->>ST: XADD
         R->>O: mark relayed (per-row mark_attempt on a failed row)
     else transport failure
-        R->>R: 2s backoff; rows stay unrelayed; 5s safety poll retries
+        R->>R: 2s backoff, rows stay unrelayed, 5s safety poll retries
     end
 ```
 

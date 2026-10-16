@@ -220,10 +220,22 @@ erDiagram
 ```mermaid
 stateDiagram-v2
     direction LR
-    state session { [*] --> active: sign-in<br/>active --> revoked : sign-out / admin<br/>active --> expired : expiry }
-    state factor { [*] --> pending: enroll begin<br/>pending --> active: verify<br/>active --> disabled }
-    state grant { [*] --> active: record_grant<br/>active --> revoked: delete (cascade jti) }
+    state session {
+        [*] --> active: sign-in
+        active --> revoked : sign-out / admin
+        active --> expired : expiry
+    }
+    state factor {
+        [*] --> pending: enroll begin
+        pending --> active: verify
+        active --> disabled
+    }
+    state grant {
+        [*] --> active: record_grant
+        active --> revoked: delete (cascade jti)
+    }
     state listing2 {
+        [*] --> listing: pages mounted
     }
 ```
 
@@ -351,7 +363,7 @@ sequenceDiagram
     participant S as Receiving service
     participant V as Valkey m2m:workloads<br/>(boot-load + TTL cache)
     W->>TLS: HTTPS call, handshake presents CN=m2m-{workload}
-    TLS->>S: X-Sentin8-Client-Cert-Subject/-Thumbprint<br/>(CA-verified; client copies stripped)
+    TLS->>S: X-Sentin8-Client-Cert-Subject/-Thumbprint<br/>(CA-verified, client copies stripped)
     Note over S: TLS context middleware → identity = {workload, thumbprint}
     S->>V: local cache: workload → {vertical, service_type, scopes, enabled}
     alt row missing or enabled=false
