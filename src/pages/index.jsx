@@ -2,7 +2,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import {
-  Hero, Section, ServiceGrid, AppGrid, SdkGrid, VerticalShowcase, SecurityPillars,
+  Hero, Section, StartHere, ServiceGrid, AppGrid, SdkGrid, VerticalShowcase, SecurityPillars,
 } from '@sentin8/site-engine/components';
 import site from '../../site.json';
 
@@ -22,6 +22,25 @@ export default function Home() {
             { label: 'GitHub', href: 'https://github.com/' + site.org },
           ]}
         />
+        <StartHere items={[
+          {
+            title: 'Platform overview',
+            description: 'What Sentin8 is and how the 17 services fit together — the one-page map of the platform.',
+            href: '/docs',
+            primary: true,
+          },
+          {
+            title: 'Security',
+            description: 'The five pillars in depth: post-quantum TLS, one identity plane, live authorization, forced tenant isolation.',
+            href: '/docs/security',
+          },
+          {
+            title: 'Build on it',
+            description: 'Clone one repo and cargo build — the developer quickstart, samples, and every API surface.',
+            href: '/docs/developers',
+          },
+        ]} />
+
 
         {site.units?.length ? (
           <Section
