@@ -22,7 +22,7 @@
     "@easyops-cn/docusaurus-search-local": "^0.50.0",
     "@mdx-js/react": "^3.0.0",
     "@mermaid-js/layout-elk": "^0.1.9",
-    "@sentin8/site-engine": "git+https://github.com/Sentin8/sentin8-site-engine.git#site-engine-v0.7.0",
+    "@sentin8/site-engine": "git+https://github.com/Sentin8/sentin8-site-engine.git#site-engine-v0.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   }
