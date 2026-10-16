@@ -234,8 +234,10 @@ stateDiagram-v2
         [*] --> active: record_grant
         active --> revoked: delete (cascade jti)
     }
-    state listing2 {
-        [*] --> listing: pages mounted
+    state listings {
+        [*] --> listing: RFW admin surface mounted
+        listing --> revoked : admin (RFW admin surface)
+        revoked --> active : access re-granted
     }
 ```
 
