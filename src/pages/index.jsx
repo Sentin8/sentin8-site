@@ -16,9 +16,6 @@ export default function Home() {
         <Hero
           title={site.name}
           tagline={site.tagline}
-          eyebrow={site.eyebrow}
-          stats={site.stats}
-          code={site.code}
           actions={[
             { label: 'Read the docs', href: '/docs', primary: true },
             { label: 'Security', href: '/docs/security' },

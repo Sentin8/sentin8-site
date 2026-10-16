@@ -4,25 +4,6 @@
   "org": "Sentin8",
   "domain": "sentin8.dev",
   "tagline": "The post-quantum, zero-static-secret platform for regulated multi-vertical software — one identity plane, live authorization, mandatory tenant isolation.",
-  "eyebrow": "Post-quantum · zero static secrets · live authorization",
-  "stats": [
-    { "value": "17", "label": "platform services" },
-    { "value": "6", "label": "live verticals" },
-    { "value": "5", "label": "security pillars" },
-    { "value": "0", "label": "database passwords" }
-  ],
-  "code": {
-    "title": "one repo, one build",
-    "lang": "bash",
-    "lines": [
-      "$ git clone https://github.com/Sentin8/sentin8-auth",
-      "$ cargo build",
-      "$ sentin8-cli db bootstrap",
-      "$ vertical enroll",
-      "$ make start",
-      "# every request: verified → authorized → tenant-scoped → audited"
-    ]
-  },
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
   "pillarsLead": "Every service — platform or vertical — inherits the five pillars by construction, not configuration.",
