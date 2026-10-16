@@ -5,9 +5,12 @@ sidebar_position: 1
 # Sentin8 - the platform
 
 Sentin8 is a **post-quantum, zero-static-secret platform for regulated
-multi-vertical software**: finance, hospitality, capital markets,
-trading, billing, email - every domain composes the same 17 platform
-services, one identity plane, and one security model.
+multi-vertical software**. Verticals are independent compositions on
+top of the same platform - each composes the 17 platform services,
+one identity plane, and one security model for its own domain
+(guarded money movement, hospitality, trading, communication, and
+more). The platform itself is vertical-agnostic: new verticals are
+added by independent teams without platform changes.
 
 ## What the platform provides
 
@@ -19,9 +22,8 @@ services, one identity plane, and one security model.
   `Sentin8:Captain` (process supervision, rolling upgrades).
 - **2 SDKs** - the Rust workspace facade (`sentin8::*`, pinned git
   tags) and the Flutter package (bootstrap, BFF client, shell, theme).
-- **Verticals** - bank8, hotel8, exchange8, trade8, bill8, email8 live
-  today (health8 in design); each with its own services, apps, SDK,
-  and website at `{vertical}.dev`.
+- **Verticals** - open-ended; several live today (a few named below),
+  each with its own services, apps, SDK, and website at `{vertical}.dev`.
 
 ## The architecture in one picture
 
@@ -45,6 +47,10 @@ from the identity plane - a demoted administrator loses access on the
 *next request*.
 
 ## Verticals
+
+Verticals are open-ended: any team can compose one from the platform
+without touching platform code (zero compile-time knowledge, runtime
+enrollment). A few that exist today:
 
 | Vertical | Domain | Website |
 |---|---|---|
