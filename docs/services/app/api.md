@@ -17,7 +17,7 @@ Sentin8 Sentin8:App - third-party app store, instance management.
 
 ### `GET /v1/app/admin/instances/{id}`
 
-`GET /v1/app/admin/instances/{id}` - instance admin detail.
+`GET /v1/app/admin/instances/&#123;id&#125;` - instance admin detail.
 
 Gate: `sentin8:app:instances:admin`
 
@@ -32,12 +32,12 @@ Gate: `sentin8:app:instances:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Instance detail | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `PUT /v1/app/admin/instances/{id}/domain`
 
-`PUT /v1/app/admin/instances/{id}/domain` - update custom domain (with DNS TXT validation).
+`PUT /v1/app/admin/instances/&#123;id&#125;/domain` - update custom domain (with DNS TXT validation).
 
 Gate: `sentin8:app:instances:admin`
 
@@ -62,12 +62,12 @@ Gate: `sentin8:app:instances:admin`
 | --- | --- | --- |
 | 200 | Domain updated | - |
 | 400 | Invalid custom_domain | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `PUT /v1/app/admin/instances/{id}/env-vars`
 
-`PUT /v1/app/admin/instances/{id}/env-vars` - update env var secret references.
+`PUT /v1/app/admin/instances/&#123;id&#125;/env-vars` - update env var secret references.
 
 Gate: `sentin8:app:instances:admin`
 
@@ -88,15 +88,12 @@ Gate: `sentin8:app:instances:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Env vars reference updated | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `GET /v1/app/admin/instances/{id}/env-vars/resolve`
 
-`GET /v1/app/admin/instances/{id}/env-vars/resolve` - resolve the
-instance's stored env-vars secret reference through the shared
-`sentin8-secrets` resolver chain ( story 34.2.5). Returns the
-resolved value once; never logged. Requires the instances:admin scope.
+`GET /v1/app/admin/instances/&#123;id&#125;/env-vars/resolve` - resolve the instance's stored env-vars secret reference through the shared `sentin8-secrets` resolver chain ( story 34.2.5). Returns the resolved value once; never logged. Requires the `instances:admin` scope.
 
 Gate: `sentin8:app:instances:admin`
 
@@ -111,12 +108,12 @@ Gate: `sentin8:app:instances:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Resolved env vars value | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found or reference unset/unresolvable | - |
 
 ### `PUT /v1/app/admin/instances/{id}/feature-flags`
 
-`PUT /v1/app/admin/instances/{id}/feature-flags` - update feature flags.
+`PUT /v1/app/admin/instances/&#123;id&#125;/feature-flags` - update feature flags.
 
 Gate: `sentin8:app:instances:admin`
 
@@ -137,12 +134,12 @@ Gate: `sentin8:app:instances:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Feature flags updated | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `GET /v1/app/admin/instances/{id}/oauth-client`
 
-`GET /v1/app/admin/instances/{id}/oauth-client` - get OAuth client (DCR summary).
+`GET /v1/app/admin/instances/&#123;id&#125;/oauth-client` - get OAuth client (DCR summary).
 
 Gate: `sentin8:app:instances:admin`
 
@@ -157,12 +154,12 @@ Gate: `sentin8:app:instances:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | OAuth client summary | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `PUT /v1/app/admin/instances/{id}/status`
 
-`PUT /v1/app/admin/instances/{id}/status` - update instance status.
+`PUT /v1/app/admin/instances/&#123;id&#125;/status` - update instance status.
 
 Gate: `sentin8:app:instances:admin`
 
@@ -184,7 +181,7 @@ Gate: `sentin8:app:instances:admin`
 | --- | --- | --- |
 | 200 | Status updated | - |
 | 400 | Invalid status | - |
-| 403 | Missing app:instances:admin scope | - |
+| 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
 ### `POST /v1/app/setup`
@@ -210,11 +207,11 @@ Gate: `sentin8:app:instances:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Instance created (RFW redirect) | - |
-| 403 | Missing app:instances:write scope | - |
+| 403 | Missing `app:instances:write` scope | - |
 
 ### `GET /v1/app/setup/{instanceId}/status`
 
-`GET /v1/app/setup/{instanceId}/status` - provisioning status.
+`GET /v1/app/setup/&#123;instanceId&#125;/status` - provisioning status.
 
 Gate: `sentin8:app:instances:read`
 
@@ -229,13 +226,12 @@ Gate: `sentin8:app:instances:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Provisioning status | `SetupResponse` |
-| 403 | Missing app:instances:read scope | - |
+| 403 | Missing `app:instances:read` scope | - |
 | 404 | Instance not found | - |
 
 ### `GET /v1/app/store/listings`
 
-List published store listings visible to the caller (RLS-scoped).
-`?category=` filters to listings carrying that category (APP-3).
+List published store listings visible to the caller (RLS-scoped). `?category=` filters to listings carrying that category (APP-3).
 
 Gate: `sentin8:app:store:read`
 
@@ -244,7 +240,7 @@ Gate: `sentin8:app:store:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of published listings | `StoreListingResponse`[] |
-| 403 | Missing app:store:read scope | - |
+| 403 | Missing `app:store:read` scope | - |
 
 ### `POST /v1/app/store/listings`
 
@@ -276,11 +272,11 @@ Gate: `sentin8:app:store:admin`
 | --- | --- | --- |
 | 200 | Listing created | `StoreListingResponse` |
 | 400 | Invalid visibility or roles | - |
-| 403 | Missing app:store:admin scope | - |
+| 403 | Missing `app:store:admin` scope | - |
 
 ### `GET /v1/app/store/listings/{id}`
 
-`GET /v1/app/store/listings/{id}` - listing detail.
+`GET /v1/app/store/listings/&#123;id&#125;` - listing detail.
 
 Gate: `sentin8:app:store:read`
 
@@ -295,12 +291,12 @@ Gate: `sentin8:app:store:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Listing detail | `StoreListingResponse` |
-| 403 | Missing app:store:read scope | - |
+| 403 | Missing `app:store:read` scope | - |
 | 404 | Listing not found | - |
 
 ### `PUT /v1/app/store/listings/{id}`
 
-`PUT /v1/app/store/listings/{id}` - update a listing (catalog admin).
+`PUT /v1/app/store/listings/&#123;id&#125;` - update a listing (catalog admin).
 
 Gate: `sentin8:app:store:admin`
 
@@ -333,14 +329,12 @@ Gate: `sentin8:app:store:admin`
 | --- | --- | --- |
 | 200 | Listing updated | `StoreListingResponse` |
 | 400 | Invalid status, visibility, or roles | - |
-| 403 | Missing app:store:admin scope | - |
+| 403 | Missing `app:store:admin` scope | - |
 | 404 | Listing not found | - |
 
 ### `DELETE /v1/app/store/listings/{id}`
 
-Story - `DELETE /v1/app/store/listings/{id}` - archive a listing (soft delete).
-Sets `status = 'archived'` so the listing is hidden from the public store but retained for audit.
-`DELETE /v1/app/store/listings/{id}` - archive a listing (soft delete).
+Story - `DELETE /v1/app/store/listings/&#123;id&#125;` - archive a listing (soft delete). Sets `status = 'archived'` so the listing is hidden from the public store but retained for audit. `DELETE /v1/app/store/listings/&#123;id&#125;` - archive a listing (soft delete).
 
 Gate: `sentin8:app:store:admin`
 
@@ -355,7 +349,7 @@ Gate: `sentin8:app:store:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Listing archived | - |
-| 403 | Missing app:store:admin scope | - |
+| 403 | Missing `app:store:admin` scope | - |
 | 404 | Listing not found | - |
 
 ### `POST /v1/internal/steps/execute`

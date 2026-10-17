@@ -17,8 +17,7 @@ Sentin8 Sentin8:Sys - control plane, org/env lifecycle, saga orchestration.
 
 ### `GET /v1/app-instance/auth-mode`
 
-`GET /v1/app-instance/auth-mode` - returns the app instance's auth_domain and allow_signup.
-Fetch instance auth mode.
+`GET /v1/app-instance/auth-mode` - returns the app instance's auth_domain and allow_signup. Fetch instance auth mode.
 
 **Parameters**:
 
@@ -36,8 +35,7 @@ Fetch instance auth mode.
 
 ### `GET /v1/app-instance/scopes`
 
-`GET /v1/app-instance/scopes` - resolve an app instance's OAuth scopes.
-Fetch instance scopes.
+`GET /v1/app-instance/scopes` - resolve an app instance's OAuth scopes. Fetch instance scopes.
 
 **Parameters**:
 
@@ -54,8 +52,7 @@ Fetch instance scopes.
 
 ### `GET /v1/audit`
 
-`GET /v1/audit` - query orchestration audit events.
-List audit.
+`GET /v1/audit` - query orchestration audit events. List audit.
 
 Gate: `sentin8:sys:audit:read`
 
@@ -77,11 +74,11 @@ Gate: `sentin8:sys:audit:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Audit events | `AuditEventResponse`[] |
-| 403 | Missing sys:audit:read scope | - |
+| 403 | Missing `sys:audit:read` scope | - |
 
 ### `POST /v1/audit`
 
-`POST /v1/audit` - canonical audit ingest (M2M, `sentin8:sys:audit:write`).
+`POST /v1/audit` - canonical audit ingest (M2M, ``sentin8:sys:audit:write``).
 
 Gate: `sentin8:sys:audit:write`
 
@@ -97,12 +94,11 @@ Gate: `sentin8:sys:audit:write`
 | --- | --- | --- |
 | 200 | Batch accepted | `AuditIngestResponse` |
 | 401 | Missing/invalid token | - |
-| 403 | Missing sys:audit:write scope | - |
+| 403 | Missing `sys:audit:write` scope | - |
 
 ### `GET /v1/bootstrap`
 
-`GET /v1/bootstrap` - user orgs and default org.
-Handle bootstrap.
+`GET /v1/bootstrap` - user orgs and default org. Handle bootstrap.
 
 Gate: `sentin8:sys:admin`
 
@@ -115,8 +111,7 @@ Gate: `sentin8:sys:admin`
 
 ### `GET /v1/e`
 
-`GET /v1/e` - list environments.
-List envs.
+`GET /v1/e` - list environments. List envs.
 
 Gate: `sentin8:sys:admin`
 
@@ -134,8 +129,7 @@ Gate: `sentin8:sys:admin`
 
 ### `POST /v1/e`
 
-`POST /v1/e` - create environment.
-Create env.
+`POST /v1/e` - create environment. Create env.
 
 Gate: `sentin8:sys:env:admin`
 
@@ -152,13 +146,12 @@ Gate: `sentin8:sys:env:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Environment created | `EnvResponse` |
-| 403 | Missing sys:env:admin scope | - |
+| 403 | Missing `sys:env:admin` scope | - |
 | 409 | Env slug already exists | - |
 
 ### `GET /v1/env/{env_id}`
 
-`GET /v1/env/{env_id}` - environment detail.
-Fetch env.
+`GET /v1/env/&#123;env_id&#125;` - environment detail. Fetch env.
 
 Gate: `sentin8:sys:admin`
 
@@ -178,8 +171,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/env/{env_id}`
 
-`PUT /v1/env/{env_id}` - update environment.
-Update env.
+`PUT /v1/env/&#123;env_id&#125;` - update environment. Update env.
 
 Gate: `sentin8:sys:env:admin`
 
@@ -202,13 +194,12 @@ Gate: `sentin8:sys:env:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Environment updated | `EnvResponse` |
-| 403 | Missing sys:env:admin scope | - |
+| 403 | Missing `sys:env:admin` scope | - |
 | 404 | Not found | - |
 
 ### `DELETE /v1/env/{env_id}`
 
-`DELETE /v1/env/{env_id}` - cascade-delete environment.
-Delete env.
+`DELETE /v1/env/&#123;env_id&#125;` - cascade-delete environment. Delete env.
 
 Gate: `sentin8:sys:env:admin`
 
@@ -223,13 +214,12 @@ Gate: `sentin8:sys:env:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Environment deleted | - |
-| 403 | Missing sys:env:admin scope | - |
+| 403 | Missing `sys:env:admin` scope | - |
 | 404 | Not found | - |
 
 ### `GET /v1/env/{env_id}/app-custom-domain`
 
-`GET /v1/env/{env_id}/app-custom-domain` - returns the custom domain for the app instance.
-Fetch app custom domain.
+`GET /v1/env/&#123;env_id&#125;/app-custom-domain` - returns the custom domain for the app instance. Fetch app custom domain.
 
 **Parameters**:
 
@@ -246,8 +236,7 @@ Fetch app custom domain.
 
 ### `GET /v1/env/{env_id}/applications`
 
-`GET /v1/env/{env_id}/applications` - list applications.
-List applications.
+`GET /v1/env/&#123;env_id&#125;/applications` - list applications. List applications.
 
 Gate: `sentin8:sys:admin`
 
@@ -266,8 +255,7 @@ Gate: `sentin8:sys:admin`
 
 ### `POST /v1/env/{env_id}/applications`
 
-`POST /v1/env/{env_id}/applications` - create application.
-Create application.
+`POST /v1/env/&#123;env_id&#125;/applications` - create application. Create application.
 
 Gate: `sentin8:sys:app:admin`
 
@@ -290,13 +278,12 @@ Gate: `sentin8:sys:app:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Application created | `ApplicationResponse` |
-| 403 | Missing sys:app:admin scope | - |
+| 403 | Missing `sys:app:admin` scope | - |
 | 409 | Application slug already exists | - |
 
 ### `GET /v1/env/{env_id}/applications/{app_id}`
 
-`GET /v1/env/{env_id}/applications/{app_id}` - application detail.
-Fetch application.
+`GET /v1/env/&#123;env_id&#125;/applications/&#123;app_id&#125;` - application detail. Fetch application.
 
 Gate: `sentin8:sys:admin`
 
@@ -317,8 +304,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/env/{env_id}/applications/{app_id}`
 
-`PUT /v1/env/{env_id}/applications/{app_id}` - update application.
-Update application.
+`PUT /v1/env/&#123;env_id&#125;/applications/&#123;app_id&#125;` - update application. Update application.
 
 Gate: `sentin8:sys:app:admin`
 
@@ -337,13 +323,12 @@ Gate: `sentin8:sys:app:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Application updated | `ApplicationResponse` |
-| 403 | Missing sys:app:admin scope | - |
+| 403 | Missing `sys:app:admin` scope | - |
 | 404 | Not found | - |
 
 ### `POST /v1/env/{env_id}/applications/{app_id}/archive`
 
-`POST /v1/env/{env_id}/applications/{app_id}/archive` - archive application.
-Archive application.
+`POST /v1/env/&#123;env_id&#125;/applications/&#123;app_id&#125;/archive` - archive application. Archive application.
 
 Gate: `sentin8:sys:app:admin`
 
@@ -359,13 +344,12 @@ Gate: `sentin8:sys:app:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Application archived | - |
-| 403 | Missing sys:app:admin scope | - |
+| 403 | Missing `sys:app:admin` scope | - |
 | 404 | Not found | - |
 
 ### `POST /v1/env/{env_id}/archive`
 
-`POST /v1/env/{env_id}/archive` - archive environment.
-Archive env.
+`POST /v1/env/&#123;env_id&#125;/archive` - archive environment. Archive env.
 
 Gate: `sentin8:sys:env:admin`
 
@@ -380,13 +364,12 @@ Gate: `sentin8:sys:env:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Environment archived | - |
-| 403 | Missing sys:env:admin scope | - |
+| 403 | Missing `sys:env:admin` scope | - |
 | 404 | Not found | - |
 
 ### `GET /v1/env/{env_id}/auth-domain`
 
-`GET /v1/env/{env_id}/auth-domain` - returns the env's full auth_domain URL.
-Fetch env auth domain.
+`GET /v1/env/&#123;env_id&#125;/auth-domain` - returns the env's full auth_domain URL. Fetch env auth domain.
 
 **Parameters**:
 
@@ -403,8 +386,7 @@ Fetch env auth domain.
 
 ### `GET /v1/env/{env_id}/bindings`
 
-`GET /v1/env/{env_id}/bindings` - list bindings.
-List bindings.
+`GET /v1/env/&#123;env_id&#125;/bindings` - list bindings. List bindings.
 
 Gate: `sentin8:sys:admin`
 
@@ -423,8 +405,7 @@ Gate: `sentin8:sys:admin`
 
 ### `POST /v1/env/{env_id}/bindings`
 
-`POST /v1/env/{env_id}/bindings` - create app-environment binding.
-Create binding.
+`POST /v1/env/&#123;env_id&#125;/bindings` - create app-environment binding. Create binding.
 
 Gate: `sentin8:sys:app:admin`
 
@@ -448,13 +429,12 @@ Gate: `sentin8:sys:app:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Binding created | `BindingResponse` |
-| 403 | Missing sys:app:admin scope | - |
+| 403 | Missing `sys:app:admin` scope | - |
 | 409 | Binding slug already exists | - |
 
 ### `DELETE /v1/env/{env_id}/bindings/{binding_id}`
 
-`DELETE /v1/env/{env_id}/bindings/{binding_id}` - remove binding.
-Delete binding.
+`DELETE /v1/env/&#123;env_id&#125;/bindings/&#123;binding_id&#125;` - remove binding. Delete binding.
 
 Gate: `sentin8:sys:app:admin`
 
@@ -470,13 +450,12 @@ Gate: `sentin8:sys:app:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Binding deleted | - |
-| 403 | Missing sys:app:admin scope | - |
+| 403 | Missing `sys:app:admin` scope | - |
 | 404 | Not found | - |
 
 ### `GET /v1/env/{env_id}/branding`
 
-`GET /v1/env/{env_id}/branding` - get env-level branding.
-Fetch env branding.
+`GET /v1/env/&#123;env_id&#125;/branding` - get env-level branding. Fetch env branding.
 
 Gate: `sentin8:sys:admin`
 
@@ -495,8 +474,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/env/{env_id}/branding`
 
-`PUT /v1/env/{env_id}/branding` - set env-level branding.
-Handle set env branding.
+`PUT /v1/env/&#123;env_id&#125;/branding` - set env-level branding. Handle set env branding.
 
 Gate: `sentin8:sys:admin`
 
@@ -528,8 +506,7 @@ Gate: `sentin8:sys:admin`
 
 ### `GET /v1/env/{env_id}/branding/merged`
 
-`GET /v1/env/{env_id}/branding/merged` - merged org+env branding.
-Fetch merged branding.
+`GET /v1/env/&#123;env_id&#125;/branding/merged` - merged org+env branding. Fetch merged branding.
 
 Gate: `sentin8:sys:admin`
 
@@ -548,8 +525,7 @@ Gate: `sentin8:sys:admin`
 
 ### `GET /v1/env/{env_id}/services`
 
-`GET /v1/env/{env_id}/services` - list service states.
-List services.
+`GET /v1/env/&#123;env_id&#125;/services` - list service states. List services.
 
 Gate: `sentin8:sys:admin`
 
@@ -568,8 +544,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/env/{env_id}/services`
 
-`PUT /v1/env/{env_id}/services` - enable/disable service.
-Handle set service.
+`PUT /v1/env/&#123;env_id&#125;/services` - enable/disable service. Handle set service.
 
 Gate: `sentin8:sys:services:admin`
 
@@ -592,12 +567,11 @@ Gate: `sentin8:sys:services:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Service state updated | `ServiceResponse` |
-| 403 | Missing sys:services:admin scope | - |
+| 403 | Missing `sys:services:admin` scope | - |
 
 ### `GET /v1/health`
 
-`GET /v1/health` - liveness probe.
-Handle health.
+`GET /v1/health` - liveness probe. Handle health.
 
 **Responses**:
 
@@ -607,8 +581,7 @@ Handle health.
 
 ### `GET /v1/o`
 
-`GET /v1/o` - list organizations.
-List orgs.
+`GET /v1/o` - list organizations. List orgs.
 
 Gate: `sentin8:sys:admin`
 
@@ -627,8 +600,7 @@ Gate: `sentin8:sys:admin`
 
 ### `POST /v1/o`
 
-`POST /v1/o` - create organization.
-Create org.
+`POST /v1/o` - create organization. Create org.
 
 Gate: `sentin8:sys:org:admin`
 
@@ -645,13 +617,12 @@ Gate: `sentin8:sys:org:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Organization created | `OrgResponse` |
-| 403 | Missing sys:org:admin scope | - |
+| 403 | Missing `sys:org:admin` scope | - |
 | 409 | Org slug already exists | - |
 
 ### `GET /v1/org/{id}`
 
-`GET /v1/org/{id}` - organization detail.
-Fetch org.
+`GET /v1/org/&#123;id&#125;` - organization detail. Fetch org.
 
 Gate: `sentin8:sys:admin`
 
@@ -671,8 +642,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/org/{id}`
 
-`PUT /v1/org/{id}` - update organization.
-Update org.
+`PUT /v1/org/&#123;id&#125;` - update organization. Update org.
 
 Gate: `sentin8:sys:org:admin`
 
@@ -695,13 +665,12 @@ Gate: `sentin8:sys:org:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Organization updated | `OrgResponse` |
-| 403 | Missing sys:org:admin scope | - |
+| 403 | Missing `sys:org:admin` scope | - |
 | 404 | Not found | - |
 
 ### `DELETE /v1/org/{id}`
 
-`DELETE /v1/org/{id}` - cascade-delete org and all related records.
-Delete org.
+`DELETE /v1/org/&#123;id&#125;` - cascade-delete org and all related records. Delete org.
 
 Gate: `sentin8:sys:org:admin`
 
@@ -716,13 +685,12 @@ Gate: `sentin8:sys:org:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Organization deleted | - |
-| 403 | Missing sys:org:admin scope | - |
+| 403 | Missing `sys:org:admin` scope | - |
 | 404 | Not found | - |
 
 ### `POST /v1/org/{id}/archive`
 
-`POST /v1/org/{id}/archive` - archive organization.
-Archive org.
+`POST /v1/org/&#123;id&#125;/archive` - archive organization. Archive org.
 
 Gate: `sentin8:sys:org:admin`
 
@@ -737,13 +705,12 @@ Gate: `sentin8:sys:org:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Organization archived | - |
-| 403 | Missing sys:org:admin scope | - |
+| 403 | Missing `sys:org:admin` scope | - |
 | 404 | Not found | - |
 
 ### `GET /v1/org/{org_id}/branding`
 
-`GET /v1/org/{org_id}/branding` - get org-level branding.
-Fetch org branding.
+`GET /v1/org/&#123;org_id&#125;/branding` - get org-level branding. Fetch org branding.
 
 Gate: `sentin8:sys:admin`
 
@@ -762,8 +729,7 @@ Gate: `sentin8:sys:admin`
 
 ### `PUT /v1/org/{org_id}/branding`
 
-`PUT /v1/org/{org_id}/branding` - set org-level branding.
-Handle set org branding.
+`PUT /v1/org/&#123;org_id&#125;/branding` - set org-level branding. Handle set org branding.
 
 Gate: `sentin8:sys:admin`
 
@@ -795,8 +761,7 @@ Gate: `sentin8:sys:admin`
 
 ### `POST /v1/org/{org_id}/invitations`
 
-`POST /v1/org/{org_id}/invitations` - send invitation.
-Send invitation.
+`POST /v1/org/&#123;org_id&#125;/invitations` - send invitation. Send invitation.
 
 Gate: `sentin8:sys:memberships:admin`
 
@@ -818,12 +783,11 @@ Gate: `sentin8:sys:memberships:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Invitation sent | `InvitationResponse` |
-| 403 | Missing sys:memberships:admin scope | - |
+| 403 | Missing `sys:memberships:admin` scope | - |
 
 ### `POST /v1/org/{org_id}/invitations/{invitation_id}/accept`
 
-`POST /v1/org/{org_id}/invitations/{invitation_id}/accept` - accept invitation.
-Handle accept invitation.
+`POST /v1/org/&#123;org_id&#125;/invitations/&#123;invitation_id&#125;/accept` - accept invitation. Handle accept invitation.
 
 Gate: `sentin8:sys:admin`
 
@@ -845,8 +809,7 @@ Gate: `sentin8:sys:admin`
 
 ### `GET /v1/org/{org_id}/memberships`
 
-`GET /v1/org/{org_id}/memberships` - list members.
-List memberships.
+`GET /v1/org/&#123;org_id&#125;/memberships` - list members. List memberships.
 
 Gate: `sentin8:sys:admin`
 
@@ -865,8 +828,7 @@ Gate: `sentin8:sys:admin`
 
 ### `DELETE /v1/org/{org_id}/memberships`
 
-`DELETE /v1/org/{org_id}/memberships` - remove member.
-Remove membership.
+`DELETE /v1/org/&#123;org_id&#125;/memberships` - remove member. Remove membership.
 
 Gate: `sentin8:sys:memberships:admin`
 
@@ -883,12 +845,11 @@ Gate: `sentin8:sys:memberships:admin`
 | --- | --- | --- |
 | 204 | Membership removed | - |
 | 400 | user_id query param required | - |
-| 403 | Missing sys:memberships:admin scope | - |
+| 403 | Missing `sys:memberships:admin` scope | - |
 
 ### `GET /v1/readiness`
 
-`GET /v1/readiness` - readiness probe.
-Handle readiness.
+`GET /v1/readiness` - readiness probe. Handle readiness.
 
 **Responses**:
 
@@ -899,10 +860,7 @@ Handle readiness.
 
 ### `GET /v1/scopes/catalog`
 
-`GET /v1/scopes/catalog` - returns the platform's well-known OAuth
-scope catalog as a flat list. Used by Dash's `ScopeSelector`
-widget to populate its autocomplete suggestions without
-duplicating the list on the client side.
+`GET /v1/scopes/catalog` - returns the platform's well-known OAuth scope catalog as a flat list. Used by Dash's `ScopeSelector` widget to populate its autocomplete suggestions without duplicating the list on the client side.
 
 **Responses**:
 
@@ -912,8 +870,7 @@ duplicating the list on the client side.
 
 ### `GET /v1/tenants/{env_id}`
 
-`GET /v1/tenants/{env_id}` - VDC-4 tenant-snapshot API
-(design/sentin8-vertical-data-plane-contract.md §VDC.5).
+`GET /v1/tenants/&#123;env_id&#125;` - VDC-4 tenant-snapshot API (design/sentin8-vertical-data-plane-contract.md §VDC.5).
 
 Gate: `sentin8:sys:tenants:read`
 
@@ -929,14 +886,12 @@ Gate: `sentin8:sys:tenants:read`
 | --- | --- | --- |
 | 200 | Tenant snapshot + the caller's own service enablement | - |
 | 401 | Missing/invalid token | - |
-| 403 | Missing tenants:read scope or non-M2M token | - |
+| 403 | Missing `tenants:read` scope or non-M2M token | - |
 | 404 | Env unknown or the caller's service is not enabled there (scoped discovery) | - |
 
 ### `GET /v1/verticals/services`
 
-`GET /v1/verticals/services?orgId={uuid}&envId={uuid}` - discover registered
-vertical services and their admin_ui entries, filtered by feature enablement
-for the given org/env.
+`GET /v1/verticals/services?orgId=&#123;uuid&#125;&envId=&#123;uuid&#125;` - discover registered vertical services and their admin_ui entries, filtered by feature enablement for the given org/env.
 
 Gate: `sentin8:sys:admin`
 

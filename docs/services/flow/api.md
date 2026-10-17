@@ -17,8 +17,7 @@ Sentin8 Sentin8:Flow - standalone workflow execution engine.
 
 ### `POST /v1/handlers/register`
 
-`POST /v1/handlers/register` - register a domain's step handler profile.
-Register handler.
+`POST /v1/handlers/register` - register a domain's step handler profile. Register handler.
 
 Gate: `sentin8:flow:write`
 
@@ -37,12 +36,11 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Handler registered | - |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 
 ### `GET /v1/workflows`
 
-`GET /v1/workflows`
-List workflows.
+`GET /v1/workflows` List workflows.
 
 Gate: `sentin8:flow:read`
 
@@ -59,12 +57,11 @@ Gate: `sentin8:flow:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of workflows | `WorkflowRecord`[] |
-| 403 | Missing flow:read scope | - |
+| 403 | Missing `flow:read` scope | - |
 
 ### `POST /v1/workflows`
 
-`POST /v1/workflows` - create + start workflow.
-Create workflow.
+`POST /v1/workflows` - create + start workflow. Create workflow.
 
 Gate: `sentin8:flow:write`
 
@@ -92,12 +89,11 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow created | `WorkflowRecord` |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 
 ### `GET /v1/workflows/{id}`
 
-`GET /v1/workflows/{id}`
-Fetch workflow.
+`GET /v1/workflows/&#123;id&#125;` Fetch workflow.
 
 Gate: `sentin8:flow:read`
 
@@ -112,13 +108,12 @@ Gate: `sentin8:flow:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow | `WorkflowRecord` |
-| 403 | Missing flow:read scope | - |
+| 403 | Missing `flow:read` scope | - |
 | 404 | Workflow not found | - |
 
 ### `POST /v1/workflows/{id}/cancel`
 
-`POST /v1/workflows/{id}/cancel`
-Cancel workflow.
+`POST /v1/workflows/&#123;id&#125;/cancel` Cancel workflow.
 
 Gate: `sentin8:flow:write`
 
@@ -133,13 +128,12 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow cancelled | `WorkflowRecord` |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 | 404 | Workflow not found | - |
 
 ### `POST /v1/workflows/{id}/repair`
 
-`POST /v1/workflows/{id}/repair` - rewind to a step and reprocess.
-Repair workflow.
+`POST /v1/workflows/&#123;id&#125;/repair` - rewind to a step and reprocess. Repair workflow.
 
 Gate: `sentin8:flow:write`
 
@@ -161,13 +155,12 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow repaired | `WorkflowRecord` |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 | 404 | Workflow not found | - |
 
 ### `POST /v1/workflows/{id}/resume`
 
-`POST /v1/workflows/{id}/resume` - resume from waiting state (manual decision, async HTTP, schedule).
-Resume workflow.
+`POST /v1/workflows/&#123;id&#125;/resume` - resume from waiting state (manual decision, async HTTP, schedule). Resume workflow.
 
 Gate: `sentin8:flow:write`
 
@@ -188,13 +181,12 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow resumed | `WorkflowRecord` |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 | 404 | Workflow not found | - |
 
 ### `POST /v1/workflows/{id}/retry`
 
-`POST /v1/workflows/{id}/retry` - retry a failed workflow from the failed step.
-Retry workflow.
+`POST /v1/workflows/&#123;id&#125;/retry` - retry a failed workflow from the failed step. Retry workflow.
 
 Gate: `sentin8:flow:write`
 
@@ -209,6 +201,6 @@ Gate: `sentin8:flow:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Workflow retried | `WorkflowRecord` |
-| 403 | Missing flow:write scope | - |
+| 403 | Missing `flow:write` scope | - |
 | 404 | Workflow not found | - |
 

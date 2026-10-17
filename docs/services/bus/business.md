@@ -80,7 +80,7 @@ ever silently lost. The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Consumer groups | Groups created idempotently (`{sub}.{group}` namespacing - cross-tenant collision impossible) |
-| HTTP pull | `POST /v1/consume` - one-shot reads of new entries |
+| HTTP pull | `POST /v1/consume` - one-shot reads of new entries; the server caps a caller's blocking wait at 5s and always answers (an empty batch on timeout), so a slow poller can never hold the service's shared resources |
 | SSE push | `GET /v1/consume/sse` - dedicated connection per consumer, 5s XAUTOCLAIM sweep, 15s heartbeats, pending-depth warnings |
 | Acknowledgment | Explicit `POST /v1/ack`; ACK for an unknown entry is idempotent (200) |
 | Nack / retry | `POST /v1/nack` enqueues `bus:retry:{env}` with `retry_after_secs` (default 30); the reaper drains it with bounded retries |

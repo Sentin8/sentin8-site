@@ -42,7 +42,7 @@ graph TD
         RELAY["inbox_relay<br/>LISTEN bus_inbox_changed + 2s poll, batch 1000"]
         STREAMS[("bus:{env_id}:{stream_family}<br/>Valkey Streams")]
         SSE["GET /v1/consume/sse<br/>XAUTOCLAIM sweep"]
-        HTTPC["POST /v1/consume<br/>XREADGROUP"]
+        HTTPC["POST /v1/consume<br/>XREADGROUP (dedicated conn per blocking read)"]
         ACK["POST /v1/ack · /v1/nack"]
         DLQ["GET /v1/dlq · POST /v1/dlq/replay<br/>bus:dlq:{env} (sorted set)"]
         ADMIN["Shield admin API + RFW UI"]
@@ -60,7 +60,7 @@ graph TD
     INBOX -- "drain env-by-env under RLS" --> RELAY
     STREAMS -- "XREADGROUP / XAUTOCLAIM" --> HTTPC & SSE
     SVC -- "SSE + ACK" --> SSE_H["sse_handler"]
-    SVC -- "XREADGROUP + XACK" --> HTTPC
+    SVC -- "POST /v1/consume<br/>(blocking read on a consume-pool conn)" --> HTTPC
     ACK --> STREAMS
 ```
 
@@ -75,6 +75,7 @@ on the persistence side.
 | `handlers.rs` | Produce/consume/ack/nack/DLQ/streams/lag/schedule/metrics + `validate_stream_family` + `stream_key` + **event-type ownership gate** (`event_vertical_prefix()` - see VDC §VDC.4). |
 | `inbox_relay.rs` | Bus-internal durability: LISTEN/NOTIFY (`bus_inbox_changed`) + 2s safety poll; drain batch 1000; startup drain-until-empty. |
 | `sse.rs` | `GET /v1/consume/sse`: dedicated connection per client, `XGROUP CREATE … "$"`, 5s `XAUTOCLAIM` sweep (min-idle 60s, COUNT 20), `XREADGROUP COUNT 10 BLOCK 10s`, 15s heartbeat, pending-depth warn > 100. |
+| `consume_pool.rs` | The blocking-consume connection pool: a fixed set of GLIDE clients reserved per `POST /v1/consume` call for the lifetime of its `XREADGROUP … BLOCK` - blocking reads never share the shared command client (the same discipline `sse.rs` and the SDK `StreamSubscriber` enforce; BUSCONNP-1). |
 | `auth.rs` | Bearer verify (JWKS) + token-tp filter (`access|m2m|delegated`) + jti replay guard + audience check + TLS-header cross-check (skipped for delegated). |
 | `admin_ui.rs` | RFW pages (overview, streams, consumers, metrics, dlq, policy) + data endpoints (SQL inbox, SCAN+XINFO consumers, ZRANGE dlq). |
 | `policy.rs` / `registration.rs` / `config.rs` / `openapi.rs` | Shield bridge + hot reload; self-description; env config; OpenAPI. |
@@ -142,6 +143,42 @@ sequenceDiagram
 At-least-once semantics: an accepted produce lands on the stream inline
 and again via the relay (different field sets, same logical event);
 consumers dedupe on `idempotency_key`.
+
+**HTTP consume lifecycle** (`POST /v1/consume` - the blocking read runs
+on a dedicated pooled connection, BUSCONNP-1):
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Consumer (M2M poller)
+    participant H as consume handler
+    participant V as Valkey stream
+    participant CP as consume_pool (fixed GLIDE client set)
+
+    C->>H: POST /v1/consume (family, group, block_ms)
+    H->>H: verify + Shield consume + family validation
+    H->>CP: acquire pooled connection (queue if saturated)
+    H->>V: XGROUP CREATE … 0 MKSTREAM (shared client, idempotent)
+    CP->>V: XREADGROUP GROUP … COUNT max_count BLOCK min(block_ms, 5000)
+    alt stream empty for the block window
+        V-->>CP: nil (timeout - a normal poll result)
+    else entries ready
+        V-->>CP: entries
+    else client timeout (GLIDE request deadline)
+        CP-->>H: empty batch - at-least-once keeps the PEL untouched
+    end
+    H->>CP: release connection back to the pool
+    H-->>C: 200 {messages} (possibly empty)
+    Note over C,V: ACKs travel separately via POST /v1/ack
+```
+
+The failure branch is deliberate: a timed-out blocking read returns an
+**empty batch, never an error** - the PEL holds nothing (nothing was
+delivered), so the caller simply re-polls. The dedicated connection is
+released either way; a saturated pool queues the acquire (bounded by
+the pool size - a storm of 1s pollers cannot multiply into unbounded
+Valkey connections the way a client-per-request design would).
+
 
 ## 3. Data Model
 
@@ -222,7 +259,7 @@ stateDiagram-v2
 |---|---|---|---|
 | `POST /v1/produce` | producers (M2M) | Shield `sentin8:bus:produce` | 200 `{message_id, stream}`; body `env_id` must equal token env (403). VDC-2 event-ownership: the event type's FIRST colon segment must equal the producer token's `vertical` claim (mint-stamped from `auth.m2m_scope_grants`); user tokens carry no claim → fail-closed 403 `event_ownership`. |
 | `POST /v1/produce/batch` | producers (M2M) | Shield `sentin8:bus:produce` | N ≤ 100 events in ONE call; per-row results in request order - a failed row carries `error` and no `message_id`, siblings are unaffected (rows are independent, not a transaction). |
-| `POST /v1/consume` | consumers | Shield `sentin8:bus:consume` | `XGROUP CREATE … 0 MKSTREAM`; reads new entries. |
+| `POST /v1/consume` | consumers | Shield `sentin8:bus:consume` | `XGROUP CREATE … 0 MKSTREAM`; reads new entries. The blocking `XREADGROUP` executes on a dedicated pooled connection (`consume_pool.rs`) - never on the shared command client (BUSCONNP-1); `block_ms` is server-capped at 5000 (a longer request is truncated, not rejected - the caller observes the cap as a sooner empty batch). |
 | `POST /v1/ack`, `POST /v1/nack` | consumers | Shield `sentin8:bus:consume` | NACK enqueues `bus:retry:{env}` (+`retry_after_secs`, default 30). |
 | `GET /v1/consume/sse` | direct consumers | scope check `sentin8:bus:consume` (+ token via `?token=`) | XAUTOCLAIM sweep + heartbeat; ACK via API. |
 | `GET /v1/dlq`, `POST /v1/dlq/replay` | admins | Shield `sentin8:bus:admin` | replay XADDs `{event_type}.replayed` with `replayed_from_dlq`. |
@@ -392,6 +429,15 @@ graph LR
 - **SSE fan-out**: one dedicated multiplexed connection per client
   (isolation from the shared pool), `XAUTOCLAIM` every 5s prevents
   unbounded PEL growth for dead consumers (min idle 60s).
+- **HTTP blocking consume**: a fixed pool of dedicated GLIDE clients
+  (`consume_pool.rs`) serves every `POST /v1/consume` blocking read - a
+  blocking read never occupies the shared command client, and the pool
+  size bounds the concurrent blocking reads (surplus pollers queue at
+  acquire). With ~200 SSE connections parked in 10s blocking reads, the
+  GLIDE watchdog's process-global pending count sits structurally above
+  its `SystemOverload` threshold (100) - `pending_total` in a watchdog
+  WARN is NOT by itself evidence of overload; the `inflight` trend line
+  is the saturation signal.
 - **Policy hot-reload**: direct SSE consumer on the `policy` family
   (group `sentin8-policy-reload`), 2s reconnect; reloads on
   `sentin8:sys:policy:updated` (for `sentin8:bus` / `*`) and invalidates
@@ -419,6 +465,11 @@ graph LR
 9. DLQ replay always re-emits with the `.replayed` event type and a
    `replayed_from_dlq` marker - a replayed event can never be mistaken
    for the original.
+10. A blocking `XREADGROUP` (HTTP consume) NEVER executes on the shared
+    command client - it holds a pooled dedicated connection for the
+    duration of the read (BUSCONNP-1). The `block_ms` a caller sends is
+    a hint, capped server-side at 5000ms: the bus, not the caller, owns
+    its connection occupancy budget.
 
 ## 9. Testing Strategy
 

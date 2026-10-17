@@ -17,8 +17,7 @@ Sentin8 Sentin8:Storage - object/file storage with pluggable adapters.
 
 ### `GET /v1/storage/objects`
 
-`GET /v1/storage/objects` - list objects with optional prefix.
-List objects.
+`GET /v1/storage/objects` - list objects with optional prefix. List objects.
 
 Gate: `sentin8:storage:env:read`
 
@@ -36,8 +35,7 @@ Gate: `sentin8:storage:env:read`
 
 ### `GET /v1/storage/objects/{object_path}`
 
-`GET /v1/storage/objects/{path}` - download an object.
-Fetch object.
+`GET /v1/storage/objects/&#123;path&#125;` - download an object. Fetch object.
 
 Gate: `sentin8:storage:env:read`
 
@@ -57,8 +55,7 @@ Gate: `sentin8:storage:env:read`
 
 ### `PUT /v1/storage/objects/{object_path}`
 
-`PUT /v1/storage/objects/{path}` - upload an object.
-Handle PUT object.
+`PUT /v1/storage/objects/&#123;path&#125;` - upload an object. Handle PUT object.
 
 Gate: `sentin8:storage:env:write`
 
@@ -80,8 +77,7 @@ Gate: `sentin8:storage:env:write`
 
 ### `POST /v1/storage/objects/{object_path}`
 
-`POST /v1/storage/objects/{*path}` - dispatch sign-read, sign-upload, copy, move.
-Handle object action.
+`POST /v1/storage/objects/&#123;*path&#125;` - dispatch sign-read, sign-upload, copy, move. Handle object action.
 
 Gate: `sentin8:storage:env:read`
 
@@ -101,8 +97,7 @@ Gate: `sentin8:storage:env:read`
 
 ### `DELETE /v1/storage/objects/{object_path}`
 
-`DELETE /v1/storage/objects/{path}` - delete an object.
-Delete object.
+`DELETE /v1/storage/objects/&#123;path&#125;` - delete an object. Delete object.
 
 Gate: `sentin8:storage:env:admin`
 
@@ -122,8 +117,7 @@ Gate: `sentin8:storage:env:admin`
 
 ### `GET /v1/storage/signed/{token}`
 
-`GET /v1/storage/signed/{token}` - serve object via signed URL.
-Serve signed.
+`GET /v1/storage/signed/&#123;token&#125;` - serve object via signed URL. Serve signed.
 
 **Parameters**:
 
@@ -141,8 +135,7 @@ Serve signed.
 
 ### `PUT /v1/storage/signed/{token}`
 
-`PUT /v1/storage/signed/{token}` - store object via signed upload URL.
-Handle upload signed.
+`PUT /v1/storage/signed/&#123;token&#125;` - store object via signed upload URL. Handle upload signed.
 
 **Request body** (`application/octet-stream`):
 

@@ -17,8 +17,7 @@ Sentin8 Sentin8:Cron - standalone distributed scheduler.
 
 ### `GET /v1/dlq`
 
-`GET /v1/dlq`
-List dlq.
+`GET /v1/dlq` List dlq.
 
 Gate: `sentin8:cron:read`
 
@@ -27,12 +26,11 @@ Gate: `sentin8:cron:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of DLQ items | `DlqResponse`[] |
-| 403 | Missing cron:read scope | - |
+| 403 | Missing `cron:read` scope | - |
 
 ### `GET /v1/dlq/{id}`
 
-`GET /v1/dlq/{id}` - DLQ item detail.
-Fetch dlq.
+`GET /v1/dlq/&#123;id&#125;` - DLQ item detail. Fetch dlq.
 
 Gate: `sentin8:cron:read`
 
@@ -51,9 +49,7 @@ Gate: `sentin8:cron:read`
 
 ### `POST /v1/dlq/{id}/republish`
 
-`POST /v1/dlq/{id}/republish` - republish a DLQ item as a new pending
-job and delete the DLQ row.
-Handle republish dlq.
+`POST /v1/dlq/&#123;id&#125;/republish` - republish a DLQ item as a new pending job and delete the DLQ row. Handle republish dlq.
 
 Gate: `sentin8:cron:write`
 
@@ -72,8 +68,7 @@ Gate: `sentin8:cron:write`
 
 ### `GET /v1/jobs`
 
-`GET /v1/jobs`
-List jobs.
+`GET /v1/jobs` List jobs.
 
 Gate: `sentin8:cron:read`
 
@@ -88,12 +83,11 @@ Gate: `sentin8:cron:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of jobs | `JobResponse`[] |
-| 403 | Missing cron:read scope | - |
+| 403 | Missing `cron:read` scope | - |
 
 ### `GET /v1/jobs/{id}`
 
-`GET /v1/jobs/{id}` - job detail.
-Fetch job.
+`GET /v1/jobs/&#123;id&#125;` - job detail. Fetch job.
 
 Gate: `sentin8:cron:read`
 
@@ -108,15 +102,12 @@ Gate: `sentin8:cron:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Job detail | `JobResponse` |
-| 403 | Missing cron:read scope | - |
+| 403 | Missing `cron:read` scope | - |
 | 404 | Job not found | - |
 
 ### `POST /v1/jobs/{id}/retry`
 
-`POST /v1/jobs/{id}/retry` - reset a failed job to `pending` with
-`next_attempt_at = now`; the ticker drains it on the next tick
-.
-Retry job.
+`POST /v1/jobs/&#123;id&#125;/retry` - reset a failed job to `pending` with `next_attempt_at = now`; the ticker drains it on the next tick . Retry job.
 
 Gate: `sentin8:cron:write`
 
@@ -135,8 +126,7 @@ Gate: `sentin8:cron:write`
 
 ### `GET /v1/schedules`
 
-`GET /v1/schedules`
-List schedules.
+`GET /v1/schedules` List schedules.
 
 Gate: `sentin8:cron:read`
 
@@ -145,12 +135,11 @@ Gate: `sentin8:cron:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of schedules | `ScheduleResponse`[] |
-| 403 | Missing cron:read scope | - |
+| 403 | Missing `cron:read` scope | - |
 
 ### `POST /v1/schedules`
 
-`POST /v1/schedules`
-Create schedule.
+`POST /v1/schedules` Create schedule.
 
 Gate: `sentin8:cron:write`
 
@@ -172,12 +161,11 @@ Gate: `sentin8:cron:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Schedule created | `ScheduleResponse` |
-| 403 | Missing cron:write scope | - |
+| 403 | Missing `cron:write` scope | - |
 
 ### `GET /v1/schedules/{id}`
 
-`GET /v1/schedules/{id}` - schedule detail.
-Fetch schedule.
+`GET /v1/schedules/&#123;id&#125;` - schedule detail. Fetch schedule.
 
 Gate: `sentin8:cron:read`
 
@@ -192,13 +180,12 @@ Gate: `sentin8:cron:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Schedule detail | `ScheduleResponse` |
-| 403 | Missing cron:read scope | - |
+| 403 | Missing `cron:read` scope | - |
 | 404 | Schedule not found | - |
 
 ### `DELETE /v1/schedules/{id}`
 
-`DELETE /v1/schedules/{id}`
-Delete schedule.
+`DELETE /v1/schedules/&#123;id&#125;` Delete schedule.
 
 Gate: `sentin8:cron:write`
 
@@ -213,13 +200,12 @@ Gate: `sentin8:cron:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Schedule deleted | - |
-| 403 | Missing cron:write scope | - |
+| 403 | Missing `cron:write` scope | - |
 | 404 | Schedule not found | - |
 
 ### `POST /v1/schedules/{id}/pause`
 
-`POST /v1/schedules/{id}/pause`
-Pause schedule.
+`POST /v1/schedules/&#123;id&#125;/pause` Pause schedule.
 
 Gate: `sentin8:cron:write`
 
@@ -238,8 +224,7 @@ Gate: `sentin8:cron:write`
 
 ### `POST /v1/schedules/{id}/resume`
 
-`POST /v1/schedules/{id}/resume`
-Resume schedule.
+`POST /v1/schedules/&#123;id&#125;/resume` Resume schedule.
 
 Gate: `sentin8:cron:write`
 

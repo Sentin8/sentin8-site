@@ -17,7 +17,7 @@ Sentin8 Sentin8:AI - platform AI capability layer.
 
 ### `GET /v1/admin/ui/{page}`
 
-`GET /v1/admin/ui/{page}` - RFW definition for the page.
+`GET /v1/admin/ui/&#123;page&#125;` - RFW definition for the page.
 
 **Parameters**:
 
@@ -33,8 +33,7 @@ Sentin8 Sentin8:AI - platform AI capability layer.
 
 ### `GET /v1/admin/{resource}`
 
-`GET /v1/admin/{resource}` - RFW data endpoint (env-scoped, RLS on the
-same connection; `target_env_id` REQUIRED - Fix A).
+`GET /v1/admin/&#123;resource&#125;` - RFW data endpoint (env-scoped, RLS on the same connection; `target_env_id` REQUIRED - Fix A).
 
 **Parameters**:
 
@@ -51,10 +50,7 @@ same connection; `target_env_id` REQUIRED - Fix A).
 
 ### `POST /v1/agent/execute`
 
-`POST /v1/agent/execute` - controlled agent execution. The model
-emits intent only; this endpoint maps an allowed intent to a
-Sentin8:Flow workflow whose domain steps proxy-back to the owning
-service. `requires_confirmation` intents pause in a ManualDecisionStep.
+`POST /v1/agent/execute` - controlled agent execution. The model emits intent only; this endpoint maps an allowed intent to a Sentin8:Flow workflow whose domain steps proxy-back to the owning service. `requires_confirmation` intents pause in a ManualDecisionStep.
 
 Gate: `sentin8:ai:chat:write`
 
@@ -85,7 +81,7 @@ Gate: `sentin8:ai:chat:write`
 
 ### `PUT /v1/budgets/{feature}`
 
-`PUT /v1/budgets/{feature}` - create/update a token budget.
+`PUT /v1/budgets/&#123;feature&#125;` - create/update a token budget.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -112,7 +108,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `DELETE /v1/budgets/{feature}`
 
-`DELETE /v1/budgets/{feature}` - disable/remove a budget.
+`DELETE /v1/budgets/&#123;feature&#125;` - disable/remove a budget.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -131,8 +127,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `POST /v1/chat`
 
-`POST /v1/chat` - chat inference through the prompt registry + provider
-router. Idempotency-Key honored; trace emitted.
+`POST /v1/chat` - chat inference through the prompt registry + provider router. Idempotency-Key honored; trace emitted.
 
 Gate: `sentin8:ai:chat:write`
 
@@ -166,11 +161,7 @@ Gate: `sentin8:ai:chat:write`
 
 ### `POST /v1/chat/stream`
 
- `POST /v1/chat/stream` - streaming chat over a chunked HTTP body
-. NOT the SSE subscription tier - synchronous inference streams
- the response body directly (transport-tier rule).
- Content is emitted as newline-delimited JSON chunks; the final chunk
- carries the token accounting.
+ `POST /v1/chat/stream` - streaming chat over a chunked HTTP body . NOT the SSE subscription tier - synchronous inference streams  the response body directly (transport-tier rule).  Content is emitted as newline-delimited JSON chunks; the final chunk  carries the token accounting.
 
 Gate: `sentin8:ai:chat:write`
 
@@ -197,8 +188,7 @@ Gate: `sentin8:ai:chat:write`
 
 ### `POST /v1/completions`
 
-`POST /v1/completions` - completion inference. Same pipeline as
-chat; the action scope differs.
+`POST /v1/completions` - completion inference. Same pipeline as chat; the action scope differs.
 
 Gate: `sentin8:ai:completion:write`
 
@@ -232,9 +222,7 @@ Gate: `sentin8:ai:completion:write`
 
 ### `GET /v1/costs`
 
-`GET /v1/costs` - per-feature/model spend rollup for the env,
-reading the AI's own trace aggregates (Stat cross-service rollup lands
-with the Dash integration).
+`GET /v1/costs` - per-feature/model spend rollup for the env, reading the AI's own trace aggregates (Stat cross-service rollup lands with the Dash integration).
 
 Gate: `sentin8:ai:prompt:read`
 
@@ -270,9 +258,7 @@ Gate: `sentin8:ai:prompt:read`
 
 ### `POST /v1/dlq/{id}/replay`
 
-`POST /v1/dlq/{id}/replay` - re-enqueue a dead-lettered job (cron
-republish pattern: re-insert the pending job, delete the DLQ row, emit
-the republished event inbox-first).
+`POST /v1/dlq/&#123;id&#125;/replay` - re-enqueue a dead-lettered job (cron republish pattern: re-insert the pending job, delete the DLQ row, emit the republished event inbox-first).
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -291,10 +277,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `POST /v1/documents/ingest`
 
-`POST /v1/documents/ingest` - chunk → embed → store (/).
-Chunk text lives in Sentin8:Storage (object per chunk under the document
-key), vectors + metadata in `ai.embeddings` with source refs.
-RLS env match + the caller's data_scope on chunk metadata.
+`POST /v1/documents/ingest` - chunk → embed → store (/). Chunk text lives in Sentin8:Storage (object per chunk under the document key), vectors + metadata in `ai.embeddings` with source refs. RLS env match + the caller's data_scope on chunk metadata.
 
 Gate: `sentin8:ai:embedding:write`
 
@@ -353,9 +336,7 @@ Gate: `sentin8:ai:embedding:write`
 
 ### `POST /v1/evaluations/run`
 
- `POST /v1/evaluations/run` - score a prompt version against a golden set
-. Each case runs a synchronous inference and checks the
- expectation; the aggregate score lands in `ai.evaluations`.
+ `POST /v1/evaluations/run` - score a prompt version against a golden set . Each case runs a synchronous inference and checks the  expectation; the aggregate score lands in `ai.evaluations`.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -401,8 +382,7 @@ Gate: `sentin8:ai:prompt:read`
 
 ### `PUT /v1/filters/{name}`
 
- `PUT /v1/filters/{name}` - create/update an env safety filter rule
-. The baseline prompt-injection rule is code and unaffected.
+ `PUT /v1/filters/&#123;name&#125;` - create/update an env safety filter rule . The baseline prompt-injection rule is code and unaffected.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -430,8 +410,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `DELETE /v1/filters/{name}`
 
-`DELETE /v1/filters/{name}` - remove an env filter rule. The baseline
-injection rule is code and cannot be removed.
+`DELETE /v1/filters/&#123;name&#125;` - remove an env filter rule. The baseline injection rule is code and cannot be removed.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -460,11 +439,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `POST /v1/internal/schedules/run`
 
- `POST /v1/internal/schedules/run` - Sentin8:Cron proxy-back target
-. Runs stale-index maintenance: re-enqueue embedding jobs for
- sources whose embedding is older than the freshness window. Authenticated
- by the cron ticker's M2M token (verified the same way as user tokens -
- `token_tp: m2m` principals evaluate like any other under Shield).
+ `POST /v1/internal/schedules/run` - Sentin8:Cron proxy-back target . Runs stale-index maintenance: re-enqueue embedding jobs for  sources whose embedding is older than the freshness window. Authenticated  by the cron ticker's M2M token (verified the same way as user tokens -  `token_tp: m2m` principals evaluate like any other under Shield).
 
 **Request body** (`application/json`):
 
@@ -477,10 +452,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `POST /v1/internal/traces/archive`
 
-`POST /v1/internal/traces/archive` - age out hot traces older than the
-per-env retention window to Sentin8:Storage (Stat pattern). Called by the
-cron proxy-back (`/v1/internal/schedules/run` maintenance) - never by
-clients directly.
+`POST /v1/internal/traces/archive` - age out hot traces older than the per-env retention window to Sentin8:Storage (Stat pattern). Called by the cron proxy-back (`/v1/internal/schedules/run` maintenance) - never by clients directly.
 
 **Request body** (`application/json`):
 
@@ -542,8 +514,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `DELETE /v1/prompts/{name}/{version}`
 
-`DELETE /v1/prompts/{name}/{version}` - retire a version (never hard-delete
-platform history; tenant rows may be removed).
+`DELETE /v1/prompts/&#123;name&#125;/&#123;version&#125;` - retire a version (never hard-delete platform history; tenant rows may be removed).
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -581,7 +552,7 @@ Gate: `sentin8:ai:prompt:read`
 
 ### `PUT /v1/providers/{provider}`
 
-`PUT /v1/providers/{provider}` - upsert a provider config (secret ref only).
+`PUT /v1/providers/&#123;provider&#125;` - upsert a provider config (secret ref only).
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -609,7 +580,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `DELETE /v1/providers/{provider}`
 
-`DELETE /v1/providers/{provider}` - remove a provider config.
+`DELETE /v1/providers/&#123;provider&#125;` - remove a provider config.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -646,8 +617,7 @@ Gate: `sentin8:ai:embedding:write`
 
 ### `PUT /v1/registry/{model}`
 
-`PUT /v1/embedding-registry/{model}` - pin a model→dimension mapping for
-the env. Mismatched embeddings are rejected with 422.
+`PUT /v1/embedding-registry/&#123;model&#125;` - pin a model→dimension mapping for the env. Mismatched embeddings are rejected with 422.
 
 Gate: `sentin8:ai:prompt:write`
 
@@ -673,10 +643,7 @@ Gate: `sentin8:ai:prompt:write`
 
 ### `POST /v1/retrieval`
 
-`POST /v1/retrieval` - hybrid retrieval: vector similarity (pgvector) +
-keyword (tsvector, when pgvector is absent) + metadata filters +
-permission filter from the caller's `data_scope`. Standard RLS env_id
-match is the backstop; the data_scope filter is defense-in-depth.
+`POST /v1/retrieval` - hybrid retrieval: vector similarity (pgvector) + keyword (tsvector, when pgvector is absent) + metadata filters + permission filter from the caller's `data_scope`. Standard RLS env_id match is the backstop; the data_scope filter is defense-in-depth.
 
 Gate: `sentin8:ai:retrieval:read`
 

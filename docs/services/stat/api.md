@@ -26,7 +26,7 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of accounts | `Account`[] |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `POST /v1/admin/accounts`
 
@@ -45,7 +45,7 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Account created | `Account` |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `GET /v1/admin/properties`
 
@@ -58,7 +58,7 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | List of properties | `Property`[] |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `POST /v1/admin/properties`
 
@@ -79,11 +79,11 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Property created | `Property` |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `GET /v1/admin/properties/{id}`
 
-`GET /v1/admin/properties/{id}`
+`GET /v1/admin/properties/&#123;id&#125;`
 
 Gate: `sentin8:stat:admin`
 
@@ -98,12 +98,12 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Property | `Property` |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Property not found | - |
 
 ### `PUT /v1/admin/properties/{id}`
 
-`PUT /v1/admin/properties/{id}`
+`PUT /v1/admin/properties/&#123;id&#125;`
 
 Gate: `sentin8:stat:admin`
 
@@ -126,12 +126,12 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Property updated | `Property` |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Property not found | - |
 
 ### `DELETE /v1/admin/properties/{id}`
 
-`DELETE /v1/admin/properties/{id}`
+`DELETE /v1/admin/properties/&#123;id&#125;`
 
 Gate: `sentin8:stat:admin`
 
@@ -146,12 +146,12 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Property deleted | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Property not found | - |
 
 ### `GET /v1/admin/properties/{id}/alert-rules`
 
-`GET /v1/admin/properties/{id}/alert-rules`
+`GET /v1/admin/properties/&#123;id&#125;/alert-rules`
 
 Gate: `sentin8:stat:admin`
 
@@ -167,16 +167,11 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Rules for the property | `AlertRule`[] |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `POST /v1/admin/properties/{id}/alert-rules`
 
-`POST /v1/admin/properties/{id}/alert-rules`
-Create a per-property custom alert rule (stat README §7). The request
-is validated against the known rule types, comparators, and metric
-vocabulary (400 on unknown); the property must exist in the target
-env (404). The INSERT runs in one explicit transaction with the RLS
-context set on the same connection (stat DESIGN §5).
+`POST /v1/admin/properties/&#123;id&#125;/alert-rules` Create a per-property custom alert rule (stat README §7). The request is validated against the known rule types, comparators, and metric vocabulary (400 on unknown); the property must exist in the target env (404). The INSERT runs in one explicit transaction with the RLS context set on the same connection (stat DESIGN §5).
 
 Gate: `sentin8:stat:admin`
 
@@ -206,12 +201,12 @@ Gate: `sentin8:stat:admin`
 | --- | --- | --- |
 | 200 | Rule created | `AlertRule` |
 | 400 | Unknown rule_type, comparator, or metric_name; invalid threshold/window | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Property not found in env | - |
 
 ### `DELETE /v1/admin/properties/{id}/alert-rules/{rule_id}`
 
-`DELETE /v1/admin/properties/{id}/alert-rules/{rule_id}`
+`DELETE /v1/admin/properties/&#123;id&#125;/alert-rules/&#123;rule_id&#125;`
 
 Gate: `sentin8:stat:admin`
 
@@ -228,20 +223,12 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Rule deleted | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Rule not found | - |
 
 ### `POST /v1/admin/properties/{id}/reaggregate`
 
-`POST /v1/admin/properties/{id}/reaggregate`
-Delete and rebuild the property's day-granularity `metrics` rollups over
-a raw-events window (stat README §7). v1 reaggregates from `stat.events`
-ONLY - a window reaching past the property's retention horizon is a 400
-(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6
-the archive spill is the source-of-truth boundary and the Storage-archive
-replay path is out of scope for this endpoint). The recomputation shares the
-background rollup's SQL via
-`crate::worker::rollups::reaggregate_property`.
+`POST /v1/admin/properties/&#123;id&#125;/reaggregate` Delete and rebuild the property's day-granularity `metrics` rollups over a raw-events window (stat README §7). v1 reaggregates from `stat.events` ONLY - a window reaching past the property's retention horizon is a 400 (the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6 the archive spill is the source-of-truth boundary and the Storage-archive replay path is out of scope for this endpoint). The recomputation shares the background rollup's SQL via `crate::worker::rollups::reaggregate_property`.
 
 Gate: `sentin8:stat:admin`
 
@@ -265,12 +252,12 @@ Gate: `sentin8:stat:admin`
 | --- | --- | --- |
 | 200 | Rollups rebuilt over the window | - |
 | 400 | Invalid window, window beyond the retention horizon, or property not in env | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 | 404 | Property not found | - |
 
 ### `PUT /v1/admin/properties/{id}/retention`
 
-`PUT /v1/admin/properties/{id}/retention`
+`PUT /v1/admin/properties/&#123;id&#125;/retention`
 
 Gate: `sentin8:stat:admin`
 
@@ -291,11 +278,11 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Retention set | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `GET /v1/admin/properties/{id}/settings`
 
-`GET /v1/admin/properties/{id}/settings`
+`GET /v1/admin/properties/&#123;id&#125;/settings`
 
 Gate: `sentin8:stat:admin`
 
@@ -310,11 +297,11 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Property settings | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 
 ### `PUT /v1/admin/properties/{id}/settings`
 
-`PUT /v1/admin/properties/{id}/settings`
+`PUT /v1/admin/properties/&#123;id&#125;/settings`
 
 Gate: `sentin8:stat:admin`
 
@@ -338,5 +325,5 @@ Gate: `sentin8:stat:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Settings updated | - |
-| 403 | Missing stat:admin scope | - |
+| 403 | Missing `stat:admin` scope | - |
 

@@ -17,8 +17,7 @@ Sentin8 Sentin8:Secrets - tenant secret management service.
 
 ### `GET /v1/health`
 
-`GET /v1/health` - custom payload (shell supplies the standard one too).
-Handle health handler.
+`GET /v1/health` - custom payload (shell supplies the standard one too). Handle health handler.
 
 **Responses**:
 
@@ -28,8 +27,7 @@ Handle health handler.
 
 ### `GET /v1/secrets`
 
-`GET /v1/secrets` - list metadata (names, versions, status - NEVER values).
-List secrets.
+`GET /v1/secrets` - list metadata (names, versions, status - NEVER values). List secrets.
 
 Gate: `sentin8:secrets:secret:read`
 
@@ -48,11 +46,7 @@ Gate: `sentin8:secrets:secret:read`
 
 ### `POST /v1/secrets/maintenance/prune`
 
-`POST /v1/secrets/maintenance/prune` - delete versions older than the
-current one past the retention window (default 7d; `SENTIN8_SECRETS_PRUNE_DAYS`).
-Idempotent; safe to call from Sentin8:Cron (proxy-back). The reveal-audit
-table is NEVER pruned (security-relevant history).
-Handle maintenance prune.
+`POST /v1/secrets/maintenance/prune` - delete versions older than the current one past the retention window (default 7d; `SENTIN8_SECRETS_PRUNE_DAYS`). Idempotent; safe to call from Sentin8:Cron (proxy-back). The reveal-audit table is NEVER pruned (security-relevant history). Handle maintenance prune.
 
 Gate: `sentin8:secrets:secret:admin`
 
@@ -107,8 +101,7 @@ Gate: `sentin8:secrets:secret:read`
 
 ### `GET /v1/secrets/{name}`
 
-`GET /v1/secrets/{name}` - metadata for one secret (no value).
-Fetch secret.
+`GET /v1/secrets/&#123;name&#125;` - metadata for one secret (no value). Fetch secret.
 
 Gate: `sentin8:secrets:secret:read`
 
@@ -137,7 +130,7 @@ Gate: `sentin8:secrets:secret:write`
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | string | no | The description. |
-| `expires_at` | string,null | no | Optional expiry - a Cron schedule emits `sentin8:secrets:secret:expiring` T-14d before it (secrets README §7). |
+| `expires_at` | string,null | no | Optional expiry - a Cron schedule emits ``sentin8:secrets:secret:expiring`` T-14d before it (secrets README §7). |
 | `value` | string | yes | Plaintext secret value (encrypted server-side, never stored as sent). The value. |
 
 **Parameters**:
@@ -156,9 +149,7 @@ Gate: `sentin8:secrets:secret:write`
 
 ### `DELETE /v1/secrets/{name}`
 
-`DELETE /v1/secrets/{name}` - soft-disable (status → disabled). Hard
-delete is not exposed (values are purge-able via version prune only).
-Delete secret.
+`DELETE /v1/secrets/&#123;name&#125;` - soft-disable (status → disabled). Hard delete is not exposed (values are purge-able via version prune only). Delete secret.
 
 Gate: `sentin8:secrets:secret:admin`
 
@@ -178,8 +169,7 @@ Gate: `sentin8:secrets:secret:admin`
 
 ### `GET /v1/secrets/{name}/history`
 
-`GET /v1/secrets/{name}/history` - version metadata list (no values).
-Handle secret history.
+`GET /v1/secrets/&#123;name&#125;/history` - version metadata list (no values). Handle secret history.
 
 Gate: `sentin8:secrets:secret:read`
 
@@ -199,8 +189,7 @@ Gate: `sentin8:secrets:secret:read`
 
 ### `GET /v1/secrets/{name}/reads`
 
-`GET /v1/secrets/{name}/reads` - reveal audit trail (admin).
-Handle secret reads.
+`GET /v1/secrets/&#123;name&#125;/reads` - reveal audit trail (admin). Handle secret reads.
 
 Gate: `sentin8:secrets:secret:admin`
 
@@ -220,9 +209,7 @@ Gate: `sentin8:secrets:secret:admin`
 
 ### `GET /v1/secrets/{name}/reveal`
 
-`GET /v1/secrets/{name}/reveal` - return the value. Admin scope; every
-call writes a `reads` audit row.
-Handle reveal secret.
+`GET /v1/secrets/&#123;name&#125;/reveal` - return the value. Admin scope; every call writes a `reads` audit row. Handle reveal secret.
 
 Gate: `sentin8:secrets:secret:admin`
 
@@ -242,9 +229,7 @@ Gate: `sentin8:secrets:secret:admin`
 
 ### `POST /v1/secrets/{name}/rotate`
 
-`POST /v1/secrets/{name}/rotate` - new version from body value; the old
-version is retained until the prune window.
-Rotate secret.
+`POST /v1/secrets/&#123;name&#125;/rotate` - new version from body value; the old version is retained until the prune window. Rotate secret.
 
 Gate: `sentin8:secrets:secret:write`
 
@@ -253,7 +238,7 @@ Gate: `sentin8:secrets:secret:write`
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | string | no | The description. |
-| `expires_at` | string,null | no | Optional expiry - a Cron schedule emits `sentin8:secrets:secret:expiring` T-14d before it (secrets README §7). |
+| `expires_at` | string,null | no | Optional expiry - a Cron schedule emits ``sentin8:secrets:secret:expiring`` T-14d before it (secrets README §7). |
 | `value` | string | yes | Plaintext secret value (encrypted server-side, never stored as sent). The value. |
 
 **Parameters**:

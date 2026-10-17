@@ -17,8 +17,7 @@ Sentin8 Sentin8:Func - standalone WebAssembly execution service.
 
 ### `GET /v1/modules`
 
-`GET /v1/modules`
-List it.
+`GET /v1/modules` List it.
 
 Gate: `sentin8:func:read`
 
@@ -38,8 +37,7 @@ Gate: `sentin8:func:read`
 
 ### `POST /v1/modules`
 
-`POST /v1/modules` - upload a new WASM module.
-Handle upload.
+`POST /v1/modules` - upload a new WASM module. Handle upload.
 
 Gate: `sentin8:func:write`
 
@@ -54,7 +52,7 @@ Gate: `sentin8:func:write`
 | `product_id` | string | yes | product identifier. |
 | `version_label` | string | yes | The version label. |
 | `wasm_binary` | string | yes | base64-encoded WASM binary. The wasm binary. |
-| `wasm_hash` | string,null | no | Optional client-provided hash (`sha256:hex…`); verified server-side. The wasm hash. |
+| `wasm_hash` | string,null | no | Optional client-provided hash (``sha256:hex`…`); verified server-side. The wasm hash. |
 | `wasm_language` | string | yes | The wasm language. |
 
 **Responses**:
@@ -63,13 +61,12 @@ Gate: `sentin8:func:write`
 | --- | --- | --- |
 | 200 | Module uploaded | `ModuleRecord` |
 | 400 | Invalid binary, hash mismatch, unknown hook, or bad target_env_id | - |
-| 403 | Missing func:write scope | - |
+| 403 | Missing `func:write` scope | - |
 | 409 | Module version already exists | - |
 
 ### `GET /v1/modules/{id}`
 
-`GET /v1/modules/{id}`
-Fetch it.
+`GET /v1/modules/&#123;id&#125;` Fetch it.
 
 Gate: `sentin8:func:read`
 
@@ -88,8 +85,7 @@ Gate: `sentin8:func:read`
 
 ### `DELETE /v1/modules/{id}`
 
-`DELETE /v1/modules/{id}`
-Delete it.
+`DELETE /v1/modules/&#123;id&#125;` Delete it.
 
 Gate: `sentin8:func:write`
 
@@ -104,13 +100,12 @@ Gate: `sentin8:func:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Module deleted | - |
-| 403 | Missing func:write scope | - |
+| 403 | Missing `func:write` scope | - |
 | 404 | Module not found or is active | - |
 
 ### `POST /v1/modules/{id}/activate`
 
-`POST /v1/modules/{id}/activate`
-Handle activate.
+`POST /v1/modules/&#123;id&#125;/activate` Handle activate.
 
 Gate: `sentin8:func:write`
 
@@ -125,13 +120,12 @@ Gate: `sentin8:func:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 204 | Module activated | - |
-| 403 | Missing func:write scope | - |
+| 403 | Missing `func:write` scope | - |
 | 404 | Module not found | - |
 
 ### `POST /v1/modules/{id}/execute`
 
-`POST /v1/modules/{id}/execute`
-Execute it.
+`POST /v1/modules/&#123;id&#125;/execute` Execute it.
 
 Gate: `sentin8:func:execute`
 
@@ -156,15 +150,14 @@ Gate: `sentin8:func:execute`
 | --- | --- | --- |
 | 200 | Execution result | `ExecuteResponse` |
 | 400 | Invalid module or hook | - |
-| 403 | Missing func:execute scope | - |
+| 403 | Missing `func:execute` scope | - |
 | 404 | Module not found | - |
 | 500 | Execution failure (fuel/timeout/trap) | - |
 | 502 | Proxy-back or Storage failure | - |
 
 ### `POST /v1/modules/{id}/validate`
 
-`POST /v1/modules/{id}/validate` - re-validate the stored binary.
-Validate it.
+`POST /v1/modules/&#123;id&#125;/validate` - re-validate the stored binary. Validate it.
 
 Gate: `sentin8:func:read`
 
@@ -184,8 +177,7 @@ Gate: `sentin8:func:read`
 
 ### `GET /v1/modules/{id}/wasm`
 
-`GET /v1/modules/{id}/wasm` - download the raw WASM binary from Storage.
-Fetch wasm.
+`GET /v1/modules/&#123;id&#125;/wasm` - download the raw WASM binary from Storage. Fetch wasm.
 
 Gate: `sentin8:func:write`
 
@@ -200,6 +192,6 @@ Gate: `sentin8:func:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | WASM binary | integer[] |
-| 403 | Missing func:write scope | - |
+| 403 | Missing `func:write` scope | - |
 | 404 | Module or binary not found | - |
 

@@ -17,8 +17,7 @@ Sentin8 Sentin8:DB - structured persistence over PostgreSQL with RLS.
 
 ### `GET /v1/audit`
 
-`GET /v1/audit` - DDL audit log (Stories).
-Handle audit log.
+`GET /v1/audit` - DDL audit log (Stories). Handle audit log.
 
 Gate: `sentin8:db:audit:read`
 
@@ -33,7 +32,7 @@ Gate: `sentin8:db:audit:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | DDL audit log | - |
-| 403 | Missing db:audit:read scope | - |
+| 403 | Missing `db:audit:read` scope | - |
 
 ### `POST /v1/data/delete`
 
@@ -53,7 +52,7 @@ Gate: `sentin8:db:data:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Rows deleted | - |
-| 403 | Missing db:data:write scope | - |
+| 403 | Missing `db:data:write` scope | - |
 
 ### `POST /v1/data/insert`
 
@@ -73,13 +72,11 @@ Gate: `sentin8:db:data:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Rows inserted | - |
-| 403 | Missing db:data:write scope | - |
+| 403 | Missing `db:data:write` scope | - |
 
 ### `POST /v1/data/query`
 
-`POST /v1/data/query` - query rows with filters, sorts, pagination.
-Soft-deleted rows (`deleted_at IS NOT NULL`) are excluded.
-Handle query.
+`POST /v1/data/query` - query rows with filters, sorts, pagination. Soft-deleted rows (`deleted_at IS NOT NULL`) are excluded. Handle query.
 
 Gate: `sentin8:db:data:read`
 
@@ -100,7 +97,7 @@ Gate: `sentin8:db:data:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Query results | `QueryResponse` |
-| 403 | Missing db:data:read scope | - |
+| 403 | Missing `db:data:read` scope | - |
 
 ### `POST /v1/data/update`
 
@@ -122,12 +119,11 @@ Gate: `sentin8:db:data:write`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Rows updated | - |
-| 403 | Missing db:data:write scope | - |
+| 403 | Missing `db:data:write` scope | - |
 
 ### `GET /v1/posture`
 
-`GET /v1/posture` - RLS drift detection (Stories).
-Handle posture.
+`GET /v1/posture` - RLS drift detection (Stories). Handle posture.
 
 Gate: `sentin8:db:posture:read`
 
@@ -142,12 +138,11 @@ Gate: `sentin8:db:posture:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | RLS posture report | - |
-| 403 | Missing db:table:admin or db:posture:read scope | - |
+| 403 | Missing `db:table:admin` or `db:posture:read` scope | - |
 
 ### `GET /v1/tables`
 
-`GET /v1/tables` - list active tables for the resolved env.
-List tables.
+`GET /v1/tables` - list active tables for the resolved env. List tables.
 
 Gate: `sentin8:db:data:read`
 
@@ -182,13 +177,11 @@ Gate: `sentin8:db:table:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Table created | `TableResponse` |
-| 403 | Missing db:table:admin scope | - |
+| 403 | Missing `db:table:admin` scope | - |
 
 ### `GET /v1/tables/{id}`
 
-`GET /v1/tables/{id}` - get table metadata. Env-scoped + authenticated
-; a foreign-env id 404s.
-Fetch table.
+`GET /v1/tables/&#123;id&#125;` - get table metadata. Env-scoped + authenticated ; a foreign-env id 404s. Fetch table.
 
 Gate: `sentin8:db:data:read`
 
@@ -204,7 +197,7 @@ Gate: `sentin8:db:data:read`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Table metadata | `TableResponse` |
-| 403 | Missing db:data:read scope | - |
+| 403 | Missing `db:data:read` scope | - |
 | 404 | Table not found | - |
 
 ### `POST /v1/tables/{id}/alter`
@@ -231,14 +224,12 @@ Gate: `sentin8:db:table:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Table altered | - |
-| 403 | Missing db:table:admin scope | - |
+| 403 | Missing `db:table:admin` scope | - |
 | 404 | Table not found | - |
 
 ### `POST /v1/tables/{id}/archive`
 
-`POST /v1/tables/{id}/archive` - mark a table as archived (Stories).
-Env-scoped; registry update, audit row, and event commit together.
-Archive table.
+`POST /v1/tables/&#123;id&#125;/archive` - mark a table as archived (Stories). Env-scoped; registry update, audit row, and event commit together. Archive table.
 
 Gate: `sentin8:db:table:admin`
 
@@ -254,15 +245,12 @@ Gate: `sentin8:db:table:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Table archived | - |
-| 403 | Missing db:table:admin scope | - |
+| 403 | Missing `db:table:admin` scope | - |
 | 404 | Table not found or not active | - |
 
 ### `POST /v1/tables/{id}/drop`
 
-`POST /v1/tables/{id}/drop` - pending-delete then drop (Stories).
-Env-scoped; registry status, physical DROP, audit row, and event commit
-together - a failed DROP rolls the registry status back.
-Handle drop table.
+`POST /v1/tables/&#123;id&#125;/drop` - pending-delete then drop (Stories). Env-scoped; registry status, physical DROP, audit row, and event commit together - a failed DROP rolls the registry status back. Handle drop table.
 
 Gate: `sentin8:db:table:admin`
 
@@ -278,6 +266,6 @@ Gate: `sentin8:db:table:admin`
 | Status | Description | Body |
 | --- | --- | --- |
 | 200 | Table dropped | - |
-| 403 | Missing db:table:admin scope | - |
+| 403 | Missing `db:table:admin` scope | - |
 | 404 | Table not found or already dropped | - |
 
