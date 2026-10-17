@@ -1,4 +1,4 @@
-# DESIGN.md: Sentin8:Site - Detailed Design Document
+# Sentin8:Site - Detailed Design Document
 
 > Audience: maintainers modifying this site. Overview: `README.md`;
 > business view: `BUSINESS.md`. Program design of record:

@@ -1,4 +1,4 @@
-# BUSINESS.md: Sentin8:Site - Business Requirements & Functionality
+# Sentin8:Site - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating
 > what sentin8.dev **does for the business**. For architecture read
