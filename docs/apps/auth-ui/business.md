@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-auth-ui/edit/main/BUSINESS.md
 ---
-# BUSINESS.md: Sentin8 Auth Hosted UI (auth-ui) - Business Requirements & Functionality
+# Sentin8 Auth Hosted UI (auth-ui) - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what the
 > Sentin8:Auth hosted UI **does for the business**. For architecture read

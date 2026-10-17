@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-ai/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:AI - Detailed Design Document
+# Sentin8:AI - Detailed Design Document
 
 ## 1. Scope & Context
 

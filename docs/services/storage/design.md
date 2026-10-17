@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-storage/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Storage - Detailed Design Document
+# Sentin8:Storage - Detailed Design Document
 
 ## 1. Scope & Context
 

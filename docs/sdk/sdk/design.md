@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-sdk/edit/main/DESIGN.md
 ---
-# DESIGN.md: sentin8-sdk - Detailed Design Document
+# sentin8-sdk - Detailed Design Document
 
 > Audience: maintainers, reviewers, and architects modifying the shared
 > library workspace. For overview read `README.md`; for business

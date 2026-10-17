@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-cli/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:CLI - Detailed Design Document
+# Sentin8:CLI - Detailed Design Document
 
 > Wire-level construction of `sentin8-cli`. The overview lives in
 > `README.md`; the operator capability list in `BUSINESS.md`.

@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-captain/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Captain - Detailed Design Document
+# Sentin8:Captain - Detailed Design Document
 
 > **Status**: The supervisor/monitor/scaler/upgrade internals are documented
 > at the same depth in the upstream monorepo's

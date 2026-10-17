@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-cli/edit/main/BUSINESS.md
 ---
-# BUSINESS.md: Sentin8:CLI - Business Requirements & Functionality
+# Sentin8:CLI - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > Sentin8:CLI **does for the business**. For architecture read `README.md`;

@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-sdk/edit/main/BUSINESS.md
 ---
-# BUSINESS.md: sentin8-sdk - Business Requirements & Functionality
+# sentin8-sdk - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
 > the sentin8-sdk **does for the business**. For architecture read

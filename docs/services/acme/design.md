@@ -5,7 +5,7 @@ mdx:
   format: md
 custom_edit_url: https://github.com/Sentin8/sentin8-acme/edit/main/DESIGN.md
 ---
-# DESIGN.md: Sentin8:Acme - Detailed Design Document
+# Sentin8:Acme - Detailed Design Document
 
 ## 1. Scope & Context
 
