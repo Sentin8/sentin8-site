@@ -1,0 +1,477 @@
+[
+  {
+    "type": "category",
+    "label": "ai",
+    "link": {
+      "type": "doc",
+      "id": "api/ai/sentin-8-ai"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/ai/sentin-8-ai",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/ai/ai-admin-data"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/ai-admin-data"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/ai-admin-data",
+                "label": "`GET v1/admin/{resource}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/ai/policy-delete-attribute"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-list-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/ai/policy-test-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/ai/policy-test-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/ai/policy-test-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/ai/policy-delete-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/ai/policy-get-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/ai/policy-put-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-mode-disable",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-mode-enforce",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-mode-shadow",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-list-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/ai/policy-check-relation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-list-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/policy-put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-admin-ui",
+                "label": "`GET v1/admin/ui/{page}`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-agent-execute",
+            "label": "`POST v1/agent/execute`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/budgets/{feature}",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/budget-delete"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/budget-delete",
+                "label": "`POST v1/budgets/{feature}/delete`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-budget-delete",
+                "label": "`DELETE v1/budgets/{feature}`",
+                "className": "api-method delete"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-budget-upsert",
+                "label": "`PUT v1/budgets/{feature}`",
+                "className": "api-method put"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/chat",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/ai-chat-stream"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/ai-chat-stream",
+                "label": "`POST v1/chat/stream`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-chat",
+                "label": "`POST v1/chat`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-completion",
+            "label": "`POST v1/completions`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-cost-report",
+            "label": "`GET v1/costs`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/dlq",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/ai-dlq-replay"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/ai-dlq-replay",
+                "label": "`POST v1/dlq/{id}/replay`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-dlq-list",
+                "label": "`GET v1/dlq`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-document-ingest",
+            "label": "`POST v1/documents/ingest`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-embedding",
+            "label": "`POST v1/embeddings`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-evaluation-run",
+            "label": "`POST v1/evaluations/run`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/filters",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/filter-delete"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/filters/{name}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/ai/filter-delete"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/ai/filter-delete",
+                    "label": "`POST v1/filters/{name}/delete`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/ai-filter-delete",
+                    "label": "`DELETE v1/filters/{name}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/ai-filter-upsert",
+                    "label": "`PUT v1/filters/{name}`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-filter-list",
+                "label": "`GET v1/filters`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/internal",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/ai-internal-schedules-run"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/ai-internal-schedules-run",
+                "label": "`POST v1/internal/schedules/run`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-traces-archive",
+                "label": "`POST v1/internal/traces/archive`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/prompts",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/prompt-delete"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/prompt-delete",
+                "label": "`DELETE v1/prompts/{name}/{version}`",
+                "className": "api-method delete"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/prompt-list",
+                "label": "`GET v1/prompts`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/prompt-create",
+                "label": "`POST v1/prompts`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/providers",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/provider-delete"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/providers/{provider}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/ai/provider-delete"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/ai/provider-delete",
+                    "label": "`DELETE v1/providers/{provider}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/ai/provider-upsert",
+                    "label": "`PUT v1/providers/{provider}`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/provider-list",
+                "label": "`GET v1/providers`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/registry",
+            "link": {
+              "type": "doc",
+              "id": "api/ai/ai-registry-pin"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/ai/ai-registry-pin",
+                "label": "`PUT v1/registry/{model}`",
+                "className": "api-method put"
+              },
+              {
+                "type": "doc",
+                "id": "api/ai/ai-registry-list",
+                "label": "`GET v1/registry`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/ai-retrieval",
+            "label": "`POST v1/retrieval`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/ai/trace-list",
+            "label": "`GET v1/traces`",
+            "className": "api-method get"
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]

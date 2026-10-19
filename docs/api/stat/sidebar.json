@@ -1,0 +1,495 @@
+[
+  {
+    "type": "category",
+    "label": "stat",
+    "link": {
+      "type": "doc",
+      "id": "api/stat/sentin-8-stat"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/stat/sentin-8-stat",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/stat/get-admin-data"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/stat/get-admin-data"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/stat/get-admin-data",
+                "label": "`GET v1/admin/{resource}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/accounts",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/account-list"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/account-list",
+                    "label": "`GET v1/admin/accounts`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/account-create",
+                    "label": "`POST v1/admin/accounts`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/policy-delete-attribute"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-list-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/policy-test-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/stat/policy-test-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/stat/policy-test-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/policy-delete-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/policy-get-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/policy-put-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-mode-disable",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-mode-enforce",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-mode-shadow",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-list-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/properties",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/alert-rule-delete"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/properties/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/stat/alert-rule-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "category",
+                        "label": "v1/admin/properties/{id}/alert-rules",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/stat/alert-rule-delete"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/stat/alert-rule-delete",
+                            "label": "`DELETE v1/admin/properties/{id}/alert-rules/{rule_id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/stat/alert-rule-list",
+                            "label": "`GET v1/admin/properties/{id}/alert-rules`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/stat/alert-rule-create",
+                            "label": "`POST v1/admin/properties/{id}/alert-rules`",
+                            "className": "api-method post"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/property-reaggregate",
+                        "label": "`POST v1/admin/properties/{id}/reaggregate`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/retention-set",
+                        "label": "`PUT v1/admin/properties/{id}/retention`",
+                        "className": "api-method put"
+                      },
+                      {
+                        "type": "category",
+                        "label": "v1/admin/properties/{id}/settings",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/stat/setting-get"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/stat/setting-get",
+                            "label": "`GET v1/admin/properties/{id}/settings`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/stat/setting-update",
+                            "label": "`PUT v1/admin/properties/{id}/settings`",
+                            "className": "api-method put"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/property-delete",
+                        "label": "`DELETE v1/admin/properties/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/property-get",
+                        "label": "`GET v1/admin/properties/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/stat/property-update",
+                        "label": "`PUT v1/admin/properties/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/property-list",
+                    "label": "`GET v1/admin/properties`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/property-create",
+                    "label": "`POST v1/admin/properties`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/policy-check-relation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-list-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/policy-put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/get-admin-ui",
+                "label": "`GET v1/admin/ui/{page}`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/data",
+            "link": {
+              "type": "doc",
+              "id": "api/stat/get-funnel"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/data/funnels",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/get-funnel"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/get-funnel",
+                    "label": "`GET v1/data/funnels/{id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/create-funnel",
+                    "label": "`POST v1/data/funnels`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/metrics",
+                "label": "`GET v1/data/metrics`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/query",
+                "label": "`POST v1/data/query`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/realtime",
+                "label": "`GET v1/data/realtime`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/data/reports",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/run-report"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/run-report",
+                    "label": "`GET v1/data/reports/{report_id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/list-reports",
+                    "label": "`GET v1/data/reports`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/retention",
+                "label": "`GET v1/data/retention`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/sessions",
+                "label": "`GET v1/data/sessions`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/traffic",
+                "label": "`GET v1/data/traffic`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/stat/health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/m",
+            "link": {
+              "type": "doc",
+              "id": "api/stat/batch"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/stat/batch",
+                "label": "`POST v1/m/batch`",
+                "className": "api-method post"
+              },
+              {
+                "type": "category",
+                "label": "v1/m/collect",
+                "link": {
+                  "type": "doc",
+                  "id": "api/stat/pixel"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/stat/pixel",
+                    "label": "`GET v1/m/collect`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/stat/collect",
+                    "label": "`POST v1/m/collect`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/conversion",
+                "label": "`POST v1/m/conversion`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/event",
+                "label": "`POST v1/m/event`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/metric",
+                "label": "`POST v1/m/metric`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/stat/pageview",
+                "label": "`POST v1/m/pageview`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/stat/readiness",
+            "label": "`GET v1/readiness`",
+            "className": "api-method get"
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]

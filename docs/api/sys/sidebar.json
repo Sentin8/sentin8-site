@@ -1,0 +1,627 @@
+[
+  {
+    "type": "category",
+    "label": "sys",
+    "link": {
+      "type": "doc",
+      "id": "api/sys/sentin-8-sys"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/sys/sentin-8-sys",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/sys/policy-delete-attribute"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/policy-delete-attribute"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/policy-delete-attribute"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-list-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/policy-test-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/sys/policy-test-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/sys/policy-test-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/policy-delete-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/policy-get-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/policy-put-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-mode-disable",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-mode-enforce",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-mode-shadow",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-list-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/policy-check-relation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-list-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/policy-put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/app-instance",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/get-instance-auth-mode"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/sys/get-instance-auth-mode",
+                "label": "`GET v1/app-instance/auth-mode`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/get-instance-scopes",
+                "label": "`GET v1/app-instance/scopes`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/audit",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/audit-list"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/sys/audit-list",
+                "label": "`GET v1/audit`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/audit-ingest",
+                "label": "`POST v1/audit`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/bootstrap-get",
+            "label": "`GET v1/bootstrap`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/e",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/env-list"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/sys/env-list",
+                "label": "`GET v1/e`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/env-create",
+                "label": "`POST v1/e`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/env/{env_id}",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/get-app-custom-domain"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/sys/get-app-custom-domain",
+                "label": "`GET v1/env/{env_id}/app-custom-domain`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/env/{env_id}/applications",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/app-get"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/env/{env_id}/applications/{app_id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/sys/app-get"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/sys/app-get",
+                        "label": "`GET v1/env/{env_id}/applications/{app_id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/app-archive",
+                        "label": "`POST v1/env/{env_id}/applications/{app_id}`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/app-update",
+                        "label": "`PUT v1/env/{env_id}/applications/{app_id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/app-list",
+                    "label": "`GET v1/env/{env_id}/applications`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/app-create",
+                    "label": "`POST v1/env/{env_id}/applications`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/env-archive",
+                "label": "`POST v1/env/{env_id}/archive`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/get-env-auth-domain",
+                "label": "`GET v1/env/{env_id}/auth-domain`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/env/{env_id}/bindings",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/binding-delete"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/binding-delete",
+                    "label": "`DELETE v1/env/{env_id}/bindings/{binding_id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/binding-list",
+                    "label": "`GET v1/env/{env_id}/bindings`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/binding-create",
+                    "label": "`POST v1/env/{env_id}/bindings`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/env/{env_id}/branding",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/branding-merged"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/branding-merged",
+                    "label": "`GET v1/env/{env_id}/branding/merged`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/branding-get-env",
+                    "label": "`GET v1/env/{env_id}/branding`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/branding-set-env",
+                    "label": "`PUT v1/env/{env_id}/branding`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/env/{env_id}/services",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/service-list"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/service-list",
+                    "label": "`GET v1/env/{env_id}/services`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/service-disable",
+                    "label": "`PUT v1/env/{env_id}/services`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/delete-env",
+                "label": "`DELETE v1/env/{env_id}`",
+                "className": "api-method delete"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/env-get",
+                "label": "`GET v1/env/{env_id}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/env-update",
+                "label": "`PUT v1/env/{env_id}`",
+                "className": "api-method put"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/invitation-revoke",
+            "label": "`POST v1/invitations/{id}/revoke`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/o",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/org-list"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/sys/org-list",
+                "label": "`GET v1/o`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/sys/org-create",
+                "label": "`POST v1/o`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/org",
+            "link": {
+              "type": "doc",
+              "id": "api/sys/org-archive"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/org/{id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/org-archive"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/sys/org-archive",
+                    "label": "`POST v1/org/{id}/archive`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/delete-org",
+                    "label": "`DELETE v1/org/{id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/org-get",
+                    "label": "`GET v1/org/{id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/sys/org-update",
+                    "label": "`PUT v1/org/{id}`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/org/{org_id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/sys/branding-get"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/org/{org_id}/branding",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/sys/branding-get"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/sys/branding-get",
+                        "label": "`GET v1/org/{org_id}/branding`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/branding-set",
+                        "label": "`PUT v1/org/{org_id}/branding`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/org/{org_id}/invitations",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/sys/invitation-accept"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/sys/invitation-accept",
+                        "label": "`POST v1/org/{org_id}/invitations/{invitation_id}/accept`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/invitation-list",
+                        "label": "`GET v1/org/{org_id}/invitations`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/invitation-send",
+                        "label": "`POST v1/org/{org_id}/invitations`",
+                        "className": "api-method post"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/org/{org_id}/memberships",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/sys/membership-remove"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/sys/membership-remove",
+                        "label": "`DELETE v1/org/{org_id}/memberships`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/sys/membership-list",
+                        "label": "`GET v1/org/{org_id}/memberships`",
+                        "className": "api-method get"
+                      }
+                    ],
+                    "collapsed": true
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/readiness-get",
+            "label": "`GET v1/readiness`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/resolve-hostname",
+            "label": "`GET v1/resolve/hostname`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/get-scope-catalog",
+            "label": "`GET v1/scopes/catalog`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/tenants-snapshot",
+            "label": "`GET v1/tenants/{env_id}`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/sys/list-vertical-services",
+            "label": "`GET v1/verticals/services`",
+            "className": "api-method get"
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]

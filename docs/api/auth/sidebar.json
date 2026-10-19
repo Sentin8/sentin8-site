@@ -1,0 +1,1687 @@
+[
+  {
+    "type": "category",
+    "label": "auth",
+    "link": {
+      "type": "doc",
+      "id": "api/auth/sentin-8-auth"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/auth/sentin-8-auth",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": ".well-known",
+        "link": {
+          "type": "doc",
+          "id": "api/auth/jwks-endpoint"
+        },
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/auth/jwks-endpoint",
+            "label": "`GET .well-known/jwks.json`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/discovery",
+            "label": "`GET .well-known/openid-configuration`",
+            "className": "api-method get"
+          }
+        ],
+        "collapsed": true
+      },
+      {
+        "type": "doc",
+        "id": "api/auth/delegate-access-token",
+        "label": "`POST delegate/access-token`",
+        "className": "api-method post"
+      },
+      {
+        "type": "doc",
+        "id": "api/auth/device-verify",
+        "label": "`POST device/verify`",
+        "className": "api-method post"
+      },
+      {
+        "type": "category",
+        "label": "mtls/oauth",
+        "link": {
+          "type": "doc",
+          "id": "api/auth/mtls-revoke"
+        },
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/auth/mtls-revoke",
+            "label": "`POST mtls/oauth/revoke`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/mtls-token",
+            "label": "`POST mtls/oauth/token`",
+            "className": "api-method post"
+          }
+        ],
+        "collapsed": true
+      },
+      {
+        "type": "category",
+        "label": "oauth",
+        "link": {
+          "type": "doc",
+          "id": "api/auth/authorize-continue"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "oauth/authorize",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/authorize-continue"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/authorize-continue",
+                "label": "`POST oauth/authorize/continue`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/authorize",
+                "label": "`GET oauth/authorize`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/trigger-backchannel-logout",
+            "label": "`POST oauth/backchannel-logout`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/bc-authorize",
+            "label": "`POST oauth/bc-authorize`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "oauth/credentials",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/credential-issue"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/credential-issue",
+                "label": "`POST oauth/credentials/issue`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/credential-revoke",
+                "label": "`POST oauth/credentials/revoke/{id}`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/credential-status",
+                "label": "`GET oauth/credentials/status/{id}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/credential-offer",
+                "label": "`POST oauth/credentials`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/device-authorization",
+            "label": "`POST oauth/device`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "oauth/grants",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/delete-grant"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "oauth/grants/{id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/delete-grant"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/delete-grant",
+                    "label": "`DELETE oauth/grants/{id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/get-grant",
+                    "label": "`GET oauth/grants/{id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/patch-grant",
+                    "label": "`PATCH oauth/grants/{id}`",
+                    "className": "api-method patch"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/create-grant",
+                "label": "`POST oauth/grants`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/introspect",
+            "label": "`POST oauth/introspect`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/logout",
+            "label": "`GET oauth/logout`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/pushed-authorization-request",
+            "label": "`POST oauth/par`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "oauth/register",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/delete-client"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "oauth/register/{client_id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/delete-client"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/delete-client",
+                    "label": "`DELETE oauth/register/{client_id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/get-client",
+                    "label": "`GET oauth/register/{client_id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/update-client",
+                    "label": "`PUT oauth/register/{client_id}`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/register",
+                "label": "`POST oauth/register`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/revoke",
+            "label": "`POST oauth/revoke`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/token",
+            "label": "`POST oauth/token`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/userinfo",
+            "label": "`GET oauth/userinfo`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/vp-response",
+            "label": "`POST oauth/vp/response`",
+            "className": "api-method post"
+          }
+        ],
+        "collapsed": true
+      },
+      {
+        "type": "category",
+        "label": "scim/v2",
+        "link": {
+          "type": "doc",
+          "id": "api/auth/bulk"
+        },
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/auth/bulk",
+            "label": "`POST scim/v2/Bulk`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/list-groups",
+            "label": "`GET scim/v2/Groups`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/resource-types",
+            "label": "`GET scim/v2/ResourceTypes`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/service-provider-config",
+            "label": "`GET scim/v2/ServiceProviderConfig`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "scim/v2/Users",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/delete-user"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "scim/v2/Users/{id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/delete-user"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/delete-user",
+                    "label": "`DELETE scim/v2/Users/{id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/get-user",
+                    "label": "`GET scim/v2/Users/{id}`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/patch-user",
+                    "label": "`PATCH scim/v2/Users/{id}`",
+                    "className": "api-method patch"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/replace-user",
+                    "label": "`PUT scim/v2/Users/{id}`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/list-users",
+                "label": "`GET scim/v2/Users`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/create-user",
+                "label": "`POST scim/v2/Users`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          }
+        ],
+        "collapsed": true
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/auth/revoke-actor-token"
+        },
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/auth/revoke-actor-token",
+            "label": "`POST v1/actor-tokens/revoke`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/list-actor-events"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/list-actor-events",
+                "label": "`GET v1/admin/actor-events`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/actor-tokens",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/list-actor-tokens"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/list-actor-tokens",
+                    "label": "`GET v1/admin/actor-tokens`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/issue-actor-token",
+                    "label": "`POST v1/admin/actor-tokens`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/api-keys",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/api-key-revoke"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/api-key-revoke",
+                    "label": "`POST v1/admin/api-keys/{id}/revoke`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/api-key-list",
+                    "label": "`GET v1/admin/api-keys`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/api-key-create",
+                    "label": "`POST v1/admin/api-keys`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/policy-delete-attribute"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/audit-list",
+                "label": "`GET v1/admin/audit`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/enterprise-connections",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/enterprise-connection-delete"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/enterprise-connections/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/enterprise-connection-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/enterprise-connection-delete",
+                        "label": "`POST v1/admin/enterprise-connections/{id}/delete`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/delete-connection",
+                        "label": "`DELETE v1/admin/enterprise-connections/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/get-connection",
+                        "label": "`GET v1/admin/enterprise-connections/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/update-connection",
+                        "label": "`PUT v1/admin/enterprise-connections/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/connection-list",
+                    "label": "`GET v1/admin/enterprise-connections`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/connection-create",
+                    "label": "`POST v1/admin/enterprise-connections`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/groups",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/group-member-remove"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/groups/{group_id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/group-member-remove"
+                    },
+                    "items": [
+                      {
+                        "type": "category",
+                        "label": "v1/admin/groups/{group_id}/members",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/auth/group-member-remove"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/auth/group-member-remove",
+                            "label": "`DELETE v1/admin/groups/{group_id}/members/{user_id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/group-get",
+                            "label": "`GET v1/admin/groups/{group_id}/members`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/group-member-add",
+                            "label": "`POST v1/admin/groups/{group_id}/members`",
+                            "className": "api-method post"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "category",
+                        "label": "v1/admin/groups/{group_id}/roles",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/auth/group-role-unassign"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/auth/group-role-unassign",
+                            "label": "`DELETE v1/admin/groups/{group_id}/roles/{role_id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/list-group-roles",
+                            "label": "`GET v1/admin/groups/{group_id}/roles`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/group-role-assign",
+                            "label": "`POST v1/admin/groups/{group_id}/roles`",
+                            "className": "api-method post"
+                          }
+                        ],
+                        "collapsed": true
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/admin/groups/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/group-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/group-delete",
+                        "label": "`DELETE v1/admin/groups/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/group-members-alias",
+                        "label": "`GET v1/admin/groups/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/group-update",
+                        "label": "`PUT v1/admin/groups/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/group-list",
+                    "label": "`GET v1/admin/groups`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/group-create",
+                    "label": "`POST v1/admin/groups`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/invitations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/revoke-invitation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/revoke-invitation",
+                    "label": "`POST v1/admin/invitations/{id}/revoke`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/list-invitations",
+                    "label": "`GET v1/admin/invitations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/invitation-send",
+                    "label": "`POST v1/admin/invitations`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/memberships",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/delete-membership"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/delete-membership",
+                    "label": "`DELETE v1/admin/memberships/{id}`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/membership-list",
+                    "label": "`GET v1/admin/memberships`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/create-membership",
+                    "label": "`POST v1/admin/memberships`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/oauth-clients",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/oauth-client-delete"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/oauth-clients/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/oauth-client-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/oauth-client-delete",
+                        "label": "`POST v1/admin/oauth-clients/{id}/delete`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "category",
+                        "label": "v1/admin/oauth-clients/{id}/federated-credentials",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/auth/delete-federated-credential"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/auth/delete-federated-credential",
+                            "label": "`DELETE v1/admin/oauth-clients/{id}/federated-credentials/{cred_id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/list-federated-credentials",
+                            "label": "`GET v1/admin/oauth-clients/{id}/federated-credentials`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/create-federated-credential",
+                            "label": "`POST v1/admin/oauth-clients/{id}/federated-credentials`",
+                            "className": "api-method post"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "category",
+                        "label": "v1/admin/oauth-clients/{id}/roles",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/auth/remove-client-role"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/auth/remove-client-role",
+                            "label": "`DELETE v1/admin/oauth-clients/{id}/roles/{role_id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/list-client-roles",
+                            "label": "`GET v1/admin/oauth-clients/{id}/roles`",
+                            "className": "api-method get"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/add-client-role",
+                            "label": "`POST v1/admin/oauth-clients/{id}/roles`",
+                            "className": "api-method post"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/delete-oauth-client",
+                        "label": "`DELETE v1/admin/oauth-clients/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/get-oauth-client",
+                        "label": "`GET v1/admin/oauth-clients/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/update-oauth-client",
+                        "label": "`PUT v1/admin/oauth-clients/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/application-list",
+                    "label": "`GET v1/admin/oauth-clients`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/application-register",
+                    "label": "`POST v1/admin/oauth-clients`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/policy-test-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/policy-test-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/policy-test-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/policy-delete-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/policy-get-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/policy-put-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-disable",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-enforce",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-shadow",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-list-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/provision",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/provision-group"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-group",
+                    "label": "`POST v1/admin/provision/group`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-group-member",
+                    "label": "`POST v1/admin/provision/group_member`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-group-role",
+                    "label": "`POST v1/admin/provision/group_role`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-role",
+                    "label": "`POST v1/admin/provision/role`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-role-nesting",
+                    "label": "`POST v1/admin/provision/role_nesting`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/provision-user-role",
+                    "label": "`POST v1/admin/provision/user_role`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/policy-check-relation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/policy-put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/roles",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/role-delete"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/roles/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/role-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/role-delete",
+                        "label": "`DELETE v1/admin/roles/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/role-get",
+                        "label": "`GET v1/admin/roles/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/role-update",
+                        "label": "`PUT v1/admin/roles/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/admin/roles/{role_id}/members",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/role-member-remove"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/role-member-remove",
+                        "label": "`DELETE v1/admin/roles/{role_id}/members/{user_id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/role-member-add",
+                        "label": "`POST v1/admin/roles/{role_id}/members`",
+                        "className": "api-method post"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/role-list",
+                    "label": "`GET v1/admin/roles`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/role-create",
+                    "label": "`POST v1/admin/roles`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/security",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/put-security-detail"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/put-security-detail",
+                    "label": "`POST v1/admin/security/detail`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/get-security-selection",
+                    "label": "`GET v1/admin/security`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/put-security-selection",
+                    "label": "`POST v1/admin/security`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/sessions",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/session-revoke"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/sessions/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/session-revoke"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/session-revoke",
+                        "label": "`POST v1/admin/sessions/{id}/revoke`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/session-terminate",
+                        "label": "`DELETE v1/admin/sessions/{id}`",
+                        "className": "api-method delete"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/session-list",
+                    "label": "`GET v1/admin/sessions`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/get-admin-ui",
+                "label": "`GET v1/admin/ui/{page}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/users",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/user-delete"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/users/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/user-delete"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-delete",
+                        "label": "`POST v1/admin/users/{id}/delete`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-groups",
+                        "label": "`GET v1/admin/users/{id}/groups`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-roles",
+                        "label": "`GET v1/admin/users/{id}/roles`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-archive",
+                        "label": "`DELETE v1/admin/users/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-get",
+                        "label": "`GET v1/admin/users/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/user-update",
+                        "label": "`PUT v1/admin/users/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/user-list",
+                    "label": "`GET v1/admin/users`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/user-create",
+                    "label": "`POST v1/admin/users`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/webhooks",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/replay-failed"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/webhooks/attempts/{outbox_id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/replay-failed"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/auth/replay-failed",
+                        "label": "`POST v1/admin/webhooks/attempts/{outbox_id}/replay`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/list-attempts",
+                        "label": "`GET v1/admin/webhooks/attempts/{outbox_id}`",
+                        "className": "api-method get"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/admin/webhooks/endpoints",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/auth/delete-endpoint"
+                    },
+                    "items": [
+                      {
+                        "type": "category",
+                        "label": "v1/admin/webhooks/endpoints/{id}",
+                        "link": {
+                          "type": "doc",
+                          "id": "api/auth/delete-endpoint"
+                        },
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "api/auth/delete-endpoint",
+                            "label": "`DELETE v1/admin/webhooks/endpoints/{id}`",
+                            "className": "api-method delete"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "api/auth/get-endpoint",
+                            "label": "`GET v1/admin/webhooks/endpoints/{id}`",
+                            "className": "api-method get"
+                          }
+                        ],
+                        "collapsed": true
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/list-endpoints",
+                        "label": "`GET v1/admin/webhooks/endpoints`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/auth/create-endpoint",
+                        "label": "`POST v1/admin/webhooks/endpoints`",
+                        "className": "api-method post"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/list-outbox",
+                    "label": "`GET v1/admin/webhooks/outbox`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/auth",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/consent-accounts"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/auth/consent",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/consent-accounts"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/consent-accounts",
+                    "label": "`GET v1/auth/consent/accounts`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/proxy-consent-approve",
+                    "label": "`POST v1/auth/consent/approve`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/proxy-consent-deny",
+                    "label": "`POST v1/auth/consent/deny`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/proxy-consent-ui",
+                    "label": "`GET v1/auth/consent/ui`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/wallet-metadata",
+                "label": "`GET v1/auth/wallet/metadata`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/branding",
+            "label": "`GET v1/branding`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/ciba",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/ciba-approve"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/ciba-approve",
+                "label": "`POST v1/ciba/approve`",
+                "className": "api-method post"
+              },
+              {
+                "type": "category",
+                "label": "v1/ciba/assisted/{auth_req_id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/ciba-assisted-complete"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/ciba-assisted-complete",
+                    "label": "`POST v1/ciba/assisted/{auth_req_id}/complete`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/ciba-assisted-page",
+                    "label": "`GET v1/ciba/assisted/{auth_req_id}`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/email/verify",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/email-verify-confirm"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/email-verify-confirm",
+                "label": "`POST v1/email/verify/confirm`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/email-verify-request",
+                "label": "`POST v1/email/verify`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/internal-keys-rotate",
+            "label": "`POST v1/internal/keys/rotate`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/me/app-passwords",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/revoke-app-password"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/revoke-app-password",
+                "label": "`DELETE v1/me/app-passwords/{id}`",
+                "className": "api-method delete"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/list-app-passwords",
+                "label": "`GET v1/me/app-passwords`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/create-app-password",
+                "label": "`POST v1/me/app-passwords`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/mfa",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/disable"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/disable",
+                "label": "`POST v1/mfa/disable`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/enroll",
+                "label": "`POST v1/mfa/enroll`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/verify",
+                "label": "`POST v1/mfa/verify`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/passkey",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/enroll-begin"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/passkey/enroll",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/enroll-begin"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/enroll-begin",
+                    "label": "`POST v1/passkey/enroll/begin`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/enroll-finish",
+                    "label": "`POST v1/passkey/enroll/finish`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/passkey/verify",
+                "link": {
+                  "type": "doc",
+                  "id": "api/auth/verify-begin"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/auth/verify-begin",
+                    "label": "`POST v1/passkey/verify/begin`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/auth/verify-finish",
+                    "label": "`POST v1/passkey/verify/finish`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/password/reset",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/password-reset-confirm"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/password-reset-confirm",
+                "label": "`POST v1/password/reset/confirm`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/password-reset-request",
+                "label": "`POST v1/password/reset`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/saml",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/saml-acs"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/saml-acs",
+                "label": "`POST v1/saml/acs/{connection_id}`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/saml-metadata",
+                "label": "`GET v1/saml/metadata/{connection_id}`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/security-profile",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/get-security-profile-api"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/get-security-profile-api",
+                "label": "`GET v1/security-profile`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/put-security-profile-api",
+                "label": "`PUT v1/security-profile`",
+                "className": "api-method put"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/get-session",
+            "label": "`GET v1/session`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/sign-in",
+            "label": "`POST v1/sign-in`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/sign-out",
+            "label": "`POST v1/sign-out`",
+            "className": "api-method post"
+          },
+          {
+            "type": "doc",
+            "id": "api/auth/sign-up",
+            "label": "`POST v1/sign-up`",
+            "className": "api-method post"
+          },
+          {
+            "type": "category",
+            "label": "v1/sso/{connection_id}",
+            "link": {
+              "type": "doc",
+              "id": "api/auth/sso-authorize"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/auth/sso-authorize",
+                "label": "`GET v1/sso/{connection_id}/authorize`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/auth/sso-callback",
+                "label": "`GET v1/sso/{connection_id}/callback`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]

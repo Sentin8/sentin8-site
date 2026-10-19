@@ -1,0 +1,367 @@
+[
+  {
+    "type": "category",
+    "label": "app",
+    "link": {
+      "type": "doc",
+      "id": "api/app/sentin-8-app"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/app/sentin-8-app",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/app/get-admin-data"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/app/get-admin-data"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/app/get-admin-data",
+                "label": "`GET v1/admin/{resource}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/policy-delete-attribute"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-list-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/app/uninstall-instance",
+                "label": "`POST v1/admin/instances/uninstall`",
+                "className": "api-method post"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/policy-test-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/app/policy-test-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/app/policy-test-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/policy-delete-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/policy-get-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/policy-put-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-mode-disable",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-mode-enforce",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-mode-shadow",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-list-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/policy-check-relation"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-list-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/policy-put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/app/get-admin-ui",
+                "label": "`GET v1/admin/ui/{page}`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/app",
+            "link": {
+              "type": "doc",
+              "id": "api/app/instance-domain"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/app/admin/instances/{id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/instance-domain"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/app/instance-domain",
+                    "label": "`PUT v1/app/admin/instances/{id}/domain`",
+                    "className": "api-method put"
+                  },
+                  {
+                    "type": "category",
+                    "label": "v1/app/admin/instances/{id}/env-vars",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/app/instance-env-vars-resolve"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/app/instance-env-vars-resolve",
+                        "label": "`GET v1/app/admin/instances/{id}/env-vars/resolve`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/instance-env-vars",
+                        "label": "`PUT v1/app/admin/instances/{id}/env-vars`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/instance-feature-flags",
+                    "label": "`PUT v1/app/admin/instances/{id}/feature-flags`",
+                    "className": "api-method put"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/instance-oauth",
+                    "label": "`GET v1/app/admin/instances/{id}/oauth-client`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/instance-status",
+                    "label": "`PUT v1/app/admin/instances/{id}/status`",
+                    "className": "api-method put"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/instance-get",
+                    "label": "`GET v1/app/admin/instances/{id}`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/app/instances-customer-mode",
+                "label": "`GET v1/app/instances/customer-mode`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/app/runtime-context",
+                "label": "`GET v1/app/runtime/context`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/app/setup",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/setup-status"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/app/setup-status",
+                    "label": "`GET v1/app/setup/{id}/status`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/setup-create",
+                    "label": "`POST v1/app/setup`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/app/store/listings",
+                "link": {
+                  "type": "doc",
+                  "id": "api/app/store-archive"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/app/store/listings/{id}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/app/store-archive"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/app/store-archive",
+                        "label": "`DELETE v1/app/store/listings/{id}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/store-get",
+                        "label": "`GET v1/app/store/listings/{id}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/app/store-update",
+                        "label": "`PUT v1/app/store/listings/{id}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/store-list",
+                    "label": "`GET v1/app/store/listings`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/app/store-create",
+                    "label": "`POST v1/app/store/listings`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/app/health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "doc",
+            "id": "api/app/execute-internal-step",
+            "label": "`POST v1/internal/steps/execute`",
+            "className": "api-method post"
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]

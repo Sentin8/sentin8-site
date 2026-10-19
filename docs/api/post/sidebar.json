@@ -1,0 +1,339 @@
+[
+  {
+    "type": "category",
+    "label": "post",
+    "link": {
+      "type": "doc",
+      "id": "api/post/sentin-8-post"
+    },
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/post/sentin-8-post",
+        "label": "Overview",
+        "className": "api-overview"
+      },
+      {
+        "type": "category",
+        "label": "v1",
+        "link": {
+          "type": "doc",
+          "id": "api/post/get-admin-data"
+        },
+        "items": [
+          {
+            "type": "category",
+            "label": "v1/admin",
+            "link": {
+              "type": "doc",
+              "id": "api/post/get-admin-data"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/post/get-admin-data",
+                "label": "`GET v1/admin/{resource}`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/attributes",
+                "link": {
+                  "type": "doc",
+                  "id": "api/post/admin-delete-attribute-path"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/post/admin-delete-attribute-path",
+                    "label": "`POST v1/admin/attributes/{id}/delete`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/delete-attribute",
+                    "label": "`DELETE v1/admin/attributes`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/list-attributes",
+                    "label": "`GET v1/admin/attributes`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/put-attribute",
+                    "label": "`PUT v1/admin/attributes`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/post/list-policy-decisions",
+                "label": "`GET v1/admin/policy-decisions`",
+                "className": "api-method get"
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/policy-sets",
+                "link": {
+                  "type": "doc",
+                  "id": "api/post/admin-path-action-policy-set"
+                },
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "v1/admin/policy-sets/{name}",
+                    "link": {
+                      "type": "doc",
+                      "id": "api/post/admin-path-action-policy-set"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "api/post/admin-path-action-policy-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/{action}`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/post/save-policy-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/save`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/post/test-policy-set",
+                        "label": "`POST v1/admin/policy-sets/{name}/test`",
+                        "className": "api-method post"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/post/delete-policy-set",
+                        "label": "`DELETE v1/admin/policy-sets/{name}`",
+                        "className": "api-method delete"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/post/get-policy-set",
+                        "label": "`GET v1/admin/policy-sets/{name}`",
+                        "className": "api-method get"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "api/post/put-policy-set",
+                        "label": "`PUT v1/admin/policy-sets/{name}`",
+                        "className": "api-method put"
+                      }
+                    ],
+                    "collapsed": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/admin-disable-policy-set",
+                    "label": "`POST v1/admin/policy-sets/disable`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/admin-enforce-policy-set",
+                    "label": "`POST v1/admin/policy-sets/enforce`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/admin-shadow-policy-set",
+                    "label": "`POST v1/admin/policy-sets/shadow`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/list-policy-sets",
+                    "label": "`GET v1/admin/policy-sets`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/create-policy-set",
+                    "label": "`POST v1/admin/policy-sets`",
+                    "className": "api-method post"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "category",
+                "label": "v1/admin/relations",
+                "link": {
+                  "type": "doc",
+                  "id": "api/post/admin-delete-relation-path"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/post/admin-delete-relation-path",
+                    "label": "`POST v1/admin/relations/{id}/delete`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/check-relation",
+                    "label": "`GET v1/admin/relations/check`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/delete-relation",
+                    "label": "`DELETE v1/admin/relations`",
+                    "className": "api-method delete"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/list-relations",
+                    "label": "`GET v1/admin/relations`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/put-relation",
+                    "label": "`PUT v1/admin/relations`",
+                    "className": "api-method put"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/post/get-admin-ui",
+                "label": "`GET v1/admin/ui/{page}`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/dlq",
+            "link": {
+              "type": "doc",
+              "id": "api/post/message-replay"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/post/message-replay",
+                "label": "`POST v1/dlq/{id}/replay`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/post/dlq-list",
+                "label": "`GET v1/dlq`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "category",
+            "label": "v1/gateways",
+            "link": {
+              "type": "doc",
+              "id": "api/post/gateway-delete"
+            },
+            "items": [
+              {
+                "type": "doc",
+                "id": "api/post/gateway-delete",
+                "label": "`DELETE v1/gateways/{id}`",
+                "className": "api-method delete"
+              },
+              {
+                "type": "doc",
+                "id": "api/post/gateway-test",
+                "label": "`POST v1/gateways/test`",
+                "className": "api-method post"
+              },
+              {
+                "type": "doc",
+                "id": "api/post/gateway-list",
+                "label": "`GET v1/gateways`",
+                "className": "api-method get"
+              },
+              {
+                "type": "doc",
+                "id": "api/post/gateway-create",
+                "label": "`POST v1/gateways`",
+                "className": "api-method post"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/post/health",
+            "label": "`GET v1/health`",
+            "className": "api-method get"
+          },
+          {
+            "type": "category",
+            "label": "v1/messages",
+            "link": {
+              "type": "doc",
+              "id": "api/post/message-content"
+            },
+            "items": [
+              {
+                "type": "category",
+                "label": "v1/messages/{id}",
+                "link": {
+                  "type": "doc",
+                  "id": "api/post/message-content"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "api/post/message-content",
+                    "label": "`GET v1/messages/{id}/content`",
+                    "className": "api-method get"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/message-mark-read",
+                    "label": "`POST v1/messages/{id}/read`",
+                    "className": "api-method post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "api/post/message-get",
+                    "label": "`GET v1/messages/{id}`",
+                    "className": "api-method get"
+                  }
+                ],
+                "collapsed": true
+              },
+              {
+                "type": "doc",
+                "id": "api/post/message-list",
+                "label": "`GET v1/messages`",
+                "className": "api-method get"
+              }
+            ],
+            "collapsed": true
+          },
+          {
+            "type": "doc",
+            "id": "api/post/message-send",
+            "label": "`POST v1/send`",
+            "className": "api-method post"
+          }
+        ],
+        "collapsed": true
+      }
+    ],
+    "collapsed": true
+  }
+]
