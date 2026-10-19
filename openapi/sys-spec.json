@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-sys",
-    "description": "Sentin8 Sentin8:Sys — control plane, org/env lifecycle, saga orchestration.",
+    "description": "Sentin8 Sentin8:Sys - control plane, org/env lifecycle, saga orchestration.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -23,7 +23,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PrincipalAttr"
+                  }
                 }
               }
             }
@@ -48,17 +50,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutAttributeBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Attribute stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeUpserted"
+                }
               }
             }
           },
@@ -123,7 +129,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -150,7 +158,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -181,7 +191,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -212,7 +224,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -256,7 +270,9 @@
             "description": "The policy set",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetDetail"
+                }
               }
             }
           },
@@ -294,17 +310,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutPolicySetBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Policy set stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetMutated"
+                }
               }
             }
           },
@@ -376,7 +396,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/TestPolicySetBody"
+              }
             }
           },
           "required": true
@@ -386,7 +408,9 @@
             "description": "Dry-run decision trace",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyTestOutcome"
+                }
               }
             }
           },
@@ -416,7 +440,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/RelationRecordRow"
+                  }
                 }
               }
             }
@@ -441,7 +467,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutRelationBody"
+              }
             }
           },
           "required": true
@@ -451,7 +479,9 @@
             "description": "Relation stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationUpserted"
+                }
               }
             }
           },
@@ -543,7 +573,9 @@
             "description": "The check verdict",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationCheckResult"
+                }
               }
             }
           },
@@ -592,7 +624,9 @@
             "description": "Auth mode",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceAuthModeResponse"
+                }
               }
             }
           },
@@ -626,7 +660,9 @@
             "description": "Instance scopes",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceScopesResponse"
+                }
               }
             }
           },
@@ -754,7 +790,7 @@
           "sys"
         ],
         "summary": "`POST /v1/audit`",
-        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure — audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
+        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure - audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
         "operationId": "audit.ingest",
         "requestBody": {
           "content": {
@@ -1062,7 +1098,9 @@
             "description": "Custom domain",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CustomDomainResponse"
+                }
               }
             }
           },
@@ -1256,7 +1294,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationUpdateRequest"
+              }
             }
           },
           "required": true
@@ -1330,7 +1370,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "App.archive .\n\narchive` — archive application.\nArchive application."
+        "description": "App.archive .\n\narchive` - archive application.\nArchive application."
       }
     },
     "/v1/env/{env_id}/archive": {
@@ -1395,7 +1435,9 @@
             "description": "Auth domain",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDomainResponse"
+                }
               }
             }
           },
@@ -1793,7 +1835,9 @@
             "description": "Service is healthy",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LiveHealth"
+                }
               }
             }
           }
@@ -2444,7 +2488,9 @@
             "description": "Service is ready",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
               }
             }
           },
@@ -2478,7 +2524,9 @@
             "description": "Hostname mapping (service, org_id, env_id, app_id)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/HostnameResolveResponse"
+                }
               }
             }
           },
@@ -2503,14 +2551,16 @@
           "sys"
         ],
         "summary": "`GET /v1/scopes/catalog`",
-        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` — platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
+        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` - platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
         "operationId": "get_scope_catalog",
         "responses": {
           "200": {
             "description": "Scope catalog",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ScopeCatalogResponse"
+                }
               }
             }
           }
@@ -2523,7 +2573,7 @@
           "sys"
         ],
         "summary": "`GET /v1/tenants/{env_id}`",
-        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) — the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` — the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables — this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
+        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) - the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) - user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` - the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables - this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
         "operationId": "tenants.snapshot",
         "parameters": [
           {
@@ -2542,7 +2592,9 @@
             "description": "Tenant snapshot + the caller's own service enablement",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/TenantSnapshotResponse"
+                }
               }
             }
           },
@@ -2569,7 +2621,7 @@
           "sys"
         ],
         "summary": "`GET /v1/verticals/services`",
-        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` — the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` — display label (e.g. \"Ledger\")\n- `icon` — material icon name\n- `service_flag` — the service that must be enabled (e.g. \"ledger\")\n- `enabled` — whether the feature is enabled for this org/env\n- `pages` — array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` — discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` — discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
+        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` - the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` - display label (e.g. \"Ledger\")\n- `icon` - material icon name\n- `service_flag` - the service that must be enabled (e.g. \"ledger\")\n- `enabled` - whether the feature is enabled for this org/env\n- `pages` - array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` - discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` - discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
         "operationId": "list_vertical_services",
         "parameters": [
           {
@@ -2655,6 +2707,39 @@
           }
         }
       },
+      "ApplicationUpdateRequest": {
+        "type": "object",
+        "description": "The request body of `PUT /v1/env/{env_id}/applications/{app_id}`.",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New display name (unchanged when absent)."
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New status (unchanged when absent)."
+          }
+        }
+      },
+      "AttributeUpserted": {
+        "type": "object",
+        "description": "An attribute upsert result.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
       "AuditEventResponse": {
         "type": "object",
         "description": "Response payload for auditevent.",
@@ -2699,7 +2784,7 @@
           },
           "service": {
             "type": "string",
-            "description": "Emitting service (DBX — stamped by Sys from the verified M2M client_id).\nThe service."
+            "description": "Emitting service (DBX - stamped by Sys from the verified M2M client_id).\nThe service."
           },
           "target_resource_id": {
             "type": [
@@ -2724,7 +2809,7 @@
       },
       "AuditIngestItem": {
         "type": "object",
-        "description": "One audit event in an ingest batch. `service` is IGNORED server-side —\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
+        "description": "One audit event in an ingest batch. `service` is IGNORED server-side -\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
         "required": [
           "env_id",
           "action"
@@ -2844,7 +2929,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Tiebreaker for rows sharing `after_ts` (the row id) — pairs with\n`after_ts` for a deterministic keyset position."
+            "description": "Tiebreaker for rows sharing `after_ts` (the row id) - pairs with\n`after_ts` for a deterministic keyset position."
           },
           "after_ts": {
             "type": [
@@ -2852,7 +2937,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` — stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
+            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` - stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
           },
           "env_id": {
             "type": [
@@ -2878,7 +2963,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Filter by org (accepted but not yet used for filtering — env_id is the primary filter).\norg identifier."
+            "description": "Filter by org (accepted but not yet used for filtering - env_id is the primary filter).\norg identifier."
           },
           "service": {
             "type": [
@@ -2886,6 +2971,19 @@
               "null"
             ],
             "description": "Filter by emitting service (DBX ).\nThe service."
+          }
+        }
+      },
+      "AuthDomainResponse": {
+        "type": "object",
+        "description": "The `GET /v1/env/{env_id}/auth-domain` payload.",
+        "required": [
+          "auth_domain"
+        ],
+        "properties": {
+          "auth_domain": {
+            "type": "string",
+            "description": "The env's auth_domain URL."
           }
         }
       },
@@ -3122,6 +3220,55 @@
           }
         }
       },
+      "CustomDomainResponse": {
+        "type": "object",
+        "description": "The `GET /v1/env/{env_id}/app-custom-domain` payload.",
+        "required": [
+          "custom_domain"
+        ],
+        "properties": {
+          "custom_domain": {
+            "type": "string",
+            "description": "The env's custom (app) domain."
+          }
+        }
+      },
+      "Decision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "allow"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "reason",
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "deny"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
       "EnvResponse": {
         "type": "object",
         "description": "Response payload for env.",
@@ -3174,6 +3321,45 @@
           }
         }
       },
+      "HostnameResolveResponse": {
+        "type": "object",
+        "description": "The `GET /v1/resolve/hostname` payload (one hostname mapping).",
+        "required": [
+          "hostname",
+          "service"
+        ],
+        "properties": {
+          "app_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The app instance id (absent for platform/vertical service hosts)."
+          },
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The env id (absent for platform-internal hosts)."
+          },
+          "hostname": {
+            "type": "string",
+            "description": "The resolved hostname."
+          },
+          "org_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The org id (absent for platform-internal hosts)."
+          },
+          "service": {
+            "type": "string",
+            "description": "The owning service identity."
+          }
+        }
+      },
       "InstanceAuthModeQuery": {
         "type": "object",
         "description": "Query params for `get_instance_auth_mode`.\nThe instanceauthmodequery type.",
@@ -3191,6 +3377,64 @@
           }
         }
       },
+      "InstanceAuthModeResponse": {
+        "type": "object",
+        "description": "The `GET /v1/app-instance/auth-mode` payload (BFF session binding).",
+        "required": [
+          "application_id",
+          "org_id",
+          "env_id",
+          "instance_name",
+          "app_slug",
+          "auth_domain",
+          "allow_signup",
+          "group_gate",
+          "oauth_client_id",
+          "ciba_oauth_client_id"
+        ],
+        "properties": {
+          "allow_signup": {
+            "type": "boolean",
+            "description": "Whether the instance allows self-serve sign-up."
+          },
+          "app_slug": {
+            "type": "string",
+            "description": "The app slug."
+          },
+          "application_id": {
+            "type": "string",
+            "description": "The app-instance id (empty when unresolved)."
+          },
+          "auth_domain": {
+            "type": "string",
+            "description": "The auth domain override."
+          },
+          "ciba_oauth_client_id": {
+            "type": "string",
+            "description": "The staff-mode CIBA client id (empty when not staff-mode)."
+          },
+          "env_id": {
+            "type": "string",
+            "description": "The instance's env id (empty when unresolved)."
+          },
+          "group_gate": {
+            "type": "string",
+            "description": "The group-gate mode (`strict`/`self_service`)."
+          },
+          "instance_name": {
+            "type": "string",
+            "description": "The instance name."
+          },
+          "oauth_client_id": {
+            "type": "string",
+            "description": "The instance OAuth client id."
+          },
+          "org_id": {
+            "type": "string",
+            "description": "The instance's org id (empty when unresolved)."
+          }
+        }
+      },
       "InstanceScopesQuery": {
         "type": "object",
         "description": "Query params for `get_instance_scopes`.\nThe instancescopesquery type.",
@@ -3201,6 +3445,35 @@
           "hostname": {
             "type": "string",
             "description": "The BFF or frontend hostname (e.g. `bff.www.ifintech.local` or\n`www.ifintech.local`). TLS-injected `X-Sentin8-Hostname`.\nThe hostname."
+          }
+        }
+      },
+      "InstanceScopesResponse": {
+        "type": "object",
+        "description": "The `GET /v1/app-instance/scopes` payload.",
+        "required": [
+          "allowed_scopes",
+          "allowed_services",
+          "oauth_client_id"
+        ],
+        "properties": {
+          "allowed_scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The instance's allowed OAuth scopes."
+          },
+          "allowed_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The service identities the instance may call."
+          },
+          "oauth_client_id": {
+            "type": "string",
+            "description": "The instance's OAuth client id (empty when unconfigured)."
           }
         }
       },
@@ -3297,6 +3570,48 @@
           }
         }
       },
+      "LiveHealth": {
+        "type": "object",
+        "description": "The `GET /v1/health` liveness payload every service returns: the\nstatus string, the serving service's short name, build identity, and\n(when the process tracks them) the count of live connections.\n`service` and `active_connections` stay absent when a service does\nnot set them (e.g. the bus mounts the generic handler).",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "active_connections": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Live socket count when the traffic counter is mounted."
+          },
+          "build": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build hash (`sentin8::build_info::build_hash()`)."
+          },
+          "service": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The serving service's short name (absent when the generic handler\ndoes not carry one)."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `ok` on a live instance."
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build identity id (`sentin8::build_info::id()`)."
+          }
+        }
+      },
       "MembershipResponse": {
         "type": "object",
         "description": "Response payload for membership.",
@@ -3371,6 +3686,439 @@
           "status": {
             "type": "string",
             "description": "The status."
+          }
+        }
+      },
+      "PolicyModeBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{mode}` body (RFW row actions).",
+        "required": [
+          "policy_set_name"
+        ],
+        "properties": {
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "policy_set_name": {
+            "type": "string"
+          }
+        }
+      },
+      "PolicySetDetail": {
+        "type": "object",
+        "description": "One policy set in the detail view (adds the full policy text).",
+        "required": [
+          "policy_set_name",
+          "description",
+          "policies",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "Creation instant (RFC 3339)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform`/`tenant`)."
+          },
+          "policies": {
+            "type": "string",
+            "description": "The full policy text (Shield policy language)."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional schema text bound to the set."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicySetMutated": {
+        "type": "object",
+        "description": "A stored policy-set mutation result.",
+        "required": [
+          "policy_set_name",
+          "version",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "The evaluation mode after the mutation."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The revision after the mutation."
+          }
+        }
+      },
+      "PolicySetRow": {
+        "type": "object",
+        "description": "One policy set in the list view (the RFW row shape).",
+        "required": [
+          "id",
+          "policy_set_name",
+          "description",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "policies_len",
+          "updated_at"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "id": {
+            "type": "string",
+            "description": "The set name; doubles as the RFW row id."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode (`shadow`/`enforced`)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform` enroll-managed vs `tenant`)."
+          },
+          "policies_len": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of policy statements in the set."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicyTestOutcome": {
+        "type": "object",
+        "description": "A dry-run (test) outcome; nothing was stored.",
+        "required": [
+          "policy_set_name",
+          "action",
+          "decision",
+          "would_deny"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action evaluated."
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision",
+            "description": "The enforce-mode decision."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name the candidate text was compiled under."
+          },
+          "would_deny": {
+            "type": "boolean",
+            "description": "Whether the shadow evaluation would deny."
+          }
+        }
+      },
+      "PrincipalAttr": {
+        "type": "object",
+        "description": "One principal attribute in the list view.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value",
+          "origin"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string",
+            "description": "The attribute key."
+          },
+          "attr_value": {
+            "description": "The attribute value (free-form JSON by contract)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The attribute owner (subject id)."
+          }
+        }
+      },
+      "PutAttributeBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/attributes` body - one principal attribute.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string"
+          },
+          "attr_value": {},
+          "subject_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PutPolicySetBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/policy-sets/{name}` body.",
+        "required": [
+          "policies"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "PutRelationBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/relations` body - one relation tuple.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          }
+        }
+      },
+      "ReadinessResponse": {
+        "type": "object",
+        "description": "The `GET /v1/readiness` payload.",
+        "required": [
+          "status",
+          "checks"
+        ],
+        "properties": {
+          "checks": {
+            "type": "object",
+            "description": "Per-dependency check results.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "`ready` when every check passes; `degraded` otherwise."
+          }
+        }
+      },
+      "RelationCheckResult": {
+        "type": "object",
+        "description": "A relation connectivity check result.",
+        "required": [
+          "subject",
+          "relation",
+          "object",
+          "direct",
+          "transitive",
+          "connected",
+          "tuple_count"
+        ],
+        "properties": {
+          "connected": {
+            "type": "boolean",
+            "description": "`direct || transitive`."
+          },
+          "direct": {
+            "type": "boolean",
+            "description": "Whether a direct tuple exists."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object in `type/id` form."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation checked."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject in `type/id` form."
+          },
+          "transitive": {
+            "type": "boolean",
+            "description": "Whether a transitive path exists."
+          },
+          "tuple_count": {
+            "type": "integer",
+            "description": "Number of tuples inspected.",
+            "minimum": 0
+          }
+        }
+      },
+      "RelationRecordRow": {
+        "type": "object",
+        "description": "One relation tuple in the list view.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id",
+          "origin"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "description": "The object entity id."
+          },
+          "object_type": {
+            "type": "string",
+            "description": "The object entity type."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation name."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The subject entity id."
+          },
+          "subject_type": {
+            "type": "string",
+            "description": "The subject entity type."
+          }
+        }
+      },
+      "RelationUpserted": {
+        "type": "object",
+        "description": "A relation-tuple upsert result.",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stored tuple id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "ScopeCatalogResponse": {
+        "type": "object",
+        "description": "The `GET /v1/scopes/catalog` payload.",
+        "required": [
+          "scopes"
+        ],
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The platform OAuth scope strings."
           }
         }
       },
@@ -3485,6 +4233,134 @@
           }
         }
       },
+      "TenantServiceEnablement": {
+        "type": "object",
+        "description": "The caller's own service enablement inside a tenant snapshot.",
+        "required": [
+          "service",
+          "enabled",
+          "config"
+        ],
+        "properties": {
+          "config": {
+            "description": "The (env, service) row's config document (null when absent)."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the service is enabled in the target org."
+          },
+          "service": {
+            "type": "string",
+            "description": "The caller's full service identity."
+          }
+        }
+      },
+      "TenantSnapshotResponse": {
+        "type": "object",
+        "description": "The `GET /v1/tenants/{env_id}` payload (scoped tenant discovery).",
+        "required": [
+          "env_id",
+          "env_slug",
+          "env_display_name",
+          "status",
+          "org_id",
+          "org_slug",
+          "org_display_name",
+          "org_domain",
+          "service"
+        ],
+        "properties": {
+          "auth_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The env's auth domain (absolute URL; null for the default derivation)."
+          },
+          "env_display_name": {
+            "type": "string",
+            "description": "Env display name."
+          },
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Target env id."
+          },
+          "env_slug": {
+            "type": "string",
+            "description": "Env slug."
+          },
+          "org_display_name": {
+            "type": "string",
+            "description": "Org display name."
+          },
+          "org_domain": {
+            "type": "string",
+            "description": "Org domain suffix."
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Owning org id."
+          },
+          "org_slug": {
+            "type": "string",
+            "description": "Org slug."
+          },
+          "service": {
+            "$ref": "#/components/schemas/TenantServiceEnablement",
+            "description": "The caller's own enablement in this tenant."
+          },
+          "status": {
+            "type": "string",
+            "description": "Env status."
+          }
+        }
+      },
+      "TestPolicySetBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{name}/test` body.",
+        "required": [
+          "policies",
+          "subject_id"
+        ],
+        "properties": {
+          "action": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sample live-role names for role-based candidate rules."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "token_tp": {
+            "type": "string"
+          }
+        }
+      },
       "UpdateEnvRequest": {
         "type": "object",
         "description": "Request body for updateenv.",
@@ -3521,7 +4397,7 @@
               "string",
               "null"
             ],
-            "description": "Optional domain update — triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+            "description": "Optional domain update - triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
           },
           "display_name": {
             "type": [
@@ -3608,7 +4484,7 @@
     },
     {
       "name": "sys",
-      "description": "Sentin8:Sys admin API — org/env lifecycle, services, applications, branding, audit"
+      "description": "Sentin8:Sys admin API - org/env lifecycle, services, applications, branding, audit"
     }
   ]
 }

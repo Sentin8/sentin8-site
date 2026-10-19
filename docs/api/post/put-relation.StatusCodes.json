@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"OK","content":{"application/json":{"schema":{}}}},"403":{"description":"Caller lacks the policy scope"}}}
+{"responses":{"200":{"description":"OK","content":{"application/json":{"schema":{"type":"object","description":"A relation-tuple upsert result.","required":["id","status"],"properties":{"id":{"type":"string","format":"uuid","description":"The stored tuple id."},"status":{"type":"string","description":"Always `upserted`."}},"title":"RelationUpserted"}}}},"403":{"description":"Caller lacks the policy scope"}}}

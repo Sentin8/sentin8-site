@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for uploadfile.","required":["bucket","file_name","content_base64"],"properties":{"bucket":{"type":"string","description":"The bucket."},"content_base64":{"type":"string","description":"The content base64."},"file_name":{"type":"string","description":"The file name."}},"title":"UploadFileRequest"}}},"required":true}}

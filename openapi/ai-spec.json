@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-ai",
-    "description": "Sentin8 Sentin8:AI — platform AI capability layer.",
+    "description": "Sentin8 Sentin8:AI - platform AI capability layer.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -23,7 +23,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PrincipalAttr"
+                  }
                 }
               }
             }
@@ -48,17 +50,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutAttributeBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Attribute stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeUpserted"
+                }
               }
             }
           },
@@ -123,7 +129,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -150,7 +158,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -181,7 +191,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -212,7 +224,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -256,7 +270,9 @@
             "description": "The policy set",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetDetail"
+                }
               }
             }
           },
@@ -294,17 +310,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutPolicySetBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Policy set stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetMutated"
+                }
               }
             }
           },
@@ -376,7 +396,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/TestPolicySetBody"
+              }
             }
           },
           "required": true
@@ -386,7 +408,9 @@
             "description": "Dry-run decision trace",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyTestOutcome"
+                }
               }
             }
           },
@@ -416,7 +440,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/RelationRecordRow"
+                  }
                 }
               }
             }
@@ -441,7 +467,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutRelationBody"
+              }
             }
           },
           "required": true
@@ -451,7 +479,9 @@
             "description": "Relation stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationUpserted"
+                }
               }
             }
           },
@@ -543,7 +573,9 @@
             "description": "The check verdict",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationCheckResult"
+                }
               }
             }
           },
@@ -615,7 +647,7 @@
             "description": "Admin data rows"
           }
         },
-        "description": "Ai.admin.data .\n\nRFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED — Fix A)."
+        "description": "Ai.admin.data .\n\nRFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED - Fix A)."
       }
     },
     "/v1/agent/execute": {
@@ -885,7 +917,7 @@
             "sentin8:ai:chat:write": []
           }
         ],
-        "description": "Ai.chat.stream .\n\nstreaming chat over a chunked HTTP body\n. NOT the SSE subscription tier — synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."
+        "description": "Ai.chat.stream .\n\nstreaming chat over a chunked HTTP body\n. NOT the SSE subscription tier - synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."
       }
     },
     "/v1/completions": {
@@ -1375,17 +1407,26 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleRunRequest"
+              }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "Maintenance run completed"
+            "description": "Maintenance run completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleRunResponse"
+                }
+              }
+            }
           }
         },
-        "description": "Ai.internal.schedules.run .\n\nSentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield)."
+        "description": "Ai.internal.schedules.run .\n\nSentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens -\n `token_tp: m2m` principals evaluate like any other under Shield)."
       }
     },
     "/v1/internal/traces/archive": {
@@ -1398,17 +1439,26 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/TraceArchiveRequest"
+              }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "Archive run completed"
+            "description": "Archive run completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TraceArchiveResponse"
+                }
+              }
+            }
           }
         },
-        "description": "Ai.traces.archive .\n\nage out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) — never by\nclients directly."
+        "description": "Ai.traces.archive .\n\nage out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) - never by\nclients directly."
       }
     },
     "/v1/prompts": {
@@ -1751,7 +1801,7 @@
             "sentin8:ai:prompt:write": []
           }
         ],
-        "description": "Ai.registry.pin .\n\n`PUT /v1/embedding-registry/{model}` — pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422."
+        "description": "Ai.registry.pin .\n\n`PUT /v1/embedding-registry/{model}` - pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422."
       }
     },
     "/v1/retrieval": {
@@ -1866,7 +1916,7 @@
     "schemas": {
       "AgentIntent": {
         "type": "object",
-        "description": "Structured intent emitted by the model. The model has NO\nexecution surface — this contract is the only output shape accepted.",
+        "description": "Structured intent emitted by the model. The model has NO\nexecution surface - this contract is the only output shape accepted.",
         "required": [
           "action"
         ],
@@ -1899,7 +1949,7 @@
           },
           "prompt_name": {
             "type": "string",
-            "description": "Prompt registry name — its `tools` array is the ALLOWLIST of actions\nthe model may emit (mapped to Flow logics via `sentin8.ai_tools`)."
+            "description": "Prompt registry name - its `tools` array is the ALLOWLIST of actions\nthe model may emit (mapped to Flow logics via `sentin8.ai_tools`)."
           },
           "prompt_version": {
             "type": [
@@ -1954,6 +2004,19 @@
           }
         }
       },
+      "AttributeUpserted": {
+        "type": "object",
+        "description": "An attribute upsert result.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
       "ChatMessage": {
         "type": "object",
         "description": "A single chat message in the normalized envelope.",
@@ -1969,6 +2032,42 @@
             "type": "string"
           }
         }
+      },
+      "Decision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "allow"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "reason",
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "deny"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        ]
       },
       "DlqRecord": {
         "type": "object",
@@ -2039,7 +2138,7 @@
           },
           "text": {
             "type": "string",
-            "description": "Already-extracted text (extract step happens upstream or in this\nrequest — v1 accepts the plain text; PDF extraction is a Func WASM\nmodule concern)."
+            "description": "Already-extracted text (extract step happens upstream or in this\nrequest - v1 accepts the plain text; PDF extraction is a Func WASM\nmodule concern)."
           }
         }
       },
@@ -2150,7 +2249,7 @@
             "items": {
               "$ref": "#/components/schemas/ChatMessage"
             },
-            "description": "Inline messages (chat) — merged after the prompt's system/user text."
+            "description": "Inline messages (chat) - merged after the prompt's system/user text."
           },
           "model_override": {
             "type": [
@@ -2163,7 +2262,7 @@
               "string",
               "null"
             ],
-            "description": "Prompt registry name — config (models, temperature, schema) resolves\nfrom the named-latest/pinned version unless overridden inline."
+            "description": "Prompt registry name - config (models, temperature, schema) resolves\nfrom the named-latest/pinned version unless overridden inline."
           },
           "prompt_version": {
             "type": [
@@ -2237,6 +2336,219 @@
               "null"
             ],
             "format": "int32"
+          }
+        }
+      },
+      "PolicyModeBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{mode}` body (RFW row actions).",
+        "required": [
+          "policy_set_name"
+        ],
+        "properties": {
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "policy_set_name": {
+            "type": "string"
+          }
+        }
+      },
+      "PolicySetDetail": {
+        "type": "object",
+        "description": "One policy set in the detail view (adds the full policy text).",
+        "required": [
+          "policy_set_name",
+          "description",
+          "policies",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "Creation instant (RFC 3339)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform`/`tenant`)."
+          },
+          "policies": {
+            "type": "string",
+            "description": "The full policy text (Shield policy language)."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional schema text bound to the set."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicySetMutated": {
+        "type": "object",
+        "description": "A stored policy-set mutation result.",
+        "required": [
+          "policy_set_name",
+          "version",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "The evaluation mode after the mutation."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The revision after the mutation."
+          }
+        }
+      },
+      "PolicySetRow": {
+        "type": "object",
+        "description": "One policy set in the list view (the RFW row shape).",
+        "required": [
+          "id",
+          "policy_set_name",
+          "description",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "policies_len",
+          "updated_at"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "id": {
+            "type": "string",
+            "description": "The set name; doubles as the RFW row id."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode (`shadow`/`enforced`)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform` enroll-managed vs `tenant`)."
+          },
+          "policies_len": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of policy statements in the set."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicyTestOutcome": {
+        "type": "object",
+        "description": "A dry-run (test) outcome; nothing was stored.",
+        "required": [
+          "policy_set_name",
+          "action",
+          "decision",
+          "would_deny"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action evaluated."
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision",
+            "description": "The enforce-mode decision."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name the candidate text was compiled under."
+          },
+          "would_deny": {
+            "type": "boolean",
+            "description": "Whether the shadow evaluation would deny."
+          }
+        }
+      },
+      "PrincipalAttr": {
+        "type": "object",
+        "description": "One principal attribute in the list view.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value",
+          "origin"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string",
+            "description": "The attribute key."
+          },
+          "attr_value": {
+            "description": "The attribute value (free-form JSON by contract)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The attribute owner (subject id)."
           }
         }
       },
@@ -2365,6 +2677,85 @@
           }
         }
       },
+      "PutAttributeBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/attributes` body - one principal attribute.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string"
+          },
+          "attr_value": {},
+          "subject_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PutPolicySetBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/policy-sets/{name}` body.",
+        "required": [
+          "policies"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "PutRelationBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/relations` body - one relation tuple.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          }
+        }
+      },
       "RegistryDimRequest": {
         "type": "object",
         "required": [
@@ -2381,6 +2772,107 @@
           }
         }
       },
+      "RelationCheckResult": {
+        "type": "object",
+        "description": "A relation connectivity check result.",
+        "required": [
+          "subject",
+          "relation",
+          "object",
+          "direct",
+          "transitive",
+          "connected",
+          "tuple_count"
+        ],
+        "properties": {
+          "connected": {
+            "type": "boolean",
+            "description": "`direct || transitive`."
+          },
+          "direct": {
+            "type": "boolean",
+            "description": "Whether a direct tuple exists."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object in `type/id` form."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation checked."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject in `type/id` form."
+          },
+          "transitive": {
+            "type": "boolean",
+            "description": "Whether a transitive path exists."
+          },
+          "tuple_count": {
+            "type": "integer",
+            "description": "Number of tuples inspected.",
+            "minimum": 0
+          }
+        }
+      },
+      "RelationRecordRow": {
+        "type": "object",
+        "description": "One relation tuple in the list view.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id",
+          "origin"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "description": "The object entity id."
+          },
+          "object_type": {
+            "type": "string",
+            "description": "The object entity type."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation name."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The subject entity id."
+          },
+          "subject_type": {
+            "type": "string",
+            "description": "The subject entity type."
+          }
+        }
+      },
+      "RelationUpserted": {
+        "type": "object",
+        "description": "A relation-tuple upsert result.",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stored tuple id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
       "RetrievalHttpRequest": {
         "type": "object",
         "required": [
@@ -2392,10 +2884,10 @@
             "items": {
               "type": "string"
             },
-            "description": "Caller's Shield-resolved data scope — applied as an explicit metadata\nfilter IN THE QUERY (the LLM never sees out-of-scope chunks)."
+            "description": "Caller's Shield-resolved data scope - applied as an explicit metadata\nfilter IN THE QUERY (the LLM never sees out-of-scope chunks)."
           },
           "metadata_filters": {
-            "description": "Metadata filters: `{\"key\": \"value\",. }` — each becomes\n`metadata->'key' == value` in the SQL (AND-composed)."
+            "description": "Metadata filters: `{\"key\": \"value\",. }` - each becomes\n`metadata->'key' == value` in the SQL (AND-composed)."
           },
           "query": {
             "type": "string"
@@ -2494,6 +2986,76 @@
           }
         }
       },
+      "ScheduleRunRequest": {
+        "type": "object",
+        "description": "`POST /v1/internal/schedules/run` request (cron proxy-back).",
+        "properties": {
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "The env to sweep (absent = whole registry)."
+          },
+          "schedule_type": {
+            "type": "string",
+            "description": "The schedule type that fired (`model_migration`/`freshness`)."
+          }
+        }
+      },
+      "ScheduleRunResponse": {
+        "type": "object",
+        "description": "`POST /v1/internal/schedules/run` reply.",
+        "required": [
+          "schedule_type",
+          "stale_sources",
+          "status"
+        ],
+        "properties": {
+          "schedule_type": {
+            "description": "The schedule that ran."
+          },
+          "stale_sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StaleEmbedding"
+            },
+            "description": "Stale sources the sweep found."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `completed`."
+          }
+        }
+      },
+      "StaleEmbedding": {
+        "type": "object",
+        "description": "One stale embedding in the maintenance report.",
+        "required": [
+          "model"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "The embedding model."
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Why the row is stale."
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The stale source id."
+          }
+        }
+      },
       "StreamChatRequest": {
         "type": "object",
         "required": [
@@ -2522,13 +3084,99 @@
       },
       "TargetEnvQuery": {
         "type": "object",
-        "description": "Query params accepted by all env-scoped endpoints. `target_env_id` is\nforwarded by the BFF proxy to identify the tenant env when the caller's\ntoken carries the system env ( Fix A/D — REQUIRED, no\nsilent fallback).",
+        "description": "Query params accepted by all env-scoped endpoints. `target_env_id` is\nforwarded by the BFF proxy to identify the tenant env when the caller's\ntoken carries the system env ( Fix A/D - REQUIRED, no\nsilent fallback).",
         "properties": {
           "target_env_id": {
             "type": [
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "TestPolicySetBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{name}/test` body.",
+        "required": [
+          "policies",
+          "subject_id"
+        ],
+        "properties": {
+          "action": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sample live-role names for role-based candidate rules."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "token_tp": {
+            "type": "string"
+          }
+        }
+      },
+      "TraceArchiveRequest": {
+        "type": "object",
+        "description": "`POST /v1/internal/traces/archive` request.",
+        "required": [
+          "env_id"
+        ],
+        "properties": {
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The env whose traces are archived."
+          }
+        }
+      },
+      "TraceArchiveResponse": {
+        "type": "object",
+        "description": "`POST /v1/internal/traces/archive` reply.",
+        "required": [
+          "archived"
+        ],
+        "properties": {
+          "archived": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Rows moved to Storage (0 on a retained run)."
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Failure note (retained run only)."
+          },
+          "storage_key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The NDJSON object key (successful run only)."
           }
         }
       },
@@ -2727,12 +3375,12 @@
           },
           "credential_ref": {
             "type": "string",
-            "description": "Secret reference — NEVER the credential material itself."
+            "description": "Secret reference - NEVER the credential material itself."
           },
           "models": {},
           "provider": {
             "type": "string",
-            "description": "'openai' | 'anthropic' | 'ollama' (v1 set —)."
+            "description": "'openai' | 'anthropic' | 'ollama' (v1 set -)."
           }
         }
       }
@@ -2746,7 +3394,7 @@
     },
     {
       "name": "ai",
-      "description": "Sentin8:AI — prompt registry, inference primitives, retrieval, providers, traces"
+      "description": "Sentin8:AI - prompt registry, inference primitives, retrieval, providers, traces"
     }
   ]
 }

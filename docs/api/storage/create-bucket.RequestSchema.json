@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for createbucket.","required":["name"],"properties":{"name":{"type":"string","description":"The name."}},"title":"CreateBucketRequest"}}},"required":true}}

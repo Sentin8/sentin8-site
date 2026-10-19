@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-stat",
-    "description": "Sentin8 Sentin8:Stat — analytics/telemetry ingest, read APIs, and embedded pipeline worker.",
+    "description": "Sentin8 Sentin8:Stat - analytics/telemetry ingest, read APIs, and embedded pipeline worker.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -94,7 +94,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PrincipalAttr"
+                  }
                 }
               }
             }
@@ -119,17 +121,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutAttributeBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Attribute stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeUpserted"
+                }
               }
             }
           },
@@ -194,7 +200,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -221,7 +229,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -252,7 +262,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -283,7 +295,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -327,7 +341,9 @@
             "description": "The policy set",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetDetail"
+                }
               }
             }
           },
@@ -365,17 +381,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutPolicySetBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Policy set stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetMutated"
+                }
               }
             }
           },
@@ -447,7 +467,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/TestPolicySetBody"
+              }
             }
           },
           "required": true
@@ -457,7 +479,9 @@
             "description": "Dry-run decision trace",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyTestOutcome"
+                }
               }
             }
           },
@@ -959,7 +983,7 @@
             "sentin8:stat:admin": []
           }
         ],
-        "description": "Property.reaggregate .\n\nDelete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY — a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."
+        "description": "Property.reaggregate .\n\nDelete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY - a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."
       }
     },
     "/v1/admin/properties/{id}/retention": {
@@ -1098,7 +1122,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/RelationRecordRow"
+                  }
                 }
               }
             }
@@ -1123,7 +1149,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutRelationBody"
+              }
             }
           },
           "required": true
@@ -1133,7 +1161,9 @@
             "description": "Relation stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationUpserted"
+                }
               }
             }
           },
@@ -1225,7 +1255,9 @@
             "description": "The check verdict",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationCheckResult"
+                }
               }
             }
           },
@@ -1274,7 +1306,9 @@
             "description": "RFW page definition (rendered by Sentin8:Dash)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -1325,7 +1359,9 @@
             "description": "The resource's rows for the RFW table",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDataRows"
+                }
               }
             }
           },
@@ -1407,7 +1443,9 @@
             "description": "Funnel steps + drop-off",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/Funnel"
+                }
               }
             }
           },
@@ -1481,7 +1519,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/MetricPoint"
+                  }
                 }
               }
             }
@@ -1508,7 +1548,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/QueryDsl"
+              }
             }
           },
           "required": true
@@ -1518,7 +1560,9 @@
             "description": "Query result rows",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
               }
             }
           },
@@ -1550,7 +1594,9 @@
             "description": "Realtime counters (active sessions, recent events)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RealtimeResponse"
+                }
               }
             }
           },
@@ -1619,8 +1665,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {}
+                  "$ref": "#/components/schemas/ReportListResponse"
                 }
               }
             }
@@ -1660,7 +1705,9 @@
             "description": "The report's result rows",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ReportRunResponse"
+                }
               }
             }
           },
@@ -1732,7 +1779,9 @@
             "description": "Retention cohorts",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RetentionResponse"
+                }
               }
             }
           },
@@ -1803,7 +1852,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/AggregateRow"
+                  }
                 }
               }
             }
@@ -1876,7 +1927,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/TrafficSummary"
+                  }
                 }
               }
             }
@@ -1904,7 +1957,9 @@
             "description": "Liveness (version, build, active connections)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LiveHealth"
+                }
               }
             }
           }
@@ -1923,7 +1978,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/CollectBody"
+              }
             }
           },
           "required": true
@@ -1975,19 +2032,16 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/CollectBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "Accepted",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
+          "204": {
+            "description": "Accepted (no body)"
           },
           "403": {
             "description": "Property unknown / origin mismatch"
@@ -2007,7 +2061,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/ConversionShorthandRequest"
+              }
             }
           },
           "required": true
@@ -2034,7 +2090,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/EventRequest"
+              }
             }
           },
           "required": true
@@ -2061,7 +2119,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/MetricRequest"
+              }
             }
           },
           "required": true
@@ -2088,7 +2148,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PageviewRequest"
+              }
             }
           },
           "required": true
@@ -2117,7 +2179,9 @@
             "description": "Readiness (PG reachable + writer workers)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
               }
             }
           },
@@ -2163,6 +2227,204 @@
           }
         }
       },
+      "AdminDataRows": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "The default `{ items: [rows] }` envelope the RFW table reads.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "type": "object",
+                "description": "The default `{ items: [rows] }` envelope the RFW table reads.",
+                "required": [
+                  "items"
+                ],
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {},
+                    "description": "The row documents."
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "description": "The `GET /v1/admin/{resource}` rows payload: the per-resource row\ndocuments the RFW DataTable renders (row cells and per-resource\ncolumn sets are service-defined; the RFW renderer reads them\ndynamically)."
+      },
+      "AdminUiAction": {
+        "type": "object",
+        "description": "An action button shown in the page header.",
+        "required": [
+          "label",
+          "action_type"
+        ],
+        "properties": {
+          "action_type": {
+            "$ref": "#/components/schemas/AdminUiActionType",
+            "description": "The action kind (link / submit / dialog)."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for submit actions)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string) for the button."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link actions)."
+          }
+        }
+      },
+      "AdminUiActionType": {
+        "type": "string",
+        "description": "The kind of a header action button.",
+        "enum": [
+          "link",
+          "submit",
+          "dialog"
+        ]
+      },
+      "AdminUiPage": {
+        "type": "object",
+        "description": "A complete admin UI page definition returned by `GET /v1/admin/ui/{page}`.",
+        "required": [
+          "title",
+          "widgets"
+        ],
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminUiAction"
+            },
+            "description": "Optional actions shown in the page header (buttons)."
+          },
+          "title": {
+            "type": "string",
+            "description": "The page title (shown in breadcrumb and header)."
+          },
+          "widgets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "The root widget tree."
+          }
+        }
+      },
+      "AdminUiResponse": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Render this page definition.",
+            "required": [
+              "page",
+              "response_type"
+            ],
+            "properties": {
+              "page": {
+                "$ref": "#/components/schemas/AdminUiPage",
+                "description": "The page definition to render."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "page"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "Redirect to this route (e.g. after a successful form submission).",
+            "required": [
+              "route",
+              "response_type"
+            ],
+            "properties": {
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "redirect"
+                ]
+              },
+              "route": {
+                "type": "string",
+                "description": "The route to navigate to."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "An error occurred (validation error, server error, etc.).",
+            "required": [
+              "message",
+              "response_type"
+            ],
+            "properties": {
+              "field_errors": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FieldError"
+                },
+                "description": "Per-field validation errors, when applicable."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error message."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "error"
+                ]
+              }
+            }
+          }
+        ],
+        "description": "The response from an admin UI endpoint.\n\n- `GET /v1/admin/ui/{page}` → `AdminUiResponse::Page(page_def)`\n- `POST /v1/admin/{resource}` → `AdminUiResponse::Page(updated_page_def)` or `AdminUiResponse::Redirect(route)`"
+      },
+      "AggregateRow": {
+        "type": "object",
+        "description": "The aggregaterow type.",
+        "required": [
+          "day",
+          "dimensions",
+          "metrics"
+        ],
+        "properties": {
+          "day": {
+            "type": "string",
+            "format": "date",
+            "description": "The day."
+          },
+          "dimensions": {
+            "description": "The dimensions."
+          },
+          "metrics": {
+            "description": "The metrics."
+          }
+        }
+      },
       "AlertRule": {
         "type": "object",
         "description": "A per-property custom alert rule (`stat.alert_rules`, stat README §7).\nThe alertrule type.",
@@ -2184,7 +2446,7 @@
         "properties": {
           "comparator": {
             "type": "string",
-            "description": "Comparator — `gt` | `gte` | `lt` | `lte`."
+            "description": "Comparator - `gt` | `gte` | `lt` | `lte`."
           },
           "created_at": {
             "type": "string",
@@ -2212,7 +2474,7 @@
           "min_sample": {
             "type": "integer",
             "format": "int32",
-            "description": "Noise floor — the rule never evaluates below it."
+            "description": "Noise floor - the rule never evaluates below it."
           },
           "name": {
             "type": "string",
@@ -2225,7 +2487,7 @@
           },
           "rule_type": {
             "type": "string",
-            "description": "Rule type — `threshold` (metric value vs threshold) or `anomaly`\n(moving-average deviation factor over the window)."
+            "description": "Rule type - `threshold` (metric value vs threshold) or `anomaly`\n(moving-average deviation factor over the window)."
           },
           "threshold": {
             "type": "number",
@@ -2241,6 +2503,128 @@
             "type": "integer",
             "format": "int32",
             "description": "Moving-average lookback in hours (`anomaly` rules)."
+          }
+        }
+      },
+      "AttributeUpserted": {
+        "type": "object",
+        "description": "An attribute upsert result.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "ButtonType": {
+        "type": "string",
+        "description": "Button visual style.",
+        "enum": [
+          "primary",
+          "secondary",
+          "danger",
+          "ghost",
+          "link"
+        ]
+      },
+      "ChartType": {
+        "type": "string",
+        "description": "Chart kind.",
+        "enum": [
+          "bar",
+          "line",
+          "pie"
+        ]
+      },
+      "CollectBody": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/EventEnvelope",
+            "description": "A single envelope."
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventEnvelope"
+            },
+            "description": "A batch of envelopes."
+          }
+        ],
+        "description": "`POST /v1/m/collect` body - either a single envelope or an array.\nIngest request body - one envelope or a batch."
+      },
+      "ContainerDirection": {
+        "type": "string",
+        "description": "Layout direction for a container's children.",
+        "enum": [
+          "vertical",
+          "horizontal"
+        ]
+      },
+      "Conversion": {
+        "type": "object",
+        "description": "The conversion type.",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The currency."
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifier."
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "The value."
+          }
+        }
+      },
+      "ConversionShorthandRequest": {
+        "type": "object",
+        "description": "Request body for conversionshorthand.",
+        "required": [
+          "property_id",
+          "client_id",
+          "conversions"
+        ],
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "client identifier."
+          },
+          "conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Conversion"
+            },
+            "description": "The conversions."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          },
+          "props": {
+            "description": "The props."
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "subject identifier."
           }
         }
       },
@@ -2283,7 +2667,7 @@
           "min_sample": {
             "type": "integer",
             "format": "int32",
-            "description": "Noise floor — the rule never evaluates below it."
+            "description": "Noise floor - the rule never evaluates below it."
           },
           "name": {
             "type": "string",
@@ -2296,7 +2680,7 @@
           "threshold": {
             "type": "number",
             "format": "double",
-            "description": "Comparison threshold (metric value, or deviation factor for\n`anomaly` — e.g. `3.0` = current exceeds 3× the baseline)."
+            "description": "Comparison threshold (metric value, or deviation factor for\n`anomaly` - e.g. `3.0` = current exceeds 3× the baseline)."
           },
           "window_hours": {
             "type": "integer",
@@ -2354,6 +2738,390 @@
           }
         }
       },
+      "Decision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "allow"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "reason",
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "deny"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "DeviceHint": {
+        "type": "object",
+        "description": "The devicehint type.",
+        "properties": {
+          "user_agent": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The user agent."
+          }
+        }
+      },
+      "EventEnvelope": {
+        "type": "object",
+        "description": "Full event envelope as sent by SDKs / servers. Mirrors the JSON shape in\nthe design doc , extended with the optional `metrics` field for\nserver telemetry events.\nThe eventenvelope type.",
+        "required": [
+          "event_id",
+          "client_id",
+          "property_id",
+          "client_type",
+          "event_type",
+          "event_name",
+          "timestamp"
+        ],
+        "properties": {
+          "app_version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The app version."
+          },
+          "client_id": {
+            "type": "string",
+            "description": "client identifier."
+          },
+          "client_type": {
+            "type": "string",
+            "description": "`web` | `server` | `mobile`.\nThe client type."
+          },
+          "conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Conversion"
+            },
+            "description": "The conversions."
+          },
+          "device": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DeviceHint",
+                "description": "The device."
+              }
+            ]
+          },
+          "engagement_time_ms": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The engagement time ms."
+          },
+          "event_category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The event category."
+          },
+          "event_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "event identifier."
+          },
+          "event_name": {
+            "type": "string",
+            "description": "The event name."
+          },
+          "event_type": {
+            "type": "string",
+            "description": "`pageview` | `screenview` | `event` | `conversion` | `metric` | `custom`.\nThe event type."
+          },
+          "geo": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/GeoHint",
+                "description": "Geo/device context - usually populated by the pipeline enrichment stage,\nbut SDKs may send hints.\nThe geo."
+              }
+            ]
+          },
+          "metrics": {
+            "description": "Numeric telemetry values. Present when `event_type == \"metric\"`.\nThe metrics."
+          },
+          "page_title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The page title."
+          },
+          "page_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The page URL."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          },
+          "property_slug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Server-emitter slug path : when set, the ingest layer\nresolves slug → property server-side (env-scoped) and overwrites\n`property_id`. `property_id` stays the wire field for web SDKs.\nThe property slug."
+          },
+          "props": {
+            "description": "Arbitrary flat JSON object (max 64 keys, max 4 KiB). PII deny-list\napplied at ingest.\nThe props."
+          },
+          "props_pii_stripped": {
+            "type": "boolean",
+            "description": "Set at ingest when the PII deny-list stripped at least one key\nfrom `props` - dashboards distinguish cleaned payloads (stat DESIGN\n§4, cross-cutting CC-7 doc alignment).\nWhether PII was stripped."
+          },
+          "referrer": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The referrer."
+          },
+          "screen_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The screen name."
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "subject identifier."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp."
+          },
+          "traffic_source": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TrafficSource",
+                "description": "The traffic source."
+              }
+            ]
+          }
+        }
+      },
+      "EventRequest": {
+        "type": "object",
+        "description": "Request body for event.",
+        "required": [
+          "property_id",
+          "client_id",
+          "name"
+        ],
+        "properties": {
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The category."
+          },
+          "client_id": {
+            "type": "string",
+            "description": "client identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          },
+          "props": {
+            "description": "The props."
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "subject identifier."
+          }
+        }
+      },
+      "FieldCondition": {
+        "type": "object",
+        "description": "A visibility condition for a form field.",
+        "required": [
+          "field",
+          "equals"
+        ],
+        "properties": {
+          "equals": {
+            "description": "The value that must match for this field to be visible."
+          },
+          "field": {
+            "type": "string",
+            "description": "The key of the field whose value to check."
+          }
+        }
+      },
+      "FieldError": {
+        "type": "object",
+        "description": "A per-field validation error.",
+        "required": [
+          "field",
+          "message"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The form field key the error refers to."
+          },
+          "message": {
+            "type": "string",
+            "description": "The validation message shown under the field."
+          }
+        }
+      },
+      "FormFieldOption": {
+        "type": "object",
+        "description": "One choice of a select-type form field.",
+        "required": [
+          "value",
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The displayed label."
+          },
+          "value": {
+            "type": "string",
+            "description": "The submitted value."
+          }
+        }
+      },
+      "FormFieldType": {
+        "type": "string",
+        "description": "Input widget type for a form field.",
+        "enum": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "decimal",
+          "date",
+          "date_time",
+          "select",
+          "multiselect",
+          "autocomplete",
+          "checkbox",
+          "toggle",
+          "textarea",
+          "file",
+          "hidden",
+          "key_value"
+        ]
+      },
+      "FormFieldValidation": {
+        "type": "object",
+        "description": "Validation constraints for a form field.",
+        "properties": {
+          "custom_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message overriding the default validation error."
+          },
+          "max": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Maximum numeric value."
+          },
+          "max_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum string length.",
+            "minimum": 0
+          },
+          "min": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Minimum numeric value."
+          },
+          "min_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Minimum string length.",
+            "minimum": 0
+          },
+          "pattern": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Regex pattern the value must match."
+          }
+        }
+      },
+      "FormMethod": {
+        "type": "string",
+        "description": "HTTP method used for form submission.",
+        "enum": [
+          "post",
+          "put"
+        ]
+      },
       "Funnel": {
         "type": "object",
         "description": "The funnel type.",
@@ -2380,6 +3148,373 @@
           },
           "steps": {
             "description": "The steps."
+          }
+        }
+      },
+      "GeoHint": {
+        "type": "object",
+        "description": "The geohint type.",
+        "properties": {
+          "ip": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The ip."
+          }
+        }
+      },
+      "LiveHealth": {
+        "type": "object",
+        "description": "The `GET /v1/health` liveness payload every service returns: the\nstatus string, the serving service's short name, build identity, and\n(when the process tracks them) the count of live connections.\n`service` and `active_connections` stay absent when a service does\nnot set them (e.g. the bus mounts the generic handler).",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "active_connections": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Live socket count when the traffic counter is mounted."
+          },
+          "build": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build hash (`sentin8::build_info::build_hash()`)."
+          },
+          "service": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The serving service's short name (absent when the generic handler\ndoes not carry one)."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `ok` on a live instance."
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build identity id (`sentin8::build_info::id()`)."
+          }
+        }
+      },
+      "MetricPoint": {
+        "type": "object",
+        "description": "The metricpoint type.",
+        "required": [
+          "day",
+          "metric_name",
+          "value"
+        ],
+        "properties": {
+          "day": {
+            "type": "string",
+            "format": "date",
+            "description": "The day."
+          },
+          "metric_name": {
+            "type": "string",
+            "description": "The metric name."
+          },
+          "value": {
+            "type": "number",
+            "format": "double",
+            "description": "The value."
+          }
+        }
+      },
+      "MetricRequest": {
+        "type": "object",
+        "description": "Request body for metric.",
+        "required": [
+          "property_id",
+          "name",
+          "metrics"
+        ],
+        "properties": {
+          "dim_tags": {
+            "description": "Optional dimension tags, e.g. `{\"token_tp\":\"m2m\"}`.\nThe dim tags."
+          },
+          "metrics": {
+            "description": "Numeric map, e.g. `{\"users.count\": 42}`.\nThe metrics."
+          },
+          "name": {
+            "type": "string",
+            "description": "Metric batch source label, e.g. `auth.daily_snapshot`.\nThe name."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          }
+        }
+      },
+      "PageviewRequest": {
+        "type": "object",
+        "description": "Shorthand request bodies.\nRequest body for pageview.",
+        "required": [
+          "property_id",
+          "client_id",
+          "url"
+        ],
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "client identifier."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          },
+          "props": {
+            "description": "The props."
+          },
+          "referrer": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The referrer."
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "subject identifier."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The title."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL."
+          }
+        }
+      },
+      "PolicyModeBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{mode}` body (RFW row actions).",
+        "required": [
+          "policy_set_name"
+        ],
+        "properties": {
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "policy_set_name": {
+            "type": "string"
+          }
+        }
+      },
+      "PolicySetDetail": {
+        "type": "object",
+        "description": "One policy set in the detail view (adds the full policy text).",
+        "required": [
+          "policy_set_name",
+          "description",
+          "policies",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "Creation instant (RFC 3339)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform`/`tenant`)."
+          },
+          "policies": {
+            "type": "string",
+            "description": "The full policy text (Shield policy language)."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional schema text bound to the set."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicySetMutated": {
+        "type": "object",
+        "description": "A stored policy-set mutation result.",
+        "required": [
+          "policy_set_name",
+          "version",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "The evaluation mode after the mutation."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The revision after the mutation."
+          }
+        }
+      },
+      "PolicySetRow": {
+        "type": "object",
+        "description": "One policy set in the list view (the RFW row shape).",
+        "required": [
+          "id",
+          "policy_set_name",
+          "description",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "policies_len",
+          "updated_at"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "id": {
+            "type": "string",
+            "description": "The set name; doubles as the RFW row id."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode (`shadow`/`enforced`)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform` enroll-managed vs `tenant`)."
+          },
+          "policies_len": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of policy statements in the set."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicyTestOutcome": {
+        "type": "object",
+        "description": "A dry-run (test) outcome; nothing was stored.",
+        "required": [
+          "policy_set_name",
+          "action",
+          "decision",
+          "would_deny"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action evaluated."
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision",
+            "description": "The enforce-mode decision."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name the candidate text was compiled under."
+          },
+          "would_deny": {
+            "type": "boolean",
+            "description": "Whether the shadow evaluation would deny."
+          }
+        }
+      },
+      "PrincipalAttr": {
+        "type": "object",
+        "description": "One principal attribute in the list view.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value",
+          "origin"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string",
+            "description": "The attribute key."
+          },
+          "attr_value": {
+            "description": "The attribute value (free-form JSON by contract)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The attribute owner (subject id)."
           }
         }
       },
@@ -2464,9 +3599,163 @@
           }
         }
       },
+      "PutAttributeBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/attributes` body - one principal attribute.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string"
+          },
+          "attr_value": {},
+          "subject_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PutPolicySetBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/policy-sets/{name}` body.",
+        "required": [
+          "policies"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "PutRelationBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/relations` body - one relation tuple.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryDsl": {
+        "type": "object",
+        "description": "The querydsl type.",
+        "required": [
+          "property_id",
+          "table"
+        ],
+        "properties": {
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "The from."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "property identifier."
+          },
+          "table": {
+            "type": "string",
+            "description": "The table."
+          },
+          "to": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "The to."
+          }
+        }
+      },
+      "QueryResponse": {
+        "type": "object",
+        "description": "The rows-envelope of `POST /v1/data/query`.",
+        "required": [
+          "rows"
+        ],
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateRow"
+            },
+            "description": "The aggregate rows matching the DSL query."
+          }
+        }
+      },
+      "ReadinessResponse": {
+        "type": "object",
+        "description": "The `GET /v1/readiness` payload (PG + writer workers).",
+        "required": [
+          "status",
+          "checks"
+        ],
+        "properties": {
+          "checks": {
+            "type": "object",
+            "description": "Per-dependency check results.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "`ready`/`degraded`."
+          }
+        }
+      },
       "ReaggregateRequest": {
         "type": "object",
-        "description": "Request body for `POST /v1/admin/properties/{id}/reaggregate` — the\nraw-events window to rebuild. Both fields accept RFC 3339 timestamps;\nomitted fields default per `parse_reaggregate_window` (full omission =\nlast 30 days).\nThe reaggregaterequest type.",
+        "description": "Request body for `POST /v1/admin/properties/{id}/reaggregate` - the\nraw-events window to rebuild. Both fields accept RFC 3339 timestamps;\nomitted fields default per `parse_reaggregate_window` (full omission =\nlast 30 days).\nThe reaggregaterequest type.",
         "properties": {
           "from": {
             "type": [
@@ -2484,6 +3773,568 @@
           }
         }
       },
+      "RealtimeResponse": {
+        "type": "object",
+        "description": "The realtime counter snapshot.",
+        "required": [
+          "property_id",
+          "active_users"
+        ],
+        "properties": {
+          "active_users": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Sessions active in the realtime window."
+          },
+          "property_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The property the counters refer to."
+          }
+        }
+      },
+      "RelationCheckResult": {
+        "type": "object",
+        "description": "A relation connectivity check result.",
+        "required": [
+          "subject",
+          "relation",
+          "object",
+          "direct",
+          "transitive",
+          "connected",
+          "tuple_count"
+        ],
+        "properties": {
+          "connected": {
+            "type": "boolean",
+            "description": "`direct || transitive`."
+          },
+          "direct": {
+            "type": "boolean",
+            "description": "Whether a direct tuple exists."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object in `type/id` form."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation checked."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject in `type/id` form."
+          },
+          "transitive": {
+            "type": "boolean",
+            "description": "Whether a transitive path exists."
+          },
+          "tuple_count": {
+            "type": "integer",
+            "description": "Number of tuples inspected.",
+            "minimum": 0
+          }
+        }
+      },
+      "RelationRecordRow": {
+        "type": "object",
+        "description": "One relation tuple in the list view.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id",
+          "origin"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "description": "The object entity id."
+          },
+          "object_type": {
+            "type": "string",
+            "description": "The object entity type."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation name."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The subject entity id."
+          },
+          "subject_type": {
+            "type": "string",
+            "description": "The subject entity type."
+          }
+        }
+      },
+      "RelationUpserted": {
+        "type": "object",
+        "description": "A relation-tuple upsert result.",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stored tuple id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "RemoteWidget": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+              },
+              "direction": {
+                "$ref": "#/components/schemas/ContainerDirection",
+                "description": "Layout direction of the children."
+              },
+              "padding": {
+                "type": "number",
+                "format": "double",
+                "description": "Outer padding."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "container"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "text"
+            ],
+            "properties": {
+              "align": {
+                "$ref": "#/components/schemas/TextAlign",
+                "description": "Text alignment."
+              },
+              "max_lines": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "description": "Maximum lines before ellipsis.",
+                "minimum": 0
+              },
+              "text": {
+                "type": "string",
+                "description": "The text content."
+              },
+              "text_type": {
+                "$ref": "#/components/schemas/WidgetTextType",
+                "description": "Style variant."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "columns",
+              "data_endpoint"
+            ],
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetDataTableColumn"
+                },
+                "description": "Column definitions."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+              },
+              "empty_message": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Message shown when there are no rows."
+              },
+              "filterable": {
+                "type": "boolean",
+                "description": "Whether column filtering is enabled."
+              },
+              "page_size": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Rows per page (0 = renderer default).",
+                "minimum": 0
+              },
+              "row_actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+              },
+              "row_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+              },
+              "sortable": {
+                "type": "boolean",
+                "description": "Whether column sorting is enabled."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "data_table"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "fields",
+              "submit_endpoint"
+            ],
+            "properties": {
+              "cancel_label": {
+                "type": "string",
+                "description": "Cancel button label."
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetFormField"
+                },
+                "description": "Form fields in render order."
+              },
+              "method": {
+                "$ref": "#/components/schemas/FormMethod",
+                "description": "HTTP method for submission."
+              },
+              "submit_endpoint": {
+                "type": "string",
+                "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+              },
+              "submit_label": {
+                "type": "string",
+                "description": "Submit button label."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "form"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "label"
+            ],
+            "properties": {
+              "button_type": {
+                "$ref": "#/components/schemas/ButtonType",
+                "description": "Visual/emphasis style."
+              },
+              "endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+              },
+              "icon": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Material Icons code point (hex string)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Button label."
+              },
+              "route": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "button"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Buttons rendered in the card footer/header."
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "subtitle": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card subtitle."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "card"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "chart_type",
+              "data_endpoint"
+            ],
+            "properties": {
+              "chart_type": {
+                "$ref": "#/components/schemas/ChartType",
+                "description": "The chart kind."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "Endpoint that returns the chart series data."
+              },
+              "height": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "description": "Height in logical pixels."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Chart title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "chart"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "widget_name"
+            ],
+            "properties": {
+              "data_endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The data endpoint the native widget calls."
+              },
+              "props": {
+                "description": "Props passed to the native widget (service-specific)."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "native"
+                ]
+              },
+              "widget_name": {
+                "type": "string",
+                "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "row"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "column"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "size": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap size in logical pixels."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "spacer"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ReportListResponse": {
+        "type": "object",
+        "description": "The saved-report catalog for a property.",
+        "required": [
+          "reports"
+        ],
+        "properties": {
+          "reports": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The report ids the data API serves."
+          }
+        }
+      },
+      "ReportRunResponse": {
+        "type": "object",
+        "description": "One pre-canned report run.",
+        "required": [
+          "report",
+          "rows"
+        ],
+        "properties": {
+          "report": {
+            "type": "string",
+            "description": "The report id that ran."
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateRow"
+            },
+            "description": "The aggregate rows of the report window."
+          }
+        }
+      },
       "RetentionRequest": {
         "type": "object",
         "description": "Request body for retention.",
@@ -2495,6 +4346,22 @@
             "type": "integer",
             "format": "int32",
             "description": "The retention days."
+          }
+        }
+      },
+      "RetentionResponse": {
+        "type": "object",
+        "description": "The retention cohort table.",
+        "required": [
+          "cohort"
+        ],
+        "properties": {
+          "cohort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateRow"
+            },
+            "description": "Cohort rows (week/day since first visit, retained users, rate)."
           }
         }
       },
@@ -2529,6 +4396,122 @@
           }
         }
       },
+      "TestPolicySetBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{name}/test` body.",
+        "required": [
+          "policies",
+          "subject_id"
+        ],
+        "properties": {
+          "action": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sample live-role names for role-based candidate rules."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "token_tp": {
+            "type": "string"
+          }
+        }
+      },
+      "TextAlign": {
+        "type": "string",
+        "description": "Text alignment.",
+        "enum": [
+          "left",
+          "center",
+          "right"
+        ]
+      },
+      "TrafficSource": {
+        "type": "object",
+        "description": "The trafficsource type.",
+        "properties": {
+          "utm_campaign": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The utm campaign."
+          },
+          "utm_medium": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The utm medium."
+          },
+          "utm_source": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The utm source."
+          }
+        }
+      },
+      "TrafficSummary": {
+        "type": "object",
+        "description": "Per-service traffic summary row - one row per `from_service → to_service`\npair, aggregated from TLS's `tls.traffic.*` metrics.\nReturned by `GET /v1/data/traffic`.\nThe trafficsummary type.",
+        "required": [
+          "from",
+          "to",
+          "count",
+          "latency_ms",
+          "errors"
+        ],
+        "properties": {
+          "count": {
+            "type": "number",
+            "format": "double",
+            "description": "Total request count in the period.\nThe count count."
+          },
+          "errors": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of error responses (status ≥ 500).\nThe errors."
+          },
+          "from": {
+            "type": "string",
+            "description": "The calling service (e.g. `bff`).\nThe from."
+          },
+          "latency_ms": {
+            "type": "number",
+            "format": "double",
+            "description": "Average latency in ms.\nThe latency ms."
+          },
+          "to": {
+            "type": "string",
+            "description": "The target service (e.g. `auth`).\nThe to."
+          }
+        }
+      },
       "UpdatePropertyRequest": {
         "type": "object",
         "description": "Request body for updateproperty.",
@@ -2555,6 +4538,468 @@
             "description": "The timezone."
           }
         }
+      },
+      "WidgetButton": {
+        "type": "object",
+        "description": "A button (submit, cancel, row action, or link).",
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "button_type": {
+            "$ref": "#/components/schemas/ButtonType",
+            "description": "Visual/emphasis style."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string)."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+          }
+        }
+      },
+      "WidgetCard": {
+        "type": "object",
+        "description": "A glass card panel with optional title and children.",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Buttons rendered in the card footer/header."
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "subtitle": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card subtitle."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card title."
+          }
+        }
+      },
+      "WidgetChart": {
+        "type": "object",
+        "description": "A simple chart backed by a data endpoint.",
+        "required": [
+          "chart_type",
+          "data_endpoint"
+        ],
+        "properties": {
+          "chart_type": {
+            "$ref": "#/components/schemas/ChartType",
+            "description": "The chart kind."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "Endpoint that returns the chart series data."
+          },
+          "height": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Height in logical pixels."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Chart title."
+          }
+        }
+      },
+      "WidgetColumn": {
+        "type": "object",
+        "description": "A vertical layout column.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetContainer": {
+        "type": "object",
+        "description": "A scrollable container with layout direction and padding.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+          },
+          "direction": {
+            "$ref": "#/components/schemas/ContainerDirection",
+            "description": "Layout direction of the children."
+          },
+          "padding": {
+            "type": "number",
+            "format": "double",
+            "description": "Outer padding."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetDataTable": {
+        "type": "object",
+        "description": "A data table with server-side rows, sorting, filtering, and pagination.",
+        "required": [
+          "columns",
+          "data_endpoint"
+        ],
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetDataTableColumn"
+            },
+            "description": "Column definitions."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+          },
+          "empty_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message shown when there are no rows."
+          },
+          "filterable": {
+            "type": "boolean",
+            "description": "Whether column filtering is enabled."
+          },
+          "page_size": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Rows per page (0 = renderer default).",
+            "minimum": 0
+          },
+          "row_actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+          },
+          "row_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether column sorting is enabled."
+          }
+        }
+      },
+      "WidgetDataTableColumn": {
+        "type": "object",
+        "description": "One column of a [`WidgetDataTable`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "format": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Formatter hint (e.g. `iban`, `currency`, `datetime`)."
+          },
+          "key": {
+            "type": "string",
+            "description": "Row-data key for this column."
+          },
+          "label": {
+            "type": "string",
+            "description": "Column header label."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether this column sorts."
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Fixed width in logical pixels."
+          }
+        }
+      },
+      "WidgetForm": {
+        "type": "object",
+        "description": "A form with fields and a submit action.",
+        "required": [
+          "fields",
+          "submit_endpoint"
+        ],
+        "properties": {
+          "cancel_label": {
+            "type": "string",
+            "description": "Cancel button label."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetFormField"
+            },
+            "description": "Form fields in render order."
+          },
+          "method": {
+            "$ref": "#/components/schemas/FormMethod",
+            "description": "HTTP method for submission."
+          },
+          "submit_endpoint": {
+            "type": "string",
+            "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+          },
+          "submit_label": {
+            "type": "string",
+            "description": "Submit button label."
+          }
+        }
+      },
+      "WidgetFormField": {
+        "type": "object",
+        "description": "One input field of a [`WidgetForm`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "default_value": {
+            "description": "Initial value."
+          },
+          "field_type": {
+            "$ref": "#/components/schemas/FormFieldType",
+            "description": "Input widget type."
+          },
+          "help_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Helper text shown below the field."
+          },
+          "key": {
+            "type": "string",
+            "description": "Field key in the submitted payload."
+          },
+          "label": {
+            "type": "string",
+            "description": "Display label."
+          },
+          "options": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/FormFieldOption"
+            },
+            "description": "Choices for select-type fields."
+          },
+          "placeholder": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Hint shown inside the empty field."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether submission fails without a value."
+          },
+          "validation": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FormFieldValidation",
+                "description": "Validation constraints."
+              }
+            ]
+          },
+          "visible_if": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FieldCondition",
+                "description": "Conditional visibility: only show this field when another field\nmatches a value. Example: `{\"field\": \"auth_mode\", \"equals\": \"staff\"}`"
+              }
+            ]
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Width in logical pixels."
+          }
+        }
+      },
+      "WidgetNative": {
+        "type": "object",
+        "description": "A native widget host - the dash renders a built-in Flutter widget.",
+        "required": [
+          "widget_name"
+        ],
+        "properties": {
+          "data_endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The data endpoint the native widget calls."
+          },
+          "props": {
+            "description": "Props passed to the native widget (service-specific)."
+          },
+          "widget_name": {
+            "type": "string",
+            "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+          }
+        }
+      },
+      "WidgetRow": {
+        "type": "object",
+        "description": "A horizontal layout row.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetSpacer": {
+        "type": "object",
+        "description": "An empty gap.",
+        "properties": {
+          "size": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap size in logical pixels."
+          }
+        }
+      },
+      "WidgetText": {
+        "type": "object",
+        "description": "A text label with optional styling.",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "align": {
+            "$ref": "#/components/schemas/TextAlign",
+            "description": "Text alignment."
+          },
+          "max_lines": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum lines before ellipsis.",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content."
+          },
+          "text_type": {
+            "$ref": "#/components/schemas/WidgetTextType",
+            "description": "Style variant."
+          }
+        }
+      },
+      "WidgetTextType": {
+        "type": "string",
+        "description": "Text style variant.",
+        "enum": [
+          "body",
+          "heading",
+          "subheading",
+          "caption",
+          "label",
+          "title"
+        ]
       }
     }
   },
@@ -2566,7 +5011,7 @@
     },
     {
       "name": "stat",
-      "description": "Sentin8:Stat admin API — properties, accounts, settings, alert rules"
+      "description": "Sentin8:Stat admin API - properties, accounts, settings, alert rules"
     }
   ]
 }

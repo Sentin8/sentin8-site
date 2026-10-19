@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"`POST /v1/admin/instances/uninstall` - uninstall an app instance.\nThe uninstall request body.","required":["instance_id"],"properties":{"instance_id":{"type":"string","format":"uuid","description":"The instance to uninstall."}},"title":"UninstallRequest"}}},"required":true}}

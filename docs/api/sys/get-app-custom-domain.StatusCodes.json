@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Custom domain","content":{"application/json":{"schema":{}}}},"404":{"description":"Environment not found"}}}
+{"responses":{"200":{"description":"Custom domain","content":{"application/json":{"schema":{"type":"object","description":"The `GET /v1/env/{env_id}/app-custom-domain` payload.","required":["custom_domain"],"properties":{"custom_domain":{"type":"string","description":"The env's custom (app) domain."}},"title":"CustomDomainResponse"}}}},"404":{"description":"Environment not found"}}}

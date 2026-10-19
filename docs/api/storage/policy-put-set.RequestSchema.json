@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"`PUT /v1/admin/policy-sets/{name}` body.","required":["policies"],"properties":{"description":{"type":"string"},"enabled":{"type":["boolean","null"]},"mode":{"type":["string","null"]},"policies":{"type":"string"},"schema":{"type":["string","null"]}},"title":"PutPolicySetBody"}}},"required":true}}

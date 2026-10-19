@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"`POST /v1/internal/schedules/run` request (cron proxy-back).","properties":{"env_id":{"type":["string","null"],"format":"uuid","description":"The env to sweep (absent = whole registry)."},"schedule_type":{"type":"string","description":"The schedule type that fired (`model_migration`/`freshness`)."}},"title":"ScheduleRunRequest"}}},"required":true}}

@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Scope catalog","content":{"application/json":{"schema":{}}}}}}
+{"responses":{"200":{"description":"Scope catalog","content":{"application/json":{"schema":{"type":"object","description":"The `GET /v1/scopes/catalog` payload.","required":["scopes"],"properties":{"scopes":{"type":"array","items":{"type":"string"},"description":"The platform OAuth scope strings."}},"title":"ScopeCatalogResponse"}}}}}}

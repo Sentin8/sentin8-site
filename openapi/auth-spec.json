@@ -118,7 +118,9 @@
             "description": "Device sign-in approved (polling grant armed for this user)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceVerifyResponse"
+                }
               }
             }
           },
@@ -528,7 +530,9 @@
             "description": "Credential offer created for the signed-in user",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialOfferResponse"
+                }
               }
             }
           },
@@ -565,7 +569,9 @@
             "description": "Credential issued (with Status List 2021 enrollment)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialIssuedResponse"
+                }
               }
             }
           },
@@ -604,7 +610,9 @@
             "description": "Credential revoked in its status list",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/StatusListDocument"
+                }
               }
             }
           },
@@ -647,7 +655,9 @@
             "description": "Status List 2021 compressed bitstring",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/StatusListDocument"
+                }
               }
             }
           },
@@ -1430,7 +1440,9 @@
             "description": "OIDC Standard Claims for the bearer subject",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/OidcClaims"
+                }
               }
             }
           },
@@ -1464,7 +1476,9 @@
             "description": "Presentation accepted (single-use pending request resolved)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/VpResponse"
+                }
               }
             }
           },
@@ -1572,7 +1586,9 @@
             "description": "SCIM ListResponse of group mirrors (read-only directory sync)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ScimListResponse"
+                }
               }
             }
           },
@@ -1599,7 +1615,12 @@
             "description": "SCIM resource types (Users, Groups)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ScimResourceType"
+                  }
+                }
               }
             }
           }
@@ -1624,7 +1645,9 @@
             "description": "SCIM service-provider capabilities",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ScimServiceProviderConfig"
+                }
               }
             }
           }
@@ -2328,7 +2351,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -2365,7 +2390,9 @@
             "description": "Attribute stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeUpserted"
+                }
               }
             }
           },
@@ -3183,7 +3210,9 @@
             "description": "The group's members (identical handler to GET /v1/admin/groups/{group_id}/members)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMembersResponse"
+                }
               }
             }
           },
@@ -4414,7 +4443,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -4553,7 +4584,9 @@
             "description": "The policy set",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetDetail"
+                }
               }
             }
           },
@@ -4603,7 +4636,9 @@
             "description": "Policy set stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetMutated"
+                }
               }
             }
           },
@@ -4687,7 +4722,9 @@
             "description": "Dry-run decision trace",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyTestOutcome"
+                }
               }
             }
           },
@@ -4915,7 +4952,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -4952,7 +4991,9 @@
             "description": "Relation stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationUpserted"
+                }
               }
             }
           },
@@ -5044,7 +5085,9 @@
             "description": "The check verdict",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationCheckResult"
+                }
               }
             }
           },
@@ -5906,7 +5949,9 @@
             "description": "RFW page definition (rendered by Sentin8:Dash)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -6658,7 +6703,9 @@
             "description": "The consent flow's customer accounts (per scope selection)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentAccountsResponse"
+                }
               }
             }
           },
@@ -6691,7 +6738,9 @@
             "description": "Approval recorded by the owning vertical service",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -6728,7 +6777,9 @@
             "description": "Denial recorded by the owning vertical service",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -6854,7 +6905,9 @@
             "description": "The vertical's consent RFW page descriptor",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -6880,7 +6933,9 @@
             "description": "Wallet connection metadata (formats, trusted issuers, presentation definition, response endpoint)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/WalletMetadata"
+                }
               }
             }
           }
@@ -6901,7 +6956,9 @@
             "description": "The merged branding payload for the resolved tenant",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
               }
             }
           },
@@ -6936,7 +6993,9 @@
             "description": "Approval recorded (the approving user is the SESSION's user)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CibaApproveResponse"
+                }
               }
             }
           },
@@ -6974,7 +7033,9 @@
             "description": "Assisted sign-in page details (binding_message, short_code, client, scopes)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CibaAssistedPage"
+                }
               }
             }
           },
@@ -7009,7 +7070,9 @@
             "description": "CIBA request bound to the signed-in customer (single-use)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CibaAssistedComplete"
+                }
               }
             }
           },
@@ -7110,7 +7173,9 @@
             "description": "The service is live",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LiveHealth"
+                }
               }
             }
           }
@@ -7126,17 +7191,16 @@
         ],
         "summary": "`POST /v1/internal/keys/rotate`",
         "operationId": "internal_keys_rotate",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
-            "description": "Signing key rotated"
+            "description": "Signing key rotated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RotateKeysResponse"
+                }
+              }
+            }
           }
         },
         "description": "Internal keys rotate.\n\nSentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap."
@@ -7154,7 +7218,12 @@
             "description": "The caller's app passwords (no hashes, no secrets)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppPasswordItem"
+                  }
+                }
               }
             }
           },
@@ -7186,7 +7255,9 @@
             "description": "Created - the raw secret is returned ONCE",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AppPasswordCreated"
+                }
               }
             }
           },
@@ -7222,7 +7293,9 @@
             "description": "Revoked",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedAck"
+                }
               }
             }
           },
@@ -7653,7 +7726,9 @@
             "description": "SP metadata XML (entity id + ACS URL)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SamlMetadataResponse"
+                }
               }
             }
           },
@@ -8120,6 +8195,154 @@
           }
         }
       },
+      "AdminUiAction": {
+        "type": "object",
+        "description": "An action button shown in the page header.",
+        "required": [
+          "label",
+          "action_type"
+        ],
+        "properties": {
+          "action_type": {
+            "$ref": "#/components/schemas/AdminUiActionType",
+            "description": "The action kind (link / submit / dialog)."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for submit actions)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string) for the button."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link actions)."
+          }
+        }
+      },
+      "AdminUiActionType": {
+        "type": "string",
+        "description": "The kind of a header action button.",
+        "enum": [
+          "link",
+          "submit",
+          "dialog"
+        ]
+      },
+      "AdminUiPage": {
+        "type": "object",
+        "description": "A complete admin UI page definition returned by `GET /v1/admin/ui/{page}`.",
+        "required": [
+          "title",
+          "widgets"
+        ],
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminUiAction"
+            },
+            "description": "Optional actions shown in the page header (buttons)."
+          },
+          "title": {
+            "type": "string",
+            "description": "The page title (shown in breadcrumb and header)."
+          },
+          "widgets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "The root widget tree."
+          }
+        }
+      },
+      "AdminUiResponse": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Render this page definition.",
+            "required": [
+              "page",
+              "response_type"
+            ],
+            "properties": {
+              "page": {
+                "$ref": "#/components/schemas/AdminUiPage",
+                "description": "The page definition to render."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "page"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "Redirect to this route (e.g. after a successful form submission).",
+            "required": [
+              "route",
+              "response_type"
+            ],
+            "properties": {
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "redirect"
+                ]
+              },
+              "route": {
+                "type": "string",
+                "description": "The route to navigate to."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "An error occurred (validation error, server error, etc.).",
+            "required": [
+              "message",
+              "response_type"
+            ],
+            "properties": {
+              "field_errors": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FieldError"
+                },
+                "description": "Per-field validation errors, when applicable."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error message."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "error"
+                ]
+              }
+            }
+          }
+        ],
+        "description": "The response from an admin UI endpoint.\n\n- `GET /v1/admin/ui/{page}` → `AdminUiResponse::Page(page_def)`\n- `POST /v1/admin/{resource}` → `AdminUiResponse::Page(updated_page_def)` or `AdminUiResponse::Redirect(route)`"
+      },
       "ApiKeyListResponse": {
         "type": "object",
         "description": "Response payload for apikeylist.",
@@ -8215,6 +8438,84 @@
           }
         }
       },
+      "AppPasswordCreated": {
+        "type": "object",
+        "description": "A created app password (`POST /v1/me/app-passwords`); the raw\nsecret is shown once.",
+        "required": [
+          "id",
+          "label",
+          "allowed_scopes",
+          "secret"
+        ],
+        "properties": {
+          "allowed_scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The scope whitelist."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The password row id."
+          },
+          "label": {
+            "type": "string",
+            "description": "The caller-chosen label."
+          },
+          "secret": {
+            "type": "string",
+            "description": "The raw secret (shown once; only a hash is stored)."
+          }
+        }
+      },
+      "AppPasswordItem": {
+        "type": "object",
+        "description": "One stored app password (no hash, no secret).",
+        "required": [
+          "id",
+          "label",
+          "allowed_scopes",
+          "status",
+          "created_at"
+        ],
+        "properties": {
+          "allowed_scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The scope whitelist."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation instant."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The password row id."
+          },
+          "label": {
+            "type": "string",
+            "description": "The caller-chosen label."
+          },
+          "last_used_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last successful use (absent when never used)."
+          },
+          "status": {
+            "type": "string",
+            "description": "`active`/`revoked`."
+          }
+        }
+      },
       "AttemptResponse": {
         "type": "object",
         "description": "Response payload for attempt.",
@@ -8261,6 +8562,19 @@
             ],
             "format": "int32",
             "description": "The status code."
+          }
+        }
+      },
+      "AttributeUpserted": {
+        "type": "object",
+        "description": "An attribute upsert result.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
           }
         }
       },
@@ -8622,6 +8936,95 @@
           }
         }
       },
+      "BrandingResponse": {
+        "type": "object",
+        "description": "The merged tenant branding payload (`GET /v1/branding`).",
+        "properties": {
+          "accent_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Secondary accent color."
+          },
+          "custom_css": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Custom CSS injected into the hosted UI."
+          },
+          "font_family": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Type family override."
+          },
+          "logo_icon_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The icon URL override."
+          },
+          "logo_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Org base + env override (env wins when non-empty)."
+          },
+          "organization_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The org display name (absent when empty)."
+          },
+          "primary_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Primary accent color."
+          },
+          "sign_in_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Sign-in page tagline override."
+          },
+          "theme_mode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "`dark` (default) or `light`."
+          }
+        }
+      },
+      "ButtonType": {
+        "type": "string",
+        "description": "Button visual style.",
+        "enum": [
+          "primary",
+          "secondary",
+          "danger",
+          "ghost",
+          "link"
+        ]
+      },
+      "ChartType": {
+        "type": "string",
+        "description": "Chart kind.",
+        "enum": [
+          "bar",
+          "line",
+          "pie"
+        ]
+      },
       "CibaApprovalRequest": {
         "type": "object",
         "description": "CIBA approval request (from the user's decoupled device).\n\nThe approving user is the session's user; `user_id` /\n`org_id` / `env_id` in the body are ignored (kept as legacy wire fields\nfor wire compatibility with the authenticator app).\nRequest body for cibaapproval.",
@@ -8637,6 +9040,74 @@
           "auth_req_id": {
             "type": "string",
             "description": "auth req identifier."
+          }
+        }
+      },
+      "CibaApproveResponse": {
+        "type": "object",
+        "description": "`POST /v1/ciba/approve` response.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The approval status."
+          }
+        }
+      },
+      "CibaAssistedComplete": {
+        "type": "object",
+        "description": "`POST /v1/ciba/assisted/{auth_req_id}/complete` response.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "already_completed": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "`true` when this call re-read an already-completed request\n(idempotent replay; absent on the first completion)."
+          },
+          "status": {
+            "type": "string",
+            "description": "The completion status."
+          }
+        }
+      },
+      "CibaAssistedPage": {
+        "type": "object",
+        "description": "`GET /v1/ciba/assisted/{auth_req_id}` payload.",
+        "required": [
+          "auth_req_id",
+          "binding_message",
+          "scope",
+          "client_id",
+          "status",
+          "short_code"
+        ],
+        "properties": {
+          "auth_req_id": {
+            "type": "string",
+            "description": "The CIBA request id."
+          },
+          "binding_message": {
+            "description": "The human binding message."
+          },
+          "client_id": {
+            "description": "The requesting client."
+          },
+          "scope": {
+            "description": "Requested scopes."
+          },
+          "short_code": {
+            "type": "string",
+            "description": "The short confirmation code the customer types in."
+          },
+          "status": {
+            "type": "string",
+            "description": "`pending`/`approved`."
           }
         }
       },
@@ -9001,6 +9472,20 @@
           }
         }
       },
+      "ConsentAccountsResponse": {
+        "type": "object",
+        "description": "`GET /v1/auth/consent/accounts` payload: the customer accounts the\nconsented scopes resolve to.",
+        "required": [
+          "accounts"
+        ],
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "items": {},
+            "description": "The consenting customer accounts."
+          }
+        }
+      },
       "ConsentApproveProxyRequest": {
         "type": "object",
         "description": "`POST /v1/auth/consent/approve` - proxy consent approval to the vertical service.\nRequest body for consentapproveproxy.",
@@ -9168,6 +9653,14 @@
             "description": "user identifier."
           }
         }
+      },
+      "ContainerDirection": {
+        "type": "string",
+        "description": "Layout direction for a container's children.",
+        "enum": [
+          "vertical",
+          "horizontal"
+        ]
       },
       "CreateApiKeyRequest": {
         "type": "object",
@@ -9673,6 +10166,28 @@
           }
         }
       },
+      "CredentialIssuedResponse": {
+        "type": "object",
+        "description": "`POST /oauth/credentials` response.",
+        "required": [
+          "format",
+          "credential",
+          "status_list"
+        ],
+        "properties": {
+          "credential": {
+            "type": "string",
+            "description": "The issued credential document (SD-JWT / mdoc)."
+          },
+          "format": {
+            "type": "string",
+            "description": "The credential format."
+          },
+          "status_list": {
+            "description": "Status List envelope the credential enrolls in."
+          }
+        }
+      },
       "CredentialOfferRequest": {
         "type": "object",
         "description": "`POST /oauth/credentials` - credential offer: records the issuance\nintent and returns the offer the wallet presents at its issuer.\nAuthenticated via the user's session (the credential is about THEM).\nRequest body for credentialoffer.",
@@ -9696,6 +10211,71 @@
             "description": "The credential type (e.g. 'VerifiedPersonCredential').\nThe type."
           }
         }
+      },
+      "CredentialOfferResponse": {
+        "type": "object",
+        "description": "`POST /oauth/credentials/issue` response.",
+        "required": [
+          "credential_issuer",
+          "credential_configuration_id",
+          "credential_id",
+          "deferred"
+        ],
+        "properties": {
+          "credential_configuration_id": {
+            "type": "string",
+            "description": "The credential configuration id (type)."
+          },
+          "credential_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The offered credential id."
+          },
+          "credential_issuer": {
+            "type": "string",
+            "description": "The credential (wallet) issuer."
+          },
+          "deferred": {
+            "type": "boolean",
+            "description": "Offer deferred by the issuer."
+          }
+        }
+      },
+      "Decision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "allow"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "reason",
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "deny"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        ]
       },
       "DelegateAccessTokenRequest": {
         "type": "object",
@@ -9763,6 +10343,19 @@
           "token_type": {
             "type": "string",
             "description": "The token type."
+          }
+        }
+      },
+      "DeletedAck": {
+        "type": "object",
+        "description": "The revoke/delete acknowledgement.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `deleted`."
           }
         }
       },
@@ -9847,6 +10440,19 @@
           "user_code": {
             "type": "string",
             "description": "The device user_code being approved. The approving user identity\ncomes from the session (SEC-) - never the body.\nThe user code."
+          }
+        }
+      },
+      "DeviceVerifyResponse": {
+        "type": "object",
+        "description": "`POST /device/verify` ack.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `approved` on success."
           }
         }
       },
@@ -10392,6 +10998,143 @@
           }
         }
       },
+      "FieldCondition": {
+        "type": "object",
+        "description": "A visibility condition for a form field.",
+        "required": [
+          "field",
+          "equals"
+        ],
+        "properties": {
+          "equals": {
+            "description": "The value that must match for this field to be visible."
+          },
+          "field": {
+            "type": "string",
+            "description": "The key of the field whose value to check."
+          }
+        }
+      },
+      "FieldError": {
+        "type": "object",
+        "description": "A per-field validation error.",
+        "required": [
+          "field",
+          "message"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The form field key the error refers to."
+          },
+          "message": {
+            "type": "string",
+            "description": "The validation message shown under the field."
+          }
+        }
+      },
+      "FormFieldOption": {
+        "type": "object",
+        "description": "One choice of a select-type form field.",
+        "required": [
+          "value",
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The displayed label."
+          },
+          "value": {
+            "type": "string",
+            "description": "The submitted value."
+          }
+        }
+      },
+      "FormFieldType": {
+        "type": "string",
+        "description": "Input widget type for a form field.",
+        "enum": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "decimal",
+          "date",
+          "date_time",
+          "select",
+          "multiselect",
+          "autocomplete",
+          "checkbox",
+          "toggle",
+          "textarea",
+          "file",
+          "hidden",
+          "key_value"
+        ]
+      },
+      "FormFieldValidation": {
+        "type": "object",
+        "description": "Validation constraints for a form field.",
+        "properties": {
+          "custom_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message overriding the default validation error."
+          },
+          "max": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Maximum numeric value."
+          },
+          "max_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum string length.",
+            "minimum": 0
+          },
+          "min": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Minimum numeric value."
+          },
+          "min_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Minimum string length.",
+            "minimum": 0
+          },
+          "pattern": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Regex pattern the value must match."
+          }
+        }
+      },
+      "FormMethod": {
+        "type": "string",
+        "description": "HTTP method used for form submission.",
+        "enum": [
+          "post",
+          "put"
+        ]
+      },
       "GrantResponse": {
         "type": "object",
         "description": "A grant record (API shape).\nResponse payload for grant.",
@@ -10472,7 +11215,7 @@
       },
       "GroupMemberResponse": {
         "type": "object",
-        "description": "Response payload for groupmember.",
+        "description": "Response payload for groupmember (wire-identical; derives complete).",
         "required": [
           "group_id",
           "user_id",
@@ -10493,6 +11236,22 @@
             "type": "string",
             "format": "uuid",
             "description": "user identifier."
+          }
+        }
+      },
+      "GroupMembersResponse": {
+        "type": "object",
+        "description": "`GET /v1/admin/groups/{id}/members` payload.",
+        "required": [
+          "members"
+        ],
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupMemberResponse"
+            },
+            "description": "The group's member rows."
           }
         }
       },
@@ -10896,6 +11655,48 @@
         ],
         "description": "Query params for `GET /v1/admin/users` - extends [PaginationQuery].\nThe listusersquery type."
       },
+      "LiveHealth": {
+        "type": "object",
+        "description": "The `GET /v1/health` liveness payload every service returns: the\nstatus string, the serving service's short name, build identity, and\n(when the process tracks them) the count of live connections.\n`service` and `active_connections` stay absent when a service does\nnot set them (e.g. the bus mounts the generic handler).",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "active_connections": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Live socket count when the traffic counter is mounted."
+          },
+          "build": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build hash (`sentin8::build_info::build_hash()`)."
+          },
+          "service": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The serving service's short name (absent when the generic handler\ndoes not carry one)."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `ok` on a live instance."
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build identity id (`sentin8::build_info::id()`)."
+          }
+        }
+      },
       "LogoutQuery": {
         "type": "object",
         "description": "The logoutquery type.",
@@ -11081,6 +11882,84 @@
             "type": "string",
             "format": "date-time",
             "description": "updated time."
+          }
+        }
+      },
+      "OidcClaims": {
+        "type": "object",
+        "description": "The `GET /oauth/userinfo` claims document (the live identity\nprojection: subject + live roles/groups/scopes).",
+        "required": [
+          "sub"
+        ],
+        "properties": {
+          "client_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The token's client id (present on delegated/M2M subjects)."
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The user's email (absent when the subject is a client)."
+          },
+          "family_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Family (last) name."
+          },
+          "given_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Given (first) name."
+          },
+          "groups": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Live-resolved group names (user tokens only)."
+          },
+          "roles": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Live-resolved role names."
+          },
+          "scopes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Live-resolved effective scopes."
+          },
+          "sub": {
+            "type": "string",
+            "description": "The subject id (the BFF client id on delegated tokens: the\n`token_tp`/`act` chain is not leaked)."
+          },
+          "token_tp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The token type (`access`/`delegated`/`m2m`; delegated only)."
           }
         }
       },
@@ -11348,6 +12227,174 @@
           },
           "policy_set_name": {
             "type": "string"
+          }
+        }
+      },
+      "PolicySetDetail": {
+        "type": "object",
+        "description": "One policy set in the detail view (adds the full policy text).",
+        "required": [
+          "policy_set_name",
+          "description",
+          "policies",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "Creation instant (RFC 3339)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform`/`tenant`)."
+          },
+          "policies": {
+            "type": "string",
+            "description": "The full policy text (Shield policy language)."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional schema text bound to the set."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicySetMutated": {
+        "type": "object",
+        "description": "A stored policy-set mutation result.",
+        "required": [
+          "policy_set_name",
+          "version",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "The evaluation mode after the mutation."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The revision after the mutation."
+          }
+        }
+      },
+      "PolicySetRow": {
+        "type": "object",
+        "description": "One policy set in the list view (the RFW row shape).",
+        "required": [
+          "id",
+          "policy_set_name",
+          "description",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "policies_len",
+          "updated_at"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "id": {
+            "type": "string",
+            "description": "The set name; doubles as the RFW row id."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode (`shadow`/`enforced`)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform` enroll-managed vs `tenant`)."
+          },
+          "policies_len": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of policy statements in the set."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicyTestOutcome": {
+        "type": "object",
+        "description": "A dry-run (test) outcome; nothing was stored.",
+        "required": [
+          "policy_set_name",
+          "action",
+          "decision",
+          "would_deny"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action evaluated."
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision",
+            "description": "The enforce-mode decision."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name the candidate text was compiled under."
+          },
+          "would_deny": {
+            "type": "boolean",
+            "description": "Whether the shadow evaluation would deny."
           }
         }
       },
@@ -11882,6 +12929,473 @@
           }
         }
       },
+      "RelationCheckResult": {
+        "type": "object",
+        "description": "A relation connectivity check result.",
+        "required": [
+          "subject",
+          "relation",
+          "object",
+          "direct",
+          "transitive",
+          "connected",
+          "tuple_count"
+        ],
+        "properties": {
+          "connected": {
+            "type": "boolean",
+            "description": "`direct || transitive`."
+          },
+          "direct": {
+            "type": "boolean",
+            "description": "Whether a direct tuple exists."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object in `type/id` form."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation checked."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject in `type/id` form."
+          },
+          "transitive": {
+            "type": "boolean",
+            "description": "Whether a transitive path exists."
+          },
+          "tuple_count": {
+            "type": "integer",
+            "description": "Number of tuples inspected.",
+            "minimum": 0
+          }
+        }
+      },
+      "RelationUpserted": {
+        "type": "object",
+        "description": "A relation-tuple upsert result.",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stored tuple id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "RemoteWidget": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+              },
+              "direction": {
+                "$ref": "#/components/schemas/ContainerDirection",
+                "description": "Layout direction of the children."
+              },
+              "padding": {
+                "type": "number",
+                "format": "double",
+                "description": "Outer padding."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "container"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "text"
+            ],
+            "properties": {
+              "align": {
+                "$ref": "#/components/schemas/TextAlign",
+                "description": "Text alignment."
+              },
+              "max_lines": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "description": "Maximum lines before ellipsis.",
+                "minimum": 0
+              },
+              "text": {
+                "type": "string",
+                "description": "The text content."
+              },
+              "text_type": {
+                "$ref": "#/components/schemas/WidgetTextType",
+                "description": "Style variant."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "columns",
+              "data_endpoint"
+            ],
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetDataTableColumn"
+                },
+                "description": "Column definitions."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+              },
+              "empty_message": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Message shown when there are no rows."
+              },
+              "filterable": {
+                "type": "boolean",
+                "description": "Whether column filtering is enabled."
+              },
+              "page_size": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Rows per page (0 = renderer default).",
+                "minimum": 0
+              },
+              "row_actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+              },
+              "row_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+              },
+              "sortable": {
+                "type": "boolean",
+                "description": "Whether column sorting is enabled."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "data_table"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "fields",
+              "submit_endpoint"
+            ],
+            "properties": {
+              "cancel_label": {
+                "type": "string",
+                "description": "Cancel button label."
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetFormField"
+                },
+                "description": "Form fields in render order."
+              },
+              "method": {
+                "$ref": "#/components/schemas/FormMethod",
+                "description": "HTTP method for submission."
+              },
+              "submit_endpoint": {
+                "type": "string",
+                "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+              },
+              "submit_label": {
+                "type": "string",
+                "description": "Submit button label."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "form"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "label"
+            ],
+            "properties": {
+              "button_type": {
+                "$ref": "#/components/schemas/ButtonType",
+                "description": "Visual/emphasis style."
+              },
+              "endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+              },
+              "icon": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Material Icons code point (hex string)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Button label."
+              },
+              "route": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "button"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Buttons rendered in the card footer/header."
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "subtitle": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card subtitle."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "card"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "chart_type",
+              "data_endpoint"
+            ],
+            "properties": {
+              "chart_type": {
+                "$ref": "#/components/schemas/ChartType",
+                "description": "The chart kind."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "Endpoint that returns the chart series data."
+              },
+              "height": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "description": "Height in logical pixels."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Chart title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "chart"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "widget_name"
+            ],
+            "properties": {
+              "data_endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The data endpoint the native widget calls."
+              },
+              "props": {
+                "description": "Props passed to the native widget (service-specific)."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "native"
+                ]
+              },
+              "widget_name": {
+                "type": "string",
+                "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "row"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "column"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "size": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap size in logical pixels."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "spacer"
+                ]
+              }
+            }
+          }
+        ]
+      },
       "RevokeActorTokenRequest": {
         "type": "object",
         "description": "Request body for revokeactortoken.",
@@ -12027,6 +13541,71 @@
             "type": "string",
             "format": "date-time",
             "description": "updated time."
+          }
+        }
+      },
+      "RotateKeysResponse": {
+        "type": "object",
+        "description": "`POST /v1/internal/keys/rotate` response (cron proxy-back).",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "alg": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The new key algorithm (rotated runs only)."
+          },
+          "key_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The new key id (rotated runs only)."
+          },
+          "newest_age_days": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Age of the newest key, days (skipped runs only)."
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The skip reason (skipped runs only)."
+          },
+          "status": {
+            "type": "string",
+            "description": "`rotated` when a new key was minted; `skipped` when the newest\nkey is younger than the 30-day cadence."
+          }
+        }
+      },
+      "SamlMetadataResponse": {
+        "type": "object",
+        "description": "SAML 2.0 SP metadata descriptor.",
+        "required": [
+          "entity_id",
+          "acs_url",
+          "xml"
+        ],
+        "properties": {
+          "acs_url": {
+            "type": "string",
+            "description": "The Assertion Consumer Service URL."
+          },
+          "entity_id": {
+            "type": "string",
+            "description": "The SP entity id."
+          },
+          "xml": {
+            "type": "string",
+            "description": "The metadata XML document."
           }
         }
       },
@@ -12289,43 +13868,31 @@
       },
       "ScimListResponse": {
         "type": "object",
-        "description": "SCIM 2.0 list response (RFC 7644 ).\nResponse payload for scimlist.",
+        "description": "SCIM 2.0 ListResponse (groups mirrors).",
         "required": [
           "schemas",
-          "totalResults",
-          "itemsPerPage",
-          "startIndex",
-          "Resources"
+          "total_results"
         ],
         "properties": {
-          "Resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ScimUser"
-            },
-            "description": "The resources."
-          },
-          "itemsPerPage": {
-            "type": "integer",
-            "format": "int64",
-            "description": "The items per page."
+          "resources": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {},
+            "description": "The page of resources."
           },
           "schemas": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "The schemas."
+            "description": "The SCIM schema URI of the list envelope."
           },
-          "startIndex": {
+          "total_results": {
             "type": "integer",
-            "format": "int64",
-            "description": "The start index."
-          },
-          "totalResults": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Number of results."
+            "description": "Total matched.",
+            "minimum": 0
           }
         }
       },
@@ -12424,6 +13991,80 @@
             ],
             "format": "int64",
             "description": "The start index."
+          }
+        }
+      },
+      "ScimResourceType": {
+        "type": "object",
+        "description": "One SCIM resource-type descriptor.",
+        "required": [
+          "id",
+          "name",
+          "endpoint",
+          "schema"
+        ],
+        "properties": {
+          "endpoint": {
+            "type": "string",
+            "description": "SCIM endpoint for the type."
+          },
+          "id": {
+            "type": "string",
+            "description": "The resource type id (`User`/`Group`)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human name."
+          },
+          "schema": {
+            "type": "string",
+            "description": "The core schema URI."
+          }
+        }
+      },
+      "ScimServiceProviderConfig": {
+        "type": "object",
+        "description": "SCIM 2.0 ServiceProviderConfig.",
+        "required": [
+          "schemas",
+          "patch",
+          "bulk",
+          "filter",
+          "changePassword",
+          "sort",
+          "etag",
+          "authenticationSchemes"
+        ],
+        "properties": {
+          "authenticationSchemes": {
+            "type": "array",
+            "items": {},
+            "description": "Authentication schemes."
+          },
+          "bulk": {
+            "description": "Bulk capability."
+          },
+          "changePassword": {
+            "description": "changePassword capability."
+          },
+          "etag": {
+            "description": "etag capability."
+          },
+          "filter": {
+            "description": "Filter capability."
+          },
+          "patch": {
+            "description": "PATCH capability."
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The SCIM schema URIs."
+          },
+          "sort": {
+            "description": "sort capability."
           }
         }
       },
@@ -12978,6 +14619,18 @@
           }
         }
       },
+      "StatusListDocument": {
+        "type": "object",
+        "description": "`POST /oauth/credentials/status/{id}` response.",
+        "required": [
+          "status_list"
+        ],
+        "properties": {
+          "status_list": {
+            "description": "The Status List envelope (idx + compressed bitstring)."
+          }
+        }
+      },
       "TargetEnvQuery": {
         "type": "object",
         "description": "Optional `target_env_id` query parameter for cross-env admin access.\nWhen present, the auth context is resolved for the target env instead\nof the caller's own env (subject to RBAC validation).\nThe targetenvquery type.",
@@ -13034,6 +14687,15 @@
             "type": "string"
           }
         }
+      },
+      "TextAlign": {
+        "type": "string",
+        "description": "Text alignment.",
+        "enum": [
+          "left",
+          "center",
+          "right"
+        ]
       },
       "TokenRequest": {
         "type": "object",
@@ -13862,6 +15524,56 @@
           }
         }
       },
+      "VpResponse": {
+        "type": "object",
+        "description": "`POST /oauth/vp/response` response.",
+        "required": [
+          "status",
+          "session_token",
+          "code",
+          "redirect_uri",
+          "user_id"
+        ],
+        "properties": {
+          "acr": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Assured level of identity."
+          },
+          "amr": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Auth methods used."
+          },
+          "code": {
+            "type": "string",
+            "description": "The OAuth authorization code."
+          },
+          "redirect_uri": {
+            "description": "The pending request's redirect target."
+          },
+          "session_token": {
+            "type": "string",
+            "description": "The minted session token."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `verified` on success."
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The verified user id."
+          }
+        }
+      },
       "VpResponseRequest": {
         "type": "object",
         "description": "Request body for vpresponse.",
@@ -13909,6 +15621,540 @@
             "description": "The redirect URI."
           }
         }
+      },
+      "WalletAuthorizeResponse": {
+        "type": "object",
+        "description": "`GET /oauth/authorize` (OID4VP flow) response.",
+        "required": [
+          "nonce",
+          "request_uri",
+          "request_object",
+          "qr_data",
+          "expires_in"
+        ],
+        "properties": {
+          "expires_in": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Pending TTL seconds."
+          },
+          "nonce": {
+            "type": "string",
+            "description": "The request nonce."
+          },
+          "qr_data": {
+            "type": "string",
+            "description": "The `openid4vp://` deep link for QR rendering."
+          },
+          "request_object": {
+            "description": "The signed request object document."
+          },
+          "request_uri": {
+            "type": "string",
+            "description": "The signed request-object URI."
+          }
+        }
+      },
+      "WalletMetadata": {
+        "type": "object",
+        "description": "`GET /v1/auth/wallet/metadata` payload.",
+        "required": [
+          "issuer",
+          "vp_formats_supported",
+          "trusted_issuers",
+          "presentation_definition",
+          "min_level_of_assurance",
+          "response_mode",
+          "vp_response_endpoint"
+        ],
+        "properties": {
+          "issuer": {
+            "type": "string",
+            "description": "The wallet issuer / presentation endpoint base."
+          },
+          "min_level_of_assurance": {
+            "description": "Minimum level of assurance."
+          },
+          "presentation_definition": {
+            "description": "The presentation definition the wallet must satisfy."
+          },
+          "response_mode": {
+            "type": "string",
+            "description": "Always `direct_post`."
+          },
+          "trusted_issuers": {
+            "description": "The issuers this wallet trusts."
+          },
+          "vp_formats_supported": {
+            "description": "The verifiable-presentation formats this issuer accepts."
+          },
+          "vp_response_endpoint": {
+            "type": "string",
+            "description": "The VP response endpoint."
+          }
+        }
+      },
+      "WidgetButton": {
+        "type": "object",
+        "description": "A button (submit, cancel, row action, or link).",
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "button_type": {
+            "$ref": "#/components/schemas/ButtonType",
+            "description": "Visual/emphasis style."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string)."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+          }
+        }
+      },
+      "WidgetCard": {
+        "type": "object",
+        "description": "A glass card panel with optional title and children.",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Buttons rendered in the card footer/header."
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "subtitle": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card subtitle."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card title."
+          }
+        }
+      },
+      "WidgetChart": {
+        "type": "object",
+        "description": "A simple chart backed by a data endpoint.",
+        "required": [
+          "chart_type",
+          "data_endpoint"
+        ],
+        "properties": {
+          "chart_type": {
+            "$ref": "#/components/schemas/ChartType",
+            "description": "The chart kind."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "Endpoint that returns the chart series data."
+          },
+          "height": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Height in logical pixels."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Chart title."
+          }
+        }
+      },
+      "WidgetColumn": {
+        "type": "object",
+        "description": "A vertical layout column.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetContainer": {
+        "type": "object",
+        "description": "A scrollable container with layout direction and padding.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+          },
+          "direction": {
+            "$ref": "#/components/schemas/ContainerDirection",
+            "description": "Layout direction of the children."
+          },
+          "padding": {
+            "type": "number",
+            "format": "double",
+            "description": "Outer padding."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetDataTable": {
+        "type": "object",
+        "description": "A data table with server-side rows, sorting, filtering, and pagination.",
+        "required": [
+          "columns",
+          "data_endpoint"
+        ],
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetDataTableColumn"
+            },
+            "description": "Column definitions."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+          },
+          "empty_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message shown when there are no rows."
+          },
+          "filterable": {
+            "type": "boolean",
+            "description": "Whether column filtering is enabled."
+          },
+          "page_size": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Rows per page (0 = renderer default).",
+            "minimum": 0
+          },
+          "row_actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+          },
+          "row_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether column sorting is enabled."
+          }
+        }
+      },
+      "WidgetDataTableColumn": {
+        "type": "object",
+        "description": "One column of a [`WidgetDataTable`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "format": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Formatter hint (e.g. `iban`, `currency`, `datetime`)."
+          },
+          "key": {
+            "type": "string",
+            "description": "Row-data key for this column."
+          },
+          "label": {
+            "type": "string",
+            "description": "Column header label."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether this column sorts."
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Fixed width in logical pixels."
+          }
+        }
+      },
+      "WidgetForm": {
+        "type": "object",
+        "description": "A form with fields and a submit action.",
+        "required": [
+          "fields",
+          "submit_endpoint"
+        ],
+        "properties": {
+          "cancel_label": {
+            "type": "string",
+            "description": "Cancel button label."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetFormField"
+            },
+            "description": "Form fields in render order."
+          },
+          "method": {
+            "$ref": "#/components/schemas/FormMethod",
+            "description": "HTTP method for submission."
+          },
+          "submit_endpoint": {
+            "type": "string",
+            "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+          },
+          "submit_label": {
+            "type": "string",
+            "description": "Submit button label."
+          }
+        }
+      },
+      "WidgetFormField": {
+        "type": "object",
+        "description": "One input field of a [`WidgetForm`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "default_value": {
+            "description": "Initial value."
+          },
+          "field_type": {
+            "$ref": "#/components/schemas/FormFieldType",
+            "description": "Input widget type."
+          },
+          "help_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Helper text shown below the field."
+          },
+          "key": {
+            "type": "string",
+            "description": "Field key in the submitted payload."
+          },
+          "label": {
+            "type": "string",
+            "description": "Display label."
+          },
+          "options": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/FormFieldOption"
+            },
+            "description": "Choices for select-type fields."
+          },
+          "placeholder": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Hint shown inside the empty field."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether submission fails without a value."
+          },
+          "validation": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FormFieldValidation",
+                "description": "Validation constraints."
+              }
+            ]
+          },
+          "visible_if": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FieldCondition",
+                "description": "Conditional visibility: only show this field when another field\nmatches a value. Example: `{\"field\": \"auth_mode\", \"equals\": \"staff\"}`"
+              }
+            ]
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Width in logical pixels."
+          }
+        }
+      },
+      "WidgetNative": {
+        "type": "object",
+        "description": "A native widget host - the dash renders a built-in Flutter widget.",
+        "required": [
+          "widget_name"
+        ],
+        "properties": {
+          "data_endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The data endpoint the native widget calls."
+          },
+          "props": {
+            "description": "Props passed to the native widget (service-specific)."
+          },
+          "widget_name": {
+            "type": "string",
+            "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+          }
+        }
+      },
+      "WidgetRow": {
+        "type": "object",
+        "description": "A horizontal layout row.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetSpacer": {
+        "type": "object",
+        "description": "An empty gap.",
+        "properties": {
+          "size": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap size in logical pixels."
+          }
+        }
+      },
+      "WidgetText": {
+        "type": "object",
+        "description": "A text label with optional styling.",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "align": {
+            "$ref": "#/components/schemas/TextAlign",
+            "description": "Text alignment."
+          },
+          "max_lines": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum lines before ellipsis.",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content."
+          },
+          "text_type": {
+            "$ref": "#/components/schemas/WidgetTextType",
+            "description": "Style variant."
+          }
+        }
+      },
+      "WidgetTextType": {
+        "type": "string",
+        "description": "Text style variant.",
+        "enum": [
+          "body",
+          "heading",
+          "subheading",
+          "caption",
+          "label",
+          "title"
+        ]
       }
     }
   },

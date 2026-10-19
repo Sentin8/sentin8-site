@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"The request body of `PUT /v1/env/{env_id}/applications/{app_id}`.","properties":{"name":{"type":["string","null"],"description":"New display name (unchanged when absent)."},"status":{"type":["string","null"],"description":"New status (unchanged when absent)."}},"title":"ApplicationUpdateRequest"}}},"required":true}}

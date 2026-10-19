@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Renewal sweep completed"}}}
+{"responses":{"200":{"description":"Renewal sweep completed","content":{"application/json":{"schema":{"type":"object","description":"The `POST /v1/internal/schedules/run` reply (cron proxy-back).","required":["renewed","status"],"properties":{"renewed":{"type":"integer","description":"The number of leaf certs checked in the sweep.","minimum":0},"status":{"type":"string","description":"Always `completed`."}},"title":"ScheduleRunResponse"}}}}}}

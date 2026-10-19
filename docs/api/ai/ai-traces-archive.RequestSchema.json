@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"`POST /v1/internal/traces/archive` request.","required":["env_id"],"properties":{"env_id":{"type":"string","format":"uuid","description":"The env whose traces are archived."}},"title":"TraceArchiveRequest"}}},"required":true}}

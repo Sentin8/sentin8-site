@@ -5,7 +5,7 @@ description: "GUARDED: the caller must present a Sentin8:Auth token verifying ag
 sidebar_label: "`POST /v1/client-cert`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVEtu20gQvUqhNsk4lGRnsgiYlZAYA8+MkSC2kYUkRK1mSSyoWU13NxkLAoE5xJwwJwmKtBDJSW6QFQmyPq9evVd7TGYTMZ+hsRXhIsOCog1cJ/aCOf51N/347vJdDqkksMY5ClA1MUEdKJIkMHBDklhe59MmlZD8lgRaCrzesWzAbAxLTHPR/NqZtPahgr8//XOTgZECOEVYxma1HKrSfWNc3yvQfUMxUQHLSKFlS5/FVLScy9f//gcDX3zYOm8KsEbAi9tBxT0cSyHxmq1JBGsf+g7+i0CgDcdEgQrQQuO5zOW2bxRrL5HgufXVioUK+HB5nYMjswZbGhZ4AXXgVgtuafcHcIRAqQkaenbmxdLZ2QBLgW9ppxHiE9QUIvcz6AgURpELenNM5WNEBE7AcsA6FxuoUFqNA2tsSWNQqMej9SCsDwUVmjm1FT2LfQTE5ANB9NpoLqaoWODuqifKcUyTQK3fEnDqORhoE6hu/70B61iXetRojBn6moJRQVwVmOMQ81ljxhxjQ5jhgcSI+R5fnp/r41RIb4/Ihecn5CqpmKH1kkiSppq6dtqdvUweRjVVozU70j/RllQZfUu7mjDHmALLBruu6zJ89bPOLK1xPOzgICPsgy9+DK44RpbN5JC0IhMoDLIekv78MSk2Kyg8DUuvTLLlEwmftu4yjGSbwGmH+WyP8dFA6sB8YFfJzQdy89miW2RYUSq90l/7mDDD2qQSc5y0F5MhZaQ5mCHL2vf8cHI9QUP1Ue/vp/Z+9O53D9uKQJXMkiiIcTB9e315IjzTpNIr9kdRq0AcW5LYL6gfMcfrq1t4/xGmtap39HJ8rsh6Sa+Zwk8DugxbtUMP7Hx8MXzScSsjR6WXH97f3MKTwZdPR9t/19PvI/b7iGWHe5HoIU1qZ7i3cxOcSmUw0wzbC71DR3ZaZFiq3/IZ7vcrE+kuuK7Tz/cNBbXvIsPWBDYrN1g1w5JMoRKf7XFLO8xxai3Vas3WODX0r87bic1V5Nh13wAY6q+O
+api: eJztVE1v20YQ/SuDuTR1KclOeyiYk5AYhdsaCWIbPUhCtFqOxIGWs/Tukokg8L8Xs7QRyUl+QXsisTsfb96+N0dMZhexXKCxDeGqwIqiDdwm9oIl/vEw//ju+l0JqSawxjkK0HQxQRsokiQwcEeSWH4v512qIfk9CfQUeHtg2YHZGZaYlqL5rTNp60MDf/7z110BRirgFGEdu816rEqPnXG5V6DHjmKiCtaRQs+WPolpaL2UCRj47MPeeVOBNQJe3AEazmAshcRbtiYRbH3I9f1ngUA7jokCVaBlpktZyn1uE1svkeCV9c2GhSr4cH1bgiOzBVsbFvgF2sC9FtzT4WfgCIFSFzT04sKLpYsLBaWg93TQe/EJWgqRM36FT2ESuaI3pzQ+RUTgBCzPSJdiA1VKqXFgja1pCgr0dLAMwfpQUaWZc9vQTzFHQEw+EESvjZZiqoYFHm4yTY5jmgXq/Z6AU2ZgJE2guf/7DqxjfdCTRlMs0LcUjIrhpsISx5hPGjPlGDvCAp8pjFge8fXlpX7ORfT2hFp4dUatUooFWi+JJGmqaVun3dnL7MukpWayZUd6E21NjdG/dGgJS4wpsOxwGIahwN++15mlN47HN3iWEObgq2+DG46RZTd7TtqQCRRGSY9Jv36bFLsNVJ7GR29MsvUL+Z63HgqMZLvA6YDl4ojxyTzqvnJkV8ktR3LLxWpYFdhQqr3S3/qYsMDWpBpLnPVXszFlojlYIMvWZ344uUzQWH2Svf3S2k++/epf2xBMgCVREONg/vb2+kx2pku1V+RPklZ5OLYkMT9PHrDE25t7eP8R5q1qd/J6eqm4sqC3TOG7AUOBvZohw7qcXo1HOmxj5KT0+sP7u3t4Mfb65WDHr2r6f33919fX06ZI9CXNWmc4G7kLTmUy2miB/ZVuoBMjrQqs1WnlAo/HjYn0ENww6PFjR0GNuyqwN4HNxo0mLbAmU6m8F0fc0wFLnFtLrZqyN06t/KPFdmZwFTgOw78ppaah
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -39,10 +39,10 @@ import Translate from "@docusaurus/Translate";
 
 GUARDED: the caller must present a Sentin8:Auth token verifying against
 the platform JWKS, and its `sub` must equal the requested `service_name`
-— a workload can only mint a certificate for its own registered name.
+- a workload can only mint a certificate for its own registered name.
 
 The response (combined PEM: leaf chain + private key) is returned **once**
-— the key is not persisted server-side; the caller persists it in its own
+- the key is not persisted server-side; the caller persists it in its own
 credential cache. The certificate is recorded in Acme's cert store so the
 admin UI can list/revoke it.
 

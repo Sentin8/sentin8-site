@@ -1,1 +1,1 @@
-{"title":"Body","body":{"content":{"application/json":{"schema":{}}},"required":true}}
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"The querydsl type.","required":["property_id","table"],"properties":{"from":{"type":["string","null"],"format":"date","description":"The from."},"property_id":{"type":"string","format":"uuid","description":"property identifier."},"table":{"type":"string","description":"The table."},"to":{"type":["string","null"],"format":"date","description":"The to."}},"title":"QueryDsl"}}},"required":true}}

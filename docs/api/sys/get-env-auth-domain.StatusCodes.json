@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Auth domain","content":{"application/json":{"schema":{}}}},"404":{"description":"Environment not found"}}}
+{"responses":{"200":{"description":"Auth domain","content":{"application/json":{"schema":{"type":"object","description":"The `GET /v1/env/{env_id}/auth-domain` payload.","required":["auth_domain"],"properties":{"auth_domain":{"type":"string","description":"The env's auth_domain URL."}},"title":"AuthDomainResponse"}}}},"404":{"description":"Environment not found"}}}

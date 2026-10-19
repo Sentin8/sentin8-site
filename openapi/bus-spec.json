@@ -56,7 +56,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PrincipalAttr"
+                  }
                 }
               }
             }
@@ -81,17 +83,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutAttributeBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Attribute stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeUpserted"
+                }
               }
             }
           },
@@ -156,7 +162,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/PolicySetRow"
+                  }
                 }
               }
             }
@@ -183,7 +191,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -214,7 +224,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -245,7 +257,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PolicyModeBody"
+              }
             }
           },
           "required": true
@@ -289,7 +303,9 @@
             "description": "The policy set",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetDetail"
+                }
               }
             }
           },
@@ -327,17 +343,21 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutPolicySetBody"
+              }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Policy set stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicySetMutated"
+                }
               }
             }
           },
@@ -409,7 +429,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/TestPolicySetBody"
+              }
             }
           },
           "required": true
@@ -419,7 +441,9 @@
             "description": "Dry-run decision trace",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyTestOutcome"
+                }
               }
             }
           },
@@ -449,7 +473,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/RelationRecordRow"
+                  }
                 }
               }
             }
@@ -474,7 +500,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/PutRelationBody"
+              }
             }
           },
           "required": true
@@ -484,7 +512,9 @@
             "description": "Relation stored",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationUpserted"
+                }
               }
             }
           },
@@ -576,7 +606,9 @@
             "description": "The check verdict",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RelationCheckResult"
+                }
               }
             }
           },
@@ -625,7 +657,9 @@
             "description": "RFW page definition (rendered by Sentin8:Dash)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUiResponse"
+                }
               }
             }
           },
@@ -676,7 +710,9 @@
             "description": "The resource's rows for the RFW table",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDataRows"
+                }
               }
             }
           },
@@ -788,7 +824,9 @@
             "description": "SSE stream (event = ConsumeMessage JSON)",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ConsumeMessage"
+                }
               }
             }
           },
@@ -892,7 +930,9 @@
             "description": "The service is live",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LiveHealth"
+                }
               }
             }
           }
@@ -912,7 +952,11 @@
           "200": {
             "description": "Prometheus-style metrics",
             "content": {
-              "text/plain": {}
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
             }
           },
           "403": {
@@ -1192,6 +1236,215 @@
           }
         }
       },
+      "AdminDataRows": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "The default `{ items: [rows] }` envelope the RFW table reads.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "type": "object",
+                "description": "The default `{ items: [rows] }` envelope the RFW table reads.",
+                "required": [
+                  "items"
+                ],
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {},
+                    "description": "The row documents."
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "description": "The `GET /v1/admin/{resource}` rows payload: the per-resource row\ndocuments the RFW DataTable renders (row cells and per-resource\ncolumn sets are service-defined; the RFW renderer reads them\ndynamically)."
+      },
+      "AdminUiAction": {
+        "type": "object",
+        "description": "An action button shown in the page header.",
+        "required": [
+          "label",
+          "action_type"
+        ],
+        "properties": {
+          "action_type": {
+            "$ref": "#/components/schemas/AdminUiActionType",
+            "description": "The action kind (link / submit / dialog)."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for submit actions)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string) for the button."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link actions)."
+          }
+        }
+      },
+      "AdminUiActionType": {
+        "type": "string",
+        "description": "The kind of a header action button.",
+        "enum": [
+          "link",
+          "submit",
+          "dialog"
+        ]
+      },
+      "AdminUiPage": {
+        "type": "object",
+        "description": "A complete admin UI page definition returned by `GET /v1/admin/ui/{page}`.",
+        "required": [
+          "title",
+          "widgets"
+        ],
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminUiAction"
+            },
+            "description": "Optional actions shown in the page header (buttons)."
+          },
+          "title": {
+            "type": "string",
+            "description": "The page title (shown in breadcrumb and header)."
+          },
+          "widgets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "The root widget tree."
+          }
+        }
+      },
+      "AdminUiResponse": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Render this page definition.",
+            "required": [
+              "page",
+              "response_type"
+            ],
+            "properties": {
+              "page": {
+                "$ref": "#/components/schemas/AdminUiPage",
+                "description": "The page definition to render."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "page"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "Redirect to this route (e.g. after a successful form submission).",
+            "required": [
+              "route",
+              "response_type"
+            ],
+            "properties": {
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "redirect"
+                ]
+              },
+              "route": {
+                "type": "string",
+                "description": "The route to navigate to."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "An error occurred (validation error, server error, etc.).",
+            "required": [
+              "message",
+              "response_type"
+            ],
+            "properties": {
+              "field_errors": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FieldError"
+                },
+                "description": "Per-field validation errors, when applicable."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error message."
+              },
+              "response_type": {
+                "type": "string",
+                "enum": [
+                  "error"
+                ]
+              }
+            }
+          }
+        ],
+        "description": "The response from an admin UI endpoint.\n\n- `GET /v1/admin/ui/{page}` → `AdminUiResponse::Page(page_def)`\n- `POST /v1/admin/{resource}` → `AdminUiResponse::Page(updated_page_def)` or `AdminUiResponse::Redirect(route)`"
+      },
+      "AttributeUpserted": {
+        "type": "object",
+        "description": "An attribute upsert result.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "ButtonType": {
+        "type": "string",
+        "description": "Button visual style.",
+        "enum": [
+          "primary",
+          "secondary",
+          "danger",
+          "ghost",
+          "link"
+        ]
+      },
+      "ChartType": {
+        "type": "string",
+        "description": "Chart kind.",
+        "enum": [
+          "bar",
+          "line",
+          "pie"
+        ]
+      },
       "ConsumeMessage": {
         "type": "object",
         "description": "The consumemessage type.",
@@ -1322,6 +1575,50 @@
           }
         }
       },
+      "ContainerDirection": {
+        "type": "string",
+        "description": "Layout direction for a container's children.",
+        "enum": [
+          "vertical",
+          "horizontal"
+        ]
+      },
+      "Decision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "allow"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "reason",
+              "decision"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "deny"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
       "DeleteAttributeQuery": {
         "type": "object",
         "description": "`DELETE /v1/admin/attributes` query - identifies the attribute.",
@@ -1412,6 +1709,143 @@
           }
         }
       },
+      "FieldCondition": {
+        "type": "object",
+        "description": "A visibility condition for a form field.",
+        "required": [
+          "field",
+          "equals"
+        ],
+        "properties": {
+          "equals": {
+            "description": "The value that must match for this field to be visible."
+          },
+          "field": {
+            "type": "string",
+            "description": "The key of the field whose value to check."
+          }
+        }
+      },
+      "FieldError": {
+        "type": "object",
+        "description": "A per-field validation error.",
+        "required": [
+          "field",
+          "message"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The form field key the error refers to."
+          },
+          "message": {
+            "type": "string",
+            "description": "The validation message shown under the field."
+          }
+        }
+      },
+      "FormFieldOption": {
+        "type": "object",
+        "description": "One choice of a select-type form field.",
+        "required": [
+          "value",
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The displayed label."
+          },
+          "value": {
+            "type": "string",
+            "description": "The submitted value."
+          }
+        }
+      },
+      "FormFieldType": {
+        "type": "string",
+        "description": "Input widget type for a form field.",
+        "enum": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "decimal",
+          "date",
+          "date_time",
+          "select",
+          "multiselect",
+          "autocomplete",
+          "checkbox",
+          "toggle",
+          "textarea",
+          "file",
+          "hidden",
+          "key_value"
+        ]
+      },
+      "FormFieldValidation": {
+        "type": "object",
+        "description": "Validation constraints for a form field.",
+        "properties": {
+          "custom_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message overriding the default validation error."
+          },
+          "max": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Maximum numeric value."
+          },
+          "max_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum string length.",
+            "minimum": 0
+          },
+          "min": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Minimum numeric value."
+          },
+          "min_length": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Minimum string length.",
+            "minimum": 0
+          },
+          "pattern": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Regex pattern the value must match."
+          }
+        }
+      },
+      "FormMethod": {
+        "type": "string",
+        "description": "HTTP method used for form submission.",
+        "enum": [
+          "post",
+          "put"
+        ]
+      },
       "ListAttributesQuery": {
         "type": "object",
         "description": "`GET /v1/admin/attributes` query - list attributes for one subject (or\nall subjects in the env when omitted).",
@@ -1427,6 +1861,48 @@
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "LiveHealth": {
+        "type": "object",
+        "description": "The `GET /v1/health` liveness payload every service returns: the\nstatus string, the serving service's short name, build identity, and\n(when the process tracks them) the count of live connections.\n`service` and `active_connections` stay absent when a service does\nnot set them (e.g. the bus mounts the generic handler).",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "active_connections": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Live socket count when the traffic counter is mounted."
+          },
+          "build": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build hash (`sentin8::build_info::build_hash()`)."
+          },
+          "service": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The serving service's short name (absent when the generic handler\ndoes not carry one)."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `ok` on a live instance."
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Build identity id (`sentin8::build_info::id()`)."
           }
         }
       },
@@ -1486,6 +1962,201 @@
           },
           "policy_set_name": {
             "type": "string"
+          }
+        }
+      },
+      "PolicySetDetail": {
+        "type": "object",
+        "description": "One policy set in the detail view (adds the full policy text).",
+        "required": [
+          "policy_set_name",
+          "description",
+          "policies",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "Creation instant (RFC 3339)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform`/`tenant`)."
+          },
+          "policies": {
+            "type": "string",
+            "description": "The full policy text (Shield policy language)."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional schema text bound to the set."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicySetMutated": {
+        "type": "object",
+        "description": "A stored policy-set mutation result.",
+        "required": [
+          "policy_set_name",
+          "version",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "The evaluation mode after the mutation."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The revision after the mutation."
+          }
+        }
+      },
+      "PolicySetRow": {
+        "type": "object",
+        "description": "One policy set in the list view (the RFW row shape).",
+        "required": [
+          "id",
+          "policy_set_name",
+          "description",
+          "origin",
+          "mode",
+          "version",
+          "enabled",
+          "policies_len",
+          "updated_at"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human description."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the set participates in evaluation."
+          },
+          "id": {
+            "type": "string",
+            "description": "The set name; doubles as the RFW row id."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Evaluation mode (`shadow`/`enforced`)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin (`platform` enroll-managed vs `tenant`)."
+          },
+          "policies_len": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of policy statements in the set."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update instant (RFC 3339)."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Monotonic revision."
+          }
+        }
+      },
+      "PolicyTestOutcome": {
+        "type": "object",
+        "description": "A dry-run (test) outcome; nothing was stored.",
+        "required": [
+          "policy_set_name",
+          "action",
+          "decision",
+          "would_deny"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action evaluated."
+          },
+          "decision": {
+            "$ref": "#/components/schemas/Decision",
+            "description": "The enforce-mode decision."
+          },
+          "policy_set_name": {
+            "type": "string",
+            "description": "The set name the candidate text was compiled under."
+          },
+          "would_deny": {
+            "type": "boolean",
+            "description": "Whether the shadow evaluation would deny."
+          }
+        }
+      },
+      "PrincipalAttr": {
+        "type": "object",
+        "description": "One principal attribute in the list view.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value",
+          "origin"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string",
+            "description": "The attribute key."
+          },
+          "attr_value": {
+            "description": "The attribute value (free-form JSON by contract)."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The attribute owner (subject id)."
           }
         }
       },
@@ -1745,6 +2416,511 @@
           }
         }
       },
+      "RelationCheckResult": {
+        "type": "object",
+        "description": "A relation connectivity check result.",
+        "required": [
+          "subject",
+          "relation",
+          "object",
+          "direct",
+          "transitive",
+          "connected",
+          "tuple_count"
+        ],
+        "properties": {
+          "connected": {
+            "type": "boolean",
+            "description": "`direct || transitive`."
+          },
+          "direct": {
+            "type": "boolean",
+            "description": "Whether a direct tuple exists."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object in `type/id` form."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation checked."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject in `type/id` form."
+          },
+          "transitive": {
+            "type": "boolean",
+            "description": "Whether a transitive path exists."
+          },
+          "tuple_count": {
+            "type": "integer",
+            "description": "Number of tuples inspected.",
+            "minimum": 0
+          }
+        }
+      },
+      "RelationRecordRow": {
+        "type": "object",
+        "description": "One relation tuple in the list view.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id",
+          "origin"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "description": "The object entity id."
+          },
+          "object_type": {
+            "type": "string",
+            "description": "The object entity type."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Row origin."
+          },
+          "relation": {
+            "type": "string",
+            "description": "The relation name."
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "The subject entity id."
+          },
+          "subject_type": {
+            "type": "string",
+            "description": "The subject entity type."
+          }
+        }
+      },
+      "RelationUpserted": {
+        "type": "object",
+        "description": "A relation-tuple upsert result.",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stored tuple id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Always `upserted`."
+          }
+        }
+      },
+      "RemoteWidget": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+              },
+              "direction": {
+                "$ref": "#/components/schemas/ContainerDirection",
+                "description": "Layout direction of the children."
+              },
+              "padding": {
+                "type": "number",
+                "format": "double",
+                "description": "Outer padding."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "container"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "text"
+            ],
+            "properties": {
+              "align": {
+                "$ref": "#/components/schemas/TextAlign",
+                "description": "Text alignment."
+              },
+              "max_lines": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "description": "Maximum lines before ellipsis.",
+                "minimum": 0
+              },
+              "text": {
+                "type": "string",
+                "description": "The text content."
+              },
+              "text_type": {
+                "$ref": "#/components/schemas/WidgetTextType",
+                "description": "Style variant."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "columns",
+              "data_endpoint"
+            ],
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetDataTableColumn"
+                },
+                "description": "Column definitions."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+              },
+              "empty_message": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Message shown when there are no rows."
+              },
+              "filterable": {
+                "type": "boolean",
+                "description": "Whether column filtering is enabled."
+              },
+              "page_size": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Rows per page (0 = renderer default).",
+                "minimum": 0
+              },
+              "row_actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+              },
+              "row_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+              },
+              "sortable": {
+                "type": "boolean",
+                "description": "Whether column sorting is enabled."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "data_table"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "fields",
+              "submit_endpoint"
+            ],
+            "properties": {
+              "cancel_label": {
+                "type": "string",
+                "description": "Cancel button label."
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetFormField"
+                },
+                "description": "Form fields in render order."
+              },
+              "method": {
+                "$ref": "#/components/schemas/FormMethod",
+                "description": "HTTP method for submission."
+              },
+              "submit_endpoint": {
+                "type": "string",
+                "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+              },
+              "submit_label": {
+                "type": "string",
+                "description": "Submit button label."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "form"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "label"
+            ],
+            "properties": {
+              "button_type": {
+                "$ref": "#/components/schemas/ButtonType",
+                "description": "Visual/emphasis style."
+              },
+              "endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+              },
+              "icon": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Material Icons code point (hex string)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Button label."
+              },
+              "route": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "button"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WidgetButton"
+                },
+                "description": "Buttons rendered in the card footer/header."
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "subtitle": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card subtitle."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Card title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "card"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "chart_type",
+              "data_endpoint"
+            ],
+            "properties": {
+              "chart_type": {
+                "$ref": "#/components/schemas/ChartType",
+                "description": "The chart kind."
+              },
+              "data_endpoint": {
+                "type": "string",
+                "description": "Endpoint that returns the chart series data."
+              },
+              "height": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "description": "Height in logical pixels."
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Chart title."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "chart"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "widget_name"
+            ],
+            "properties": {
+              "data_endpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The data endpoint the native widget calls."
+              },
+              "props": {
+                "description": "Props passed to the native widget (service-specific)."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "native"
+                ]
+              },
+              "widget_name": {
+                "type": "string",
+                "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "row"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RemoteWidget"
+                },
+                "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+              },
+              "spacing": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap between children."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "column"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "size": {
+                "type": "number",
+                "format": "double",
+                "description": "Gap size in logical pixels."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "spacer"
+                ]
+              }
+            }
+          }
+        ]
+      },
       "ScheduleRequest": {
         "type": "object",
         "description": "Request body for schedule.",
@@ -1876,6 +3052,477 @@
             "type": "string"
           }
         }
+      },
+      "TextAlign": {
+        "type": "string",
+        "description": "Text alignment.",
+        "enum": [
+          "left",
+          "center",
+          "right"
+        ]
+      },
+      "WidgetButton": {
+        "type": "object",
+        "description": "A button (submit, cancel, row action, or link).",
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "button_type": {
+            "$ref": "#/components/schemas/ButtonType",
+            "description": "Visual/emphasis style."
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Endpoint to POST to (for action buttons, relative to `/v1/admin/`).\nEndpoint to POST to (for action buttons, relative to `/v1/admin/`)."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Material Icons code point (hex string)."
+          },
+          "label": {
+            "type": "string",
+            "description": "Button label."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Route to navigate to (for link buttons). Supports `{param}` substitution."
+          }
+        }
+      },
+      "WidgetCard": {
+        "type": "object",
+        "description": "A glass card panel with optional title and children.",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Buttons rendered in the card footer/header."
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Card body widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "subtitle": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card subtitle."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Card title."
+          }
+        }
+      },
+      "WidgetChart": {
+        "type": "object",
+        "description": "A simple chart backed by a data endpoint.",
+        "required": [
+          "chart_type",
+          "data_endpoint"
+        ],
+        "properties": {
+          "chart_type": {
+            "$ref": "#/components/schemas/ChartType",
+            "description": "The chart kind."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "Endpoint that returns the chart series data."
+          },
+          "height": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Height in logical pixels."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Chart title."
+          }
+        }
+      },
+      "WidgetColumn": {
+        "type": "object",
+        "description": "A vertical layout column.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetContainer": {
+        "type": "object",
+        "description": "A scrollable container with layout direction and padding.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets.\n\n`no_recursion` keeps the derive from forwarding the reference\ncollection back into [`RemoteWidget`]'s manual `ToSchema::schemas` -\nrecursion terminates at the `$ref` (see the RemoteWidget schema impl)."
+          },
+          "direction": {
+            "$ref": "#/components/schemas/ContainerDirection",
+            "description": "Layout direction of the children."
+          },
+          "padding": {
+            "type": "number",
+            "format": "double",
+            "description": "Outer padding."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetDataTable": {
+        "type": "object",
+        "description": "A data table with server-side rows, sorting, filtering, and pagination.",
+        "required": [
+          "columns",
+          "data_endpoint"
+        ],
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetDataTableColumn"
+            },
+            "description": "Column definitions."
+          },
+          "data_endpoint": {
+            "type": "string",
+            "description": "The data endpoint to fetch rows (relative to the service's `/v1/admin/` prefix).\nE.g. `\"/accounts\"` → `GET /v1/admin/accounts`."
+          },
+          "empty_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Message shown when there are no rows."
+          },
+          "filterable": {
+            "type": "boolean",
+            "description": "Whether column filtering is enabled."
+          },
+          "page_size": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Rows per page (0 = renderer default).",
+            "minimum": 0
+          },
+          "row_actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetButton"
+            },
+            "description": "Per-row action buttons. Each button's route/endpoint supports `{row.id}` substitution."
+          },
+          "row_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional row click action - navigates to this route with `{row.id}` substitution."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether column sorting is enabled."
+          }
+        }
+      },
+      "WidgetDataTableColumn": {
+        "type": "object",
+        "description": "One column of a [`WidgetDataTable`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "format": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Formatter hint (e.g. `iban`, `currency`, `datetime`)."
+          },
+          "key": {
+            "type": "string",
+            "description": "Row-data key for this column."
+          },
+          "label": {
+            "type": "string",
+            "description": "Column header label."
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Whether this column sorts."
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Fixed width in logical pixels."
+          }
+        }
+      },
+      "WidgetForm": {
+        "type": "object",
+        "description": "A form with fields and a submit action.",
+        "required": [
+          "fields",
+          "submit_endpoint"
+        ],
+        "properties": {
+          "cancel_label": {
+            "type": "string",
+            "description": "Cancel button label."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WidgetFormField"
+            },
+            "description": "Form fields in render order."
+          },
+          "method": {
+            "$ref": "#/components/schemas/FormMethod",
+            "description": "HTTP method for submission."
+          },
+          "submit_endpoint": {
+            "type": "string",
+            "description": "The endpoint to POST the form data to (relative to `/v1/admin/`).\nE.g. `\"/accounts\"` → `POST /v1/admin/accounts`."
+          },
+          "submit_label": {
+            "type": "string",
+            "description": "Submit button label."
+          }
+        }
+      },
+      "WidgetFormField": {
+        "type": "object",
+        "description": "One input field of a [`WidgetForm`].",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "default_value": {
+            "description": "Initial value."
+          },
+          "field_type": {
+            "$ref": "#/components/schemas/FormFieldType",
+            "description": "Input widget type."
+          },
+          "help_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Helper text shown below the field."
+          },
+          "key": {
+            "type": "string",
+            "description": "Field key in the submitted payload."
+          },
+          "label": {
+            "type": "string",
+            "description": "Display label."
+          },
+          "options": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/FormFieldOption"
+            },
+            "description": "Choices for select-type fields."
+          },
+          "placeholder": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Hint shown inside the empty field."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether submission fails without a value."
+          },
+          "validation": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FormFieldValidation",
+                "description": "Validation constraints."
+              }
+            ]
+          },
+          "visible_if": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FieldCondition",
+                "description": "Conditional visibility: only show this field when another field\nmatches a value. Example: `{\"field\": \"auth_mode\", \"equals\": \"staff\"}`"
+              }
+            ]
+          },
+          "width": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Width in logical pixels."
+          }
+        }
+      },
+      "WidgetNative": {
+        "type": "object",
+        "description": "A native widget host - the dash renders a built-in Flutter widget.",
+        "required": [
+          "widget_name"
+        ],
+        "properties": {
+          "data_endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The data endpoint the native widget calls."
+          },
+          "props": {
+            "description": "Props passed to the native widget (service-specific)."
+          },
+          "widget_name": {
+            "type": "string",
+            "description": "The native widget name the dash recognizes.\nBuilt-in hosts: `posting_console`, `payment_simulator`, `workflow_visualizer`."
+          }
+        }
+      },
+      "WidgetRow": {
+        "type": "object",
+        "description": "A horizontal layout row.",
+        "required": [
+          "children"
+        ],
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteWidget"
+            },
+            "description": "Child widgets (`no_recursion` - see [`RemoteWidget`])."
+          },
+          "spacing": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap between children."
+          }
+        }
+      },
+      "WidgetSpacer": {
+        "type": "object",
+        "description": "An empty gap.",
+        "properties": {
+          "size": {
+            "type": "number",
+            "format": "double",
+            "description": "Gap size in logical pixels."
+          }
+        }
+      },
+      "WidgetText": {
+        "type": "object",
+        "description": "A text label with optional styling.",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "align": {
+            "$ref": "#/components/schemas/TextAlign",
+            "description": "Text alignment."
+          },
+          "max_lines": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Maximum lines before ellipsis.",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content."
+          },
+          "text_type": {
+            "$ref": "#/components/schemas/WidgetTextType",
+            "description": "Style variant."
+          }
+        }
+      },
+      "WidgetTextType": {
+        "type": "string",
+        "description": "Text style variant.",
+        "enum": [
+          "body",
+          "heading",
+          "subheading",
+          "caption",
+          "label",
+          "title"
+        ]
       }
     }
   },

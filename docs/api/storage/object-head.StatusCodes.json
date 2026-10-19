@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Object exists — Content-Length set"},"403":{"description":"Missing storage scope"},"404":{"description":"Object not found"}}}
+{"responses":{"200":{"description":"Object exists - Content-Length set"},"403":{"description":"Missing storage scope"},"404":{"description":"Object not found"}}}
