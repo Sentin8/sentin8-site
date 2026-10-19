@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-acme",
-    "description": "Sentin8 Sentin8:Acme — internal ACME certificate authority server.",
+    "description": "Sentin8 Sentin8:Acme - internal ACME certificate authority server.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,7 +37,7 @@
           }
         },
         "security": [],
-        "description": "Serve an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) — the token itself is the capability."
+        "description": "Serve an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) - the token itself is the capability."
       }
     },
     "/acme/authz/{id}": {
@@ -130,7 +130,7 @@
           }
         },
         "security": [],
-        "description": "signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready —\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
+        "description": "signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready -\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
       }
     },
     "/acme/directory": {
@@ -266,7 +266,7 @@
           }
         },
         "security": [],
-        "description": "submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth — the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."
+        "description": "submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth - the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."
       }
     },
     "/acme/revoke-cert": {
@@ -1095,7 +1095,7 @@
           "admin-ui"
         ],
         "summary": "`GET /v1/admin/ui/{page}`",
-        "description": "Pages:\n  - `overview`      — CA hierarchy status, issued-cert count, active order count, proxy mode\n  - `certificates`  — issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)\n  - `settings`      — Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)\n\n`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON.",
+        "description": "Pages:\n  - `overview`      - CA hierarchy status, issued-cert count, active order count, proxy mode\n  - `certificates`  - issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)\n  - `settings`      - Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)\n\n`GET /v1/admin/ui/{*page}` - returns the RFW page definition as JSON.",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -1137,7 +1137,7 @@
           "admin-ui"
         ],
         "summary": "`GET /v1/admin/{resource}`",
-        "description": "Resources:\n  - `overview`     — summary cards (CA status, counts)\n  - `certificates` — issued-certificate inventory from the CA data directory\n  - `settings`    — current config values\n\nreturns a JSON array of admin data rows.",
+        "description": "Resources:\n  - `overview`     - summary cards (CA status, counts)\n  - `certificates` - issued-certificate inventory from the CA data directory\n  - `settings`    - current config values\n\nreturns a JSON array of admin data rows.",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -1223,7 +1223,7 @@
           "acme"
         ],
         "summary": "`POST /v1/client-cert`",
-        "description": "GUARDED: the caller must present a Sentin8:Auth token verifying against\nthe platform JWKS, and its `sub` must equal the requested `service_name`\n— a workload can only mint a certificate for its own registered name.\n\nThe response (combined PEM: leaf chain + private key) is returned **once**\n— the key is not persisted server-side; the caller persists it in its own\ncredential cache. The certificate is recorded in Acme's cert store so the\nadmin UI can list/revoke it.\n\nmint an mTLS client certificate.",
+        "description": "GUARDED: the caller must present a Sentin8:Auth token verifying against\nthe platform JWKS, and its `sub` must equal the requested `service_name`\n- a workload can only mint a certificate for its own registered name.\n\nThe response (combined PEM: leaf chain + private key) is returned **once**\n- the key is not persisted server-side; the caller persists it in its own\ncredential cache. The certificate is recorded in Acme's cert store so the\nadmin UI can list/revoke it.\n\nmint an mTLS client certificate.",
         "operationId": "client_cert.issue",
         "responses": {
           "200": {
@@ -1308,7 +1308,7 @@
     },
     {
       "name": "acme",
-      "description": "Sentin8:Acme — CA certificate download"
+      "description": "Sentin8:Acme - CA certificate download"
     }
   ]
 }

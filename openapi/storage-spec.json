@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-storage",
-    "description": "Sentin8 Sentin8:Storage — object/file storage with pluggable adapters.",
+    "description": "Sentin8 Sentin8:Storage - object/file storage with pluggable adapters.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -230,7 +230,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "?bucket=name` — list objects in a bucket.\nList bucket objects."
+        "description": "?bucket=name` - list objects in a bucket.\nList bucket objects."
       }
     },
     "/v1/admin/buckets/upload": {
@@ -374,7 +374,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "?object={name}` — download an object.\nReturns the raw bytes as a binary stream.\nHandle download object."
+        "description": "?object={name}` - download an object.\nReturns the raw bytes as a binary stream.\nHandle download object."
       }
     },
     "/v1/admin/buckets/{id}/link": {
@@ -1090,7 +1090,7 @@
           }
         },
         "security": [],
-        "description": "`GET /v1/public/env/{env_id}/objects/{*path}` — env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env."
+        "description": "`GET /v1/public/env/{env_id}/objects/{*path}` - env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env."
       }
     },
     "/v1/public/objects/{object_path}": {
@@ -1123,7 +1123,7 @@
           }
         },
         "security": [],
-        "description": "`GET /v1/public/objects/{*path}` — platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read."
+        "description": "`GET /v1/public/objects/{*path}` - platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read."
       }
     },
     "/v1/storage/objects": {
@@ -1203,7 +1203,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`GET /v1/storage/objects/{path}` — download an object.\nFetch object."
+        "description": "`GET /v1/storage/objects/{path}` - download an object.\nFetch object."
       },
       "put": {
         "tags": [
@@ -1250,7 +1250,7 @@
             "sentin8:storage:env:write": []
           }
         ],
-        "description": "`PUT /v1/storage/objects/{path}` — upload an object.\nHandle PUT object."
+        "description": "`PUT /v1/storage/objects/{path}` - upload an object.\nHandle PUT object."
       },
       "post": {
         "tags": [
@@ -1285,7 +1285,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`POST /v1/storage/objects/{*path}` — dispatch sign-read, sign-upload, copy, move.\nHandle object action."
+        "description": "`POST /v1/storage/objects/{*path}` - dispatch sign-read, sign-upload, copy, move.\nHandle object action."
       },
       "delete": {
         "tags": [
@@ -1320,7 +1320,7 @@
             "sentin8:storage:env:admin": []
           }
         ],
-        "description": "`DELETE /v1/storage/objects/{path}` — delete an object.\nDelete object."
+        "description": "`DELETE /v1/storage/objects/{path}` - delete an object.\nDelete object."
       },
       "head": {
         "tags": [
@@ -1341,7 +1341,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Object exists — Content-Length set"
+            "description": "Object exists - Content-Length set"
           },
           "403": {
             "description": "Missing storage scope"
@@ -1355,7 +1355,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."
+        "description": "`HEAD /v1/storage/objects/{path}` - existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."
       }
     },
     "/v1/storage/signed/{token}": {
@@ -1503,7 +1503,7 @@
     },
     {
       "name": "storage",
-      "description": "Sentin8:Storage admin API — object CRUD, signed URLs"
+      "description": "Sentin8:Storage admin API - object CRUD, signed URLs"
     }
   ]
 }

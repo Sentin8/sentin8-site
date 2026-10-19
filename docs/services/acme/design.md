@@ -332,7 +332,7 @@ TOCTOU between classification and signing):
 
 1. **Built-in local forms**: `localhost`, `*.localhost`, `*.local`, and
    RFC 1918 loopback/private IP literals (`127.*`, `10.*`, `192.168.*`,
-   `172.16.*`–`172.31.*`).
+   `172.16.*`-`172.31.*`).
 2. **Operator-declared local domains**: any suffix listed in
    `SENTIN8_ACME_LOCAL_DOMAINS` (comma-separated, e.g.
    `local.sentin8.dev,local.ibank.dev`). A domain equal to or ending with

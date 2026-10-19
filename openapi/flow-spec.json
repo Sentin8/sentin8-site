@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-flow",
-    "description": "Sentin8 Sentin8:Flow — standalone workflow execution engine.",
+    "description": "Sentin8 Sentin8:Flow - standalone workflow execution engine.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -1177,7 +1177,7 @@
       },
       "CreateWorkflowRequest": {
         "type": "object",
-        "description": "CreateWorkflowRequest — body of `POST /v1/workflows`.\nThe `logic`, `input`, and `callback_config` fields accept either a JSON\nobject or a JSON string (from RFW forms which send text fields as strings).\nRequest body for createworkflow.",
+        "description": "CreateWorkflowRequest - body of `POST /v1/workflows`.\nThe `logic`, `input`, and `callback_config` fields accept either a JSON\nobject or a JSON string (from RFW forms which send text fields as strings).\nRequest body for createworkflow.",
         "required": [
           "domain",
           "logic",
@@ -1238,7 +1238,7 @@
               "string",
               "null"
             ],
-            "description": "Target environment — same contract as TargetEnvQuery (query param\nwins over the token's env; user tokens may carry no env at all,\nwhich then resolves to the system env — the platform default)."
+            "description": "Target environment - same contract as TargetEnvQuery (query param\nwins over the token's env; user tokens may carry no env at all,\nwhich then resolves to the system env - the platform default)."
           }
         }
       },
@@ -1288,7 +1288,7 @@
       },
       "RegisterHandlerRequest": {
         "type": "object",
-        "description": "RegisterHandlerRequest — body of `POST /v1/handlers/register`.\nRequest body for registerhandler.",
+        "description": "RegisterHandlerRequest - body of `POST /v1/handlers/register`.\nRequest body for registerhandler.",
         "required": [
           "domain",
           "step_kinds",
@@ -1324,7 +1324,7 @@
       },
       "RepairWorkflowRequest": {
         "type": "object",
-        "description": "RepairWorkflowRequest — body of `POST /v1/workflows/{id}/repair`.\nRequest body for repairworkflow.",
+        "description": "RepairWorkflowRequest - body of `POST /v1/workflows/{id}/repair`.\nRequest body for repairworkflow.",
         "required": [
           "rewind_to"
         ],
@@ -1341,7 +1341,7 @@
       },
       "ResumeWorkflowRequest": {
         "type": "object",
-        "description": "ResumeWorkflowRequest — body of `POST /v1/workflows/{id}/resume`.\nRequest body for resumeworkflow.",
+        "description": "ResumeWorkflowRequest - body of `POST /v1/workflows/{id}/resume`.\nRequest body for resumeworkflow.",
         "properties": {
           "decision": {
             "description": "Decision/output for the resumed step.\nThe decision."
@@ -1385,7 +1385,7 @@
       },
       "StepHandlerProfile": {
         "type": "object",
-        "description": "StepHandlerProfile — how to proxy-call a domain's step handlers.\nThe stephandlerprofile type.",
+        "description": "StepHandlerProfile - how to proxy-call a domain's step handlers.\nThe stephandlerprofile type.",
         "required": [
           "domain",
           "base_url",
@@ -1479,7 +1479,7 @@
       },
       "WorkflowRecord": {
         "type": "object",
-        "description": "WorkflowRecord — the persisted workflow state.\nPersisted workflow record.",
+        "description": "WorkflowRecord - the persisted workflow state.\nPersisted workflow record.",
         "required": [
           "id",
           "env_id",
@@ -1607,7 +1607,7 @@
     },
     {
       "name": "flow",
-      "description": "Sentin8:Flow admin API — workflow CRUD, retry, repair, resume"
+      "description": "Sentin8:Flow admin API - workflow CRUD, retry, repair, resume"
     }
   ]
 }

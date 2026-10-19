@@ -118,7 +118,7 @@ The properties this buys:
   client-supplied `X-Sentin8-*` header before injecting its own
   authoritative values; an unresolvable `Host` is rejected with
   `421 Misdirected Request`.
-- **The decision is never stale.** Steps 5–6 consult live identity state and
+- **The decision is never stale.** Steps 5-6 consult live identity state and
   live policy data on every request.
 - **The database is the last wall, not the only one.** Every handler also
   carries explicit `WHERE env_id = $N` clauses - RLS is the backstop,

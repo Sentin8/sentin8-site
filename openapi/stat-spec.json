@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-stat",
-    "description": "Sentin8 Sentin8:Stat — analytics/telemetry ingest, read APIs, and embedded pipeline worker.",
+    "description": "Sentin8 Sentin8:Stat - analytics/telemetry ingest, read APIs, and embedded pipeline worker.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -939,7 +939,7 @@
             "sentin8:stat:admin": []
           }
         ],
-        "description": "Delete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY — a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."
+        "description": "Delete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY - a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."
       }
     },
     "/v1/admin/properties/{id}/retention": {
@@ -2157,7 +2157,7 @@
         "properties": {
           "comparator": {
             "type": "string",
-            "description": "Comparator — `gt` | `gte` | `lt` | `lte`."
+            "description": "Comparator - `gt` | `gte` | `lt` | `lte`."
           },
           "created_at": {
             "type": "string",
@@ -2185,7 +2185,7 @@
           "min_sample": {
             "type": "integer",
             "format": "int32",
-            "description": "Noise floor — the rule never evaluates below it."
+            "description": "Noise floor - the rule never evaluates below it."
           },
           "name": {
             "type": "string",
@@ -2198,7 +2198,7 @@
           },
           "rule_type": {
             "type": "string",
-            "description": "Rule type — `threshold` (metric value vs threshold) or `anomaly`\n(moving-average deviation factor over the window)."
+            "description": "Rule type - `threshold` (metric value vs threshold) or `anomaly`\n(moving-average deviation factor over the window)."
           },
           "threshold": {
             "type": "number",
@@ -2256,7 +2256,7 @@
           "min_sample": {
             "type": "integer",
             "format": "int32",
-            "description": "Noise floor — the rule never evaluates below it."
+            "description": "Noise floor - the rule never evaluates below it."
           },
           "name": {
             "type": "string",
@@ -2269,7 +2269,7 @@
           "threshold": {
             "type": "number",
             "format": "double",
-            "description": "Comparison threshold (metric value, or deviation factor for\n`anomaly` — e.g. `3.0` = current exceeds 3× the baseline)."
+            "description": "Comparison threshold (metric value, or deviation factor for\n`anomaly` - e.g. `3.0` = current exceeds 3× the baseline)."
           },
           "window_hours": {
             "type": "integer",
@@ -2439,7 +2439,7 @@
       },
       "ReaggregateRequest": {
         "type": "object",
-        "description": "Request body for `POST /v1/admin/properties/{id}/reaggregate` — the\nraw-events window to rebuild. Both fields accept RFC 3339 timestamps;\nomitted fields default per `parse_reaggregate_window` (full omission =\nlast 30 days).\nThe reaggregaterequest type.",
+        "description": "Request body for `POST /v1/admin/properties/{id}/reaggregate` - the\nraw-events window to rebuild. Both fields accept RFC 3339 timestamps;\nomitted fields default per `parse_reaggregate_window` (full omission =\nlast 30 days).\nThe reaggregaterequest type.",
         "properties": {
           "from": {
             "type": [
@@ -2539,7 +2539,7 @@
     },
     {
       "name": "stat",
-      "description": "Sentin8:Stat admin API — properties, accounts, settings, alert rules"
+      "description": "Sentin8:Stat admin API - properties, accounts, settings, alert rules"
     }
   ]
 }

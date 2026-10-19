@@ -250,7 +250,7 @@ can no longer be silently dropped when the API is not yet listening.
 Captain emits no Bus domain events; its publish surface is
 `captain:changed` + structured tracing alerts.
 
-## 5–10. Supervisor, upgrade, failure, concurrency, invariants, testing
+## 5-10. Supervisor, upgrade, failure, concurrency, invariants, testing
 
 Carried unchanged from the upstream design of record
 (`services/captain/DESIGN.md` in the monorepo source of truth - RS §4.3):

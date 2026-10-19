@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-ai",
-    "description": "Sentin8 Sentin8:AI — platform AI capability layer.",
+    "description": "Sentin8 Sentin8:AI - platform AI capability layer.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -600,7 +600,7 @@
             "description": "Admin data rows"
           }
         },
-        "description": "RFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED — Fix A)."
+        "description": "RFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED - Fix A)."
       }
     },
     "/v1/agent/execute": {
@@ -870,7 +870,7 @@
             "sentin8:ai:chat:write": []
           }
         ],
-        "description": "streaming chat over a chunked HTTP body\n. NOT the SSE subscription tier — synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."
+        "description": "streaming chat over a chunked HTTP body\n. NOT the SSE subscription tier - synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."
       }
     },
     "/v1/completions": {
@@ -1370,7 +1370,7 @@
             "description": "Maintenance run completed"
           }
         },
-        "description": "Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield)."
+        "description": "Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens -\n `token_tp: m2m` principals evaluate like any other under Shield)."
       }
     },
     "/v1/internal/traces/archive": {
@@ -1393,7 +1393,7 @@
             "description": "Archive run completed"
           }
         },
-        "description": "age out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) — never by\nclients directly."
+        "description": "age out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) - never by\nclients directly."
       }
     },
     "/v1/prompts": {
@@ -1736,7 +1736,7 @@
             "sentin8:ai:prompt:write": []
           }
         ],
-        "description": "`PUT /v1/embedding-registry/{model}` — pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422."
+        "description": "`PUT /v1/embedding-registry/{model}` - pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422."
       }
     },
     "/v1/retrieval": {
@@ -1851,7 +1851,7 @@
     "schemas": {
       "AgentIntent": {
         "type": "object",
-        "description": "Structured intent emitted by the model. The model has NO\nexecution surface — this contract is the only output shape accepted.",
+        "description": "Structured intent emitted by the model. The model has NO\nexecution surface - this contract is the only output shape accepted.",
         "required": [
           "action"
         ],
@@ -1884,7 +1884,7 @@
           },
           "prompt_name": {
             "type": "string",
-            "description": "Prompt registry name — its `tools` array is the ALLOWLIST of actions\nthe model may emit (mapped to Flow logics via `sentin8.ai_tools`)."
+            "description": "Prompt registry name - its `tools` array is the ALLOWLIST of actions\nthe model may emit (mapped to Flow logics via `sentin8.ai_tools`)."
           },
           "prompt_version": {
             "type": [
@@ -2024,7 +2024,7 @@
           },
           "text": {
             "type": "string",
-            "description": "Already-extracted text (extract step happens upstream or in this\nrequest — v1 accepts the plain text; PDF extraction is a Func WASM\nmodule concern)."
+            "description": "Already-extracted text (extract step happens upstream or in this\nrequest - v1 accepts the plain text; PDF extraction is a Func WASM\nmodule concern)."
           }
         }
       },
@@ -2135,7 +2135,7 @@
             "items": {
               "$ref": "#/components/schemas/ChatMessage"
             },
-            "description": "Inline messages (chat) — merged after the prompt's system/user text."
+            "description": "Inline messages (chat) - merged after the prompt's system/user text."
           },
           "model_override": {
             "type": [
@@ -2148,7 +2148,7 @@
               "string",
               "null"
             ],
-            "description": "Prompt registry name — config (models, temperature, schema) resolves\nfrom the named-latest/pinned version unless overridden inline."
+            "description": "Prompt registry name - config (models, temperature, schema) resolves\nfrom the named-latest/pinned version unless overridden inline."
           },
           "prompt_version": {
             "type": [
@@ -2377,10 +2377,10 @@
             "items": {
               "type": "string"
             },
-            "description": "Caller's Shield-resolved data scope — applied as an explicit metadata\nfilter IN THE QUERY (the LLM never sees out-of-scope chunks)."
+            "description": "Caller's Shield-resolved data scope - applied as an explicit metadata\nfilter IN THE QUERY (the LLM never sees out-of-scope chunks)."
           },
           "metadata_filters": {
-            "description": "Metadata filters: `{\"key\": \"value\",. }` — each becomes\n`metadata->'key' == value` in the SQL (AND-composed)."
+            "description": "Metadata filters: `{\"key\": \"value\",. }` - each becomes\n`metadata->'key' == value` in the SQL (AND-composed)."
           },
           "query": {
             "type": "string"
@@ -2507,7 +2507,7 @@
       },
       "TargetEnvQuery": {
         "type": "object",
-        "description": "Query params accepted by all env-scoped endpoints. `target_env_id` is\nforwarded by the BFF proxy to identify the tenant env when the caller's\ntoken carries the system env ( Fix A/D — REQUIRED, no\nsilent fallback).",
+        "description": "Query params accepted by all env-scoped endpoints. `target_env_id` is\nforwarded by the BFF proxy to identify the tenant env when the caller's\ntoken carries the system env ( Fix A/D - REQUIRED, no\nsilent fallback).",
         "properties": {
           "target_env_id": {
             "type": [
@@ -2712,12 +2712,12 @@
           },
           "credential_ref": {
             "type": "string",
-            "description": "Secret reference — NEVER the credential material itself."
+            "description": "Secret reference - NEVER the credential material itself."
           },
           "models": {},
           "provider": {
             "type": "string",
-            "description": "'openai' | 'anthropic' | 'ollama' (v1 set —)."
+            "description": "'openai' | 'anthropic' | 'ollama' (v1 set -)."
           }
         }
       }
@@ -2731,7 +2731,7 @@
     },
     {
       "name": "ai",
-      "description": "Sentin8:AI — prompt registry, inference primitives, retrieval, providers, traces"
+      "description": "Sentin8:AI - prompt registry, inference primitives, retrieval, providers, traces"
     }
   ]
 }

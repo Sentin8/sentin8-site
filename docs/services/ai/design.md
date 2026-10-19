@@ -341,8 +341,8 @@ graph LR
 - Pool capped (`sentin8_config::pg_pool::connect`, max 3 default) -
   inference trace writes and job upserts share the cap; budget check runs
   once per logical request.
-- Retrieval `top_k` clamped 1–100; archives bounded (`LIMIT 10000`);
-  trace lists 1–500; DLQ listing 200.
+- Retrieval `top_k` clamped 1-100; archives bounded (`LIMIT 10000`);
+  trace lists 1-500; DLQ listing 200.
 - Hot paths cached: exact-match response cache (1h TTL; the key covers env,
   model, messages, temperature, max_tokens, and the tool set - hashed to a
   bounded sha256 prompt-hash, so a near-hit can never replay a response

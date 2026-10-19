@@ -117,7 +117,7 @@ value it delivers:
 | DLQ | Failed summary/classification/document jobs land in `ai.dlq` for manual replay; embedding jobs retry via consumer redelivery; malformed payloads are acked (poison-pill guard) |
 | Evaluations | `POST /v1/evaluations/run` - synchronous inference per test case with assertion checks and score reporting |
 | Costs | `POST /v1/costs` - cost rollups attributed per `{env_id, feature, model}`; cost normalized per 1M tokens when the provider does not return explicit cost |
-| Traces | `GET /v1/traces` - trace lists (1–500); retention via Cron-bound archive + delete (`/v1/internal/traces/archive` proxy-back) |
+| Traces | `GET /v1/traces` - trace lists (1-500); retention via Cron-bound archive + delete (`/v1/internal/traces/archive` proxy-back) |
 | Trace archive | Archive then delete cycle keeps the hot table bounded |
 | Filters admin | Env rules (tenant-configurable, Shield-gated) with input/output stages and blocked-terms lists |
 

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-cron",
-    "description": "Sentin8 Sentin8:Cron — standalone distributed scheduler.",
+    "description": "Sentin8 Sentin8:Cron - standalone distributed scheduler.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -644,7 +644,7 @@
             "sentin8:cron:read": []
           }
         ],
-        "description": "returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data."
+        "description": "returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED - no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data."
       }
     },
     "/v1/dlq": {
@@ -1455,7 +1455,7 @@
       },
       "UpdateScheduleRequest": {
         "type": "object",
-        "description": "`PATCH /v1/schedules/{id}` — pause/resume via status (cron README §7).\n`{status: \"paused\" | \"active\"}`; resume recomputes `next_run_at` from\nnow so a paused schedule does not fire for misses during the pause.\nRequest payload for update schedule.",
+        "description": "`PATCH /v1/schedules/{id}` - pause/resume via status (cron README §7).\n`{status: \"paused\" | \"active\"}`; resume recomputes `next_run_at` from\nnow so a paused schedule does not fire for misses during the pause.\nRequest payload for update schedule.",
         "required": [
           "status"
         ],
@@ -1476,7 +1476,7 @@
     },
     {
       "name": "cron",
-      "description": "Sentin8:Cron admin API — schedules, jobs, DLQ"
+      "description": "Sentin8:Cron admin API - schedules, jobs, DLQ"
     }
   ]
 }

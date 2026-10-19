@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-sys",
-    "description": "Sentin8 Sentin8:Sys — control plane, org/env lifecycle, saga orchestration.",
+    "description": "Sentin8 Sentin8:Sys - control plane, org/env lifecycle, saga orchestration.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -739,7 +739,7 @@
           "sys"
         ],
         "summary": "`POST /v1/audit`",
-        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure — audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
+        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure - audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
         "operationId": "audit.ingest",
         "requestBody": {
           "content": {
@@ -1315,7 +1315,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "/archive` — archive application.\nArchive application."
+        "description": "/archive` - archive application.\nArchive application."
       }
     },
     "/v1/env/{env_id}/archive": {
@@ -2488,7 +2488,7 @@
           "sys"
         ],
         "summary": "`GET /v1/scopes/catalog`",
-        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` — platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
+        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` - platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
         "operationId": "get_scope_catalog",
         "responses": {
           "200": {
@@ -2508,7 +2508,7 @@
           "sys"
         ],
         "summary": "`GET /v1/tenants/{env_id}`",
-        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) — the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` — the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables — this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
+        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) - the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) - user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` - the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables - this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
         "operationId": "tenants.snapshot",
         "parameters": [
           {
@@ -2554,7 +2554,7 @@
           "sys"
         ],
         "summary": "`GET /v1/verticals/services`",
-        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` — the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` — display label (e.g. \"Ledger\")\n- `icon` — material icon name\n- `service_flag` — the service that must be enabled (e.g. \"ledger\")\n- `enabled` — whether the feature is enabled for this org/env\n- `pages` — array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` — discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` — discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
+        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` - the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` - display label (e.g. \"Ledger\")\n- `icon` - material icon name\n- `service_flag` - the service that must be enabled (e.g. \"ledger\")\n- `enabled` - whether the feature is enabled for this org/env\n- `pages` - array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` - discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` - discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
         "operationId": "list_vertical_services",
         "parameters": [
           {
@@ -2684,7 +2684,7 @@
           },
           "service": {
             "type": "string",
-            "description": "Emitting service (DBX — stamped by Sys from the verified M2M client_id).\nThe service."
+            "description": "Emitting service (DBX - stamped by Sys from the verified M2M client_id).\nThe service."
           },
           "target_resource_id": {
             "type": [
@@ -2709,7 +2709,7 @@
       },
       "AuditIngestItem": {
         "type": "object",
-        "description": "One audit event in an ingest batch. `service` is IGNORED server-side —\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
+        "description": "One audit event in an ingest batch. `service` is IGNORED server-side -\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
         "required": [
           "env_id",
           "action"
@@ -2829,7 +2829,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Tiebreaker for rows sharing `after_ts` (the row id) — pairs with\n`after_ts` for a deterministic keyset position."
+            "description": "Tiebreaker for rows sharing `after_ts` (the row id) - pairs with\n`after_ts` for a deterministic keyset position."
           },
           "after_ts": {
             "type": [
@@ -2837,7 +2837,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` — stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
+            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` - stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
           },
           "env_id": {
             "type": [
@@ -2863,7 +2863,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Filter by org (accepted but not yet used for filtering — env_id is the primary filter).\norg identifier."
+            "description": "Filter by org (accepted but not yet used for filtering - env_id is the primary filter).\norg identifier."
           },
           "service": {
             "type": [
@@ -3506,7 +3506,7 @@
               "string",
               "null"
             ],
-            "description": "Optional domain update — triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+            "description": "Optional domain update - triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
           },
           "display_name": {
             "type": [
@@ -3593,7 +3593,7 @@
     },
     {
       "name": "sys",
-      "description": "Sentin8:Sys admin API — org/env lifecycle, services, applications, branding, audit"
+      "description": "Sentin8:Sys admin API - org/env lifecycle, services, applications, branding, audit"
     }
   ]
 }

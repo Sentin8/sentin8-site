@@ -79,7 +79,7 @@ business value it delivers:
 
 | Capability | Business rule |
 |---|---|
-| Client-cert mints | `POST /v1/client-cert` with `service_name` + validity days (default 365, clamped 1–3650); CN `m2m-{service_name}`, EKU ClientAuth |
+| Client-cert mints | `POST /v1/client-cert` with `service_name` + validity days (default 365, clamped 1-3650); CN `m2m-{service_name}`, EKU ClientAuth |
 | Admission channel 1 - bootstrap enrollment | Workload presents the `X-Sentin8-Bootstrap-Enrollment` secret captain brokered at spawn; verified locally against the CURRENT sealed record read fresh from disk; scoped to client certs only |
 | Admission channel 2 - self-issuance | Caller's bearer `sub` must equal `service_name` (a workload re-issuing its own identity) |
 | Admission channel 3 - operator/enroll | Bearer carries `sentin8:acme:clientcert:issue` (provisions any declared workload's initial certificate) |

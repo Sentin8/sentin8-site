@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-func",
-    "description": "Sentin8 Sentin8:Func — standalone WebAssembly execution service.",
+    "description": "Sentin8 Sentin8:Func - standalone WebAssembly execution service.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -957,7 +957,7 @@
             "description": "Unknown module"
           },
           "409": {
-            "description": "Module is ACTIVE — deprecate first"
+            "description": "Module is ACTIVE - deprecate first"
           }
         },
         "security": [
@@ -1132,7 +1132,7 @@
     "schemas": {
       "CallbackConfig": {
         "type": "object",
-        "description": "Callback config for proxy-back host functions (from the execute request).\n\n`host_functions` maps each WASM-imported host-function name to the path\ntemplate on the calling service's internal API (e.g.\n`ledger_get_balance` → `/accounts/{args.0}/balance`). Func resolves these\ndynamically at execute time — it does **not** pre-register any\nservice-specific host functions.\nConfiguration for callback.",
+        "description": "Callback config for proxy-back host functions (from the execute request).\n\n`host_functions` maps each WASM-imported host-function name to the path\ntemplate on the calling service's internal API (e.g.\n`ledger_get_balance` → `/accounts/{args.0}/balance`). Func resolves these\ndynamically at execute time - it does **not** pre-register any\nservice-specific host functions.\nConfiguration for callback.",
         "required": [
           "base_url",
           "auth_token",
@@ -1194,7 +1194,7 @@
               "string",
               "null"
             ],
-            "description": "Optional idempotency key (principles §4.14 — every trigger\ndedupes on the event's key): a replayed execution with the same\nkey returns the cached response instead of re-running the hook.\nThe idempotency key."
+            "description": "Optional idempotency key (principles §4.14 - every trigger\ndedupes on the event's key): a replayed execution with the same\nkey returns the cached response instead of re-running the hook.\nThe idempotency key."
           }
         }
       },
@@ -1442,7 +1442,7 @@
     },
     {
       "name": "func",
-      "description": "Sentin8:Func admin API — WASM module management + execution"
+      "description": "Sentin8:Func admin API - WASM module management + execution"
     }
   ]
 }
