@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Hostname mapping (service, org_id, env_id, app_id)","content":{"application/json":{"schema":{}}}},"400":{"description":"hostname query param is required"},"404":{"description":"Hostname not resolvable"}}}

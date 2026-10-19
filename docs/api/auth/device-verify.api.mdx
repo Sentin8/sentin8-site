@@ -1,0 +1,74 @@
+---
+id: device-verify
+title: "`POST /device/verify` — the signed-in user submits the user_code to
+approve a device sign-in (RFC 8628 )."
+description: "SEC-: this endpoint **requires a valid session** (cookie or"
+sidebar_label: "`POST /device/verify` — the signed-in user submits the user_code to
+approve a device sign-in (RFC 8628 )."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVdtu20YQ/ZXBvNQ2KMk2isLgm+M4qFs0DmQnfZAMa8UdkRuRs8zuUrYgCOhH9Av7JcUsKVOxjKJAX6sXUnuZOXPOmeEGg8o9phO0qgkFPiSoyWfO1MFYxhTvrq8GKYTCeCDWtTUc4OTE0bfGOPKgYKVKo8GT98byyQkcZdYuDYF1U35HypE7HsJ9QaDq2tmV4RwaTw6Mh1DQ7uIPvl39648/YSZvj0bPEphZl8e3KSvWMCNeyV9QjiCoJTEsnK32AyXw8frL9bhfF6jkA8ytXidT9haWbJ9K0jmBXYCKeR8zqwlUaZkgUwxsobSck4NKCg52SexhYR0onrJycxOccut4dzjlnxXrkkDTymQEK3JmsR5igrYmp4TIG40pttuP7TYm2CF7Z/Ua0w1mlgNxkFdV16XJ4s3RVy86bNBnBVVK3sK6JkzRzr9SFvC1YOO9eiPiNm0PqtNOi+gvtYvwtRO8wZCXLP1Wn9IHZzg/SCnqdrX3ZM5JpG5FJ/22BTRxMGE95cxW5A+0hCNx33E0BUsFcVMKG05Z4sUokm2I222CwYRSYL6PWL7Eijs6cCsH+tKDaygu+Nqybys+Pz2Vx/e1tbHAm5wHhl/qgaPalqVUkjvFAZSrSEe6Y6sIsGNM/rWm2wjvx7cAfGbxK/fMYjx5dnjyo30hThhroaoS+mZlkCYX0jMVSMeYMdzZG4l7Kem5jqwJRk9Z40xYYzp5SLCiUFjxdm29WLFWocAUR60bRi9Wl4LHvd2vn1VVl/TKZjt7bRM0vLDRd52iXjDzxSDOqIMR1W5C90wvm1BEBnb+SuBW1ka3N++vRh8uP90kO6J8Ar/8/utdpMVKWdIgpcmIfUTHqpL0v93cw+0YLmuVFTQ4H55igm3whSH35oFtgityvkV4Ojxrl4SmSvFe6Nmn27t7+J6wWUQfG8HkTFqMF63um3llQjs4e3mCnXLnS1C7RtwZ9mj84Qoufjq/gOPha+b2Zs7/c/6/zPluPAZ6DqO6VIZF68aVQnHbEpNu+mO0hTTFQ4KFNE06wc1mrjx9duV2K8vfGnJdf62UM2ouLTB52CZYkNLit8kGl7TGFK9a/Qb3AkCOl40AOZg122R34zLLqA7/eHa/r8WdmOC8+0ZVbaM69SQfEvWEKcbPnNyOMzSubbBUnDcql7NtTPn9DYzo9bc=
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /device/verify` — the signed-in user submits the user_code to\napprove a device sign-in (RFC 8628 )."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/device/verify"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+SEC-: this endpoint **requires a valid session** (cookie or
+Bearer). The approving user is the session's user — `user_id`, `org_id`,
+and `env_id` are taken from the session, NEVER from the request body,
+so knowledge of a user_code alone can no longer mint tokens for an
+arbitrary user.
+Handle device verify.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./device-verify.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./device-verify.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

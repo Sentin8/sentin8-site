@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Certificate revoked (RFW redirect to the certificates page)","content":{"application/json":{"schema":{}}}},"403":{"description":"Shield deny"},"404":{"description":"Unknown certificate"}}}

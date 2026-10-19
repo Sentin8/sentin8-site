@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for invitation.","required":["email"],"properties":{"email":{"type":"string","description":"The email."},"role":{"type":"string","description":"The role."}},"title":"InvitationRequest"}}},"required":true}}

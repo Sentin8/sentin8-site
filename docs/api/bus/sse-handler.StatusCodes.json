@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"SSE stream (event = ConsumeMessage JSON)","content":{"application/json":{"schema":{}}}},"401":{"description":"Caller authentication failed (bearer / cert identity)"}}}

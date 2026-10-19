@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"OIDC Standard Claims for the bearer subject","content":{"application/json":{"schema":{}}}},"401":{"description":"Missing/invalid/expired bearer token"}}}

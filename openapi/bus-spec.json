@@ -1,0 +1,1843 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-bus",
+    "description": "Sentin8 Sentin8:Bus — Valkey Streams message bus with tenant isolation.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/ack": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle ack.",
+        "operationId": "ack.send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AckRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Messages acknowledged"
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin ui.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a bus read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin data.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource (streams, dlq, ...)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a bus read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:read": []
+          }
+        ]
+      }
+    },
+    "/v1/consume": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle consume.",
+        "operationId": "consume.list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsumeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Consumed messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsumeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/consume/sse": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Long-lived SSE consume (server → client one-way) — the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`.",
+        "operationId": "sse_handler",
+        "parameters": [
+          {
+            "name": "stream_family",
+            "in": "path",
+            "description": "The stream family.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "consumer_group",
+            "in": "path",
+            "description": "The consumer group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "consumer_name",
+            "in": "path",
+            "description": "The consumer name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "description": "The token.",
+            "required": true,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSE stream (event = ConsumeMessage JSON)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Caller authentication failed (bearer / cert identity)"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/dlq": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "List dlq.",
+        "operationId": "dlq.list",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DLQ entries"
+          },
+          "403": {
+            "description": "Missing bus:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/dlq/replay": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle replay dlq.",
+        "operationId": "dlq.replay",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DlqReplayRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DLQ entry replayed"
+          },
+          "403": {
+            "description": "Missing bus:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Liveness (captain monitor payload).",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "The service is live",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/metrics": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle metrics.",
+        "operationId": "metrics.get",
+        "responses": {
+          "200": {
+            "description": "Prometheus-style metrics",
+            "content": {
+              "text/plain": {}
+            }
+          },
+          "403": {
+            "description": "Missing bus:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/nack": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle nack.",
+        "operationId": "nack.send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Message nacked"
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/produce": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle produce.",
+        "operationId": "produce.send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProduceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Message produced",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProduceResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing bus:produce scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:produce": []
+          }
+        ]
+      }
+    },
+    "/v1/produce/batch": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) — the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings.",
+        "operationId": "produce.batch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProduceBatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Batch accepted (per-row results)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProduceBatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Batch too large (max 100)"
+          },
+          "403": {
+            "description": "Missing bus:produce scope"
+          },
+          "429": {
+            "description": "Per-family produce rate limit"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:produce": []
+          }
+        ]
+      }
+    },
+    "/v1/schedule": {
+      "post": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle schedule.",
+        "operationId": "schedule.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Message scheduled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing bus:produce scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:produce": []
+          }
+        ]
+      }
+    },
+    "/v1/scheduled": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "List scheduled.",
+        "operationId": "scheduled.list",
+        "responses": {
+          "200": {
+            "description": "Due scheduled messages"
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/streams": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "List streams.",
+        "operationId": "stream.list",
+        "responses": {
+          "200": {
+            "description": "List of streams"
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    },
+    "/v1/streams/{stream_family}/lag": {
+      "get": {
+        "tags": [
+          "bus"
+        ],
+        "summary": "Handle stream lag.",
+        "operationId": "stream.lag",
+        "parameters": [
+          {
+            "name": "stream_family",
+            "in": "path",
+            "description": "Stream family",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consumer group lag"
+          },
+          "403": {
+            "description": "Missing bus:consume scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:bus:consume": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AckRequest": {
+        "type": "object",
+        "description": "Request body for ack.",
+        "required": [
+          "stream_family",
+          "consumer_group",
+          "message_id"
+        ],
+        "properties": {
+          "consumer_group": {
+            "type": "string",
+            "description": "The consumer group."
+          },
+          "message_id": {
+            "type": "string",
+            "description": "message identifier."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "ConsumeMessage": {
+        "type": "object",
+        "description": "The consumemessage type.",
+        "required": [
+          "message_id",
+          "stream_family",
+          "env_id",
+          "event_type",
+          "schema_version",
+          "payload",
+          "correlation_id",
+          "produced_by",
+          "produced_at"
+        ],
+        "properties": {
+          "correlation_id": {
+            "type": "string",
+            "description": "correlation identifier."
+          },
+          "env_id": {
+            "type": "string",
+            "description": "env identifier."
+          },
+          "event_type": {
+            "type": "string",
+            "description": "The event type."
+          },
+          "idempotency_key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The idempotency key."
+          },
+          "message_id": {
+            "type": "string",
+            "description": "message identifier."
+          },
+          "payload": {
+            "description": "The payload."
+          },
+          "produced_at": {
+            "type": "string",
+            "description": "The produced at."
+          },
+          "produced_by": {
+            "type": "string",
+            "description": "The produced by."
+          },
+          "publisher_id_token": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The publisher id token."
+          },
+          "publisher_subject": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The publisher subject."
+          },
+          "publisher_vertical": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The verified producer's vertical claim (VDC-2) — recorded at\nproduce from the M2M token; consumers assert it against the\nevent_type's first colon segment (`require_publisher`)."
+          },
+          "schema_version": {
+            "type": "string",
+            "description": "The schema version."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "ConsumeRequest": {
+        "type": "object",
+        "description": "Request body for consume.",
+        "required": [
+          "stream_family",
+          "consumer_group"
+        ],
+        "properties": {
+          "block_ms": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The block ms.",
+            "minimum": 0
+          },
+          "consumer_group": {
+            "type": "string",
+            "description": "The consumer group."
+          },
+          "consumer_name": {
+            "type": "string",
+            "description": "The consumer name."
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The count count.",
+            "minimum": 0
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "ConsumeResponse": {
+        "type": "object",
+        "description": "Response payload for consume.",
+        "required": [
+          "messages"
+        ],
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsumeMessage"
+            },
+            "description": "The messages."
+          }
+        }
+      },
+      "DeleteAttributeQuery": {
+        "type": "object",
+        "description": "`DELETE /v1/admin/attributes` query — identifies the attribute.",
+        "required": [
+          "subject_id",
+          "attr_key"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "DeleteRelationQuery": {
+        "type": "object",
+        "description": "`DELETE /v1/admin/relations` query — identifies the tuple.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          },
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "DlqQuery": {
+        "type": "object",
+        "description": "The dlqquery type.",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The page."
+          },
+          "page_size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The page size."
+          }
+        }
+      },
+      "DlqReplayRequest": {
+        "type": "object",
+        "description": "Request body for dlqreplay.",
+        "required": [
+          "stream_family",
+          "message_id"
+        ],
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "description": "message identifier."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "ListAttributesQuery": {
+        "type": "object",
+        "description": "`GET /v1/admin/attributes` query — list attributes for one subject (or\nall subjects in the env when omitted).",
+        "properties": {
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "NackRequest": {
+        "type": "object",
+        "description": "Request body for nack.",
+        "required": [
+          "stream_family",
+          "consumer_group",
+          "message_id"
+        ],
+        "properties": {
+          "consumer_group": {
+            "type": "string",
+            "description": "The consumer group."
+          },
+          "message_id": {
+            "type": "string",
+            "description": "message identifier."
+          },
+          "retry_after_secs": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "The retry after secs.",
+            "minimum": 0
+          },
+          "retry_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "How many retries this message has already burned (nack count —\nmaintained by the consumer across redeliveries). At `MAX_RETRIES`\nthe reaper routes the message to the DLQ instead of the retry set.\nThe retry count.",
+            "minimum": 0
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "PolicyModeBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{mode}` body (RFW row actions).",
+        "required": [
+          "policy_set_name"
+        ],
+        "properties": {
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "policy_set_name": {
+            "type": "string"
+          }
+        }
+      },
+      "ProduceBatchItem": {
+        "type": "object",
+        "description": "One row's produce result in a `POST /v1/produce/batch` response.",
+        "required": [
+          "index"
+        ],
+        "properties": {
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The failure reason (on error)."
+          },
+          "index": {
+            "type": "integer",
+            "description": "Row index in the request.",
+            "minimum": 0
+          },
+          "message_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The produced message id (on success)."
+          },
+          "stream": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The target stream (on success)."
+          }
+        }
+      },
+      "ProduceBatchRequest": {
+        "type": "object",
+        "description": "Request body for `POST /v1/produce/batch` — N events in ONE call\n(bus DESIGN §4.3 / README §7). Rows are independent: the batch is a\ntransport-level optimization, not a transaction.",
+        "required": [
+          "events"
+        ],
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProduceRequest"
+            },
+            "description": "The batched events (max 100 per call — matches the outbox relay\ndrain batch)."
+          }
+        }
+      },
+      "ProduceBatchResponse": {
+        "type": "object",
+        "description": "Response from `POST /v1/produce/batch`.",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProduceBatchItem"
+            },
+            "description": "Per-row results, in request order. A failed row carries `error`\nand no `message_id` — the batch is best-effort per row."
+          }
+        }
+      },
+      "ProduceRequest": {
+        "type": "object",
+        "description": "Request body for `POST /v1/produce`.",
+        "required": [
+          "stream_family",
+          "event_type",
+          "payload"
+        ],
+        "properties": {
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Correlation id; generated by the server when absent."
+          },
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Tenant env — must match the JWT-derived tenant context (a\ndefense-in-depth server check). Absent → the server uses the JWT\nclaims."
+          },
+          "event_type": {
+            "type": "string",
+            "description": "Platform event name — `vertical:service:resource:operation`."
+          },
+          "idempotency_key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Idempotency key for exactly-once consumers."
+          },
+          "payload": {
+            "description": "The domain payload."
+          },
+          "publisher_id_token": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Publisher identity token — optional. If absent, the server derives\nit from the Authorization header."
+          },
+          "publisher_subject": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Publisher subject (`sub` claim). If absent, the server derives it\nfrom the verified token claims."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family to publish into."
+          }
+        }
+      },
+      "ProduceResponse": {
+        "type": "object",
+        "description": "Response from `POST /v1/produce`.",
+        "required": [
+          "message_id",
+          "stream"
+        ],
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "description": "Stream entry id (format: `<timestamp>-<sequence>`) or a UUID."
+          },
+          "stream": {
+            "type": "string",
+            "description": "The target stream key the event was published into."
+          }
+        }
+      },
+      "PutAttributeBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/attributes` body — one principal attribute.",
+        "required": [
+          "subject_id",
+          "attr_key",
+          "attr_value"
+        ],
+        "properties": {
+          "attr_key": {
+            "type": "string"
+          },
+          "attr_value": {},
+          "subject_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PutPolicySetBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/policy-sets/{name}` body.",
+        "required": [
+          "policies"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "PutRelationBody": {
+        "type": "object",
+        "description": "`PUT /v1/admin/relations` body — one relation tuple.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          }
+        }
+      },
+      "RelationCheckQuery": {
+        "type": "object",
+        "description": "`GET /v1/admin/relations/check` query — Zanzibar-style dry-run.",
+        "required": [
+          "subject_type",
+          "subject_id",
+          "relation",
+          "object_type",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "type": "string"
+          },
+          "object_type": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          },
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "ScheduleRequest": {
+        "type": "object",
+        "description": "Request body for schedule.",
+        "required": [
+          "stream_family",
+          "event_type",
+          "payload"
+        ],
+        "properties": {
+          "delay_seconds": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The delay seconds.",
+            "minimum": 0
+          },
+          "event_type": {
+            "type": "string",
+            "description": "The event type."
+          },
+          "payload": {
+            "description": "The payload."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          }
+        }
+      },
+      "ScheduleResponse": {
+        "type": "object",
+        "description": "Response payload for schedule.",
+        "required": [
+          "message_id",
+          "delivery_at"
+        ],
+        "properties": {
+          "delivery_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The delivery at."
+          },
+          "message_id": {
+            "type": "string",
+            "description": "message identifier."
+          }
+        }
+      },
+      "SseQuery": {
+        "type": "object",
+        "description": "The ssequery type.",
+        "required": [
+          "stream_family",
+          "consumer_group"
+        ],
+        "properties": {
+          "consumer_group": {
+            "type": "string",
+            "description": "The consumer group."
+          },
+          "consumer_name": {
+            "type": "string",
+            "description": "The consumer name."
+          },
+          "stream_family": {
+            "type": "string",
+            "description": "The stream family."
+          },
+          "token": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The token."
+          }
+        }
+      },
+      "TargetEnvQuery": {
+        "type": "object",
+        "description": "The targetenvquery type.",
+        "properties": {
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "TestPolicySetBody": {
+        "type": "object",
+        "description": "`POST /v1/admin/policy-sets/{name}/test` body.",
+        "required": [
+          "policies",
+          "subject_id"
+        ],
+        "properties": {
+          "action": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policies": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sample live-role names for role-based candidate rules."
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "token_tp": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "bus",
+      "description": "Sentin8:Bus admin API — produce, consume, ack, DLQ, streams, metrics"
+    }
+  ]
+}

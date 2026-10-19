@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Invitation revoked"},"403":{"description":"Missing sys:memberships:admin scope"},"404":{"description":"Invitation not found"}}}

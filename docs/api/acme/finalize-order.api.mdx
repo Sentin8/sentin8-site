@@ -1,0 +1,84 @@
+---
+id: finalize-order
+title: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the
+certificate (RFC 8555 §7.4). Local orders require a VALID
+authorization (defense in depth — the challenge short-circuit set it;
+an order that never proved control is never signed) and are signed
+by the Intermediate CA; external orders are finalized upstream
+through the relay and the certificate cached (DESIGN §4.2)."
+description: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the"
+sidebar_label: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the
+certificate (RFC 8555 §7.4). Local orders require a VALID
+authorization (defense in depth — the challenge short-circuit set it;
+an order that never proved control is never signed) and are signed
+by the Intermediate CA; external orders are finalized upstream
+through the relay and the certificate cached (DESIGN §4.2)."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVcGO00gQ/ZVSnSaSk8yOZgTrOUWBXUUCBiWwl0kEPe5K3MLuNtXlQIgs7UfsP/AffApfgqrtgQGGO4c9tV1dXfWq3qvuI4rZRcyv0RQ14SbD0BAbccEvLOa4dd5U7gO9CmyJMcPGsKlJiPXQEb2pCXN0FjN0HnNsjJSYoaVYsGs0DuZ4pYchOTG9bR2TxVy4pQxjUVJtMD+iHBoNFYWd32HXbdQ5NsFHirp/dnqqy32Rb1FaOJmvltBwKChGspfQVEa2gevxfAaBoW2iMJl6HN3Ok4WiNM6PsMvw/L7oC783lbMwXy17n/OffV76Nz6889A3KHn9+SucPgg4D0zGHiCKEcKuyzBS0bKTA+bXmx9b9/r51eoFTJWdaUoxPTrbTW8rfg2f//0PYntTOwEpSaGC8RZcjC2pZe0LYnFbVxghOFn+NYeHFxcX8Onjg8n5aAJPQmGqHn2EgR0w8M/syeLR2ptWysDuQ1IEnFjako+kRVhqpEzZNW1RmqoivyOIZWAZF46L1glEEnByufZm6BBIaQQ87YmVp72SELxwqMDFwd6TM0p1GKbhf+1vDinXwgtxTdZpQfPZJdB7IfbfqtAz3yRxy/naS8mh3ZUpCFNlDilDgn+nRYUpSlXSo8erxd/P4NPH88nZaIIZ1iRl0KFoQpQ0ClJijr/kJo3ENiRtO6mSuMmL8w/Hadh+pHrVb8Kw5rOiptRg54f6ZvOnj7/DOtAjB4jEe2KFWblCOdK0w3Q+XbyAqyXMGq1sfDY5VWRWs2wd8b0OXYZ74tgDO5380Zu08Nr4O6H/l+dvI8/vxPT1OhV6L9OmMs4rgS1Xutcrd7jzM7y92/N0Q3+V7ybDUpWeX+PxeGMiveSq69T8tiUebqu9YWduVNzXR7Qu6rfFfGuqSD9h0laSF8zxZDm8AyO48zjci3kwGn9ATVe1+ocZvqFD//J0m+7OcKogseu+ADC/YNs=
+sidebar_class_name: "post api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /acme/order/{id}/finalize` — submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth — the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/acme/order/{id}/finalize"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /acme/order/{id}/finalize` — submit the CSR and issue the
+certificate (RFC 8555 §7.4). Local orders require a VALID
+authorization (defense in depth — the challenge short-circuit set it;
+an order that never proved control is never signed) and are signed
+by the Intermediate CA; external orders are finalized upstream
+through the relay and the certificate cached (DESIGN §4.2).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./finalize-order.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./finalize-order.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./finalize-order.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

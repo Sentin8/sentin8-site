@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Document ingested (chunks + vectors stored)"},"422":{"description":"Embedding failure"}}}

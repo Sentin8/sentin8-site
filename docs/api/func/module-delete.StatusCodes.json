@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Module deleted"},"403":{"description":"Missing func:write scope"},"404":{"description":"Module not found or is active"}}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Denial recorded by the owning vertical service","content":{"application/json":{"schema":{}}}},"401":{"description":"Session validation failed"},"404":{"description":"No consent flow registered for the requested scopes"}}}

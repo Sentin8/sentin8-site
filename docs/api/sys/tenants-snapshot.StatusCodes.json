@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Tenant snapshot + the caller's own service enablement","content":{"application/json":{"schema":{}}}},"401":{"description":"Missing/invalid token"},"403":{"description":"Missing tenants:read scope or non-M2M token"},"404":{"description":"Env unknown or the caller's service is not enabled there (scoped discovery)"}}}

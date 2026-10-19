@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Recent decision log (policy.deny / would_deny rows)","content":{"application/json":{"schema":{"type":"array","items":{}}}}},"403":{"description":"Caller lacks the policy scope"}}}

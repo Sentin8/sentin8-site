@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for setservice.","required":["service","enabled"],"properties":{"config":{"description":"The config."},"enabled":{"type":"boolean","description":"The enabled."},"service":{"type":"string","description":"The service."}},"title":"SetServiceRequest"}}},"required":true}}

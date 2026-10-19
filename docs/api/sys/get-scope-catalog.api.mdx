@@ -1,0 +1,71 @@
+---
+id: get-scope-catalog
+title: "`GET /v1/scopes/catalog` — returns the platform's well-known OAuth
+scope catalog as a flat list. Used by Dash's `ScopeSelector`
+widget to populate its autocomplete suggestions without
+duplicating the list on the client side."
+description: "Open endpoint (no auth): the catalog is the same for every caller"
+sidebar_label: "`GET /v1/scopes/catalog` — returns the platform's well-known OAuth
+scope catalog as a flat list. Used by Dash's `ScopeSelector`
+widget to populate its autocomplete suggestions without
+duplicating the list on the client side."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVMFu2zgQ/ZXBXNoCspz0tNAtQLtFD4sATXqKgmZMjSWuqSHLGdlrGAb2I/YL90sWlB00SYveeltdCJFDvpk3780BjXrF5g51r3hfYcfqsk/mo2CD14kFWLoUvRi8lgg02fCmARsYHBmF2IPX+VdpZFjHDLzlvAdHIXBuhaQDF8XIi4JEiLlfsmwXmtj5tXfQkVENVyHEnZceSKLsxzgpkHOs2sqGOZ0hpr5nLbkp0JZ8oFXggiew4nXMDOp7WXiB11z3NUQBaiVNq+AdjJQ3bAUiUc9gAxkELxsFi0Cnm1MqFYyw8zaAupi4lcGL6Zu6lYcP729hub1czge6PNf/AP/+/Q+kQDZfvb6aHu8+MlS38jube7mLFcbEmUo9HztssGf7Mod8OYdghZk1RVFWbA749uKiLM97dPP0UaywkM1iJZBSCt7NAMs/tUQfUN3AI2FzOJavwpFtiGd0rDCRDdjg92Vihcpuyt722NzdV+hlHcuD5i0wNqgs5uW3RRHSSx3dnM7gvDY3e51ZK7nmGAp7wtWjNiD4Nbu9C1yBUk8QsxtY7URV4S14x6Jc4IXGgv7Hx1u4/gRXidzAi7f1BVbouwK39px/GHCscMtZTxle1JenrRTVRpInT/+075ltynKS56MGXinsOITFRuJOToJo5VnvgRQI1mGWoFoNn5U7WO3hHenwSuFhbuoNB3YW80MrO9/1bEWpKaYpkDF40+LG6OKYAttzdxQBx8la6aazBKSfcyxwxRezgYNnMVDfcf2yZYdvOvp/CvziKWD7VHRm/JctUyAvRYdTDqULJz/e4fayGHCGLB4/e/K+wiGqlYDDYUXKn3M4Hsv214nz2ahbyr5QVP6OFQ5MXXHE3QE3vMcGr5zjVLy/pTCVRL4bG8f7J3Piw/tbPB7/A2I6NS8=
+sidebar_class_name: "get api-method"
+info_path: docs/api/sys/sentin-8-sys
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/scopes/catalog` — returns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/scopes/catalog"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Open endpoint (no auth): the catalog is the same for every caller
+and contains no org/env-specific data. Allowing anonymous access
+keeps the suggestions available even before sign-in (e.g. on a
+public marketing page that links to a sign-up form with scope
+hints).
+`GET /v1/scopes/catalog` — platform OAuth scope catalog.
+Fetch scope catalog.
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-scope-catalog.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-scope-catalog.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

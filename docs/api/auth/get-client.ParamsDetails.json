@@ -1,0 +1,1 @@
+{"parameters":[{"name":"client_id","in":"path","description":"Client id","required":true,"schema":{"type":"string"}}]}

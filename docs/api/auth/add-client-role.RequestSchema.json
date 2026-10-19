@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for addclientrole.","required":["role_id"],"properties":{"role_id":{"type":"string","format":"uuid","description":"role identifier."}},"title":"AddClientRoleRequest"}}},"required":true}}

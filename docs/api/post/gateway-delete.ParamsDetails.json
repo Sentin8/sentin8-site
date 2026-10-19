@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"Gateway ID","required":true,"schema":{"type":"string","format":"uuid"}}]}

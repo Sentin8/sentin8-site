@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for revokeactortoken.","required":["token_id"],"properties":{"token_id":{"type":"string","format":"uuid","description":"token identifier."}},"title":"RevokeActorTokenRequest"}}},"required":true}}

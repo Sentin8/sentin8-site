@@ -1,0 +1,76 @@
+---
+id: email-verify-request
+title: "`POST /v1/email/verify` — request an email verification token."
+description: "The email is scoped to the current tenant (resolved from the"
+sidebar_label: "`POST /v1/email/verify` — request an email verification token."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVc1uIzcMfhWCpwQY/yTIoTu3NE2x6Q8SJGl78AQxPUN7tNFIs5LGjmEM0IfoE/ZJCkrjdTZZ7F56a33xgKLIjx8/UjsMtPKYz5C6UONDhhX70qk2KGswx/uagRtSGpQHX9qWKwgWQs1Qds6xCRDYkAlw5NhbveYKls424lGY+XvrwxwmcP/LHdRMFTt/DAsuqfMcg3hq9glKMsDPygcgD1QYzy05CgydZwfKAFNZD9nGhSnM3eXFCP7+8y9g0zXsSCCPPC05h848GbsxKbIHMlVhSDumajtas1NLxdX+0HHonDmgme8K9IFC5wvMC/RsQoH9HHxNLRfmqHW8Vrbzegtn0zOYwNn0HTheM2mugMrSdiakStiUfDwGIdHX1oXH0lYMyhfGWNDWrNgN6ROtnZEusAmqpMAVlKQ1Ow9HUuqx1FoYFaQV2q5WQrV1UPEaNtY9LbXdxFKhYq3W7LiCtSK4k3jmu/zGeuHtPZlK7zmPXGzB8ceOfRhjhrYdmLyqMMfo9Zi8HgcvzHD4+t5WW8x3WFoT2AT5pLbVAl5ZM/ngRUI79GXNDclX2LaMOdrFBy4lzudau01RYWGrbawsZk/Jx0NW5bgStcYjkWvrBHFQ7CVBMh8y+eCUWb3JdBmLD3aoP3UoyqzpRH9JKamH48J8GoIx9n2GQQXN+yi/xwgDdOzl/IAzuI6jwbfW+ATxdDqVv88BnesNbT3Mk+5yENHN4ei1sI8x+/fITpigpa22VH2L8ITsLeMHXR9yzg68m07rL2+VeBHk4hj7bB//m62LV6PvV5qRSpNu9Bmenb57S/itLBatGiWTWjJXXMVwnsvOqbDFfPaQYcOhtjIHrY26bynUmONkfTKJVE0SV5ih0H97mIrLZ2pazS8kua+nz1CZpY2FDtB9GtBR3MCv6x2m99MUn3ehjktPVWIJ2wyuxTa5vvrhYvLj+c1VBp69V9b4DH764+c7kLhWipKealWycJPv0FAj6X+9uofrWzhvqax5dDqeYoYp+FKx+6JDn+GanU8Ip+OTZBKSGjIvQs9vru/u4TVd84h/2CFA5uUuGuQMwT6xGb9m48Wq+f9l+q+9TMNeCPwcJq0mZURznYvrPg3mDNcnmA0TFyUqw/mQYS3jm89wt1uQ59+c7nsxf+zYDZO+JqdoIeM4e+gzTIrAfLbDJ95ijhdJd6N7ASHuuhMwbzZwn+1vnJclt+Grvi83jEwKZrgYntQmLlR0tJE9TBvMMT7OcjtuyWjboSaz6mglvimm/P4BpSt36w==
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/email/verify` — request an email verification token."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/email/verify"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+The email is scoped to the current tenant (resolved from the
+`Host` / TLS headers) because the same email can exist as a
+separate user in each tenant.
+
+SEC- — enumeration-safe: unknown emails and
+already-verified emails return the same `{"status":"sent"}` shape
+(previously 404 / 409 revealed account existence). The short_code is
+no longer returned to unauthenticated callers (SEC-) —
+it is logged for dev workflows and delivered via Sentin8:Post.
+Handle email verify request.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./email-verify-request.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./email-verify-request.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

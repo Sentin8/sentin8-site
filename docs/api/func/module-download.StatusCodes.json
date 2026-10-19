@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"WASM binary","content":{"application/octet-stream":{"schema":{"type":"array","items":{"type":"integer","format":"int32","minimum":0}}}}},"403":{"description":"Missing func:write scope"},"404":{"description":"Module or binary not found"}}}

@@ -1,0 +1,73 @@
+---
+id: delegate-access-token
+title: "`POST /delegate/access-token` — issue a cert-bound delegated token."
+description: "The caller (BFF) presents EITHER its workload certificate (the"
+sidebar_label: "`POST /delegate/access-token` — issue a cert-bound delegated token."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV9tuGzcQ/ZUBX2qj1Mq5oAk2T44vjdq6DmwVfbAMibscaRnvkhuSK1sVBPQj+g/5j3xKv6QYcleSbTVxgb4UqF8k03M5M3Pm4iXzYuZYesUkljgTXhnNrjmT6HKr6vBryoYFQi7KEi3svT093YfaokPtHZwMhu9OLkB5B7fG3pRGSMjRejVVufAIe77AkZ5k02mvdWDsBJRE7ZVfwJ+//wG+QBj+dAmlWKCFo8PeHK2aKnQgtASlP2DuHQQ7rsnotzdBJzPG98ghSrA4U87bBVSihpkVBG1CCJV+nbaOMbUo5ISPtGh8Accnl4Pvf4bPn14mL6ZvYGZNU7ePSSXh86cXybN9OL8AAXNRKglnz8/gLQqLFry5QT3St8oXf+cGXG5qTOAwpKOXmUZHE0EXbhBrR2kb6UmupxOorakFqUvwJsTX2ZOtijOgPChdoFUxIZApLZWeJSP9TmhZbnRA5Dk6FzUTxpmp0YbiDiRLu1rjOIqNgxjjzOLHBp1/a+SCpUuWG+1Re/oq6rqkiiqj+x8ckWLJXF5gJeibX9TIUmZCddhD9lxEq5AZuYCpsTB5f345hH6Hoh9R9AKKSTLSjxQ6ySi4DorgKouS6CtyP3ZNxjgLiWeciUYq1DkSnSm7xEp0IZjcj7ESqtxgv2LOW6VnjDPdlOXuFnBeTKfQOLTfOAgGYI/gUSkmIvcTyEuhqv1kpElc5D5KJWzF1wA36Vp7/IqnQ6IrfYfBcWio4CxxTTbZduWaLDrq4v66J2Fn6KFTgL2L0yN4/ergFVh0prE5AhEsp6blgMksgUnhfe3Sfr9EOUObtORPSpOLcgOntRjwoJ6PlfwnqY6woh50CX7QDslIo563k2Sq0AZfsfZfDbwlGMrYpQ72XC1y7DmshSUfHG5VWUKGIM2tDkKyCy42NlutOPPKl+TmuMV2GPg5JHytC7YiuQ1RvW0wPLjaaBfp+PzggD7uQzx+0P3KuQYl7FGlA8sgF9YqgroFkfF/r2kjwjCinagQXCFqBOHgPBAywuoCCV3batRiEfbAkzv33gwKn+MAjjO8q5VFN1Z6Vxdv6T2pq+4PxdU98xsDSnucoWWcTY2thI9P373cabK1ACqEVSmtqqZi6cFjLj5twrTcupeGJ8UWy0FyT6BmLBRxc8XZy130OxMlRR9Wa0tkknz2WPIo3gXa0CDxhbHqt7jD1ruIToawBeHbGCAHY8MuzOI6DXt05xrdD7E4zBur/IKlV9ecVegLQ1usNo54WwtfsJTtXieMM2L+xWaxndyJqi7xwR7YpHY9p7ee1hN189ZNtc1LW+/uYcWZ0lMTqtfWog2xR3l6VMTL+EdoP9PQZNR83bHEY+P1zwfHR/3Tw/cDDg6dU0Y7Dj/8+uNll3+/IC6WKkcqcrpkWlTk/mwwpHvmsBZ5gb3nyQHjbDM/dwqsOJujdRHhQfIsPlHiK6G3TH9xo8coaH6B2L6GHk70hynZOkD+v0D/8xdoO8I83vl+XQqliUmNDTdYbOH1/yDhettu4mvOCmr29Iotl5lw+IstVyt6/tigbefCXFglMmq0q+sVZwUKSay+WrIbXNCgimTqDeNqmYuyIUCPluSKdxo0M2v/RdnteUQ9wDjL2uu5MpJ0rLilhSduWcrCIU7aYYGFtyUrhZ41Ykay0Sb9/AV4DcGv
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /delegate/access-token` — issue a cert-bound delegated token."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/delegate/access-token"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+The caller (BFF) presents EITHER its workload certificate (the
+`bff-delegator` identity — the TLS layer CA-verifies and injects the
+subject; the boot-loaded registry map grants `sentin8:delegate:read`,
+auth DESIGN §4.3f; group DESIGN.md §3.1) OR a valid M2M Bearer token
+with `sentin8:delegate:read` scope. A cert-bound M2M token keeps its
+`cnf` propagated to the delegated token so it inherits the binding.
+Handle delegate access token.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./delegate-access-token.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./delegate-access-token.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

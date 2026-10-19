@@ -11,7 +11,289 @@ Sentin8 Sentin8:Flow - standalone workflow execution engine.
 > served live at `GET /openapi.json`) - the source of truth is the
 > service’s own `#[utoipa::path]` annotations.
 
-**8 endpoints**.
+**28 endpoints** across 5 groups.
+
+## policy
+
+### `GET /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Principal attributes of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute stored | - |
+| 400 | Invalid attribute definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy sets of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/disable`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets disabled | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/enforce`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to enforce mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/shadow`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to shadow mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The policy set | - |
+| 403 | Caller lacks the admin scope | - |
+| 404 | Unknown policy set name | - |
+
+### `PUT /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set stored | - |
+| 400 | Invalid policy set definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/{name}/test`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Dry-run decision trace | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | ReBAC relations of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation stored | - |
+| 400 | Invalid relation definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations/check`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `subject` | query | yes | string |
+| `relation` | query | yes | string |
+| `object` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The check verdict | - |
+| 403 | Caller lacks the admin scope | - |
+
+
+## admin-ui
+
+### `GET /v1/admin/ui/{page}`
+
+Fetch admin ui.
+
+Gate: `sentin8:flow:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `page` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | RFW page definition (rendered by Sentin8:Dash) | - |
+| 403 | Caller lacks a flow read/admin scope | - |
+| 404 | Unknown page | - |
+
+### `GET /v1/admin/{resource}`
+
+`GET /v1/admin/&#123;resource&#125;` - returns a JSON array of admin data rows. Fetch admin data.
+
+Gate: `sentin8:flow:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `resource` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The resource's rows for the RFW table | - |
+| 403 | Caller lacks a flow read/admin scope | - |
+| 404 | Unknown resource | - |
+
 
 ## flow
 
@@ -203,4 +485,57 @@ Gate: `sentin8:flow:write`
 | 200 | Workflow retried | `WorkflowRecord` |
 | 403 | Missing `flow:write` scope | - |
 | 404 | Workflow not found | - |
+
+
+## meta
+
+### `GET /v1/health`
+
+Handle health.
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Liveness (version, build, active connections) | - |
+
+
+## internal
+
+### `POST /v1/internal/callbacks/async`
+
+`POST /v1/internal/callbacks/async` - external callback to resume a waiting workflow. Handle internal async callback.
+
+Gate: `sentin8:flow:write`
+
+**Request body** (`application/json`):
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `error` | string,null | no | The error. |
+| `output` | - | no | The output. |
+| `status` | string | yes | The status. |
+| `workflow_id` | string | yes | workflow identifier. |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Workflow resumed (waiting step advanced with the callback status/output) | - |
+| 401 | Caller authentication failed (cert identity or bearer) | - |
+| 404 | Unknown workflow | - |
+| 409 | Workflow is not in a waiting state | - |
+
+### `POST /v1/internal/schedules/run`
+
+`POST /v1/internal/schedules/run` - Cron calls this to resume due scheduled workflows. Handle internal schedule run.
+
+Gate: `sentin8:flow:write`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Due scheduled workflows resumed (count returned) | - |
+| 401 | Caller authentication failed (cert identity or bearer) | - |
 

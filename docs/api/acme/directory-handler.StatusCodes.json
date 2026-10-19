@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"RFC 8555 directory (resource URLs resolved from the request Host)","content":{"application/json":{"schema":{}}}}}}

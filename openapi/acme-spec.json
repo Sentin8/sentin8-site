@@ -1,0 +1,1281 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-acme",
+    "description": "Sentin8 Sentin8:Acme — internal ACME certificate authority server.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/.well-known/acme-challenge/{token}": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "Serve an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) — the token itself is the capability.",
+        "operationId": "serve_challenge_token",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Challenge token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The key authorization (application/jose+json, upstream orders)"
+          },
+          "404": {
+            "description": "Unknown token / local order"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/authz/{id}": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /acme/authz/{id}` — fetch an authorization (RFC 8555 §7.1.4).",
+        "operationId": "get_authz",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Authorization id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorization challenges (RFC 8555 §7.1.4)"
+          },
+          "404": {
+            "description": "Unknown authorization"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/cert/{id}": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /acme/cert/{id}` — download the certificate as a combined PEM\n(chain, plus the private key for locally-issued certs so TLS can build\nits `ServerConfig` from one artifact).",
+        "operationId": "get_cert",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Certificate cache id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate (chain; + private key for locally-issued certs)"
+          },
+          "404": {
+            "description": "Unknown certificate"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/challenge/{id}": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /acme/challenge/{id}` — signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready —\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3).",
+        "operationId": "challenge_ready",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Challenge id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Challenge marked ready (proxy mode: notifies the upstream)"
+          },
+          "404": {
+            "description": "Unknown challenge"
+          },
+          "409": {
+            "description": "Challenge not pending"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/directory": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /acme/directory` — ACME directory object (RFC 8555 §7.1.1).",
+        "description": "URLs are derived from the incoming request's scheme and Host header so\nthey remain correct on any port or replica (auto-scale friendly).",
+        "operationId": "directory_handler",
+        "responses": {
+          "200": {
+            "description": "RFC 8555 directory (resource URLs resolved from the request Host)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/new-account": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /acme/new-account` — register a new ACME account (RFC 8555 §7.1.2),\npersisted to the accounts directory and announced as\n`sentin8:acme:account:created`.",
+        "operationId": "new_account",
+        "responses": {
+          "201": {
+            "description": "Account created/updated (JWS-verified)"
+          },
+          "400": {
+            "description": "Malformed JWS"
+          },
+          "403": {
+            "description": "Rejected identifier policy"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/new-order": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /acme/new-order` — create an order (RFC 8555 §7.1.3).",
+        "description": "Mixed local/external identifiers are rejected; external orders are\nproxied to the upstream ACME provider when proxy mode is enabled,\notherwise the local CA issues them after challenge validation.",
+        "operationId": "new_order",
+        "responses": {
+          "201": {
+            "description": "Order created (authorizations + finalize URLs; locally-signed or relayed upstream)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Unsupported/forbidden identifier"
+          },
+          "403": {
+            "description": "Local-domain without proxy mode, or relay proxy off"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/order/{id}": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /acme/order/{id}` — fetch the order status.",
+        "operationId": "get_order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order status (pending → ready → valid)"
+          },
+          "404": {
+            "description": "Unknown order"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/order/{id}/finalize": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /acme/order/{id}/finalize` — submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth — the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2).",
+        "operationId": "finalize_order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order finalized (CSR processed; platform-CA or upstream-signed chain)"
+          },
+          "400": {
+            "description": "Invalid CSR"
+          },
+          "404": {
+            "description": "Unknown order"
+          },
+          "409": {
+            "description": "Order not in ready state"
+          }
+        },
+        "security": []
+      }
+    },
+    "/acme/revoke-cert": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /acme/revoke-cert` — revoke a certificate (RFC 8555 §7.6),\nmarking its metadata and announcing `sentin8:acme:certificate:revoked`.",
+        "operationId": "revoke_cert",
+        "responses": {
+          "200": {
+            "description": "Certificate revoked (metadata flag / upstream relay)"
+          },
+          "400": {
+            "description": "Malformed revocation request"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/attributes/{id}/delete": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute_path",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Attribute id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/certificates/{id}/revoke": {
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/certificates/{id}/revoke` — revoke an issued certificate.",
+        "description": "Delegates to the existing `acme::revoke_cert` flow (updates metadata,\npublishes CRL). Returns an RFW redirect to the certificates page.",
+        "operationId": "revoke_certificate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Certificate cache id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate revoked (RFW redirect to the certificates page)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Shield deny"
+          },
+          "404": {
+            "description": "Unknown certificate"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/admin/policy-decisions": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_decisions",
+        "responses": {
+          "200": {
+            "description": "Recent decision log",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_create_set",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set created",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/save": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_save_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set saved",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/{action}": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_flip_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "description": "Row action (enforce, shadow, disable)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Action applied",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown row action"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/{id}/delete": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation_path",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Relation id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON.",
+        "description": "Pages:\n  - `overview`      — CA hierarchy status, issued-cert count, active order count, proxy mode\n  - `certificates`  — issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)\n  - `settings`      — Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name (overview, certificates, settings)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks an acme read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:acme:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.",
+        "description": "Resources:\n  - `overview`     — summary cards (CA status, counts)\n  - `certificates` — issued-certificate inventory from the CA data directory\n  - `settings`    — current config values",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks an acme read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:acme:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/ca/intermediate.crt": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /v1/ca/intermediate.crt` — download the Intermediate CA certificate.",
+        "operationId": "ca.intermediate",
+        "responses": {
+          "200": {
+            "description": "Intermediate CA PEM",
+            "content": {
+              "application/x-pem-file": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ca/root.crt": {
+      "get": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`GET /v1/ca/root.crt` — download the Root CA certificate.",
+        "operationId": "ca.root",
+        "responses": {
+          "200": {
+            "description": "Root CA PEM",
+            "content": {
+              "application/x-pem-file": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/client-cert": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /v1/client-cert` — mint an mTLS client certificate.",
+        "description": "GUARDED: the caller must present a Sentin8:Auth token verifying against\nthe platform JWKS, and its `sub` must equal the requested `service_name`\n— a workload can only mint a certificate for its own registered name.\n\nThe response (combined PEM: leaf chain + private key) is returned **once**\n— the key is not persisted server-side; the caller persists it in its own\ncredential cache. The certificate is recorded in Acme's cert store so the\nadmin UI can list/revoke it.",
+        "operationId": "client_cert.issue",
+        "responses": {
+          "200": {
+            "description": "Combined PEM (leaf chain + key)",
+            "content": {
+              "application/x-pem-file": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid service_name"
+          },
+          "401": {
+            "description": "missing/invalid bearer token"
+          },
+          "403": {
+            "description": "sub does not match the requested service_name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:acme:clientcert:issue": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Liveness (captain monitor payload).",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "The service is live",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/internal/schedules/run": {
+      "post": {
+        "tags": [
+          "acme"
+        ],
+        "summary": "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for\nthe daily leaf-cert renewal sweep. Scans the certificates directory\nfor locally-issued (`source = \"local\"`) certs whose `expires_at` lands\nwithin the next 14 days and re-issues each one (new key + full chain\nvia the same `sign_leaf` path as order finalize); the previous cert\nstays on disk until its natural expiry (overlap). Authenticated by the\ncron ticker's M2M token.",
+        "operationId": "internal_schedules_run",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Renewal sweep completed"
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {},
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "acme",
+      "description": "Sentin8:Acme — CA certificate download"
+    }
+  ]
+}

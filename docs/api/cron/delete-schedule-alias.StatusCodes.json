@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Schedule deleted (same contract as DELETE /v1/schedules/{id})"},"403":{"description":"Missing cron:write scope"},"404":{"description":"Schedule not found"}}}

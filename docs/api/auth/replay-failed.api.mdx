@@ -1,0 +1,78 @@
+---
+id: replay-failed
+title: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
+webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
+§10). Admin-gated; the relay picks the row up on its next tick.
+Replay a failed webhook delivery."
+description: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed"
+sidebar_label: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
+webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
+§10). Admin-gated; the relay picks the row up on its next tick.
+Replay a failed webhook delivery."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVMFu2zAM/RWCl7WAGidFD4N3CpZtyIYtRdthhzRoFJuphdiSK9FpjcDAPmL/sP/Yp+xLBtpu17S97LyTJIqkHh+fuEPW1wHjOeqKM1wodCV5zcbZaYoxeipzXV+ttckpRYWl9rogJi8xO7S6IIzRVbxyd1dGPIzFGEvNGSpMKSTelJINY5y1XkCWfQ3TCSr0dFMZTynG7CtSGJKMCo3xDrkuJXFgb+w1Klw7X2jGGKvKpNg0CwkOpbOBgvgfD09k2X9wQrnZkq/BUyAGdlCSTSVho/DkpYg9iNYxrF1lUzAWODMByG6xaRQGSipvuG45CGTZ2NexEBjrtBAC5gtBuJ97eTo7v4BoO4pap+iWVplzmxBpZipKDtHugccm6ohfwu/vP3r4GrouXNo+EtL7+v5WBgeF8d75AKUL/CrAsu9gmt8sFQhGmLw7n374cml//RwNDwcwFjRH15opfQOcEXjKdQ2lSTahO7tbqEpwFgwHsHTHwCbZDC7tWZv7ARk8BTZAhQVx5kRKAqhVEGcY47/x0Opq7VplGM5baXS0H7W6fcr1eXcJ/RqPpW6h0qRi4VrBTGzRbDp5G70fn04VBArBOBsUfPz26bylykmTpYjcJGQDyfu95D9PL2B2BuNSJxkdHQ+GArFNvjbkX3RoFG7Jhw7hcDDqTEJLoe2j1P+pUPY6+DABmO44KnNtrJBV+VzuOg3NcTtChd2XU3hPk5h6olBh/Hg29WJaKMxEjPEcd7uVDvTV500j5puKvPzqhcKt9kavRGrzHaYmyD7FeK3zQM/AJs4yWZlPB2f9TDuE5/PuxZp6o7ai8q3OKzmhwg3Ve6O1WTSPfpNoBJvmD4hYAO0=
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/admin/webhooks/attempts/{outbox_id}/replay"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
+webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
+§10). Admin-gated; the relay picks the row up on its next tick.
+Replay a failed webhook delivery.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./replay-failed.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./replay-failed.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./replay-failed.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

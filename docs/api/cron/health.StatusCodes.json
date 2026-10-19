@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Liveness + ticker heartbeat + schedule count","content":{"application/json":{"schema":{}}}}}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Assisted sign-in page details (binding_message, short_code, client, scopes)","content":{"application/json":{"schema":{}}}},"404":{"description":"Unknown or expired auth_req_id"}}}

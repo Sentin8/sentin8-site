@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Client deleted"},"401":{"description":"Missing/invalid registration access token"},"404":{"description":"Unknown client"}}}

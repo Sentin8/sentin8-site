@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Service is ready","content":{"application/json":{"schema":{}}}},"503":{"description":"Database unavailable"}}}

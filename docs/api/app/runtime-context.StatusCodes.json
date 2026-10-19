@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Runtime context for the TLS-identified app (instance metadata, org name, merged branding)","content":{"application/json":{"schema":{}}}},"401":{"description":"No X-Sentin8-App-Id header / unknown instance"}}}

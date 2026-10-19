@@ -1,0 +1,1 @@
+{"parameters":[{"name":"name","in":"path","required":true,"schema":{"type":"string"}},{"name":"version","in":"path","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"target_env_id","in":"query","required":false,"schema":{"type":"string"}}]}

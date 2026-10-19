@@ -1,0 +1,61 @@
+---
+id: new-order
+title: "`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."
+description: "Mixed local/external identifiers are rejected; external orders are"
+sidebar_label: "`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdlF1OHDEMx69i+QnU2Q+gqGh4WqFWQgJRQXlaUAmJlwnNJKmT2Q9GI/UQvUPv0aP0JJVnt0ChJ+jTKE5i//z3P9NiVncJyykqXRNeF2goabYx2+CxxFO7JAMuaOVGtMzEXjmwhny2M0ucQDEB0z3pTOYQHo8ENpvdKx85LC0ZyAFyRdDElJlUDZOj0/cQOcytIYZFRV5WyxXUwRDYBOTVrSNTXPmQK+KFTdRn6HHgaAI2pYaSxGpQs0wMulLOkb8jmCtnjZI2hlhgiMT94thgiZ4Wn3tCLJApxeATJSxb3B3vyOdvDc7kJGgmlcnAlmpyFdg+9OkSvIGZ9crZB4LL85N0uKZzq0Gyd54MBAYmp1ZkHjvfxgJ18Jl8lmoqRmd1n250n6Rki0lXVCss267rugLfjsevuS59amIMnMmMZoFvrTHknw0H+4t7ry+eCOHAhFpZDwubq9DkZ9IXj8ybYJjNUCgS6YZtXmE5vS6wplwFUTOGlLHAqHKFJY7ESCNPi8Efha2fBYHINjvCEpMA+oNB77iXhrtYb8LmW050TfDr23ewfmOt3jaaWJrUKhNsBpJXkIjnxDJvZzX5RFLWq1qqnh5/grNzmESlKxrsDsdC9qTVvw50Bc6J0xpsPNxZh6TdWvlnqW8+nl18gheN3/TUa9eA8usXAVvnH47gYH9/H37+eDfcGe5tD19K0D554795fnkVRahMyzyKTlkvQjbspNu1bzY/oAKfnHNdYCXWKqfYtrcq0SW7rpPw14Z448K5YiuYsuoKrEjJ1XLa4hdaYYkTrSmKPefKNcLw6rV1z70sk8Su+w2dY8fR
+sidebar_class_name: "post api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/acme/new-order"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Mixed local/external identifiers are rejected; external orders are
+proxied to the upstream ACME provider when proxy mode is enabled,
+otherwise the local CA issues them after challenge validation.
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./new-order.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./new-order.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

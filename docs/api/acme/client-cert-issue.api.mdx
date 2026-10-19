@@ -1,0 +1,66 @@
+---
+id: client-cert-issue
+title: "`POST /v1/client-cert` — mint an mTLS client certificate."
+description: "GUARDED: the caller must present a Sentin8:Auth token verifying against"
+sidebar_label: "`POST /v1/client-cert` — mint an mTLS client certificate."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVNuO00gQ/ZVSvcAOTjLD8oDMUwSj1cCOQMyMeEgi0mlX4lLa1Z7utiGKLO1H7BfyJajsjEgG+IHVPtnqrsup0+fUHpPZRMxnaGxFuMiwoGgD14m9YI5/3U0/vrl8k0MqCaxxjgJUTUxQB4okCQzckCSWl/m0SSUkvyWBlgKvdywbMBvDEtNcNL92Jq19qODtp3c3GRgpgFOEZWxWy6Eq3TfG9b0C3TcUExWwjBRatvRZTEXLuXz7518w8MWHrfOmAGsEvLgdVNzDsRQSr9maRLD2oe/gvwgE2nBMFKgALTSey1xu+0ax9hIJnlpfrViogA+X1zk4MmuwpWGBZ1AHbrXglnZ/AEcIlJqgoWdnXiydnQ2wFPiWdhohPkFNIXI/g45AYRS5oFfHVB4iInAClgesc7GBCqXVOLDGljQGhXo8Wg/C+lBQoZlTW9GT2EdATD4QRK+N5mKKigXurnqiHMc0CdT6LQGnMWboawpGH/uqwBytY5L0WcuMOcaGMMMHgiLme3x+fq6fU5G8PiIOnp4Qp4RhhtZLIkmaaura6QjsZfJ1VFM1WrMjvYm2pMroX9rVhDnGFFg22HVdl+GLX3VmaY3jgd8HiWAffPFzcMUxsmwmD0krMoHCINkh6c+fk2KzgsLT8KCVSbZ8JM/T1l2GkWwTOO0wn+0xHsyh7soHdpXcfCA3ny26RYYVpdIr/bWPCTOsTSoxx0l7MRlSRpqDGbKsfc8PJ9cTNFQf9d59bN2DL3/401YEqlKWREGMg+nr68sTUZkmlV6xHwSrAnFsSWL/QP2IOV5f3cL7jzCtVZmj5+NzRdbLdc0UfhnQZdiq1Htg5+OL4UjHrYwclV5+eH9zC48GX/aoB3sLVLd/38Bwe4x9/Hj+/Q/R/b/F/utb7LAwEn1Nk9oZ7v3cBKcyGNw0w/ZCF9GRnxYZlmq4fIb7/cpEuguu6/T4vqGg/l1k2JrAZuUGr2ZYkilU47M9bmmHOU6tpVq92Rqnjv7dfjvxuaocu+47gKyjBQ==
+sidebar_class_name: "post api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/client-cert` — mint an mTLS client certificate."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/client-cert"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+GUARDED: the caller must present a Sentin8:Auth token verifying against
+the platform JWKS, and its `sub` must equal the requested `service_name`
+— a workload can only mint a certificate for its own registered name.
+
+The response (combined PEM: leaf chain + private key) is returned **once**
+— the key is not persisted server-side; the caller persists it in its own
+credential cache. The certificate is recorded in Acme's cert store so the
+admin UI can list/revoke it.
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./client-cert-issue.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./client-cert-issue.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

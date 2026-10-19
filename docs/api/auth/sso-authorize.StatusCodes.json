@@ -1,0 +1,1 @@
+{"responses":{"302":{"description":"Redirect to the IdP (OIDC authorize URL with PKCE, or the SAML SSO URL)"},"400":{"description":"Connection not in active state"},"404":{"description":"Unknown connection id"},"501":{"description":"SAML connection without a usable SSO URL in metadata"}}}

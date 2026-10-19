@@ -1,0 +1,81 @@
+---
+id: serve-challenge-token
+title: "Serve an http-01 key authorization for the upstream CA's validator
+(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's
+:80 listener forwards here; the bounded map holds only tokens captured
+for in-flight external orders. Unauthenticated by design (RFC 8555
+§8.1) — the token itself is the capability."
+description: "Serve an http-01 key authorization for the upstream CA's validator"
+sidebar_label: "Serve an http-01 key authorization for the upstream CA's validator
+(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's
+:80 listener forwards here; the bounded map holds only tokens captured
+for in-flight external orders. Unauthenticated by design (RFC 8555
+§8.1) — the token itself is the capability."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVM1OGzEQfpXRXEjUzQ8UpGh7itIUcaCVaDglETi7k6yJ1zb2LLCNVupD9B14Dx6lT1J5N6HQcOihx55sz9gz33zzeTbIYuUxnqJIcsJ5hMaSEyyNPksxRk/ujq6STChFekVXbNakMUIrnMiJyYW3G9QiJ4xx55UaY7SCM4wwJZ84aUNEjHG0iwS7u45uC+koxZhdQRH6JKNcYLxBLm0I6tlJvcKqmofL3hrtyQf/Ub8fltcJJhnBmkoQBWfGyW91KdAS1iqZ1IfejfH07sYbHUFhPTsSORiXkvNtrCI87h/vh73Ua23udYMaeqBMIlTzCqsqQk9J4SSXGE/nf9b8NXAIQkPGbDv9wzfwLY0Dzug3ntHwwMOdUDIVbNxMtz6Ov56dfoanx+Pu+3YM16fjCfS696RUp0bWC/3rPDeqt6mRVtddCIxYZx7KAz/T8aAPSnomTS5kvRcu9ZCRow81gIUpdEop5MJCZlTqwWhVNmV7SITlwlE60wGw1J2lkquMgR6YnN4R4rtwqUN9pDlwTiksSkjJy5WG1sWnEQxOTk5m+ulx0D1sw8/vP+rUDbWSPaklSF/bEmHFQirJZRcjzIkzE1S5Iq41yBnG+Bcs1JJcmlpUklWtqgBODzq17Pc7Vjthu8bDJKcap9TbQoej8zEk5Fgu6xJ3/eQS6i/jAl4lE9KeQtrtBzk/m8CXCxhakWTUOer2A7I0ZFlKcm9eqCK8I+cbYP3uYWOyxnMu9IvQ/1X2j1T2SgrPU4jpgXtWCakD/YVTwdcocIovGMIIX3OEEcbNrJtHmBnP4cFmsxCeLp2qqmC+LchtR8edcFIsgkSnG0ylD/sU46VQnvawJUYzacYYWxfbMdqG/RH7Zglbo9AlhqyqCCeMcE3l8ySv5tWLX3c6nmBV/QIaUiho
+sidebar_class_name: "get api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Serve an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) — the token itself is the capability."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/.well-known/acme-challenge/{token}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Serve an http-01 key authorization for the upstream CA's validator
+(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's
+:80 listener forwards here; the bounded map holds only tokens captured
+for in-flight external orders. Unauthenticated by design (RFC 8555
+§8.1) — the token itself is the capability.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./serve-challenge-token.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./serve-challenge-token.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./serve-challenge-token.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

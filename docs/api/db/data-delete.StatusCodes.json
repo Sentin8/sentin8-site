@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Rows deleted"},"403":{"description":"Missing db:data:write scope"}}}

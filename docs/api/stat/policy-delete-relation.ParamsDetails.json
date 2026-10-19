@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"query","description":"Relation id to delete","required":true,"schema":{"type":"string"}}]}

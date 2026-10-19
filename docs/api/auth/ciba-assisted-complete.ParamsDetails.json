@@ -1,0 +1,1 @@
+{"parameters":[{"name":"auth_req_id","in":"path","description":"CIBA auth request id","required":true,"schema":{"type":"string"}}]}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Certificate (chain; + private key for locally-issued certs)"},"404":{"description":"Unknown certificate"}}}

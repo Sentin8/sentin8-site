@@ -1,0 +1,1 @@
+{"parameters":[{"name":"stream_family","in":"path","description":"Stream family","required":true,"schema":{"type":"string"}}]}

@@ -1,0 +1,75 @@
+---
+id: uninstall-instance
+title: "`POST /v1/admin/instances/uninstall` — uninstall an app instance.
+Body: `{ 'instance_id': 'uuid' }`. Deletes the instance if it belongs
+to the caller's org/env (RLS-enforced)."
+description: "`POST /v1/admin/instances/uninstall` — uninstall an app instance."
+sidebar_label: "`POST /v1/admin/instances/uninstall` — uninstall an app instance.
+Body: `{ 'instance_id': 'uuid' }`. Deletes the instance if it belongs
+to the caller's org/env (RLS-enforced)."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVUtu2zAQvQoxmyYA/UmaRaFdmm4CtEiRz8o2bJoaS6wpkiEpp4YgoIfoCXuSYihbTuIgQJf1hsJwPm8eZ54biKIIkE1AOAczDtahF1FZc51DBrVRJkSh9TydRiJwcMKLCiN6imvAiAohgyh8gXGOZjNXOXBQBjJ4rNFvgUOOQXrlKC9kcJ9cGZoNO7n9esekNRF/xlPg4PGxVh5zyKKvkUOQJVYCsgbi1lGZEL0yBbTtrHPGED/bfEseKY2J9Cmc00qmPkY/AhVtDqnatn1dKBmCsyZgIN/z8ZiOl7CvdxSwnhXMUwMD+2SYLFGuGZqV9RJz6uUf8LQcLsYfj0teURHPtJDrwIRhwjkm8koZFqR1CCnu4jjuwawNgepfjSoElLVXcZteLaCJynzKhHNZygjZZEakvky0+H5zd89Gm7NRchrtE4ZRT8KC/fn1+8DJHubeczg19EAZWzRsCnvrXOVTyNgU6pq+WLsYsi+oMWJgscQ+mqkVU5EtUVtThKmJNl3LxMuHwKwvRvs5GvTkD4FDhbG0NMPOhpimNpaQwbutpLFd2TRuKuo0bx1PA1qP1+TcdXdsd2aXziUuYql8PnDCx22iIkTrkR96qoQRBVZoIgHVSqIJSEV3q/Tt+p7d3LJLJ2SJg/PhmHDlVGSl0L/p0HLYoA8drvHwrDNR65Uwz1L/v+/5gvpeDkg3Rk4LZajf2mu66556Apsz4NANN++RBuAHWSPFK2k+sgk0zVIEfPC6bcncSRetSq6CWGqSipXQAY+g9HsOJ7c7VTll72jcm9DXuH1DRDdC1+QLtJkb4RUBSZvKoUSR0zRMml3wVYdjcE/5D7FH2tPyfcSllOjiu76zZ5tEswMclju9rWxOMV48kXCLJ8JJfyAUnVQ02RrQwhS1KMi3y0m/v7l4PDg=
+sidebar_class_name: "post api-method"
+info_path: docs/api/app/sentin-8-app
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/admin/instances/uninstall` — uninstall an app instance.\nBody: `{ 'instance_id': 'uuid' }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/admin/instances/uninstall"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/admin/instances/uninstall` — uninstall an app instance.
+Body: `{ "instance_id": "uuid" }`. Deletes the instance if it belongs
+to the caller's org/env (RLS-enforced).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./uninstall-instance.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./uninstall-instance.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./uninstall-instance.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

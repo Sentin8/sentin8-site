@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The key authorization (application/jose+json, upstream orders)"},"404":{"description":"Unknown token / local order"}}}

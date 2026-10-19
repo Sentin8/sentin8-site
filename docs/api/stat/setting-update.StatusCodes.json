@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Settings updated"},"403":{"description":"Missing stat:admin scope"}}}

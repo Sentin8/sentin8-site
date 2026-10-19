@@ -1,0 +1,77 @@
+---
+id: verify
+title: "`POST /v1/mfa/verify` — verify a TOTP code."
+description: "Behavior depends on the request:"
+sidebar_label: "`POST /v1/mfa/verify` — verify a TOTP code."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVs1uGzcQfpXBXHpZSf5VkgVycJIaUIvAhq0mB8mwqOWsxHiX3JBc2YIgoKc+QJEnzJMUQ+5asuS4KFD0VF1Wy+V8883MN0Ou0IuZw3SEZS7wJkFJLrOq8spoTPEdzcVCGQuSKtLSgdHg5wSWvtbkfDrWHZjkIvPG3io5gcqSI+3h+x9/AmlriqLk1wVZlatMMGoKmdG5smUAYlSlZ2M91hEmAUcenBe+dm9F5tWC4tKkzMUtaTEtSL71tqZJS6Z2ZBPIChJ2rCeOMkv+trK0UHQ/6QaKjZtbb+5I7zF1aqY7SsPH87MdqoUxd1BX7IYpsqefHERaMLwYXkLLOtgtA5/MSEpAaBk3Ck9PQ3XknDK6y4ifopnyXUzQVGSD44HEFCMiJtgk+52RS0xXmBntSXv+K6qqaLj2vjiu2ApdNqdS8D+/rAhTNNMvlHncLe1VRIWpkUvIjW0i6DYOlSXJsuBgWBeVZXZekYscJG25cN4qPdtz0e9INVM+JopNumM9bBLUxXWCj8rZYI02YLouCnadG1sKjynWtZJ7Ts4DBgw+wJSUnjUFJNmFqyaMEN0P1NhtdQdKkvZsaQO1XcW8yHCHkbEvSGpLCtAoAYITUBIs+dpqkmM9XcLk8uJ6CL3FYa9Bm8D9nCKmctBWqTvWLV6LsxXJOkGvfMFVilpr6o5r/rSpNHdUWHCVYYVyvEcHB/x4Gt17I+kxyWmj/0elSzB2E16ThDbMx02Y/HsqjnyhEsvCCPmCkuNMwW3V7en6GUFuqv2yDp+XURP6bWbMnaJ/IKLPXOkYCKdS1nYroykI0HTfDqI2v9EJLERRt6329FOkFPPwt90bzMPe52UUE886Wid48kOplDUPGYI+hGHgoAelco6jaVK2pZggYAx4h/t4A70QhZJhfrAVPVShv3faKdgfvdm3b4at5YlcqFJ5oIeMSJIMATrKaqv8EtPRTYIl+bnhOVwZx7qrhJ9jityOZS56j9OZFXu1mdA/P4iyKmgzJLf0sxEXHufi9WneP+mcvjp81Tk57R91psd51jnK3vSP835f5KKPz02hFm6doNK5CWVsCsPnmdKvO6L2871qXseP0DzTs9rP4fvv3xrB+mUCF7zWuxh8eN87P7scJG0+XQK/fP71GhjXcIK4swqVEZc/XaEWJbv/OBjCxRWcVSKbU+eoe4AJbrrh2Q3rhE85FxkedA/jEie8FHoLejMJN6mfBPbNsSu2zpjd0LdOzP/vM//pfaaZL54efK8qhAqdWduCaxLbaYSLQ0zC3TNpLzw3Cc655dIRrlZT4eg3W6zXvPy1Jtt050JYxanjt3WCcxKSNTZa4R0tw+gJJe8MmQJvL2qmsnfUrJPW4izLqPIv7t2eCqxITHDaXMrK2OtW3POpI+4xxXChY+swa8PaCguhZ7WY8d6Iyb+/ANFZDX8=
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/mfa/verify` — verify a TOTP code."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/mfa/verify"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Behavior depends on the request:
+- `factor_id` present → enrollment verification: confirm the pending
+
+factor, set status=active, set `mfa_enabled=true` on the user, clear
+`secret_preview`.
+- `pending_token_id` present → sign-in MFA verification: look up the
+
+user's active TOTP factor, verify the code, and activate the pending
+session.
+
+Verify it.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./verify.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./verify.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

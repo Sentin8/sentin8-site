@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Group members"},"403":{"description":"Missing auth:admin scope"}}}

@@ -1,0 +1,76 @@
+---
+id: message-mark-read
+title: "`POST /v1/messages/{id}/read` — mark a message as read."
+description: "Sets `read_at = now` on the message. Idempotent — a second call is a"
+sidebar_label: "`POST /v1/messages/{id}/read` — mark a message as read."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVF1uG0cMvgrBJxtY/Tg12mKLPCRI0OrBTRA7T5IQ0TOUduDdmc1wVrYgLNBD9A65R47SkxScXQeOofYARZ9W4nDIb/h9/I6YaCdYLrENknBdoGUx0bXJBY8lXnMS2EQm+4kSvAQf7jcQPKSKoWER2vEUFpabNiT2Cf76408gEDbBWzBU1+AEaOV9mIR2Ch+FLdwewHSSQsNxsiXj/A6obQXO+DX5u3O4r3ho0AlHCC37XGJsV4CEfOpDcltnSJHCLdkdQ+cVKZjQ+QSWTWQSlincVAx6svKRDbs2wUbYJ+d/LvXZ5dNSpSZuFDY3LiW2QAIEdTBUr/xG86ehS7fhYQMx3IMbsF6/unoLKZIXMhkRSY5nQF1rKfHKn+ltePP2evHr7/D1y+V5nhc/kEn1AYI3DPcuVfmiDQ05D6Yiv+Nfckgqrmt9Q00HaGOwnWEBlyAFeN0JnH398uP0p/Ppyv9G3tYMDcW7R5oykikWGFqO+aULiyU+kqipE03BAluK1HDiqMI4oqeGsUSnR05F0VKq8LlSrsY2izdYYOTPnYtssUyx4wLFVNwQlkdMh1aLSYrO77DAbYgNJSyx65zFvl/rZWmDFxbNfzGf6+d0LwU9EJSR9wVezn84ke5EVGWZ60yImNDykH/5z+V9SLANnVdcBQqbLrp0yDP5Tj65eblcK/iGUxV0sHmfimFWJc72F7Nx1DI7OtvPxlk7vw15Li7VeTBD4cl4/fk25kMYv+V7lZNKqOnq5CaqFc/1N8Yt127P8QDCce8MK/u1M+yFteXI69XiBt59gFctmYonL6ZzRWW1w9ZxPJnQF7jnKAOo+fRiCCnkhvyT0pv3765v4PTbNwNwVSh9QzwyOX3+8iOa4NVg/rek/6IljaaQ+CHN2pqcVzl1sVbihwVa4v4Ci0e3EiywzH6Ut2hdYKXrUi7xeLwl4Y+x7nsNf+446sKuC9xTdHSrO7Y8onWivy2WW6qF/0VtZx9GKzuH7xzuJOQxSP6A2rDu9B8WeMeHwUD7df/EInQ7sO//BmM6oFk=
+sidebar_class_name: "post api-method"
+info_path: docs/api/post/sentin-8-post
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/messages/{id}/read` — mark a message as read."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/messages/{id}/read"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Sets `read_at = now` on the message. Idempotent — a second call is a
+no-op. Used by customer-facing apps (eBank) when the user opens a
+message, so the notification badge unread count decreases. The read
+receipt `sentin8:post:notification:read` is emitted as a local
+`post.outbox` row in the SAME transaction as the read update
+(post DESIGN §4) — exactly once with the domain change; the shell
+relay produces it to Bus (§6.7).
+Handle mark message read.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./message-mark-read.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./message-mark-read.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./message-mark-read.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

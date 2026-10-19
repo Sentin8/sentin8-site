@@ -197,8 +197,23 @@ filters which tiers `start_and_register_all` spawns at boot ONLY. The live
 catalog stays complete, so `POST /start-services`, per-instance actions
 (against the live catalog), placement, and remote spawn can name ANY
 registered service type at any time - a second repo's `start` after a
-trimmed boot works without restarting the captain. When the variable is
-unset, boot spawns everything (the full-fleet entry remains the default).
+trimmed boot works without restarting the captain.
+
+**Boot scope default (STARTSCOPE-2).** When `SENTIN8_SERVICES` is unset,
+boot spawns the PLATFORM services only (`sentin8:*` from the built-in
+catalog) - never the external vertical catalog entries. The operator
+opts into a full-fleet boot explicitly (`SENTIN8_SERVICES=all` or an
+enumerated list). Rationale: the unset case is overwhelmingly a
+platform-group `make start` or a plain `sentin8-cli captain start`;
+spawning 100+ vertical services there (verified live 2026-10-17: a
+boot without the pin started bank8/bill8/email8/exchange8/hotel8/
+trade8 - dozens of unwanted processes racing the platform for ports
+and Valkey connections) is the accident, and "all" is the deliberate
+multi-vertical fleet bring-up. The explicit services argument
+(`sentin8-cli captain start <types…>`) is honored on the cold-boot
+path too: the CLI resolves the types through the catalog and exports
+them as the boot allow-list for the spawned captain, so the argument
+can no longer be silently dropped when the API is not yet listening.
 
 | Key | Type | Contents |
 |---|---|---|
@@ -222,7 +237,7 @@ unset, boot spawns everything (the full-fleet entry remains the default).
 | `/v1/health` | GET | none | liveness. |
 | `/v1/captain/readiness` | GET | **ungated** | 200 when every catalog type has ≥`MIN_INSTANCES` Active. |
 | `/v1/captain/services` (list/get/post-action) | GET/POST | Shield `sentin8:captain:admin` | instance lifecycle: `restart|stop|start|upgrade`; captain-self → 409. |
-| `/v1/captain/upgrade-status|upgrade-stream|startup-stream|shutdown-stream` | GET | gate | 2s polls; terminal `complete/aborted/rolled_back`. The **startup-stream** additionally emits a first-class `alert` SSE event per crash-looped service (give-up after `MAX_RESTARTS`): `{service, restarts, reason, log_path}` - read from the `captain:alerts` HASH, cleared when the service next reaches `Active` (supervisor records on give-up, monitor clears on recovery; a failed boot is an operator-visible event, never a bare "waiting on" loop ending in timeout). |
+| `/v1/captain/upgrade-status|upgrade-stream|startup-stream|shutdown-stream` | GET | gate | 2s polls; terminal `complete/aborted/rolled_back`. The **startup-stream** additionally emits a first-class `alert` SSE event per crash-looped service (give-up after `MAX_RESTARTS`): `{service, restarts, reason, log_path}` - read from the `captain:alerts` HASH, cleared when the service next reaches `Active` - **on ANY path** (self-heal respawn, last-resort spawn, boot adoption, manual start): the monitor clears the alert on every healthy probe of an Active instance (idempotent HDEL), not only the `Starting → Active` transition - an adopted instance never passes through `Starting`, and a transition-only clear left stale alerts on healthy services for a whole session (DUPROW-1 follow-up, 2026-10-17) (supervisor records on give-up, monitor clears on recovery; a failed boot is an operator-visible event, never a bare "waiting on" loop ending in timeout). |
 | `/v1/captain/machines` | GET | gate | `captain:host:*` scan. |
 | `/v1/captain/alerts` | GET | gate | **WARN-10 give-up alert list** - every service captain gave up on (`MAX_RESTARTS`) and that has not recovered yet; consumed by `captain services` (the ❌ MANUAL INTERVENTION REQUIRED block after the instance table) and the RFW surfaces. Cleared when the service reaches `Active`. |
 | `/v1/captain/catalog` · `POST /merge-catalog` · `POST /start-services` | GET/POST | gate | runtime catalog + local start (RCE boundary - catalog-resolved only). |
@@ -245,7 +260,143 @@ rule, `{ip}:{port}` union-key identity, port reservations, never-scale pin
 retune procedure (§8.1 there), and the pure-unit + Valkey-gated live test
 layering.
 
-### 5.10.1 Crash-loop give-up: alert + last-resort respawn (CAPT-ALERT-2)
+### 5.10.2 Duplicate-instance minting - one live row per service (DUPROW-1)
+
+**The invariant**: at any instant, at most ONE registry row per
+`(service_type, local_ip)` points at a process that is alive or being
+started. Three races minted duplicate rows in a single fleet session
+(all verified live 2026-10-17; 14 services carried doubles, both rows
+`Active`, both processes serving - doubling the fleet's Valkey
+connection budget and splitting consumer groups across unknowing
+replicas):
+
+```mermaid
+flowchart TD
+    subgraph R1["Race 1 - stale monitor list (upgrade path)"]
+        TICK["monitor tick lists N rows<br/>(includes OLD upgrade row)"] --> ITER["iterates slowly<br/>(health probes, 77 rows)"]
+        UPG["upgrade completes:<br/>SIGTERM old → HDEL old row"] --> ITER
+        ITER --> SH["self-heal on the STALE row:<br/>mark_killed HSETs the field BACK<br/>spawn(same old port)"]
+        SH --> DUP1["duplicate: NEW row + resurrected OLD-port row"]
+    end
+    subgraph R2["Race 2 - boot adoption gap (Starting rows)"]
+        LR["last-resort/spawn_one_service<br/>row status = Starting"] --> OLDDEAD["old captain dies before<br/>its monitor tick promotes it"]
+        OLDDEAD --> BOOT["new captain boots:<br/>reconcile adopts only Started|Active"]
+        BOOT --> GAP["Starting row: not adopted,<br/>not killed, not cleaned"]
+        GAP --> SPAWNLOOP["boot spawn loop: adopted-map lacks type<br/>spawns a SECOND instance"]
+        SPAWNLOOP --> DUP2["duplicate: Starting orphan + fresh spawn"]
+    end
+    subgraph R3["Race 3 - row-less live process (give-up + last-resort)"]
+        GIVE["give-up: mark_killed + DELETE row of pid A"] --> LIVEB["pid B of the SAME service<br/>is alive but its row was deleted earlier"]
+        LIVEB --> LRR["last-resort: existing-row check sees NOTHING<br/>(the live process is row-less)"]
+        LRR --> DUP3["duplicate: row-less live process + fresh spawn"]
+    end
+```
+
+**The fix - five seams, one rule ("check the live process, not just the
+row")**:
+
+1. **Monitor self-heal re-validates the row before acting (kills R1).**
+   The tick's `ServiceInstance` snapshot can be seconds stale by the
+   time its turn arrives. Before `mark_killed`/`self_heal` on a
+   `pid_alive == false` finding, the handler RE-READS the row from the
+   registry (`get_instance`) and re-checks `pid_alive`; a row that no
+   longer exists, or whose pid/status changed under the tick, is
+   skipped - the next tick re-evaluates from fresh state. The same
+   re-read guards the `Killed` (pid==0) branch.
+2. **Boot reconcile adopts `Starting` rows too (kills R2).** The
+   `status == "Started" || status == "Active"` filter in
+   `reconcile_existing` admits `Starting` - a live-pid orphan in
+   `Starting` is adopted exactly like an `Active` one (binary-identity
+   check unchanged; a `Starting` row with a DEAD pid is
+   crash-reconciled to `Killed` + deleted as today).
+3. **Give-up and last-resort consult the PROCESS table (kills R3).**
+   Give-up deletes the dead row but FIRST sweeps sibling rows of the
+   same service whose pid is alive (a live sibling absorbs the alert's
+   recovery duty - the alert stays, the service is not "down"); the
+   last-resort respawner's "already running?" check adds a
+   binary-identity process scan (`pid_on_port` sweep over the row-less
+   live process's listener, or `/proc` comm match) when the registry
+   shows no live row - a live process serving the type without a row
+   is ADOPTED (row re-created) rather than duplicated.
+4. **Self-heal yields to live siblings (kills R4).** Before the
+   respawn (below `MAX_RESTARTS`), a dead row with a LIVE sibling row
+   of the same service is DELETED, not respawned - the sibling serves
+   the type, and two concurrently-dead rows would otherwise mint two
+   fresh processes per heal cycle (a kill-looping service makes the
+   pair perpetual). The live-sibling yield composes with the give-up
+   sibling sweep (seam 3): both heal exits prefer the surviving
+   sibling over any respawn.
+5. **Boot re-key to the authority port (kills the port-25 trap).** The
+   boot sweep's port correction used the process's LOWEST listener -
+   for multi-listener services (email8:gate: SMTP 25 < management 8103)
+   that re-keyed the healthy row to the SMTP port, the health probe
+   then hit `/v1/health` on a protocol port, failed, and the monitor
+   killed the healthy process in a loop. The correction rule order:
+   (a) catalog `fixed_port` the process holds → re-key to it (the
+   declared health surface heals rows parked on protocol ports);
+   (b) the recorded port the process holds → TRUST it; (c) neither →
+   lowest-listener fallback (genuinely stale rows).
+
+**Convergence (operator surface)**: `make status` shows doubles today.
+The fix stops NEW minting; the existing doubles converge by restarting
+the affected services one at a time (`make restart-instance` on the
+younger row's key - the stop path deletes its row, the fleet returns to
+one row per service). No migration code: the registry is runtime state.
+
+### 5.10.2b Self-heal must probe the PORT, not just the row (ORPHANLOOP-1)
+
+**The defect** (verified live 2026-10-17, the 25-second kill-respawn
+loop): after a `stop & start` that leaves live ORPHAN processes
+(row-less - their boot spawn died at `bind` against the port held by a
+surviving process, so no row was written), the monitor enters a
+non-converging cycle on every affected service:
+
+```mermaid
+flowchart TD
+    ROW["registry row: pid P_old, Active<br/>(P_old is DEAD - stale)"] --> PROBE["probe P_old's port:<br/>live orphan serves it but its<br/>resolver's cert cache is cold<br/>→ 'error sending request'"]
+    PROBE -->|"3 failures"| KILL["kill_signal(P_old) -<br/>a NO-OP: the pid is dead"]
+    KILL --> HEAL["self_heal: row pid==0 →<br/>blind spawn on the same port"]
+    HEAL --> CHILD["fresh child binds the port →<br/>DIES: held by the live orphan"]
+    CHILD --> ROW2["no row written<br/>(child died at bind)"]
+    ROW2 --> PROBE
+```
+
+The cycle period is the failure window (3 ticks) plus the respawn
+backoff cap (~25 s with defaults) and NEVER converges: the kill branch
+acts on a stale snapshot's pid without re-verifying liveness, and
+`self_heal`'s same-key respawn checks SIBLING ROWS but never checks
+whether a live process already holds the target port (seam 3 of
+DUPROW-1 guards only the give-up/last-resort paths).
+
+**The fix - two seams, one rule ("the port is the truth; the row is a
+cache")**:
+
+1. **Kill-branch liveness re-verification.** Immediately before
+   `kill_signal(pid, 9)`, RE-READ the row (`get_instance`) and re-check
+   `procfs::pid_alive`. A row that vanished, or whose pid changed or
+   died under the probe window, is left to the dead-row/self-heal path -
+   the monitor NEVER signals a pid it has not just re-verified as alive.
+   Phantom kills of recycled pids (a fresh child can inherit the dead
+   row's pid number) become impossible by construction.
+2. **Self-heal port-occupancy check (adopt-or-abstain).** Before the
+   same-key respawn, scan the process table for a live listener on the
+   row's port (`find_rowless_live_service`, the same binary-identity
+   rule the last-resort respawner already uses). A live holder of the
+   expected binary is ADOPTED - the row is re-created at its port with
+   its pid, status `Active`, alert cleared - and NO child is spawned. A
+   live holder of a DIFFERENT binary is the foreign-holder case: the
+   row is left `Killed` with an ERROR (operator intervention; spawning
+   would loop against the holder exactly like `BindFailed`). Only a
+   genuinely free port takes the spawn.
+
+**Convergence**: with both seams, the first heal cycle after any
+stop/start resolves the split-brain - the orphan is adopted, its row
+points at the live pid, the next probe succeeds, and the loop never
+restarts. The adoption composes with the boot reconcile (5.10.2 seam 2)
+and the last-resort respawner (5.10.3): all three now share the same
+adopt-first rule.
+
+### 5.10.3 Crash-loop give-up: alert + last-resort respawn (CAPT-ALERT-2)
 
 When self-heal exhausts `MAX_RESTARTS` (3), the give-up is a FIRST-CLASS
 operator event AND a self-recovery contract - never a permanent park:
@@ -299,7 +450,7 @@ adoption, tier gating, and the semaphore, which are boot-only concerns.
 live instance nor a pending re-attempt (while the respawner is enabled) -
 give-up means "slow, capped-pacing recovery", not "parked forever".
 
-### 5.10.2 TLS warm-up grace on probe failures (CAPT-PROBE-3)
+### 5.10.4 TLS warm-up grace on probe failures (CAPT-PROBE-3)
 
 A freshly-spawned service binds its listener FIRST but accepts TLS
 handshakes only once its on-demand server cert has landed from acme.

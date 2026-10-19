@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Action completed"},"403":{"description":"Missing storage scope"},"405":{"description":"POST not supported on this path"}}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"DLQ entries"},"403":{"description":"Missing post:read scope"}}}

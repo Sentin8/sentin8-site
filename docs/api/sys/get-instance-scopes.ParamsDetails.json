@@ -1,0 +1,1 @@
+{"parameters":[{"name":"hostname","in":"query","description":"BFF or frontend hostname","required":true,"schema":{"type":"string"}}]}

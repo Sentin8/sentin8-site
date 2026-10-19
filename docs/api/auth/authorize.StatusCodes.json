@@ -1,0 +1,1 @@
+{"responses":{"302":{"description":"Redirect to the hosted sign-in UI (params preserved) or straight back to the client with the code when a session exists"},"400":{"description":"Invalid authorization request (unknown client, bad redirect_uri/response_type)"}}}

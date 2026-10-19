@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Accepted","content":{"application/json":{"schema":{}}}},"403":{"description":"Property unknown / origin mismatch"}}}

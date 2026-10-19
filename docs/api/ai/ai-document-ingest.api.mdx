@@ -1,0 +1,78 @@
+---
+id: ai-document-ingest
+title: "`POST /v1/documents/ingest` — chunk → embed → store (/).
+Chunk text lives in Sentin8:Storage (object per chunk under the document
+key), vectors + metadata in `ai.embeddings` with source refs.
+RLS env match + the caller's data_scope on chunk metadata."
+description: "`POST /v1/documents/ingest` — chunk → embed → store (/)."
+sidebar_label: "`POST /v1/documents/ingest` — chunk → embed → store (/).
+Chunk text lives in Sentin8:Storage (object per chunk under the document
+key), vectors + metadata in `ai.embeddings` with source refs.
+RLS env match + the caller's data_scope on chunk metadata."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVs1uG0cMfhWCl9jwWrKNHortyXUSwECDBHaKHizBpnYp7cSzM5sZrmxFENBTH6DoE+ZJCs6ufu22L1BdJM2SHJIfv2+5RKFZxPwOyeA4Q99wIDHeXZeYI5lB6Yu2ZicD42YcBTNsKFDNwkHdluioZsxRKMxY7tnN702JGRqHOX5tOSwww8BfWxO4xHxKNnKGsai4JsyXKItG3aME42a4Wo07a47ysy8XalF4J+xEf1LTWFOk/IZfond69iKUn3zhQvZuvcMoPtCM7x9Z8xF+VoPal2y16iZo3WI4pgur1j3eR/ONd6IaJzzjoF7GmbqtMT9bZViS0H0sfLNrSyGQXmOE6/hKkRmWHItgGi0Ec7wiazm8iaDRIEUDEqGi4hLEg1QMKan4BmoWSmZHgSUYnpMduYZDbWI03sHUWOFwPNBbuvpeuz/6NhSsSG2e3q0fZ+haa3GsZjtdexHmsIpbdmLcj/lt5wQdDvDIC6i8LY2bpULWAwUKQkpzf3T+NaEE3H9mcmkDU7k45WcJVIg2kZ8Fjvr/EIUbqKhp2EVomyiBqQYfwDiQysSR60cQvv/+F8zPgYqCG4kp/8aSmvGz/ASf3r6HPqj23kQgeN+6An67vP0wcrUvW8tQeFdwcIqJlmDEau5v+z5cJ17ddBfiSk22gyuh5XQQG+9iN54XZ2f6tV/yOhp0NOUSjrqJgROYcyE+RFA0uTzWlv9wcfEyxrt6wmXCaUrGtoFTvpGLNhhZJLLHHmMyOa+t86dgRPEaK3n3Qz58+nj7GYbz8+Ea9jjsMnxIvU05wvc//oQULv1KacLR8HgwclfpeULPmjlHRehwzo76QWs49PFaV3LYG7aRe+TFcbZpxcmWR8bBA5nBppz4AE9GKugoAoGncTByN7/cArs51CRFBScdJXdp24kAeNfnsI4/UMVgqbzqaeN7BZUKc3ytLZihCtvNVgLfPVPdWD4UprN97dmQZbyh/ZYdO2zfOdzl9vb4gIw7DxL1djTEuKlPXOwHup+NUzL/JA0b6C6vE/qNJZn6UMPlNRTU0MRYIwuwtOCgfbOmYBdT6f1b5sP1Z/h4A5eNauPpxeBMVbbUqFPD4VWDVYZzDrFL5Gxw3h0pEjW5ndD/j+rgELeNzmpVwyR82rs2pJdKN8V3OD9Xv3XP0qs/TfI4w0rnPb/D5XJCkX8NdrXS424tUD0pTaSJ3VkMumk8XCbmZFvNA1Vh5hSMOiXFybBiKhX6u2XvfNXtC6efNfet74vdQWNtmKngY4aTfudQCmGOgZ50j6AnvVuXI/VOIpzOlmjJzVqaqW0XUz9/A0A1RIQ=
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/documents/ingest` — chunk → embed → store (/).\nChunk text lives in Sentin8:Storage (object per chunk under the document\nkey), vectors + metadata in `ai.embeddings` with source refs.\nRLS env match + the caller's data_scope on chunk metadata."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/documents/ingest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/documents/ingest` — chunk → embed → store (/).
+Chunk text lives in Sentin8:Storage (object per chunk under the document
+key), vectors + metadata in `ai.embeddings` with source refs.
+RLS env match + the caller's data_scope on chunk metadata.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ai-document-ingest.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-document-ingest.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-document-ingest.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

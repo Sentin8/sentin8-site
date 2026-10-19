@@ -1,0 +1,1420 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-func",
+    "description": "Sentin8 Sentin8:Func — standalone WebAssembly execution service.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin ui.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a func read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nFetch admin data.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a func read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Handle health.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Liveness (version, build, runtime, cache size)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/modules": {
+      "get": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`GET /v1/modules`\nList it.",
+        "operationId": "module.list",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "description": "Filter by domain",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "product_id",
+            "in": "query",
+            "description": "Filter by product ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of modules",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ModuleRecord"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid target_env_id"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules` — upload a new WASM module.\nHandle upload.",
+        "operationId": "module.upload",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Module uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleRecord"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid binary, hash mismatch, unknown hook, or bad target_env_id"
+          },
+          "403": {
+            "description": "Missing func:write scope"
+          },
+          "409": {
+            "description": "Module version already exists"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/product/{product_id}/execute": {
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules/product/{product_id}/execute` — execute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product.",
+        "operationId": "execute_product",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing func:execute scope"
+          },
+          "404": {
+            "description": "No active module for the product"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:execute": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}": {
+      "get": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`GET /v1/modules/{id}`\nFetch it.",
+        "operationId": "module.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Module metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleRecord"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Module not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:read": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`DELETE /v1/modules/{id}`\nDelete it.",
+        "operationId": "module.delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Module deleted"
+          },
+          "403": {
+            "description": "Missing func:write scope"
+          },
+          "404": {
+            "description": "Module not found or is active"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}/activate": {
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules/{id}/activate`\nHandle activate.",
+        "operationId": "module.activate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Module activated"
+          },
+          "403": {
+            "description": "Missing func:write scope"
+          },
+          "404": {
+            "description": "Module not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}/delete": {
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules/{id}/delete` — RFW alias of `DELETE /v1/modules/{id}`.",
+        "operationId": "module_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Module deleted (same contract as DELETE /v1/modules/{id})"
+          },
+          "401": {
+            "description": "Caller authentication failed"
+          },
+          "403": {
+            "description": "Missing func:write scope"
+          },
+          "404": {
+            "description": "Unknown module"
+          },
+          "409": {
+            "description": "Module is ACTIVE — deprecate first"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}/execute": {
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules/{id}/execute`\nExecute it.",
+        "operationId": "module.execute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid module or hook"
+          },
+          "403": {
+            "description": "Missing func:execute scope"
+          },
+          "404": {
+            "description": "Module not found"
+          },
+          "500": {
+            "description": "Execution failure (fuel/timeout/trap)"
+          },
+          "502": {
+            "description": "Proxy-back or Storage failure"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:execute": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}/validate": {
+      "post": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`POST /v1/modules/{id}/validate` — re-validate the stored binary.\nValidate it.",
+        "operationId": "module.validate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Module not found"
+          },
+          "502": {
+            "description": "Binary unavailable in Storage"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:read": []
+          }
+        ]
+      }
+    },
+    "/v1/modules/{id}/wasm": {
+      "get": {
+        "tags": [
+          "func"
+        ],
+        "summary": "`GET /v1/modules/{id}/wasm` — download the raw WASM binary from Storage.\nFetch wasm.",
+        "operationId": "module.download",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Module ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WASM binary",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing func:write scope"
+          },
+          "404": {
+            "description": "Module or binary not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:func:write": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CallbackConfig": {
+        "type": "object",
+        "description": "Callback config for proxy-back host functions (from the execute request).\n\n`host_functions` maps each WASM-imported host-function name to the path\ntemplate on the calling service's internal API (e.g.\n`ledger_get_balance` → `/accounts/{args.0}/balance`). Func resolves these\ndynamically at execute time — it does **not** pre-register any\nservice-specific host functions.\nConfiguration for callback.",
+        "required": [
+          "base_url",
+          "auth_token",
+          "internal_path"
+        ],
+        "properties": {
+          "auth_token": {
+            "type": "string",
+            "description": "The auth token."
+          },
+          "base_url": {
+            "type": "string",
+            "description": "The base URL."
+          },
+          "host_functions": {
+            "type": "object",
+            "description": "The host functions.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "internal_path": {
+            "type": "string",
+            "description": "The internal path."
+          }
+        }
+      },
+      "ExecuteRequest": {
+        "type": "object",
+        "description": "`POST /v1/modules/{id}/execute` request body.\nRequest body for execute.",
+        "required": [
+          "hook",
+          "context"
+        ],
+        "properties": {
+          "callback_config": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CallbackConfig",
+                "description": "The callback config."
+              }
+            ]
+          },
+          "context": {
+            "description": "The context."
+          },
+          "hook": {
+            "type": "string",
+            "description": "The hook."
+          },
+          "idempotency_key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional idempotency key (principles §4.14 — every trigger\ndedupes on the event's key): a replayed execution with the same\nkey returns the cached response instead of re-running the hook.\nThe idempotency key."
+          }
+        }
+      },
+      "ExecuteResponse": {
+        "type": "object",
+        "description": "`POST /v1/modules/{id}/execute` response body.\nResponse payload for execute.",
+        "required": [
+          "result",
+          "reject_reason",
+          "directives",
+          "custom_data",
+          "fuel_used",
+          "duration_ms"
+        ],
+        "properties": {
+          "custom_data": {
+            "description": "The custom data."
+          },
+          "directives": {
+            "description": "The directives."
+          },
+          "duration_ms": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The duration ms.",
+            "minimum": 0
+          },
+          "fuel_used": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The fuel used.",
+            "minimum": 0
+          },
+          "reject_reason": {
+            "type": "string",
+            "description": "The reject reason."
+          },
+          "result": {
+            "type": "string",
+            "description": "The result."
+          }
+        }
+      },
+      "ListQuery": {
+        "type": "object",
+        "description": "The listquery type.",
+        "properties": {
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The domain."
+          },
+          "product_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "product identifier."
+          }
+        }
+      },
+      "ModuleRecord": {
+        "type": "object",
+        "description": "Persisted module record.",
+        "required": [
+          "id",
+          "domain",
+          "product_id",
+          "version_label",
+          "wasm_hash",
+          "wasm_size",
+          "wasm_language",
+          "hooks",
+          "parameters",
+          "status",
+          "env_id",
+          "created_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "created time."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The description."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "hooks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The hooks."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "parameters": {
+            "description": "The parameters."
+          },
+          "product_id": {
+            "type": "string",
+            "description": "product identifier."
+          },
+          "sentin8_storage_object_key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sentin8 storage object key."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "version_label": {
+            "type": "string",
+            "description": "The version label."
+          },
+          "wasm_hash": {
+            "type": "string",
+            "description": "The wasm hash."
+          },
+          "wasm_language": {
+            "type": "string",
+            "description": "The wasm language."
+          },
+          "wasm_size": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The wasm size."
+          }
+        }
+      },
+      "UploadRequest": {
+        "type": "object",
+        "description": "Request body for upload.",
+        "required": [
+          "domain",
+          "product_id",
+          "version_label",
+          "wasm_binary",
+          "wasm_language"
+        ],
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The description."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "hooks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The hooks."
+          },
+          "parameters": {
+            "description": "The parameters."
+          },
+          "product_id": {
+            "type": "string",
+            "description": "product identifier."
+          },
+          "version_label": {
+            "type": "string",
+            "description": "The version label."
+          },
+          "wasm_binary": {
+            "type": "string",
+            "description": "base64-encoded WASM binary.\nThe wasm binary."
+          },
+          "wasm_hash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional client-provided hash (`sha256:hex…`); verified server-side.\nThe wasm hash."
+          },
+          "wasm_language": {
+            "type": "string",
+            "description": "The wasm language."
+          }
+        }
+      },
+      "ValidateResponse": {
+        "type": "object",
+        "description": "Response payload for validate.",
+        "required": [
+          "valid",
+          "errors",
+          "exports"
+        ],
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The errors."
+          },
+          "exports": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The exports."
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "The valid."
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "func",
+      "description": "Sentin8:Func admin API — WASM module management + execution"
+    }
+  ]
+}

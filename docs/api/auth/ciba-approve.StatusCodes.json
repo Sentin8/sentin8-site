@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Approval recorded (the approving user is the SESSION's user)","content":{"application/json":{"schema":{}}}},"400":{"description":"Unknown auth_req_id"},"401":{"description":"No session — approval requires an authenticated user"}}}

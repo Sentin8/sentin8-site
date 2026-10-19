@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Session revoked"},"403":{"description":"Missing X-Sentin8-CSRF header for a cookie-authenticated call"}}}

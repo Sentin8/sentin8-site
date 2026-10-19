@@ -1,0 +1,1 @@
+{"responses":{"201":{"description":"API key created (includes plaintext key)"},"400":{"description":"name is required"},"403":{"description":"Missing auth:admin scope"}}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Liveness (version, build, active connections)","content":{"application/json":{"schema":{}}}}}}

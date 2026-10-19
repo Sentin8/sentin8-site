@@ -1,0 +1,1 @@
+{"parameters":[{"name":"hostname","in":"query","description":"BFF or frontend hostname","required":false,"schema":{"type":"string"}},{"name":"app_id","in":"query","description":"App instance ID","required":false,"schema":{"type":"string"}}]}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Client deleted (same contract as DELETE /v1/admin/oauth-clients/{id})"},"403":{"description":"Caller lacks the admin write scope"},"404":{"description":"Unknown client"}}}

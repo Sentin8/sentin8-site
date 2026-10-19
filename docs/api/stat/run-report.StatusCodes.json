@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The report's result rows","content":{"application/json":{"schema":{}}}},"403":{"description":"Missing stat:data:read scope"},"404":{"description":"Unknown report"}}}

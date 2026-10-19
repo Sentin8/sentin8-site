@@ -1,0 +1,73 @@
+---
+id: traffic
+title: "`GET /v1/data/traffic` — TLS inter-service traffic matrix."
+description: "Returns per-`(from_service, to_service)` summary rows (count, average"
+sidebar_label: "`GET /v1/data/traffic` — TLS inter-service traffic matrix."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVdtu20YQ/ZXBvNQu1pKc9qHgm4EGqYEaLWzlyRaiMXdEbkPuMjtDOYRAIB/RL+yXFKOL40uaAk7fqhdK3Nk9Z8+cOdqgUiVYXKMnJVw49CxlDp2GFLHAS9Y+R4GO88nyaJVT+044r0PJDjQdvh8vQfq2pTxATncCR2XqozqgNWeq+CY2pBzLwQHnnLIcA1VV5oqUPdihoDXDUhuZaKbVKpST75fQsuZQCmhNehPnv17BqumlZgFecx7gdAbCZYpeJvBW2MPtAD+T1N8JLC92e+d02/AS7oKvWG/iKmWQQZTbacrVlOP6ADK5ib9Q9A3DgQA6TB1nMiHOPRa4X0CHHWVqWTmbcBuM1DIW2GWr1+Fd8OgwmHodaY1PJT3UQfAcNawCZwPL/KEPmT0Wmnt2KGXNLWGxQR06tg6J5hArdBj7prFWrVJuSbHAvg8ex9HdczFNv0piXvNW+G9F9qT8CFnTv+Jq+o9QF3aKdCkKi218NZvZ4wnirm17gwYWdFimqBzViqnrmlBuuzz9Q2zH5hkVpJxpsHspt4Y02sfhj7MfnuNdBJEQKxAlLWyoiszkQcrUbZVC4bLPQYetd8QsEH8qHldjcb2w27WsdTLvVaxb32mNBU7Xp1MrnX52ZIirtOUbtDHC+2NP7NhnPbjaLcL+WVwpKfz16U+gSM2goZSpcsM2GQOEWLGog+0lzn4/FwcUPXB7y96zhy503ITIcJfy+52Tm1ByFDY+e1NcnM/ht0s466is+eTVZGaU793/xYLR4Zqz7BjPJqe7V10SbSk+OHr55vUcniqy3F7HEiNE5Xyyj6nDbENLmsPHyVNlNp+N8f8Ovr3tlT/qtGsoRNO+z41JtDPhNa5PTT7703D30bhwWCdRW95sbkn4bW7G0V5/6Dmb4xcO15SDsdv63wex7x6LFTXCX2nI0eU+MI7hHxL0i6wPExxtftfU9PYLHb7n4UlmW4i9iM7DLH0Bh21WfxP4LlBfAK0Jx8XosGbyNofXm/3CWVlypw+2PIvJR/H05vUcx/FvbMPbtQ==
+sidebar_class_name: "get api-method"
+info_path: docs/api/stat/sentin-8-stat
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/data/traffic` — TLS inter-service traffic matrix."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/data/traffic"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns per-`(from_service, to_service)` summary rows (count, average
+latency, errors) aggregated from the `tls.traffic.*` metrics that
+TLS flushes every 10 seconds. Used by Dash's `MetricsTable` widget
+for system/org/env metrics.
+Handle traffic.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./traffic.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./traffic.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./traffic.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

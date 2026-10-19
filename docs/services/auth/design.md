@@ -263,6 +263,31 @@ stateDiagram-v2
 | security | `/v1/security-profile`, `/v1/admin/security` | admin bearer |
 | webhooks | `/v1/admin/webhooks/{endpoints,outbox,attempts}` | Shield |
 | health | `/v1/health` | none |
+| MFA / passkey | `/v1/mfa/*`, `/v1/passkey/*` | bearer / session (+ rate limits) |
+| recovery | `/v1/password/reset(+confirm)`, `/v1/email/verify(+confirm)` | none (enumeration-safe, token-gated confirm) |
+| app passwords | `/v1/me/app-passwords` | self service (session/bearer) |
+| CIBA | `/oauth/bc-authorize`, `/v1/ciba/*` | client auth on bc-authorize; session on approve/assisted |
+| grants (FAPI 2.0 GM) | `/oauth/grants(/{id})` | user or admin per action |
+| policy (Shield) | `/v1/admin/policy-sets(/{name})`, `/v1/admin/{relations,attributes}` | shield admin gate (`sentin8:admin`) |
+| internal | `POST /v1/internal/keys/rotate` | admin (route-guard backstop) |
+
+**OpenAPI spec.** The single source of truth for the served surface is the
+`#[utoipa::path]` annotations on the handlers + the `#[openapi(paths(...))]`
+list in `src/openapi.rs`; `docs/openapi.json` is the dumped artifact via
+`--print-registration --section=openapi` (regenerated from the binary, never
+hand-edited) and renders each service site's API reference page (sites
+design §4.2). The generic Shield handlers cannot be pathed directly
+(utoipa 5.5 resolves paths to non-generic `__path_` structs), so the inline
+policy mount binds the annotated wrappers in `src/policy_docs.rs` and the
+RFW POST-aliases bind `src/rfw_aliases.rs` (same operations, alias paths,
+annotated per OAPEC design §2 rule 3).
+
+**Drift guard.** `tests/openapi_drift.rs` asserts BOTH directions - every
+served route appears in the compiled spec and every spec pair is served -
+via the shared shell helper (`sentin8::shell::drift_guard`, router
+introspection without HTTP round-trips; SPA fallback + `/openapi.json`
+exempt per OAPEC §2 rule 8). A route added without an annotation fails the
+test before the site pages can trail the routers.
 
 **Event flow (outbox → Bus):**
 
@@ -596,10 +621,12 @@ under the env it carries.
 graph TD
     U["In-module unit tests (26 modules)<br/>DPoP/JAR/JARM/mTLS/SD-JWT/webhook-HMAC/<br/>MFA roundtrip/JWKS dual-keyset/bot protection"]
     I1["integration.rs (21)<br/>flows, tenant isolation, admin gates,<br/>consent, DCR cert gate"]
+    OG["openapi_drift.rs (2)<br/>router ↔ spec drift guard<br/>(OAPEC §3, both directions)"]
     I2["conformance.rs (11)<br/>PAR single-use, rotation replay,<br/>DPoP/PKCE replay, CSRF"]
     I3["conformance_profiles + sec_auth2 +<br/>publisher_exchange (17)<br/>profile overrides, forged tokens,<br/>act chains"]
     E["E2E - browser auth flows via BFF"]
     U --> I1 & I2 & I3
+    OG -.fails CI on any unannotated route.-> I1
     I1 --> E
 ```
 

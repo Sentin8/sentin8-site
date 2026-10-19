@@ -1,0 +1,1934 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-app",
+    "description": "Sentin8 Sentin8:App — third-party app store, instance management.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/instances/uninstall": {
+      "post": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`POST /v1/admin/instances/uninstall` — uninstall an app instance.\nBody: `{ \"instance_id\": \"uuid\" }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced).",
+        "operationId": "uninstall_instance",
+        "parameters": [
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Instance uninstalled (RLS-own check enforced)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks an app admin scope"
+          },
+          "404": {
+            "description": "Unknown instance"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/ui/{page}` — RFW page definition for the requested page.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks an app read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks an app read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:read": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/admin/instances/{id}` — instance admin detail.",
+        "operationId": "instance.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instance detail"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/domain": {
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`PUT /v1/app/admin/instances/{id}/domain` — update custom domain (with DNS TXT validation).",
+        "operationId": "instance.domain",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDomainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Domain updated"
+          },
+          "400": {
+            "description": "Invalid custom_domain"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/env-vars": {
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`PUT /v1/app/admin/instances/{id}/env-vars` — update env var secret references.",
+        "operationId": "instance.env-vars",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnvVarsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Env vars reference updated"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/env-vars/resolve": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/admin/instances/{id}/env-vars/resolve` — resolve the\ninstance's stored env-vars secret reference through the shared\n`sentin8-secrets` resolver chain ( story 34.2.5). Returns the\nresolved value once; never logged. Requires the instances:admin scope.",
+        "operationId": "instance.env-vars.resolve",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resolved env vars value"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found or reference unset/unresolvable"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/feature-flags": {
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`PUT /v1/app/admin/instances/{id}/feature-flags` — update feature flags.",
+        "operationId": "instance.feature-flags",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFeatureFlagsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Feature flags updated"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/oauth-client": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/admin/instances/{id}/oauth-client` — get OAuth client (DCR summary).",
+        "operationId": "instance.oauth",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OAuth client summary"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/admin/instances/{id}/status": {
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`PUT /v1/app/admin/instances/{id}/status` — update instance status.",
+        "operationId": "instance.status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status updated"
+          },
+          "400": {
+            "description": "Invalid status"
+          },
+          "403": {
+            "description": "Missing app:instances:admin scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/instances/customer-mode": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`).",
+        "description": "M2M-only service surface: the sign-up closure provisioning (Sentin8:\nAuth) calls this with its own workload token to learn which\n`sentin8:app:{instance_id}` groups a new customer should join.\n\nAuthorization (fail-closed, three gates):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — this is a\n   service-to-service discovery surface, never a user surface.\n2. Shield gate on `sentin8:app:instances:read`.\n3. Owner scoping: the caller's `service_type` claim must resolve to\n   an instance of THIS app service's own domain — answered only for\n   envs in an org where app is enabled; the query itself stays\n   env-scoped so a foreign env is an indistinguishable empty result\n   (no tenant-existence oracle).",
+        "operationId": "instances.customerMode",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "query",
+            "description": "Target environment id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer-mode instances in the env",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Missing env_id"
+          },
+          "403": {
+            "description": "Missing app:instances:read scope or non-M2M token"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:read": []
+          }
+        ]
+      }
+    },
+    "/v1/app/runtime/context": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Stories , , -34 — `GET /v1/app/runtime/context`.",
+        "description": "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header\n(no per-listing API key, no hostname-based resolution). The response includes\ninstance metadata, the organization display name, and merged org→env branding\nfrom `sentin8_sys_branding` so apps can apply tenant branding without a separate call.",
+        "operationId": "runtime_context",
+        "responses": {
+          "200": {
+            "description": "Runtime context for the TLS-identified app (instance metadata, org name, merged branding)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "No X-Sentin8-App-Id header / unknown instance"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/app/setup": {
+      "post": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`POST /v1/app/setup` — create an app instance (atomic).",
+        "operationId": "setup.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Instance created (RFW redirect)"
+          },
+          "403": {
+            "description": "Missing app:instances:write scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:write": []
+          }
+        ]
+      }
+    },
+    "/v1/app/setup/{id}/status": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/setup/{instanceId}/status` — provisioning status.",
+        "operationId": "setup.status",
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provisioning status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetupResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing app:instances:read scope"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:instances:read": []
+          }
+        ]
+      }
+    },
+    "/v1/app/store/listings": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "List published store listings visible to the caller (RLS-scoped).\n`?category=` filters to listings carrying that category (APP-3).",
+        "operationId": "store.list",
+        "responses": {
+          "200": {
+            "description": "List of published listings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StoreListingResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing app:store:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:store:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`POST /v1/app/store/listings` — create a store listing.",
+        "description": "Epic 15.5.5: populates `usr_id` from the token `sub` (the creator).\nVisibility is immutable after `status = 'published'` (enforced in\n`update_listing`).",
+        "operationId": "store.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateListingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listing created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreListingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid visibility or roles"
+          },
+          "403": {
+            "description": "Missing app:store:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:store:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app/store/listings/{id}": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`GET /v1/app/store/listings/{id}` — listing detail.",
+        "description": "Epic 15.5.5: visibility is enforced by RLS — if the row is not visible\nto the caller, the SELECT returns zero rows and we 404. No manual\nvisibility check in the service layer.",
+        "operationId": "store.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Listing ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listing detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreListingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing app:store:read scope"
+          },
+          "404": {
+            "description": "Listing not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:store:read": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`PUT /v1/app/store/listings/{id}` — update a listing (catalog admin).",
+        "operationId": "store.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Listing ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateListingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listing updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreListingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status, visibility, or roles"
+          },
+          "403": {
+            "description": "Missing app:store:admin scope"
+          },
+          "404": {
+            "description": "Listing not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:store:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Story — `DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).\nSets `status = 'archived'` so the listing is hidden from the public store but retained for audit.\n`DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).",
+        "operationId": "store.archive",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Listing ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listing archived"
+          },
+          "403": {
+            "description": "Missing app:store:admin scope"
+          },
+          "404": {
+            "description": "Listing not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:app:store:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "`GET /v1/health` — liveness probe.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Liveness (version, build, active connections)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/internal/steps/execute": {
+      "post": {
+        "tags": [
+          "app"
+        ],
+        "summary": "`POST /v1/internal/steps/execute` — App step handler called by Flow (proxy-back).",
+        "operationId": "execute_internal_step",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StepExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Step executed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StepExecuteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid step"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateListingRequest": {
+        "type": "object",
+        "description": "Request to create a store listing.",
+        "required": [
+          "app_name",
+          "app_slug"
+        ],
+        "properties": {
+          "app_name": {
+            "type": "string",
+            "description": "App display name."
+          },
+          "app_slug": {
+            "type": "string",
+            "description": "URL-safe app slug."
+          },
+          "backend_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Backend URL metadata from the app developer."
+          },
+          "categories": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Category slugs (APP-3): replaces this listing's category rows."
+          },
+          "channel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Release channel (APP-4): `stable|beta|dev`. Optional, default\n`stable`."
+          },
+          "default_signup_role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Role name auto-assigned to a new env-realm user at sign-up.\nMust match one of the names in `roles`. Optional."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Human description."
+          },
+          "media": {
+            "description": "Media entries (APP-3): typed by-reference descriptors —\n`{role, resolution, storage_key}`; bytes live in Sentin8:Storage."
+          },
+          "oauth_defaults": {
+            "description": "OAuth defaults advertised at install."
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListingRole"
+            },
+            "description": "App-declared security roles. Provisioned in `sentin8_auth_roles` on\ninstall. Optional at create-time; can be added later via update."
+          },
+          "supports_dcr": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Whether the app supports OAuth DCR."
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Release version of this listing row (APP-4). Optional, default\n`0.0.0`."
+          },
+          "visibility": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Visibility: \"public\" (default), \"env\", or \"usr\" (Epic 15.5)."
+          }
+        }
+      },
+      "CustomerModeQuery": {
+        "type": "object",
+        "description": "Query parameters for the customer-mode instance discovery surface\n(auth DESIGN invariant 12): the env to enumerate is explicit — never\nderived from the caller's token env, since the calling M2M workload\nauthenticates in the SYSTEM env.",
+        "required": [
+          "env_id"
+        ],
+        "properties": {
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Environment to enumerate customer-mode instances in."
+          }
+        }
+      },
+      "ListingRole": {
+        "type": "object",
+        "description": "App-declared security role (Story: app-declared scopes + roles).\n\nEach app listing may declare the named security roles it wants to use\nin the target org/env, plus the scope set each role grants. The scopes\nare stored as `sentin8_auth_roles.permissions` at install time and end up in\nthe JWT via the existing `fetch_role_scopes` recursive CTE. The app\nalso typically adds one or more role-specific scopes (e.g. `ebank:admin`)\nso the frontend can gate role-based UI purely from the JWT scope list.\n\nConventions:\n* `name` must be unique per `(org_id, env_id)`. Use a stable app\n  prefix (e.g. `ebank-admin`, `efintech-teller`) to avoid clashing\n  with other apps in the same org/env.\n* `default_signup_role` is a separate listing-level field (not part\n  of the role object). The install flow + the env-realm sign-up path\n  consult it to decide which role to auto-assign a new user to.",
+        "required": [
+          "name",
+          "scopes"
+        ],
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Human description."
+          },
+          "includes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Names of other roles in the same listing whose scopes should be\nmerged into this role's permissions at install time. Lets a\nrole \"include\" another role's permissions without the app\nhaving to redeclare every scope (e.g. `ebank-teller` can\n`includes: [\"ebank-customer\"]` and inherit the customer\nscopes plus its own additions).\n\nResolution happens server-side at install:\n`effective_scopes = own.scopes ∪ included.scopes`. Cycles\nand missing references are rejected at install with a\n400. No DB schema change — `sentin8_auth_roles` only stores the\nresolved permission set, not the include graph."
+          },
+          "name": {
+            "type": "string",
+            "description": "Role name — unique per `(org_id, env_id)`, stable app prefix\nrecommended."
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Scopes (a.k.a. permissions) the role grants to its members. Stored\nin `sentin8_auth_roles.permissions` (TEXT[])."
+          }
+        }
+      },
+      "SetupRequest": {
+        "type": "object",
+        "description": "Request to set up an app instance from a listing.",
+        "required": [
+          "listing_id"
+        ],
+        "properties": {
+          "allow_signup": {
+            "type": "boolean",
+            "description": "When true, public sign-up is visible. When false, only SSO\nis available. Defaults to true."
+          },
+          "auth_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Auth URL selected from the org's env Auth servers dropdown.\nStored as `auth_domain` on the app instance (hostname only,\nscheme stripped). Used for OIDC sign-in."
+          },
+          "channel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Release channel to install from (APP-4). Defaults to `stable`;\nresolves the newest published version for the listing's slug on\nthis channel."
+          },
+          "custom_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Custom domain to bind (verified via DNS TXT)."
+          },
+          "instance_description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Instance description."
+          },
+          "instance_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Instance display name."
+          },
+          "listing_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The listing being installed."
+          }
+        }
+      },
+      "SetupResponse": {
+        "type": "object",
+        "description": "The created instance summary.",
+        "required": [
+          "instance_id",
+          "hostname",
+          "status"
+        ],
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "The derived hostname for the instance."
+          },
+          "instance_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Instance id."
+          },
+          "status": {
+            "type": "string",
+            "description": "Initial lifecycle status."
+          }
+        }
+      },
+      "StepExecuteRequest": {
+        "type": "object",
+        "description": "A step execution request from Flow (proxy-back).",
+        "required": [
+          "workflow_id",
+          "step_name",
+          "step_kind"
+        ],
+        "properties": {
+          "config": {
+            "description": "The step configuration (free-form JSON)."
+          },
+          "input": {
+            "description": "The workflow input / step input payload."
+          },
+          "step_kind": {
+            "type": "string",
+            "description": "The step kind (one of the `STEP_*` constants)."
+          },
+          "step_name": {
+            "type": "string",
+            "description": "The step name being executed."
+          },
+          "workflow_id": {
+            "type": "string",
+            "description": "The workflow ID the step belongs to."
+          }
+        }
+      },
+      "StepExecuteResponse": {
+        "type": "object",
+        "description": "The result of executing a step.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Error message when `status == \"failed\"`."
+          },
+          "output": {
+            "description": "Free-form output payload."
+          },
+          "status": {
+            "type": "string",
+            "description": "`completed` when the step finished synchronously, `paused` when it\ndelegates to a manual decision (e.g. `ApprovalReviewStep`)."
+          }
+        }
+      },
+      "StoreListingResponse": {
+        "type": "object",
+        "description": "A store listing as returned by the public store API.",
+        "required": [
+          "id",
+          "app_name",
+          "app_slug",
+          "status",
+          "supports_dcr",
+          "visibility",
+          "usr_id",
+          "created_by",
+          "created_at",
+          "roles",
+          "version",
+          "channel"
+        ],
+        "properties": {
+          "app_name": {
+            "type": "string",
+            "description": "App display name."
+          },
+          "app_slug": {
+            "type": "string",
+            "description": "URL-safe app slug."
+          },
+          "channel": {
+            "type": "string",
+            "description": "Release channel (APP-4): `stable|beta|dev`."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation time (UTC)."
+          },
+          "created_by": {
+            "type": "string",
+            "description": "Creating user."
+          },
+          "default_signup_role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Role name auto-assigned to a new env-realm user at sign-up.\nMust be one of the names in `roles`. Null = no auto-assignment."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Human description."
+          },
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Owning environment when env-scoped."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Listing id."
+          },
+          "media": {
+            "description": "Media entries (APP-3): typed by-reference descriptors\n`{role, resolution, storage_key}`; bytes live in Sentin8:Storage."
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListingRole"
+            },
+            "description": "App-declared security roles (provisioned in `sentin8_auth_roles` on\ninstall). Each role carries its own scope set."
+          },
+          "status": {
+            "type": "string",
+            "description": "Lifecycle status."
+          },
+          "supports_dcr": {
+            "type": "boolean",
+            "description": "Whether the app supports OAuth DCR."
+          },
+          "usr_id": {
+            "type": "string",
+            "description": "Owning user (Auth subject id)."
+          },
+          "version": {
+            "type": "string",
+            "description": "Release version of this listing row (APP-4; default `0.0.0`)."
+          },
+          "visibility": {
+            "type": "string",
+            "description": "Visibility tier (`usr`/`env`/`public`)."
+          }
+        }
+      },
+      "UpdateDomainRequest": {
+        "type": "object",
+        "description": "`PUT /v1/app/admin/instances/{id}/domain` — update custom domain (with DNS TXT validation).",
+        "required": [
+          "custom_domain"
+        ],
+        "properties": {
+          "cname_target": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "APP-5 (CNAME challenge): the resolved target of\n`{token}.verify.{domain}` as retrieved by the caller's DNS lookup.\nPass together with `cname_token`; wins over `txt_record` when both\nare present."
+          },
+          "cname_token": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "APP-5: the challenge token previously generated for this domain\n(`sentin8-verify-<32-hex>`)."
+          },
+          "custom_domain": {
+            "type": "string",
+            "description": "The custom domain to bind (verified via DNS TXT or CNAME)."
+          },
+          "txt_record": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The DNS TXT record value retrieved by App from the customer's DNS."
+          }
+        }
+      },
+      "UpdateEnvVarsRequest": {
+        "type": "object",
+        "description": "`PUT /v1/app/admin/instances/{id}/env-vars` — update env var secret references.",
+        "required": [
+          "env_vars_ref"
+        ],
+        "properties": {
+          "env_vars_ref": {
+            "type": "string",
+            "description": "Secret reference path (e.g. `sentin8-secrets://app/{id}/env`)."
+          }
+        }
+      },
+      "UpdateFeatureFlagsRequest": {
+        "type": "object",
+        "description": "`PUT /v1/app/admin/instances/{id}/feature-flags` — update feature flags.\nRequest to update an instance's feature flags.",
+        "required": [
+          "feature_flags"
+        ],
+        "properties": {
+          "feature_flags": {
+            "description": "The full feature-flag map (replaces the stored value)."
+          }
+        }
+      },
+      "UpdateListingRequest": {
+        "type": "object",
+        "description": "Story — `PUT /v1/app/store/listings/{id}` — update a listing (catalog admin).\nRequest to update a store listing (all fields optional).",
+        "properties": {
+          "app_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New app name, when changing it."
+          },
+          "app_slug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New slug, when changing it."
+          },
+          "backend_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New backend URL, when changing it."
+          },
+          "categories": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Category slugs (APP-3): replaces this listing's category rows when\nsupplied (pass `[]` to clear)."
+          },
+          "default_signup_role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Role name auto-assigned to a new env-realm user at sign-up.\nPass `null` to clear, or omit to keep the current value."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New description, when changing it."
+          },
+          "media": {
+            "description": "Media entries (APP-3): replaces the current media JSONB when\nsupplied."
+          },
+          "oauth_defaults": {
+            "description": "New OAuth defaults, when changing them."
+          },
+          "roles": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ListingRole"
+            },
+            "description": "App-declared security roles. Replaces the current list when\nsupplied. Provisioned in `sentin8_auth_roles` on subsequent installs.\nPass `[]` to clear."
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "New lifecycle status, when transitioning it."
+          },
+          "supports_dcr": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "New DCR support flag, when changing it."
+          },
+          "visibility": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Visibility: \"env\", \"usr\", or \"public\". If omitted, keeps current value."
+          }
+        }
+      },
+      "UpdateStatusRequest": {
+        "type": "object",
+        "description": "`PUT /v1/app/admin/instances/{id}/status` — update instance status (active/maintenance/offline).\nRequest to update an instance's lifecycle status.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "New status (`active`/`maintenance`/`offline`)."
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "app",
+      "description": "Sentin8:App — app store, instance management, setup"
+    }
+  ]
+}

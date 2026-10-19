@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for patchgrant.","required":["scope"],"properties":{"authorization_details":{"description":"The authorization details."},"scope":{"type":"string","description":"The scope."}},"title":"PatchGrantRequest"}}},"required":true}}

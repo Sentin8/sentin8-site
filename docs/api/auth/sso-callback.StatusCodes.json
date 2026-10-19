@@ -1,0 +1,1 @@
+{"responses":{"302":{"description":"Redirect into the app with the issued platform session (code exchanged, user upserted)"},"400":{"description":"State mismatch or connection inactive"},"502":{"description":"IdP returned an error or token exchange failed"}}}

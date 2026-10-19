@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Query result rows","content":{"application/json":{"schema":{}}}},"400":{"description":"Invalid query"},"403":{"description":"Missing stat:data:read scope"}}}

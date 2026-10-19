@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Object uploaded"},"403":{"description":"Missing storage scope"}}}

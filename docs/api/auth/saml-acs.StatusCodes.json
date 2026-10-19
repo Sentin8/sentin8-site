@@ -1,0 +1,1 @@
+{"responses":{"302":{"description":"Redirect into the app with the issued platform session"},"400":{"description":"Malformed/invalid SAML response"},"404":{"description":"Unknown or non-SAML connection"}}}

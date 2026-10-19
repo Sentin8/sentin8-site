@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Readiness (PG reachable + writer workers)","content":{"application/json":{"schema":{}}}},"503":{"description":"Not ready"}}}

@@ -1,0 +1,75 @@
+---
+id: ai-dlq-replay
+title: "`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron
+republish pattern: re-insert the pending job, delete the DLQ row, emit
+the republished event inbox-first)."
+description: "`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron"
+sidebar_label: "`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron
+republish pattern: re-insert the pending job, delete the DLQ row, emit
+the republished event inbox-first)."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVMFu2zAM/RWBpxZwkrbYYdCtQC8ZNnRru1MatIzFxNxkWZHotEZgYB+xL9yXDHSyLi2C3XcSQImPfO+R2oLgKoOdATLMC2giJRRuwtSBBeSx8+txouixgwIiJqxJKGnGFgLWBBbYQQEcwEJEqaCAROuWEzmwkloqIJcV1Qh2C9JFzciSOKyggGWTahSw0LbsoO+LF1DBtCJ5oLB5+Iu/bil1rwos0ed/VOj7ub7OsQmZst5fnL3Tw1EuE0dlChY+NAuTaERh3VJLQyOQqWwTSzcwzRSEw3uLbGNq6ij2KbEQ2NlcK7xGe/x8fXtnJpvzifPryZZdP9kp+Gh+/fh5UMigcYRu5EmEEjnzrVmYkzI14T4kiu3Cc65MRL0NVhM5ZEpipCITKTgOK80pjCNPQkP86uMXk5qnwlDNch809IJFztCGghgOi+Z5tOSU5XQMBdQkVaOOxybLYLRUYOEIh8GKZTNIzeIHrXfijJDhrRS3uyuzP+3ldJAgehS13lxOTYkRF+xZOuOxo6TteC4pZNIi+3H4NL0z1zfmMmJZ0ehifKZ9OEVdMqWjD/oCNpTyrpGz8fkupARrDAfQ/6Fdr0R+mXmhZ5lEjxyUaJu83u2cnMHmXPP8Ggqww0Lt7ZwXUKnndgbb7QIzfU2+7zW8WzadfscZF/5g3b5Td2RFN+hb7QN0JTaYWJOOA7whUDZBKOg/cHKzX+1TA8VxYvsghu6w5p+m9BuZ9wcTre5C3/8G2a+t0w==
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron\nrepublish pattern: re-insert the pending job, delete the DLQ row, emit\nthe republished event inbox-first)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/dlq/{id}/replay"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron
+republish pattern: re-insert the pending job, delete the DLQ row, emit
+the republished event inbox-first).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ai-dlq-replay.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-dlq-replay.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-dlq-replay.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

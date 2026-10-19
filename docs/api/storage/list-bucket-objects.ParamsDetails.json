@@ -1,0 +1,1 @@
+{"parameters":[{"name":"bucket","in":"query","description":"Bucket name","required":true,"schema":{"type":"string"}},{"name":"target_env_id","in":"query","description":"Target env (RLS context)","required":true,"schema":{"type":"string"}}]}

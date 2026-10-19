@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"List of streams"},"403":{"description":"Missing bus:consume scope"}}}

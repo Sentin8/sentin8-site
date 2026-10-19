@@ -1,0 +1,70 @@
+---
+id: ciba-approve
+title: "`POST /v1/ciba/approve` — user approves or denies from their device."
+description: "SEC- — the approving user is the **session's** user; the"
+sidebar_label: "`POST /v1/ciba/approve` — user approves or denies from their device."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVcFu2zgQ/RViLm0DRU6KHgrtyU2zWG+xdRGn2IMdxJQ4ltjQQ4Wk7BqGgP2I/cL9ksVQcuXE7WLP1UXEcIacee/NcA9Blh6yORQ6l3CXgEJfOF0HbQkymF1fnYt//vpbhAqFrGtnN5pK0Xh0QvtoPTvz6L229MKfncWdX9i+oCWv77VaipVGo4Sm6J9bteNYXZJ1qFLxgezWoCpR2JWQJJayCdW9w0eOXZA0llAUkgRZYSyV6ESuSbGrdLkOTrpdl1GwQoqrybuxcPjYoA/pgn6TpAx21q4ATCEBW6OTXOREQRaLv+93IYE++p1VO8j2UFgKSIGXsq6NLmLg6ItniPbgiwrXkldhVyNkYPMvWAR4juVRCtIcMhQvV86uIzBcwgsvFBa2qQ0qoXCjC3yVLmhBtz/E/xv6PfYD7KMFLa0ru7VYIm3i8pgH6fBAhHj5gHUQ0guDpSx2YqsddtT5Ba2s6wyFXdcy6FwbHdgnVJ02mlAhBcbGOs6U077pa4xX8QmM8wGBtAdaO1QswCPWIYGeDMWSrB2zFTT6noJuZwA8t9agpBPEB9BQpdAmT+4Ywn1wmsqTaHZmmoRWXNlKo0uhbRMIOhiOu9K5HPfV9KVCyw5DWcE1GA2+tuS7Al5fXPDv6WXjQReFdYrp+HHLza5ns8n0Y0/5K0j+t0TbmN+b72XwmR7IbkkcYxR9L099P9qD7OJweCJq7dDH3hwUgSomGsHzWDROhx1k87sE1hgqyx1YW88dU8tQQQajzeWItTIaepJLuRn68vqrXNfMwrEgGO1nJB/IbRPQtLKR9Z4+z9nR23P2PyF/1m2K/p+NWQxcayeGsEvElG2j6eT91ejX8adJcoDEJ+L3Pz/MIgCWS2WlG10g+ZgvyTVf/8fkVkxvxLiWRYXnr9MLSGBQ2ncd2gQ26HyX4UV62ZkYurWko6OXn6azW/EcxGXMP+qot3hhnVBIGr04jCHt+rmTPsfkaBD+vO9CPxICfg2j2khNjHDjDJffiXMOm0vuOH4vv80pHlMVSzibw36fS4+fnWlbNj826Hq1b6TTMmfxze/aBCqUipme7+EBdzxQOnzPbzkJdjcNJ3PS0W1yiBgXBdbhP32Pu4x1AQnk/cO2topjnNzyLJZbyCA+jRwdR1W07cFIKhtZsm93Jn//Aifj4Ms=
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/ciba/approve` — user approves or denies from their device."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/ciba/approve"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+SEC- — the approving user is the **session's** user; the
+`user_id` field in the body is ignored. Knowledge of an `auth_req_id`
+alone can no longer bind an arbitrary user to a CIBA request.
+Handle CIBA approve.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ciba-approve.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ciba-approve.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Session terminated"},"403":{"description":"Missing auth:admin scope"},"404":{"description":"session not found"}}}

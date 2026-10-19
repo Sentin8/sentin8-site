@@ -1,0 +1,78 @@
+---
+id: object-head
+title: "`HEAD /v1/storage/objects/{path}` — existence + size probe without
+reading the payload (the dedup fast path every
+content-addressed vertical uses before writing).
+Handle head object."
+description: "`HEAD /v1/storage/objects/{path}` — existence + size probe without"
+sidebar_label: "`HEAD /v1/storage/objects/{path}` — existence + size probe without
+reading the payload (the dedup fast path every
+content-addressed vertical uses before writing).
+Handle head object."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVNtuEzEQ/RVrnqjYJmnpA/JbBUitRFWphac2os56dtewsV3PbNoQrcRH8IV8CZpdE9I2fABPvsx4LucczwbY1AT6BohDMjXCvIAQMRl2wZ9b0BAWX7HkSYPGQgHRJLNExiSPNuDNErc+X6LhBgpwHjTkvUUqk4sSDTRcDn4q2xLedy6hBc2pwwKobHBpQG+A11HCEifna+j7uThTDJ6QxH48m8myNzg+OmJSv378VO+CZ/R8+BF9zY0iZOgLOJm9efn4whE5X6sMg6IyRBy9T/6ZygdWVei8hb4vgLDskuP1AAyhZ+ff6hxPo1/pJBDqm7m08zTe3dmH0/dqujqaZv/piChNN4JVfze0M3SGvkT1WpH7jiqmsED14LgJHd96iS89cIMqmnUbjFWv5GDRdlFVhkboFa4wrW99meEx1iYkQqtWmNiVplUdIakFViGhekiOna8PJrf+zHjbohItqKwLKGCJ3ASRylYj3ICGve3sKKUfpFKFgXDH7cD4CNvhHzU+B+p6tKu86utMl8Azhp5WrsUtjYKNim1X12bRojLWRNGuVN26Ej2hZM8qvjj/pC6v1Gk0ZYOHx5OZFGglU+Uw7XXoC1hhorG42eRovIqBeGn8Tuj/m+AnHGx/J+MjT2NrnJeeu9SKbeT+BlZHUMBfFnO3UIDenRXzAppALA82m4Uh/Jzavpfr+w6T/KR5ASuTnLA3/CvrSPYWdGVawhe15ZZBw6urPF4O1NOxs7f8fGn8GiRj28kJCviG62fzrZ/3O5IXXqHvfwPXENhz
+sidebar_class_name: "head api-method"
+info_path: docs/api/storage/sentin-8-storage
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"head"}
+  path={"/v1/storage/objects/{object_path}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`HEAD /v1/storage/objects/{path}` — existence + size probe without
+reading the payload (the dedup fast path every
+content-addressed vertical uses before writing).
+Handle head object.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./object-head.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./object-head.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./object-head.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

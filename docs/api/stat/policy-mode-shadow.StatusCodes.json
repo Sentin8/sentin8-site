@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Sets switched to shadow mode"},"403":{"description":"Caller lacks the admin scope"}}}

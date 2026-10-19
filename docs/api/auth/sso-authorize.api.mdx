@@ -1,0 +1,73 @@
+---
+id: sso-authorize
+title: "`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."
+description: "For OIDC connections, generates a state + PKCE pair, stores the SSO"
+sidebar_label: "`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVNtu20YQ/ZXBvNRGN7qkCVDwTXCcRI0NGZaNPthCsiFH5iLULLMzlKMKBPoR/cJ+STGUHMlWmvxAngjOzvWcmbNG9XeC2Q2KRJw5LEjyFGoNkTHD1zHBZPzqBPLITLlZxcEdMSWvJOBB1CvBr3Dx7uQUah+SA9GYSEBLgul0cstCIiGyA88FJCpColwFNHYu4+LiFwHfaBlT+IuAuKhjYO2BFZ+Ozs9u+VH1/8kwnU7g+vIMjuiLJp8rFTBPcWEet7wg9YVXD//+/Q/cl8TAUcEvfaj8x4osqTaJBV4Ohse9W37ruagIROKusx46jLUNHiKPC8wMsvdfn9Fh7ZNfkFIyQNfIfkGY4a7596FAh8GArb2W+BTtU1ZKdQpCe3hDF5TocxMSFZhpasih5CUtPGZr1FVtVURT4Dt0OI9p4RUzbJpQYNvOLFjqaDSY/2+D5/Z5XPlyi+kepHDUEb8jxsC9D1p2VDuIacPw6PzsAftjbB2+GAwO85/sxjHgA4PPNSxpsz6bsBeHYdf8ieM9P0GjdfhyMDz07lrZc7VmY6PgoRFj+euKBIaHhcC2dSiUNynoCrObmcMFaRmN3jvSjlQtMcP+ctgXif31Izrb/j7/geexoyRo1XFCrIF/f2Y+B2RPN4+w/WajRstuPUNhFl05mJitbzT0X48uxg62lyQO/vjz3fSBG13ZalYhJxay+tvFOx9fweQSRrXPS3r2vDewFrvk80Dpmw6twyUl2XQ46A03pjqKLjzvpf7w5vQKfgjJh24eUZ/0QQ1gXsX73lMw1nYkSqw/JedAcrb3rfRF+3XlAxsjTaoMtc1u3uByiK4TcIfZU7nZLejMYRlFLWC9/uiFrlPVtmb+3FDabv/Sp2D9dQpWhO5wCszmvhL6DmtHl1uBOobvqNg3Z9kaPa/QyleN/aHDT7Q6UM921u4d6JvTK2zb/wCoeFMP
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/sso/{connection_id}/authorize"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+For OIDC connections, generates a state + PKCE pair, stores the SSO
+session, and redirects to the IdP's authorize endpoint. For SAML
+connections, redirects to the IdP's SSO URL (extracted from the
+metadata — when not available, returns 501).
+Handle sso authorize.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./sso-authorize.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./sso-authorize.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./sso-authorize.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

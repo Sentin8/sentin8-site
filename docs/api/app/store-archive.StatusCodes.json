@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Listing archived"},"403":{"description":"Missing app:store:admin scope"},"404":{"description":"Listing not found"}}}

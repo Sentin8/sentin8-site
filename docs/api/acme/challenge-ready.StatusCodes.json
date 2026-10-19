@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Challenge marked ready (proxy mode: notifies the upstream)"},"404":{"description":"Unknown challenge"},"409":{"description":"Challenge not pending"}}}

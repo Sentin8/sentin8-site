@@ -1,0 +1,81 @@
+---
+id: delete-grant
+title: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
+dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
+path treats a revoked grant as a hard 401 (checked via the Valkey
+`auth:grant:revoked:{grant_id}` key — same read path as the jti
+denylist, so no DB hit on the hot path)."
+description: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the"
+sidebar_label: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
+dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
+path treats a revoked grant as a hard 401 (checked via the Valkey
+`auth:grant:revoked:{grant_id}` key — same read path as the jti
+denylist, so no DB hit on the hot path)."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVMlu2zAQ/ZXBXJoAjO2kORTqKU3Swl2QIkt7SIyYEccRa3mokCO3giGgH9Ev7JcUpJSldm699kRpljfbm1mh6NuA2SU6XUuBE4WuIq/FOh4bzNBQSULXt16zoMJKe70gIR99Vsh6QZihNajQMmZYaSlQoaGQe1tFFMzwXXSGZOTprraeDGbia1IY8oIWGrMVSlNFqCDe8i0qnDm/0IIZ1rU12LaT6Bwqx4FCtN8bjeLzXCRPSzcnA1uGKmJDLCBuThwg1yHXhnZ6i21sFe6PXm4CHeqyJA82ADsBKQhSB14EqAN5cB40A/EStFlY7mD2N2EueM7uO3fO2LYKA+W1t9JgdjlZ79P06Pjj8fkxDNMshskpDFfWtFP4/fNXX9djNqDZrJUUlVe8XvcAzu/r976BafK+tmb6OoElox1iUznLAkvydtZccZwliCctAfRDU/vIUVRob2B/tAtbeUF5VC6tTohfdDmn5oqnsZAsuWQ9QLa6j95OYU5NqizoBYEnbSAF1SGhfBMba+GmtEEUBAfs4OgNFFbAcTIpnCSX7QEqXJAU7pG0ia5SYIabDU18nblEPCtlYh6xWH61k/ZgfTRnnRL6NzuopUiZ29hmK42CkygbnoyPDodvDz6PFQQKwToOCt5//XAGEdfF0cdUS5sTB4rx+x36ND6Hk1M4qHRe0M7eYBRTTOAzS/5Zg1bhknzoMhwNdjtR5YIsND+B/s+rf+PVX1R4uFRCP2RYlbpb/9qXUdcR7v6aKux6jQoza+JxLVyQqF+tbnSgC1+2bRTf1eT7k7DU3uqbyMjLFRob4rfBbKbLQBup5I6FOF7JrdP+sm7Dk3P7bKq9UHODMVxZxz9UOKemu+XtpH2yTB15sG3/APaqJHc=
+sidebar_class_name: "delete api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key — same read path as the jti\ndenylist, so no DB hit on the hot path)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/oauth/grants/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
+dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
+path treats a revoked grant as a hard 401 (checked via the Valkey
+`auth:grant:revoked:{grant_id}` key — same read path as the jti
+denylist, so no DB hit on the hot path).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./delete-grant.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./delete-grant.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./delete-grant.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

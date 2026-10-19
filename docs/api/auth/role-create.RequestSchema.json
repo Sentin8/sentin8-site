@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for createrole.","required":["name"],"properties":{"name":{"type":"string","description":"The name."},"permissions":{"type":"array","items":{"type":"string"},"description":"The permissions."}},"title":"CreateRoleRequest"}}},"required":true}}

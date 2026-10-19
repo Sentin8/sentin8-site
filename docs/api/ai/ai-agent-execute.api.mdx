@@ -1,0 +1,78 @@
+---
+id: ai-agent-execute
+title: "`POST /v1/agent/execute` — controlled agent execution. The model
+emits intent only; this endpoint maps an allowed intent to a
+Sentin8:Flow workflow whose domain steps proxy-back to the owning
+service. `requires_confirmation` intents pause in a ManualDecisionStep."
+description: "`POST /v1/agent/execute` — controlled agent execution. The model"
+sidebar_label: "`POST /v1/agent/execute` — controlled agent execution. The model
+emits intent only; this endpoint maps an allowed intent to a
+Sentin8:Flow workflow whose domain steps proxy-back to the owning
+service. `requires_confirmation` intents pause in a ManualDecisionStep."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVs1uG0cMfhWClzjAWnacHIotcnD/AANOE9gOerANidqlpIlnZyYzs5IXgoCe+gBFnzBPUnB2Vz+W7Fx6rC8yZocc8uNHflxipGnA/BZJ4X2G1rGnqKy5KDFHUgOasokDfuSijowZOvJUcWQvRks0VDHmGMlPOQ7ZzIeqxAyVwRy/1uwbzNDz11p5LjGfkA6cYShmXBHmS4yNE/MQvTJTXK3u29sc4k+2bORGYU1kE+Vfck6rIkV38iVYI2d7ruz4Cxdx59VbdN5WLg5TsBlGCg+Sq/OSbVQc0kOk9ZiKh+GYAg9rrzdOb/sAMzS11mJbcii8chIL5vibtgvoHYA4gM9Xl2Dn7L0qGY5KnlCtY4BoIc5UgMB+rgp+FeTi6wGuMpwwxdrzAViynQT2vj+N5lO6DJ6nKkTfgFjBtz//ARUDjKK1OoyAvKcGVIA4Yzi/vPz4x+XF9Q3YCVAhfsKdkS+VLVlDRQ1wpSIcVeQcl5JGylnbqSoCzBXBKLCJyvwwIDVs32jT6kKfsw+qrVkPqjKRp+y3UJ1YX1HEXD69PRPrXWI9X5FVV9bvgnMzY6gD+1cBxACOKvZTLmGh4ixh0cb7KkBoQuQKIj9GyUReUFGL63PpiauWp7iSLxuyRV9zOgjOmtBS6+z0VH52A0lOQCV2y6MFh8DSO/8J41u/mOFE28UwlantTNLaLrjc53//YeN4bK1mMombO16+D7K1QhrnlJkK2iUctayCb3/9vcWcliFqne9+qUL0dSFtUfZQbVjpvC3rgsuB9PQLWLRPH8i4PT/YbzLl5NKmtmFYWDNRQtBdqzVMTxly0eaVXFDY5f4+fRfWPySYX+T5U6R/t4bhfY9NHypshwpkyoRawr1/Rlp/QSoqM70zygDBBzI16V+4UNKo15HdAK5txUeqfA3vN4aFZ4qC+oGWaEkvPbHK8N3p2wO0b3lgrHB/t+FkakCioVYh4fbu7Gzfw4dUfFtHV0fJQlwRzEmrniMpssBF7VVskkx1syknlRczivnCqyjw3q/2EB19+nh9AyfzNydJ+k466RulCSq96a3WXEL6Cu1XZc0Abnpi3hmZlaEvijW6+bGd+mxKZ5WJ0hsByEDXdGtuW6A7c90Fu1uvxcwGhtJWpAyEyC4Ico/NcdKcpCsMdmFSQTt5GcDoIHtH3YMBHNWB4bn6Y4YVx5mVXcDZEJP+xxnmuIcPZigT6mqj3r8+UuU0P6OtG2KvdW9ztCN3e8drKTnd04fN3VYNtlpamYlNjdUxtqPEMam98dUVAPpCnF+k4jtNURQKzi+gIEdjpVVsQFPDXqDSqmBhf75eiz5c3MDHKzh3VMz4+GxwKqtRKV4niv3BC6sM1/nh6eBNeyTgV2S2XP9P0x2a7hRwPZpFu0+cJpVErNvpWgbf4vyNyOG0lcmexfcZzoTo+S0ul8LWz16vVnLcbrMyTEoVaKy39tkHbg7swHPStQSBMmPm5JUYpZmT4YypFALcLjvjn1vRP76RwDe2ewvAKustzouCXXzx7v1W+wpdMMNxt1YLAzBHTwsRS1pInLL9p9VPLqSzJWoy05qmcrf1KX//Ai09TRA=
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/agent/execute` — controlled agent execution. The model\nemits intent only; this endpoint maps an allowed intent to a\nSentin8:Flow workflow whose domain steps proxy-back to the owning\nservice. `requires_confirmation` intents pause in a ManualDecisionStep."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/agent/execute"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/agent/execute` — controlled agent execution. The model
+emits intent only; this endpoint maps an allowed intent to a
+Sentin8:Flow workflow whose domain steps proxy-back to the owning
+service. `requires_confirmation` intents pause in a ManualDecisionStep.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ai-agent-execute.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-agent-execute.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-agent-execute.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

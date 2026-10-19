@@ -1,0 +1,73 @@
+---
+id: proxy-consent-ui
+title: "`GET /v1/auth/consent/ui` — proxy to the vertical service's consent UI endpoint."
+description: "Looks up the consent flow from `sentin8_consent_flows`, resolves the"
+sidebar_label: "`GET /v1/auth/consent/ui` — proxy to the vertical service's consent UI endpoint."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVs1u2zgQfpXBXLYFGNspcih0C7Y/693upnAS9OAYCSONLG5oUuWPt4YgoA/RJ+yTLEaSHccxakDurSdJ1Mf5ht8MZ6bCIOcekynKGAqcCczIp06VQVmDCX6w9sFDLCEUBKk1nkyAXNv/IHd2AXf8rczr2+7XLf/ydwIceauX5HnfjVmSCyqVGjy5pUoJricfBEiTQensF9XCwNHnSD4MYJyDsU/YbsxChrQgz5ZDdMaDhLPRGbxgt0+iglxq7eFepg8QbGOu1DLk1i1OMspl1OHGrC2Wck4vBzfmD2kyTY0Pqw1dVAMUaEtykjUYZ5hgg9icMSoUWEonFxTIsXgVGrkgTHBbBhSoWMJShgJ3db3akZM5+fzKUYZJcJEE+rSghcSkwrAqiWPkg1NmjgJN1BpndS02zD61JfmDnC3saLZUKz6myn5I2KJAZZwkuSL3s3ibr4PytuyMPZrXUaYcpeE2OnWQeA2G68n4+LgGGQ6ftUEdzRU9uUMxZczPjKgn75U1t8E+kDl8zhYNDbon94x3+ZIvn2fgq9GIH8/J1lXrN7+5qpN3n5rqAWu0dSj41gcyga3IstQqbSrH8F/PpqpHn+q6rgWejU6f8112B1tKrbJmO+RSacqw2XH2fMc/TyskOJorH8hRBrl12wWVsu7aI9N7SqNTYYXJdCZwQaGwXOLmFJqqFgpMcLg8HXJhHXYMw9hmfW4bZVXQbeia2n/SdI7daF22P6F7JucxFPD967cud8JKwAWvDS/Gb34fvjv/OBbr6HoBf3766xLYrmVXOdBapWQ8MX+XOX+Pr+BiAuelTAs6eTUYsYubxNwLqAUuyfnWw9HgtF0qrQ8LabZM371/ewV7RLhrTtD2i67L7La2rWS5HgOZrLTKhMGuPtVj0vyyPba9oRjoSxiWWirDwYhOszptIk5xeYoCuwTrdqPAqHhSKawPjKmqe+np2um65uXPkVyX3UvplLznZJ1WmCnP7xkmudSefhCQF5OuqryEfX16r9/dojQrZF4d+QsFPtBqdy7g6tfbmccG3sONdRno68Deht5Hjs34cJQWOx2+vyPNtT/Kld2e38OXJzPGcTmyngb6pEgzb/Sm3zMe9HBiPYgcp8LurNBHjSfTST2rBRYkM24v06rDnKcplWFr97MZoN5utO/fXmFd/w+cBZ75
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/auth/consent/ui` — proxy to the vertical service's consent UI endpoint."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/auth/consent/ui"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Looks up the consent flow from `sentin8_consent_flows`, resolves the
+vertical service URL, and proxies the request. If no consent flow
+matches, returns a 404 (auth-ui falls back to the platform-default
+consent page).
+Handle proxy consent ui.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./proxy-consent-ui.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./proxy-consent-ui.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./proxy-consent-ui.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

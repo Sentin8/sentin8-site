@@ -73,7 +73,7 @@ on the persistence side.
 | Module | Role |
 |---|---|
 | `handlers.rs` | Produce/consume/ack/nack/DLQ/streams/lag/schedule/metrics + `validate_stream_family` + `stream_key` + **event-type ownership gate** (`event_vertical_prefix()` - see VDC §VDC.4). |
-| `inbox_relay.rs` | Bus-internal durability: LISTEN/NOTIFY (`bus_inbox_changed`) + 2s safety poll; drain batch 1000; startup drain-until-empty. |
+| `inbox_relay.rs` | Bus-internal durability: LISTEN/NOTIFY (`bus_inbox_changed`) + 2s safety poll; drain batch 1000; startup drain-until-empty. The LISTEN connection is built from `sentin8_config::pg_pool::connect_options_for(database_url)` - the same certificate-presenting `PgConnectOptions` as the service pool (`PgListener::connect` on a raw DSN would present no client certificate and be refused by the TLS-only `cert`-auth plane, silently degrading the relay to poll-only at every boot). |
 | `sse.rs` | `GET /v1/consume/sse`: dedicated connection per client, `XGROUP CREATE … "$"`, 5s `XAUTOCLAIM` sweep (min-idle 60s, COUNT 20), `XREADGROUP COUNT 10 BLOCK 10s`, 15s heartbeat, pending-depth warn > 100. |
 | `consume_pool.rs` | The blocking-consume connection pool: a fixed set of GLIDE clients reserved per `POST /v1/consume` call for the lifetime of its `XREADGROUP … BLOCK` - blocking reads never share the shared command client (the same discipline `sse.rs` and the SDK `StreamSubscriber` enforce; BUSCONNP-1). |
 | `auth.rs` | Bearer verify (JWKS) + token-tp filter (`access|m2m|delegated`) + jti replay guard + audience check + TLS-header cross-check (skipped for delegated). |

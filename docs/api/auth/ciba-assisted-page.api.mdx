@@ -1,0 +1,73 @@
+---
+id: ciba-assisted-page
+title: "`GET /ciba/assisted/{auth_req_id}` — Assisted Login page metadata."
+description: "Returns the CIBA request details so the Flutter Auth UI can render the"
+sidebar_label: "`GET /ciba/assisted/{auth_req_id}` — Assisted Login page metadata."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVM1u20gMfpUBTy0wsZ2ih0I3t9t2vT9IkTjYg2PYkxEjzVbiKEMqrSEI6EP0CfdJFpTlxJukfYI9SUNyyI/fx2EH4gqGbAU+XDtYW8iRfQqNhEiQwTlKm4iNlGjeLd7OTcLbFllMjuJCxYbj4PtQtSKYzLyV0lwujHdkElKOSd1X5JgDC+aGQ0EngUzjCszM9jpQHqjY1MjsCtxas+UyJtn4mOtpLBeoML4KSGKvyFF+sGtCHxvkiVmWqIWlRDLeVRWb7aezi6WZ3p1OtbfpAcLUx7qpUHB7Re5G9giNb1lijWkAyCbQ5Ip+dZRXY9/3DSjwCViIDSanLC1yyAb2NoeYjcaAhcYlV6NgUoI7IFcjZOBaKTcJbzchBwtBWW6clPCY+n1Z5fPA+XBBDyFhDpmkFi2wL7F2kHUgu0bzs6RABfT9WoO5icTI6n81m+nnv1Xmzwlzr+6LR/pY86COPSgySvASLPhIgiRaxjVNFfzA0PRv1lrdA9a+73sLr2evnwK6pM8Uv5CJyeDXRjs1x4zpPUbfpiA7yFZrCzVKGVWDAmUgXUrI4Kns3VGafmD+Jg60BakG3pAk0JsTDXsixsXeacZvNsz5P9++m5CrRXbWnKlterb45d30w/zTwhpG5hCJrfntr98vhi6iwtbpqYJHYtT641j8uVias3Mzb5wv8eTVZKYQh+Q3AdOzAb2FO0y8RzibnO5NTWSpHR2l3n58vzQ/Y2M7tHI/Cn/E4jAINYrLnbjJY0a6B63/XxI/XBLjkxT8KtOmcoFUoDZVyt9+UFdwd6oPR7evhUMCsJAdT/3aQhlZNLzrrh3jZar6Xs23LabxIdy5FNy1zvKqgzyw/ueQ3biK8SfqvTgfN8pL84OV82wXo9HRDrR01eoJLHzG3aMl1697CyW6XMd41Y0Rc++xkaO7TxZGf/y4P75fQt//CyJ3UwU=
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /ciba/assisted/{auth_req_id}` — Assisted Login page metadata."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/ciba/assisted/{auth_req_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the CIBA request details so the Flutter Auth UI can render the
+assisted sign-in page: `binding_message`, `short_code`, requesting client,
+and requested scopes. The UI then calls `POST /v1/ciba/assisted/complete`
+after the customer signs in.
+Handle CIBA assisted page.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ciba-assisted-page.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ciba-assisted-page.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ciba-assisted-page.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

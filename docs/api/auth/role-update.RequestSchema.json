@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for updaterole.","properties":{"name":{"type":["string","null"],"description":"The name."},"permissions":{"type":["array","null"],"items":{"type":"string"},"description":"The permissions."}},"title":"UpdateRoleRequest"}}},"required":true}}

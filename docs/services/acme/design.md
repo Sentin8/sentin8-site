@@ -100,6 +100,29 @@ graph TD
     RELAY --> BUS
 ```
 
+**Issuer-URL contract (ACMEURL-1).** Two URL surfaces, each with exactly
+one source of truth:
+
+1. **Directory URLs** (`GET /acme/directory`) derive per-request from the
+   incoming request's scheme + `Host` header - correct on any port or
+   replica (auto-scale friendly). The registered SNI hostname
+   (`acme.ops.sys.{SENTIN8_DOMAIN}`) is only the fallback when a request
+   carries no `Host`.
+2. **Resource URLs in account/order/finalize responses** (the
+   `authorizations`, `finalize`, `certificate`, `Location` fields) are
+   built from `AppState::issuer` - the DERIVED platform service base
+   `https://acme.ops.sys.{SENTIN8_DOMAIN}`
+   (`Sentin8Config::platform_domain("sentin8:acme")`), **port-free**. The
+   captain-assigned listen port is never baked into a URL: the in-fleet
+   consumer (the `sentin8-tls` on-demand resolver) pins the discovered
+   instance IP:port via `reqwest`'s `.resolve(sni_host, addr)` - a DNS
+   override where "ports in the URL itself always win" over the pinned
+   address - so a port-bearing `issuer` would pin every follow-up request
+   to ONE boot's ephemeral port and break on respawn, while the port-free
+   form keeps the SNI correct AND routes via the pinned address. The
+   platform ingress (`acme.ops.sys.{SENTIN8_DOMAIN}`, port 443 via
+   Sentin8:Proxy) is the other port-free consumer of the same URLs.
+
 **Boot sequence** (`server.rs::serve`): `CaHierarchy::ensure` (load or
 generate) → trust-store install (OS + NSS, best-effort) → PG pool connect
 (PG 18 check) → self-issue the bootstrap server cert for
@@ -239,6 +262,16 @@ the old SCRAM-tier distinction is retired with the passwords):
   service's tables.
 - DSN source: `SENTIN8_ACME_DATABASE_URL` (operator env; passwordless -
   the connection factory resolves the workload pair by role name).
+  With no override, the DSN DERIVES from the service identity
+  (`sentin8_config::service_database_url("sentin8:acme")` →
+  `postgres://sentin8_acme_service@{host}:{port}/sentin8`, DSNDERIVE-1);
+  the legacy `DATABASE_URL` operator DSN is NEVER a fallback - under the
+  superuser role the unqualified outbox INSERT resolves through the
+  operator's `search_path` (`auth, sys, …`) and lands in another
+  service's `auth.outbox`, where the foreign rows park at the retry cap
+  (bus's VDC-2 gate 403s them) - the exact cross-schema write invariant
+  7 forbids. The shell's VDC §VDC.3 wrong-database guard applies to
+  whatever resolved.
 - Failure posture: if the role, its identity-map row, or the workload
   pair is missing, acme exits at boot (fail fast). See §6.
 
@@ -599,6 +632,10 @@ flowchart TD
 12. **badNonce is a retryable protocol event, not an error** - the relay
     refetches a nonce and replays the request once before surfacing
     failure.
+13. **No port in any advertised URL** - resource URLs carry the derived
+    service hostname only (`acme.ops.sys.{SENTIN8_DOMAIN}`, port 443 at
+    the ingress / `.resolve()`-pinned address in-fleet). The listen port
+    is a per-boot transport detail, never URL state (ACMEURL-1).
 
 ## 9. Testing Strategy
 

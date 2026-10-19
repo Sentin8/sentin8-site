@@ -1,0 +1,1 @@
+{"parameters":[{"name":"connection_id","in":"path","description":"Enterprise connection id","required":true,"schema":{"type":"string","format":"uuid"}}]}

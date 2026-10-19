@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Environment archived"},"403":{"description":"Missing sys:env:admin scope"},"404":{"description":"Not found"}}}

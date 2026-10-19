@@ -1,0 +1,1 @@
+{"parameters":[{"name":"org_id","in":"query","description":"Filter by org","required":false,"schema":{"type":"string","format":"uuid"}},{"name":"env_id","in":"query","description":"Filter by env","required":false,"schema":{"type":"string","format":"uuid"}}]}

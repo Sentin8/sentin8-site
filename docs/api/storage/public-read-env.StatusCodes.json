@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The raw image bytes (Content-Type by extension)"},"403":{"description":"Non-image extension"},"404":{"description":"No such object"}}}

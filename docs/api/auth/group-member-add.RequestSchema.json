@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for addgroupmember.","required":["user_id"],"properties":{"user_id":{"type":"string","format":"uuid","description":"user identifier."}},"title":"AddGroupMemberRequest"}}},"required":true}}

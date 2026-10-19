@@ -1,0 +1,69 @@
+---
+id: store-create
+title: "`POST /v1/app/store/listings` — create a store listing."
+description: "Epic 15.5.5: populates `usr_id` from the token `sub` (the creator)."
+sidebar_label: "`POST /v1/app/store/listings` — create a store listing."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/app/sentin-8-app
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/app/store/listings` — create a store listing."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/app/store/listings"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Epic 15.5.5: populates `usr_id` from the token `sub` (the creator).
+Visibility is immutable after `status = 'published'` (enforced in
+`update_listing`).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./store-create.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./store-create.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

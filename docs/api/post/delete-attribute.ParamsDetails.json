@@ -1,0 +1,1 @@
+{"parameters":[{"name":"subject_id","in":"path","description":"subject identifier.","required":true,"schema":{"type":"string"}},{"name":"attr_key","in":"path","description":"The attr key.","required":true,"schema":{"type":"string"}},{"name":"target_env_id","in":"path","description":"target env identifier.","required":true,"schema":{"type":["string","null"]}}]}

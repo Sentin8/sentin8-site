@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Filter rules","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","required":["name","stage","blocked_terms","enabled"],"properties":{"blocked_terms":{"type":"array","items":{"type":"string"}},"enabled":{"type":"boolean"},"name":{"type":"string"},"stage":{"type":"string"}},"title":"FilterRecord"}}}}}}}

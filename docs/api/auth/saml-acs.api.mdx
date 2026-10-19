@@ -1,0 +1,76 @@
+---
+id: saml-acs
+title: "`POST /v1/saml/acs/{connection_id}` — SAML Assertion Consumer Service."
+description: "SEC- — **default deny**. Without a vendored SAML signature"
+sidebar_label: "`POST /v1/saml/acs/{connection_id}` — SAML Assertion Consumer Service."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVdtu4zYQ/ZUBn5JAtpNtUCxU9MHNZrtu43gRJUiBOLDH4jhilxpqScqpYBjoR/QL+yXFSM49CLB9bZ8EkcOZwzNnDtcq4k1Q6ZUKwanrRGkKuTdVNI5VqrLjox78/edfsLenaYm1jaCJm729PlyaWLg6AsKKWDtPGrLh+ASCuWGMtacpr9AajZIKrFl49E0CNUsAacAQyMteAPQEnn6nPJIGw1B5p+tc9qa8M8+OT89Hp+9nw4vzT7PhycnkcnZxmo1+Pj3+MJOKPx7MwVUxyMml86BpNYgU4m4fLgviKaO17pZ0ArcEqLWRxGhtA1t8lMIZWWyyiJEgUAiCeGdB1t3uJlOej/iMQuU40LmbJ4C1NsS5YA7RmxZoAsga5qcuTnjih8tIft6Hj7W18Nv4ZMr3rMAjUjyVaOT+oF1el8Ry/xusWsZbMnPHTPk9S1NmF6EOpGHRAHIDK+EwRwvRaWx+kD2YjD4cPTkprGTZpD/lT8jaUpcb89BXiXIV+RbOSKtUBSztDPOgElWhx5IieZHHWjGWJIoYjk/u2FCJMqKSrzX5Rj3Xzk8Y6PvDrpbfnoCdpfNlr3IhwsKwNnyzqxLl6WttPGmVRl9TokJeUIkqXavYVFJVeOYbtdkk90AeWvY2jCyb3Pe0aK//TQWvJbgDH2T/u/138nla44y08ZRHMBwdxIIAqwpuTSzaHxNCTRoqi1GufwdHbRJ1uL//Mt0YrcSRHphuhp6S2J07fHnugr+wu2VwHthx75mChD0VKK+9iY1Kr64TVVIsnLRdGtK2PBYqVYPVwUCEMMA8DNYPGWZGb1qyl66lykTbckUcDb/vYR2Ll/R3m7D9psM6Fq2+jZaV2CQwkbWBqHbwcfh5lNzxExL45fLXDCSvE9AiV2tyEg7SeyGMR+cwOYNhhXlBvXf9fYHYJl8a8q8GbBK1Ih86hPv9g25JSCiRH6Wef55k5/AWHfOHWR3eGRocOQ51SR4y8iuTU/85K2uVO47E8X+L/S9Y7NZTIv0RB5VF005+7a0IoRu5K7U6UEnrvipRnf+mT5Qmb3MhU5peqfV6gYEuvN1sZLnzPfFobQIurNjaEm2gN1S3c7Z1wF34Bp9+9SJfqHn5LqzQ1hKqxLH/FaxXffsNAE/eg4fy1/LjjdQXz9s8Mj0ZbrXZ/ANslCJf
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/saml/acs/{connection_id}` — SAML Assertion Consumer Service."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/saml/acs/{connection_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+SEC- — **default deny**. Without a vendored SAML signature
+validation library, unsigned assertions are rejected in production
+(`SENTIN8_AUTH_ALLOW_UNSIGNED_SAML=1` opts in for dev/test). When
+allowed, we additionally validate: RelayState session (below),
+`InResponseTo`, audience restriction, and `NotOnOrAfter`. Full XML
+signature validation remains a documented gap — SAML connections are
+not used by any vertical today; use OIDC connections for SSO.
+Handle SAML acs.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./saml-acs.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./saml-acs.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./saml-acs.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

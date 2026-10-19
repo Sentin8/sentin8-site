@@ -1,0 +1,71 @@
+---
+id: enroll
+title: "`POST /v1/mfa/enroll` — start TOTP enrollment."
+description: "Generates a random secret, stores it encrypted (status=pending), and"
+sidebar_label: "`POST /v1/mfa/enroll` — start TOTP enrollment."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVs1u4zYQfpXBnBJUlvPr3QroIdlmi7TbJut4sQc7iGlpZHEjkVqSctYwDPQh+oR9kmJIOYrjNO2ht/oimeT8ffPNR63QibnFZIxVLvA2woxsamTtpFaY4E+kyAhHFgQYoTJdgaXUkIvAOm3IgnRAKjXL2lEGe9YJ19gfalKZVPP9CITKJsqQa4yy4AqCqXa1aFyR9PtT+DT8AN/BTFg6PmodQ66NP/hxCKnOKIZRQdBYMhNVNdbxnoJUlCVM+4vDfpWL/oKMzJdTeJCuAAELUcoMRleja+8BnIZUq1yaaqJIGV2WFSkXT9SF/wPSxRihrrlSqdVlhgmGcxihoa8NWXeusyUmK0y1cqQcv4q6LmXqTfpfLMO1QpsWVAl+c8uaMEE9+0Kpw+e4DoNXmOls6SsO8TiP2nAmTpJlN0pU1Lkbo3VGqjlGqJqy3O3XeyNJZeUS2O4RylykThvYo3gewwTPGlcsJ7gfTxRjy0djXEfIIN/J7NVwuTaVcJhg08hsp6xzEoYMiDQla8Hpe1KgDViyVmoFqdb3kkBmpJzMJQVGcNgYPhOI0uqJYuPawbTNZuqrEFklVU8q6aRgonVthD2/BzbVNXFJbNeFMDGu1xE66UpuR+h4iz6ueYsbLA1lmDjTkF+wtVY24H90cMCP7TIvuujWCeMoS3wlHbX/DbMx+u/YFDKGWixLLbJnjOoqHGOgwp3vXZvuXWOY6CFJ7vE2AzuLLo9HWrxOh5Z3W83YDvuCy20XT+TCaVf34zgOsvHn7394MNNSch8MqYwME0paECxXG/0IJG/dsKlPoq32H+Of+w72SLGvbNNJDm4L/aBYWzYcDmFzUZYzkd7zzsch2FSoNoVg+zIfQ/+YkOsITw4Odzn3m3bAFTCUqZ+BvVmYtm7A9tFbH+9an/39/LTsCLP4ZJZ8npbSxki3xGR8G2FFrtCsjrW2zMJauAIT3Mjwo2Yyf4edbl58E1VdUidnHdiPkoPHuXh7mg9OeqdvDt/0Tk4HR73ZcZ72jtLvB8f5YCByMeDypMq1b1uLoGVA1NseY7PTvZuwCe0zYeXzzQuUdMsIrnitf3X547v++7Pry2iDpY3g58+/3HjMNUPAk1TKlLhPXSW/Xo7gaghntUgL6h3FBxhhx/cXD6wjXJCxIcOD+DAsMaSVUE9cT6+vbkawDe40UI9FJ1xwT+6z59U/uaz+T/d4O8+Ovrl+XQqp/NUWtCYQdoyLQ4z8B0+0uehvIyyY1MkYVysu5JMp12te/tqQafm/EEaKGdNufLuOsCCRcY/HK7ynJSb4LuDdG3EKfLxsOJUdaV9HG4szf9m9evbp3DEjMMJZ+zFS8S2SoBEPrPLiARP0HzJs7bXbr62wFGreiDmfDT759xcE9nJs
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/mfa/enroll` — start TOTP enrollment."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/mfa/enroll"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generates a random secret, stores it encrypted (status=pending), and
+returns the `otpauth://` URL + base32 secret for the QR code. The user
+must then call `/v1/mfa/verify` with a valid TOTP code to confirm
+enrollment.
+Enroll it.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./enroll.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./enroll.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

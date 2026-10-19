@@ -1,0 +1,1 @@
+{"parameters":[{"name":"env_id","in":"path","description":"Environment id","required":true,"schema":{"type":"string"}},{"name":"object_path","in":"path","description":"Object key (image assets only)","required":true,"schema":{"type":"string"}}]}

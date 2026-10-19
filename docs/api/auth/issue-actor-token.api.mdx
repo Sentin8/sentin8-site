@@ -1,0 +1,71 @@
+---
+id: issue-actor-token
+title: "`POST /v1/admin/actor-tokens` — issue an actor token."
+description: "The caller must be authenticated (session cookie) and have the"
+sidebar_label: "`POST /v1/admin/actor-tokens` — issue an actor token."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVttu20YQ/ZXBvNQBKMm3KCnfVNcB3DRVYKtoAVmQV+RQ3JjaZXaXsgWBQD+iX9gvKWaXkmjJTpAij9ULxeHMzu2cnVmjE3OL8RhF5XKcRJiSTYwsndQKYxzlBIkoCjKwqKyDGQErknIyEY5SOLJkrdQKEq3vJb0CoVLIxZLA5XSr7iyrqrcxW8UicdrE0tqK7sAmuiRYSgECHCmhHGgDZSFcps0CRLqQCowuqDc3uipv1RF1513YnqjNPPZKd9FToX5QZLxwZTtB41X3Vt19HN6MoLc86XlZzwfTcfqelL2Df/76G3xgIBT4T+A/dW/VVRC3ZBihLskILtJVijF6y6lXmXoVjNDQ54qs+0mnK4zXmGjlSDn+K8qy4PJJrXqfLNd5jTbJaSH4n1uVhDHq2SdKHO435DqcCjOdriDTJgTtPW9jY8/SUMptdcLMyU0rS2YqU/9RsMtJhKXhJJwky24b+S4A64xU84MA3hmijqNHB8HCB+FyArkoyVitfF5wtAkiAlGl0lHKPWA4BbMu1hF6COxcjnc+VVUUh2hskqe0Ac/RFpNgq5klBzrbi4VS4Nx/sMHEbqLwbz6IvQo9UwDGo3AYY1X5Eh5ShI3B6bbf7q0KJ4ePMmWEZpJMcOqKqaXEtpOXytGcTCv7rWOpXP/80DM3HAqZkZMLAqnAUqJVauFopiuVUsoxfRj8OR1cjIbX09Hw/eVv09Ho1+nN5cXNphLOFWxnu1hzYNIVnLwH/YBh5b00lceadXb4cqYiL7ClVjYA6fT4mB9PQx3s2BMQy3X8bpQI3qEUq0KL1CPyZUaIJCFrtzT1z0ANeiylITuVXr5PnMDuzfsBf54c+1UWceGDxeZKqfc9fDMQww31HNpaie1O3cHtazDLCZoTQKrvwpkvMWPTj28/NKCrfVwL0G0sB7wwmOsIz5/Da3O3SQtb6HjVk0PVUPZnp2OwOXvJphDJvYX9yRiupmB6fmjaLp3SDjJmus/UUlIZ6VYYj9f4dO7ywMN4PKknES7I5ZqHVqktk6kULscYnx+MGCHT8Xo3yy4fxaIsqD0ydg1qLvSdYB8oeJaJt6+z/nnn9ZuTN53z1/3TzuwsSzqnyY/9s6zfF5noY/t+PK4jlCrTHg9NL5vkOn5n2YfBTfgIzTMeVC4P490jw60iGLKsN7z6+aL3bvDxKoJmibER/PLH+xvfEs2l5LujkAkxWuI1KrFg9x+uRjC8hkEpkpw6p91jjHAHu2cV6giXZGyI8Lh7EkTcgYVQraP/45KyX4TWuvH/CvfSCtfcLrzL9MpCSMUtqUzB5QukGOPyhG9+T5/mft4QYxJhzgSKx7hez4Sl301R1yz+XJFhEk4iXAojxYwxO57UEeYkUgbIeI33tMIYL0KXOiMOhdWLikM6mIZ1tLEYJAmV7ou6bY5zwTDCWbOELnTKNkY88FAUDxij32XZOmyBLFtjIdS8EnPWDWfy71+kQ0C/
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/admin/actor-tokens` — issue an actor token."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/admin/actor-tokens"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+The caller must be authenticated (session cookie) and have the
+`sentin8:auth:actor:issue` scope via a tenant or platform admin role/group
+(e.g. `sentin8:org:admin`, `sentin8:org:owner`, `sys-admin`).
+`POST /v1/admin/actor-tokens` — issue an actor token.
+Issue actor token.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./issue-actor-token.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./issue-actor-token.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

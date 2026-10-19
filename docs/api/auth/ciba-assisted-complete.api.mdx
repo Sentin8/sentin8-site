@@ -1,0 +1,73 @@
+---
+id: ciba-assisted-complete
+title: "`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."
+description: "Called by the Flutter Assisted Login page after the customer signs in."
+sidebar_label: "`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVU1v2zgQ/SuDuWwC0JZT9LCrm5uiqLsfKZIWe3AMixYnEjcyqXAot4YgoD+iv7C/ZDGSnLh1dg973hOp4eMM+d7jqMWoC8Z0ibndaFwpNMR5sHW03mGKl7qqyMBmD7EkeFM1MVKAObPlSAZ+84V1UOuCQN/JiqDyhqPfUgC2hWOwbnrrrkkb/m71J4ZsvWZitt5lkHt/b0lBIPbVjgZs1jCFtTUZJLcu86EY5pCR28lUgXYGtjrcD/jLxas5BHpoiCNkuq6D35HJpnBjXVHRpGFKb50Gptw7A7muKggUm+CG/fTZcrSuAI46NgyfbCx9EyHQZGOdsa6Y3rq32plqrKUPROR+W1cUaYoKfU1BC38Lg2nP6/qAWx9wqLDWQW8pUhD6W3R6S5iibmK5DvSwtgYVWtGg1rHEE2H68k0sH+/bb5APG8hgGkNDCjkvaasxbTHua8nPMVhXYNetBMy1d0ws6y9mMxmeqXIosPGNMxB9T5VoS2Zi3ZPcZ/zI8jkqzL2L5KIk1XVd2bznJPmLJXP7dLKu6zqFL2cXp+X/8EdmGpyCPfblKfaju3f+k4NjAnvsL6fYeRVIm/2jagbORsUHN5BR4PxB9nOUAzLlTbBxj+lypXBLsfQib+059mLGElNMdheJCJ4cBE/ao/N0yZH81t35Xhcbq14YctG6nyeCP1H7ZliEcUznIvy3L1/BGonEvYIriSVXi9eXyZv5+4U6EMYK3v35603Pi5cLiEUrm5Njkvqj735ffICra5jXOi9p8mI6kyP2ye8shWcBncIdBR5OOJteDCEhZKvdUers/dXNBzil5kBG1t9EmD5RW9x27MHpj8y0Tzb7v1f9h141doVIn2NSV9r276sJlTA7eHqJuwt5zfJ7UHhIggrT71vVo7VXCkt5FOkS23ajmT6Gqusk/NBQGN/PTgerN2L8ZYvGsswNpne6YvoXic+ux/52Dv/QAJ+90BjUbo9SumrkCxXe0/6HltutOoUlaSOeX7YjYp7nVMejvScNrTvuCeJ37Lq/AdPPkCY=
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/ciba/assisted/{auth_req_id}/complete"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Called by the Flutter Assisted Login page after the customer signs in.
+Reads the customer's `__session` cookie, resolves the `user_id` /
+`org_id` / `env_id`, and marks the CIBA request `approved`. Single-use:
+a second call returns the existing status without re-binding.
+Handle CIBA assisted complete.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ciba-assisted-complete.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ciba-assisted-complete.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ciba-assisted-complete.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

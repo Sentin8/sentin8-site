@@ -1,0 +1,79 @@
+---
+id: ai-internal-schedules-run
+title: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
+. Runs stale-index maintenance: re-enqueue embedding jobs for
+ sources whose embedding is older than the freshness window. Authenticated
+ by the cron ticker's M2M token (verified the same way as user tokens —
+ `token_tp: m2m` principals evaluate like any other under Shield)."
+description: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target"
+sidebar_label: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
+. Runs stale-index maintenance: re-enqueue embedding jobs for
+ sources whose embedding is older than the freshness window. Authenticated
+ by the cron ticker's M2M token (verified the same way as user tokens —
+ `token_tp: m2m` principals evaluate like any other under Shield)."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVMtu2zAQ/JXFXtoCsp3kVOjm5pRDkKJJT7ZRr8W1xZhaMnzYEQwD/Yh+Yb+kWNtJkz6OvVUXSavZ5ZAzmh1mWiWsJ0gWZxX6wJGy9XJlsEayQyuZo5AbpqZlUxynYSyCFUZ+KJzyB296rHfYeMksWR8pBGebw5TRffKiNe3uCOvdfr8/9trIBuscCx8KKXhJnBR7cXamN8OpiTboGKzxmpSJkDQMsQg0vguOMxvUga+xMP94c3sHo8356In+6Jn+KBaZw/ev3+CWJVt5X19GLxCif+wHC2rWkCmuOE9lCJ+KJEiZHA+sGH6E7ieLGiIPWB4KFwbuFmyMlRXc+0WCpY9TgeRLbDjBtvXpJcQm8M5whNySQG4ZlpFTK5wSbK0Yvx3CuORW6TWU2UwFFv0B2CjVbJs1xzcJri+uIfs1C7zdcLRLy+aAStQxbKkHSlCSLqSgpJueCswPb19yqKG76OYQopXGBnIJeEOuUGZwds1A0oPPLUcoonRvW8vOvBtihR3n1qtDgk8ZKwyUW6zx7yeOFSZuSrS5x3oyq9DK0qvK2WbHWGM6ijEgi7/KedLpWa/x1UG+4CgvfexgfAUNBVpYZ3MPjnqOytHZhiWxLiLU6RrXV3dw8wnGgZqWBxfDM6zQGp26tBz/CNhXuOGYjkTOhufHku66I3kx+r/l/rXlXnlih7kPeu6ZH/MoOLKiupTo9NvRjRPcnKvAJznUgU+CaHwV0bxr1b/1BHe7BSX+HN1+r+WHwvFk1A1FSwv16GS2r7BlMuqVyQ7X3GONl8fgG9wpIYW7osR+C8H97MVvo2bBChen8Oy80Z5IW2VGW6wRNYu1+xCJh9oOHcmq0Eqxx5l6/QDfSQeR
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={" `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/internal/schedules/run"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+ `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
+. Runs stale-index maintenance: re-enqueue embedding jobs for
+ sources whose embedding is older than the freshness window. Authenticated
+ by the cron ticker's M2M token (verified the same way as user tokens —
+ `token_tp: m2m` principals evaluate like any other under Shield).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-internal-schedules-run.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-internal-schedules-run.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

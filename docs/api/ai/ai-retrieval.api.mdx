@@ -1,0 +1,78 @@
+---
+id: ai-retrieval
+title: "`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +
+keyword (tsvector, when pgvector is absent) + metadata filters +
+permission filter from the caller's `data_scope`. Standard RLS env_id
+match is the backstop; the data_scope filter is defense-in-depth."
+description: "`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +"
+sidebar_label: "`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +
+keyword (tsvector, when pgvector is absent) + metadata filters +
+permission filter from the caller's `data_scope`. Standard RLS env_id
+match is the backstop; the data_scope filter is defense-in-depth."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVttu20YQ/ZXBvMRGKNtJLyhYpICbBogBJ2lsB0UhCdKQOxI3Wu4yu0vZgkCgH9Ev7JcUQ1I3W20f2sf6xfZwLmdnzpzdNUaaB0yHSBrHCbqKPUXt7JXCFEmfeY5e85IMJliRp5IjewlYo6WSMcVIfs5xwnY50QoT1BZT/FKzX2GCnr/U2rPCdEYmcIIhL7gkTNcYV5WEh+i1nWPTjDtvDvFHp1bikTsb2Ub5k6rK6LxFdv45OCu2J6lc9pnzeFB12CMZJ1h5OVzUHCREUaRJyJ0EbhOQ9ySodeQyHMGYoOKQe10JDkzxNRnD/lmA20KzUQPPwZklK5Ds0GaHP377HVr0rIACkAV+kLPoCCVHEs+RnWkT2cPVe7h7+wY+fnpz8yucxILh+vodWF6yh8AcwNVx4GaDLnNe1HYRTs8E1ybVpMvUHfEA67veA3qPFKbrES54NcIURrgkU/MIkzNopi1mpryAjHNXchjZ6abA4IdnC149g1evoA2ZgrYgSG8/XsPJ5fufBrkrKxdYdcC69h9rpWdPdjEpnWKzcxhuPBK0tTEyuMNz/FJwV7Dyrqwi5M7O9BwU54Y8ByDoErOHNjWcTF3FlvR5Zx88TE+TkZUMS86j8+cLXt07r6C22lnQATxLhz0ryFagI2Q8c57Bc6y91XbeHuyQ9n+NX1xdNVns9UDbyHP2mODM+ZJiZ/r2a2zEWUcjTjebxXsbY3XTLQY2TbPP7uhrbg2hcjZ0xH55cfF0+H0yVj1p4KRiX+oQtLODjhCsTjH5b1auq4H98CdcZqyUtvNJGZ4uYu/8z0t4tFSrOD3oiecZ7lYBRWyc5yMl9/yPMXN/nrtxbmdV11rt7xym62ZTaxdn6zI7nLFydWb42JBZvZYutJ+O9OzfMSfUpiVOk+A3F1895UY17/YAaktL0oYyw91S6wCKK+NWpVBCEgTOa6/jqtX/wDZq+11KOt3eEqlnksGMmyeLO/35w+0dnC9fnG+9O6UpVpnXCnY5+sWEoEttSOrByQblKTwf2c3GnsTQWRO4F1nYHkUHoEzwncLzrcxulE8y7OjfW2HmXdnqSr4R9enujpiewW0kq8gruLm+hW7rR7akmBdSTQIzyhchuur79r9d8KZC284Z28ADbQeKq1icdXwtnNy2lQuxvWVjgSkeNAoTlBW82d2Pbx6orAw/vsq28jPeSu+OwYeKu7M/krK9D51wXchO2JlridiTrB/+gDQ+HvRt9wn63+nlVTvmylAU1sLlFeRUUaaNTNbQir30wehceiNF+pfFu6s7+HADlxXlBQ9enl2IKijJOtPsjzo0CS7Zhw7IxdmLziSdLcnupf6fjMfJeDDJrexEfojnlSFtpZu1b+/rjqdDXL5oqbVh6jjBQoicDnG9zijwJ2+aZo+PwzUqHURldq/CBa+OvCTbBwamiCImS/JaglpxSbBgUsKB4boPft2J+uBOIO9in9xiTbKJuMxzruLf+o731lMYgwlm/eNUtghT9HQvx6d7wSnvZ4luJbu1rdGQndc0F98up/z8CeWCA4E=
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +\nkeyword (tsvector, when pgvector is absent) + metadata filters +\npermission filter from the caller's `data_scope`. Standard RLS env_id\nmatch is the backstop; the data_scope filter is defense-in-depth."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/retrieval"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +
+keyword (tsvector, when pgvector is absent) + metadata filters +
+permission filter from the caller's `data_scope`. Standard RLS env_id
+match is the backstop; the data_scope filter is defense-in-depth.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ai-retrieval.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-retrieval.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-retrieval.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

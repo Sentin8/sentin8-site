@@ -1,0 +1,1 @@
+{"parameters":[{"name":"subject","in":"query","description":"Subject key","required":true,"schema":{"type":"string"}},{"name":"relation","in":"query","description":"Relation name","required":true,"schema":{"type":"string"}},{"name":"object","in":"query","description":"Object key","required":true,"schema":{"type":"string"}}]}

@@ -1,0 +1,1473 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-storage",
+    "description": "Sentin8 Sentin8:Storage — object/file storage with pluggable adapters.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/buckets` — list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets.",
+        "operationId": "list_buckets",
+        "parameters": [
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bucket names + object counts",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/buckets` — create a bucket by placing a `.keep` marker\nobject at the bucket path. Returns an RFW redirect to the buckets list.\nCreate bucket.",
+        "operationId": "create_bucket",
+        "parameters": [
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Bucket created (.keep marker written)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/objects": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/buckets/objects?bucket=name` — list objects in a bucket.\nList bucket objects.",
+        "operationId": "list_bucket_objects",
+        "parameters": [
+          {
+            "name": "bucket",
+            "in": "query",
+            "description": "Bucket name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Objects in the bucket",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown bucket"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/upload": {
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/buckets/upload` — upload a file to a bucket.\nHandle upload file.",
+        "operationId": "upload_file",
+        "parameters": [
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "File stored (multipart or JSON body per the RFW form)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/{id}/delete": {
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/buckets/{id}/delete` — delete a bucket and all its objects.\nDelete bucket.",
+        "operationId": "delete_bucket",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Bucket name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bucket deleted with all objects",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown bucket"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/{id}/download": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/buckets/{id}/download?object={name}` — download an object.\nReturns the raw bytes as a binary stream.\nHandle download object.",
+        "operationId": "download_object",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Bucket name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The raw object bytes"
+          },
+          "404": {
+            "description": "Unknown bucket or object"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/{id}/link": {
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/buckets/{id}/link` — generate a signed read URL for an object.\nGenerate link.",
+        "operationId": "generate_link",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Bucket name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signed read URL for the object",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown bucket or object"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/buckets/{id}/objects/{object}/delete": {
+      "post": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`POST /v1/admin/buckets/{id}/objects/{object}/delete` — delete a single object.\nDelete object.",
+        "operationId": "delete_object",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Bucket name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "path",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object deleted",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown bucket or object"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:write": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin ui.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a storage read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a storage read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:read": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Handle health.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Liveness (version, build, disk usage)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/public/env/{env_id}/objects/{object_path}": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`GET /v1/public/env/{env_id}/objects/{*path}` — env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env.",
+        "operationId": "public_read_env",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object key (image assets only)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The raw image bytes (Content-Type by extension)"
+          },
+          "403": {
+            "description": "Non-image extension"
+          },
+          "404": {
+            "description": "No such object"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/public/objects/{object_path}": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`GET /v1/public/objects/{*path}` — platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read.",
+        "operationId": "public_read",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object key (image assets only)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The raw image bytes (Content-Type by extension)"
+          },
+          "403": {
+            "description": "Non-image extension"
+          },
+          "404": {
+            "description": "No such object"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/storage/objects": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`GET /v1/storage/objects` — list objects with optional prefix.\nList objects.",
+        "operationId": "object.list",
+        "parameters": [
+          {
+            "name": "prefix",
+            "in": "query",
+            "description": "Prefix filter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of objects"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:read": []
+          }
+        ]
+      }
+    },
+    "/v1/storage/objects/{object_path}": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`GET /v1/storage/objects/{path}` — download an object.\nFetch object.",
+        "operationId": "object.download",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object content",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing storage scope"
+          },
+          "404": {
+            "description": "Object not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:read": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`PUT /v1/storage/objects/{path}` — upload an object.\nHandle PUT object.",
+        "operationId": "object.upload",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Object uploaded"
+          },
+          "403": {
+            "description": "Missing storage scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:write": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`POST /v1/storage/objects/{*path}` — dispatch sign-read, sign-upload, copy, move.\nHandle object action.",
+        "operationId": "object.action",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object path or action (copy/move/sign-read/sign-upload)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Action completed"
+          },
+          "403": {
+            "description": "Missing storage scope"
+          },
+          "405": {
+            "description": "POST not supported on this path"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:read": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`DELETE /v1/storage/objects/{path}` — delete an object.\nDelete object.",
+        "operationId": "object.delete",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Object deleted"
+          },
+          "403": {
+            "description": "Missing storage scope"
+          },
+          "404": {
+            "description": "Object not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:admin": []
+          }
+        ]
+      },
+      "head": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object.",
+        "operationId": "object.head",
+        "parameters": [
+          {
+            "name": "object_path",
+            "in": "path",
+            "description": "Object path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object exists — Content-Length set"
+          },
+          "403": {
+            "description": "Missing storage scope"
+          },
+          "404": {
+            "description": "Object not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:storage:env:read": []
+          }
+        ]
+      }
+    },
+    "/v1/storage/signed/{token}": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`GET /v1/storage/signed/{token}` — serve object via signed URL.\nServe signed.",
+        "operationId": "signed.serve",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Signed URL token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object content",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token"
+          },
+          "403": {
+            "description": "Signed URL expired or forged"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "`PUT /v1/storage/signed/{token}` — store object via signed upload URL.\nHandle upload signed.",
+        "operationId": "signed.upload",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Signed URL token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Object stored",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token"
+          },
+          "403": {
+            "description": "Signed URL expired or forged"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CopyMoveRequest": {
+        "type": "object",
+        "description": "Request body for copy/move operations.\nRequest body for copymove.",
+        "required": [
+          "src_path",
+          "dst_path"
+        ],
+        "properties": {
+          "dst_path": {
+            "type": "string",
+            "description": "The dst path."
+          },
+          "src_path": {
+            "type": "string",
+            "description": "The src path."
+          }
+        }
+      },
+      "ListParams": {
+        "type": "object",
+        "description": "The listparams type.",
+        "properties": {
+          "prefix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The prefix."
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "storage",
+      "description": "Sentin8:Storage admin API — object CRUD, signed URLs"
+    }
+  ]
+}

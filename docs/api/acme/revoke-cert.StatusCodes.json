@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Certificate revoked (metadata flag / upstream relay)"},"400":{"description":"Malformed revocation request"}}}

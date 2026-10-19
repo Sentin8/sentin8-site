@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The merged branding payload for the resolved tenant","content":{"application/json":{"schema":{}}}},"401":{"description":"No valid tenant context could be resolved from the request"}}}

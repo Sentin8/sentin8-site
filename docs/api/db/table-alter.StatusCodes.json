@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Table altered"},"403":{"description":"Missing db:table:admin scope"},"404":{"description":"Table not found"}}}

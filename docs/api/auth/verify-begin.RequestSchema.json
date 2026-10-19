@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for verifybegin.","required":["pending_token_id"],"properties":{"pending_token_id":{"type":"string","description":"Pending session token id returned by `POST /v1/sign-in` when MFA is\nrequired.\npending token identifier."}},"title":"VerifyBeginRequest"}}},"required":true}}

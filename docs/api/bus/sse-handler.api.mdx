@@ -1,0 +1,75 @@
+---
+id: sse-handler
+title: "Long-lived SSE consume (server → client one-way) — the direct-consumer
+transport (bus DESIGN §4.3): the client receives every stream message
+as an SSE event and ACKs via `POST /v1/ack`."
+description: "Long-lived SSE consume (server → client one-way) — the direct-consumer"
+sidebar_label: "Long-lived SSE consume (server → client one-way) — the direct-consumer
+transport (bus DESIGN §4.3): the client receives every stream message
+as an SSE event and ACKs via `POST /v1/ack`."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVc1u20YQfpXBnCSAsuQ0h4JAD45jBE6buIicXmTBGZEjcevlktlZMhEEAj3lAYK8Q9+jj+InKYaklNgy4MDOKSf+7LfzffO/wUArwXiGi0pwHmFRsqdgCneaYowifJmRSy17jLAkTzkH9nphg45yVkzwTPnlknJj1xihcRhjSSHDCFOWxJtS7WGM5xlDh4YOfYARen5fGc8pxsFXHKEkGeeE8QbDuuztG7fCpol2lEnhpMrZX658UZX3cm7h0MIfTdp+fzenoh9KGYordvdStajvoZhtOSJ0lbU4b5q53pKycMKiwCeTiT5ukkynJ9u8DbhmF+A3OO78e8UitGJ4OT17PcRIgxTYBbVBZWlN0tbS+G9RQ5uvipqmaSJ8OjncZzsma9kDVSFjF3oLsCRjOYXBgsmzhzEk7AOYVCFhPdSwoXBSeRPWbXWKnrhf40UlcZ8MjGdz9fgm3x+FW42sqTkFdbTHwkDY1+zh+tNnSKxRrwvHow+0HsL1P18gZAyp8ZyE0TbXFy54clIWPsBgUQk8P5mevngN//379OCXYdxe6U15TtjULMA1+/U2unkXzQtHAuRaOV28yaVwdPy7QG0I3v15Nj2HcX04puTqnSY+55AV2q8rDm2fhgxjVEQvbSzSleyyaMvBBNuWXBejkfb+7bBMuzPon/GzSlq//yJ7xWuYtoplKxnU3Q8mZBDYkQtgpLBt5lSfNQk7YaXuK/vV6TmcvYGjkpKMR08OJqquTebSsL8T0ERYs5dO3eTgsPtVFhJyct+Y/gnyeSMTuwER+GMYl5aMU8crb/Wsy/UM68Ou+9o6j3Rw6zTPCgl6utksSPitt02jv99X7LVL5hHW5A0ttBpmG0yN6HuK8ZKs8J6QXXfj4E0/a4Zw51S/U3L/k5yuiZpspV8Y4RWv9/aITsEHy9kf+A/Qc2vJ/BhB223wGD1tnT9Kzm5jPEBGt5OaeRNhxpRqs842/dlRknAZvrm1twN0/O6m1YuTc2ya/wG1yet+
+sidebar_class_name: "get api-method"
+info_path: docs/api/bus/sentin-8-bus
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Long-lived SSE consume (server → client one-way) — the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/consume/sse"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Long-lived SSE consume (server → client one-way) — the direct-consumer
+transport (bus DESIGN §4.3): the client receives every stream message
+as an SSE event and ACKs via `POST /v1/ack`.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./sse-handler.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./sse-handler.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./sse-handler.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"session_token","in":"path","description":"The session token (from the sign-in flow) to authenticate the request.\nThe session token.","required":true,"schema":{"type":"string"}},{"name":"user_id","in":"path","description":"The user_id (from the sign-in response).\nuser identifier.","required":true,"schema":{"type":"string","format":"uuid"}}]}

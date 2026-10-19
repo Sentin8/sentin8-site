@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","required":["feature","monthly_token_cap","enforcement"],"properties":{"enforcement":{"type":"string"},"feature":{"type":"string","description":"'*' = env-wide budget."},"monthly_token_cap":{"type":"integer","format":"int64"}},"title":"UpsertBudgetRequest"}}},"required":true}}

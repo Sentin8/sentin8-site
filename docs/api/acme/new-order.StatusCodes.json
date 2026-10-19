@@ -1,0 +1,1 @@
+{"responses":{"201":{"description":"Order created (authorizations + finalize URLs; locally-signed or relayed upstream)","content":{"application/json":{"schema":{}}}},"400":{"description":"Unsupported/forbidden identifier"},"403":{"description":"Local-domain without proxy mode, or relay proxy off"}}}

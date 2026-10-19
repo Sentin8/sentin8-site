@@ -1,0 +1,1 @@
+{"responses":{"302":{"description":"Redirect to the client's redirect_uri with the issued code (or an error response per response_mode)"},"400":{"description":"Invalid request (unknown client/session, bad redirect_uri or scope)"},"401":{"description":"Session invalid or expired"}}}

@@ -1,0 +1,3542 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-sys",
+    "description": "Sentin8 Sentin8:Sys — control plane, org/env lifecycle, saga orchestration.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/app-instance/auth-mode": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/app-instance/auth-mode` — returns the app instance's auth_domain and allow_signup.\nFetch instance auth mode.",
+        "operationId": "get_instance_auth_mode",
+        "parameters": [
+          {
+            "name": "hostname",
+            "in": "query",
+            "description": "BFF or frontend hostname",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "query",
+            "description": "App instance ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auth mode",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "hostname or app_id query param is required"
+          }
+        }
+      }
+    },
+    "/v1/app-instance/scopes": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/app-instance/scopes` — resolve an app instance's OAuth scopes.\nFetch instance scopes.",
+        "operationId": "get_instance_scopes",
+        "parameters": [
+          {
+            "name": "hostname",
+            "in": "query",
+            "description": "BFF or frontend hostname",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instance scopes",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "hostname query param is required"
+          }
+        }
+      }
+    },
+    "/v1/audit": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/audit` — query orchestration audit events.\nList audit.",
+        "operationId": "audit.list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Page offset",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "Filter by action",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "description": "Filter by emitting service",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "org_id",
+            "in": "query",
+            "description": "Filter by org",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "env_id",
+            "in": "query",
+            "description": "Filter by env",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "after_ts",
+            "in": "query",
+            "description": "Keyset cursor: rows strictly before this timestamp",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "after_id",
+            "in": "query",
+            "description": "Keyset cursor tiebreaker: the last row id from the previous page",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audit events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditEventResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:audit:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:audit:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/audit` — canonical audit ingest (M2M, `sentin8:sys:audit:write`).",
+        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure — audit never drops on a Sys outage.\nHandle ingest audit.",
+        "operationId": "audit.ingest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditIngestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Batch accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditIngestResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/invalid token"
+          },
+          "403": {
+            "description": "Missing sys:audit:write scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:audit:write": []
+          }
+        ]
+      }
+    },
+    "/v1/bootstrap": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/bootstrap` — user orgs and default org.\nHandle bootstrap.",
+        "operationId": "bootstrap.get",
+        "responses": {
+          "200": {
+            "description": "Bootstrap data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BootstrapResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/e": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/e` — list environments.\nList envs.",
+        "operationId": "env.list",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "query",
+            "description": "Filter by org",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of environments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EnvResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/e` — create environment.\nCreate env.",
+        "operationId": "env.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnvRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Environment created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:env:admin scope"
+          },
+          "409": {
+            "description": "Env slug already exists"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:env:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}` — environment detail.\nFetch env.",
+        "operationId": "env.get",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Environment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/env/{env_id}` — update environment.\nUpdate env.",
+        "operationId": "env.update",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnvRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Environment updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:env:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:env:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`DELETE /v1/env/{env_id}` — cascade-delete environment.\nDelete env.",
+        "operationId": "delete_env",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Environment deleted"
+          },
+          "403": {
+            "description": "Missing sys:env:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:env:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/app-custom-domain": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/app-custom-domain` — returns the custom domain for the app instance.\nFetch app custom domain.",
+        "operationId": "get_app_custom_domain",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom domain",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Environment not found"
+          }
+        }
+      }
+    },
+    "/v1/env/{env_id}/applications": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/applications` — list applications.\nList applications.",
+        "operationId": "app.list",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/env/{env_id}/applications` — create application.\nCreate application.",
+        "operationId": "app.create",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Application created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:app:admin scope"
+          },
+          "409": {
+            "description": "Application slug already exists"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:app:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/applications/{app_id}": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/applications/{app_id}` — application detail.\nFetch application.",
+        "operationId": "app.get",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/env/{env_id}/applications/{app_id}` — update application.\nUpdate application.",
+        "operationId": "app.update",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Application updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:app:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:app:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/env/{env_id}/applications/{app_id}/archive` — archive application.\nArchive application.",
+        "operationId": "app.archive",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Application archived"
+          },
+          "403": {
+            "description": "Missing sys:app:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:app:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/archive": {
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/env/{env_id}/archive` — archive environment.\nArchive env.",
+        "operationId": "env.archive",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Environment archived"
+          },
+          "403": {
+            "description": "Missing sys:env:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:env:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/auth-domain": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/auth-domain` — returns the env's full auth_domain URL.\nFetch env auth domain.",
+        "operationId": "get_env_auth_domain",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auth domain",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Environment not found"
+          }
+        }
+      }
+    },
+    "/v1/env/{env_id}/bindings": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/bindings` — list bindings.\nList bindings.",
+        "operationId": "binding.list",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bindings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BindingResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/env/{env_id}/bindings` — create app-environment binding.\nCreate binding.",
+        "operationId": "binding.create",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBindingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Binding created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BindingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:app:admin scope"
+          },
+          "409": {
+            "description": "Binding slug already exists"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:app:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/bindings/{binding_id}": {
+      "delete": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`DELETE /v1/env/{env_id}/bindings/{binding_id}` — remove binding.\nDelete binding.",
+        "operationId": "binding.delete",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "binding_id",
+            "in": "path",
+            "description": "Binding ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Binding deleted"
+          },
+          "403": {
+            "description": "Missing sys:app:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:app:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/branding": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/branding` — get env-level branding.\nFetch env branding.",
+        "operationId": "branding.get-env",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Env branding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/env/{env_id}/branding` — set env-level branding.\nHandle set env branding.",
+        "operationId": "branding.set-env",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBrandingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Env branding updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/branding/merged": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/branding/merged` — merged org+env branding.\nFetch merged branding.",
+        "operationId": "branding.merged",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Merged branding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/env/{env_id}/services": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/env/{env_id}/services` — list service states.\nList services.",
+        "operationId": "service.list",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service states",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/env/{env_id}/services` — enable/disable service.\nHandle set service.",
+        "operationId": "service.disable",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Environment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetServiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Service state updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:services:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:services:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/health` — liveness probe.\nHandle health.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/invitations/{id}/revoke": {
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/invitations/{id}/revoke` — revoke an invitation (:\nlifecycle owner surface; auth's admin UI proxies here).\nRevoke invitation.",
+        "operationId": "invitation.revoke",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Invitation ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Invitation revoked"
+          },
+          "403": {
+            "description": "Missing sys:memberships:admin scope"
+          },
+          "404": {
+            "description": "Invitation not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:memberships:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/o": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/o` — list organizations.\nList orgs.",
+        "operationId": "org.list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Page offset",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrgResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/o` — create organization.\nCreate org.",
+        "operationId": "org.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrgRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Organization created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrgResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:org:admin scope"
+          },
+          "409": {
+            "description": "Org slug already exists"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:org:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{id}": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/org/{id}` — organization detail.\nFetch org.",
+        "operationId": "org.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrgResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/org/{id}` — update organization.\nUpdate org.",
+        "operationId": "org.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrgRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Organization updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrgResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:org:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:org:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`DELETE /v1/org/{id}` — cascade-delete org and all related records.\nDelete org.",
+        "operationId": "delete_org",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Organization deleted"
+          },
+          "403": {
+            "description": "Missing sys:org:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:org:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{id}/archive": {
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/org/{id}/archive` — archive organization.\nArchive org.",
+        "operationId": "org.archive",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Organization archived"
+          },
+          "403": {
+            "description": "Missing sys:org:admin scope"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:org:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{org_id}/branding": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/org/{org_id}/branding` — get org-level branding.\nFetch org branding.",
+        "operationId": "branding.get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Org branding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`PUT /v1/org/{org_id}/branding` — set org-level branding.\nHandle set org branding.",
+        "operationId": "branding.set",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBrandingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Org branding updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandingResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{org_id}/invitations": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/org/{org_id}/invitations` — list invitations (: the\nlifecycle owner's read surface; auth's admin UI proxies here).\nList invitations.",
+        "operationId": "invitation.list",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of invitations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvitationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:memberships:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:memberships:admin": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/org/{org_id}/invitations` — send invitation.\nSend invitation.",
+        "operationId": "invitation.send",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Invitation sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvitationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing sys:memberships:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:memberships:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{org_id}/invitations/{invitation_id}/accept": {
+      "post": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`POST /v1/org/{org_id}/invitations/{invitation_id}/accept` — accept invitation.\nHandle accept invitation.",
+        "operationId": "invitation.accept",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "invitation_id",
+            "in": "path",
+            "description": "Invitation ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Invitation accepted"
+          },
+          "404": {
+            "description": "Invitation not found"
+          },
+          "409": {
+            "description": "Invitation is not pending"
+          },
+          "410": {
+            "description": "Invitation expired"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/org/{org_id}/memberships": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/org/{org_id}/memberships` — list members.\nList memberships.",
+        "operationId": "membership.list",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of memberships",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MembershipResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`DELETE /v1/org/{org_id}/memberships` — remove member.\nRemove membership.",
+        "operationId": "membership.remove",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User ID to remove",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Membership removed"
+          },
+          "400": {
+            "description": "user_id query param required"
+          },
+          "403": {
+            "description": "Missing sys:memberships:admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:memberships:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/readiness": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/readiness` — readiness probe.\nHandle readiness.",
+        "operationId": "readiness.get",
+        "responses": {
+          "200": {
+            "description": "Service is ready",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    },
+    "/v1/resolve/hostname": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/resolve/hostname` — : the single cache-miss path for\nevery service's embedded sentin8-tls DomainResolver. Returns the\nhostname → (service, org_id, env_id, app_id) mapping so no service\nneeds SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,\nShield-gated, audited.\nResolve hostname.",
+        "operationId": "resolve_hostname",
+        "parameters": [
+          {
+            "name": "hostname",
+            "in": "query",
+            "description": "Fully-qualified hostname to resolve",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hostname mapping (service, org_id, env_id, app_id)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "hostname query param is required"
+          },
+          "404": {
+            "description": "Hostname not resolvable"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:instances:read": []
+          }
+        ]
+      }
+    },
+    "/v1/scopes/catalog": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/scopes/catalog` — returns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
+        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` — platform OAuth scope catalog.\nFetch scope catalog.",
+        "operationId": "get_scope_catalog",
+        "responses": {
+          "200": {
+            "description": "Scope catalog",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tenants/{env_id}": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/tenants/{env_id}` — VDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
+        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) — the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` — the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables — this is the owner API.\nHandle get tenant snapshot.",
+        "operationId": "tenants.snapshot",
+        "parameters": [
+          {
+            "name": "env_id",
+            "in": "path",
+            "description": "Target environment id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tenant snapshot + the caller's own service enablement",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/invalid token"
+          },
+          "403": {
+            "description": "Missing tenants:read scope or non-M2M token"
+          },
+          "404": {
+            "description": "Env unknown or the caller's service is not enabled there (scoped discovery)"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:tenants:read": []
+          }
+        ]
+      }
+    },
+    "/v1/verticals/services": {
+      "get": {
+        "tags": [
+          "sys"
+        ],
+        "summary": "`GET /v1/verticals/services?orgId={uuid}&envId={uuid}` — discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
+        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` — the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` — display label (e.g. \"Ledger\")\n- `icon` — material icon name\n- `service_flag` — the service that must be enabled (e.g. \"ledger\")\n- `enabled` — whether the feature is enabled for this org/env\n- `pages` — array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` — discover registered vertical services.\nList vertical services.",
+        "operationId": "list_vertical_services",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "query",
+            "description": "Filter by org",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "env_id",
+            "in": "query",
+            "description": "Filter by env",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vertical services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VerticalServiceResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "sentin8:sys:admin": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationResponse": {
+        "type": "object",
+        "description": "Response payload for application.",
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "type",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "type": {
+            "type": "string",
+            "description": "The app type."
+          }
+        }
+      },
+      "AuditEventResponse": {
+        "type": "object",
+        "description": "Response payload for auditevent.",
+        "required": [
+          "id",
+          "service",
+          "action",
+          "timestamp"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action."
+          },
+          "actor_user_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "actor user identifier."
+          },
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "org_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "org identifier."
+          },
+          "service": {
+            "type": "string",
+            "description": "Emitting service (DBX — stamped by Sys from the verified M2M client_id).\nThe service."
+          },
+          "target_resource_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "target resource identifier."
+          },
+          "target_resource_type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The target resource type."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp."
+          }
+        }
+      },
+      "AuditIngestItem": {
+        "type": "object",
+        "description": "One audit event in an ingest batch. `service` is IGNORED server-side —\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
+        "required": [
+          "env_id",
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The action."
+          },
+          "actor_subject_type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The actor subject type."
+          },
+          "actor_user_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "actor user identifier."
+          },
+          "after_state": {
+            "description": "The after state."
+          },
+          "before_state": {
+            "description": "The before state."
+          },
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "correlation identifier."
+          },
+          "details": {
+            "description": "The details."
+          },
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "severity": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The severity."
+          },
+          "target_resource_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "target resource identifier."
+          },
+          "target_resource_type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The target resource type."
+          }
+        }
+      },
+      "AuditIngestRequest": {
+        "type": "object",
+        "description": "Request body for auditingest.",
+        "required": [
+          "events"
+        ],
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditIngestItem"
+            },
+            "description": "The events."
+          }
+        }
+      },
+      "AuditIngestResponse": {
+        "type": "object",
+        "description": "Response payload for auditingest.",
+        "required": [
+          "accepted",
+          "service"
+        ],
+        "properties": {
+          "accepted": {
+            "type": "integer",
+            "description": "The accepted.",
+            "minimum": 0
+          },
+          "service": {
+            "type": "string",
+            "description": "The service."
+          }
+        }
+      },
+      "AuditQuery": {
+        "type": "object",
+        "description": "The auditquery type.",
+        "properties": {
+          "action": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The action."
+          },
+          "after_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Tiebreaker for rows sharing `after_ts` (the row id) — pairs with\n`after_ts` for a deterministic keyset position."
+          },
+          "after_ts": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` — stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
+          },
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The limit."
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The offset."
+          },
+          "org_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Filter by org (accepted but not yet used for filtering — env_id is the primary filter).\norg identifier."
+          },
+          "service": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Filter by emitting service (DBX ).\nThe service."
+          }
+        }
+      },
+      "BindingResponse": {
+        "type": "object",
+        "description": "Response payload for binding.",
+        "required": [
+          "id",
+          "application_id",
+          "name",
+          "slug",
+          "type",
+          "status"
+        ],
+        "properties": {
+          "application_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "application identifier."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "type": {
+            "type": "string",
+            "description": "The app type."
+          }
+        }
+      },
+      "BootstrapResponse": {
+        "type": "object",
+        "description": "Response payload for bootstrap.",
+        "required": [
+          "user_id",
+          "memberships"
+        ],
+        "properties": {
+          "default_org": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OrgResponse",
+                "description": "The default org."
+              }
+            ]
+          },
+          "memberships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MembershipResponse"
+            },
+            "description": "The memberships."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "user identifier."
+          }
+        }
+      },
+      "BrandingResponse": {
+        "type": "object",
+        "description": "Response payload for branding.",
+        "required": [
+          "theme_mode"
+        ],
+        "properties": {
+          "accent_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The accent color."
+          },
+          "custom_css": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The custom css."
+          },
+          "font_family": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The font family."
+          },
+          "logo_icon_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The logo icon URL."
+          },
+          "logo_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The logo URL."
+          },
+          "primary_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The primary color."
+          },
+          "sign_in_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sign in text."
+          },
+          "theme_mode": {
+            "type": "string",
+            "description": "The theme mode."
+          }
+        }
+      },
+      "CreateApplicationRequest": {
+        "type": "object",
+        "description": "Request body for createapplication.",
+        "required": [
+          "name",
+          "slug"
+        ],
+        "properties": {
+          "app_type": {
+            "type": "string",
+            "description": "The app type."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          }
+        }
+      },
+      "CreateBindingRequest": {
+        "type": "object",
+        "description": "Request body for createbinding.",
+        "required": [
+          "application_id",
+          "name",
+          "slug"
+        ],
+        "properties": {
+          "app_type": {
+            "type": "string",
+            "description": "The app type."
+          },
+          "application_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "application identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          }
+        }
+      },
+      "CreateEnvRequest": {
+        "type": "object",
+        "description": "Request body for createenv.",
+        "required": [
+          "org_id",
+          "slug",
+          "display_name"
+        ],
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "description": "The display name."
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "org identifier."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          }
+        }
+      },
+      "CreateOrgRequest": {
+        "type": "object",
+        "description": "Request body for createorg.",
+        "required": [
+          "slug",
+          "display_name"
+        ],
+        "properties": {
+          "custom_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional domain for the org (e.g. \"ibank.local\").\nIf not provided, defaults to {slug}.o.{sentin8_domain}.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          }
+        }
+      },
+      "EnvResponse": {
+        "type": "object",
+        "description": "Response payload for env.",
+        "required": [
+          "id",
+          "org_id",
+          "slug",
+          "display_name",
+          "status",
+          "created_at",
+          "services"
+        ],
+        "properties": {
+          "auth_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The auth domain."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "created time."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "org identifier."
+          },
+          "services": {
+            "description": "Service enablement states for this env (service key → enabled).\nThe services."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          }
+        }
+      },
+      "InstanceAuthModeQuery": {
+        "type": "object",
+        "description": "Query params for `get_instance_auth_mode`.\nThe instanceauthmodequery type.",
+        "properties": {
+          "app_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "app identifier."
+          },
+          "hostname": {
+            "type": "string",
+            "description": "The hostname."
+          }
+        }
+      },
+      "InstanceScopesQuery": {
+        "type": "object",
+        "description": "Query params for `get_instance_scopes`.\nThe instancescopesquery type.",
+        "required": [
+          "hostname"
+        ],
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "The BFF or frontend hostname (e.g. `bff.www.ifintech.local` or\n`www.ifintech.local`). TLS-injected `X-Sentin8-Hostname`.\nThe hostname."
+          }
+        }
+      },
+      "InvitationRequest": {
+        "type": "object",
+        "description": "Request body for invitation.",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email."
+          },
+          "role": {
+            "type": "string",
+            "description": "The role."
+          }
+        }
+      },
+      "InvitationResponse": {
+        "type": "object",
+        "description": "Response payload for invitation.",
+        "required": [
+          "id",
+          "org_id",
+          "email",
+          "role",
+          "status",
+          "token",
+          "expires_at"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email."
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "expires time."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "org identifier."
+          },
+          "role": {
+            "type": "string",
+            "description": "The role."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "token": {
+            "type": "string",
+            "description": "The token."
+          }
+        }
+      },
+      "ListEnvsQuery": {
+        "type": "object",
+        "description": "The listenvsquery type.",
+        "properties": {
+          "org_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "org identifier."
+          }
+        }
+      },
+      "ListQuery": {
+        "type": "object",
+        "description": "The listquery type.",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The limit."
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The offset."
+          }
+        }
+      },
+      "MembershipResponse": {
+        "type": "object",
+        "description": "Response payload for membership.",
+        "required": [
+          "id",
+          "user_id",
+          "org_id",
+          "role",
+          "created_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "created time."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "org identifier."
+          },
+          "role": {
+            "type": "string",
+            "description": "The role."
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "user identifier."
+          }
+        }
+      },
+      "OrgResponse": {
+        "type": "object",
+        "description": "Response payload for org.",
+        "required": [
+          "id",
+          "slug",
+          "display_name",
+          "status",
+          "custom_domain",
+          "created_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "created time."
+          },
+          "custom_domain": {
+            "type": "string",
+            "description": "Serialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The slug."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          }
+        }
+      },
+      "ServiceResponse": {
+        "type": "object",
+        "description": "Response payload for service.",
+        "required": [
+          "id",
+          "service",
+          "enabled",
+          "config"
+        ],
+        "properties": {
+          "config": {
+            "description": "The config."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "The enabled."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "service": {
+            "type": "string",
+            "description": "The service."
+          }
+        }
+      },
+      "SetBrandingRequest": {
+        "type": "object",
+        "description": "Request body for setbranding.",
+        "properties": {
+          "accent_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The accent color."
+          },
+          "custom_css": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The custom css."
+          },
+          "font_family": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The font family."
+          },
+          "logo_icon_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The logo icon URL."
+          },
+          "logo_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The logo URL."
+          },
+          "primary_color": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The primary color."
+          },
+          "sign_in_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sign in text."
+          },
+          "theme_mode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The theme mode."
+          }
+        }
+      },
+      "SetServiceRequest": {
+        "type": "object",
+        "description": "Request body for setservice.",
+        "required": [
+          "service",
+          "enabled"
+        ],
+        "properties": {
+          "config": {
+            "description": "The config."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "The enabled."
+          },
+          "service": {
+            "type": "string",
+            "description": "The service."
+          }
+        }
+      },
+      "UpdateEnvRequest": {
+        "type": "object",
+        "description": "Request body for updateenv.",
+        "properties": {
+          "auth_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The auth domain."
+          },
+          "display_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The display name."
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The status."
+          }
+        }
+      },
+      "UpdateOrgRequest": {
+        "type": "object",
+        "description": "Request body for updateorg.",
+        "properties": {
+          "custom_domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional domain update — triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+          },
+          "display_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The display name."
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The status."
+          }
+        }
+      },
+      "VerticalServiceResponse": {
+        "type": "object",
+        "description": "Response payload for verticalservice.",
+        "required": [
+          "service",
+          "label",
+          "icon",
+          "service_flag",
+          "enabled",
+          "pages"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "The enabled."
+          },
+          "icon": {
+            "type": "string",
+            "description": "The icon."
+          },
+          "label": {
+            "type": "string",
+            "description": "The label."
+          },
+          "pages": {
+            "description": "The pages."
+          },
+          "service": {
+            "type": "string",
+            "description": "The service."
+          },
+          "service_flag": {
+            "type": "string",
+            "description": "The service flag."
+          }
+        }
+      },
+      "VerticalServicesQuery": {
+        "type": "object",
+        "description": "The verticalservicesquery type.",
+        "properties": {
+          "env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "org_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "org identifier."
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "sys",
+      "description": "Sentin8:Sys admin API — org/env lifecycle, services, applications, branding, audit"
+    }
+  ]
+}

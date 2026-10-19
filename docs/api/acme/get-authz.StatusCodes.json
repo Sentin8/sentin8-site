@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Authorization challenges (RFC 8555 §7.1.4)"},"404":{"description":"Unknown authorization"}}}

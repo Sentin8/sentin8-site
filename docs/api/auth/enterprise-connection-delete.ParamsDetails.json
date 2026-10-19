@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"Enterprise connection id","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"target_env_id","in":"query","description":"Target env (RLS context)","required":true,"schema":{"type":"string"}}]}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The group's members (identical handler to GET /v1/admin/groups/{group_id}/members)","content":{"application/json":{"schema":{}}}},"403":{"description":"Caller lacks the admin read scope"},"404":{"description":"Unknown group"}}}

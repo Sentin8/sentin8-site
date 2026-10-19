@@ -11,7 +11,244 @@ Sentin8 Sentin8:Sys - control plane, org/env lifecycle, saga orchestration.
 > served live at `GET /openapi.json`) - the source of truth is the
 > service’s own `#[utoipa::path]` annotations.
 
-**43 endpoints**.
+**61 endpoints** across 2 groups.
+
+## policy
+
+### `GET /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Principal attributes of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute stored | - |
+| 400 | Invalid attribute definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy sets of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/disable`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets disabled | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/enforce`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to enforce mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/shadow`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to shadow mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The policy set | - |
+| 403 | Caller lacks the admin scope | - |
+| 404 | Unknown policy set name | - |
+
+### `PUT /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set stored | - |
+| 400 | Invalid policy set definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/{name}/test`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Dry-run decision trace | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | ReBAC relations of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation stored | - |
+| 400 | Invalid relation definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations/check`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `subject` | query | yes | string |
+| `relation` | query | yes | string |
+| `object` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The check verdict | - |
+| 403 | Caller lacks the admin scope | - |
+
 
 ## sys
 
@@ -326,7 +563,7 @@ Gate: `sentin8:sys:app:admin`
 | 403 | Missing `sys:app:admin` scope | - |
 | 404 | Not found | - |
 
-### `POST /v1/env/{env_id}/applications/{app_id}/archive`
+### `POST /v1/env/{env_id}/applications/{app_id}`
 
 `POST /v1/env/&#123;env_id&#125;/applications/&#123;app_id&#125;/archive` - archive application. Archive application.
 
@@ -579,6 +816,26 @@ Gate: `sentin8:sys:services:admin`
 | --- | --- | --- |
 | 200 | Service is healthy | - |
 
+### `POST /v1/invitations/{id}/revoke`
+
+`POST /v1/invitations/&#123;id&#125;/revoke` - revoke an invitation (: lifecycle owner surface; auth's admin UI proxies here). Revoke invitation.
+
+Gate: `sentin8:sys:memberships:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 204 | Invitation revoked | - |
+| 403 | Missing `sys:memberships:admin` scope | - |
+| 404 | Invitation not found | - |
+
 ### `GET /v1/o`
 
 `GET /v1/o` - list organizations. List orgs.
@@ -759,6 +1016,25 @@ Gate: `sentin8:sys:admin`
 | 200 | Org branding updated | `BrandingResponse` |
 | 403 | Forbidden | - |
 
+### `GET /v1/org/{org_id}/invitations`
+
+`GET /v1/org/&#123;org_id&#125;/invitations` - list invitations (: the lifecycle owner's read surface; auth's admin UI proxies here). List invitations.
+
+Gate: `sentin8:sys:memberships:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `org_id` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | List of invitations | `InvitationResponse`[] |
+| 403 | Missing `sys:memberships:admin` scope | - |
+
 ### `POST /v1/org/{org_id}/invitations`
 
 `POST /v1/org/&#123;org_id&#125;/invitations` - send invitation. Send invitation.
@@ -857,6 +1133,26 @@ Gate: `sentin8:sys:memberships:admin`
 | --- | --- | --- |
 | 200 | Service is ready | - |
 | 503 | Database unavailable | - |
+
+### `GET /v1/resolve/hostname`
+
+`GET /v1/resolve/hostname` - : the single cache-miss path for every service's embedded sentin8-tls DomainResolver. Returns the hostname → (service, org_id, env_id, app_id) mapping so no service needs SELECT grants on sys's domain tables. M2M ``sentin8:sys:instances:read``, Shield-gated, audited. Resolve hostname.
+
+Gate: `sentin8:sys:instances:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `hostname` | query | no | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Hostname mapping (service, org_id, env_id, app_id) | - |
+| 400 | hostname query param is required | - |
+| 404 | Hostname not resolvable | - |
 
 ### `GET /v1/scopes/catalog`
 

@@ -1,0 +1,81 @@
+---
+id: list-buckets
+title: "`GET /v1/admin/buckets` — list buckets (top-level prefixes).
+This is a dedicated handler because the route `/v1/admin/buckets` also
+has a POST handler, so the catch-all `/v1/admin/{resource}` route is
+shadowed for GET requests.
+List buckets."
+description: "`GET /v1/admin/buckets` — list buckets (top-level prefixes)."
+sidebar_label: "`GET /v1/admin/buckets` — list buckets (top-level prefixes).
+This is a dedicated handler because the route `/v1/admin/buckets` also
+has a POST handler, so the catch-all `/v1/admin/{resource}` route is
+shadowed for GET requests.
+List buckets."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVM1u2zAMfhWCpxZzftrT4NsGFEWBDh2a7JQEjSIxsVpFckU5bWAY2EPsCfckA223S5FgLzBfDIj8yI/kR9aY1IYxn6EyW+sHlcVFhqGkqJIN/sZgjs5yelhV+okSY4alimpLiaLAavRqS5hjUnFD6YH87sEazNB6zPG5orjHDA2xjraUiJjjtHUF8js4u7+dgA4+0Ws6xwwjPVc2ksE8xYoyZF3QVmFeY9qXkoZTtH6DTbMQZy6DZ2KxX47H8vuY6WtLGoQiwycIq0fSCXSofFtJm9gnwamydFa3NY8eWcD13+SNfBky6SratG/LZvLJ+s85pxDVhvJIymA+WwixjySW11dTGO0uRm2HR30jl/D75y+Q1kL/AmcplANHO3JQRlrbV+Lz4dxPC8tgGRQYMsKRDBTKG0cRVqRVxQSpIIihSgTLE5mU4zD3hZIY3+8m0zd4BhxaqFZJFwPl3CG8jsShipqaZR/b8txzoUx4IQPrEEEqk5ERJx7O/e1BNUPMcEupCKKgDaVWOKnAHI8ItmpZh3bKNrl2zF13B313jyQ06ezQ//NJ59f2tJvyaG0dQY+HF5sKKF212aiVI1BGlSJgIemsJs8k2Xspf7uZwt09fCmVLmhwORwLQSOZ1pbiSYcmwx1F7siNhxfdUxk4bZU/CP3/auHD/N7XWfZ+VDplvfSrik5snU5muLvArDtLmOGbVhYZFoGT2Ot6pZh+RNc08twdG9lNY1nGbDBfK8d0lPx97/Hsvj845/CPq3SS7BPtT5y9nXKV+KLcgZ2KVoi0dyHDgpQR/czqHvxFayrTAeroCkmU9y26vppi0/wBjg36yA==
+sidebar_class_name: "get api-method"
+info_path: docs/api/storage/sentin-8-storage
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/buckets` — list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/buckets"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`GET /v1/admin/buckets` — list buckets (top-level prefixes).
+This is a dedicated handler because the route `/v1/admin/buckets` also
+has a POST handler, so the catch-all `/v1/admin/{resource}` route is
+shadowed for GET requests.
+List buckets.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./list-buckets.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./list-buckets.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./list-buckets.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

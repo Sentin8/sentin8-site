@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Wallet connection metadata (formats, trusted issuers, presentation definition, response endpoint)","content":{"application/json":{"schema":{}}}}}}

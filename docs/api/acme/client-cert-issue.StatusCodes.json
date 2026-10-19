@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Combined PEM (leaf chain + key)","content":{"application/x-pem-file":{"schema":{"type":"string"}}}},"400":{"description":"invalid service_name"},"401":{"description":"missing/invalid bearer token"},"403":{"description":"sub does not match the requested service_name"}}}

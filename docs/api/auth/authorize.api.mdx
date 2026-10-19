@@ -1,0 +1,81 @@
+---
+id: authorize
+title: "The authorize endpoint validates the request and redirects to the Auth hosted UI
+(`/sign-in`) with the OAuth params preserved. After the user authenticates,
+the UI calls back to issue an auth code. For non-interactive flows (already
+has a session), it issues the code directly.
+Authorize it."
+description: "The authorize endpoint validates the request and redirects to the Auth hosted UI"
+sidebar_label: "The authorize endpoint validates the request and redirects to the Auth hosted UI
+(`/sign-in`) with the OAuth params preserved. After the user authenticates,
+the UI calls back to issue an auth code. For non-interactive flows (already
+has a session), it issues the code directly.
+Authorize it."
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtuGzcQ/ZUBXyoDa0lJilw2T4KTFHKROpDt9sEyJHp3pGW8IjccrhTVENCP6Bf2S4rhXiTZqm2snKJA8yR7OeScOZwrb4STUxLhhTAyd4m4DITJ0EqnjO7HIhT81Vj1O4pAZNLKGTq0vOFGaDlDEQqLlBlNOHLLjKWUFqHIpEtEIGKkyKqMTxOhGOCXXFmMYWIsaKMPP/UGMEnNgt6C8UIyhUWCGnJSegq83LJIJp3zJmtm8KtMr3F50B7qswShUg2sui0CYUsNInQ2x0BQlOBMivBGeHDhhSBnlZ6KQOg8TcXlahXUhkSpQu1GKr7XiEIKVIzaqYlC+xi9ldpNdRZjZTFyo9yqf5u2QjOcD/p7s0aReeDaWaWXasoUOekeoYKlmqqITIyjKJFpinr6sC4Wh1p8f8/b0j6aoUvM/V54FwQUu/bGwpuRHvZK9rINWWgNPhzBm2fPXx7AX3/8WfgjyyiCCk8AjmEXAUT51Uw5GmoJ441zxqA0OZQxmAkonSqN4PMO1c7rZZ/Idy2iHiVKu3ttPe8Dy4DSsYqk4yBbJCpKIDHkMIbzPmRyiuAMUGIWMFGWXBuOcmtRu3Q51JRnmbGOYExqqvNsvCYps0ioXUFOnW4hkTpO0dbBSkPtDIw7vP+QD2htEFV+Vnp8AAvlEn/WJE9TOOnlLoHIaIdf3VCXjJLxEuVZBfhIlljsfJ0i+Eo6PrI6205a3kbBoGdn79vQRkf3h95J/90RjL1cQSBGicEYFFPDBvXfgTPXqKF1+v7osMp3fsMTBEZZ52YmfgCm57wuTizv0Y6/5GiXY2jFOJF56g7AWBh/XrgxtI57g48BbKLe2v9UYX0v7uPewLsExnWUmavPXCjK4O4+uw3RSz0FtSa3D1w+Q3j9qvsKKukqHI3dvu5qfW9YVTD6bmgUo5MqpQcxvnnx5iUMODv0NvfDoCCLvCscn578AtJauQQzGerxTlXjkn5qcwFXseRcI6eSA38jlf5AQ21xqsghdwm7z/LdGY3fAjljfcgUJ7BvWoyMjYda6vgfI6rkdutsKM++l+jV6jKoY4eY+Rfd5/xzu8kpe5JSb5lZy7TGGbZVlIE6R8U+fMhZqaaJgysZXVebyxJTZ0JvpU+2EgiJGDt+VeRIrALxY7d7F09fz5nyWwZXYdHK9bU2C11qCuBKxts5c6srPuBeQxBGuVVuKcKLy131fJ37UceZ4YIzL6+dvBmVdr6nuixUNvucU9ejoW7trAlFarrNZBt6E4fWS+SE1kPh/jZi3cFQ88J5HyKZplQzrYhyBKm9tOe4DR/KFlVph1ZGTs2xaFWhJVOLMl4OdSJpfQ8HAShXHEXruypsS5ftoe7VrCifaMrmKBRTdH4mcYkIRcePL53NaUXpifGBrlzqiz0bpF8f+jnnNv+nxSKUv6GniQO16PPdMiio63AJ6nzofeoHlQUUwPFvP59W1+eWjDJVEWpC1l8mk4/9MzgZQC+TUYKHz9tdhlgPETsFVoGYo6UCYbf9rPiUGXIzqTeO/u48j3WerUuv5wFujTpZKpVmfnOb8lrhWNVcHGwMwpeBYKp48ebmShKe23S14s++vhfhPZdWySt2vIsbESviv2MRTmRKeAeHb8+0E6FoVcPeAXz7aXmn+eVHqZeCrUhz/k8E4hqXd4Z9rpWNbNs5RDeAsx7ZG0P55tN1I5Y3ngYaW7Y1dzdAUUz2+6mvZvIm6v3Uv5f6u2N6Ex/bfhp4QkAbI/veuKpHg8bw/iPzfKNoWb9YNDb/+4j/yBG/USJZP7M0vqB9Z/8GuIsHieaIv80zwD5V2z9dNDZon/eB5nG9R2lv8mLQjN7i+WIvpP/Pd4MGdO9+llldrjaGw5/en4nV6m+9NVa5
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"The authorize endpoint validates the request and redirects to the Auth hosted UI\n(`/sign-in`) with the OAuth params preserved. After the user authenticates,\nthe UI calls back to issue an auth code. For non-interactive flows (already\nhas a session), it issues the code directly.\nAuthorize it."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/oauth/authorize"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+The authorize endpoint validates the request and redirects to the Auth hosted UI
+(`/sign-in`) with the OAuth params preserved. After the user authenticates,
+the UI calls back to issue an auth code. For non-interactive flows (already
+has a session), it issues the code directly.
+Authorize it.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./authorize.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./authorize.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./authorize.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

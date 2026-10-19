@@ -1,0 +1,84 @@
+---
+id: challenge-ready
+title: "`POST /acme/challenge/{id}` — signal the challenge is ready for
+validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
+(the challenge target is the platform's own host network); external
+orders notify the upstream CA that its http-01 challenge is ready —
+the upstream then fetches the key authorization from the proxy's
+:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
+description: "`POST /acme/challenge/{id}` — signal the challenge is ready for"
+sidebar_label: "`POST /acme/challenge/{id}` — signal the challenge is ready for
+validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
+(the challenge target is the platform's own host network); external
+orders notify the upstream CA that its http-01 challenge is ready —
+the upstream then fetches the key authorization from the proxy's
+:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVUtu3DAMvQrBTWYAzyc/YOqugjQtAjRtkc8qEzSKzRkLI0sORU8yHRjIqgcocofcI0fJSQrZzj/tuotu/KEo8vHxiVqiqKnH+BhVkhOeROgKYiXa2d0UY0wyZQzZKX1nUukCIywUq5yEOOxaolU5YYw6xQi1xRgLJRlGmJJPWBchEMa4fR8Gakem81IzpRgLlxShTzLKFcZLlEURwnlhbadYVSfB2RfOevJhfW04DK8/Rc8VzyiFGit0CnaXC8hdSjFYJ3qiyYNkBGXhhUnlXawi3BhuvA55ZGfWXVh4qL/xfPe35NYJFGTTBnmEnpKStSwwPj55Scjpt68HhzAIpA8ecgyWOq1O4e7qGryeWmVqsMkjd76tbOJ4bOfK6LTuFHT2P27DaHNzE25vRv31bh8+u0QZcJwSe/CZY+klmpNSC4iD03rv6dh2nicQxVOSkCfYC6Nk4jhf8RCoyJwXsCQXjmfd90CXQmyVGds2S83w4hm/sL0FkikBLR4ykaI3XH2rnrur67F9tlEysjAhSbK2ZTNagColc6x/NEVP2OUNztDmFT+28WgIRnshSwx3P39BoHfFwwUZ02v6ya4Ugs6HnYPdT1/g9majvzYIz/VuHyPMSTIXZF84L7XWJcMY32pTLfeJqzWrxdSiJSvajnr1SXrZ8INmEdp3vJXkVHda24ZH2Nre24GEOOg0UUL35coCPPGcOCA0OiHrKaRtT97e7iF83YetQiUZ9db6w4AsDVkmmvhNhyrCObFvgA37q40p1Jwr+yT0f5H+iyJ9pquHiSl0KYPCKG1DL0s2Ya3Rbzvbo8dhjhHGOg3TPvAVPJbLM+XpiE1VBfN5SdzOrblirc6CwI+XmGofvlOMJ8p4egUmcVbICsbY2W9nfBdeDP83AbdGZcMVM1emDH8Y4YwWze1SnVRPzmcQJlbVb7uoXBI=
+sidebar_class_name: "post api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /acme/challenge/{id}` — signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready —\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/acme/challenge/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /acme/challenge/{id}` — signal the challenge is ready for
+validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
+(the challenge target is the platform's own host network); external
+orders notify the upstream CA that its http-01 challenge is ready —
+the upstream then fetches the key authorization from the proxy's
+:80 listener → acme's well-known route (DESIGN §4.2/§4.3).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./challenge-ready.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./challenge-ready.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./challenge-ready.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"name","in":"path","description":"Policy set name","required":true,"schema":{"type":"string"}},{"name":"action","in":"path","description":"Row action (enforce, shadow, disable)","required":true,"schema":{"type":"string"}}]}

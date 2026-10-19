@@ -11,7 +11,289 @@ Sentin8 Sentin8:Cron - standalone distributed scheduler.
 > served live at `GET /openapi.json`) - the source of truth is the
 > service’s own `#[utoipa::path]` annotations.
 
-**12 endpoints**.
+**32 endpoints** across 4 groups.
+
+## policy
+
+### `GET /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Principal attributes of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute stored | - |
+| 400 | Invalid attribute definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy sets of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/disable`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets disabled | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/enforce`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to enforce mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/shadow`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to shadow mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The policy set | - |
+| 403 | Caller lacks the admin scope | - |
+| 404 | Unknown policy set name | - |
+
+### `PUT /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set stored | - |
+| 400 | Invalid policy set definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/{name}/test`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Dry-run decision trace | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | ReBAC relations of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation stored | - |
+| 400 | Invalid relation definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations/check`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `subject` | query | yes | string |
+| `relation` | query | yes | string |
+| `object` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The check verdict | - |
+| 403 | Caller lacks the admin scope | - |
+
+
+## admin-ui
+
+### `GET /v1/admin/ui/{page}`
+
+Fetch admin ui.
+
+Gate: `sentin8:cron:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `page` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | RFW page definition (rendered by Sentin8:Dash) | - |
+| 403 | Caller lacks a cron read/admin scope | - |
+| 404 | Unknown page | - |
+
+### `GET /v1/admin/{resource}`
+
+`GET /v1/admin/&#123;resource&#125;` - returns a JSON array of admin data rows. SECURITY: `target_env_id` is REQUIRED - no fallback to the token's env_id. The caller must explicitly specify which env they are administering. RLS context is set before querying to enforce tenant isolation. Fetch admin data.
+
+Gate: `sentin8:cron:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `resource` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The resource's rows for the RFW table | - |
+| 403 | Caller lacks a cron read/admin scope | - |
+| 404 | Unknown resource | - |
+
 
 ## cron
 
@@ -203,6 +485,53 @@ Gate: `sentin8:cron:write`
 | 403 | Missing `cron:write` scope | - |
 | 404 | Schedule not found | - |
 
+### `PATCH /v1/schedules/{id}`
+
+Update schedule status.
+
+Gate: `sentin8:cron:write`
+
+**Request body** (`application/json`):
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `status` | string | yes | Target status (`paused` or `active`). |
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 204 | Status applied | - |
+| 400 | Unknown status | - |
+| 403 | Missing `cron:write` scope | - |
+| 404 | Schedule not found | - |
+
+### `POST /v1/schedules/{id}/delete`
+
+`POST /v1/schedules/&#123;id&#125;/delete` - RFW renderer alias of `DELETE /v1/schedules/&#123;id&#125;` (same operation, same gates).
+
+Gate: `sentin8:cron:write`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 204 | Schedule deleted (same contract as DELETE /v1/schedules/&#123;id&#125;) | - |
+| 403 | Missing `cron:write` scope | - |
+| 404 | Schedule not found | - |
+
 ### `POST /v1/schedules/{id}/pause`
 
 `POST /v1/schedules/&#123;id&#125;/pause` Pause schedule.
@@ -240,4 +569,17 @@ Gate: `sentin8:cron:write`
 | --- | --- | --- |
 | 204 | Schedule resumed | - |
 | 404 | Schedule not found | - |
+
+
+## meta
+
+### `GET /v1/health`
+
+`GET /v1/health` - status, ticker heartbeat, active schedule count.
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Liveness + ticker heartbeat + schedule count | - |
 

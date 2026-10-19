@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Actor token revoked"},"404":{"description":"actor token not found"}}}

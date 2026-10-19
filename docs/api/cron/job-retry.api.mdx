@@ -1,0 +1,78 @@
+---
+id: job-retry
+title: "`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with
+`next_attempt_at = now`; the ticker drains it on the next tick
+.
+Retry job."
+description: "`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with"
+sidebar_label: "`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with
+`next_attempt_at = now`; the ticker drains it on the next tick
+.
+Retry job."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNlMFu2zAMhl9F4GkD1KQpehg07DBsGJABQ4e2O6XBIlt0rdamXIlKGxgG9hB7wj7JQDvo2jUPsJNsiiJ/6iPVA9vrBGYFZQwEaw2hw2jZB1o6MHATillEjjvQ0NloW2SM4t8D2RbBgHegwRMY6CzXoMFhKqPvJAQY+BoKtfwMGiLeZR/RgeGYUUMqa2wtmB5410mgxNHTNWioQmwtg4GcvYNhWMvh1AVKmMT/5PhUltd57jJmdKoKUU2aBw2nh5y/WN+gUzehUBRYVSGTJNKQsMzR824sMCGxp3dGbsbcR88IZrUWOS+jbb6fXVyq+XYxvwlFmvfeDfMx/0Y9/vqtIiZkZVX1NykHtemQnKfrjbr3XF/RhvCBf1pmbDtZ1QdF4X7zXnGNin15i1G5aD0l5VkFGu1yZty8otkVnUtOiT8DDS1yHYRgFxKP8LgGAwdUjviqMJLw3IwopsqPxp74t9yLaVPtV/MpBhoLTWzJ2SYQKueFZpEZnRLQLjcYRVbjS6SEkmzfP9+Wl+rsXH3sbFnj0cnsWPQ4iV15jAcdBg1bjGmSczxbTCYptLX0LPR/CebFZT41P+MDz7vGepJScmxkb2K2gu0CtExiAg1mnLcJ3FpDLXTNCvq+sAl/xGYYxHyXMUoTrzVsbfS2EKyrHpxP8u3AVLZJ+EpNGYiRZPbenO/n9a16GuGDWvdGS9JIW9tk+QMNt7ibXodhPTxrR0ECw/AHGQSGvw==
+sidebar_class_name: "post api-method"
+info_path: docs/api/cron/sentin-8-cron
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with\n`next_attempt_at = now`; the ticker drains it on the next tick\n.\nRetry job."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/jobs/{id}/retry"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with
+`next_attempt_at = now`; the ticker drains it on the next tick
+.
+Retry job.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./job-retry.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./job-retry.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./job-retry.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

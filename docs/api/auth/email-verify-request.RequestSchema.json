@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for emailverify.","required":["email"],"properties":{"email":{"type":"string","description":"Email to verify. The user must already exist.\nThe email."}},"title":"EmailVerifyRequest"}}},"required":true}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Policy set stored","content":{"application/json":{"schema":{}}}},"400":{"description":"Invalid policy set definition"},"403":{"description":"Caller lacks the admin scope"}}}

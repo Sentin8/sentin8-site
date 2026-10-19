@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for retention.","required":["retention_days"],"properties":{"retention_days":{"type":"integer","format":"int32","description":"The retention days."}},"title":"RetentionRequest"}}},"required":true}}

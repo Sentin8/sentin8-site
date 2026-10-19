@@ -1,0 +1,114 @@
+{
+  "auth": {
+    "specPath": "openapi/auth-spec.json",
+    "outputDir": "docs/api/auth",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "acme": {
+    "specPath": "openapi/acme-spec.json",
+    "outputDir": "docs/api/acme",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "bus": {
+    "specPath": "openapi/bus-spec.json",
+    "outputDir": "docs/api/bus",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "db": {
+    "specPath": "openapi/db-spec.json",
+    "outputDir": "docs/api/db",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "storage": {
+    "specPath": "openapi/storage-spec.json",
+    "outputDir": "docs/api/storage",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "post": {
+    "specPath": "openapi/post-spec.json",
+    "outputDir": "docs/api/post",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "secrets": {
+    "specPath": "openapi/secrets-spec.json",
+    "outputDir": "docs/api/secrets",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "stat": {
+    "specPath": "openapi/stat-spec.json",
+    "outputDir": "docs/api/stat",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "func": {
+    "specPath": "openapi/func-spec.json",
+    "outputDir": "docs/api/func",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "flow": {
+    "specPath": "openapi/flow-spec.json",
+    "outputDir": "docs/api/flow",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "cron": {
+    "specPath": "openapi/cron-spec.json",
+    "outputDir": "docs/api/cron",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "ai": {
+    "specPath": "openapi/ai-spec.json",
+    "outputDir": "docs/api/ai",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "sys": {
+    "specPath": "openapi/sys-spec.json",
+    "outputDir": "docs/api/sys",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
+  "app": {
+    "specPath": "openapi/app-spec.json",
+    "outputDir": "docs/api/app",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  }
+}

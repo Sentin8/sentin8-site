@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Gateway test result"},"403":{"description":"Missing post:write scope"}}}

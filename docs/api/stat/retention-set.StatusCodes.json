@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Retention set"},"403":{"description":"Missing stat:admin scope"}}}

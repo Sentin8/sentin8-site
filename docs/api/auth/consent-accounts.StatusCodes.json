@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"The consent flow's customer accounts (per scope selection)","content":{"application/json":{"schema":{}}}},"401":{"description":"Session invalid or expired"}}}

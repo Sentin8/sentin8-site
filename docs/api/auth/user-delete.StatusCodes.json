@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"User deleted (same contract as DELETE /v1/admin/users/{id})"},"403":{"description":"Caller lacks the admin write scope"},"404":{"description":"Unknown user"}}}

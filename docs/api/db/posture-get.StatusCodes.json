@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"RLS posture report"},"403":{"description":"Missing db:table:admin or db:posture:read scope"}}}

@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"ReBAC relations of this service","content":{"application/json":{"schema":{"type":"array","items":{}}}}},"403":{"description":"Caller lacks the admin scope"}}}

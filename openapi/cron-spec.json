@@ -1,0 +1,1450 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-cron",
+    "description": "Sentin8 Sentin8:Cron — standalone distributed scheduler.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin ui.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a cron read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a cron read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/dlq": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/dlq`\nList dlq.",
+        "operationId": "dlq.list",
+        "responses": {
+          "200": {
+            "description": "List of DLQ items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DlqResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/dlq/{id}": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/dlq/{id}` — DLQ item detail.\nFetch dlq.",
+        "operationId": "dlq.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "DLQ item ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DLQ item detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DlqResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "DLQ item not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/dlq/{id}/republish": {
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/dlq/{id}/republish` — republish a DLQ item as a new pending\njob and delete the DLQ row.\nHandle republish dlq.",
+        "operationId": "dlq.republish",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "DLQ item ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DLQ item republished"
+          },
+          "404": {
+            "description": "DLQ item not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "`GET /v1/health` — status, ticker heartbeat, active schedule count.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Liveness + ticker heartbeat + schedule count",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/jobs": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/jobs`\nList jobs.",
+        "operationId": "job.list",
+        "parameters": [
+          {
+            "name": "schedule_id",
+            "in": "query",
+            "description": "Filter by schedule ID",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/jobs/{id}": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/jobs/{id}` — job detail.\nFetch job.",
+        "operationId": "job.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Job ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:read scope"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      }
+    },
+    "/v1/jobs/{id}/retry": {
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with\n`next_attempt_at = now`; the ticker drains it on the next tick\n.\nRetry job.",
+        "operationId": "job.retry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Job ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Job queued for retry"
+          },
+          "404": {
+            "description": "Failed job not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/schedules": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/schedules`\nList schedules.",
+        "operationId": "schedule.list",
+        "responses": {
+          "200": {
+            "description": "List of schedules",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ScheduleResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/schedules`\nCreate schedule.",
+        "operationId": "schedule.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Schedule created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:write scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/schedules/{id}": {
+      "get": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`GET /v1/schedules/{id}` — schedule detail.\nFetch schedule.",
+        "operationId": "schedule.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing cron:read scope"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:read": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`DELETE /v1/schedules/{id}`\nDelete schedule.",
+        "operationId": "schedule.delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Schedule deleted"
+          },
+          "403": {
+            "description": "Missing cron:write scope"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "Update schedule status.",
+        "operationId": "schedule.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Status applied"
+          },
+          "400": {
+            "description": "Unknown status"
+          },
+          "403": {
+            "description": "Missing cron:write scope"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/schedules/{id}/delete": {
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/schedules/{id}/delete` — RFW renderer alias of\n`DELETE /v1/schedules/{id}` (same operation, same gates).",
+        "operationId": "delete_schedule_alias",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Schedule deleted (same contract as DELETE /v1/schedules/{id})"
+          },
+          "403": {
+            "description": "Missing cron:write scope"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/schedules/{id}/pause": {
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/schedules/{id}/pause`\nPause schedule.",
+        "operationId": "schedule.pause",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Schedule paused"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    },
+    "/v1/schedules/{id}/resume": {
+      "post": {
+        "tags": [
+          "cron"
+        ],
+        "summary": "`POST /v1/schedules/{id}/resume`\nResume schedule.",
+        "operationId": "schedule.resume",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Schedule resumed"
+          },
+          "404": {
+            "description": "Schedule not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:cron:write": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateScheduleRequest": {
+        "type": "object",
+        "description": "Request body for createschedule.",
+        "required": [
+          "domain",
+          "schedule_type",
+          "cron_expression"
+        ],
+        "properties": {
+          "cron_expression": {
+            "type": "string",
+            "description": "The cron expression."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "fire_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Single fire time for `kind: \"once\"` schedules (RFC 3339)."
+          },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "`once` = single fire at `fire_at` (then `completed`); default\nrecurring = the cron expression drives every fire."
+          },
+          "max_retries": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum retries."
+          },
+          "schedule_type": {
+            "type": "string",
+            "description": "The schedule type."
+          },
+          "target_config": {
+            "description": "The target config."
+          },
+          "timezone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "IANA zone the cron_expression's wall-clock fields match against\n(CRON-6, cron README §7). Default 'UTC'. Rejected at create time\nwhen unparseable."
+          }
+        }
+      },
+      "DlqQuery": {
+        "type": "object",
+        "description": "The dlqquery type.",
+        "properties": {
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The domain."
+          }
+        }
+      },
+      "DlqResponse": {
+        "type": "object",
+        "description": "Response payload for dlq.",
+        "required": [
+          "id",
+          "schedule_id",
+          "domain",
+          "schedule_type",
+          "error_message",
+          "retry_count"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "error_message": {
+            "type": "string",
+            "description": "The error message."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "retry_count": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The retry count."
+          },
+          "schedule_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "schedule identifier."
+          },
+          "schedule_type": {
+            "type": "string",
+            "description": "The schedule type."
+          }
+        }
+      },
+      "JobQuery": {
+        "type": "object",
+        "description": "The jobquery type.",
+        "properties": {
+          "schedule_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "schedule identifier."
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The status."
+          }
+        }
+      },
+      "JobResponse": {
+        "type": "object",
+        "description": "Response payload for job.",
+        "required": [
+          "id",
+          "schedule_id",
+          "status"
+        ],
+        "properties": {
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "completed time."
+          },
+          "error_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The error message."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "schedule_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "schedule identifier."
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "started time."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          }
+        }
+      },
+      "ScheduleResponse": {
+        "type": "object",
+        "description": "Response payload for schedule.",
+        "required": [
+          "id",
+          "domain",
+          "schedule_type",
+          "cron_expression",
+          "target_config",
+          "status",
+          "next_run_at",
+          "max_retries"
+        ],
+        "properties": {
+          "cron_expression": {
+            "type": "string",
+            "description": "The cron expression."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "max_retries": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum retries."
+          },
+          "next_run_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The next run at."
+          },
+          "schedule_type": {
+            "type": "string",
+            "description": "The schedule type."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "target_config": {
+            "description": "The target config."
+          }
+        }
+      },
+      "TargetEnvQuery": {
+        "type": "object",
+        "description": "The targetenvquery type.",
+        "properties": {
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "UpdateScheduleRequest": {
+        "type": "object",
+        "description": "`PATCH /v1/schedules/{id}` — pause/resume via status (cron README §7).\n`{status: \"paused\" | \"active\"}`; resume recomputes `next_run_at` from\nnow so a paused schedule does not fire for misses during the pause.\nRequest payload for update schedule.",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Target status (`paused` or `active`)."
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "cron",
+      "description": "Sentin8:Cron admin API — schedules, jobs, DLQ"
+    }
+  ]
+}

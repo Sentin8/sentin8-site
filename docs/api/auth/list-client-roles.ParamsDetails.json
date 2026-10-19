@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"OAuth client ID","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"target_env_id","in":"query","description":"Target env for cross-env admin","required":false,"schema":{"type":"string"}}]}

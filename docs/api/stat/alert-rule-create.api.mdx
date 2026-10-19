@@ -1,0 +1,84 @@
+---
+id: alert-rule-create
+title: "`POST /v1/admin/properties/{id}/alert-rules`
+Create a per-property custom alert rule (stat README §7). The request
+is validated against the known rule types, comparators, and metric
+vocabulary (400 on unknown); the property must exist in the target
+env (404). The INSERT runs in one explicit transaction with the RLS
+context set on the same connection (stat DESIGN §5)."
+description: "`POST /v1/admin/properties/{id}/alert-rules`"
+sidebar_label: "`POST /v1/admin/properties/{id}/alert-rules`
+Create a per-property custom alert rule (stat README §7). The request
+is validated against the known rule types, comparators, and metric
+vocabulary (400 on unknown); the property must exist in the target
+env (404). The INSERT runs in one explicit transaction with the RLS
+context set on the same connection (stat DESIGN §5)."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/stat/sentin-8-stat
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/admin/properties/{id}/alert-rules`\nCreate a per-property custom alert rule (stat README §7). The request\nis validated against the known rule types, comparators, and metric\nvocabulary (400 on unknown); the property must exist in the target\nenv (404). The INSERT runs in one explicit transaction with the RLS\ncontext set on the same connection (stat DESIGN §5)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/admin/properties/{id}/alert-rules"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/admin/properties/{id}/alert-rules`
+Create a per-property custom alert rule (stat README §7). The request
+is validated against the known rule types, comparators, and metric
+vocabulary (400 on unknown); the property must exist in the target
+env (404). The INSERT runs in one explicit transaction with the RLS
+context set on the same connection (stat DESIGN §5).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./alert-rule-create.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./alert-rule-create.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./alert-rule-create.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Group deleted"},"403":{"description":"Missing auth:admin scope"},"404":{"description":"group not found"}}}

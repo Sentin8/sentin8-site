@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Gateway deleted"},"403":{"description":"Missing post:write scope"},"404":{"description":"Gateway not found"}}}

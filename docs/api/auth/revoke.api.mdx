@@ -1,0 +1,74 @@
+---
+id: revoke
+title: "`POST /oauth/revoke` — RFC 7009 token revocation."
+description: "The caller MUST authenticate (client auth, SEC-). Refresh"
+sidebar_label: "`POST /oauth/revoke` — RFC 7009 token revocation."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVcFu00AQ/ZXRnBLJTdwKCTCnNKVSQKVVkopDE5GtPYmXOLNmdxyIIkt8BF/Il6C10zQtoUW0R06Wd8czb2bee16jqJnD6AqNKiTFcYAJudjqXLRhjHCYEsQqy8jC2eVgCD6KWHSshKARZ5pYqsMABm+7B80W9GlqyaUjFjMndqAsQUK8yrQTSuB6BZPPoifQ+XACkpK2sFASp5pncHIMjpzTpv5sxJaWZk7JG1BxTM7BIymnxm5SWloozZpnI870lEQvqAUXZKF/2oWXYfjaxwFxkhvNApaksOzgKAyBlsRVpoLnbL7ytpGGmgpZ2Om5CT+//wCmJVlQDMaqOKPWiPsVbNDSwgBNTlb5afYSjLDuCAPMlVULErJ++mtktSCMsCqFAWo/+y8F2RXu20gVBmJgm87Sl0JbSjASW1CALk5poTBao6xyn9mJ1TzDsgy2xepOPunk4YLdev2bvhvGwrFyOq4n8LTSjmJL8lfl69AnlR/7YJcbduT8/VEY+sfdcvXuEmjcMCXay4oNFZtYBvgiPPw9T/eWJhu9aMMwVTqjxI8CHcWF1bLC6Goc4IIkNZ4guXFS0UNSjLBdybK9XbPmqala05JVvfnc/OqgEu/9yQ3qS9g8o04hacVYnfgTWQVw7s/a572Tbvu0c9ELtvoL4N3H94MKvvEoPZMzHRM78vU3azzrDeG8D51cxSkdHLVCD7FKPtVk9waUAS7Juhph2Dqsj3zXC8U7qScX54Mh3Ol/UoG/VXAlAn9VD7d1fwBrjA0Lsfz3sWfwsY2ahL5JO8+UZr+3wmZ+zjVbb34iwY3LjQNMPZ2jK1yvr5WjS5uVpT+upe6NL9FOXXtNRFOVOXpghY3+RulN2O+BexHOabXjq0uVFT4GvRf9U+nH3PABELt++2xA/uiLjwPZuu8tmLF/sdqj8b5U7hiT1yOW5S+D+NGv
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /oauth/revoke` — RFC 7009 token revocation."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/oauth/revoke"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+The caller MUST authenticate (client auth, SEC-). Refresh
+tokens are denylisted by `jti` AND their matching DB sessions are
+revoked; access tokens are denylisted by `jti` for their remaining
+lifetime. Per RFC 7009 the endpoint returns 200 even for unknown
+tokens (after client auth) — never an oracle.
+Revoke it.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./revoke.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./revoke.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./revoke.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

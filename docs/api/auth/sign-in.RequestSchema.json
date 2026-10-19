@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for signin.","required":["email","password"],"properties":{"email":{"type":"string","description":"The email."},"password":{"type":"string","description":"The password."}},"title":"SignInRequest"}}},"required":true}}

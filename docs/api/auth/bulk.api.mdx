@@ -1,0 +1,79 @@
+---
+id: bulk
+title: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
+each operation dispatches through the SAME per-user SQL paths the
+individual endpoints run (create/replace/delete; patch maps to
+replace) — no second write path, no partial-batch semantics beyond
+`failOnErrors`. Authenticated once for the whole batch."
+description: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:"
+sidebar_label: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
+each operation dispatches through the SAME per-user SQL paths the
+individual endpoints run (create/replace/delete; patch maps to
+replace) — no second write path, no partial-batch semantics beyond
+`failOnErrors`. Authenticated once for the whole batch."
+hide_title: true
+hide_table_of_contents: true
+api: eJztWF1y2zYQvsoOXiJPoZ84adNhpw+O40zcJpVrydMHSRNCxNpETAIMAMrRaDTTQ/QOvUeP0pN0FqRE/cV2pulb/WIOCCx2v/3226UWzIsbx6IRc4nK2YQzU6AVXhl9LlnEpmV2yziz+LFE518aOWfRgiVGe9SeHkVRZCoJB7ofnNG05pIUc0FPfl4gi5iZfsDEM84kusSqgnaziF1WVmFq5BzMNcQX/cEQuuRJd3bcfVlmt3FnrB+1rXZSWZQUTX8VhaOYCktReYWOnNp417gorBVzxpnymLuHXe9rBLoY1nB1IM7Rp0bG38SF8GkMSqL26noOPkUo0LZLhxZmaKdj3doJ4sqhdTGH+OJq2L04GZ6+6b46e3s2PNvZ0l0ouYyP+FjHlJpzGUNirMVMeHQgILEoPIJFVxjtEKYiuQVvgguJyDK0TxxMhU/SsUbtrULHIZbCixiUC9vWET1xYDeg34W4ipZxRtHuo0zuvVeygXLEnLdK3zDOdJlldGIb09PgX9uVRCmU68CU0aAktDBJDUpQOri5DpHCmB912JIzioMu3LY73AlqcHr+Dn4a9H+pGNWqMOtaLDKRYGWpDq7hwdr3fdtvhsOLkFYiJ7l2Z0VRoGxy3pCEbAe8HmV5ZciiM6VNEOgotOId2oCxEHc6nS2KdNhyyZlXPqNLBonKia9r7ge49i4MzGjcddAKYN0pi6BFjhA3xRNXSF0LlfX1mbXGus1kK+3xBu1Gtq+NzYVnEb16drwX8DvxCchYadHBFK+NxYBm5ZPzpnDQunx9Ci++e/4c/vrzWefFUQd68COUOlO58iiJornSKi9zFvWWvFaiLb9Whb7yarfg63TswROAqOzB1eW5g1ayzVcOSlchKqNF9pkE1GLGlvSyKSdvSwwLFamDQ8e93j6ZL9C21/khYpSZd4x/PUleCcdDmvyYfTuKscoGZ954kb1veMY4c2WSIEokRSEahIf/WsYPoVkJSmes73l5rxRy5rzw5QGXv1wTqShr3duWwy9WqdrKWqy+UIrq43QgnFwx9bDckvIFRbRbPGkZG0o61BKSZEAh5pkRstKSGrfGoUZEHhCPEFZ1fN1ugwOp0DJDC4U1skz2JOI+ibwMGd9XgoMl+EilRHkwup3hotFfnwoPFn1pNUoQukativRhuftsPTxW5aq0rEvz3/gOwYxzn3N+TxMevmxIRzbblSunufL7neCgENcEXgYpft57uk/laiIBUfqURrlKU6HOI51ymJRW+TmLRgvmaI/+PqLtURino9FkuVfSh5QS/v79j7rR0cDgiK4z5ZTRSt9A6+Rq+Kb97VEHhqnS9VRgo7FGsdmtQSpXkA0k7K0pb9Kq2k7enTWzyODXt6GKQ52MtdJSzZQsRQaoZWGU9g5sqXfHoq7EDD3+AOEGyEXhwJuxXk1NIQJtwGFitIQ7q3w1rnBaLYT1SmTtupdjLghOavNzo+VYx5tTRNyBkwZxlGB0gnBda8ddarJ6KAhJriWQFcb5lQJHbAtexhn1wcvmI+bsk8iLDHfbyGhDohsxXF+xXqkvWRXRZHcK6m2UIrvSt9rcaRjOC4wgFCQPYr/kjCaGwPOanDWF2kShPbYPqpdQ/48IpAB79aHh5xz6tNbtn7867b4+uTjn4NARixyHn377eRCYbIiwBF2mEqwVnBSLRrDzIfQv4aQQSYrt406PlKP6ilFoD25YcjZD6yoPe52n1RIlIxd6w/T/rP+arN8ixlomPX7y3SITKkz3pc3oXcXV+vuesxn1zlAUE85SqploxBaLqXB4ZbPlkpY/lmhJ0iaczYRVYkrcHE2WnKUoJBFhtGC3OCeFrMbONpGbrIusDG1ndwRd8tWJkyTBwt+7d7JRc0Qbxtm0/uUhN5LOWHFHI5i4YxFj9JvFumOEtQXLhL4pxQ3trWzS3z+g++Sx
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) — no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/scim/v2/Bulk"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
+each operation dispatches through the SAME per-user SQL paths the
+individual endpoints run (create/replace/delete; patch maps to
+replace) — no second write path, no partial-batch semantics beyond
+`failOnErrors`. Authenticated once for the whole batch.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./bulk.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./bulk.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

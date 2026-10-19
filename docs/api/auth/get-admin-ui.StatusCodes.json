@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"RFW page definition (rendered by Sentin8:Dash)","content":{"application/json":{"schema":{}}}},"403":{"description":"Caller lacks the admin scope"},"404":{"description":"Unknown page"}}}

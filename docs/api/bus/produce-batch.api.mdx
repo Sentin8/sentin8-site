@@ -1,0 +1,79 @@
+---
+id: produce-batch
+title: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
+DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
+core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
+batch is a transport-level optimization, not a transaction: rows are
+independent and a failed row does not roll back its siblings."
+description: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus"
+sidebar_label: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
+DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
+core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
+batch is a transport-level optimization, not a transaction: rows are
+independent and a failed row does not roll back its siblings."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/bus/sentin-8-bus
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) — the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/produce/batch"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
+DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
+core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
+batch is a transport-level optimization, not a transaction: rows are
+independent and a failed row does not roll back its siblings.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./produce-batch.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./produce-batch.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

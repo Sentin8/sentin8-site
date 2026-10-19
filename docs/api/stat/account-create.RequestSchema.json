@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for createaccount.","required":["name"],"properties":{"name":{"type":"string","description":"The name."}},"title":"CreateAccountRequest"}}},"required":true}}

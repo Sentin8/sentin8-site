@@ -1,0 +1,71 @@
+---
+id: data-insert
+title: "`POST /v1/data/insert` — insert rows with mandatory system columns."
+description: "Each row is split per design : `env_id` system column, the full JSON"
+sidebar_label: "`POST /v1/data/insert` — insert rows with mandatory system columns."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVM2O2zYQfpXBnLWyN+2h0K1pAnSLpJuutyevEY/FscWEIhVyZEcwBOQh+oR9kmJENbvr7RtUFwrD+fn4fTNzRqFDwmqNZoebAg2nOtpObPBY4VuqG4jhBDZB6pwV6DiC4WQPHirYsj9+tGYLaUjCLdTB9a0vQBqGfe8c/La6/f3B74IZwHoJsDUktC2AvAHyA3zmIUFLUjfWH4DAcO0osgEZOjZzvhwqDcmDz5YS7p/cJ6DIEDkFd2QD+xjaCUHXDMnW5EBo5xhS3XBLoFmsTxwFxLZcPvhfyRvHkI0lFhg6jqQM3BisUCGX+RILjPyl5ySvgxmwOmMdvLAX/aWuc7ae4hafktJ3xlxT//RBWGHYfeJa8zzn+S5nhYmpfYhPwGhBG9moRNND1BZOScXqokIVy0lLTNbHUhQjDVigFW7VPl4WvW9YtU0ljsWc+jE6SbT+8AKoxkyuJY4aZUWj8GaCO78CR716xC2x58mQuuBTxvpqudTjgoVwSvPL2SioH5c/vPR6b1PSbjG7SqWpTtGKqhs6njAlrvtoZcBqfcbEXqz/qXrmjNV6M24KbFmaoBJ3IakmHUmDFS6O1wt1XnwXXeW8exT+7Vdqu8xW5nzte+c230n8l7yxQOv3YWJ1JmrGc2V2L6hd5SuYz+rNa/j721+QJPa19DoUHcdkk7CvGcKRI3wISQ6RV3+8g5OVBu7erbRlnK3Zpwmfp1bLvr+5h9s7+LmjuuGrV+VS+8Joob3l+J8OY4FHrTdhW5bX2aRMteSfpN5+uF3dwwVn2wn6PGbKUcbXkjckIQ7PF0YqL8l4Mlj/0x00j6HwV1l0jqxX9vvolJvcp2s8XitvJKRq5l7dFNhoM1drPJ93lPjP6MZRzV96jjoTmwKPFG3u1PVmLLBhMtoE6zN+5gEr/CVzf6UPRHV3/bRQLhfcsxnSNsACd/NibIPRmEgn3Vd0wgqnzarReVup7YyO/KGng/rmnPr9A+pdS3g=
+sidebar_class_name: "post api-method"
+info_path: docs/api/db/sentin-8-db
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/data/insert` — insert rows with mandatory system columns."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/data/insert"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Each row is split per design : `env_id` system column, the full JSON
+body into `data`, and any keys matching a declared typed column into that
+column. Typed columns are resolved from the physical table schema at
+insert time.
+Handle insert.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./data-insert.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./data-insert.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

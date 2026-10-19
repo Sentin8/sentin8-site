@@ -1,0 +1,1 @@
+{"responses":{"201":{"description":"Role assigned"},"403":{"description":"Missing auth:admin scope"},"404":{"description":"OAuth client not found"}}}

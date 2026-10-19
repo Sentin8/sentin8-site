@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Application archived"},"403":{"description":"Missing sys:app:admin scope"},"404":{"description":"Not found"}}}

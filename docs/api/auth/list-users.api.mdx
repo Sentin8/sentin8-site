@@ -1,0 +1,71 @@
+---
+id: list-users
+title: "`GET /scim/v2/Users` — list/search users."
+description: "Supports SCIM filter: `userName eq 'email'`, `emails.value co 'text'`,"
+sidebar_label: "`GET /scim/v2/Users` — list/search users."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV81u4zYQfhViThtAa2fdYFvoFqTJwm2zCZwEPdhGTEsjm7sUqZBUNoYhoA/RJ+yTFEPKlm25m8RpD734R+R8883o48xwCY7PLMRDsInIYRxBijYxonBCK4jhpiwKbZxlN2f9S5YJ6dDEbFJaNJ95jgwf2Agw50KOYBKxif9pO49clsgSzUbg8MnR2khNFM+xk/FcyIU3tt/YCAqDmXgawaTDLriUlk158pU5zaSwTqgZ41IykTGla/edkfpNWMeIg+1ABLpAw4lvP4UYyOzer0EEBTc8R0d/4uESiADEEHAgAkEhFtzNYTfu2zmu3EEEBh9KYTCF2JkSI7DJHHMO8RLcokCfPWeEmkEEqpQSxlUVrb1Zx427FyrFp2dd+r3M732ZX6EcznwswXEEmTY5dxDT0scT2GSS6FK5Zzn4XeHzX+MwJhxbaGXRkmnv+Ji+drRGEqNXO6i3snfhFTAbVIhpzDaUF7EdtUWsrbAjiCDRyqFy5JEXhRSJV0v3iyW3y1ZEoKdfMHGt5Hh+vc6xVyYza5KDizP248eTE3bUGak194IvpOYpy7RhdLbIaDufw9ozCdVpx+UAbSkd/RUOc3uN5prPEKIgoX6toAFaXZoELWW6MKR+J0Jam6UmGG4MX6wgXxEkJZqC9IDrIH9gf/3xJ7Pl1KKjcL1oE5H73YT8zyGKFCJYvT7yK2wh+aL+xxMnHrEdUv284T3VWiJXe6UbNneg2kZvjNfHtG1bGwQJEUIQ1+GZXKXG4+zNjddtO+TCiJybxQtjrnd7ygHwReH6rR0qD+CEk7T7JhH5OZH1+WtZ1IfNp+bJoVFc3ov0O0VwF2RlxUSKyolMUHGtvDCepdzfNsnR8U5ikDt8DQNf3oJVAyO5dZc6JfDXYpEpy2tbj6hqvWmFV5nvOXVcHoRqcRslKC5qyWlbFU1VeyXJYNjoeiYeUR2A4+1WMDuy8XDVuIqgmGuFn8t86nvuW8+OR3vN2Xn7Cbgml/tPQGCjQnA+l6vq9nygNZG9uDWKR1wXyBfF4Mvu/ldyZ9Hsd7cq6sHhVqtpnDZNfaeZ70P0GKxAwwo+w/8oMxtN8ECaW9NVtdN0D8AMMmc6o5QSSPstbI4zUFW0fLJv9rlT6xmnnjvBb/3Q3nrGpUTDeOnmVBPDMMMyLiSm7N1l75Jpw6bIDZojz8diUhrhFr4cWbJRP8VkHvuZPx6OaT7L0c01DdAz9MWHxsMYurSl+9jr3tUTtVCZ9rmqg6zx3hNee5gIi6z+jk9LN/cDROgAbhGxK3rWver/fNa9OL3uR8yitUIrG7Fffv/1xoepiT0VACkSpETG65H2sn/LrgbstODJHN/3Osd+0Fj1ir0bqE+isYHhcedDeFRo63KuNqAnn85v2Xb8E0+eJrmuRW6SeXMJ2Qp82Yyc/4sbVC18ctQtJBfKVyIj/TTihVDfDyN47EEEQQzjCObaOlpcLqfc4p2RVUWPH0qk+WU4ppHECD4lqQyXNJTR7xTijEuL38nau0Fd64/Y9lVsL9VVhVFUX+oWABDBV1w01z3ffA8lsHMxO4DF5jXwTVR27mcHUAn3QN+u58hTOifDZb12miRYuA2r1o1pq1h8Or+Fqvobv5mM6w==
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /scim/v2/Users` — list/search users."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/scim/v2/Users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Supports SCIM filter: `userName eq "email"`, `emails.value co "text"`,
+`name.familyName sw "prefix"`. Falls back to listing all if no filter.
+List users.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./list-users.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./list-users.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./list-users.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,87 @@
+---
+id: instances-customer-mode
+title: "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the
+customer-mode (`allow_signup`) instances installed in an env (auth
+DESIGN invariant 12: the owner-API replacement for auth's retired
+direct read of `sys.app_instances`)."
+description: "M2M-only service surface: the sign-up closure provisioning (Sentin8:"
+sidebar_label: "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the
+customer-mode (`allow_signup`) instances installed in an env (auth
+DESIGN invariant 12: the owner-API replacement for auth's retired
+direct read of `sys.app_instances`)."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVc1u20YQfpXBXiKjlGwrPRQsgsJtg9QHNUHsnizD2nBH5CbL2c3OkooqEMhD9Bn6YHmSYpaSY+WnvRc5ESB2Zr75Zr5vdirpmlV5o3QI6rZQBrmKNiTrSZVqMV9MPbktMMbeVgjcxbWusITUILCtadoFqJznLiKE6HvL1pOlGiZXSMnSD+WSLrrUnEClnWNIjWXY2NSATQx+Q7Dx8Y3z2kDyb5AgeXCoI8GmsVWzpBXv8+gQyp0lTpoqvLNmWEEdfRcYNBBuoOo4+RYjcOM7Z+C1tzRb0ljeR/unlqZgstbWTQUymgJSExGh1gn5pFzS+Qx+Rh0xQo/RrrfwHdxTMFllgHcpwJMnsFTtvF2q1Ql8eP/X2JVl0EsCOJA1TX564M1YrnyPcXtgsADCHiNo6Fgwj39nS5rP4Kqx6ExGBZ7giIEDAVxG1GY1W9LjGTzfkOSofLBUj7MRtjE+YonOEO7SNuAKKqdtC23HCSKydz1C8hm1JjgkB7+G698ur0CHcOjm0Tgt41ttKTetiTcY0UCmZ+1jToPUM1iSdD7WsGkwYs5jGZD0K4fmx4zwbSd02MTo1sBJb/kQP5VO0AB70JIXbU3yPzMsKI3lZKnuLDeSELANaSv9dC7lJBPykJA0pSm+s5wwNxV15fBkpgrlA8a8DpdGleqe09lhhxbeoCpU0FG3mDCKQnaKdIuqVEj9nTWqUFYkkttQnwrnWscak4C20VOLlCCHRHzb2YhGlSl2WCiuGmy1KndKxqNKxSlaqlWh1j62OqlSdZ01ahhuJZiDJ0aW9/OzM/kcl/1lj3/aeoP348zzEMqRelWoylNCShKtQ3C2ykycvmZJsfsIaRiGoVDff6nOwjKLyPdU5GePv/7s88XNyyojAfI0XcwXo/qVVGSsumjTNnP+9d1X5c2tsNJiaryMscaUZ5YaVarT/vxUh3B6H3NaPeQmT2/tM/E2ucz8WGkqRvjpOPdeBgdPuwjhoPtopkHHtB21knzE4qOOWk26Rhm/bJ2zFRKjFN2v0uLyGp6/hIugqwan89mZ4DJSZG0xfvHBUKgeI4+4zmbn46/gObWaHqRePXt6Df/Bwk/j/J58eP/3KveD1LWiDJR1WdLRY5istHN+cye234XVydF+cRLDMXvli1gnukvNkn59enX57Hew1OtoNSU4n48O5cW0phcvLiFicLrKNIncQQIfMURMIpUlGRuxEr/SRpxpxVue6RDu7uuvsqiPRrb7uObfrti3K/a/vGL7k5HwXToNTlsSJ+iik+0fbfBG9eeqUKOl3ZMuN+DIDG8L1XhO8n63e6UZ/4huGOT3eN3EiI3l3LYq19ox/ovcJi/3R+4EvnYGv4j8DW4fXtdeu04eKTH5bB6vxKdvbodCNaiN+OPNbh91UVUY0oOozy7b0al49vRaDcM/2B3kjA==
+sidebar_class_name: "get api-method"
+info_path: docs/api/app/sentin-8-app
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/app/instances/customer-mode"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+M2M-only service surface: the sign-up closure provisioning (Sentin8:
+Auth) calls this with its own workload token to learn which
+`sentin8:app:{instance_id}` groups a new customer should join.
+
+Authorization (fail-closed, three gates):
+1. Bearer verify + M2M-only (`token_tp == "m2m"`) — this is a
+   service-to-service discovery surface, never a user surface.
+2. Shield gate on `sentin8:app:instances:read`.
+3. Owner scoping: the caller's `service_type` claim must resolve to
+   an instance of THIS app service's own domain — answered only for
+   envs in an org where app is enabled; the query itself stays
+   env-scoped so a foreign env is an indistinguishable empty result
+   (no tenant-existence oracle).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./instances-customer-mode.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./instances-customer-mode.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./instances-customer-mode.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

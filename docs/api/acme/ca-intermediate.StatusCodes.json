@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Intermediate CA PEM","content":{"application/x-pem-file":{"schema":{"type":"string"}}}}}}

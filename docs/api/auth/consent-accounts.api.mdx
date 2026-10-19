@@ -1,0 +1,82 @@
+---
+id: consent-accounts
+title: "`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts
+from consent data providers registered via `sentin8-cli vertical enroll`."
+description: "This endpoint is called by the Auth Flutter consent page (served on the"
+sidebar_label: "`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts
+from consent data providers registered via `sentin8-cli vertical enroll`."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVdtuGzcQ/ZUBXyID65Ud9KHQm1DHrtO0DmwZCeA1LJocaVlzSYaclS0IC+Qj+oX9kmJ2V5dGTooa6EOBPK1EDoeH55yZWQmS8yRGN0LWVIrbTGhMKppAxjsxEpPSJECngzeOwCRQ0lrUcL8EKhHGNZVwamsijKC8S+gIgpwjDBLGBWrwjgMLF6JfGI3xVQK+CbSvpHEZYD7PYcpLubmX7iG3Xkk7PQDyMENSZXuPqhP5ik8XTirla0cJJAExvBNJEt73+XOYlAjbmIigTQpWLlHDo6GycKpE9XDvnzBB8n9LD0o6SGhRETyWRpXgHSaGkkrONDg9+QjXHwt3VhuN1vBmIa66A+P+zkIc5IUrXMuN9f4hQR025GgGuyYjwSz6qoUw5V3jfrzrA+82MdPCkby3CIPgQ20loeanx9qRqZCVWJ89VNbAAiMZJS2gi97a6UEOpz4CSlVuVcg6ESrTcgSp9JEOrWHB3n6YtDy1qCLOTSKMqCEpHxCk04VjD6S9fYwLoxAWRoKhBMFKmvlY9UrD9eW7vHC/+S3A9Ynry3cpgyCpTBn42N3USVfKqJXXqMG4FnJeuJ+l0xY3hK6lzkUmfMAo2bnnWozEmsl1hMhEkFFWSBjZ8ivhZIViJBKmZLy7I/+ATmTCsPMZj9gvB4Q+GtpoGGwUTGbuDo2DmfWPrX0ZLwujJGHP1qcaE+WF28vD6HnbRNRiRLHGTCRVYiXFaCVoGVqcFI2bi6bJNtDrhPHO6H8E3cc9AzdiCkwUm5ajwGgGPTMY/w2oTLDYkhhTbbRomls+3OVOHP/66Ig/+9jWSjJxr9K2GDdFPAjYu6IvTuPdgchYYEJHnFWGYJlo493w98SpV1uoTdM0mfjh6Hj//qteBOMW0hrN9sOn0D6YzyRUdTS0FKOb20xUSKVnZ82RWjNRKUZiuDgestTD/h3DHb8ZN/MtV4Zs57SuUNtm+6VOV90m9N9R20D+/PxHrwgtM7jgteHF+clPw9Px+/NsbaKUwdsPv1y1lvMMmKWzRqFLyPf3bvn1fAIXlzAOUpV4+Do/YogbuZ8NaDKxwJg6hEf5cbcUfKJKup3U07M3E/gqFdP2Hdt+vlsaeqe7bzQvXGvUr3TNnbbD7eab/S//kufV1jffx9v38fY/Gm99xyV8omGw0jguxTpa9nTXjG7E4lhkom8vfQ5eWLek20yUPhFHrlb3MuF1tE3Dy59qjH2fW8hoWJJ2RmqT+LcWo5m0Cb9RTIPLflYcwH86J5+loV+Ubin4AbbmfyITD7jcm/A8P1/8rBdP0hfAXk/35rbJRIlSc5O+WfW7Y6Uw0M65vSHY7A6tszcT0TR/AdckPTo=
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts\nfrom consent data providers registered via `sentin8-cli vertical enroll`."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/auth/consent/accounts"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint is called by the Auth Flutter consent page (served on the
+provider's auth domain, e.g. `auth.ibank.local`) to fetch the customer's
+accounts at this Data Provider. The accounts are displayed with
+checkboxes so the customer can select which ones to share (FDX UX
+Guidelines "Select Accounts").
+
+Auth looks up consent data providers from the `sentin8_consent_providers`
+table (populated at runtime by `sentin8-cli vertical enroll`). For each
+provider, auth mints a short-lived JWT with the registered scope and
+calls the registered service via its platform domain URL.
+No vertical service URLs, paths, or scopes are hardcoded in auth.
+Handle consent accounts.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./consent-accounts.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./consent-accounts.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./consent-accounts.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

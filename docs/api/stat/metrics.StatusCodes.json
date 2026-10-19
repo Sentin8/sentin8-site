@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Aggregated metrics","content":{"application/json":{"schema":{"type":"array","items":{}}}}},"403":{"description":"Missing stat:data:read scope"}}}

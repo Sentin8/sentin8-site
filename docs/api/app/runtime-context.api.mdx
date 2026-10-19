@@ -1,0 +1,62 @@
+---
+id: runtime-context
+title: "Stories , , -34 — `GET /v1/app/runtime/context`."
+description: "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header"
+sidebar_label: "Stories , , -34 — `GET /v1/app/runtime/context`."
+hide_title: true
+hide_table_of_contents: true
+api: eJztlM1q20AQx19lmFMDkj/SHIpuPoRg6BeJCwUnxBNpYm0izW53V05UI+ipD1D6hHmSMrZchyTtqceeZFar3d/8/jNeY6RlwGyO5BxeJFhwyL1x0VjBDE8biaZmyK1Evo9gAngOtlpxAdfe1hBLhtnbs9TIDeeRC1h8Ts9YopE36cS5dFosoGQq2J/LK7Hg2KeVCdHIEiYfp3DLbQJiobQhCtWcXlHgYntJoxAHA5iVrAvOSmAwkldNweFcjIRIkjPUHKmgSMmGxvoliflK+jEUJriKWtCjEyApoGa/5EJ3PXz/wbKCK09SGFmey6agRdjSX4Y2XO7eLSBYIOcC5CT6o2ohspDE35/DnYmlbSIQBHbkKTLkVFUDTNA69hueaYEZ+q3Ty94pJrgrLmC2xsPRSB9/z+Ha+r36QomvDRdKBq9e8GL9slfQl7+jPsAEN2dK1Eu1MpNvUIc3QW9eY8hLrgmzddd1XYJHo/FzvPcWnsbepw5DaORW7J3Ajgv1mMB5401sMZtfJFhzLK26WbL6cBRLzHC4Gg/JuWEvbLgXZuTaKkU0sWLMsM8s1R5+2sI9FvTPbOIcPHz7CbE0vkgd+dhuvIVoPSewt0dCS65ZokZYmZwlsF6qIjHDd9MZfDiFiaO85PRwMFKuXRT+xQ1dgiv2Ycs1Goy3S86GWJM8OvosWm84QAIJpK+PNriLk+MZ/MHIYvC06vU+1f8z/E9mOLZOo1GDQ1eREY2u8ZW63vbrHFdjTHDbg31Cu/G6j/rfqoJ033qthj75qut0+UvDvh+EFXlDV9rT84suwa11zOZrvOUWM5zkOTudgBVVjfI8m9ju8TidHM+w634BcEwTrg==
+sidebar_class_name: "get api-method"
+info_path: docs/api/app/sentin-8-app
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Stories , , -34 — `GET /v1/app/runtime/context`."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/app/runtime/context"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header
+(no per-listing API key, no hostname-based resolution). The response includes
+instance metadata, the organization display name, and merged org→env branding
+from `sentin8_sys_branding` so apps can apply tenant branding without a separate call.
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./runtime-context.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./runtime-context.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

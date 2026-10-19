@@ -1,0 +1,72 @@
+---
+id: get-admin-ui
+title: "`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."
+description: "Pages:"
+sidebar_label: "`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVMFu20YQ/ZXBnORgZclpDgVvgusEKZqmcGz0oArWmByJG5O7zO6QsUAQyEf0C/slxayoRI6dHHKOLlrO7rx5+97s9Ci0jZgtkYraumlrcWWw4JgH24j1DjP8i7Ycs38cwBTWvuPQWf64hvT779O/cL6A0nKgkJc7iELSRgM2xpaLac5BIPetEwOUi+0YfCg4HGJN8Pc7qH3BI74m2I3NSTiu9/hHUOMOWNexEx92MCl8TdYdCt6QGOD7xgaOaR05WKoMBO78HRcnY5nIItZt49E13rET637NFnnNcNiHSdtECUy1Uu2sUr++/MNAxbSBdLuOKltY2RmQ0EaZRvGBT9CgbziQavi6wAy3LDdJ45vWosGGAtUsHFT8Hh3VjBk2tGU0aF1aS4lfe3H58m/QQ6AJMDm4YeBYN/OZvtII/KG1gQvMJLRsMOYl14RZj7JrtGiUYN0Wh2Glh2PjXeSo+8/nc/37BoOCN9ZZjcIksCs4cAG3u886/kax1Pq5d8JOFImaplKK1rvZ+6hw/Rc6wzAMBl/Mf3lc85yqigNUlN9FIAekFgWmYpYUhZj7hjFlv3icfe3unP/oEmvUGpHzNljZJeXjSFcxswSH2XKlWtQspR+tS45JiRnOurN91VlrZ71iDsmxjU+SWqmSpnvUqaI+MnFU6GHHpU53wsFRBYvzNxfHlgK1UnrlrA3dcThFg5XN2UXWsmP7vHl9BW8vYdFQXvL0+elcmRVaZWM5PHlgMNhxiHti89OzfajxUWpyR9DrVxdX8PDuz9Ll14l5YGmDiyAlw1MdQhF+f/f2z9Ovtei/tMfPOfODc2Z8xsL3Mmsqsk4dbEOl6u6bdondGZr9iEeDaQBl6TmsDJY+ih7p+1uKfB2qYdDwh5aDvpCVwY6CpVvt62WPhY26LjDbUBX5O35OLsfJcwI/MLaevNUYJLdDpVW1+oUG73h3mJ7DajBYMhXa8Mt+3FrkOTdylPRoFD148a8urnAY/gfvp3U+
+sidebar_class_name: "get api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/ui/{page}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Pages:
+  - `overview`      — CA hierarchy status, issued-cert count, active order count, proxy mode
+  - `certificates`  — issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)
+  - `settings`      — Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-admin-ui.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-admin-ui.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-admin-ui.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

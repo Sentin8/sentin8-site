@@ -1,0 +1,1 @@
+{"parameters":[{"name":"pt","in":"query","description":"Property slug","required":true,"schema":{"type":"string"}}]}

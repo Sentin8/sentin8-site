@@ -1,0 +1,1 @@
+{"parameters":[{"name":"hostname","in":"query","description":"Fully-qualified hostname to resolve","required":false,"schema":{"type":"string"}}]}

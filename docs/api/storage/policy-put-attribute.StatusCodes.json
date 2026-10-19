@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Attribute stored","content":{"application/json":{"schema":{}}}},"400":{"description":"Invalid attribute definition"},"403":{"description":"Caller lacks the admin scope"}}}

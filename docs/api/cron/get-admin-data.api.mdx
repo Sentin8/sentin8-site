@@ -1,0 +1,81 @@
+---
+id: get-admin-data
+title: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
+SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
+The caller must explicitly specify which env they are administering.
+RLS context is set before querying to enforce tenant isolation.
+Fetch admin data."
+description: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
+sidebar_label: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
+SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
+The caller must explicitly specify which env they are administering.
+RLS context is set before querying to enforce tenant isolation.
+Fetch admin data."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVcFu20YQ/ZXBXJIAtCSnORS8Ga4SOGgbVJYRFLZgj5Yjc6PVLrM7lEMIBPIR+cJ8STCkLMuVUCA990Rgd+bN25k3jxsUuk+YXyMVK+tPaouzDEPFkcQGf1Fgjvcst93tbUFCmGFFkVYsHDVxg55WjDlGTqGOhjFD6zHHiqTEDAtOJtpK0TDHM8UBxYG9+Mifaxu5wFxizRkmU/KKMN+gNJViJ4nW32PbZrtyQlGJsV/f2uKx5ueaY3NQdNqFAvs1vJz8fgkmeOEv8uqnKs80OFXBJ056/3o00s8/KpW8e9eLBDE8JFiECFIyTN5+BKG50wd3DLwoAFWVs6br9vBTUpTNE4u2bdsM34x+OSx1Ts5xBEdmmYDAxOAhMhXDblSQTKgYu+Q3h8lXfunDg3+agZZJbOpopemGmtiL9b/mipsrLubXM23Cc6C7d+MpDNenfdXh5hGwvYPvX79BZKmjV37vLz/8CRQjNRAWQHsyCA9pcOMvx+dXk4vp3zncPZvsHdgEk/FfVxeT8W8dpg+wIOfmZJYgoWuthCX7Fwn6lMGN1zmYvkGrOgnwF22yFddAqtjYRQMPpTVlpwkpuQGK3LOySVhHPrjxe1pRFokF5rwIkaHTmfX3SoD9IkTDIOzJa2Bw3TQHN/4tiyn3HjvADFcsZdiuVbdLUmKOx1rYiXoROjFacZ0a+6mc6FQOZH7ZX8L2m5+rJLRjScgX5IJnKKwKel4LF6AqK2rHUWk5a9gn1mLbBfvjYgofJnBWkSn55PVgpHwKxV5YjkcD2gzXHFNPZzQ47Y+qkGRFfg/6f9X8rGqeTXpnTlpjWDmyXvtcR6d3vaKucX2KWe/qmGG+2/RZhmVIohGbzZwSX0XXtnrcm6cuf2GTGlWB+YJc4oPyO/vCl5Otgb6Cf3HZo3SX3Byx8TW5WmNRvWZN0XaO+Z9JHf/fHOWzPSTf7NN45PnklLM2w5Kp0B243myvz4zhSvYSD2xd37Pb/XfjKbbtD/ymmz4=
+sidebar_class_name: "get api-method"
+info_path: docs/api/cron/sentin-8-cron
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/{resource}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
+SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
+The caller must explicitly specify which env they are administering.
+RLS context is set before querying to enforce tenant isolation.
+Fetch admin data.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-admin-data.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-admin-data.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-admin-data.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

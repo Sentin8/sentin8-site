@@ -1,0 +1,1 @@
+{"parameters":[{"name":"grant_type","in":"query","description":"Client credentials grant (certificate-bound clients)","required":true,"schema":{"type":"string"}},{"name":"scope","in":"query","description":"Requested scope","required":true,"schema":{"type":"string"}}]}

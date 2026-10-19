@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"User deleted"},"403":{"description":"Missing auth:admin scope"},"404":{"description":"user not found"}}}

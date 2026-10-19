@@ -1,0 +1,85 @@
+---
+id: internal-schedules-run
+title: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
+the daily leaf-cert renewal sweep. Scans the certificates directory
+for locally-issued (`source = 'local'`) certs whose `expires_at` lands
+within the next 14 days and re-issues each one (new key + full chain
+via the same `sign_leaf` path as order finalize); the previous cert
+stays on disk until its natural expiry (overlap). Authenticated by the
+cron ticker's M2M token."
+description: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for"
+sidebar_label: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
+the daily leaf-cert renewal sweep. Scans the certificates directory
+for locally-issued (`source = 'local'`) certs whose `expires_at` lands
+within the next 14 days and re-issues each one (new key + full chain
+via the same `sign_leaf` path as order finalize); the previous cert
+stays on disk until its natural expiry (overlap). Authenticated by the
+cron ticker's M2M token."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVc1u40YMfhWClyaobCdBD4WKPaRBD3sIttikJzuI6RFtTT3iaIczdlTDQB+iT7hPsqCcDdL9eYGiukjgkB8/kt9QB8y0UaznSK5jfKgw9pwo+yhvG6zRS+YkFB7VtdyUwPqYimCFiT8U1vxrbAasD+iiZJZsn9T3wbsRYvanRjGbRXeE9eF4PJ5ifeIG65wKjwbtoyir+V5dXNirYXXJ9waDNb5n4T0F0D1zDy52feDMDRqcsivJ5wHr+UP1Rdzy93d39zDbXc4+VzJ7qWSWiizh49//wB1L9vJzfZOiQJ/i0zBZkdtCprThDOuYFpJbhoZ8GCAwrSeOU4b0mtUU7hyJgjnaqV9bF1ih8YldjmlYyDomCNFRCMPEqxZu4GypsSTH8AYWOJ4tcHk+Iijs26gMS37qfWJ9pLyEQNLoQvY+t17GZMJPGS5/goYGBZIGEp/AFZhcC1EYzoT3sOUBfoR1CQFcS14WsvM0Qih1DEv1G3m06pbQU26BFGJqOMHaCwX/F5//Mnr3iXc+Fh1JLkSzJY4CjdctFMk+gM8KQrkkCjCyH+As7jgF6s+ncF1yay23/jSwGgx1Ic66n73bcvpB4fbqFnLcskyxwo5zG02PfdSMFRo9rPH7c8UKvayjCSn7HBhr1NOQJ6PQv9TJswJelHDtOh6l8Rkerm9uf3s9V6CS22i6A+W042Q8g3csypZWqLOst2/v4d17uO7JtTy5ml4Ys8ayrD2nbzocK9xx0hOxi+nlyWSVdySvoP/X9n9C2/8S4gHz0NtwMz/lWR/Iiw2/pGBnJ9nPcXc56vs0dKzwZey2mIvYGm/totRzPBxWpPxHCsejmT8UTs+LckfJ08quxvzhWGHL1Jgg5wfc8oA13pxW+uTeCJl7KEbsq/V+fHh1P02SWOHq+bfQxcZiEu2NGe2xRrRfjEWPy360HTCQbAptzPeEac8nhxRV2Q==
+sidebar_class_name: "post api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for\nthe daily leaf-cert renewal sweep. Scans the certificates directory\nfor locally-issued (`source = 'local'`) certs whose `expires_at` lands\nwithin the next 14 days and re-issues each one (new key + full chain\nvia the same `sign_leaf` path as order finalize); the previous cert\nstays on disk until its natural expiry (overlap). Authenticated by the\ncron ticker's M2M token."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/internal/schedules/run"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
+the daily leaf-cert renewal sweep. Scans the certificates directory
+for locally-issued (`source = "local"`) certs whose `expires_at` lands
+within the next 14 days and re-issues each one (new key + full chain
+via the same `sign_leaf` path as order finalize); the previous cert
+stays on disk until its natural expiry (overlap). Authenticated by the
+cron ticker's M2M token.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./internal-schedules-run.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./internal-schedules-run.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

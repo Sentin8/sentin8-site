@@ -1,0 +1,1 @@
+{"parameters":[{"name":"domain","in":"query","required":false,"schema":{"type":"string"}},{"name":"state","in":"query","required":false,"schema":{"type":"string"}},{"name":"correlation_id","in":"query","required":false,"schema":{"type":"string"}}]}

@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Schedule deleted"},"403":{"description":"Missing cron:write scope"},"404":{"description":"Schedule not found"}}}

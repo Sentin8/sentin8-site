@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Realtime counters (active sessions, recent events)","content":{"application/json":{"schema":{}}}},"403":{"description":"Missing stat:data:read scope"}}}

@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Invitation accepted"},"404":{"description":"Invitation not found"},"409":{"description":"Invitation is not pending"},"410":{"description":"Invitation expired"}}}

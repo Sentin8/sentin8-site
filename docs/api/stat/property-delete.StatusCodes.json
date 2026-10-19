@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Property deleted"},"403":{"description":"Missing stat:admin scope"},"404":{"description":"Property not found"}}}

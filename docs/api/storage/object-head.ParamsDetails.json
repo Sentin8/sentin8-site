@@ -1,0 +1,1 @@
+{"parameters":[{"name":"object_path","in":"path","description":"Object path","required":true,"schema":{"type":"string"}}]}

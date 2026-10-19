@@ -1,0 +1,72 @@
+---
+id: get-admin-data
+title: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
+description: "Resources:"
+sidebar_label: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVMFu20gM/RWCl6aAHDttD4VuRpAGKdAWSFPsIWvU7Ii2ppFmVJJS1hAE7EfsF+6XLEZSG7cJ9gOqi6Th8JF8fGSPRnvF/BapqH1YtB43GRasTnxjPgbM8Zo1tuJY8z8DwAK2sWPpPN9vIT3//v0PaFvXJAdwJIXCyfka1MhazcDFNpg+nz0di/mdd2Ss29HTq7ZcLI4M4EPHwaIcYCexBisZztdQkBEUXtgl04ynbObDXrffE3GtCAcDF8PO76GjqmXFDGPDQqmeqwJz3LN9Huv9nFAxw4aEajaWREWPgWrGHGUuHDP0iYiGrMRf2VknnCm7o/vC31ovXGBu0nKG6kquCfMe7dAkbDXxYY/DsEmXtYlBWZP9xWqVXj8HuSn5B/ozBYn3CrsoIzfXb/4Aoy9VCutiMA6WAKhpqsSnj2H5VRNK/5DFMAxDhq9WLx+HOqeqYoGK3J0CBSBXp9hULEfGQF1sGEfvV4+9P4W7EO/DAxUpjrJrxdth5FY5mA+v84Sbj5CY324SDTVbGef2jD2xEnNcdmdT5GX/HXQYG7KLI53eqpHPCXaRYB/16ONkhPmdr1NNo/qCsQSqYH3+7gKORUitlTElDcrSsZxihpV3HJRT2Fkh765u4MM1rBtyJS9enK5SZkWKsvMsT14YMuxYdEpsdXo2HTVRraZwBL29vLiBp4qf5kbYWgkKBG8/fngPJEIHiDugIznGez39lYv+QSO/xWDP42T8ly2binxIbLZSpUonBd1id4bZtN8ww/yHNDcZllEt3ej7L6T8SaphSMffWpak1k2GHYkfhytpt/CavgvMd1Qp/w+1J9fzAngOTy+IJ/OeDykcMEWu2vSHGd7x4XgdDZshw5KpSBK77Wfz2jlu7Mjx0Qb4acguL25wGP4DgsIUSQ==
+sidebar_class_name: "get api-method"
+info_path: docs/api/acme/sentin-8-acme
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/{resource}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Resources:
+  - `overview`     — summary cards (CA status, counts)
+  - `certificates` — issued-certificate inventory from the CA data directory
+  - `settings`    — current config values
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-admin-data.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-admin-data.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-admin-data.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

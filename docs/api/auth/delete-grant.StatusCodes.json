@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Grant revoked (dependent tokens cascade-revoked)"},"403":{"description":"Caller is not the grant's user or an env admin"},"404":{"description":"Unknown grant"}}}

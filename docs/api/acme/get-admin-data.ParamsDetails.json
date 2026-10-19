@@ -1,0 +1,1 @@
+{"parameters":[{"name":"resource","in":"path","description":"Admin data resource","required":true,"schema":{"type":"string"}}]}

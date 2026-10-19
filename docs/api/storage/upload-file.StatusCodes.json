@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"File stored (multipart or JSON body per the RFW form)","content":{"application/json":{"schema":{}}}}}}

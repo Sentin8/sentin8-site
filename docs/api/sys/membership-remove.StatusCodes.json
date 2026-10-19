@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Membership removed"},"400":{"description":"user_id query param required"},"403":{"description":"Missing sys:memberships:admin scope"}}}

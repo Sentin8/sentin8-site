@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Object content","content":{"application/octet-stream":{"schema":{"type":"array","items":{"type":"integer","format":"int32","minimum":0}}}}},"400":{"description":"Invalid token"},"403":{"description":"Signed URL expired or forged"}}}

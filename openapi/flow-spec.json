@@ -1,0 +1,1585 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sentin8-flow",
+    "description": "Sentin8 Sentin8:Flow — standalone workflow execution engine.",
+    "license": {
+      "name": "MIT OR Apache-2.0",
+      "identifier": "MIT OR Apache-2.0"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/admin/attributes": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_attributes",
+        "responses": {
+          "200": {
+            "description": "Principal attributes of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_attribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Attribute id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_sets",
+        "responses": {
+          "200": {
+            "description": "Policy sets of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_disable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets disabled"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/enforce": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_enforce",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to enforce mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/shadow": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_mode_shadow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sets switched to shadow mode"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_get_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The policy set",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          },
+          "404": {
+            "description": "Unknown policy set name"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Policy set stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid policy set definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy set deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/policy-sets/{name}/test": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_test_set",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Policy set name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dry-run decision trace",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_list_relations",
+        "responses": {
+          "200": {
+            "description": "ReBAC relations of this service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_put_relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Relation stored",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid relation definition"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_delete_relation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Relation id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relation deleted"
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/relations/check": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "operationId": "policy_check_relation",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Subject key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation",
+            "in": "query",
+            "description": "Relation name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object",
+            "in": "query",
+            "description": "Object key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The check verdict",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the admin scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:admin": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ui/{page}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "Fetch admin ui.",
+        "operationId": "get_admin_ui",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "RFW page name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RFW page definition (rendered by Sentin8:Dash)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a flow read/admin scope"
+          },
+          "404": {
+            "description": "Unknown page"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:read": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/{resource}": {
+      "get": {
+        "tags": [
+          "admin-ui"
+        ],
+        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nFetch admin data.",
+        "operationId": "get_admin_data",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "description": "Admin data resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target_env_id",
+            "in": "query",
+            "description": "Target env (RLS context)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource's rows for the RFW table",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks a flow read/admin scope"
+          },
+          "404": {
+            "description": "Unknown resource"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:read": []
+          }
+        ]
+      }
+    },
+    "/v1/handlers/register": {
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/handlers/register` — register a domain's step handler profile.\nRegister handler.",
+        "operationId": "register_handler",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterHandlerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Handler registered"
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Handle health.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Liveness (version, build, active connections)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/internal/callbacks/async": {
+      "post": {
+        "tags": [
+          "internal"
+        ],
+        "summary": "`POST /v1/internal/callbacks/async` — external callback to resume a waiting workflow.\nHandle internal async callback.",
+        "operationId": "internal_async_callback",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AsyncCallbackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Workflow resumed (waiting step advanced with the callback status/output)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Caller authentication failed (cert identity or bearer)"
+          },
+          "404": {
+            "description": "Unknown workflow"
+          },
+          "409": {
+            "description": "Workflow is not in a waiting state"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/internal/schedules/run": {
+      "post": {
+        "tags": [
+          "internal"
+        ],
+        "summary": "`POST /v1/internal/schedules/run` — Cron calls this to resume due scheduled workflows.\nHandle internal schedule run.",
+        "operationId": "internal_schedule_run",
+        "responses": {
+          "200": {
+            "description": "Due scheduled workflows resumed (count returned)",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Caller authentication failed (cert identity or bearer)"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows": {
+      "get": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`GET /v1/workflows`\nList workflows.",
+        "operationId": "workflow.list",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correlation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of workflows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowRecord"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:read scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:read": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/workflows` — create + start workflow.\nCreate workflow.",
+        "operationId": "workflow.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWorkflowRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Workflow created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows/{id}": {
+      "get": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`GET /v1/workflows/{id}`\nFetch workflow.",
+        "operationId": "workflow.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Workflow ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:read scope"
+          },
+          "404": {
+            "description": "Workflow not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:read": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows/{id}/cancel": {
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/workflows/{id}/cancel`\nCancel workflow.",
+        "operationId": "workflow.cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Workflow ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflow cancelled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          },
+          "404": {
+            "description": "Workflow not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows/{id}/repair": {
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/workflows/{id}/repair` — rewind to a step and reprocess.\nRepair workflow.",
+        "operationId": "workflow.repair",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Workflow ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairWorkflowRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Workflow repaired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          },
+          "404": {
+            "description": "Workflow not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows/{id}/resume": {
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/workflows/{id}/resume` — resume from waiting state (manual decision, async HTTP, schedule).\nResume workflow.",
+        "operationId": "workflow.resume",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Workflow ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeWorkflowRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Workflow resumed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          },
+          "404": {
+            "description": "Workflow not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    },
+    "/v1/workflows/{id}/retry": {
+      "post": {
+        "tags": [
+          "flow"
+        ],
+        "summary": "`POST /v1/workflows/{id}/retry` — retry a failed workflow from the failed step.\nRetry workflow.",
+        "operationId": "workflow.retry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Workflow ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflow retried",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing flow:write scope"
+          },
+          "404": {
+            "description": "Workflow not found"
+          }
+        },
+        "security": [
+          {
+            "sentin8:flow:write": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AsyncCallbackRequest": {
+        "type": "object",
+        "description": "Request body for asynccallback.",
+        "required": [
+          "workflow_id",
+          "status"
+        ],
+        "properties": {
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The error."
+          },
+          "output": {
+            "description": "The output."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "workflow identifier."
+          }
+        }
+      },
+      "CallbackConfig": {
+        "type": "object",
+        "description": "CallbackConfig provided by the requesting service.\nConfiguration for callback.",
+        "properties": {
+          "auth_token": {
+            "type": "string",
+            "description": "The auth token."
+          },
+          "base_url": {
+            "type": "string",
+            "description": "The base URL."
+          },
+          "host_functions": {
+            "type": "object",
+            "description": "The host functions.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "internal_path": {
+            "type": "string",
+            "description": "The internal path."
+          }
+        }
+      },
+      "CreateWorkflowRequest": {
+        "type": "object",
+        "description": "CreateWorkflowRequest — body of `POST /v1/workflows`.\nThe `logic`, `input`, and `callback_config` fields accept either a JSON\nobject or a JSON string (from RFW forms which send text fields as strings).\nRequest body for createworkflow.",
+        "required": [
+          "domain",
+          "logic",
+          "callback_config"
+        ],
+        "properties": {
+          "callback_config": {
+            "$ref": "#/components/schemas/CallbackConfig",
+            "description": "The callback config."
+          },
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "correlation identifier."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "input": {
+            "description": "The input."
+          },
+          "logic": {
+            "$ref": "#/components/schemas/LogicVersion",
+            "description": "The logic."
+          }
+        }
+      },
+      "ListQuery": {
+        "type": "object",
+        "description": "The listquery type.",
+        "properties": {
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "correlation identifier."
+          },
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The domain."
+          },
+          "state": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The state."
+          },
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Target environment — same contract as TargetEnvQuery (query param\nwins over the token's env; user tokens may carry no env at all,\nwhich then resolves to the system env — the platform default)."
+          }
+        }
+      },
+      "LogicVersion": {
+        "type": "object",
+        "description": "LogicVersion defines a versioned logic with steps.\nThe logicversion type.",
+        "required": [
+          "logic_id",
+          "version",
+          "steps"
+        ],
+        "properties": {
+          "correlation_id_func": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The correlation id func."
+          },
+          "expected_parameters": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "The expected parameters."
+          },
+          "logic_id": {
+            "type": "string",
+            "description": "logic identifier."
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepDef"
+            },
+            "description": "The steps."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The version."
+          }
+        }
+      },
+      "RegisterHandlerRequest": {
+        "type": "object",
+        "description": "RegisterHandlerRequest — body of `POST /v1/handlers/register`.\nRequest body for registerhandler.",
+        "required": [
+          "domain",
+          "step_kinds",
+          "base_url",
+          "auth_token",
+          "internal_path"
+        ],
+        "properties": {
+          "auth_token": {
+            "type": "string",
+            "description": "The auth token."
+          },
+          "base_url": {
+            "type": "string",
+            "description": "The base URL."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "internal_path": {
+            "type": "string",
+            "description": "The internal path."
+          },
+          "step_kinds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The step kinds."
+          }
+        }
+      },
+      "RepairWorkflowRequest": {
+        "type": "object",
+        "description": "RepairWorkflowRequest — body of `POST /v1/workflows/{id}/repair`.\nRequest body for repairworkflow.",
+        "required": [
+          "rewind_to"
+        ],
+        "properties": {
+          "input": {
+            "description": "Optional updated input.\nThe input."
+          },
+          "rewind_to": {
+            "type": "integer",
+            "description": "Index to rewind to (0 = restart from beginning).\nThe rewind to.",
+            "minimum": 0
+          }
+        }
+      },
+      "ResumeWorkflowRequest": {
+        "type": "object",
+        "description": "ResumeWorkflowRequest — body of `POST /v1/workflows/{id}/resume`.\nRequest body for resumeworkflow.",
+        "properties": {
+          "decision": {
+            "description": "Decision/output for the resumed step.\nThe decision."
+          }
+        }
+      },
+      "StepDef": {
+        "type": "object",
+        "description": "StepDef defines a single step in a logic.\nThe stepdef type.",
+        "required": [
+          "name",
+          "kind"
+        ],
+        "properties": {
+          "config": {
+            "description": "The config."
+          },
+          "kind": {
+            "$ref": "#/components/schemas/String",
+            "description": "The kind."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name."
+          },
+          "next_step": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The next step."
+          },
+          "on_error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "`continue` | `fail` | `branch:<step>`\nThe on error."
+          }
+        }
+      },
+      "StepHandlerProfile": {
+        "type": "object",
+        "description": "StepHandlerProfile — how to proxy-call a domain's step handlers.\nThe stephandlerprofile type.",
+        "required": [
+          "domain",
+          "base_url",
+          "auth_token",
+          "internal_path"
+        ],
+        "properties": {
+          "auth_token": {
+            "type": "string",
+            "description": "The auth token."
+          },
+          "base_url": {
+            "type": "string",
+            "description": "The base URL."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "internal_path": {
+            "type": "string",
+            "description": "The internal path."
+          }
+        }
+      },
+      "StepResult": {
+        "type": "object",
+        "description": "StepResult captures the outcome of a single step execution.\nThe stepresult type.",
+        "required": [
+          "step_name",
+          "kind",
+          "status",
+          "started_at",
+          "ended_at"
+        ],
+        "properties": {
+          "ended_at": {
+            "type": "string",
+            "description": "ended time."
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The error."
+          },
+          "kind": {
+            "$ref": "#/components/schemas/String",
+            "description": "The kind."
+          },
+          "next_step": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The next step."
+          },
+          "output": {
+            "description": "The output."
+          },
+          "started_at": {
+            "type": "string",
+            "description": "started time."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status."
+          },
+          "step_name": {
+            "type": "string",
+            "description": "The step name."
+          }
+        }
+      },
+      "String": {
+        "type": "string"
+      },
+      "TargetEnvQuery": {
+        "type": "object",
+        "description": "The targetenvquery type.",
+        "properties": {
+          "target_env_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "target env identifier."
+          }
+        }
+      },
+      "WorkflowRecord": {
+        "type": "object",
+        "description": "WorkflowRecord — the persisted workflow state.\nPersisted workflow record.",
+        "required": [
+          "id",
+          "env_id",
+          "domain",
+          "logic_id",
+          "state",
+          "input",
+          "step_results",
+          "callback_config",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "callback_config": {
+            "$ref": "#/components/schemas/CallbackConfig",
+            "description": "The callback config."
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "completed time."
+          },
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "correlation identifier."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "created time."
+          },
+          "current_step": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The current step."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain."
+          },
+          "env_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "env identifier."
+          },
+          "error_message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The error message."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Identifier."
+          },
+          "input": {
+            "description": "The input."
+          },
+          "logic": {
+            "$ref": "#/components/schemas/LogicVersion",
+            "description": "The logic."
+          },
+          "logic_id": {
+            "type": "string",
+            "description": "logic identifier."
+          },
+          "output": {
+            "description": "The output."
+          },
+          "scheduled_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "The scheduled at."
+          },
+          "state": {
+            "$ref": "#/components/schemas/WorkflowState",
+            "description": "The state."
+          },
+          "step_results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepResult"
+            },
+            "description": "The step results."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "updated time."
+          }
+        }
+      },
+      "WorkflowState": {
+        "type": "string",
+        "description": "Lifecycle state of a workflow instance.",
+        "enum": [
+          "pending",
+          "processing",
+          "waiting",
+          "completed",
+          "failed",
+          "cancelled"
+        ]
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "policy",
+      "description": "Shield policy administration (shared surface)"
+    },
+    {
+      "name": "flow",
+      "description": "Sentin8:Flow admin API — workflow CRUD, retry, repair, resume"
+    }
+  ]
+}

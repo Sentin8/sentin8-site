@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Table archived","content":{"application/json":{"schema":{}}}},"403":{"description":"Caller lacks a db admin scope"},"404":{"description":"Unknown table"}}}

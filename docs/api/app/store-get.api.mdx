@@ -1,0 +1,71 @@
+---
+id: store-get
+title: "`GET /v1/app/store/listings/{id}` — listing detail."
+description: "Epic 15.5.5: visibility is enforced by RLS — if the row is not visible"
+sidebar_label: "`GET /v1/app/store/listings/{id}` — listing detail."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/api/app/sentin-8-app
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/app/store/listings/{id}` — listing detail."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/app/store/listings/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Epic 15.5.5: visibility is enforced by RLS — if the row is not visible
+to the caller, the SELECT returns zero rows and we 404. No manual
+visibility check in the service layer.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./store-get.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./store-get.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./store-get.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"SAMLResponse","in":"query","description":"Base64 SAML response (form-post binding)","required":true,"schema":{"type":"string"}},{"name":"RelayState","in":"query","description":"SSO session handle","required":true,"schema":{"type":"string"}}]}

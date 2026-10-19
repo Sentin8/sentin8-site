@@ -1,0 +1,1 @@
+{"parameters":[{"name":"scope","in":"path","description":"`platform`, `org`, or `env`.\nThe scope.","required":true,"schema":{"type":["string","null"]}}]}

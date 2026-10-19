@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"CIBA request bound to the signed-in customer (single-use)","content":{"application/json":{"schema":{}}}},"401":{"description":"No customer session"},"404":{"description":"Unknown auth_req_id"},"409":{"description":"Already completed (status returned, no re-bind)"}}}

@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Request body for creategroup.","required":["name"],"properties":{"name":{"type":"string","description":"The name."}},"title":"CreateGroupRequest"}}},"required":true}}

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"Property ID","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"rule_id","in":"path","description":"Alert rule ID","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"target_env_id","in":"query","description":"Target env (required)","required":true,"schema":{"type":"string"}}]}

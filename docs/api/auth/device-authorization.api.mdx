@@ -1,0 +1,72 @@
+---
+id: device-authorization
+title: "`POST /oauth/device` — request a device code."
+description: ".5 (design ): the requesting client is authenticated and"
+sidebar_label: "`POST /oauth/device` — request a device code."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVV1u2zgQvgoxTwlWld1sNwj0FqQo1i0WKZwEfXAClxHHFluKZMlRtq4hoIfoHXqPHqUnKUaSbfmnRdB92idJ1Mw33wy/mVkCyXmEbAJOVlTAXQIKYx60J+0sZJD+JY4URj234jgTVKAI+KHCSNrORW40WhI6CnZGSzqXhEpIq24t2yp80DmK3Clkq3tXWSXICU3i++cvDZx3xjDWPEhLoqwiCR8wMi4VeGujLLELlN7av6VVZo3LUV3QnySTTSEB5zE0HyMFGbRW0y0rSMDLIEskDJz3EqwsETJoQ0y1ggQ0Z/6hwrCA3XqM97NnDy6KDqggo1BhAjEvsJSQLYEWnuEjBW3nUNfJOmLMncdHRUMlVsaPD3THxtE7GzHy/5PhkB/bAZ73LugPUUUM0+79AYOe8X1qZ6dV0OJo/OJCnJ2enIlvX/9MT44hgdxZQksMK703nfXgXWTs5T43d/8OczqQZUtTeLkwTioxc6G7Yr67dCvtyepamScksOYMCexyhgTwo9cB41TbptKE4UEalrkPLBbSbXH6mHu13OV7va3sFOqtOBt/jjfHAAnMXCgltUenzw4idghCN0outdVlVUI2rHu8fxN65b8HvCneo5Jm803Ke9V+FEbfS9yMRwehprkrvUHq8ZpsQG1lzP6kOgQuVjgpdx6QJoNr1Z9XVKykB3XNBs8O9ciNfW/dv7brd2jMnu6bXbTjoDcJmcRMaoOqiR4xr4KmBWSTuwRKpMLxlPIuUjOVqIAMBs0cHrTyaiQ7c00ROuo8GLU9e9JM690SXLU/RffMOMNm0GrFJ7RIxCWfDS5Hzy8GL85fjxIRMUbtbEzEyzevrlYjlRasFaNz5OJk65n1z+haXI7FuZd5gU9O0iFTbMBnGsNBg/Z6Y8twmD5tjzjrUtoe9NvXl1fXYiv/tw35buEIud10O8kvN9Pof7a0up4h/EgDb6S2XJ8qNN3eqmK1nZNuTrH4C5ZNNoHl8l5GvAmmrvm43SO815SO8p61l82kifiLch2Nu+l6LH6y3g5SfI+Lnb35IE3FdsBb7r/E7y28X4RemWzC3vFH0ByXu6xOoECpWJiTZed0nufoqee1t7nqfneyKKGufwApoi2c
+sidebar_class_name: "post api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`POST /oauth/device` — request a device code."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/oauth/device"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+.5 (design ): the requesting client is authenticated and
+the device code is bound to it — the polling grant must present the
+same client.
+Handle device authorization.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./device-authorization.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./device-authorization.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./device-authorization.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

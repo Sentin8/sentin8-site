@@ -1,0 +1,72 @@
+---
+id: list-groups
+title: "`GET /scim/v2/Groups` — list groups (read-only, env-scoped)."
+description: "Enterprise IdP directory sync (Entra/Okta/Google) reads group"
+sidebar_label: "`GET /scim/v2/Groups` — list groups (read-only, env-scoped)."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVMFuGzcQ/ZXBnKyA1ipGUBR7E1xXUNvAhu0iB1tI6N2Rlg2XZMhZ1QthgX5EvjBfEszutpbloAmcnnoRteTjzOPMm7dD1puE+Q2mwtS4UlhSKqIJbLzDHM8cUwzRJIJleQGliVSwjy2k1hVwdOY46uz8Pets4f3G0gQi6TLBJvom3Lqa6juKqTIhAXuoTYw+AldUT2EhEHhRa6c3VJPjF3BURNJMWRNKWUqyxDS5dYl1m8A7uQnzhivQZW0czC+W8Omvj3B1unw9pIQ/o2FKoCOB8wx0H3yicnrrfjOJB0yaokIfKGp55LLEHK1J/HY4RIVBR10TU5TC7NDpmjDHtbFMERUaKUzQXOFhta4rggEmKSJ9aEykEnOODSlMRUW1xnyH3Abqa87RuA0qdI21uOo69U+2xDryW+NKuv9qyh4LPfbb8hrHtOnfMiRWuPax1oy5HP3wCveZFL5x/FUOPWr4/c84rCROCt4lSnL1ZDaT5XHyvvfS3MsRCn49amGQW4Ij0eSxd7Y9EPAEFRbeMTmWwDoEa4peFdkfSaLvHoh3XdcpfDV7+ZTCqbaWIuiGK3I8RoC1NpZKKSUmKppouO3llATjfswFnvdTl9+s5K01ceVFjRviXoVcYY6ZQLLtSbb4W57GrX1fScO2l8oQ8FgCPunN1XAI45r30yMzY0rZ4VbBuexl58ufTrOf5xdLBYlSMt4lBb+8+fWqf5cX+tJYawpyiST/qI/Xy2s4v4R50EVFxyfTmVDsg68NxS8COoVbimlgOJu+HLaCT1xrtxf63eLsGg4K8K5nbx+mea+9Cshtj1PhA5WT6WEtdg+9/v/62jBeyHTPWbDaOKlsE608f1DUaPUKtyeocFTVSmHlE8vpbnenE/0ebdfJ9oeGogh3pXCro9F3ormbHZYmyf8S87W2if6l1keXoxlM4LFBfpHruKldKxS1beQLFb6n9sGExZ6eTeDALp/BYt+cv4vKgWs+g8rgzt2qU1iRLmXgbnbj2bwoKPDerScG98h2FmfX2HWfAda1xUY=
+sidebar_class_name: "get api-method"
+info_path: docs/api/auth/sentin-8-auth
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /scim/v2/Groups` — list groups (read-only, env-scoped)."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/scim/v2/Groups"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Enterprise IdP directory sync (Entra/Okta/Google) reads group
+memberships to mirror them. Group *management* (create/update/delete)
+stays on the Auth admin API — SCIM group writes are not exposed.
+List groups.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./list-groups.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./list-groups.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./list-groups.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

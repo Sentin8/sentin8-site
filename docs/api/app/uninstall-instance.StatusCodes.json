@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Instance uninstalled (RLS-own check enforced)","content":{"application/json":{"schema":{}}}},"403":{"description":"Caller lacks an app admin scope"},"404":{"description":"Unknown instance"}}}

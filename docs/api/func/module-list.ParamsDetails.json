@@ -1,0 +1,1 @@
+{"parameters":[{"name":"domain","in":"query","description":"Filter by domain","required":false,"schema":{"type":"string"}},{"name":"product_id","in":"query","description":"Filter by product ID","required":false,"schema":{"type":"string"}}]}

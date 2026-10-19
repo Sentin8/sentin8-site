@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Revoked (RFC 7009: 200 even for unknown tokens)"},"401":{"description":"Client authentication failed"}}}

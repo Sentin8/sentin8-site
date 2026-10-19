@@ -1,0 +1,1 @@
+{"responses":{"201":{"description":"Account created/updated (JWS-verified)"},"400":{"description":"Malformed JWS"},"403":{"description":"Rejected identifier policy"}}}

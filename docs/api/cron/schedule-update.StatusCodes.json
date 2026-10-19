@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Status applied"},"400":{"description":"Unknown status"},"403":{"description":"Missing cron:write scope"},"404":{"description":"Schedule not found"}}}

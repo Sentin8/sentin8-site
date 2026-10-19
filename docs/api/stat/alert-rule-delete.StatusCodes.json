@@ -1,0 +1,1 @@
+{"responses":{"204":{"description":"Rule deleted"},"403":{"description":"Missing stat:admin scope"},"404":{"description":"Rule not found"}}}

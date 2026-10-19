@@ -1,0 +1,1 @@
+{"parameters":[{"name":"token","in":"query","description":"The token to revoke","required":true,"schema":{"type":"string"}},{"name":"client_id","in":"query","description":"Caller client (or Basic auth)","required":true,"schema":{"type":"string"}},{"name":"client_secret","in":"query","description":"Caller secret (or Basic auth)","required":true,"schema":{"type":"string"}}]}

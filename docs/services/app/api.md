@@ -11,9 +11,269 @@ Sentin8 Sentin8:App - third-party app store, instance management.
 > served live at `GET /openapi.json`) - the source of truth is the
 > service’s own `#[utoipa::path]` annotations.
 
-**15 endpoints**.
+**36 endpoints** across 4 groups.
+
+## policy
+
+### `GET /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Principal attributes of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute stored | - |
+| 400 | Invalid attribute definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/attributes`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Attribute deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy sets of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/disable`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets disabled | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/enforce`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to enforce mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/shadow`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Sets switched to shadow mode | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The policy set | - |
+| 403 | Caller lacks the admin scope | - |
+| 404 | Unknown policy set name | - |
+
+### `PUT /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set stored | - |
+| 400 | Invalid policy set definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/policy-sets/{name}`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Policy set deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `POST /v1/admin/policy-sets/{name}/test`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `name` | path | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Dry-run decision trace | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | ReBAC relations of this service | -[] |
+| 403 | Caller lacks the admin scope | - |
+
+### `PUT /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Request body** (`application/json`):
+
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation stored | - |
+| 400 | Invalid relation definition | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `DELETE /v1/admin/relations`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Relation deleted | - |
+| 403 | Caller lacks the admin scope | - |
+
+### `GET /v1/admin/relations/check`
+
+Gate: `sentin8:admin`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `subject` | query | yes | string |
+| `relation` | query | yes | string |
+| `object` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The check verdict | - |
+| 403 | Caller lacks the admin scope | - |
+
 
 ## app
+
+### `POST /v1/admin/instances/uninstall`
+
+`POST /v1/admin/instances/uninstall` - uninstall an app instance. Body: `&#123; "instance_id": "uuid" &#125;`. Deletes the instance if it belongs to the caller's org/env (RLS-enforced).
+
+Gate: `sentin8:app:admin`
+
+**Request body** (`application/json`):
+
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Instance uninstalled (RLS-own check enforced) | - |
+| 403 | Caller lacks an app admin scope | - |
+| 404 | Unknown instance | - |
 
 ### `GET /v1/app/admin/instances/{id}`
 
@@ -184,6 +444,37 @@ Gate: `sentin8:app:instances:admin`
 | 403 | Missing `app:instances:admin` scope | - |
 | 404 | Instance not found | - |
 
+### `GET /v1/app/instances/customer-mode`
+
+`GET /v1/app/instances/customer-mode?env_id=…` - enumerate the customer-mode (`allow_signup`) instances installed in an env (auth DESIGN invariant 12: the owner-API replacement for auth's retired direct read of `sys.app_instances`).
+
+Gate: `sentin8:app:instances:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Customer-mode instances in the env | - |
+| 400 | Missing env_id | - |
+| 403 | Missing `app:instances:read` scope or non-M2M token | - |
+
+### `GET /v1/app/runtime/context`
+
+Stories , , -34 - `GET /v1/app/runtime/context`.
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Runtime context for the TLS-identified app (instance metadata, org name, merged branding) | - |
+| 401 | No X-Sentin8-App-Id header / unknown instance | - |
+
 ### `POST /v1/app/setup`
 
 `POST /v1/app/setup` - create an app instance (atomic).
@@ -209,7 +500,7 @@ Gate: `sentin8:app:instances:write`
 | 200 | Instance created (RFW redirect) | - |
 | 403 | Missing `app:instances:write` scope | - |
 
-### `GET /v1/app/setup/{instanceId}/status`
+### `GET /v1/app/setup/{id}/status`
 
 `GET /v1/app/setup/&#123;instanceId&#125;/status` - provisioning status.
 
@@ -372,4 +663,62 @@ Gate: `sentin8:app:store:admin`
 | --- | --- | --- |
 | 200 | Step executed | `StepExecuteResponse` |
 | 400 | Invalid step | - |
+
+
+## admin-ui
+
+### `GET /v1/admin/ui/{page}`
+
+`GET /v1/admin/ui/&#123;page&#125;` - RFW page definition for the requested page.
+
+Gate: `sentin8:app:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `page` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | RFW page definition (rendered by Sentin8:Dash) | - |
+| 403 | Caller lacks an app read/admin scope | - |
+| 404 | Unknown page | - |
+
+### `GET /v1/admin/{resource}`
+
+`GET /v1/admin/&#123;resource&#125;` - returns a JSON array of admin data rows.
+
+Gate: `sentin8:app:read`
+
+**Parameters**:
+
+| Name | In | Required | Type |
+| --- | --- | --- | --- |
+| `resource` | path | yes | string |
+| `target_env_id` | query | yes | string |
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | The resource's rows for the RFW table | - |
+| 403 | Caller lacks an app read/admin scope | - |
+| 404 | Unknown resource | - |
+
+
+## meta
+
+### `GET /v1/health`
+
+`GET /v1/health` - liveness probe.
+
+**Responses**:
+
+| Status | Description | Body |
+| --- | --- | --- |
+| 200 | Liveness (version, build, active connections) | - |
 

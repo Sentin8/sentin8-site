@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Domain updated"},"400":{"description":"Invalid custom_domain"},"403":{"description":"Missing app:instances:admin scope"},"404":{"description":"Instance not found"}}}

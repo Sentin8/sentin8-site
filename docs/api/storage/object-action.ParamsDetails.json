@@ -1,0 +1,1 @@
+{"parameters":[{"name":"object_path","in":"path","description":"Object path or action (copy/move/sign-read/sign-upload)","required":true,"schema":{"type":"string"}}]}

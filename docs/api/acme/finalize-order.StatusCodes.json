@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Order finalized (CSR processed; platform-CA or upstream-signed chain)"},"400":{"description":"Invalid CSR"},"404":{"description":"Unknown order"},"409":{"description":"Order not in ready state"}}}

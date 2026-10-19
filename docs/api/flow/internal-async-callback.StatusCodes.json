@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Workflow resumed (waiting step advanced with the callback status/output)","content":{"application/json":{"schema":{}}}},"401":{"description":"Caller authentication failed (cert identity or bearer)"},"404":{"description":"Unknown workflow"},"409":{"description":"Workflow is not in a waiting state"}}}

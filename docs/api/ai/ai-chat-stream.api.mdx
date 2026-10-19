@@ -1,0 +1,81 @@
+---
+id: ai-chat-stream
+title: " `POST /v1/chat/stream` — streaming chat over a chunked HTTP body
+. NOT the SSE subscription tier — synchronous inference streams
+ the response body directly (transport-tier rule).
+ Content is emitted as newline-delimited JSON chunks; the final chunk
+ carries the token accounting."
+description: " `POST /v1/chat/stream` — streaming chat over a chunked HTTP body"
+sidebar_label: " `POST /v1/chat/stream` — streaming chat over a chunked HTTP body
+. NOT the SSE subscription tier — synchronous inference streams
+ the response body directly (transport-tier rule).
+ Content is emitted as newline-delimited JSON chunks; the final chunk
+ carries the token accounting."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVc1uG0cMfpUBTwmwluyciu3JDQLUBRIHlnqShYTapbSMZ2c2M1w5qiCgD5En7JMUnFnrxxLQF6guK3D4+/EjuQXBVYRyBsgwL8B3FFDYu7saSkAeVQ3KKEogbKGADgO2JBTUZAsOW4ISBMOK5Au59ReuoQB2UML3nsIGCgj0vedANZRLtJEKiFVDLUK5Bdl0ah4lsFvBbjfP2hTlN19vVKPyTsiJ/sWus1yl3MbfoncqO3PlF9+okpOoM2h9TVaL64KWJ0xRTZaE0ge6kEgBLcWIq6w3PGIIqPWwUBsvhawpVoE7TRBKuDWR3cqSUQDN4M+wM9KQcT60aPkvqg25NVnf0ehV0sFbgmIPwFn2R8icZZ9sL+BbgLDoE7xvUD7mnJI8Q3TJ12lv9xqzF5UCXG8tzI+9TxJdNMZDbifs9PlQnoSekiB23sVc0Lvra/2copg9UW0q33aWVGreuFr7b6qmd0/xbco/UtUHlk1iZSQn7H4pkUsFv3wOLJryXAl26t98/Xw/mZrx+masquNM9K/mn79/mvyf3Sq30K8pGMxRqTa/T6efzcLXm0c3Mp/up6mvk8kHE/vFPoIRppCdbVzVBO98Hw27JQVyFQ0h4mNmxQscya2pOVAldmPeSEAXOx/kKrkLvaW3o0dn3mcKGI6GWhah2mA0jp4tO7qqyXLLKvxjcv9pQOvXFGjJDm2WPDpTYQhMMb2IfyJnsKp8rxiulJUtSeN1G3Q+StoB0kAJrzCDArQrD4f5/fADtWcno3ZgzWHCZkdkPrxnDu+JON9z9KDyippHpGW39ImrAyEHRlwhn83pJD+Z4Vve3qV+dRZl6UNrbu9MhR0u2LJsjMUNBQXFckUupuKGJfjxbmruH8xth1VDV+9G17oravW6ZAoXFXYFrCnEnMj16CaLFOYW3ZHr/1n63yw96ep+jwn9kHFnkZ0i24e04zKBZ7C+0QXboJJ6IPG8gEZZXs5gu11gpD+D3e1UnM+ZkrXmiAt7dNCeaHPhCK7R9ppC4u4aA6tR2kIFNIS1cmK2HYwHkK6mmvbB9uzmpTl4mUclBRSwGG6lzgeUEPBZxwefNbYedLVOGzbJtmDRrXpd/CVkn/r7F2KSzhA=
+sidebar_class_name: "post api-method"
+info_path: docs/api/ai/sentin-8-ai
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={" `POST /v1/chat/stream` — streaming chat over a chunked HTTP body\n. NOT the SSE subscription tier — synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/chat/stream"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+ `POST /v1/chat/stream` — streaming chat over a chunked HTTP body
+. NOT the SSE subscription tier — synchronous inference streams
+ the response body directly (transport-tier rule).
+ Content is emitted as newline-delimited JSON chunks; the final chunk
+ carries the token accounting.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./ai-chat-stream.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./ai-chat-stream.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./ai-chat-stream.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

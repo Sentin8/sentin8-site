@@ -1,0 +1,1 @@
+{"parameters":[{"name":"env_id","in":"path","description":"Environment ID","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"binding_id","in":"path","description":"Binding ID","required":true,"schema":{"type":"string","format":"uuid"}}]}
