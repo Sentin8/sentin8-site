@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-func",
-    "description": "Sentin8 Sentin8:Func - standalone WebAssembly execution service.",
+    "description": "Sentin8 Sentin8:Func — standalone WebAssembly execution service.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -134,6 +137,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -164,6 +168,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -194,6 +199,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -224,6 +230,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -265,6 +272,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -312,6 +320,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -343,6 +352,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -389,6 +399,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -419,6 +430,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -455,6 +467,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -486,6 +499,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -542,6 +556,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -593,7 +608,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -644,7 +659,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "returns a JSON array of admin data rows.\nFetch admin data."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/health": {
@@ -665,7 +680,7 @@
           }
         },
         "security": [],
-        "description": "Handle health."
+        "description": "Health .\n\nHandle health."
       }
     },
     "/v1/modules": {
@@ -718,7 +733,7 @@
             "sentin8:func:read": []
           }
         ],
-        "description": "List it."
+        "description": "Module.list .\n\nList it."
       },
       "post": {
         "tags": [
@@ -762,7 +777,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "upload a new WASM module.\nHandle upload."
+        "description": "Module.upload .\n\nupload a new WASM module.\nHandle upload."
       }
     },
     "/v1/modules/product/{product_id}/execute": {
@@ -805,7 +820,7 @@
             "sentin8:func:execute": []
           }
         ],
-        "description": "execute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product."
+        "description": "Execute product.\n\nexecute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product."
       }
     },
     "/v1/modules/{id}": {
@@ -847,7 +862,7 @@
             "sentin8:func:read": []
           }
         ],
-        "description": "Fetch it."
+        "description": "Module.get .\n\nFetch it."
       },
       "delete": {
         "tags": [
@@ -883,7 +898,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "Delete it."
+        "description": "Module.delete .\n\nDelete it."
       }
     },
     "/v1/modules/{id}/activate": {
@@ -921,7 +936,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "Handle activate."
+        "description": "Module.activate .\n\nHandle activate."
       }
     },
     "/v1/modules/{id}/delete": {
@@ -957,7 +972,7 @@
             "description": "Unknown module"
           },
           "409": {
-            "description": "Module is ACTIVE - deprecate first"
+            "description": "Module is ACTIVE — deprecate first"
           }
         },
         "security": [
@@ -965,7 +980,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "RFW alias of `DELETE /v1/modules/{id}`."
+        "description": "Module delete.\n\nRFW alias of `DELETE /v1/modules/{id}`."
       }
     },
     "/v1/modules/{id}/execute": {
@@ -1029,7 +1044,7 @@
             "sentin8:func:execute": []
           }
         ],
-        "description": "Execute it."
+        "description": "Module.execute .\n\nExecute it."
       }
     },
     "/v1/modules/{id}/validate": {
@@ -1074,7 +1089,7 @@
             "sentin8:func:read": []
           }
         ],
-        "description": "re-validate the stored binary.\nValidate it."
+        "description": "Module.validate .\n\nre-validate the stored binary.\nValidate it."
       }
     },
     "/v1/modules/{id}/wasm": {
@@ -1124,7 +1139,7 @@
             "sentin8:func:write": []
           }
         ],
-        "description": "download the raw WASM binary from Storage.\nFetch wasm."
+        "description": "Module.download .\n\ndownload the raw WASM binary from Storage.\nFetch wasm."
       }
     }
   },
@@ -1132,7 +1147,7 @@
     "schemas": {
       "CallbackConfig": {
         "type": "object",
-        "description": "Callback config for proxy-back host functions (from the execute request).\n\n`host_functions` maps each WASM-imported host-function name to the path\ntemplate on the calling service's internal API (e.g.\n`ledger_get_balance` → `/accounts/{args.0}/balance`). Func resolves these\ndynamically at execute time - it does **not** pre-register any\nservice-specific host functions.\nConfiguration for callback.",
+        "description": "Callback config for proxy-back host functions (from the execute request).\n\n`host_functions` maps each WASM-imported host-function name to the path\ntemplate on the calling service's internal API (e.g.\n`ledger_get_balance` → `/accounts/{args.0}/balance`). Func resolves these\ndynamically at execute time — it does **not** pre-register any\nservice-specific host functions.\nConfiguration for callback.",
         "required": [
           "base_url",
           "auth_token",
@@ -1194,7 +1209,7 @@
               "string",
               "null"
             ],
-            "description": "Optional idempotency key (principles §4.14 - every trigger\ndedupes on the event's key): a replayed execution with the same\nkey returns the cached response instead of re-running the hook.\nThe idempotency key."
+            "description": "Optional idempotency key (principles §4.14 — every trigger\ndedupes on the event's key): a replayed execution with the same\nkey returns the cached response instead of re-running the hook.\nThe idempotency key."
           }
         }
       },
@@ -1442,7 +1457,7 @@
     },
     {
       "name": "func",
-      "description": "Sentin8:Func admin API - WASM module management + execution"
+      "description": "Sentin8:Func admin API — WASM module management + execution"
     }
   ]
 }

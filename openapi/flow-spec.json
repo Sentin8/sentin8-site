@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-flow",
-    "description": "Sentin8 Sentin8:Flow - standalone workflow execution engine.",
+    "description": "Sentin8 Sentin8:Flow — standalone workflow execution engine.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -134,6 +137,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -164,6 +168,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -194,6 +199,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -224,6 +230,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -265,6 +272,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -312,6 +320,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -343,6 +352,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -389,6 +399,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -419,6 +430,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -455,6 +467,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -486,6 +499,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -542,6 +556,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -593,7 +608,7 @@
             "sentin8:flow:read": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -644,7 +659,7 @@
             "sentin8:flow:read": []
           }
         ],
-        "description": "returns a JSON array of admin data rows.\nFetch admin data."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/handlers/register": {
@@ -677,7 +692,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "register a domain's step handler profile.\nRegister handler."
+        "description": "Register handler.\n\nregister a domain's step handler profile.\nRegister handler."
       }
     },
     "/v1/health": {
@@ -698,7 +713,7 @@
           }
         },
         "security": [],
-        "description": "Handle health."
+        "description": "Health .\n\nHandle health."
       }
     },
     "/v1/internal/callbacks/async": {
@@ -742,7 +757,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "external callback to resume a waiting workflow.\nHandle internal async callback."
+        "description": "Internal async callback.\n\nexternal callback to resume a waiting workflow.\nHandle internal async callback."
       }
     },
     "/v1/internal/schedules/run": {
@@ -770,7 +785,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "Cron calls this to resume due scheduled workflows.\nHandle internal schedule run."
+        "description": "Internal schedule run.\n\nCron calls this to resume due scheduled workflows.\nHandle internal schedule run."
       }
     },
     "/v1/workflows": {
@@ -829,7 +844,7 @@
             "sentin8:flow:read": []
           }
         ],
-        "description": "List workflows."
+        "description": "Workflow.list .\n\nList workflows."
       },
       "post": {
         "tags": [
@@ -867,7 +882,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "create + start workflow.\nCreate workflow."
+        "description": "Workflow.create .\n\ncreate + start workflow.\nCreate workflow."
       }
     },
     "/v1/workflows/{id}": {
@@ -912,7 +927,7 @@
             "sentin8:flow:read": []
           }
         ],
-        "description": "Fetch workflow."
+        "description": "Workflow.get .\n\nFetch workflow."
       }
     },
     "/v1/workflows/{id}/cancel": {
@@ -957,7 +972,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "Cancel workflow."
+        "description": "Workflow.cancel .\n\nCancel workflow."
       }
     },
     "/v1/workflows/{id}/repair": {
@@ -1012,7 +1027,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "rewind to a step and reprocess.\nRepair workflow."
+        "description": "Workflow.repair .\n\nrewind to a step and reprocess.\nRepair workflow."
       }
     },
     "/v1/workflows/{id}/resume": {
@@ -1067,7 +1082,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "resume from waiting state (manual decision, async HTTP, schedule).\nResume workflow."
+        "description": "Workflow.resume .\n\nresume from waiting state (manual decision, async HTTP, schedule).\nResume workflow."
       }
     },
     "/v1/workflows/{id}/retry": {
@@ -1112,7 +1127,7 @@
             "sentin8:flow:write": []
           }
         ],
-        "description": "retry a failed workflow from the failed step.\nRetry workflow."
+        "description": "Workflow.retry .\n\nretry a failed workflow from the failed step.\nRetry workflow."
       }
     }
   },
@@ -1177,7 +1192,7 @@
       },
       "CreateWorkflowRequest": {
         "type": "object",
-        "description": "CreateWorkflowRequest - body of `POST /v1/workflows`.\nThe `logic`, `input`, and `callback_config` fields accept either a JSON\nobject or a JSON string (from RFW forms which send text fields as strings).\nRequest body for createworkflow.",
+        "description": "CreateWorkflowRequest — body of `POST /v1/workflows`.\nThe `logic`, `input`, and `callback_config` fields accept either a JSON\nobject or a JSON string (from RFW forms which send text fields as strings).\nRequest body for createworkflow.",
         "required": [
           "domain",
           "logic",
@@ -1238,7 +1253,7 @@
               "string",
               "null"
             ],
-            "description": "Target environment - same contract as TargetEnvQuery (query param\nwins over the token's env; user tokens may carry no env at all,\nwhich then resolves to the system env - the platform default)."
+            "description": "Target environment — same contract as TargetEnvQuery (query param\nwins over the token's env; user tokens may carry no env at all,\nwhich then resolves to the system env — the platform default)."
           }
         }
       },
@@ -1288,7 +1303,7 @@
       },
       "RegisterHandlerRequest": {
         "type": "object",
-        "description": "RegisterHandlerRequest - body of `POST /v1/handlers/register`.\nRequest body for registerhandler.",
+        "description": "RegisterHandlerRequest — body of `POST /v1/handlers/register`.\nRequest body for registerhandler.",
         "required": [
           "domain",
           "step_kinds",
@@ -1324,7 +1339,7 @@
       },
       "RepairWorkflowRequest": {
         "type": "object",
-        "description": "RepairWorkflowRequest - body of `POST /v1/workflows/{id}/repair`.\nRequest body for repairworkflow.",
+        "description": "RepairWorkflowRequest — body of `POST /v1/workflows/{id}/repair`.\nRequest body for repairworkflow.",
         "required": [
           "rewind_to"
         ],
@@ -1341,7 +1356,7 @@
       },
       "ResumeWorkflowRequest": {
         "type": "object",
-        "description": "ResumeWorkflowRequest - body of `POST /v1/workflows/{id}/resume`.\nRequest body for resumeworkflow.",
+        "description": "ResumeWorkflowRequest — body of `POST /v1/workflows/{id}/resume`.\nRequest body for resumeworkflow.",
         "properties": {
           "decision": {
             "description": "Decision/output for the resumed step.\nThe decision."
@@ -1385,7 +1400,7 @@
       },
       "StepHandlerProfile": {
         "type": "object",
-        "description": "StepHandlerProfile - how to proxy-call a domain's step handlers.\nThe stephandlerprofile type.",
+        "description": "StepHandlerProfile — how to proxy-call a domain's step handlers.\nThe stephandlerprofile type.",
         "required": [
           "domain",
           "base_url",
@@ -1479,7 +1494,7 @@
       },
       "WorkflowRecord": {
         "type": "object",
-        "description": "WorkflowRecord - the persisted workflow state.\nPersisted workflow record.",
+        "description": "WorkflowRecord — the persisted workflow state.\nPersisted workflow record.",
         "required": [
           "id",
           "env_id",
@@ -1607,7 +1622,7 @@
     },
     {
       "name": "flow",
-      "description": "Sentin8:Flow admin API - workflow CRUD, retry, repair, resume"
+      "description": "Sentin8:Flow admin API — workflow CRUD, retry, repair, resume"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-storage",
-    "description": "Sentin8 Sentin8:Storage - object/file storage with pluggable adapters.",
+    "description": "Sentin8 Sentin8:Storage — object/file storage with pluggable adapters.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -140,7 +143,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets."
+        "description": "List buckets.\n\nlist buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets."
       },
       "post": {
         "tags": [
@@ -182,7 +185,7 @@
             "sentin8:storage:write": []
           }
         ],
-        "description": "create a bucket by placing a `.keep` marker\nobject at the bucket path. Returns an RFW redirect to the buckets list.\nCreate bucket."
+        "description": "Create bucket.\n\ncreate a bucket by placing a `.keep` marker\nobject at the bucket path. Returns an RFW redirect to the buckets list.\nCreate bucket."
       }
     },
     "/v1/admin/buckets/objects": {
@@ -230,7 +233,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "?bucket=name` - list objects in a bucket.\nList bucket objects."
+        "description": "List bucket objects.\n\n?bucket=name` — list objects in a bucket.\nList bucket objects."
       }
     },
     "/v1/admin/buckets/upload": {
@@ -274,7 +277,7 @@
             "sentin8:storage:write": []
           }
         ],
-        "description": "upload a file to a bucket.\nHandle upload file."
+        "description": "Upload file.\n\nupload a file to a bucket.\nHandle upload file."
       }
     },
     "/v1/admin/buckets/{id}/delete": {
@@ -322,7 +325,7 @@
             "sentin8:storage:write": []
           }
         ],
-        "description": "delete a bucket and all its objects.\nDelete bucket."
+        "description": "Delete bucket.\n\ndelete a bucket and all its objects.\nDelete bucket."
       }
     },
     "/v1/admin/buckets/{id}/download": {
@@ -374,7 +377,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "?object={name}` - download an object.\nReturns the raw bytes as a binary stream.\nHandle download object."
+        "description": "Download object.\n\n?object={name}` — download an object.\nReturns the raw bytes as a binary stream.\nHandle download object."
       }
     },
     "/v1/admin/buckets/{id}/link": {
@@ -430,7 +433,7 @@
             "sentin8:storage:write": []
           }
         ],
-        "description": "generate a signed read URL for an object.\nGenerate link."
+        "description": "Generate link.\n\ngenerate a signed read URL for an object.\nGenerate link."
       }
     },
     "/v1/admin/buckets/{id}/objects/{object}/delete": {
@@ -487,7 +490,7 @@
             "sentin8:storage:write": []
           }
         ],
-        "description": "delete a single object.\nDelete object."
+        "description": "Delete object.\n\ndelete a single object.\nDelete object."
       }
     },
     "/v1/admin/policy-sets": {
@@ -517,6 +520,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -547,6 +551,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -577,6 +582,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -607,6 +613,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -648,6 +655,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -695,6 +703,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -726,6 +735,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -772,6 +782,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -802,6 +813,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -838,6 +850,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -869,6 +882,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -925,6 +939,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -976,7 +991,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -1027,7 +1042,7 @@
             "sentin8:storage:read": []
           }
         ],
-        "description": "returns a JSON array of admin data rows."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows."
       }
     },
     "/v1/health": {
@@ -1048,7 +1063,7 @@
           }
         },
         "security": [],
-        "description": "Handle health."
+        "description": "Health .\n\nHandle health."
       }
     },
     "/v1/public/env/{env_id}/objects/{object_path}": {
@@ -1090,7 +1105,7 @@
           }
         },
         "security": [],
-        "description": "`GET /v1/public/env/{env_id}/objects/{*path}` - env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env."
+        "description": "Public read env.\n\n`GET /v1/public/env/{env_id}/objects/{*path}` — env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env."
       }
     },
     "/v1/public/objects/{object_path}": {
@@ -1123,7 +1138,7 @@
           }
         },
         "security": [],
-        "description": "`GET /v1/public/objects/{*path}` - platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read."
+        "description": "Public read.\n\n`GET /v1/public/objects/{*path}` — platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read."
       }
     },
     "/v1/storage/objects": {
@@ -1154,7 +1169,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "list objects with optional prefix.\nList objects."
+        "description": "Object.list .\n\nlist objects with optional prefix.\nList objects."
       }
     },
     "/v1/storage/objects/{object_path}": {
@@ -1203,7 +1218,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`GET /v1/storage/objects/{path}` - download an object.\nFetch object."
+        "description": "Object.download .\n\n`GET /v1/storage/objects/{path}` — download an object.\nFetch object."
       },
       "put": {
         "tags": [
@@ -1250,7 +1265,7 @@
             "sentin8:storage:env:write": []
           }
         ],
-        "description": "`PUT /v1/storage/objects/{path}` - upload an object.\nHandle PUT object."
+        "description": "Object.upload .\n\n`PUT /v1/storage/objects/{path}` — upload an object.\nHandle PUT object."
       },
       "post": {
         "tags": [
@@ -1285,7 +1300,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`POST /v1/storage/objects/{*path}` - dispatch sign-read, sign-upload, copy, move.\nHandle object action."
+        "description": "Object.action .\n\n`POST /v1/storage/objects/{*path}` — dispatch sign-read, sign-upload, copy, move.\nHandle object action."
       },
       "delete": {
         "tags": [
@@ -1320,7 +1335,7 @@
             "sentin8:storage:env:admin": []
           }
         ],
-        "description": "`DELETE /v1/storage/objects/{path}` - delete an object.\nDelete object."
+        "description": "Object.delete .\n\n`DELETE /v1/storage/objects/{path}` — delete an object.\nDelete object."
       },
       "head": {
         "tags": [
@@ -1341,7 +1356,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Object exists - Content-Length set"
+            "description": "Object exists — Content-Length set"
           },
           "403": {
             "description": "Missing storage scope"
@@ -1355,7 +1370,7 @@
             "sentin8:storage:env:read": []
           }
         ],
-        "description": "`HEAD /v1/storage/objects/{path}` - existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."
+        "description": "Object.head .\n\n`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."
       }
     },
     "/v1/storage/signed/{token}": {
@@ -1399,7 +1414,7 @@
             "description": "Signed URL expired or forged"
           }
         },
-        "description": "serve object via signed URL.\nServe signed."
+        "description": "Signed.serve .\n\nserve object via signed URL.\nServe signed."
       },
       "put": {
         "tags": [
@@ -1456,7 +1471,7 @@
             "description": "Signed URL expired or forged"
           }
         },
-        "description": "store object via signed upload URL.\nHandle upload signed."
+        "description": "Signed.upload .\n\nstore object via signed upload URL.\nHandle upload signed."
       }
     }
   },
@@ -1503,7 +1518,7 @@
     },
     {
       "name": "storage",
-      "description": "Sentin8:Storage admin API - object CRUD, signed URLs"
+      "description": "Sentin8:Storage admin API — object CRUD, signed URLs"
     }
   ]
 }

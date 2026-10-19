@@ -30,7 +30,7 @@
           }
         },
         "security": [],
-        "description": "OIDC JSON Web Key Set - the verification keys for every ID/access\ntoken this issuer mints (fetched by every service + third-party IdP)."
+        "description": "Jwks endpoint.\n\nOIDC JSON Web Key Set - the verification keys for every ID/access\ntoken this issuer mints (fetched by every service + third-party IdP)."
       }
     },
     "/.well-known/openid-configuration": {
@@ -53,7 +53,7 @@
           }
         },
         "security": [],
-        "description": "Handle discovery."
+        "description": "Discovery .\n\nHandle discovery."
       }
     },
     "/delegate/access-token": {
@@ -171,7 +171,7 @@
           }
         },
         "security": [],
-        "description": "the standard revocation handler behind a\nclient-certificate-presence guard."
+        "description": "Mtls revoke.\n\nthe standard revocation handler behind a\nclient-certificate-presence guard."
       }
     },
     "/mtls/oauth/token": {
@@ -217,7 +217,7 @@
           }
         },
         "security": [],
-        "description": "the standard token handler behind a\nclient-certificate-presence guard. Delegates to `oauth::token` so\nbehavior is identical to `POST /oauth/token` apart from the guard."
+        "description": "Mtls token.\n\nthe standard token handler behind a\nclient-certificate-presence guard. Delegates to `oauth::token` so\nbehavior is identical to `POST /oauth/token` apart from the guard."
       }
     },
     "/oauth/authorize": {
@@ -392,7 +392,7 @@
           }
         },
         "security": [],
-        "description": "The authorize endpoint validates the request and redirects to the Auth hosted UI\n(`/sign-in`) with the OAuth params preserved. After the user authenticates,\nthe UI calls back to issue an auth code. For non-interactive flows (already\nhas a session), it issues the code directly.\nAuthorize it."
+        "description": "Authorize .\n\nThe authorize endpoint validates the request and redirects to the Auth hosted UI\n(`/sign-in`) with the OAuth params preserved. After the user authenticates,\nthe UI calls back to issue an auth code. For non-interactive flows (already\nhas a session), it issues the code directly.\nAuthorize it."
       }
     },
     "/oauth/authorize/continue": {
@@ -464,7 +464,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "Handler - `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.\nHandle trigger backchannel logout."
+        "description": "Trigger backchannel logout.\n\nHandler - `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.\nHandle trigger backchannel logout."
       }
     },
     "/oauth/bc-authorize": {
@@ -503,7 +503,7 @@
           }
         },
         "security": [],
-        "description": "issue a CIBA auth_req_id."
+        "description": "Bc authorize.\n\nissue a CIBA auth_req_id."
       }
     },
     "/oauth/credentials": {
@@ -540,7 +540,7 @@
           }
         },
         "security": [],
-        "description": "Handle credential offer."
+        "description": "Credential offer.\n\nHandle credential offer."
       }
     },
     "/oauth/credentials/issue": {
@@ -577,7 +577,7 @@
           }
         },
         "security": [],
-        "description": "Handle credential issue."
+        "description": "Credential issue.\n\nHandle credential issue."
       }
     },
     "/oauth/credentials/revoke/{id}": {
@@ -620,7 +620,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "revoke (admin).\nHandle credential revoke."
+        "description": "Credential revoke.\n\nrevoke (admin).\nHandle credential revoke."
       }
     },
     "/oauth/credentials/status/{id}": {
@@ -656,7 +656,7 @@
           }
         },
         "security": [],
-        "description": "Status List 2021 endpoint: the\ncompressed bitstring for this issuer's credentials (index = the\ncredential's issuance ordinal, per-credential status lists).\nHandle credential status."
+        "description": "Credential status.\n\nStatus List 2021 endpoint: the\ncompressed bitstring for this issuer's credentials (index = the\ncredential's issuance ordinal, per-credential status lists).\nHandle credential status."
       }
     },
     "/oauth/device": {
@@ -745,7 +745,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create/record a grant (admin/client API)."
+        "description": "Create grant.\n\ncreate/record a grant (admin/client API)."
       }
     },
     "/oauth/grants/{id}": {
@@ -786,7 +786,7 @@
           }
         },
         "security": [],
-        "description": "query a grant's status/actions."
+        "description": "Get grant.\n\nquery a grant's status/actions."
       },
       "delete": {
         "tags": [
@@ -818,7 +818,7 @@
           }
         },
         "security": [],
-        "description": "revoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key - same read path as the jti\ndenylist, so no DB hit on the hot path)."
+        "description": "Delete grant.\n\nrevoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key - same read path as the jti\ndenylist, so no DB hit on the hot path)."
       },
       "patch": {
         "tags": [
@@ -870,7 +870,7 @@
           }
         },
         "security": [],
-        "description": "upgrade/downgrade the granted scope.\nThe new scope must be a subset-or-superset of the current one; the\ncaller must be the grant's user or an env admin.\nHandle patch grant."
+        "description": "Patch grant.\n\nupgrade/downgrade the granted scope.\nThe new scope must be a subset-or-superset of the current one; the\ncaller must be the grant's user or an env admin.\nHandle patch grant."
       }
     },
     "/oauth/introspect": {
@@ -925,7 +925,7 @@
           }
         },
         "security": [],
-        "description": "Introspect it."
+        "description": "Introspect .\n\nIntrospect it."
       }
     },
     "/oauth/logout": {
@@ -979,7 +979,7 @@
           }
         },
         "security": [],
-        "description": "Handle logout."
+        "description": "Logout .\n\nHandle logout."
       }
     },
     "/oauth/par": {
@@ -1091,7 +1091,7 @@
           }
         },
         "security": [],
-        "description": "Handle pushed authorization request."
+        "description": "Pushed authorization request.\n\nHandle pushed authorization request."
       }
     },
     "/oauth/register": {
@@ -1127,7 +1127,7 @@
           }
         },
         "security": [],
-        "description": "Register it."
+        "description": "Register .\n\nRegister it."
       }
     },
     "/oauth/register/{client_id}": {
@@ -1167,7 +1167,7 @@
           }
         },
         "security": [],
-        "description": "Fetch client."
+        "description": "Get client.\n\nFetch client."
       },
       "put": {
         "tags": [
@@ -1415,7 +1415,7 @@
           }
         },
         "security": [],
-        "description": "Handle token."
+        "description": "Token .\n\nHandle token."
       }
     },
     "/oauth/userinfo": {
@@ -1439,7 +1439,7 @@
           }
         },
         "security": [],
-        "description": "Handle userinfo."
+        "description": "Userinfo .\n\nHandle userinfo."
       }
     },
     "/oauth/vp/response": {
@@ -1476,7 +1476,7 @@
           }
         },
         "security": [],
-        "description": "the wallet's `direct_post` callback.\nHandle vp response."
+        "description": "Vp response.\n\nthe wallet's `direct_post` callback.\nHandle vp response."
       }
     },
     "/scim/v2/Bulk": {
@@ -1516,7 +1516,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "batch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) - no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch."
+        "description": "Bulk .\n\nbatch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) - no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch."
       }
     },
     "/scim/v2/Groups": {
@@ -1609,7 +1609,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "supported resource types."
+        "description": "Resource types.\n\nsupported resource types."
       }
     },
     "/scim/v2/ServiceProviderConfig": {
@@ -1634,7 +1634,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "capabilities metadata."
+        "description": "Service provider config.\n\ncapabilities metadata."
       }
     },
     "/scim/v2/Users": {
@@ -1748,7 +1748,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "create a user."
+        "description": "Create user.\n\ncreate a user."
       }
     },
     "/scim/v2/Users/{id}": {
@@ -1792,7 +1792,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "get a user."
+        "description": "Get user.\n\nget a user."
       },
       "put": {
         "tags": [
@@ -1844,7 +1844,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "replace a user."
+        "description": "Replace user.\n\nreplace a user."
       },
       "delete": {
         "tags": [
@@ -1879,7 +1879,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "deactivate a user."
+        "description": "Delete user.\n\ndeactivate a user."
       },
       "patch": {
         "tags": [
@@ -1934,7 +1934,7 @@
             "sentin8:auth:scim": []
           }
         ],
-        "description": "partial update."
+        "description": "Patch user.\n\npartial update."
       }
     },
     "/v1/actor-tokens/revoke": {
@@ -1967,7 +1967,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "revoke an actor token by token_id (jti).\n`POST /v1/actor-tokens/revoke` - revoke an actor token by token_id.\nRevoke actor token."
+        "description": "Revoke actor token.\n\nrevoke an actor token by token_id (jti).\n`POST /v1/actor-tokens/revoke` - revoke an actor token by token_id.\nRevoke actor token."
       }
     },
     "/v1/admin/actor-events": {
@@ -2039,7 +2039,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "query the actor event audit log.\n`GET /v1/admin/actor-events` - query the actor event audit log.\nList actor events."
+        "description": "List actor events.\n\nquery the actor event audit log.\n`GET /v1/admin/actor-events` - query the actor event audit log.\nList actor events."
       }
     },
     "/v1/admin/actor-tokens": {
@@ -2111,7 +2111,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list recent actor token issuances (audit).\n`GET /v1/admin/actor-tokens` - list recent actor token issuances.\nList actor tokens."
+        "description": "List actor tokens.\n\nlist recent actor token issuances (audit).\n`GET /v1/admin/actor-tokens` - list recent actor token issuances.\nList actor tokens."
       },
       "post": {
         "tags": [
@@ -2219,7 +2219,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list API keys (paginated).\nList API keys."
+        "description": "Api key.list.\n\nlist API keys (paginated).\nList API keys."
       },
       "post": {
         "tags": [
@@ -2264,7 +2264,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create an API key.\nCreate API key."
+        "description": "Api key.create.\n\ncreate an API key.\nCreate API key."
       }
     },
     "/v1/admin/api-keys/{id}/revoke": {
@@ -2311,7 +2311,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "revoke an API key.\nRevoke API key."
+        "description": "Api key.revoke.\n\nrevoke an API key.\nRevoke API key."
       }
     },
     "/v1/admin/attributes": {
@@ -2342,7 +2342,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "the env's principal attributes."
+        "description": "Policy attributes.\n\nthe env's principal attributes."
       },
       "put": {
         "tags": [
@@ -2381,7 +2381,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "store a principal attribute."
+        "description": "Policy put attribute.\n\nstore a principal attribute."
       },
       "delete": {
         "tags": [
@@ -2413,7 +2413,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "delete an attribute by id (query\nparam)."
+        "description": "Policy delete attribute.\n\ndelete an attribute by id (query\nparam)."
       }
     },
     "/v1/admin/audit": {
@@ -2483,7 +2483,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list audit events (paginated).\nList audit events."
+        "description": "Audit.list .\n\nlist audit events (paginated).\nList audit events."
       }
     },
     "/v1/admin/enterprise-connections": {
@@ -2525,7 +2525,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list enterprise connections.\nList connections."
+        "description": "Connection.list .\n\nlist enterprise connections.\nList connections."
       },
       "post": {
         "tags": [
@@ -2566,7 +2566,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create an enterprise connection.\nCreate connection."
+        "description": "Connection.create .\n\ncreate an enterprise connection.\nCreate connection."
       }
     },
     "/v1/admin/enterprise-connections/{id}": {
@@ -2608,7 +2608,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "get an enterprise connection.\nFetch connection."
+        "description": "Get connection.\n\nget an enterprise connection.\nFetch connection."
       },
       "put": {
         "tags": [
@@ -2651,7 +2651,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "update an enterprise connection.\nUpdate connection."
+        "description": "Update connection.\n\nupdate an enterprise connection.\nUpdate connection."
       },
       "delete": {
         "tags": [
@@ -2684,7 +2684,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete an enterprise connection.\nDelete connection."
+        "description": "Delete connection.\n\ndelete an enterprise connection.\nDelete connection."
       }
     },
     "/v1/admin/enterprise-connections/{id}/delete": {
@@ -2731,7 +2731,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/enterprise-connections/{id}`."
+        "description": "Enterprise connection delete.\n\nRFW alias of\n`DELETE /v1/admin/enterprise-connections/{id}`."
       }
     },
     "/v1/admin/groups": {
@@ -2792,7 +2792,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list groups (paginated).\nList groups."
+        "description": "Group.list .\n\nlist groups (paginated).\nList groups."
       },
       "post": {
         "tags": [
@@ -2847,7 +2847,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a new group.\nCreate group."
+        "description": "Group.create .\n\ncreate a new group.\nCreate group."
       }
     },
     "/v1/admin/groups/{group_id}/members": {
@@ -2891,7 +2891,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list group members.\nList group members."
+        "description": "Group.get .\n\nlist group members.\nList group members."
       },
       "post": {
         "tags": [
@@ -2943,7 +2943,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "add a member to a group.\nHandle add group member."
+        "description": "Group.member add.\n\nadd a member to a group.\nHandle add group member."
       }
     },
     "/v1/admin/groups/{group_id}/members/{user_id}": {
@@ -2997,7 +2997,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "remove a member from\na group.\nRemove group member."
+        "description": "Group.member remove.\n\nremove a member from\na group.\nRemove group member."
       }
     },
     "/v1/admin/groups/{group_id}/roles": {
@@ -3041,7 +3041,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list roles assigned to a group.\nList group roles."
+        "description": "List group roles.\n\nlist roles assigned to a group.\nList group roles."
       },
       "post": {
         "tags": [
@@ -3093,7 +3093,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "assign a role to a group.\nHandle add group role."
+        "description": "Group.role assign.\n\nassign a role to a group.\nHandle add group role."
       }
     },
     "/v1/admin/groups/{group_id}/roles/{role_id}": {
@@ -3147,7 +3147,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "remove a role from a group.\nRemove group role."
+        "description": "Group.role unassign.\n\nremove a role from a group.\nRemove group role."
       }
     },
     "/v1/admin/groups/{id}": {
@@ -3199,7 +3199,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "the group's members (the same\n`list_group_members` handler is bound at both this path and\n`/v1/admin/groups/{group_id}/members`; one spec entry documents the\ncontract, a second entry records this duplicate binding so the drift\nguard passes and both forms are visible on the site page)."
+        "description": "Group members alias.\n\nthe group's members (the same\n`list_group_members` handler is bound at both this path and\n`/v1/admin/groups/{group_id}/members`; one spec entry documents the\ncontract, a second entry records this duplicate binding so the drift\nguard passes and both forms are visible on the site page)."
       },
       "put": {
         "tags": [
@@ -3261,7 +3261,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "update a group.\nUpdate group."
+        "description": "Group.update .\n\nupdate a group.\nUpdate group."
       },
       "delete": {
         "tags": [
@@ -3306,7 +3306,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a group.\nDelete group."
+        "description": "Group.delete .\n\ndelete a group.\nDelete group."
       }
     },
     "/v1/admin/groups/{id}/delete": {
@@ -3353,7 +3353,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/groups/{id}`."
+        "description": "Group delete.\n\nRFW alias of\n`DELETE /v1/admin/groups/{id}`."
       }
     },
     "/v1/admin/groups/{id}/update": {
@@ -3417,7 +3417,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`PUT /v1/admin/groups/{id}` (raw JSON body passthrough)."
+        "description": "Group update.\n\nRFW alias of\n`PUT /v1/admin/groups/{id}` (raw JSON body passthrough)."
       }
     },
     "/v1/admin/invitations": {
@@ -3481,7 +3481,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list invitations (proxy → sys).\nList invitations."
+        "description": "List invitations.\n\nlist invitations (proxy → sys).\nList invitations."
       },
       "post": {
         "tags": [
@@ -3530,7 +3530,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create an invitation (proxy → sys).\nCreate invitation."
+        "description": "Invitation.send .\n\ncreate an invitation (proxy → sys).\nCreate invitation."
       }
     },
     "/v1/admin/invitations/{id}/revoke": {
@@ -3574,7 +3574,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "revoke an invitation\n(proxy → sys).\nRevoke invitation."
+        "description": "Revoke invitation.\n\nrevoke an invitation\n(proxy → sys).\nRevoke invitation."
       }
     },
     "/v1/admin/memberships": {
@@ -3638,7 +3638,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list memberships.\nList memberships."
+        "description": "Membership.list .\n\nlist memberships.\nList memberships."
       },
       "post": {
         "tags": [
@@ -3687,7 +3687,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a membership.\nCreate membership."
+        "description": "Create membership.\n\ncreate a membership.\nCreate membership."
       }
     },
     "/v1/admin/memberships/{id}": {
@@ -3731,7 +3731,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a membership.\nDelete membership."
+        "description": "Delete membership.\n\ndelete a membership.\nDelete membership."
       }
     },
     "/v1/admin/oauth-clients": {
@@ -3792,7 +3792,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list OAuth clients (paginated).\nList OAuth clients."
+        "description": "Application.list .\n\nlist OAuth clients (paginated).\nList OAuth clients."
       },
       "post": {
         "tags": [
@@ -3847,7 +3847,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create an OAuth client.\nCreate OAuth client."
+        "description": "Application.register .\n\ncreate an OAuth client.\nCreate OAuth client."
       }
     },
     "/v1/admin/oauth-clients/{id}": {
@@ -3901,7 +3901,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "get an OAuth client by ID.\nFetch OAuth client."
+        "description": "Get oauth client.\n\nget an OAuth client by ID.\nFetch OAuth client."
       },
       "put": {
         "tags": [
@@ -3963,7 +3963,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "update an OAuth client.\nUpdate OAuth client."
+        "description": "Update oauth client.\n\nupdate an OAuth client.\nUpdate OAuth client."
       },
       "delete": {
         "tags": [
@@ -4008,7 +4008,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete an OAuth client.\nDelete OAuth client."
+        "description": "Delete oauth client.\n\ndelete an OAuth client.\nDelete OAuth client."
       }
     },
     "/v1/admin/oauth-clients/{id}/delete": {
@@ -4055,7 +4055,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/oauth-clients/{id}`."
+        "description": "Oauth client delete.\n\nRFW alias of\n`DELETE /v1/admin/oauth-clients/{id}`."
       }
     },
     "/v1/admin/oauth-clients/{id}/federated-credentials": {
@@ -4109,7 +4109,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list federated credentials for an OAuth client.\nList federated credentials."
+        "description": "List federated credentials.\n\nlist federated credentials for an OAuth client.\nList federated credentials."
       },
       "post": {
         "tags": [
@@ -4177,7 +4177,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a federated credential.\nCreate federated credential."
+        "description": "Create federated credential.\n\ncreate a federated credential.\nCreate federated credential."
       }
     },
     "/v1/admin/oauth-clients/{id}/federated-credentials/{cred_id}": {
@@ -4234,7 +4234,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a federated credential.\nDelete federated credential."
+        "description": "Delete federated credential.\n\ndelete a federated credential.\nDelete federated credential."
       }
     },
     "/v1/admin/oauth-clients/{id}/roles": {
@@ -4288,7 +4288,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list roles assigned to an OAuth client.\nList client roles."
+        "description": "List client roles.\n\nlist roles assigned to an OAuth client.\nList client roles."
       },
       "post": {
         "tags": [
@@ -4343,7 +4343,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "assign a role to an OAuth client.\nHandle add client role."
+        "description": "Add client role.\n\nassign a role to an OAuth client.\nHandle add client role."
       }
     },
     "/v1/admin/oauth-clients/{id}/roles/{role_id}": {
@@ -4397,7 +4397,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "remove a role from an OAuth client.\nRemove client role."
+        "description": "Remove client role.\n\nremove a role from an OAuth client.\nRemove client role."
       }
     },
     "/v1/admin/policy-sets": {
@@ -4428,7 +4428,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "the env's policy sets."
+        "description": "Policy list sets.\n\nthe env's policy sets."
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -4461,7 +4461,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "disable the named sets (RFW row\naction)."
+        "description": "Policy disable.\n\ndisable the named sets (RFW row\naction)."
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -4494,7 +4494,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "switch the named sets to\nenforce mode (RFW row action)."
+        "description": "Policy enforce.\n\nswitch the named sets to\nenforce mode (RFW row action)."
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -4527,7 +4527,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "switch the named sets to shadow\nmode (RFW row action)."
+        "description": "Policy shadow.\n\nswitch the named sets to shadow\nmode (RFW row action)."
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -4569,7 +4569,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "one policy set."
+        "description": "Policy get set.\n\none policy set."
       },
       "put": {
         "tags": [
@@ -4619,7 +4619,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "store a policy set."
+        "description": "Policy put set.\n\nstore a policy set."
       },
       "delete": {
         "tags": [
@@ -4651,7 +4651,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "delete a policy set."
+        "description": "Policy delete set.\n\ndelete a policy set."
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -4700,7 +4700,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "dry-run evaluate against\nthe set."
+        "description": "Policy test set.\n\ndry-run evaluate against\nthe set."
       }
     },
     "/v1/admin/provision/group": {
@@ -4733,7 +4733,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision group."
+        "description": "Provision.group .\n\nHandle provision group."
       }
     },
     "/v1/admin/provision/group_member": {
@@ -4766,7 +4766,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision group member."
+        "description": "Provision.group member.\n\nHandle provision group member."
       }
     },
     "/v1/admin/provision/group_role": {
@@ -4799,7 +4799,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision group role."
+        "description": "Provision.group role.\n\nHandle provision group role."
       }
     },
     "/v1/admin/provision/role": {
@@ -4832,7 +4832,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision role."
+        "description": "Provision.role .\n\nHandle provision role."
       }
     },
     "/v1/admin/provision/role_nesting": {
@@ -4865,7 +4865,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision role nesting."
+        "description": "Provision.role nesting.\n\nHandle provision role nesting."
       }
     },
     "/v1/admin/provision/user_role": {
@@ -4898,7 +4898,7 @@
             "sentin8:auth:admin:write": []
           }
         ],
-        "description": "Handle provision user role."
+        "description": "Provision.user role.\n\nHandle provision user role."
       }
     },
     "/v1/admin/relations": {
@@ -4929,7 +4929,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "the env's ReBAC relations."
+        "description": "Policy relations.\n\nthe env's ReBAC relations."
       },
       "put": {
         "tags": [
@@ -4968,7 +4968,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "store a relation tuple."
+        "description": "Policy put relation.\n\nstore a relation tuple."
       },
       "delete": {
         "tags": [
@@ -5000,7 +5000,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "delete a relation by id (query param)."
+        "description": "Policy delete relation.\n\ndelete a relation by id (query param)."
       }
     },
     "/v1/admin/relations/check": {
@@ -5057,7 +5057,7 @@
             "sentin8:admin": []
           }
         ],
-        "description": "dry-run relation check."
+        "description": "Policy check relation.\n\ndry-run relation check."
       }
     },
     "/v1/admin/roles": {
@@ -5118,7 +5118,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list roles (paginated).\nList roles."
+        "description": "Role.list .\n\nlist roles (paginated).\nList roles."
       },
       "post": {
         "tags": [
@@ -5173,7 +5173,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a new role.\nCreate role."
+        "description": "Role.create .\n\ncreate a new role.\nCreate role."
       }
     },
     "/v1/admin/roles/{id}": {
@@ -5227,7 +5227,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list role members.\nList role members."
+        "description": "Role.get .\n\nlist role members.\nList role members."
       },
       "put": {
         "tags": [
@@ -5289,7 +5289,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "update a role.\nUpdate role."
+        "description": "Role.update .\n\nupdate a role.\nUpdate role."
       },
       "delete": {
         "tags": [
@@ -5334,7 +5334,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a role.\nDelete role."
+        "description": "Role.delete .\n\ndelete a role.\nDelete role."
       }
     },
     "/v1/admin/roles/{id}/delete": {
@@ -5381,7 +5381,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/roles/{id}`."
+        "description": "Role delete.\n\nRFW alias of\n`DELETE /v1/admin/roles/{id}`."
       }
     },
     "/v1/admin/roles/{id}/update": {
@@ -5445,7 +5445,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`PUT /v1/admin/roles/{id}` (form body passthrough)."
+        "description": "Role update.\n\nRFW alias of\n`PUT /v1/admin/roles/{id}` (form body passthrough)."
       }
     },
     "/v1/admin/roles/{role_id}/members": {
@@ -5499,7 +5499,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "add a member to a role.\nHandle add role member."
+        "description": "Role.member add.\n\nadd a member to a role.\nHandle add role member."
       }
     },
     "/v1/admin/roles/{role_id}/members/{user_id}": {
@@ -5553,7 +5553,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "remove a member from a role.\nRemove role member."
+        "description": "Role.member remove.\n\nremove a member from a role.\nRemove role member."
       }
     },
     "/v1/admin/security": {
@@ -5597,7 +5597,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "read the current high-level selection\n(prefill for the security page + CLI verify)."
+        "description": "Get security selection.\n\nread the current high-level selection\n(prefill for the security page + CLI verify)."
       },
       "post": {
         "tags": [
@@ -5652,7 +5652,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "the high-level submit. Selecting a new\nprofile / extensions / overlay **resets the detail flags** to the\nprofile's defaults (adjusted for the chosen extensions/overlay),\nthen upserts the env row. The overlay row is written alongside."
+        "description": "Put security selection.\n\nthe high-level submit. Selecting a new\nprofile / extensions / overlay **resets the detail flags** to the\nprofile's defaults (adjusted for the chosen extensions/overlay),\nthen upserts the env row. The overlay row is written alongside."
       }
     },
     "/v1/admin/security/detail": {
@@ -5706,7 +5706,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "the detail-page submit: write the\nindividual `require_*` flags onto the env row **without** touching the\nhigh-level selection. Only the provided fields change (partial update)."
+        "description": "Put security detail.\n\nthe detail-page submit: write the\nindividual `require_*` flags onto the env row **without** touching the\nhigh-level selection. Only the provided fields change (partial update)."
       }
     },
     "/v1/admin/sessions": {
@@ -5777,7 +5777,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list sessions (paginated).\nList sessions."
+        "description": "Session.list .\n\nlist sessions (paginated).\nList sessions."
       }
     },
     "/v1/admin/sessions/{id}": {
@@ -5824,7 +5824,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "terminate a session.\nTerminate session."
+        "description": "Session.terminate .\n\nterminate a session.\nTerminate session."
       }
     },
     "/v1/admin/sessions/{id}/revoke": {
@@ -5871,7 +5871,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/sessions/{id}`."
+        "description": "Session revoke.\n\nRFW alias of\n`DELETE /v1/admin/sessions/{id}`."
       }
     },
     "/v1/admin/ui/{page}": {
@@ -5922,7 +5922,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/users": {
@@ -5983,7 +5983,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list users (paginated).\nList users."
+        "description": "User.list .\n\nlist users (paginated).\nList users."
       },
       "post": {
         "tags": [
@@ -6038,7 +6038,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a new user.\nCreate user."
+        "description": "User.create .\n\ncreate a new user.\nCreate user."
       }
     },
     "/v1/admin/users/{id}": {
@@ -6092,7 +6092,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "get a user by ID.\nFetch user."
+        "description": "User.get .\n\nget a user by ID.\nFetch user."
       },
       "put": {
         "tags": [
@@ -6154,7 +6154,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "update a user.\nUpdate user."
+        "description": "User.update .\n\nupdate a user.\nUpdate user."
       },
       "delete": {
         "tags": [
@@ -6199,7 +6199,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a user.\nDelete user."
+        "description": "User.archive .\n\ndelete a user.\nDelete user."
       }
     },
     "/v1/admin/users/{id}/delete": {
@@ -6246,7 +6246,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "RFW alias of\n`DELETE /v1/admin/users/{id}`."
+        "description": "User delete.\n\nRFW alias of\n`DELETE /v1/admin/users/{id}`."
       }
     },
     "/v1/admin/users/{id}/groups": {
@@ -6300,7 +6300,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list group names for a user.\nList user groups."
+        "description": "User.groups .\n\nlist group names for a user.\nList user groups."
       }
     },
     "/v1/admin/users/{id}/roles": {
@@ -6354,7 +6354,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list resolved role names for a user.\nList user roles."
+        "description": "User.roles .\n\nlist resolved role names for a user.\nList user roles."
       }
     },
     "/v1/admin/webhooks/attempts/{outbox_id}": {
@@ -6396,7 +6396,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list delivery attempts for an outbox entry.\nList attempts."
+        "description": "List attempts.\n\nlist delivery attempts for an outbox entry.\nList attempts."
       }
     },
     "/v1/admin/webhooks/attempts/{outbox_id}/replay": {
@@ -6431,7 +6431,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "reset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery."
+        "description": "Replay failed.\n\nreset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery."
       }
     },
     "/v1/admin/webhooks/endpoints": {
@@ -6473,7 +6473,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list webhook endpoints.\nList endpoints."
+        "description": "List endpoints.\n\nlist webhook endpoints.\nList endpoints."
       },
       "post": {
         "tags": [
@@ -6504,7 +6504,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "create a webhook endpoint.\nCreate endpoint."
+        "description": "Create endpoint.\n\ncreate a webhook endpoint.\nCreate endpoint."
       }
     },
     "/v1/admin/webhooks/endpoints/{id}": {
@@ -6546,7 +6546,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "get a webhook endpoint.\nFetch endpoint."
+        "description": "Get endpoint.\n\nget a webhook endpoint.\nFetch endpoint."
       },
       "delete": {
         "tags": [
@@ -6579,7 +6579,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "delete a webhook endpoint.\nDelete endpoint."
+        "description": "Delete endpoint.\n\ndelete a webhook endpoint.\nDelete endpoint."
       }
     },
     "/v1/admin/webhooks/outbox": {
@@ -6621,7 +6621,7 @@
             "sentin8:auth:admin": []
           }
         ],
-        "description": "list recent outbox entries.\nList outbox."
+        "description": "List outbox.\n\nlist recent outbox entries.\nList outbox."
       }
     },
     "/v1/auth/consent/accounts": {
@@ -6703,7 +6703,7 @@
           }
         },
         "security": [],
-        "description": "Handle proxy consent approve."
+        "description": "Proxy consent approve.\n\nHandle proxy consent approve."
       }
     },
     "/v1/auth/consent/deny": {
@@ -6740,7 +6740,7 @@
           }
         },
         "security": [],
-        "description": "Handle proxy consent deny."
+        "description": "Proxy consent deny.\n\nHandle proxy consent deny."
       }
     },
     "/v1/auth/consent/ui": {
@@ -6886,7 +6886,7 @@
           }
         },
         "security": [],
-        "description": "public wallet metadata (formats, trusted\nissuers, the required presentation definition, the response endpoint).\nHandle wallet metadata."
+        "description": "Wallet metadata.\n\npublic wallet metadata (formats, trusted\nissuers, the required presentation definition, the response endpoint).\nHandle wallet metadata."
       }
     },
     "/v1/branding": {
@@ -6910,7 +6910,7 @@
           }
         },
         "security": [],
-        "description": "Handle branding.\nMerged org→env branding for the hosted Auth UI (env overrides org per-field)."
+        "description": "Branding .\n\nHandle branding.\nMerged org→env branding for the hosted Auth UI (env overrides org per-field)."
       }
     },
     "/v1/ciba/approve": {
@@ -7095,7 +7095,7 @@
           }
         },
         "security": [],
-        "description": "confirm email verification with a token.\nHandle email verify confirm."
+        "description": "Email verify confirm.\n\nconfirm email verification with a token.\nHandle email verify confirm."
       }
     },
     "/v1/health": {
@@ -7116,7 +7116,7 @@
           }
         },
         "security": [],
-        "description": "Handle health.\nLiveness (captain monitor payload: status, service, version, build)."
+        "description": "Health .\n\nHandle health.\nLiveness (captain monitor payload: status, service, version, build)."
       }
     },
     "/v1/internal/keys/rotate": {
@@ -7139,7 +7139,7 @@
             "description": "Signing key rotated"
           }
         },
-        "description": "Sentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap."
+        "description": "Internal keys rotate.\n\nSentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap."
       }
     },
     "/v1/me/app-passwords": {
@@ -7163,7 +7163,7 @@
           }
         },
         "security": [],
-        "description": "list the user's app passwords (no\nhashes, no secrets).\nList app passwords."
+        "description": "List app passwords.\n\nlist the user's app passwords (no\nhashes, no secrets).\nList app passwords."
       },
       "post": {
         "tags": [
@@ -7231,7 +7231,7 @@
           }
         },
         "security": [],
-        "description": "revoke one app password.\nRevoke app password."
+        "description": "Revoke app password.\n\nrevoke one app password.\nRevoke app password."
       }
     },
     "/v1/mfa/disable": {
@@ -7266,7 +7266,7 @@
           }
         },
         "security": [],
-        "description": "disable an MFA factor (password re-confirmation).\nHandle disable."
+        "description": "Disable .\n\ndisable an MFA factor (password re-confirmation).\nHandle disable."
       }
     },
     "/v1/mfa/enroll": {
@@ -7383,7 +7383,7 @@
           }
         },
         "security": [],
-        "description": "start passkey enrollment."
+        "description": "Enroll begin.\n\nstart passkey enrollment."
       }
     },
     "/v1/passkey/enroll/finish": {
@@ -7428,7 +7428,7 @@
           }
         },
         "security": [],
-        "description": "validate attestation, store public key."
+        "description": "Enroll finish.\n\nvalidate attestation, store public key."
       }
     },
     "/v1/passkey/verify/begin": {
@@ -7464,7 +7464,7 @@
           }
         },
         "security": [],
-        "description": "start passkey sign-in."
+        "description": "Verify begin.\n\nstart passkey sign-in."
       }
     },
     "/v1/passkey/verify/finish": {
@@ -7512,7 +7512,7 @@
           }
         },
         "security": [],
-        "description": "validate assertion, activate session."
+        "description": "Verify finish.\n\nvalidate assertion, activate session."
       }
     },
     "/v1/password/reset": {
@@ -7584,7 +7584,7 @@
           }
         },
         "security": [],
-        "description": "set a new password with a reset token.\nHandle password reset confirm."
+        "description": "Password reset confirm.\n\nset a new password with a reset token.\nHandle password reset confirm."
       }
     },
     "/v1/saml/acs/{connection_id}": {
@@ -7662,7 +7662,7 @@
           }
         },
         "security": [],
-        "description": "return the SP metadata XML."
+        "description": "Saml metadata.\n\nreturn the SP metadata XML."
       }
     },
     "/v1/security-profile": {
@@ -7699,7 +7699,7 @@
           }
         },
         "security": [],
-        "description": "return the effective security profile for\nthe resolved tenant (platform/org/env)."
+        "description": "Get security profile api.\n\nreturn the effective security profile for\nthe resolved tenant (platform/org/env)."
       },
       "put": {
         "tags": [
@@ -7766,7 +7766,7 @@
           }
         },
         "security": [],
-        "description": "Fetch session."
+        "description": "Get session.\n\nFetch session."
       }
     },
     "/v1/sign-in": {
@@ -7937,7 +7937,7 @@
           }
         },
         "security": [],
-        "description": "OIDC code exchange callback."
+        "description": "Sso callback.\n\nOIDC code exchange callback."
       }
     }
   },

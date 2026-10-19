@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-app",
-    "description": "Sentin8 Sentin8:App - third-party app store, instance management.",
+    "description": "Sentin8 Sentin8:App — third-party app store, instance management.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -154,7 +157,7 @@
             "sentin8:app:admin": []
           }
         ],
-        "description": "uninstall an app instance.\nBody: `{ \"instance_id\": \"uuid\" }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced)."
+        "description": "Uninstall instance.\n\nuninstall an app instance.\nBody: `{ \"instance_id\": \"uuid\" }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced)."
       }
     },
     "/v1/admin/policy-sets": {
@@ -184,6 +187,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -214,6 +218,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -244,6 +249,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -274,6 +280,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -315,6 +322,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -362,6 +370,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -393,6 +402,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -439,6 +449,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -469,6 +480,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -505,6 +517,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -536,6 +549,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -592,6 +606,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -643,7 +658,7 @@
             "sentin8:app:read": []
           }
         ],
-        "description": "RFW page definition for the requested page."
+        "description": "Get admin ui.\n\nRFW page definition for the requested page."
       }
     },
     "/v1/admin/{resource}": {
@@ -694,7 +709,7 @@
             "sentin8:app:read": []
           }
         ],
-        "description": "returns a JSON array of admin data rows."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows."
       }
     },
     "/v1/app/admin/instances/{id}": {
@@ -732,7 +747,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "instance admin detail."
+        "description": "Instance.get .\n\ninstance admin detail."
       }
     },
     "/v1/app/admin/instances/{id}/domain": {
@@ -783,7 +798,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "update custom domain (with DNS TXT validation)."
+        "description": "Instance.domain .\n\nupdate custom domain (with DNS TXT validation)."
       }
     },
     "/v1/app/admin/instances/{id}/env-vars": {
@@ -831,7 +846,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "update env var secret references."
+        "description": "Instance.env vars.\n\nupdate env var secret references."
       }
     },
     "/v1/app/admin/instances/{id}/env-vars/resolve": {
@@ -869,7 +884,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "resolve the\ninstance's stored env-vars secret reference through the shared\n`sentin8-secrets` resolver chain ( story 34.2.5). Returns the\nresolved value once; never logged. Requires the instances:admin scope."
+        "description": "Instance.env vars.resolve.\n\nresolve the\ninstance's stored env-vars secret reference through the shared\n`sentin8-secrets` resolver chain ( story 34.2.5). Returns the\nresolved value once; never logged. Requires the instances:admin scope."
       }
     },
     "/v1/app/admin/instances/{id}/feature-flags": {
@@ -917,7 +932,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "update feature flags."
+        "description": "Instance.feature flags.\n\nupdate feature flags."
       }
     },
     "/v1/app/admin/instances/{id}/oauth-client": {
@@ -955,7 +970,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "get OAuth client (DCR summary)."
+        "description": "Instance.oauth .\n\nget OAuth client (DCR summary)."
       }
     },
     "/v1/app/admin/instances/{id}/status": {
@@ -1006,7 +1021,7 @@
             "sentin8:app:instances:admin": []
           }
         ],
-        "description": "update instance status."
+        "description": "Instance.status .\n\nupdate instance status."
       }
     },
     "/v1/app/instances/customer-mode": {
@@ -1015,7 +1030,7 @@
           "app"
         ],
         "summary": "`GET /v1/app/instances/customer-mode`",
-        "description": "M2M-only service surface: the sign-up closure provisioning (Sentin8:\nAuth) calls this with its own workload token to learn which\n`sentin8:app:{instance_id}` groups a new customer should join.\n\nAuthorization (fail-closed, three gates):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) - this is a\n   service-to-service discovery surface, never a user surface.\n2. Shield gate on `sentin8:app:instances:read`.\n3. Owner scoping: the caller's `service_type` claim must resolve to\n   an instance of THIS app service's own domain - answered only for\n   envs in an org where app is enabled; the query itself stays\n   env-scoped so a foreign env is an indistinguishable empty result\n   (no tenant-existence oracle).\n\n?env_id=…` - enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`).",
+        "description": "M2M-only service surface: the sign-up closure provisioning (Sentin8:\nAuth) calls this with its own workload token to learn which\n`sentin8:app:{instance_id}` groups a new customer should join.\n\nAuthorization (fail-closed, three gates):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — this is a\n   service-to-service discovery surface, never a user surface.\n2. Shield gate on `sentin8:app:instances:read`.\n3. Owner scoping: the caller's `service_type` claim must resolve to\n   an instance of THIS app service's own domain — answered only for\n   envs in an org where app is enabled; the query itself stays\n   env-scoped so a foreign env is an indistinguishable empty result\n   (no tenant-existence oracle).\n\n?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`).",
         "operationId": "instances.customerMode",
         "parameters": [
           {
@@ -1058,7 +1073,7 @@
           "app"
         ],
         "summary": "`GET /v1/app/runtime/context`",
-        "description": "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header\n(no per-listing API key, no hostname-based resolution). The response includes\ninstance metadata, the organization display name, and merged org→env branding\nfrom `sentin8_sys_branding` so apps can apply tenant branding without a separate call.\n\nStories , , -34 - `GET /v1/app/runtime/context`.",
+        "description": "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header\n(no per-listing API key, no hostname-based resolution). The response includes\ninstance metadata, the organization display name, and merged org→env branding\nfrom `sentin8_sys_branding` so apps can apply tenant branding without a separate call.\n\nStories , , -34 — `GET /v1/app/runtime/context`.",
         "operationId": "runtime_context",
         "responses": {
           "200": {
@@ -1106,7 +1121,7 @@
             "sentin8:app:instances:write": []
           }
         ],
-        "description": "create an app instance (atomic)."
+        "description": "Setup.create .\n\ncreate an app instance (atomic)."
       }
     },
     "/v1/app/setup/{id}/status": {
@@ -1151,7 +1166,7 @@
             "sentin8:app:instances:read": []
           }
         ],
-        "description": "`GET /v1/app/setup/{instanceId}/status` - provisioning status."
+        "description": "Setup.status .\n\n`GET /v1/app/setup/{instanceId}/status` — provisioning status."
       }
     },
     "/v1/app/store/listings": {
@@ -1184,7 +1199,7 @@
             "sentin8:app:store:read": []
           }
         ],
-        "description": "List published store listings visible to the caller (RLS-scoped).\n`?category=` filters to listings carrying that category (APP-3)."
+        "description": "Store.list .\n\nList published store listings visible to the caller (RLS-scoped).\n`?category=` filters to listings carrying that category (APP-3)."
       },
       "post": {
         "tags": [
@@ -1234,7 +1249,7 @@
           "app"
         ],
         "summary": "`GET /v1/app/store/listings/{id}`",
-        "description": "Epic 15.5.5: visibility is enforced by RLS - if the row is not visible\nto the caller, the SELECT returns zero rows and we 404. No manual\nvisibility check in the service layer.\n\nlisting detail.",
+        "description": "Epic 15.5.5: visibility is enforced by RLS — if the row is not visible\nto the caller, the SELECT returns zero rows and we 404. No manual\nvisibility check in the service layer.\n\nlisting detail.",
         "operationId": "store.get",
         "parameters": [
           {
@@ -1326,7 +1341,7 @@
             "sentin8:app:store:admin": []
           }
         ],
-        "description": "update a listing (catalog admin)."
+        "description": "Store.update .\n\nupdate a listing (catalog admin)."
       },
       "delete": {
         "tags": [
@@ -1362,7 +1377,7 @@
             "sentin8:app:store:admin": []
           }
         ],
-        "description": "Story - `DELETE /v1/app/store/listings/{id}` - archive a listing (soft delete).\nSets `status = 'archived'` so the listing is hidden from the public store but retained for audit.\n`DELETE /v1/app/store/listings/{id}` - archive a listing (soft delete)."
+        "description": "Store.archive .\n\nStory — `DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).\nSets `status = 'archived'` so the listing is hidden from the public store but retained for audit.\n`DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete)."
       }
     },
     "/v1/health": {
@@ -1383,7 +1398,7 @@
           }
         },
         "security": [],
-        "description": "liveness probe."
+        "description": "Health .\n\nliveness probe."
       }
     },
     "/v1/internal/steps/execute": {
@@ -1418,7 +1433,7 @@
             "description": "Invalid step"
           }
         },
-        "description": "App step handler called by Flow (proxy-back)."
+        "description": "Execute internal step.\n\nApp step handler called by Flow (proxy-back)."
       }
     }
   },
@@ -1479,7 +1494,7 @@
             "description": "Human description."
           },
           "media": {
-            "description": "Media entries (APP-3): typed by-reference descriptors -\n`{role, resolution, storage_key}`; bytes live in Sentin8:Storage."
+            "description": "Media entries (APP-3): typed by-reference descriptors —\n`{role, resolution, storage_key}`; bytes live in Sentin8:Storage."
           },
           "oauth_defaults": {
             "description": "OAuth defaults advertised at install."
@@ -1516,7 +1531,7 @@
       },
       "CustomerModeQuery": {
         "type": "object",
-        "description": "Query parameters for the customer-mode instance discovery surface\n(auth DESIGN invariant 12): the env to enumerate is explicit - never\nderived from the caller's token env, since the calling M2M workload\nauthenticates in the SYSTEM env.",
+        "description": "Query parameters for the customer-mode instance discovery surface\n(auth DESIGN invariant 12): the env to enumerate is explicit — never\nderived from the caller's token env, since the calling M2M workload\nauthenticates in the SYSTEM env.",
         "required": [
           "env_id"
         ],
@@ -1548,11 +1563,11 @@
             "items": {
               "type": "string"
             },
-            "description": "Names of other roles in the same listing whose scopes should be\nmerged into this role's permissions at install time. Lets a\nrole \"include\" another role's permissions without the app\nhaving to redeclare every scope (e.g. `ebank-teller` can\n`includes: [\"ebank-customer\"]` and inherit the customer\nscopes plus its own additions).\n\nResolution happens server-side at install:\n`effective_scopes = own.scopes ∪ included.scopes`. Cycles\nand missing references are rejected at install with a\n400. No DB schema change - `sentin8_auth_roles` only stores the\nresolved permission set, not the include graph."
+            "description": "Names of other roles in the same listing whose scopes should be\nmerged into this role's permissions at install time. Lets a\nrole \"include\" another role's permissions without the app\nhaving to redeclare every scope (e.g. `ebank-teller` can\n`includes: [\"ebank-customer\"]` and inherit the customer\nscopes plus its own additions).\n\nResolution happens server-side at install:\n`effective_scopes = own.scopes ∪ included.scopes`. Cycles\nand missing references are rejected at install with a\n400. No DB schema change — `sentin8_auth_roles` only stores the\nresolved permission set, not the include graph."
           },
           "name": {
             "type": "string",
-            "description": "Role name - unique per `(org_id, env_id)`, stable app prefix\nrecommended."
+            "description": "Role name — unique per `(org_id, env_id)`, stable app prefix\nrecommended."
           },
           "scopes": {
             "type": "array",
@@ -1792,7 +1807,7 @@
       },
       "UpdateDomainRequest": {
         "type": "object",
-        "description": "`PUT /v1/app/admin/instances/{id}/domain` - update custom domain (with DNS TXT validation).",
+        "description": "`PUT /v1/app/admin/instances/{id}/domain` — update custom domain (with DNS TXT validation).",
         "required": [
           "custom_domain"
         ],
@@ -1826,7 +1841,7 @@
       },
       "UpdateEnvVarsRequest": {
         "type": "object",
-        "description": "`PUT /v1/app/admin/instances/{id}/env-vars` - update env var secret references.",
+        "description": "`PUT /v1/app/admin/instances/{id}/env-vars` — update env var secret references.",
         "required": [
           "env_vars_ref"
         ],
@@ -1839,7 +1854,7 @@
       },
       "UpdateFeatureFlagsRequest": {
         "type": "object",
-        "description": "`PUT /v1/app/admin/instances/{id}/feature-flags` - update feature flags.\nRequest to update an instance's feature flags.",
+        "description": "`PUT /v1/app/admin/instances/{id}/feature-flags` — update feature flags.\nRequest to update an instance's feature flags.",
         "required": [
           "feature_flags"
         ],
@@ -1851,7 +1866,7 @@
       },
       "UpdateListingRequest": {
         "type": "object",
-        "description": "Story - `PUT /v1/app/store/listings/{id}` - update a listing (catalog admin).\nRequest to update a store listing (all fields optional).",
+        "description": "Story — `PUT /v1/app/store/listings/{id}` — update a listing (catalog admin).\nRequest to update a store listing (all fields optional).",
         "properties": {
           "app_name": {
             "type": [
@@ -1939,7 +1954,7 @@
       },
       "UpdateStatusRequest": {
         "type": "object",
-        "description": "`PUT /v1/app/admin/instances/{id}/status` - update instance status (active/maintenance/offline).\nRequest to update an instance's lifecycle status.",
+        "description": "`PUT /v1/app/admin/instances/{id}/status` — update instance status (active/maintenance/offline).\nRequest to update an instance's lifecycle status.",
         "required": [
           "status"
         ],
@@ -1960,7 +1975,7 @@
     },
     {
       "name": "app",
-      "description": "Sentin8:App - app store, instance management, setup"
+      "description": "Sentin8:App — app store, instance management, setup"
     }
   ]
 }

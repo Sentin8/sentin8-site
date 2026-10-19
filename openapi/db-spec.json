@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -137,6 +140,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute path.",
         "summary": "`POST /v1/admin/attributes/{id}/delete`"
       }
     },
@@ -167,6 +171,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list decisions.",
         "summary": "`GET /v1/admin/policy-decisions`"
       }
     },
@@ -197,6 +202,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       },
       "post": {
@@ -233,6 +239,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy create set.",
         "summary": "`POST /v1/admin/policy-sets`"
       }
     },
@@ -263,6 +270,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -293,6 +301,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -323,6 +332,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -364,6 +374,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -411,6 +422,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -442,6 +454,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -488,6 +501,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy save set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/save`"
       }
     },
@@ -534,6 +548,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -584,6 +599,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy flip set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/{action}`"
       }
     },
@@ -614,6 +630,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -650,6 +667,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -681,6 +699,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -737,6 +756,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -770,6 +790,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation path.",
         "summary": "`POST /v1/admin/relations/{id}/delete`"
       }
     },
@@ -809,7 +830,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "GET handler for the literal `/v1/admin/tables` route (the POST alias\nshares the path; without an explicit GET registration axum answers 405).\nFetch admin data for tables."
+        "description": "Get admin data for tables.\n\nGET handler for the literal `/v1/admin/tables` route (the POST alias\nshares the path; without an explicit GET registration axum answers 405).\nFetch admin data for tables."
       },
       "post": {
         "tags": [
@@ -859,7 +880,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "create-table form submission (RFW renderer\nonly supports POST). Delegates to the main create handler.\nHandle admin create table."
+        "description": "Admin create table.\n\ncreate-table form submission (RFW renderer\nonly supports POST). Delegates to the main create handler.\nHandle admin create table."
       }
     },
     "/v1/admin/tables/{id}/archive": {
@@ -911,7 +932,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "archive row action.\nHandle admin archive table."
+        "description": "Admin archive table.\n\narchive row action.\nHandle admin archive table."
       }
     },
     "/v1/admin/tables/{id}/drop": {
@@ -963,7 +984,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "drop row action.\nHandle admin drop table."
+        "description": "Admin drop table.\n\ndrop row action.\nHandle admin drop table."
       }
     },
     "/v1/admin/ui/{page}": {
@@ -1014,7 +1035,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -1065,7 +1086,7 @@
             "sentin8:db:admin": []
           }
         ],
-        "description": "returns a JSON array of admin data rows.\nRegistry-backed for `tables`, live posture findings for `posture`,\nrecent DDL audit entries for `audit`. Cross-env via `target_env_id`\nrequires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).\nFetch admin data."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows.\nRegistry-backed for `tables`, live posture findings for `posture`,\nrecent DDL audit entries for `audit`. Cross-env via `target_env_id`\nrequires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).\nFetch admin data."
       }
     },
     "/v1/audit": {
@@ -1099,7 +1120,7 @@
             "sentin8:db:audit:read": []
           }
         ],
-        "description": "DDL audit log (Stories).\nHandle audit log."
+        "description": "Audit.list .\n\nDDL audit log (Stories).\nHandle audit log."
       }
     },
     "/v1/data/delete": {
@@ -1132,7 +1153,7 @@
             "sentin8:db:data:write": []
           }
         ],
-        "description": "Delete it."
+        "description": "Data.delete .\n\nDelete it."
       }
     },
     "/v1/data/insert": {
@@ -1205,7 +1226,7 @@
             "sentin8:db:data:read": []
           }
         ],
-        "description": "query rows with filters, sorts, pagination.\nSoft-deleted rows (`deleted_at IS NOT NULL`) are excluded.\nHandle query."
+        "description": "Data.query .\n\nquery rows with filters, sorts, pagination.\nSoft-deleted rows (`deleted_at IS NOT NULL`) are excluded.\nHandle query."
       }
     },
     "/v1/data/update": {
@@ -1238,7 +1259,7 @@
             "sentin8:db:data:write": []
           }
         ],
-        "description": "Update it."
+        "description": "Data.update .\n\nUpdate it."
       }
     },
     "/v1/health": {
@@ -1259,7 +1280,7 @@
           }
         },
         "security": [],
-        "description": "Handle health."
+        "description": "Health .\n\nHandle health."
       }
     },
     "/v1/posture": {
@@ -1293,7 +1314,7 @@
             "sentin8:db:posture:read": []
           }
         ],
-        "description": "RLS drift detection (Stories).\nHandle posture."
+        "description": "Posture.get .\n\nRLS drift detection (Stories).\nHandle posture."
       }
     },
     "/v1/tables": {
@@ -1334,7 +1355,7 @@
             "sentin8:db:data:read": []
           }
         ],
-        "description": "list active tables for the resolved env.\nList tables."
+        "description": "Table.list .\n\nlist active tables for the resolved env.\nList tables."
       },
       "post": {
         "tags": [
@@ -1426,7 +1447,7 @@
             "sentin8:db:data:read": []
           }
         ],
-        "description": "get table metadata. Env-scoped + authenticated\n; a foreign-env id 404s.\nFetch table."
+        "description": "Table.get .\n\nget table metadata. Env-scoped + authenticated\n; a foreign-env id 404s.\nFetch table."
       }
     },
     "/v1/tables/{id}/alter": {
@@ -1483,7 +1504,7 @@
             "sentin8:db:table:admin": []
           }
         ],
-        "description": "Handle alter table."
+        "description": "Table.alter .\n\nHandle alter table."
       }
     },
     "/v1/tables/{id}/archive": {
@@ -1530,7 +1551,7 @@
             "sentin8:db:table:admin": []
           }
         ],
-        "description": "mark a table as archived (Stories).\nEnv-scoped; registry update, audit row, and event commit together.\nArchive table."
+        "description": "Table.archive .\n\nmark a table as archived (Stories).\nEnv-scoped; registry update, audit row, and event commit together.\nArchive table."
       }
     },
     "/v1/tables/{id}/drop": {
@@ -1577,7 +1598,7 @@
             "sentin8:db:table:admin": []
           }
         ],
-        "description": "pending-delete then drop (Stories).\nEnv-scoped; registry status, physical DROP, audit row, and event commit\ntogether - a failed DROP rolls the registry status back.\nHandle drop table."
+        "description": "Table.drop .\n\npending-delete then drop (Stories).\nEnv-scoped; registry status, physical DROP, audit row, and event commit\ntogether - a failed DROP rolls the registry status back.\nHandle drop table."
       }
     }
   },

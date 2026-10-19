@@ -111,7 +111,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "upsert one principal attribute.\nValues must be JSON scalars or arrays of scalars (Shield restricted\nexpressions cannot represent nested objects - 422 otherwise).\nHandle PUT attribute."
+        "description": "Put attribute.\n\nupsert one principal attribute.\nValues must be JSON scalars or arrays of scalars (Shield restricted\nexpressions cannot represent nested objects - 422 otherwise).\nHandle PUT attribute."
       },
       "delete": {
         "tags": [
@@ -207,7 +207,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "row-action alias.\n`id` is `subject_id:attr_key` as emitted by the RFW list; splitn(2)\nkeeps any colons inside the attribute key.\nHandle admin delete attribute path."
+        "description": "Admin delete attribute path.\n\nrow-action alias.\n`id` is `subject_id:attr_key` as emitted by the RFW list; splitn(2)\nkeeps any colons inside the attribute key.\nHandle admin delete attribute path."
       }
     },
     "/v1/admin/policy-decisions": {
@@ -249,7 +249,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "deny / would-deny feed for the UI\n. Reads the shared audit trail rows the runtime writes\n(`event->>'action' IN ('policy.deny','policy.would_deny')`).\nList policy decisions."
+        "description": "List policy decisions.\n\ndeny / would-deny feed for the UI\n. Reads the shared audit trail rows the runtime writes\n(`event->>'action' IN ('policy.deny','policy.would_deny')`).\nList policy decisions."
       }
     },
     "/v1/admin/policy-sets": {
@@ -291,7 +291,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "list this service's policy sets.\nList policy sets."
+        "description": "List policy sets.\n\nlist this service's policy sets.\nList policy sets."
       },
       "post": {
         "tags": [
@@ -382,7 +382,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "disable a set (no-match → deny for\nits actions; use `shadow` for pure observation-off).\nHandle admin disable policy set."
+        "description": "Admin disable policy set.\n\ndisable a set (no-match → deny for\nits actions; use `shadow` for pure observation-off).\nHandle admin disable policy set."
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -426,7 +426,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "promote a set to enforced.\nHandle admin enforce policy set."
+        "description": "Admin enforce policy set.\n\npromote a set to enforced.\nHandle admin enforce policy set."
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -470,7 +470,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "demote a set to shadow (rollback).\nHandle admin shadow policy set."
+        "description": "Admin shadow policy set.\n\ndemote a set to shadow (rollback).\nHandle admin shadow policy set."
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -518,7 +518,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "fetch one set.\nFetch policy set."
+        "description": "Get policy set.\n\nfetch one set.\nFetch policy set."
       },
       "put": {
         "tags": [
@@ -574,7 +574,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "create/update with write-time\nvalidation. Platform rows are returned read-only (400); tenant\nrows (or new rows) are validated then stored, starting in `shadow`.\nHandle PUT policy set."
+        "description": "Put policy set.\n\ncreate/update with write-time\nvalidation. Platform rows are returned read-only (400); tenant\nrows (or new rows) are validated then stored, starting in `shadow`.\nHandle PUT policy set."
       },
       "delete": {
         "tags": [
@@ -615,7 +615,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "tenant sets only.\nDelete policy set."
+        "description": "Delete policy set.\n\ntenant sets only.\nDelete policy set."
       }
     },
     "/v1/admin/policy-sets/{name}/save": {
@@ -673,7 +673,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "PUT alias for the RFW renderer.\nHandle save policy set."
+        "description": "Save policy set.\n\nPUT alias for the RFW renderer.\nHandle save policy set."
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -731,7 +731,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "dry-run candidate policy text\nagainst a sample context; returns decision + trace WITHOUT storing.\nHandle test policy set."
+        "description": "Test policy set.\n\ndry-run candidate policy text\nagainst a sample context; returns decision + trace WITHOUT storing.\nHandle test policy set."
       }
     },
     "/v1/admin/policy-sets/{name}/{action}": {
@@ -788,7 +788,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "path-param row-action\ndispatcher (enforce | shadow | disable | delete). One route shape serves\nall four actions (axum's matchit router cannot register `{name}/delete`\nnext to `{name}/{action}` without a conflict).\nHandle admin path action policy set."
+        "description": "Admin path action policy set.\n\npath-param row-action\ndispatcher (enforce | shadow | disable | delete). One route shape serves\nall four actions (axum's matchit router cannot register `{name}/delete`\nnext to `{name}/{action}` without a conflict).\nHandle admin path action policy set."
       }
     },
     "/v1/admin/relations": {
@@ -830,7 +830,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "list this service's relation tuples.\nList relations."
+        "description": "List relations.\n\nlist this service's relation tuples.\nList relations."
       },
       "put": {
         "tags": [
@@ -877,7 +877,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "upsert one relation tuple. Tenant\ntuples carry `origin='tenant'`; the UNIQUE key dedupes re-writes.\nHandle PUT relation."
+        "description": "Put relation.\n\nupsert one relation tuple. Tenant\ntuples carry `origin='tenant'`; the UNIQUE key dedupes re-writes.\nHandle PUT relation."
       },
       "delete": {
         "tags": [
@@ -957,7 +957,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "remove one relation tuple (tenant or\nplatform: env admins govern their env's graph; platform tuples are\nre-seeded by enroll on the next `vertical init`).\nDelete relation."
+        "description": "Delete relation.\n\nremove one relation tuple (tenant or\nplatform: env admins govern their env's graph; platform tuples are\nre-seeded by enroll on the next `vertical init`).\nDelete relation."
       }
     },
     "/v1/admin/relations/check": {
@@ -1087,7 +1087,7 @@
             "sentin8:post:policy:read": []
           }
         ],
-        "description": "row-action alias.\n`id` is the colon-joined tuple the RFW list emits\n(`subject_type:subject_id:relation:object_type:object_id`); parsed\nback-first (the last three segments are relation/object_type/object_id,\nthe first is subject_type, the middle rest is subject_id - tolerant of\ncolons inside subject ids).\nHandle admin delete relation path."
+        "description": "Admin delete relation path.\n\nrow-action alias.\n`id` is the colon-joined tuple the RFW list emits\n(`subject_type:subject_id:relation:object_type:object_id`); parsed\nback-first (the last three segments are relation/object_type/object_id,\nthe first is subject_type, the middle rest is subject_id - tolerant of\ncolons inside subject ids).\nHandle admin delete relation path."
       }
     },
     "/v1/admin/ui/{page}": {
@@ -1138,7 +1138,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -1189,7 +1189,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "returns a JSON array of admin data rows.\nFetch admin data."
+        "description": "Get admin data.\n\nreturns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/dlq": {
@@ -1212,7 +1212,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "list dead-lettered deliveries.\n`GET /v1/dlq` - list dead-letter queue entries.\nList dlq."
+        "description": "Dlq.list .\n\nlist dead-lettered deliveries.\n`GET /v1/dlq` - list dead-letter queue entries.\nList dlq."
       }
     },
     "/v1/dlq/{id}/replay": {
@@ -1250,7 +1250,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "replay a dead-lettered delivery.\n`POST /v1/dlq/{id}/replay` - replay a DLQ entry.\nHandle replay dlq."
+        "description": "Message.replay .\n\nreplay a dead-lettered delivery.\n`POST /v1/dlq/{id}/replay` - replay a DLQ entry.\nHandle replay dlq."
       }
     },
     "/v1/gateways": {
@@ -1273,7 +1273,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "list gateway configs.\nList gateways."
+        "description": "Gateway.list .\n\nlist gateway configs.\nList gateways."
       },
       "post": {
         "tags": [
@@ -1304,7 +1304,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "create a gateway config.\n`POST /v1/gateways` - create a gateway config.\nCreate gateway."
+        "description": "Gateway.create .\n\ncreate a gateway config.\n`POST /v1/gateways` - create a gateway config.\nCreate gateway."
       }
     },
     "/v1/gateways/test": {
@@ -1337,7 +1337,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "send a test message through a gateway.\n`POST /v1/gateways/test` - test a gateway config.\nHandle test gateway."
+        "description": "Gateway.test .\n\nsend a test message through a gateway.\n`POST /v1/gateways/test` - test a gateway config.\nHandle test gateway."
       }
     },
     "/v1/gateways/{id}": {
@@ -1375,7 +1375,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "delete a gateway config.\n`DELETE /v1/gateways/{id}` - delete a gateway config.\nDelete gateway."
+        "description": "Gateway.delete .\n\ndelete a gateway config.\n`DELETE /v1/gateways/{id}` - delete a gateway config.\nDelete gateway."
       }
     },
     "/v1/gateways/{id}/delete": {
@@ -1413,7 +1413,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "RFW alias of `DELETE /v1/gateways/{id}`."
+        "description": "Gateway delete.\n\nRFW alias of `DELETE /v1/gateways/{id}`."
       }
     },
     "/v1/health": {
@@ -1434,7 +1434,7 @@
           }
         },
         "security": [],
-        "description": "Handle health."
+        "description": "Health .\n\nHandle health."
       }
     },
     "/v1/messages": {
@@ -1510,7 +1510,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "List messages."
+        "description": "Message.list .\n\nList messages."
       }
     },
     "/v1/messages/{id}": {
@@ -1548,7 +1548,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "message detail with all delivery attempts.\nFetch message."
+        "description": "Message.get .\n\nmessage detail with all delivery attempts.\nFetch message."
       }
     },
     "/v1/messages/{id}/content": {
@@ -1586,7 +1586,7 @@
             "sentin8:post:read": []
           }
         ],
-        "description": "message content (subject + body only).\n`GET /v1/messages/{id}/content` - raw message content.\nFetch message content."
+        "description": "Message.content .\n\nmessage content (subject + body only).\n`GET /v1/messages/{id}/content` - raw message content.\nFetch message content."
       }
     },
     "/v1/messages/{id}/read": {
@@ -1662,7 +1662,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "RFW alias of `POST /v1/dlq/{id}/replay`."
+        "description": "Message replay.\n\nRFW alias of `POST /v1/dlq/{id}/replay`."
       }
     },
     "/v1/send": {
@@ -1702,7 +1702,7 @@
             "sentin8:post:write": []
           }
         ],
-        "description": "`GET /v1/messages` - list messages in the caller's org/env.\nSend message."
+        "description": "Message.send .\n\n`GET /v1/messages` - list messages in the caller's org/env.\nSend message."
       }
     }
   },

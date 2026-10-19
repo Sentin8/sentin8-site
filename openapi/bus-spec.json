@@ -40,7 +40,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "Handle ack."
+        "description": "Ack.send .\n\nHandle ack."
       }
     },
     "/v1/admin/attributes": {
@@ -70,6 +70,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -106,6 +107,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -137,6 +139,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -167,6 +170,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -197,6 +201,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -227,6 +232,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -257,6 +263,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -298,6 +305,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -345,6 +353,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -376,6 +385,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -422,6 +432,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -452,6 +463,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -488,6 +500,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -519,6 +532,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -575,6 +589,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -626,7 +641,7 @@
             "sentin8:bus:read": []
           }
         ],
-        "description": "Fetch admin ui."
+        "description": "Get admin ui.\n\nFetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -677,7 +692,7 @@
             "sentin8:bus:read": []
           }
         ],
-        "description": "Fetch admin data."
+        "description": "Get admin data.\n\nFetch admin data."
       }
     },
     "/v1/consume": {
@@ -717,7 +732,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "Handle consume."
+        "description": "Consume.list .\n\nHandle consume."
       }
     },
     "/v1/consume/sse": {
@@ -786,7 +801,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "Long-lived SSE consume (server → client one-way) - the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`."
+        "description": "Sse handler.\n\nLong-lived SSE consume (server → client one-way) - the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`."
       }
     },
     "/v1/dlq": {
@@ -829,7 +844,7 @@
             "sentin8:bus:admin": []
           }
         ],
-        "description": "List dlq."
+        "description": "Dlq.list .\n\nList dlq."
       }
     },
     "/v1/dlq/replay": {
@@ -862,7 +877,7 @@
             "sentin8:bus:admin": []
           }
         ],
-        "description": "Handle replay dlq."
+        "description": "Dlq.replay .\n\nHandle replay dlq."
       }
     },
     "/v1/health": {
@@ -883,7 +898,7 @@
           }
         },
         "security": [],
-        "description": "Liveness (captain monitor payload)."
+        "description": "Health .\n\nLiveness (captain monitor payload)."
       }
     },
     "/v1/metrics": {
@@ -909,7 +924,7 @@
             "sentin8:bus:admin": []
           }
         ],
-        "description": "Handle metrics."
+        "description": "Metrics.get .\n\nHandle metrics."
       }
     },
     "/v1/nack": {
@@ -942,7 +957,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "Handle nack."
+        "description": "Nack.send .\n\nHandle nack."
       }
     },
     "/v1/produce": {
@@ -982,7 +997,7 @@
             "sentin8:bus:produce": []
           }
         ],
-        "description": "Handle produce."
+        "description": "Produce.send .\n\nHandle produce."
       }
     },
     "/v1/produce/batch": {
@@ -1028,7 +1043,7 @@
             "sentin8:bus:produce": []
           }
         ],
-        "description": "produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) - the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings."
+        "description": "Produce.batch .\n\nproduce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) - the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings."
       }
     },
     "/v1/schedule": {
@@ -1068,7 +1083,7 @@
             "sentin8:bus:produce": []
           }
         ],
-        "description": "Handle schedule."
+        "description": "Schedule.create .\n\nHandle schedule."
       }
     },
     "/v1/scheduled": {
@@ -1091,7 +1106,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "List scheduled."
+        "description": "Scheduled.list .\n\nList scheduled."
       }
     },
     "/v1/streams": {
@@ -1114,7 +1129,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "List streams."
+        "description": "Stream.list .\n\nList streams."
       }
     },
     "/v1/streams/{stream_family}/lag": {
@@ -1148,7 +1163,7 @@
             "sentin8:bus:consume": []
           }
         ],
-        "description": "Handle stream lag."
+        "description": "Stream.lag .\n\nHandle stream lag."
       }
     }
   },

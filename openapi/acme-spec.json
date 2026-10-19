@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-acme",
-    "description": "Sentin8 Sentin8:Acme - internal ACME certificate authority server.",
+    "description": "Sentin8 Sentin8:Acme — internal ACME certificate authority server.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,7 +37,7 @@
           }
         },
         "security": [],
-        "description": "Serve an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) - the token itself is the capability."
+        "description": "Serve challenge token.\n\nServe an http-01 key authorization for the upstream CA's validator\n(DESIGN §4.3): `GET /.well-known/acme-challenge/{token}`. The proxy's\n:80 listener forwards here; the bounded map holds only tokens captured\nfor in-flight external orders. Unauthenticated by design (RFC 8555\n§8.1) — the token itself is the capability."
       }
     },
     "/acme/authz/{id}": {
@@ -67,7 +67,7 @@
           }
         },
         "security": [],
-        "description": "fetch an authorization (RFC 8555 §7.1.4)."
+        "description": "Get authz.\n\nfetch an authorization (RFC 8555 §7.1.4)."
       }
     },
     "/acme/cert/{id}": {
@@ -97,7 +97,7 @@
           }
         },
         "security": [],
-        "description": "download the certificate as a combined PEM\n(chain, plus the private key for locally-issued certs so TLS can build\nits `ServerConfig` from one artifact)."
+        "description": "Get cert.\n\ndownload the certificate as a combined PEM\n(chain, plus the private key for locally-issued certs so TLS can build\nits `ServerConfig` from one artifact)."
       }
     },
     "/acme/challenge/{id}": {
@@ -130,7 +130,7 @@
           }
         },
         "security": [],
-        "description": "signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready -\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
+        "description": "Challenge ready.\n\nsignal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready —\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
       }
     },
     "/acme/directory": {
@@ -173,7 +173,7 @@
           }
         },
         "security": [],
-        "description": "register a new ACME account (RFC 8555 §7.1.2),\npersisted to the accounts directory and announced as\n`sentin8:acme:account:created`."
+        "description": "New account.\n\nregister a new ACME account (RFC 8555 §7.1.2),\npersisted to the accounts directory and announced as\n`sentin8:acme:account:created`."
       }
     },
     "/acme/new-order": {
@@ -230,7 +230,7 @@
           }
         },
         "security": [],
-        "description": "fetch the order status."
+        "description": "Get order.\n\nfetch the order status."
       }
     },
     "/acme/order/{id}/finalize": {
@@ -266,7 +266,7 @@
           }
         },
         "security": [],
-        "description": "submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth - the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."
+        "description": "Finalize order.\n\nsubmit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth — the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."
       }
     },
     "/acme/revoke-cert": {
@@ -285,7 +285,7 @@
           }
         },
         "security": [],
-        "description": "revoke a certificate (RFC 8555 §7.6),\nmarking its metadata and announcing `sentin8:acme:certificate:revoked`."
+        "description": "Revoke cert.\n\nrevoke a certificate (RFC 8555 §7.6),\nmarking its metadata and announcing `sentin8:acme:certificate:revoked`."
       }
     },
     "/v1/admin/attributes": {
@@ -315,6 +315,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -351,6 +352,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -382,6 +384,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -415,6 +418,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute path.",
         "summary": "`POST /v1/admin/attributes/{id}/delete`"
       }
     },
@@ -483,6 +487,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list decisions.",
         "summary": "`GET /v1/admin/policy-decisions`"
       }
     },
@@ -513,6 +518,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       },
       "post": {
@@ -549,6 +555,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy create set.",
         "summary": "`POST /v1/admin/policy-sets`"
       }
     },
@@ -579,6 +586,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -609,6 +617,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -639,6 +648,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -680,6 +690,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -727,6 +738,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -758,6 +770,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -804,6 +817,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy save set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/save`"
       }
     },
@@ -850,6 +864,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -900,6 +915,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy flip set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/{action}`"
       }
     },
@@ -930,6 +946,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -966,6 +983,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -997,6 +1015,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -1053,6 +1072,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -1086,6 +1106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation path.",
         "summary": "`POST /v1/admin/relations/{id}/delete`"
       }
     },
@@ -1095,7 +1116,7 @@
           "admin-ui"
         ],
         "summary": "`GET /v1/admin/ui/{page}`",
-        "description": "Pages:\n  - `overview`      - CA hierarchy status, issued-cert count, active order count, proxy mode\n  - `certificates`  - issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)\n  - `settings`      - Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)\n\n`GET /v1/admin/ui/{*page}` - returns the RFW page definition as JSON.",
+        "description": "Pages:\n  - `overview`      — CA hierarchy status, issued-cert count, active order count, proxy mode\n  - `certificates`  — issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)\n  - `settings`      — Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)\n\n`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON.",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -1137,7 +1158,7 @@
           "admin-ui"
         ],
         "summary": "`GET /v1/admin/{resource}`",
-        "description": "Resources:\n  - `overview`     - summary cards (CA status, counts)\n  - `certificates` - issued-certificate inventory from the CA data directory\n  - `settings`    - current config values\n\nreturns a JSON array of admin data rows.",
+        "description": "Resources:\n  - `overview`     — summary cards (CA status, counts)\n  - `certificates` — issued-certificate inventory from the CA data directory\n  - `settings`    — current config values\n\nreturns a JSON array of admin data rows.",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -1192,7 +1213,7 @@
             }
           }
         },
-        "description": "download the Intermediate CA certificate."
+        "description": "Ca.intermediate .\n\ndownload the Intermediate CA certificate."
       }
     },
     "/v1/ca/root.crt": {
@@ -1214,7 +1235,7 @@
             }
           }
         },
-        "description": "download the Root CA certificate."
+        "description": "Ca.root .\n\ndownload the Root CA certificate."
       }
     },
     "/v1/client-cert": {
@@ -1223,7 +1244,7 @@
           "acme"
         ],
         "summary": "`POST /v1/client-cert`",
-        "description": "GUARDED: the caller must present a Sentin8:Auth token verifying against\nthe platform JWKS, and its `sub` must equal the requested `service_name`\n- a workload can only mint a certificate for its own registered name.\n\nThe response (combined PEM: leaf chain + private key) is returned **once**\n- the key is not persisted server-side; the caller persists it in its own\ncredential cache. The certificate is recorded in Acme's cert store so the\nadmin UI can list/revoke it.\n\nmint an mTLS client certificate.",
+        "description": "GUARDED: the caller must present a Sentin8:Auth token verifying against\nthe platform JWKS, and its `sub` must equal the requested `service_name`\n— a workload can only mint a certificate for its own registered name.\n\nThe response (combined PEM: leaf chain + private key) is returned **once**\n— the key is not persisted server-side; the caller persists it in its own\ncredential cache. The certificate is recorded in Acme's cert store so the\nadmin UI can list/revoke it.\n\nmint an mTLS client certificate.",
         "operationId": "client_cert.issue",
         "responses": {
           "200": {
@@ -1271,7 +1292,7 @@
           }
         },
         "security": [],
-        "description": "Liveness (captain monitor payload)."
+        "description": "Health .\n\nLiveness (captain monitor payload)."
       }
     },
     "/v1/internal/schedules/run": {
@@ -1295,7 +1316,7 @@
           }
         },
         "security": [],
-        "description": "Sentin8:Cron proxy-back target for\nthe daily leaf-cert renewal sweep. Scans the certificates directory\nfor locally-issued (`source = \"local\"`) certs whose `expires_at` lands\nwithin the next 14 days and re-issues each one (new key + full chain\nvia the same `sign_leaf` path as order finalize); the previous cert\nstays on disk until its natural expiry (overlap). Authenticated by the\ncron ticker's M2M token."
+        "description": "Internal schedules run.\n\nSentin8:Cron proxy-back target for\nthe daily leaf-cert renewal sweep. Scans the certificates directory\nfor locally-issued (`source = \"local\"`) certs whose `expires_at` lands\nwithin the next 14 days and re-issues each one (new key + full chain\nvia the same `sign_leaf` path as order finalize); the previous cert\nstays on disk until its natural expiry (overlap). Authenticated by the\ncron ticker's M2M token."
       }
     }
   },
@@ -1308,7 +1329,7 @@
     },
     {
       "name": "acme",
-      "description": "Sentin8:Acme - CA certificate download"
+      "description": "Sentin8:Acme — CA certificate download"
     }
   ]
 }

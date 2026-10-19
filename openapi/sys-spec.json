@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-sys",
-    "description": "Sentin8 Sentin8:Sys - control plane, org/env lifecycle, saga orchestration.",
+    "description": "Sentin8 Sentin8:Sys — control plane, org/env lifecycle, saga orchestration.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -37,6 +37,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list attributes.",
         "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
@@ -73,6 +74,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put attribute.",
         "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
@@ -104,6 +106,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete attribute.",
         "summary": "`DELETE /v1/admin/attributes`"
       }
     },
@@ -134,6 +137,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list sets.",
         "summary": "`GET /v1/admin/policy-sets`"
       }
     },
@@ -164,6 +168,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode disable.",
         "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
@@ -194,6 +199,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode enforce.",
         "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
@@ -224,6 +230,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy mode shadow.",
         "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
@@ -265,6 +272,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy get set.",
         "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
@@ -312,6 +320,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put set.",
         "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
@@ -343,6 +352,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete set.",
         "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
@@ -389,6 +399,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy test set.",
         "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
@@ -419,6 +430,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy list relations.",
         "summary": "`GET /v1/admin/relations`"
       },
       "put": {
@@ -455,6 +467,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy put relation.",
         "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
@@ -486,6 +499,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy delete relation.",
         "summary": "`DELETE /v1/admin/relations`"
       }
     },
@@ -542,6 +556,7 @@
             "sentin8:admin": []
           }
         ],
+        "description": "Policy check relation.",
         "summary": "`GET /v1/admin/relations/check`"
       }
     },
@@ -585,7 +600,7 @@
             "description": "hostname or app_id query param is required"
           }
         },
-        "description": "returns the app instance's auth_domain and allow_signup.\nFetch instance auth mode."
+        "description": "Get instance auth mode.\n\nreturns the app instance's auth_domain and allow_signup.\nFetch instance auth mode."
       }
     },
     "/v1/app-instance/scopes": {
@@ -619,7 +634,7 @@
             "description": "hostname query param is required"
           }
         },
-        "description": "resolve an app instance's OAuth scopes.\nFetch instance scopes."
+        "description": "Get instance scopes.\n\nresolve an app instance's OAuth scopes.\nFetch instance scopes."
       }
     },
     "/v1/audit": {
@@ -732,14 +747,14 @@
             "sentin8:sys:audit:read": []
           }
         ],
-        "description": "query orchestration audit events.\nList audit."
+        "description": "Audit.list .\n\nquery orchestration audit events.\nList audit."
       },
       "post": {
         "tags": [
           "sys"
         ],
         "summary": "`POST /v1/audit`",
-        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure - audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
+        "description": "DBX : every service pushes its audit events here; Sys persists to\n`sys.audit_events` with `service` stamped from the verified `client_id`,\nthen emits `sentin8:sys:audit:recorded` per event (family `sys`) for\nStat's analytics. A producer keeps a local `{service}.audit_journal`\nand retries on failure — audit never drops on a Sys outage.\nHandle ingest audit.\n\ncanonical audit ingest (M2M, `sentin8:sys:audit:write`).",
         "operationId": "audit.ingest",
         "requestBody": {
           "content": {
@@ -803,7 +818,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "user orgs and default org.\nHandle bootstrap."
+        "description": "Bootstrap.get .\n\nuser orgs and default org.\nHandle bootstrap."
       }
     },
     "/v1/e": {
@@ -845,7 +860,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list environments.\nList envs."
+        "description": "Env.list .\n\nlist environments.\nList envs."
       },
       "post": {
         "tags": [
@@ -886,7 +901,7 @@
             "sentin8:sys:env:admin": []
           }
         ],
-        "description": "create environment.\nCreate env."
+        "description": "Env.create .\n\ncreate environment.\nCreate env."
       }
     },
     "/v1/env/{env_id}": {
@@ -931,7 +946,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "environment detail.\nFetch env."
+        "description": "Env.get .\n\nenvironment detail.\nFetch env."
       },
       "put": {
         "tags": [
@@ -984,7 +999,7 @@
             "sentin8:sys:env:admin": []
           }
         ],
-        "description": "update environment.\nUpdate env."
+        "description": "Env.update .\n\nupdate environment.\nUpdate env."
       },
       "delete": {
         "tags": [
@@ -1020,7 +1035,7 @@
             "sentin8:sys:env:admin": []
           }
         ],
-        "description": "cascade-delete environment.\nDelete env."
+        "description": "Delete env.\n\ncascade-delete environment.\nDelete env."
       }
     },
     "/v1/env/{env_id}/app-custom-domain": {
@@ -1055,7 +1070,7 @@
             "description": "Environment not found"
           }
         },
-        "description": "returns the custom domain for the app instance.\nFetch app custom domain."
+        "description": "Get app custom domain.\n\nreturns the custom domain for the app instance.\nFetch app custom domain."
       }
     },
     "/v1/env/{env_id}/applications": {
@@ -1100,7 +1115,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list applications.\nList applications."
+        "description": "App.list .\n\nlist applications.\nList applications."
       },
       "post": {
         "tags": [
@@ -1153,7 +1168,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "create application.\nCreate application."
+        "description": "App.create .\n\ncreate application.\nCreate application."
       }
     },
     "/v1/env/{env_id}/applications/{app_id}": {
@@ -1208,7 +1223,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "application detail.\nFetch application."
+        "description": "App.get .\n\napplication detail.\nFetch application."
       },
       "put": {
         "tags": [
@@ -1269,7 +1284,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "update application.\nUpdate application."
+        "description": "App.update .\n\nupdate application.\nUpdate application."
       },
       "post": {
         "tags": [
@@ -1315,7 +1330,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "/archive` - archive application.\nArchive application."
+        "description": "App.archive .\n\narchive` — archive application.\nArchive application."
       }
     },
     "/v1/env/{env_id}/archive": {
@@ -1353,7 +1368,7 @@
             "sentin8:sys:env:admin": []
           }
         ],
-        "description": "archive environment.\nArchive env."
+        "description": "Env.archive .\n\narchive environment.\nArchive env."
       }
     },
     "/v1/env/{env_id}/auth-domain": {
@@ -1388,7 +1403,7 @@
             "description": "Environment not found"
           }
         },
-        "description": "returns the env's full auth_domain URL.\nFetch env auth domain."
+        "description": "Get env auth domain.\n\nreturns the env's full auth_domain URL.\nFetch env auth domain."
       }
     },
     "/v1/env/{env_id}/bindings": {
@@ -1433,7 +1448,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list bindings.\nList bindings."
+        "description": "Binding.list .\n\nlist bindings.\nList bindings."
       },
       "post": {
         "tags": [
@@ -1486,7 +1501,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "create app-environment binding.\nCreate binding."
+        "description": "Binding.create .\n\ncreate app-environment binding.\nCreate binding."
       }
     },
     "/v1/env/{env_id}/bindings/{binding_id}": {
@@ -1534,7 +1549,7 @@
             "sentin8:sys:app:admin": []
           }
         ],
-        "description": "remove binding.\nDelete binding."
+        "description": "Binding.delete .\n\nremove binding.\nDelete binding."
       }
     },
     "/v1/env/{env_id}/branding": {
@@ -1576,7 +1591,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "get env-level branding.\nFetch env branding."
+        "description": "Branding.get env.\n\nget env-level branding.\nFetch env branding."
       },
       "put": {
         "tags": [
@@ -1626,7 +1641,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "set env-level branding.\nHandle set env branding."
+        "description": "Branding.set env.\n\nset env-level branding.\nHandle set env branding."
       }
     },
     "/v1/env/{env_id}/branding/merged": {
@@ -1668,7 +1683,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "merged org+env branding.\nFetch merged branding."
+        "description": "Branding.merged .\n\nmerged org+env branding.\nFetch merged branding."
       }
     },
     "/v1/env/{env_id}/services": {
@@ -1713,7 +1728,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list service states.\nList services."
+        "description": "Service.list .\n\nlist service states.\nList services."
       },
       "put": {
         "tags": [
@@ -1763,7 +1778,7 @@
             "sentin8:sys:services:admin": []
           }
         ],
-        "description": "enable/disable service.\nHandle set service."
+        "description": "Service.disable .\n\nenable/disable service.\nHandle set service."
       }
     },
     "/v1/health": {
@@ -1783,7 +1798,7 @@
             }
           }
         },
-        "description": "liveness probe.\nHandle health."
+        "description": "Health .\n\nliveness probe.\nHandle health."
       }
     },
     "/v1/invitations/{id}/revoke": {
@@ -1821,7 +1836,7 @@
             "sentin8:sys:memberships:admin": []
           }
         ],
-        "description": "revoke an invitation (:\nlifecycle owner surface; auth's admin UI proxies here).\nRevoke invitation."
+        "description": "Invitation.revoke .\n\nrevoke an invitation (:\nlifecycle owner surface; auth's admin UI proxies here).\nRevoke invitation."
       }
     },
     "/v1/o": {
@@ -1873,7 +1888,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list organizations.\nList orgs."
+        "description": "Org.list .\n\nlist organizations.\nList orgs."
       },
       "post": {
         "tags": [
@@ -1914,7 +1929,7 @@
             "sentin8:sys:org:admin": []
           }
         ],
-        "description": "create organization.\nCreate org."
+        "description": "Org.create .\n\ncreate organization.\nCreate org."
       }
     },
     "/v1/org/{id}": {
@@ -1959,7 +1974,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "organization detail.\nFetch org."
+        "description": "Org.get .\n\norganization detail.\nFetch org."
       },
       "put": {
         "tags": [
@@ -2012,7 +2027,7 @@
             "sentin8:sys:org:admin": []
           }
         ],
-        "description": "update organization.\nUpdate org."
+        "description": "Org.update .\n\nupdate organization.\nUpdate org."
       },
       "delete": {
         "tags": [
@@ -2048,7 +2063,7 @@
             "sentin8:sys:org:admin": []
           }
         ],
-        "description": "cascade-delete org and all related records.\nDelete org."
+        "description": "Delete org.\n\ncascade-delete org and all related records.\nDelete org."
       }
     },
     "/v1/org/{id}/archive": {
@@ -2086,7 +2101,7 @@
             "sentin8:sys:org:admin": []
           }
         ],
-        "description": "archive organization.\nArchive org."
+        "description": "Org.archive .\n\narchive organization.\nArchive org."
       }
     },
     "/v1/org/{org_id}/branding": {
@@ -2128,7 +2143,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "get org-level branding.\nFetch org branding."
+        "description": "Branding.get .\n\nget org-level branding.\nFetch org branding."
       },
       "put": {
         "tags": [
@@ -2178,7 +2193,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "set org-level branding.\nHandle set org branding."
+        "description": "Branding.set .\n\nset org-level branding.\nHandle set org branding."
       }
     },
     "/v1/org/{org_id}/invitations": {
@@ -2223,7 +2238,7 @@
             "sentin8:sys:memberships:admin": []
           }
         ],
-        "description": "list invitations (: the\nlifecycle owner's read surface; auth's admin UI proxies here).\nList invitations."
+        "description": "Invitation.list .\n\nlist invitations (: the\nlifecycle owner's read surface; auth's admin UI proxies here).\nList invitations."
       },
       "post": {
         "tags": [
@@ -2273,7 +2288,7 @@
             "sentin8:sys:memberships:admin": []
           }
         ],
-        "description": "send invitation.\nSend invitation."
+        "description": "Invitation.send .\n\nsend invitation.\nSend invitation."
       }
     },
     "/v1/org/{org_id}/invitations/{invitation_id}/accept": {
@@ -2324,7 +2339,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "accept invitation.\nHandle accept invitation."
+        "description": "Invitation.accept .\n\naccept invitation.\nHandle accept invitation."
       }
     },
     "/v1/org/{org_id}/memberships": {
@@ -2369,7 +2384,7 @@
             "sentin8:sys:admin": []
           }
         ],
-        "description": "list members.\nList memberships."
+        "description": "Membership.list .\n\nlist members.\nList memberships."
       },
       "delete": {
         "tags": [
@@ -2414,7 +2429,7 @@
             "sentin8:sys:memberships:admin": []
           }
         ],
-        "description": "remove member.\nRemove membership."
+        "description": "Membership.remove .\n\nremove member.\nRemove membership."
       }
     },
     "/v1/readiness": {
@@ -2437,7 +2452,7 @@
             "description": "Database unavailable"
           }
         },
-        "description": "readiness probe.\nHandle readiness."
+        "description": "Readiness.get .\n\nreadiness probe.\nHandle readiness."
       }
     },
     "/v1/resolve/hostname": {
@@ -2479,7 +2494,7 @@
             "sentin8:sys:instances:read": []
           }
         ],
-        "description": ": the single cache-miss path for\nevery service's embedded sentin8-tls DomainResolver. Returns the\nhostname → (service, org_id, env_id, app_id) mapping so no service\nneeds SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,\nShield-gated, audited.\nResolve hostname."
+        "description": "Resolve hostname.\n\n: the single cache-miss path for\nevery service's embedded sentin8-tls DomainResolver. Returns the\nhostname → (service, org_id, env_id, app_id) mapping so no service\nneeds SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,\nShield-gated, audited.\nResolve hostname."
       }
     },
     "/v1/scopes/catalog": {
@@ -2488,7 +2503,7 @@
           "sys"
         ],
         "summary": "`GET /v1/scopes/catalog`",
-        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` - platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
+        "description": "Open endpoint (no auth): the catalog is the same for every caller\nand contains no org/env-specific data. Allowing anonymous access\nkeeps the suggestions available even before sign-in (e.g. on a\npublic marketing page that links to a sign-up form with scope\nhints).\n`GET /v1/scopes/catalog` — platform OAuth scope catalog.\nFetch scope catalog.\n\nreturns the platform's well-known OAuth\nscope catalog as a flat list. Used by Dash's `ScopeSelector`\nwidget to populate its autocomplete suggestions without\nduplicating the list on the client side.",
         "operationId": "get_scope_catalog",
         "responses": {
           "200": {
@@ -2508,7 +2523,7 @@
           "sys"
         ],
         "summary": "`GET /v1/tenants/{env_id}`",
-        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) - the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) - user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` - the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables - this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
+        "description": "The sanctioned on-demand read for a vertical service to obtain tenant\nidentity (env/org slugs, domains, auth domain) — the data fdx-style\nconsumers need to derive issuer/JWKS/callback hostnames, and the initial\nsnapshot for a vertical that boots after lifecycle events were emitted.\n\nAuthorization (three gates, all fail-closed):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — user/delegated\n   tokens use the user-surface org/env APIs instead.\n2. Shield gate on `sentin8:sys:tenants:read` (grantable to workloads\n   only via `m2m_grants` — the scope lives in\n   `PLATFORM_SCOPE_VOCABULARY`, never in user role seeds).\n3. **Scoped discovery**: the caller's service identity is derived from\n   the verified `client_id` → `sys.vertical_services` registry mapping;\n   the response answers ONLY for envs where the caller's own service is\n   enabled (404 otherwise). A vertical can never enumerate tenants that\n   have not turned it on.\n\nDBX: the caller never touches `sys.*` tables — this is the owner API.\nHandle get tenant snapshot.\n\nVDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5).",
         "operationId": "tenants.snapshot",
         "parameters": [
           {
@@ -2554,7 +2569,7 @@
           "sys"
         ],
         "summary": "`GET /v1/verticals/services`",
-        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` - the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` - display label (e.g. \"Ledger\")\n- `icon` - material icon name\n- `service_flag` - the service that must be enabled (e.g. \"ledger\")\n- `enabled` - whether the feature is enabled for this org/env\n- `pages` - array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` - discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` - discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
+        "description": "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array\nof vertical descriptors, each containing:\n- `service` — the service type (e.g. `bank8-ledger`, `bank8-payments`)\n- `label` — display label (e.g. \"Ledger\")\n- `icon` — material icon name\n- `service_flag` — the service that must be enabled (e.g. \"ledger\")\n- `enabled` — whether the feature is enabled for this org/env\n- `pages` — array of admin_ui page definitions (route, label, ui_endpoint, data_endpoint)\nSee `sentin8-.md` for the Remote UI architecture.\n`GET /v1/verticals/services` — discover registered vertical services.\nList vertical services.\n\n?orgId={uuid}&envId={uuid}` — discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env.",
         "operationId": "list_vertical_services",
         "parameters": [
           {
@@ -2684,7 +2699,7 @@
           },
           "service": {
             "type": "string",
-            "description": "Emitting service (DBX - stamped by Sys from the verified M2M client_id).\nThe service."
+            "description": "Emitting service (DBX — stamped by Sys from the verified M2M client_id).\nThe service."
           },
           "target_resource_id": {
             "type": [
@@ -2709,7 +2724,7 @@
       },
       "AuditIngestItem": {
         "type": "object",
-        "description": "One audit event in an ingest batch. `service` is IGNORED server-side -\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
+        "description": "One audit event in an ingest batch. `service` is IGNORED server-side —\nSys stamps it from the verified M2M `client_id` (never caller-supplied).\nThe auditingestitem type.",
         "required": [
           "env_id",
           "action"
@@ -2829,7 +2844,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Tiebreaker for rows sharing `after_ts` (the row id) - pairs with\n`after_ts` for a deterministic keyset position."
+            "description": "Tiebreaker for rows sharing `after_ts` (the row id) — pairs with\n`after_ts` for a deterministic keyset position."
           },
           "after_ts": {
             "type": [
@@ -2837,7 +2852,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` - stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
+            "description": "Keyset cursor (SYS-2, sys DESIGN §10): return rows strictly older\nthan this timestamp. Takes precedence over `offset` — stable under\ninserts between pages (the `(env_id, timestamp DESC)` index serves it)."
           },
           "env_id": {
             "type": [
@@ -2863,7 +2878,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Filter by org (accepted but not yet used for filtering - env_id is the primary filter).\norg identifier."
+            "description": "Filter by org (accepted but not yet used for filtering — env_id is the primary filter).\norg identifier."
           },
           "service": {
             "type": [
@@ -3506,7 +3521,7 @@
               "string",
               "null"
             ],
-            "description": "Optional domain update - triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
+            "description": "Optional domain update — triggers domain chaining via TLS.\n`None` or empty = no change; `Some(val)` = update.\nSerialized as `custom_domain` for API compatibility with the frontend.\nThe domain."
           },
           "display_name": {
             "type": [
@@ -3593,7 +3608,7 @@
     },
     {
       "name": "sys",
-      "description": "Sentin8:Sys admin API - org/env lifecycle, services, applications, branding, audit"
+      "description": "Sentin8:Sys admin API — org/env lifecycle, services, applications, branding, audit"
     }
   ]
 }
