@@ -1,11 +1,11 @@
 ---
 id: get-admin-ui
-title: "`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."
+title: "`GET /v1/admin/ui/{page}`"
 description: "Pages:"
-sidebar_label: "`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."
+sidebar_label: "`GET /v1/admin/ui/{page}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVMFu20YQ/ZXBnORgZclpDgVvgusEKZqmcGz0oArWmByJG5O7zO6QsUAQyEf0C/slxayoRI6dHHKOLlrO7rx5+97s9Ci0jZgtkYraumlrcWWw4JgH24j1DjP8i7Ycs38cwBTWvuPQWf64hvT779O/cL6A0nKgkJc7iELSRgM2xpaLac5BIPetEwOUi+0YfCg4HGJN8Pc7qH3BI74m2I3NSTiu9/hHUOMOWNexEx92MCl8TdYdCt6QGOD7xgaOaR05WKoMBO78HRcnY5nIItZt49E13rET637NFnnNcNiHSdtECUy1Uu2sUr++/MNAxbSBdLuOKltY2RmQ0EaZRvGBT9CgbziQavi6wAy3LDdJ45vWosGGAtUsHFT8Hh3VjBk2tGU0aF1aS4lfe3H58m/QQ6AJMDm4YeBYN/OZvtII/KG1gQvMJLRsMOYl14RZj7JrtGiUYN0Wh2Glh2PjXeSo+8/nc/37BoOCN9ZZjcIksCs4cAG3u886/kax1Pq5d8JOFImaplKK1rvZ+6hw/Rc6wzAMBl/Mf3lc85yqigNUlN9FIAekFgWmYpYUhZj7hjFlv3icfe3unP/oEmvUGpHzNljZJeXjSFcxswSH2XKlWtQspR+tS45JiRnOurN91VlrZ71iDsmxjU+SWqmSpnvUqaI+MnFU6GHHpU53wsFRBYvzNxfHlgK1UnrlrA3dcThFg5XN2UXWsmP7vHl9BW8vYdFQXvL0+elcmRVaZWM5PHlgMNhxiHti89OzfajxUWpyR9DrVxdX8PDuz9Ll14l5YGmDiyAlw1MdQhF+f/f2z9Ovtei/tMfPOfODc2Z8xsL3Mmsqsk4dbEOl6u6bdondGZr9iEeDaQBl6TmsDJY+ih7p+1uKfB2qYdDwh5aDvpCVwY6CpVvt62WPhY26LjDbUBX5O35OLsfJcwI/MLaevNUYJLdDpVW1+oUG73h3mJ7DajBYMhXa8Mt+3FrkOTdylPRoFD148a8urnAY/gfvp3U+
+api: eJztVcFuG0cM/RWCJ7kYWXKaQ7E3wXGDFE1TODZ6kAWL3qW0U+/ObGa4GwuLBfoR/cJ+ScDRypFjt4deeqkuGnGGj498JNWj0DZitkQqauumrcWVwYJjHmwj1jvM8FfacsxuHMAU1r7j0Fn+vIb0+euPP+F8AaXlQCEvdxCFpI0GbIwtF9Ocg0DuWycGKBfbMfhQcDjYmuAfdlD7gkd8dbAbm5NwXO/xj6DGG7CuYyc+7GBS+JqsOwS8JTHAD40NHNM5crBUGQjc+XsuTsYwkUWs28ajND6yE+t+yBZ5zXC4h0nbRAlMtVLtrFK/vvzZQMW0gZRdR5UtrOwMSGijTKP4wCc37sat315cwaw7m6Xazlo7679raMvDOgUMLG1wEaRkuPzxN9ArKHhjndXKA0X46eOHX07RoG84kBrfFZjhluU2Qd62Fg02FKhm4aA69uioZsxQ0dCgdeksJX4r62NIdYDJQVgDxxKYx0qcoMHAn1obuMBMQssGY15yTZj1KLtGg0YJ1m1xGFb6ODbeRY56/2o+16+/YXCU9CSwKzhwAXe7R0neUCw1fu6dsBNFoqaplKL1bvZ7VLj+K51hGAaDr+ffP495TlXFASrK7yOQA1K1A1OxFwli7hvG5P36ufe1u3f+s0usUWNEzttgZZcqH0e6ipklOMyWK61FzVL6UbqkmJSY4dPWSJ2RFNv4VFIrVarpHnWqqM9EHCv0tHnT0Djh4KiCxfn7i2NJgVopvXLW2eg4aH9VNmcXWcOO7fP+3RV8uIRFQ3nJ01enc2VWaJSN5fDig8FgxyHuic1Pz/amxkepyR1BvzAW+6n4Nrv+q+D/L6H/fgmNMy78ILOmIutU3jZUKtS+o5fYnaHZ/5WgwbSdsjQrK4Olj6JP+v6OIl+HahjU/KnloOOzMthRsHSnTb/ssbBRzwVmG6oi/0NrTC7HtXQC/2KnvZjVaCS3Q6VVtfoLDd7z7rBah9VgsGQqdBqW/Xi1yHNu5Mjp2Z56sg7eXlzhMHwBONeaCQ==
 sidebar_class_name: "get api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON."}
+  children={"`GET /v1/admin/ui/{page}`"}
 >
 </Heading>
 
@@ -41,6 +41,8 @@ Pages:
   - `overview`      — CA hierarchy status, issued-cert count, active order count, proxy mode
   - `certificates`  — issued-certificate inventory (domain, issued_at, expires_at, serial, revoked)
   - `settings`      — Sentin8:Acme settings (upstream provider URL, leaf cert validity, trust-store)
+
+`GET /v1/admin/ui/{*page}` — returns the RFW page definition as JSON.
 
 <Heading
   id={"request"}

@@ -1,13 +1,11 @@
 ---
 id: role-list
-title: "`GET /v1/admin/roles` — list roles (paginated).
-List roles."
-description: "`GET /v1/admin/roles` — list roles (paginated)."
-sidebar_label: "`GET /v1/admin/roles` — list roles (paginated).
-List roles."
+title: "`GET /v1/admin/roles`"
+description: "list roles (paginated)."
+sidebar_label: "`GET /v1/admin/roles`"
 hide_title: true
 hide_table_of_contents: true
-api: eJylVsGO2zYQ/RViTimgtb1pUBS6Ldo0cJt0g42LHlzD4UpjiSlFMuTIqGsI6Ef0C/MlwVCyVraMjbF7EkQO33scvuFwDySLAOkSZE0lrBKwDr0kZc08hxS81TjRKhAk4KSXFRJ6jt+DkRVCCiR9gbRGs12rHBJQBlL4XKPfQQI5hswrx3CQwiKGCjRbsbFeZN6GcMV/Mq+UgQQ8fq6VxxzSjdQBEwhZiZWEdA+0c8wWyCtTQNMkvQAnC3yc970sUJi6ukd/EYkyhEWM3VhfSWqHfng1ol0H9e8l3F3Ys5hXvD44awIGXvFyNuPPiE0ZSZgLPjjRHVxmDaEhDpfOaZXF851+CrxmP1Zh7z9hRqOt3HX0wsmdtjKPh8g8TDM52t8yGidAAmRJavaV8+wsUq36dvqBUnovOXmKsArPkHIqI1qy92Y8ugQc+kqFoKxhhZlHzthaMk3t8sPPSPMgcGTIwYExwBWpyHSsugMQPDmBphf2GFpdR+XHQFwzKkdDaqPQR6inwMxPIEym6/yiYzmU4Sni77LCIOxGZKXSrQmDMBh417XJ0QsqVWjN+WLjbSUCSzA/rvn6WfP4msOVKb6b/GUWJbaxypToFQUhtRaD42MqKjHgEaHHrPZBbVHvOpDD1uI+2wIeJ+vksipRcGRcMnTM07PDkAOkiDww3NNM1QEcTNUkQIo0o9xZjYdCOS8mpivKaMv0govoHExcLDJbGxoreKsCPahoePrV7Pvx1fWOs2IKwUZIY0MQIbMOI2DgE1W0i42ns0z6EAnpcsUX5DHixzevF2K6vZ7GmGnc7Efx5b//473YeeWFO1yZbLi3/QRfJBVSabkLFtj2PyohhRPEeP1vbMxdt+1O4FVsqaeqPrSTovumNzWVUVRb0LRLxC2PTW/nP/80/eXm/TwRAVvHJOLXP3/7EFNkOR0sUqsMObVp35nezRfi9k7cOJmVePVyMmOJfamfDWgS2KIPrcLZ5LodcjZQJc0A+tkpPcpF7zbCf2jqtFQmloSPTmzTvYTtNSTQvxBiylcJlDYQz+739zLgH143DQ+3TZhdkqsg7/Wg2Z5Q903x28+Ssyr/xt2Z189W6ppjgV8Kl0s4fqE8wtc9dp5D0z1GvkFyeNo8MK34xyumivWWQIkyZ0Mt993CmyxDR4NVo+cGo/Rl9eb1AprmK1Amm+0=
+api: eJylVtuO2zYQ/RVinlJAvmwaBIXeFm0aOE2ywcZFH1zD4UpjiQlFMuTIqGvo34uhZFu23I2x+ySIHJ5zZubwsgOSRYB0AbKmEpYJWIdekrJmlkMK3mocaxUIEnDSywoJPcfvwMgKIQWSvkBaodmsVA4JKAMpfK/RbyGBHEPmlWM4SGEeQwWajVhbLzJvQxjxn8wrZSABj99r5TGHdC11wARCVmIlId0BbR2zBfLKFNA0yUGAkwU+zvtJFihMXT2gv4pEGcIixq6tryS1Q69fDWhXQf17DXcX9izmJa8PzpqAgVe8nE75M2BTRhLmghsnusZl1hAa4nDpnFZZ7O/ka+A1u6EK+/AVMxqkct/RCye32so8NpF5mGZ8kt8iGidAAmRJavaV8+wsUq36dvpIKb2XXDxFWIVnSDmXES158GZsXQIOfaVCUNawwswjV2wlmaZ2+f5noLkXODBkr2EMMCIVmU5VdwCCJ8fQHIQ9hlbXUfkpEO8ZlaMhtVboI9RTYGZnECbTdX5VW/bb8Bzxo6wwCLsWWal0a8IgDAbOujY5ekGlCq05X6y9rURgCeaXFR8/Kx5fcbgyxU/jv828xDZWmRK9oiCk1qLXPqaiEgOeEHrMah/UBvW2A9mnFvNsN/CwWGeHVYmCI+OSvmOeXh2G7CFF5J7hnmaqDmBvqiYBUqQZ5d5q3G+Uy2JiuaKMdptecRBdgomLRWZrQ0MF71Wgo4qGp19Nfx4eXR+4KqYQbIQ0XggiZNZhBAzcUUXbePF0lkmPkZAulnxAniLysdQ54oXbH4xsq/eHCT4uKqTS8l1XYHvLUQkpTDY3k4g92Z9kyqxtrFCXXCdjFC/Oc+7P7aTovultTaUYdZuWtom445HJ3ey3Xye/336aJSJg64pEvPvrj8+xDJZTZolaZcjlSw+3z4fZXNzdi1snsxJHL8dTFnjYzhcDmgQ26EOrbzq+aYecDVRJ04P+8vbNXJyl/+U8wd3xUrm2zp2zCP+hidNSmWh/H13XFn0BmxtI4PAaiIVfJlDaQDy72z3IgH963TQ83F647IhcBfmgexfr/2r94RPkospvuL3w0tlIXXMs8Kvgegmnr5FH+LqHzXNouofHD0j2z5gj05J/vGKquLcSKFHmbKzFrlt4m2XoqLdq8LRglMPmevtmDk3zH7btkn8=
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/roles` — list roles (paginated).\nList roles."}
+  children={"`GET /v1/admin/roles`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/roles` — list roles (paginated).
+list roles (paginated).
 List roles.
 
 <Heading

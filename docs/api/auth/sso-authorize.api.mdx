@@ -1,11 +1,11 @@
 ---
 id: sso-authorize
-title: "`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."
+title: "`GET /v1/sso/{connection_id}/authorize`"
 description: "For OIDC connections, generates a state + PKCE pair, stores the SSO"
-sidebar_label: "`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."
+sidebar_label: "`GET /v1/sso/{connection_id}/authorize`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVNtu20YQ/ZXBvNRGN7qkCVDwTXCcRI0NGZaNPthCsiFH5iLULLMzlKMKBPoR/cJ+STGUHMlWmvxAngjOzvWcmbNG9XeC2Q2KRJw5LEjyFGoNkTHD1zHBZPzqBPLITLlZxcEdMSWvJOBB1CvBr3Dx7uQUah+SA9GYSEBLgul0cstCIiGyA88FJCpColwFNHYu4+LiFwHfaBlT+IuAuKhjYO2BFZ+Ozs9u+VH1/8kwnU7g+vIMjuiLJp8rFTBPcWEet7wg9YVXD//+/Q/cl8TAUcEvfaj8x4osqTaJBV4Ohse9W37ruagIROKusx46jLUNHiKPC8wMsvdfn9Fh7ZNfkFIyQNfIfkGY4a7596FAh8GArb2W+BTtU1ZKdQpCe3hDF5TocxMSFZhpasih5CUtPGZr1FVtVURT4Dt0OI9p4RUzbJpQYNvOLFjqaDSY/2+D5/Z5XPlyi+kepHDUEb8jxsC9D1p2VDuIacPw6PzsAftjbB2+GAwO85/sxjHgA4PPNSxpsz6bsBeHYdf8ieM9P0GjdfhyMDz07lrZc7VmY6PgoRFj+euKBIaHhcC2dSiUNynoCrObmcMFaRmN3jvSjlQtMcP+ctgXif31Izrb/j7/geexoyRo1XFCrIF/f2Y+B2RPN4+w/WajRstuPUNhFl05mJitbzT0X48uxg62lyQO/vjz3fSBG13ZalYhJxay+tvFOx9fweQSRrXPS3r2vDewFrvk80Dpmw6twyUl2XQ46A03pjqKLjzvpf7w5vQKfgjJh24eUZ/0QQ1gXsX73lMw1nYkSqw/JedAcrb3rfRF+3XlAxsjTaoMtc1u3uByiK4TcIfZU7nZLejMYRlFLWC9/uiFrlPVtmb+3FDabv/Sp2D9dQpWhO5wCszmvhL6DmtHl1uBOobvqNg3Z9kaPa/QyleN/aHDT7Q6UM921u4d6JvTK2zb/wCoeFMP
+api: eJztVNtu20YQ/ZXBvNRG17qkCVDwTXCdVI0NGZaNPlhCsiFH5iLULLMzlKMK/PdiKDmSrTTtB/SJ2OFczzkzG1T/IJjdo0jEucOCJE+h1hAZM3wbE0zGv51DHpkpN6s4eCCm5JUEPIh6JfgZrt+fX0DtQ3IgGhMJaEkwnU5mLCQSIjvwXECiIiTKVUBj5zIurn8S8I2WMYW/CIiLOgbWHljx6ejqcsbPqv9Dhul0Anc3l3BCXzX5XKmARYpL85jxktQXXj2cwWNJDBwV/MqHyn+qyFJqk1jgzWB42pvx756LikAk7vvqzXjGoj7p02CwqOJjDx3G2tAIkccFZobjh29R6LD2yS9JKRnKG2S/JMxwP9GHUKDDYGjXXkt8ScEFK6U6BaEDEqALSvSlCYkKzDQ15FDykpYesw3qurYqoinwAzpcxLT0ihk2TSiwbecWLHU0bsz/l8Er+zyvfLMD+gBnOOnUsGfLEH8MWnb8O4hpi87o6vKJkFNsHb4eDI7zn+/HMT4Cg881rGirqW3Y6+OwO/7M8ZFfoNE6fDMYHnt3rRy4WrOxUfDQiJH/TTeB4Ukl2LYOhfImBV1jdj93uCQto9H7QNqRqiVm2F8N+yKxv3lGZ9s/5D/wInaUBK06Tog18K9n5nNE9nT7E3bfbNRoCWcQCnvr2sHELH0jof92dD12sFsucfDHn++nT8zo2oRZhZxYyKrvZHc1voXJDYxqn5d09qo3sAa75ItA6bsOrcMVJdn2N+gNt6Y6ii49H6T++O7iFv4VkI8vR97YKiix/n9t/tu12a220lft15UPbHQ0qTIot7K8x9UQXXfQHWYvL81em3OHZRS1gM3mkxe6S1XbmvlLQ2kn/JVPwdrujlcRup0pMFv4SugHVJ7c7G7TKfzggH13lp3R8xqtfNXYCx1+pvXR4Wzn7cFuvru4xbb9G811VVA=
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/sso/{connection_id}/authorize` — start the SSO flow."}
+  children={"`GET /v1/sso/{connection_id}/authorize`"}
 >
 </Heading>
 
@@ -40,8 +40,10 @@ import Translate from "@docusaurus/Translate";
 For OIDC connections, generates a state + PKCE pair, stores the SSO
 session, and redirects to the IdP's authorize endpoint. For SAML
 connections, redirects to the IdP's SSO URL (extracted from the
-metadata — when not available, returns 501).
+metadata - when not available, returns 501).
 Handle sso authorize.
+
+start the SSO flow.
 
 <Heading
   id={"request"}

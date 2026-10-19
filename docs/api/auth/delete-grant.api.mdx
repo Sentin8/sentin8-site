@@ -1,19 +1,11 @@
 ---
 id: delete-grant
-title: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
-dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
-path treats a revoked grant as a hard 401 (checked via the Valkey
-`auth:grant:revoked:{grant_id}` key — same read path as the jti
-denylist, so no DB hit on the hot path)."
-description: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the"
-sidebar_label: "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
-dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
-path treats a revoked grant as a hard 401 (checked via the Valkey
-`auth:grant:revoked:{grant_id}` key — same read path as the jti
-denylist, so no DB hit on the hot path)."
+title: "`DELETE /oauth/grants/{id}`"
+description: "revoke the grant and cascade-revoke the"
+sidebar_label: "`DELETE /oauth/grants/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVMlu2zAQ/ZXBXJoAjO2kORTqKU3Swl2QIkt7SIyYEccRa3mokCO3giGgH9Ev7JcUpJSldm699kRpljfbm1mh6NuA2SU6XUuBE4WuIq/FOh4bzNBQSULXt16zoMJKe70gIR99Vsh6QZihNajQMmZYaSlQoaGQe1tFFMzwXXSGZOTprraeDGbia1IY8oIWGrMVSlNFqCDe8i0qnDm/0IIZ1rU12LaT6Bwqx4FCtN8bjeLzXCRPSzcnA1uGKmJDLCBuThwg1yHXhnZ6i21sFe6PXm4CHeqyJA82ADsBKQhSB14EqAN5cB40A/EStFlY7mD2N2EueM7uO3fO2LYKA+W1t9JgdjlZ79P06Pjj8fkxDNMshskpDFfWtFP4/fNXX9djNqDZrJUUlVe8XvcAzu/r976BafK+tmb6OoElox1iUznLAkvydtZccZwliCctAfRDU/vIUVRob2B/tAtbeUF5VC6tTohfdDmn5oqnsZAsuWQ9QLa6j95OYU5NqizoBYEnbSAF1SGhfBMba+GmtEEUBAfs4OgNFFbAcTIpnCSX7QEqXJAU7pG0ia5SYIabDU18nblEPCtlYh6xWH61k/ZgfTRnnRL6NzuopUiZ29hmK42CkygbnoyPDodvDz6PFQQKwToOCt5//XAGEdfF0cdUS5sTB4rx+x36ND6Hk1M4qHRe0M7eYBRTTOAzS/5Zg1bhknzoMhwNdjtR5YIsND+B/s+rf+PVX1R4uFRCP2RYlbpb/9qXUdcR7v6aKux6jQoza+JxLVyQqF+tbnSgC1+2bRTf1eT7k7DU3uqbyMjLFRob4rfBbKbLQBup5I6FOF7JrdP+sm7Dk3P7bKq9UHODMVxZxz9UOKemu+XtpH2yTB15sG3/APaqJHc=
+api: eJztVNtO3DAQ/ZXRvBQk7wXKQ5U+UaDV9iIqLu0DrFgTzxJ3s+NgT7aNovx7ZScUtKD2B/rkZC7nzIyPp0XRdwGzK3S6lgLnCl1FXot1PDOYoaGShG7uvGZBhZX2ek1CPua0yHpNmKE1qNAyZlhpKVChoZB7W0UUzPBDTIYU5Om+tp4MZuJrUhjygtYasxalqSJUEG/5DhUunV9rwQzr2hrsunlMDpXjQCHG70+n8XiJydPGrcjAjqGK2BALiFsRB8h1yLWh0RCxi53Cg+nr50BHuizJgw3ATkAKgjSBVwHqQB6cB81AvAFt1pZ7mIPnMJe8YveT+2TsOoWB8tpbaTC7mm/Pqa/qkQ00m62So/Oat/saw8VDf943sEjZN9Ys3iawFDQiNpWzLLAhb5fNNce7AvGkJYD+M7SBOZoK7Q0cTPdgJy8oj86N1Qnxmy5X1FzzIoomSynZAJC1D+zdAlbUwAiCXhN40gYSpQ4J44fY2Ak3pQ2iIDhgB8fvoLACjlNI4SSl7I5R4ZqkcI+STGKUAjOcJOlOEm2YtNZ0SY1Ll2RlpUy6IhbLb0ZJ5duDP++dMJzZYS0FjMDGEVtpFJxGy+R0dnw0eX/4daYgUAjWcVDw8func4ioLl5rLLS0OXGgyD68jy+zCzg9g8NK5wWN9sfTWGACX1ryLwZ0CjfkQ1/fdLzXmyoXZK35CfTi+OTzycUJPB/CYrvNFnPHQiz/pfYPqQ27SOiXTKpS9w+89mWcYS+6h32psJ84KsysieuzcEGiv21vdaBLX3ZdNN/X5IdHv9He6tuoyqsWjQ3x22C21GWgv1zZztmwO3fhyUJ9sdTBqLnBSFfW8Q8Vrqjpt3U37548qF5C2HW/AZAfFQQ=
 sidebar_class_name: "delete api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key — same read path as the jti\ndenylist, so no DB hit on the hot path)."}
+  children={"`DELETE /oauth/grants/{id}`"}
 >
 </Heading>
 
@@ -45,10 +37,10 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the
+revoke the grant and cascade-revoke the
 dependent tokens. Tokens carry `grant_id`; the token-endpoint verify
 path treats a revoked grant as a hard 401 (checked via the Valkey
-`auth:grant:revoked:{grant_id}` key — same read path as the jti
+`auth:grant:revoked:{grant_id}` key - same read path as the jti
 denylist, so no DB hit on the hot path).
 
 <Heading

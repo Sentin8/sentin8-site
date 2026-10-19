@@ -1,11 +1,11 @@
 ---
 id: new-order
-title: "`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."
+title: "`POST /acme/new-order`"
 description: "Mixed local/external identifiers are rejected; external orders are"
-sidebar_label: "`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."
+sidebar_label: "`POST /acme/new-order`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdlF1OHDEMx69i+QnU2Q+gqGh4WqFWQgJRQXlaUAmJlwnNJKmT2Q9GI/UQvUPv0aP0JJVnt0ChJ+jTKE5i//z3P9NiVncJyykqXRNeF2goabYx2+CxxFO7JAMuaOVGtMzEXjmwhny2M0ucQDEB0z3pTOYQHo8ENpvdKx85LC0ZyAFyRdDElJlUDZOj0/cQOcytIYZFRV5WyxXUwRDYBOTVrSNTXPmQK+KFTdRn6HHgaAI2pYaSxGpQs0wMulLOkb8jmCtnjZI2hlhgiMT94thgiZ4Wn3tCLJApxeATJSxb3B3vyOdvDc7kJGgmlcnAlmpyFdg+9OkSvIGZ9crZB4LL85N0uKZzq0Gyd54MBAYmp1ZkHjvfxgJ18Jl8lmoqRmd1n250n6Rki0lXVCss267rugLfjsevuS59amIMnMmMZoFvrTHknw0H+4t7ry+eCOHAhFpZDwubq9DkZ9IXj8ybYJjNUCgS6YZtXmE5vS6wplwFUTOGlLHAqHKFJY7ESCNPi8Efha2fBYHINjvCEpMA+oNB77iXhrtYb8LmW050TfDr23ewfmOt3jaaWJrUKhNsBpJXkIjnxDJvZzX5RFLWq1qqnh5/grNzmESlKxrsDsdC9qTVvw50Bc6J0xpsPNxZh6TdWvlnqW8+nl18gheN3/TUa9eA8usXAVvnH47gYH9/H37+eDfcGe5tD19K0D554795fnkVRahMyzyKTlkvQjbspNu1bzY/oAKfnHNdYCXWKqfYtrcq0SW7rpPw14Z448K5YiuYsuoKrEjJ1XLa4hdaYYkTrSmKPefKNcLw6rV1z70sk8Su+w2dY8fR
+api: eJzlVG1O3DAQvcpofoGa/QCKisKvFWolJBAVlF+7qBh7Qkwd2x07uxuiSD1E79B79Cg9SeVkC1voDfrL8tgz896bZ7cYxX3AfI5CVoQ3GSoKkrWP2lnM8VyvSYFxUpgJrSOxFQa0Iht1oYkDCCZgeiAZSR3D0xXHanO6sJ7dWpOC6CCWBLUPkUlUMDs5fw+e3VIrYliVZNNu3UDlFIEOQFbcGVLZwrpYEq90oL5CDwdOZqBDqCmkWAWiiMQgS2EM2XuCpTBaiURjvLALK5lEJBB2gAY7lx9O4Ojw8BB+/ng33hsf7I4xQ+eJ+5xThTlaWn3ub2OGTME7Gyhg3uL+dC8tf0t10dcd+ijYEXUsHevHvlyAN1BoK4x+JLi+PAvHAwnTjIK+t6TAMTAZ0ZB6EmgXM5TORrIxdRPeGy37cpOHkFq2GGRJlcC87bquy/DtdPoa17UNtfeOI6lJ4fhOK0V2a4bYJx68TjxLCEfKVUJbWOlYujpuTSh7wrwJuqLAhCKQrFnHBvP5TYYVxdIlNb0LETP0IpaY4yT5bWJpNfqjsLaFSyCijoYwx5AA2qNRb8yXvrwaDmGz5jNZEfz69h203Tiwd5ckTiRlP/phILGBQLwkTvM2WpINlNpaUaWu56ef4OISZl7Ikkb742lC9qzVvy50GS6JwwBsOt4bQoluJexW6duPF1ef4AXx25fU2ueZ/2+vLzY+6RRpHSfeCG2TjjWbJMpgm803leGzcW4yLJOz8jm27Z0IdM2m61L4a028MeFSsE5s0q7LsCSRUvN5i1+owRxnUpJP7lwKUycMrx5bt23lNEjsut8DpNNT
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /acme/new-order` — create an order (RFC 8555 §7.1.3)."}
+  children={"`POST /acme/new-order`"}
 >
 </Heading>
 
@@ -40,6 +40,8 @@ import Translate from "@docusaurus/Translate";
 Mixed local/external identifiers are rejected; external orders are
 proxied to the upstream ACME provider when proxy mode is enabled,
 otherwise the local CA issues them after challenge validation.
+
+create an order (RFC 8555 §7.1.3).
 
 <ParamsDetails>
   

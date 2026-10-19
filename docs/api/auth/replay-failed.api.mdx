@@ -1,17 +1,11 @@
 ---
 id: replay-failed
-title: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
-webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
-§10). Admin-gated; the relay picks the row up on its next tick.
-Replay a failed webhook delivery."
-description: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed"
-sidebar_label: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
-webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
-§10). Admin-gated; the relay picks the row up on its next tick.
-Replay a failed webhook delivery."
+title: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay`"
+description: "reset a failed"
+sidebar_label: "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzlVMFu2zAM/RWCl7WAGidFD4N3CpZtyIYtRdthhzRoFJuphdiSK9FpjcDAPmL/sP/Yp+xLBtpu17S97LyTJIqkHh+fuEPW1wHjOeqKM1wodCV5zcbZaYoxeipzXV+ttckpRYWl9rogJi8xO7S6IIzRVbxyd1dGPIzFGEvNGSpMKSTelJINY5y1XkCWfQ3TCSr0dFMZTynG7CtSGJKMCo3xDrkuJXFgb+w1Klw7X2jGGKvKpNg0CwkOpbOBgvgfD09k2X9wQrnZkq/BUyAGdlCSTSVho/DkpYg9iNYxrF1lUzAWODMByG6xaRQGSipvuG45CGTZ2NexEBjrtBAC5gtBuJ97eTo7v4BoO4pap+iWVplzmxBpZipKDtHugccm6ohfwu/vP3r4GrouXNo+EtL7+v5WBgeF8d75AKUL/CrAsu9gmt8sFQhGmLw7n374cml//RwNDwcwFjRH15opfQOcEXjKdQ2lSTahO7tbqEpwFgwHsHTHwCbZDC7tWZv7ARk8BTZAhQVx5kRKAqhVEGcY47/x0Opq7VplGM5baXS0H7W6fcr1eXcJ/RqPpW6h0qRi4VrBTGzRbDp5G70fn04VBArBOBsUfPz26bylykmTpYjcJGQDyfu95D9PL2B2BuNSJxkdHQ+GArFNvjbkX3RoFG7Jhw7hcDDqTEJLoe2j1P+pUPY6+DABmO44KnNtrJBV+VzuOg3NcTtChd2XU3hPk5h6olBh/Hg29WJaKMxEjPEcd7uVDvTV500j5puKvPzqhcKt9kavRGrzHaYmyD7FeK3zQM/AJs4yWZlPB2f9TDuE5/PuxZp6o7ai8q3OKzmhwg3Ve6O1WTSPfpNoBJvmD4hYAO0=
+api: eJzVVMFu2zAM/RWCl7WAEidFD4N3CpZtyIYtRdNhhzRoFJuphdiSK9FZA8Pfs//Ylw203a7pigE77iSLpsjHx0fWyPo2YLxEXXGGK4WuJK/ZODtLMUZPZa4PN1ttckpRYam9LojJy5sarS4IY3QVb9z9jREPYzHGUnOGClMKiTelRMMY560XkGV/gNkUFXq6q4ynFGP2FSkMSUaFxrhGPpQSOLA39hYVbp0vNGOMVWVSbJqVPA6ls4GC+J+NzuU4Tjil3OzJH8BTIAZ2UJJNJWCj8PylF0cQrWPYusqmYCxwZgKQ3WPTKAyUVN7woeUgkGVjX8dCYKzTQghYrgThcewOhIaOy2v7nTaZcztIH1D+xgcnhfHe+QClC/wqwLrvQ5rfrRVIJpi+W8w+fLm2P3+MR6dDmEjiwa1mSt8AZwSecn2A0iS70N3dd6hKcBYMB7B0z8Am2Q2v7WUb+xEZPAc2RIUFceZEEAKo1QFnGGO0H0dtyVH/KESamYqSQ1Q/qqKJOvitOrau7a/hvG1wR96gVd9zxhbdT+jPeCJ1D8CkcueDgrlYovls+jZ6P7mYKQgUgnE2KPj47dOiJcpJo6SE3CRkA0n2XrafZ1cwv4RJqZOMBmfDkQBsg28N+RcdGoV78qHDNxqOO5OQUmj7JPT6Yr64gn+jZ/2cgBoTZ5ks/+/q6aeZ6Z6jMtfGCmmVz6XETklL3I9RYTc+Ch/oElNPGCqMn+6ZXlIrhZlIMl5iXW90oK8+bxox31XkZUJXCvfaG70RwS1rTE2Q7xTjrc4D/YXzk8t+P53Cn7vrxZp6o7ai9b3OK7mhwh0djtZks2qezJRoBZvmF3oK6nw=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery."}
+  children={"`POST /v1/admin/webhooks/attempts/{outbox_id}/replay`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed
+reset a failed
 webhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN
 §10). Admin-gated; the relay picks the row up on its next tick.
 Replay a failed webhook delivery.

@@ -1,11 +1,11 @@
 ---
 id: delegate-access-token
-title: "`POST /delegate/access-token` — issue a cert-bound delegated token."
+title: "`POST /delegate/access-token`"
 description: "The caller (BFF) presents EITHER its workload certificate (the"
-sidebar_label: "`POST /delegate/access-token` — issue a cert-bound delegated token."
+sidebar_label: "`POST /delegate/access-token`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztV9tuGzcQ/ZUBX2qj1Mq5oAk2T44vjdq6DmwVfbAMibscaRnvkhuSK1sVBPQj+g/5j3xKv6QYcleSbTVxgb4UqF8k03M5M3Pm4iXzYuZYesUkljgTXhnNrjmT6HKr6vBryoYFQi7KEi3svT093YfaokPtHZwMhu9OLkB5B7fG3pRGSMjRejVVufAIe77AkZ5k02mvdWDsBJRE7ZVfwJ+//wG+QBj+dAmlWKCFo8PeHK2aKnQgtASlP2DuHQQ7rsnotzdBJzPG98ghSrA4U87bBVSihpkVBG1CCJV+nbaOMbUo5ISPtGh8Accnl4Pvf4bPn14mL6ZvYGZNU7ePSSXh86cXybN9OL8AAXNRKglnz8/gLQqLFry5QT3St8oXf+cGXG5qTOAwpKOXmUZHE0EXbhBrR2kb6UmupxOorakFqUvwJsTX2ZOtijOgPChdoFUxIZApLZWeJSP9TmhZbnRA5Dk6FzUTxpmp0YbiDiRLu1rjOIqNgxjjzOLHBp1/a+SCpUuWG+1Re/oq6rqkiiqj+x8ckWLJXF5gJeibX9TIUmZCddhD9lxEq5AZuYCpsTB5f345hH6Hoh9R9AKKSTLSjxQ6ySi4DorgKouS6CtyP3ZNxjgLiWeciUYq1DkSnSm7xEp0IZjcj7ESqtxgv2LOW6VnjDPdlOXuFnBeTKfQOLTfOAgGYI/gUSkmIvcTyEuhqv1kpElc5D5KJWzF1wA36Vp7/IqnQ6IrfYfBcWio4CxxTTbZduWaLDrq4v66J2Fn6KFTgL2L0yN4/ergFVh0prE5AhEsp6blgMksgUnhfe3Sfr9EOUObtORPSpOLcgOntRjwoJ6PlfwnqY6woh50CX7QDslIo563k2Sq0AZfsfZfDbwlGMrYpQ72XC1y7DmshSUfHG5VWUKGIM2tDkKyCy42NlutOPPKl+TmuMV2GPg5JHytC7YiuQ1RvW0wPLjaaBfp+PzggD7uQzx+0P3KuQYl7FGlA8sgF9YqgroFkfF/r2kjwjCinagQXCFqBOHgPBAywuoCCV3batRiEfbAkzv33gwKn+MAjjO8q5VFN1Z6Vxdv6T2pq+4PxdU98xsDSnucoWWcTY2thI9P373cabK1ACqEVSmtqqZi6cFjLj5twrTcupeGJ8UWy0FyT6BmLBRxc8XZy130OxMlRR9Wa0tkknz2WPIo3gXa0CDxhbHqt7jD1ruIToawBeHbGCAHY8MuzOI6DXt05xrdD7E4zBur/IKlV9ecVegLQ1usNo54WwtfsJTtXieMM2L+xWaxndyJqi7xwR7YpHY9p7ee1hN189ZNtc1LW+/uYcWZ0lMTqtfWog2xR3l6VMTL+EdoP9PQZNR83bHEY+P1zwfHR/3Tw/cDDg6dU0Y7Dj/8+uNll3+/IC6WKkcqcrpkWlTk/mwwpHvmsBZ5gb3nyQHjbDM/dwqsOJujdRHhQfIsPlHiK6G3TH9xo8coaH6B2L6GHk70hynZOkD+v0D/8xdoO8I83vl+XQqliUmNDTdYbOH1/yDhettu4mvOCmr29Iotl5lw+IstVyt6/tigbefCXFglMmq0q+sVZwUKSay+WrIbXNCgimTqDeNqmYuyIUCPluSKdxo0M2v/RdnteUQ9wDjL2uu5MpJ0rLilhSduWcrCIU7aYYGFtyUrhZ41Ykay0Sb9/AV4DcGv
+api: eJztV9ty2zYQ/ZWdfak9hSjnMk2GeXJ8adzGdcZWpw+WRwLJlYiYBBgAlKNq9D35j3xZZwHqYltN3Jm+tXohBe3lLPbsRQv0cuowvcaCKppKr4zGG4EFudyqJnxNcVAS5LKqyMLe29PTfWgsOdLewcnZ4N3JJSjv4M7Y28rIAnKyXk1ULj3Bni9pqMfZZNLrHBg7BlWQ9srPoQe+JBi8v4JKzsnC0WFvRlZNFDmQugClP1LuHQQrrs3425ugkxnje+yOCrA0Vc7bOdSygamVDGzM+JR+nXZuKbUki7EYatn6Eo5Prs5+/g2+fnmZvJi8gak1bdMdJnUBX7+8SJ7tw8UlSJjJShVw/vwc3pK0ZMGbW9JDfad8+XduwOWmoQQOw2X0MtPqaCLowi1R4/jShnqc68kYGmsayeoFeBPiW9krOhVnQHlQuiSr4oVApnSh9DQZ6ndSF9VGB2Sek3NRMxnqoVbOtQRyG80DBwkKNA3ZwICzAtMVIWgUrY2CGAq09Kkl59+aYo7pAnOjPWnPr7JpKk67Mrr/0TFzFujykmrJb37eEKZoQhLxIcUuo1XITDGHibEw/nBxNYD+CkU/ougFFONkqB8prCSj4DoohqssFcxxmfuRazMUGPKDAmVbKNI5Mec5CUxdciGY3I+olqraYL9G563SUxSo26raXSfOy8kEWkf2BwfBAOwxPM7YWOZ+DHklVb2fDDWLy9xHqQSXYg1wc11rj9/xdMis5nc4Ow5VF5wlrs3G265cm0VHq7i/70naKXlYKcDe5ekRvH518AosOdPanIB5mHNlC6BkmsC49L5xab9fUTElm3Q1klQml9UGTmcx4CE9G6nin1x1hBX1YHXBD0k91KRnXbuZKLLBV8z9dwPvCEZFLGYHe66ROfUcNdKyDwF3qqogIyjMnQ5CxSq4WP+4XAr0ylfs5rjDdhj4OWB8nQtcstyGqN62FA5cY7SLdHx+cMCP+xCPHzSJUOYF7HGmA8sgl9YqhroFEcW/V7QRIfTAyZrAlbIhkA4uAh0jqFUYoWY7+UbOw6h4ct3e60DhOQrQBNLnRllyI6V31fCW3pNq6l7nDMTcmN8YUNrTlCwKnBhbSx+Pfnq502RnAVQIq1Za1W2N6cFjJj6tv3TMuncNT4otpoPlnkDMmChm5lLgy13kO5cVRx/mb0djlnz2WPIorg7acBvxpbHqzzjo1gOLt4ownODHGKAAY8PAzOLMDcN256zdD7E4ylur/BzT6xuBNfnS8AxrjGPWNtKXmOLuYYICmfeXm7F28lnWTUUPpsDmatddeuto3U83Z6uetjnp8r06WApUemJC9rpcdCH2+J4eJfEq/gjdMw1F1ltvUyKWXf/i7Piof3r44UyAI+eU0U7AL3/8erW6fT9nJlYqJ05xukAta3Z+fjbgleewkXlJvefJAQrc9M6dAkuBM7Iu4jtInsUjvvZa6i3T35zmDwPdWir+Xz3/G6tn1708ffb9ppJKM41aG5avWL3rfyhhbduu3xuBJdd5eo2LRSYd/W6r5ZKPP7Vku5Ywk1bJjGvs+mYpsCRZMKWvF3hLc+5RkXG9QZwqM1m1DOjRdFyKlQa3y8Z/U3a7FXEBoMCsW5trU7COlXc86+Qdphg2cNYOsyucLbCSetrKKctGm/z5C8uQyGg=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /delegate/access-token` — issue a cert-bound delegated token."}
+  children={"`POST /delegate/access-token`"}
 >
 </Heading>
 
@@ -38,12 +38,14 @@ import Translate from "@docusaurus/Translate";
 
 
 The caller (BFF) presents EITHER its workload certificate (the
-`bff-delegator` identity — the TLS layer CA-verifies and injects the
+`bff-delegator` identity - the TLS layer CA-verifies and injects the
 subject; the boot-loaded registry map grants `sentin8:delegate:read`,
 auth DESIGN §4.3f; group DESIGN.md §3.1) OR a valid M2M Bearer token
 with `sentin8:delegate:read` scope. A cert-bound M2M token keeps its
 `cnf` propagated to the delegated token so it inherits the binding.
 Handle delegate access token.
+
+issue a cert-bound delegated token.
 
 <Heading
   id={"request"}

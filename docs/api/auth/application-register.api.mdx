@@ -1,13 +1,11 @@
 ---
 id: application-register
-title: "`POST /v1/admin/oauth-clients` — create an OAuth client.
-Create OAuth client."
-description: "`POST /v1/admin/oauth-clients` — create an OAuth client."
-sidebar_label: "`POST /v1/admin/oauth-clients` — create an OAuth client.
-Create OAuth client."
+title: "`POST /v1/admin/oauth-clients`"
+description: "create an OAuth client."
+sidebar_label: "`POST /v1/admin/oauth-clients`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztV9uO2zYQ/RVinlpAtvfqJHrbbhpgWwQb7G6RB6/h0NLYYiKTCkl5VzEE9CP6hf2SYkhJliyvE+SC9qF+sU3OHM71cLgBy5cGwgnw3CYwDUBlqLkVSl7FEALPslRE7v9Q41IYixoCyLjmK7SoSXUDkq8QQrBcL9HOUK5nIoYAhIQQPuaoCwggRhNpkREShHDnRBnKNVsozSKtjBnQPx6vhIQANH7MhcYYwgVPDQZgogRXHMIN2CKj04zVQi6hLKdeGo39RcUFSURKWpSWfrYcGL03dPamD6Xm7zGyPSNvPCqbq7iozERuUVGoolSgtMOOpRPwq9776reLzTSATFNkrUDjLGwEew7tWuFFmYhRWrEQqIdQdtE/C3GXIKtgSKENYDDSaLcQky2GzNOULH8Sy+t6NCUNwW2D0dg0VypFLntGvRLa2EHGtS1Ypc7mRcaNYUP2NkHJfOaZTZBRyJUWn/BeoowzJSgixuRo3HakYmSx0BjZtGAPwiYqtzXqkL3EBc9Ty6zOkf1k+AJ/Ht5L50l1cG23c6Yq4EMxWSi94hZCyHOX7K5rVMg7+VpqLu2M8EwrNlxrTs0hLK7MntreF3yHxBySQ9boHZ/lWnwrdo3FCKtCNxnF6LuYXoO1rDeR+nZcD+LwrPqAclbXyIzqZrZCm6gv6DSCcvqsqTHSZ15/CCXhC5sSxKWjguuL3CaXrhsqsoCyLNucQCXXCqPz6OTomL66hzuourM80TgW+V5UVkU+40WqeOzo7ACRuaJuiPwpWtstvm6Z94rnYHaaUgjAWG5z+lGFYcbJoTyL6z//RTrdmrpHv6ELcmFghYvdjl0egNHmXhbag/bvk8/XGHjVNe5//mrzV1X7X1SDXvbH016n976uuiuAurpbRNqhUB9e4tAygLOjoz5NNp3OuIxZq20Z19hc4+DUT/vqr4UxQi6dg6GbNX3wvcKLg+elGnlcMHwUxhrng8Eo18IWbgimOULI5+EWGsLJtOwNUO/eXN/esdH6eOSERo6FB/4c8479/edfFf0zLln7VhjeS3/rdFchgDrTkClj3XhuEwjhiTMgALo+brYz86+PfJWluMOk2wR32LG3XI+QrY3eNEjX4JbS4HTBn58vxmeD82fHzwZn5+OTwfx0EQ1Oohfj08V4zBd8vHObbKewaY8zulvdhm/v1c3aXjvUOa2mFXKhXO1XZVtle+CeTbspvvWbrPoOXboosZ6XbRH4FI6ur15ejl5dvLkKmEFjhJImYL+9/f22HnhtQflNRYTUF2Hz1Hp9dceub9hFxqMEByfDI2Kchlf3CpQBrFEbb+HR8NgvUcWsuGxB/4D67ESn4Q+Lj3aUpVxIRzE6pT1fuhNYH0MA9WOwW77TABKq83ACm82cG/xDp2VJy/6tSc0YC8Pnaev5uGNCM1Z9/iW619oPWOx58K55mpMsUNevuRZkg2OBABLkMWVmsqmUL70JgzvC3+r2prwyqDUuoggze1B22iIDyiMEMK8exSsVk47mDzSZ8Qeyk577pO0uHLe2gZTLZc6XJOsx6fMPJo+iuw==
+api: eJztV11v2zYU/SvEfdoAyc53W71l6QpkQ5EiydAHx3Bp6cpiK5MqSTnRDP334ZKSLVmO27Udtof5xRLFe3g/zj0k12D5wkA0AV7aDKYBqAI1t0LJ6wQi4EWRi9i9jzQuhLGoIYCCa75Ei5pM1yD5EiECy/UC7QzlaiYSCEBIiOBzibqCABI0sRYFIUEE924qQ7liqdIs1sqYkN54shQSAtD4uRQaE4hSnhsMwMQZLjlEa7BVQasZq4VcQF1P/Ww09heVVDQjVtKitPTYCWD80dDa6yGUmn/E2A6cvPWobK6SqnETuUVFqYpzgdKOep5OwI/66Jtnl5tpAIWmzFqBxnm4mTgIaNcLP5WJBKUVqUA9grqP/kWI+wxZA0MGXQCDsUa7hZhsMWSZ5+T5s1je1qMpaQhum4yNT3OlcuRy4NQboY0NC65txRpzNq8KbgwbsfcZSuYrz2yGjFKutPgTHyTKpFCCMmJMicZ9jlWCLBEaY5tX7FHYTJW2RR2x15jyMrfM6hLZT4an+PPoQbpImoVbv10wDYEP5SRVesktRFCWrtj90IjIO/VaaC7tjPBMJzdca07NISwuzR5u70u+Q2IOySFr9IHPSi2+F7vFYoTVoJuCcvRDXG/BOt6bWH0/rgdxeFZ9QjlrOTIj3syWaDP1FZ1GUM6ebThG9szbj6AmfGFzgrhyUnBzWdrsynVDIxZQ13VXE4hynTS6iE6Ojumvv7iDajvLC41TkR8lZU3mC17liidOzg4ImSP1Rsifk7Vd8vVpPiDPwepsqBCAsdyW9NCkYcYpoLJI2pf/opxuXd1jv5ELCiG0wuVuxy8PwOjjXhXag/bvi8+3OHjdd+5//erqV8P9r+Kgn/vPy16v976N3Q1Ay+6OkPYk1KeXNLQO4OzoaCiTm05nXCas07aMa9xs4+DMT4fmb4UxQi5cgJE7a/rke4NXB9fLNfKkYvgkjDUuBoNxqYWt3CGYzhFCvoy20BBNpvXgAOUbnXHJupI/epB+S+mPQgBtGaFQxrqzt80ggvHqeOxWGTsZD70BqSbtDbfbA/GvT3xZ5Lgjk9vq9aRvMNyeDzsfBkc92uO2egWnKX95nl6checvjl+EZ+cXJ+H8NI3Dk/jVxWl6ccFTfrGzVWyPWNOBIPQ/9bu5+63txO7YobbodKSQqXLEbjjZlDJ0d6Ld+t35j6z5j1y5wkZybRX4Ao5vrl9fjd9cvrsOmEFjhJImYL+9//2uPcvaiqqbixiJ8tHmFvX2+p7d3LLLgscZhiejIxKTjWTunVAHsEJtvH9Ho2M/RHxZctmB/vDu5u6ePcOcD7uRdu5Rf5u0jURYfLLjIudCOhXROaF6Ak9gdQwBtPe9PomnAWTE9mgC6/WcG/xD53VNw/46Sf2WCMPneeeG+KzzX7xs7vX2E1Z77rQrnpc0F6ixV1wL8sE1egAZ8oQqNFk3xlfehfCe8Le2g4NcHbQWl3GMhT04d9qRBKonBDBv7r1LlZCN5o90+OKP5Cfd6Mna7SlubA05l4uSL2iux6TfXweqlcw=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/oauth-clients` — create an OAuth client.\nCreate OAuth client."}
+  children={"`POST /v1/admin/oauth-clients`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/oauth-clients` — create an OAuth client.
+create an OAuth client.
 Create OAuth client.
 
 <Heading

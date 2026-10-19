@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/instances/uninstall": {
@@ -109,7 +112,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`POST /v1/admin/instances/uninstall` — uninstall an app instance.\nBody: `{ \"instance_id\": \"uuid\" }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced).",
+        "summary": "`POST /v1/admin/instances/uninstall`",
         "operationId": "uninstall_instance",
         "parameters": [
           {
@@ -150,7 +153,8 @@
           {
             "sentin8:app:admin": []
           }
-        ]
+        ],
+        "description": "uninstall an app instance.\nBody: `{ \"instance_id\": \"uuid\" }`. Deletes the instance if it belongs\nto the caller's org/env (RLS-enforced)."
       }
     },
     "/v1/admin/policy-sets": {
@@ -179,7 +183,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -208,7 +213,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -237,7 +243,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -266,7 +273,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -306,7 +314,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -352,7 +361,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -382,7 +392,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -427,7 +438,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -456,7 +468,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -491,7 +504,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -521,7 +535,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -576,7 +591,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -584,7 +600,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/ui/{page}` — RFW page definition for the requested page.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -626,7 +642,8 @@
           {
             "sentin8:app:read": []
           }
-        ]
+        ],
+        "description": "RFW page definition for the requested page."
       }
     },
     "/v1/admin/{resource}": {
@@ -634,7 +651,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -676,7 +693,8 @@
           {
             "sentin8:app:read": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows."
       }
     },
     "/v1/app/admin/instances/{id}": {
@@ -684,7 +702,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/admin/instances/{id}` — instance admin detail.",
+        "summary": "`GET /v1/app/admin/instances/{id}`",
         "operationId": "instance.get",
         "parameters": [
           {
@@ -713,7 +731,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "instance admin detail."
       }
     },
     "/v1/app/admin/instances/{id}/domain": {
@@ -721,7 +740,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`PUT /v1/app/admin/instances/{id}/domain` — update custom domain (with DNS TXT validation).",
+        "summary": "`PUT /v1/app/admin/instances/{id}/domain`",
         "operationId": "instance.domain",
         "parameters": [
           {
@@ -763,7 +782,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "update custom domain (with DNS TXT validation)."
       }
     },
     "/v1/app/admin/instances/{id}/env-vars": {
@@ -771,7 +791,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`PUT /v1/app/admin/instances/{id}/env-vars` — update env var secret references.",
+        "summary": "`PUT /v1/app/admin/instances/{id}/env-vars`",
         "operationId": "instance.env-vars",
         "parameters": [
           {
@@ -810,7 +830,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "update env var secret references."
       }
     },
     "/v1/app/admin/instances/{id}/env-vars/resolve": {
@@ -818,7 +839,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/admin/instances/{id}/env-vars/resolve` — resolve the\ninstance's stored env-vars secret reference through the shared\n`sentin8-secrets` resolver chain ( story 34.2.5). Returns the\nresolved value once; never logged. Requires the instances:admin scope.",
+        "summary": "`GET /v1/app/admin/instances/{id}/env-vars/resolve`",
         "operationId": "instance.env-vars.resolve",
         "parameters": [
           {
@@ -847,7 +868,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "resolve the\ninstance's stored env-vars secret reference through the shared\n`sentin8-secrets` resolver chain ( story 34.2.5). Returns the\nresolved value once; never logged. Requires the instances:admin scope."
       }
     },
     "/v1/app/admin/instances/{id}/feature-flags": {
@@ -855,7 +877,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`PUT /v1/app/admin/instances/{id}/feature-flags` — update feature flags.",
+        "summary": "`PUT /v1/app/admin/instances/{id}/feature-flags`",
         "operationId": "instance.feature-flags",
         "parameters": [
           {
@@ -894,7 +916,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "update feature flags."
       }
     },
     "/v1/app/admin/instances/{id}/oauth-client": {
@@ -902,7 +925,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/admin/instances/{id}/oauth-client` — get OAuth client (DCR summary).",
+        "summary": "`GET /v1/app/admin/instances/{id}/oauth-client`",
         "operationId": "instance.oauth",
         "parameters": [
           {
@@ -931,7 +954,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "get OAuth client (DCR summary)."
       }
     },
     "/v1/app/admin/instances/{id}/status": {
@@ -939,7 +963,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`PUT /v1/app/admin/instances/{id}/status` — update instance status.",
+        "summary": "`PUT /v1/app/admin/instances/{id}/status`",
         "operationId": "instance.status",
         "parameters": [
           {
@@ -981,7 +1005,8 @@
           {
             "sentin8:app:instances:admin": []
           }
-        ]
+        ],
+        "description": "update instance status."
       }
     },
     "/v1/app/instances/customer-mode": {
@@ -989,8 +1014,8 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`).",
-        "description": "M2M-only service surface: the sign-up closure provisioning (Sentin8:\nAuth) calls this with its own workload token to learn which\n`sentin8:app:{instance_id}` groups a new customer should join.\n\nAuthorization (fail-closed, three gates):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — this is a\n   service-to-service discovery surface, never a user surface.\n2. Shield gate on `sentin8:app:instances:read`.\n3. Owner scoping: the caller's `service_type` claim must resolve to\n   an instance of THIS app service's own domain — answered only for\n   envs in an org where app is enabled; the query itself stays\n   env-scoped so a foreign env is an indistinguishable empty result\n   (no tenant-existence oracle).",
+        "summary": "`GET /v1/app/instances/customer-mode`",
+        "description": "M2M-only service surface: the sign-up closure provisioning (Sentin8:\nAuth) calls this with its own workload token to learn which\n`sentin8:app:{instance_id}` groups a new customer should join.\n\nAuthorization (fail-closed, three gates):\n1. Bearer verify + M2M-only (`token_tp == \"m2m\"`) — this is a\n   service-to-service discovery surface, never a user surface.\n2. Shield gate on `sentin8:app:instances:read`.\n3. Owner scoping: the caller's `service_type` claim must resolve to\n   an instance of THIS app service's own domain — answered only for\n   envs in an org where app is enabled; the query itself stays\n   env-scoped so a foreign env is an indistinguishable empty result\n   (no tenant-existence oracle).\n\n?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`).",
         "operationId": "instances.customerMode",
         "parameters": [
           {
@@ -1032,8 +1057,8 @@
         "tags": [
           "app"
         ],
-        "summary": "Stories , , -34 — `GET /v1/app/runtime/context`.",
-        "description": "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header\n(no per-listing API key, no hostname-based resolution). The response includes\ninstance metadata, the organization display name, and merged org→env branding\nfrom `sentin8_sys_branding` so apps can apply tenant branding without a separate call.",
+        "summary": "`GET /v1/app/runtime/context`",
+        "description": "Runtime context is resolved from the TLS-injected `X-Sentin8-App-Id` header\n(no per-listing API key, no hostname-based resolution). The response includes\ninstance metadata, the organization display name, and merged org→env branding\nfrom `sentin8_sys_branding` so apps can apply tenant branding without a separate call.\n\nStories , , -34 — `GET /v1/app/runtime/context`.",
         "operationId": "runtime_context",
         "responses": {
           "200": {
@@ -1056,7 +1081,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`POST /v1/app/setup` — create an app instance (atomic).",
+        "summary": "`POST /v1/app/setup`",
         "operationId": "setup.create",
         "requestBody": {
           "content": {
@@ -1080,7 +1105,8 @@
           {
             "sentin8:app:instances:write": []
           }
-        ]
+        ],
+        "description": "create an app instance (atomic)."
       }
     },
     "/v1/app/setup/{id}/status": {
@@ -1088,7 +1114,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/setup/{instanceId}/status` — provisioning status.",
+        "summary": "`GET /v1/app/setup/{id}/status`",
         "operationId": "setup.status",
         "parameters": [
           {
@@ -1124,7 +1150,8 @@
           {
             "sentin8:app:instances:read": []
           }
-        ]
+        ],
+        "description": "`GET /v1/app/setup/{instanceId}/status` — provisioning status."
       }
     },
     "/v1/app/store/listings": {
@@ -1132,7 +1159,7 @@
         "tags": [
           "app"
         ],
-        "summary": "List published store listings visible to the caller (RLS-scoped).\n`?category=` filters to listings carrying that category (APP-3).",
+        "summary": "`GET /v1/app/store/listings`",
         "operationId": "store.list",
         "responses": {
           "200": {
@@ -1156,14 +1183,15 @@
           {
             "sentin8:app:store:read": []
           }
-        ]
+        ],
+        "description": "List published store listings visible to the caller (RLS-scoped).\n`?category=` filters to listings carrying that category (APP-3)."
       },
       "post": {
         "tags": [
           "app"
         ],
-        "summary": "`POST /v1/app/store/listings` — create a store listing.",
-        "description": "Epic 15.5.5: populates `usr_id` from the token `sub` (the creator).\nVisibility is immutable after `status = 'published'` (enforced in\n`update_listing`).",
+        "summary": "`POST /v1/app/store/listings`",
+        "description": "Epic 15.5.5: populates `usr_id` from the token `sub` (the creator).\nVisibility is immutable after `status = 'published'` (enforced in\n`update_listing`).\n\ncreate a store listing.",
         "operationId": "store.create",
         "requestBody": {
           "content": {
@@ -1205,8 +1233,8 @@
         "tags": [
           "app"
         ],
-        "summary": "`GET /v1/app/store/listings/{id}` — listing detail.",
-        "description": "Epic 15.5.5: visibility is enforced by RLS — if the row is not visible\nto the caller, the SELECT returns zero rows and we 404. No manual\nvisibility check in the service layer.",
+        "summary": "`GET /v1/app/store/listings/{id}`",
+        "description": "Epic 15.5.5: visibility is enforced by RLS — if the row is not visible\nto the caller, the SELECT returns zero rows and we 404. No manual\nvisibility check in the service layer.\n\nlisting detail.",
         "operationId": "store.get",
         "parameters": [
           {
@@ -1248,7 +1276,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`PUT /v1/app/store/listings/{id}` — update a listing (catalog admin).",
+        "summary": "`PUT /v1/app/store/listings/{id}`",
         "operationId": "store.update",
         "parameters": [
           {
@@ -1297,13 +1325,14 @@
           {
             "sentin8:app:store:admin": []
           }
-        ]
+        ],
+        "description": "update a listing (catalog admin)."
       },
       "delete": {
         "tags": [
           "app"
         ],
-        "summary": "Story — `DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).\nSets `status = 'archived'` so the listing is hidden from the public store but retained for audit.\n`DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).",
+        "summary": "`DELETE /v1/app/store/listings/{id}`",
         "operationId": "store.archive",
         "parameters": [
           {
@@ -1332,7 +1361,8 @@
           {
             "sentin8:app:store:admin": []
           }
-        ]
+        ],
+        "description": "Story — `DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete).\nSets `status = 'archived'` so the listing is hidden from the public store but retained for audit.\n`DELETE /v1/app/store/listings/{id}` — archive a listing (soft delete)."
       }
     },
     "/v1/health": {
@@ -1340,7 +1370,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "`GET /v1/health` — liveness probe.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -1352,7 +1382,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "liveness probe."
       }
     },
     "/v1/internal/steps/execute": {
@@ -1360,7 +1391,7 @@
         "tags": [
           "app"
         ],
-        "summary": "`POST /v1/internal/steps/execute` — App step handler called by Flow (proxy-back).",
+        "summary": "`POST /v1/internal/steps/execute`",
         "operationId": "execute_internal_step",
         "requestBody": {
           "content": {
@@ -1386,7 +1417,8 @@
           "400": {
             "description": "Invalid step"
           }
-        }
+        },
+        "description": "App step handler called by Flow (proxy-back)."
       }
     }
   },

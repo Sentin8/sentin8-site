@@ -1,15 +1,11 @@
 ---
 id: sse-handler
-title: "Long-lived SSE consume (server → client one-way) — the direct-consumer
-transport (bus DESIGN §4.3): the client receives every stream message
-as an SSE event and ACKs via `POST /v1/ack`."
-description: "Long-lived SSE consume (server → client one-way) — the direct-consumer"
-sidebar_label: "Long-lived SSE consume (server → client one-way) — the direct-consumer
-transport (bus DESIGN §4.3): the client receives every stream message
-as an SSE event and ACKs via `POST /v1/ack`."
+title: "`GET /v1/consume/sse`"
+description: "Long-lived SSE consume (server → client one-way) - the direct-consumer"
+sidebar_label: "`GET /v1/consume/sse`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVc1u20YQfpXBnCSAsuQ0h4JAD45jBE6buIicXmTBGZEjcevlktlZMhEEAj3lAYK8Q9+jj+InKYaklNgy4MDOKSf+7LfzffO/wUArwXiGi0pwHmFRsqdgCneaYowifJmRSy17jLAkTzkH9nphg45yVkzwTPnlknJj1xihcRhjSSHDCFOWxJtS7WGM5xlDh4YOfYARen5fGc8pxsFXHKEkGeeE8QbDuuztG7fCpol2lEnhpMrZX658UZX3cm7h0MIfTdp+fzenoh9KGYordvdStajvoZhtOSJ0lbU4b5q53pKycMKiwCeTiT5ukkynJ9u8DbhmF+A3OO78e8UitGJ4OT17PcRIgxTYBbVBZWlN0tbS+G9RQ5uvipqmaSJ8OjncZzsma9kDVSFjF3oLsCRjOYXBgsmzhzEk7AOYVCFhPdSwoXBSeRPWbXWKnrhf40UlcZ8MjGdz9fgm3x+FW42sqTkFdbTHwkDY1+zh+tNnSKxRrwvHow+0HsL1P18gZAyp8ZyE0TbXFy54clIWPsBgUQk8P5mevngN//379OCXYdxe6U15TtjULMA1+/U2unkXzQtHAuRaOV28yaVwdPy7QG0I3v15Nj2HcX04puTqnSY+55AV2q8rDm2fhgxjVEQvbSzSleyyaMvBBNuWXBejkfb+7bBMuzPon/GzSlq//yJ7xWuYtoplKxnU3Q8mZBDYkQtgpLBt5lSfNQk7YaXuK/vV6TmcvYGjkpKMR08OJqquTebSsL8T0ERYs5dO3eTgsPtVFhJyct+Y/gnyeSMTuwER+GMYl5aMU8crb/Wsy/UM68Ou+9o6j3Rw6zTPCgl6utksSPitt02jv99X7LVL5hHW5A0ttBpmG0yN6HuK8ZKs8J6QXXfj4E0/a4Zw51S/U3L/k5yuiZpspV8Y4RWv9/aITsEHy9kf+A/Qc2vJ/BhB223wGD1tnT9Kzm5jPEBGt5OaeRNhxpRqs842/dlRknAZvrm1twN0/O6m1YuTc2ya/wG1yet+
+api: eJzVVc1u1EgQfpVSnWYkT2bCclhZ4hBCFAUWsmLCXoZRUmPXjJu026arbRhZvvIAvATvsY/Ck6CyPSEk0YKSvXDyT39d31f/DQbaCMYLXFWCywiLkj0FU7iTFGMU4fOMXGrZY4Qleco5sNcLDTrKWTHBM+Xna8qN3WKExmGMJYUMI0xZEm9KtYcxnmUMPRp69B5G6Pl9ZTynGAdfcYSSZJwTxg2GbTnYN26DbRtdUSaFkypnf77xRVX+lHMHhw7+YNLu+5c5FX1fylBcsvspVYf6FYrFjiNCV1mLy7Zd6i0pCycsCnw0m+njR5L5/GiXtxHX7AI8gcPev5csQhuG5/PTV2OMNEiBXVAbVJbWJF0tTd+JGmq+K2rbto3w8Wz/NtshWcseqAoZuzBYgDUZyymMVkyePUwhYR/ApAoJ27GGDYWTypuw7apT9MT9Ga8qiYdkYLxYqsc/8v1VuM3EmppTUEcHLIyEfc0evn76DIk16nXhePKBtmOYQMgYUuM5CZNdpt+64MlJWfgAo1Ul8OxofnL8Cv798njvj3HcXRkMeU7Y1CzANfvtLrZ5H8u3jgTIdWL6aJNL4eDwhUBtCC7+Pp2fwbTen1JyeaFpzzlkhXbrhkPXpSHDGBUxSJuK9AW7LrpiMMF2BddHaKKdfzMo8/4Mhmf8tBKYwD9kL3kL806v7ASDOvvBhAwCO3IBjBS2y5qqsyZhJ6zEQ1W/PDmD09dwUFKS8eTR3ky1dYlcG/Z3AtoIa/bSa5vt7fe/ykJCTu6a6Yvjoz421zy/uOlc871Kf//kD8Mj8McwLS0Zp4GpvFU3+0pYYL3fd2bXA5EOdZ30WSFBT5tmRcJvvG1b/f2+Yq8dtIywJm9opbWyaDA1ou8pxmuywv8R09HrYQ6N4c6Jf6fk4Sc5XSE12Uq/MMJL3t7aMToh7y3n9jK4h54bC+j/EbTbFA/R0/XBg+RcbZN7yOj3VbtsI8yYUm3mRTOcHSQJl+HarVv7QUfz1Sw7PjrDtv0GrW/xRQ==
 sidebar_class_name: "get api-method"
 info_path: docs/api/bus/sentin-8-bus
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Long-lived SSE consume (server → client one-way) — the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`."}
+  children={"`GET /v1/consume/sse`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Long-lived SSE consume (server → client one-way) — the direct-consumer
+Long-lived SSE consume (server → client one-way) - the direct-consumer
 transport (bus DESIGN §4.3): the client receives every stream message
 as an SSE event and ACKs via `POST /v1/ack`.
 

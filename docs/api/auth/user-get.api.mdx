@@ -1,13 +1,11 @@
 ---
 id: user-get
-title: "`GET /v1/admin/users/{id}` — get a user by ID.
-Fetch user."
-description: "`GET /v1/admin/users/{id}` — get a user by ID."
-sidebar_label: "`GET /v1/admin/users/{id}` — get a user by ID.
-Fetch user."
+title: "`GET /v1/admin/users/{id}`"
+description: "get a user by ID."
+sidebar_label: "`GET /v1/admin/users/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJylVc1u2zAMfhWBpw1Qk7TrYfAtWH+QDUWHtsMOWZAqNhOrsyVXooMFgYE9xJ5wTzJQtpO0ztquOxmWyI+fyI/kGkgtPERjUCWlMJFgC3SKtDWjBCIoPbreAgkkFMqpHAkdm6/BqBwhAp2ABG0ggkJRChIS9LHTBSNABF88OjE6AQkO70vtMIGIXIkSfJxiriBaA60KRvLktFmAhLl1uSIOXuoEqkpugpFyC6QpmuV0G/e+RLfqBL4JpgLNUsytE7Gz3h/wn0pybR7wmavMP0GoqiZs7QtrPHq+PxoM+NN9KUiIrSE0xPeqKDIdh1z27zwbrbtB7OwOY+rQv2riiUKtMquS8IhQjAfUx3X+NwnBXOkMJHhSVPr2YLpEp+ca2SKfqykaNcvCX+xQESZTxQzKIml/JhIKx0ogXT95x/CpijHAAekcOw9qAARf9qBqqe4Be1THFEUw3Tptn7P1nlmboTJ/dxetU41TJ+xZ8T2GYwHpBA0xlAtQc+08TWuBtnDjLZ4ps4zT2aUVHAU7BpzX0Bk9pJKp1zFhvy2RXYW8LMEXZ0PReASERn0vqm1tG9x29Pc6jTUArcYqCaQpw6Y525aCquKr48G7bhNfaO+1WQgehlGYFMLHtkAIDsddB25JYSyJuS1NGFbgMS6dplWYkp4LZN5HW0CIxpOqU4bb89Mb0V8e9oNNn2F9f62T6lb8/vlL8ChTof/FbCVGJ71v5gwpTjcjIUdKLQ/sdlZTChHsAwxjc25DipvsNCQPwgp4zOy6vhTNNxqWlAZOdR/QSopLPutfjk4+9M+Gn0dSePReW+Ol+Pj103XIpuWUMNNMx8hViDZT/WJ0Iy6vxLBQcYoHR70BU9woe69BJWGJztcMB73D+qiwnnJldqD/N60PUrHRJOEP6heZ0ibI1oUxVqd8DMtDkNAumRAQJEQ64dZLrSe2Wa9nyuMXl1UVH9cbjOWSaN80XrOUHhHYbJfn99tert9xtWeNLlVWsi2wLpfKaebwj3zeXDVL6a3Y7vy9HJpDZVa7oVtuvPEnlYQUVcLFH6+bi2EcY0E7Lp31yuw3fXB+egNV9QdntQOa
+api: eJydVU1v2zAM/SsCTxugfLTrYfAtWNchG4oOXYcdsiBTbCZWZ0uuRAcLDP/3gbIdp3W2bj0ZlsjHR+qRrIDU1kO0AFVSCksJtkCnSFszTyCC0qMbb5FAQqGcypHQsXkFRuUIEegEJGgDERSKUpCQoI+dLhgBIvjq0Yn5JUhw+FBqhwlE5EqU4OMUcwVRBbQvGMmT02YLEjbW5Yo4eKkTqGt5CEbKbZFWaHarPu5DiW4/CHwXTAWandhYJ2JnvR/xn0pybR7x2ajM/4VQXS/Z2hfWePR8fz6d8meYKUiIrSE0xPeqKDIdh1pO7j0bVcMgdn2PMQ3o37bxRKH2mVVJSCI8xiPqi6b+h4JgrnQGEjwpKn13sNqh0xuNbJFv1AqNWmfhL3aoCJOVYgZlkXQ/SwmFYyWQblI+MvzbizHAiHSOg4RaAMGXY6g7qifAnrxjiiKY9k59Or332toMlfmzu+icGpymYM+K7ykcC0gnaIihXIDaaOdp1Qi0g1v0eKbMMi7nkFZwFOwYcF5CZ/6YSqZexoT9eiLHCvm3Al9fzUTrERBa9f3T2za2we1Ify/TWAvQaayWQJoybJuzaymoa766mL4ZNvG19l6breBhGIVJIXxsC4TgcDF04JYUxpLY2NKEYQUe49Jp2ocp6fmBzNuoB4RosawHz8CzSoUGF+u9mF+Ov5srpDg99HyOlNqksQzDmFKIYLI7mwTUCdv5SaWTOszFjQ01bNNvWYzCjH8a+ktzKdpvNCspFaNW5rSX4oZPJjfzy3eTq9nnuRQevdfWeCk+fvv0JRTLcsbMM9MxcpGjw9C+nt+Jm1sxK1Sc4uh8PGWCB+GeNKgl7ND5ht90fNYcFdZTrswR9I8P7+/EqRr8eJpl1Q/m52vdSo/wF02KTGkT1OnCtGoKv4DdGUjodkkIDBIinXCHpdYT21TVWnn86rK65uNmUbEqEu3b/mp3zx+5PrvGTnL9ifsT23KnspJtgeW3U04zh//k8+q23T2vRb/aT3JoD5XZH4fuuPFiX9YSUlQJi2BRtRezOMaCjlwGW5TZH7rhw/s7qOvfcbj4HA==
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/users/{id}` — get a user by ID.\nFetch user."}
+  children={"`GET /v1/admin/users/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/users/{id}` — get a user by ID.
+get a user by ID.
 Fetch user.
 
 <Heading

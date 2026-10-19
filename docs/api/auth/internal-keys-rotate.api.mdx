@@ -1,17 +1,11 @@
 ---
 id: internal-keys-rotate
-title: "`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for
-automated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and
-persists a new signing key; the JWKS reader keeps every key published,
-so tokens signed by the previous key stay verifiable for overlap."
-description: "`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for"
-sidebar_label: "`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for
-automated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and
-persists a new signing key; the JWKS reader keeps every key published,
-so tokens signed by the previous key stay verifiable for overlap."
+title: "`POST /v1/internal/keys/rotate`"
+description: "Sentin8:Cron proxy-back target for"
+sidebar_label: "`POST /v1/internal/keys/rotate`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVFFu00AQvcpovkDaxEm/0PIVUigBQSqSio80ajf2JF7i7G53124tyxKH4A7cg6NwEjR2gBbKDfCP7fHMm7dvnqfBqHYB5QpVGXNcC7SOvIramlmGErWJ5I0qrvZUhytvo4qEAj3dlBTiC5vVKBtMrYlkIj8q5wqddgDJp2ANx0Ka00GhbNq27Wu1pwxl9CV1geCsCRQ492Q04ltGIfXaMQxKXOid0WYHe6qh55AhQz3Muj6fL5aQVOPkJ+uEWSd9xTV8//wFFmSiNs/k1FsDztu7erBR6R6i8juKsLX+0qgy2gP3gDcf3y76htoaeDK5WL4ejAWwVHD6cjE7ew/fvo5HT4dwRoZlowDKZJfGkQ86xAAKDN1C+M3/OcScjsCkMvKwJ3IBqCJfdwd05abQIadMXJpgIdo9mdBBUAabuqt3nipty9AVhKhqqMjrrVabgvgQYCvyhXJDFHigmFuepbMhokCnYo4S/6UTCgyUll7HGuVqLVCbreWRRB0LQomhl3DQGebPGRz1/aXzhKVi4XXGkVgLmHMsmc9Op8mryflMQKAQtDVB9LIwruX2TL7QKZlA3N+oA7d/N1vC/ANMnEpzGpwMRyiwB99q8o8mtAIrHkjHcDQc9yGW46DMPej/BnrUQA8m3GCsHYsV6S4mrlDasJilL/hb760VVmOeylFEFMgy8troHbYWmLMX5QqbZqMCXfiibTl8U5I/2q5SvmPDb63AvDsrylXDYChx2u+cwZLpcHpRMq2/9k+7vvcL8IBR4Oa4tw424xqvbpmcukWJyBuQq7tt1MUaLJTZlWrHuT0mXz8AIynRWw==
+api: eJzlVMFu00AQ/ZXRnEDaxElPyJxCCyUgSEVScUijdmNP4iXO7nZn7daK/D39D74MjZ1CVegX4Iu9o5k3b98bzwGj3jKmS9RVLHCl0HkKOhpnpzmmaGykYHV5vaOGr4OLOhIqDHRbEcd3Lm8wPWDmbCQb5VN7X5qsA0h+sLMS46ygvcb00LZtX2sC5ZjGUFEXYO8sE0vuyWgkr5w4C8YLDKY4N1tr7BZ21EDPIUeBepZFNhr7Jj0NzoIP7r4ZrHW2g6jDliJsXLiyuopuL/Xw6fvneQ9mnIVXk8vFx8FYgcgAZ+/n0/Ov8PNhPHo9hHOyIgkxaJtfWU+BDUcGDZbugP9wewuxoCMw6ZwC7Ig8A9UUmo68r9al4YJydWXZQXQ7stxBUA7rpqv3gWrjKu4KOOoGagpmY/S6JLkEuJpCqf0QFe4pFk588o4jKvQ6FphiUo+TR+cScS757RxTVgUTG0yXK4XGbpzIHU0sCVPkXsJBNwwv6AuPOk9EqgGYXM6xUTCTSDKbnp0mHyYXUwVMzMZZVr0oguqkuVAvTUaWSbpbvZfmX6YLmH2DiddZQYOT4QgV9uAbQ+GfCa3CWuzo+I2G4z4kYuy1fQJ9czGbL+AlWW6eX/XJRP+PUxUbL6JFuo+JL7WxImoVShGmn7Al1mNx5ygmKhQ5ZTH0c7ZSWMhEpks8HNaa6TKUbSvh24rCcfhqHbr2cmoVFt3lMF0eBAxTPO09GCyEjqSXldD6a8O0qyc/ghiNCtfHzbR3udQEfSfk9B2miLLjpLrbN13sgKW220pvJbfHlOcX4+DD3g==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap."}
+  children={"`POST /v1/internal/keys/rotate`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for
+Sentin8:Cron proxy-back target for
 automated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and
 persists a new signing key; the JWKS reader keeps every key published,
 so tokens signed by the previous key stay verifiable for overlap.

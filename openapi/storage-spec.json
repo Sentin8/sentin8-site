@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/buckets": {
@@ -109,7 +112,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/buckets` — list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets.",
+        "summary": "`GET /v1/admin/buckets`",
         "operationId": "list_buckets",
         "parameters": [
           {
@@ -136,13 +139,14 @@
           {
             "sentin8:storage:read": []
           }
-        ]
+        ],
+        "description": "list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets."
       },
       "post": {
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/buckets` — create a bucket by placing a `.keep` marker\nobject at the bucket path. Returns an RFW redirect to the buckets list.\nCreate bucket.",
+        "summary": "`POST /v1/admin/buckets`",
         "operationId": "create_bucket",
         "parameters": [
           {
@@ -177,7 +181,8 @@
           {
             "sentin8:storage:write": []
           }
-        ]
+        ],
+        "description": "create a bucket by placing a `.keep` marker\nobject at the bucket path. Returns an RFW redirect to the buckets list.\nCreate bucket."
       }
     },
     "/v1/admin/buckets/objects": {
@@ -185,7 +190,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/buckets/objects?bucket=name` — list objects in a bucket.\nList bucket objects.",
+        "summary": "`GET /v1/admin/buckets/objects`",
         "operationId": "list_bucket_objects",
         "parameters": [
           {
@@ -224,7 +229,8 @@
           {
             "sentin8:storage:read": []
           }
-        ]
+        ],
+        "description": "?bucket=name` — list objects in a bucket.\nList bucket objects."
       }
     },
     "/v1/admin/buckets/upload": {
@@ -232,7 +238,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/buckets/upload` — upload a file to a bucket.\nHandle upload file.",
+        "summary": "`POST /v1/admin/buckets/upload`",
         "operationId": "upload_file",
         "parameters": [
           {
@@ -267,7 +273,8 @@
           {
             "sentin8:storage:write": []
           }
-        ]
+        ],
+        "description": "upload a file to a bucket.\nHandle upload file."
       }
     },
     "/v1/admin/buckets/{id}/delete": {
@@ -275,7 +282,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/buckets/{id}/delete` — delete a bucket and all its objects.\nDelete bucket.",
+        "summary": "`POST /v1/admin/buckets/{id}/delete`",
         "operationId": "delete_bucket",
         "parameters": [
           {
@@ -314,7 +321,8 @@
           {
             "sentin8:storage:write": []
           }
-        ]
+        ],
+        "description": "delete a bucket and all its objects.\nDelete bucket."
       }
     },
     "/v1/admin/buckets/{id}/download": {
@@ -322,7 +330,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/buckets/{id}/download?object={name}` — download an object.\nReturns the raw bytes as a binary stream.\nHandle download object.",
+        "summary": "`GET /v1/admin/buckets/{id}/download`",
         "operationId": "download_object",
         "parameters": [
           {
@@ -365,7 +373,8 @@
           {
             "sentin8:storage:read": []
           }
-        ]
+        ],
+        "description": "?object={name}` — download an object.\nReturns the raw bytes as a binary stream.\nHandle download object."
       }
     },
     "/v1/admin/buckets/{id}/link": {
@@ -373,7 +382,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/buckets/{id}/link` — generate a signed read URL for an object.\nGenerate link.",
+        "summary": "`POST /v1/admin/buckets/{id}/link`",
         "operationId": "generate_link",
         "parameters": [
           {
@@ -420,7 +429,8 @@
           {
             "sentin8:storage:write": []
           }
-        ]
+        ],
+        "description": "generate a signed read URL for an object.\nGenerate link."
       }
     },
     "/v1/admin/buckets/{id}/objects/{object}/delete": {
@@ -428,7 +438,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/buckets/{id}/objects/{object}/delete` — delete a single object.\nDelete object.",
+        "summary": "`POST /v1/admin/buckets/{id}/objects/{object}/delete`",
         "operationId": "delete_object",
         "parameters": [
           {
@@ -476,7 +486,8 @@
           {
             "sentin8:storage:write": []
           }
-        ]
+        ],
+        "description": "delete a single object.\nDelete object."
       }
     },
     "/v1/admin/policy-sets": {
@@ -505,7 +516,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -534,7 +546,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -563,7 +576,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -592,7 +606,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -632,7 +647,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -678,7 +694,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -708,7 +725,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -753,7 +771,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -782,7 +801,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -817,7 +837,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -847,7 +868,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -902,7 +924,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -910,7 +933,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -952,7 +975,8 @@
           {
             "sentin8:storage:read": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -960,7 +984,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -1002,7 +1026,8 @@
           {
             "sentin8:storage:read": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows."
       }
     },
     "/v1/health": {
@@ -1010,7 +1035,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -1022,7 +1047,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health."
       }
     },
     "/v1/public/env/{env_id}/objects/{object_path}": {
@@ -1030,7 +1056,7 @@
         "tags": [
           "storage"
         ],
-        "summary": "`GET /v1/public/env/{env_id}/objects/{*path}` — env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env.",
+        "summary": "`GET /v1/public/env/{env_id}/objects/{object_path}`",
         "operationId": "public_read_env",
         "parameters": [
           {
@@ -1063,7 +1089,8 @@
             "description": "No such object"
           }
         },
-        "security": []
+        "security": [],
+        "description": "`GET /v1/public/env/{env_id}/objects/{*path}` — env-scoped public read.\nNo auth required. Only serves image extensions.\nHandle public read env."
       }
     },
     "/v1/public/objects/{object_path}": {
@@ -1071,7 +1098,7 @@
         "tags": [
           "storage"
         ],
-        "summary": "`GET /v1/public/objects/{*path}` — platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read.",
+        "summary": "`GET /v1/public/objects/{object_path}`",
         "operationId": "public_read",
         "parameters": [
           {
@@ -1095,7 +1122,8 @@
             "description": "No such object"
           }
         },
-        "security": []
+        "security": [],
+        "description": "`GET /v1/public/objects/{*path}` — platform-scoped public read for image assets.\nNo auth required. Only serves image extensions. Uses system env storage prefix.\nHandle public read."
       }
     },
     "/v1/storage/objects": {
@@ -1103,7 +1131,7 @@
         "tags": [
           "storage"
         ],
-        "summary": "`GET /v1/storage/objects` — list objects with optional prefix.\nList objects.",
+        "summary": "`GET /v1/storage/objects`",
         "operationId": "object.list",
         "parameters": [
           {
@@ -1125,7 +1153,8 @@
           {
             "sentin8:storage:env:read": []
           }
-        ]
+        ],
+        "description": "list objects with optional prefix.\nList objects."
       }
     },
     "/v1/storage/objects/{object_path}": {
@@ -1133,7 +1162,7 @@
         "tags": [
           "storage"
         ],
-        "summary": "`GET /v1/storage/objects/{path}` — download an object.\nFetch object.",
+        "summary": "`GET /v1/storage/objects/{object_path}`",
         "operationId": "object.download",
         "parameters": [
           {
@@ -1173,13 +1202,14 @@
           {
             "sentin8:storage:env:read": []
           }
-        ]
+        ],
+        "description": "`GET /v1/storage/objects/{path}` — download an object.\nFetch object."
       },
       "put": {
         "tags": [
           "storage"
         ],
-        "summary": "`PUT /v1/storage/objects/{path}` — upload an object.\nHandle PUT object.",
+        "summary": "`PUT /v1/storage/objects/{object_path}`",
         "operationId": "object.upload",
         "parameters": [
           {
@@ -1219,13 +1249,14 @@
           {
             "sentin8:storage:env:write": []
           }
-        ]
+        ],
+        "description": "`PUT /v1/storage/objects/{path}` — upload an object.\nHandle PUT object."
       },
       "post": {
         "tags": [
           "storage"
         ],
-        "summary": "`POST /v1/storage/objects/{*path}` — dispatch sign-read, sign-upload, copy, move.\nHandle object action.",
+        "summary": "`POST /v1/storage/objects/{object_path}`",
         "operationId": "object.action",
         "parameters": [
           {
@@ -1253,13 +1284,14 @@
           {
             "sentin8:storage:env:read": []
           }
-        ]
+        ],
+        "description": "`POST /v1/storage/objects/{*path}` — dispatch sign-read, sign-upload, copy, move.\nHandle object action."
       },
       "delete": {
         "tags": [
           "storage"
         ],
-        "summary": "`DELETE /v1/storage/objects/{path}` — delete an object.\nDelete object.",
+        "summary": "`DELETE /v1/storage/objects/{object_path}`",
         "operationId": "object.delete",
         "parameters": [
           {
@@ -1287,13 +1319,14 @@
           {
             "sentin8:storage:env:admin": []
           }
-        ]
+        ],
+        "description": "`DELETE /v1/storage/objects/{path}` — delete an object.\nDelete object."
       },
       "head": {
         "tags": [
           "storage"
         ],
-        "summary": "`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object.",
+        "summary": "`HEAD /v1/storage/objects/{object_path}`",
         "operationId": "object.head",
         "parameters": [
           {
@@ -1321,7 +1354,8 @@
           {
             "sentin8:storage:env:read": []
           }
-        ]
+        ],
+        "description": "`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."
       }
     },
     "/v1/storage/signed/{token}": {
@@ -1329,7 +1363,7 @@
         "tags": [
           "storage"
         ],
-        "summary": "`GET /v1/storage/signed/{token}` — serve object via signed URL.\nServe signed.",
+        "summary": "`GET /v1/storage/signed/{token}`",
         "operationId": "signed.serve",
         "parameters": [
           {
@@ -1364,13 +1398,14 @@
           "403": {
             "description": "Signed URL expired or forged"
           }
-        }
+        },
+        "description": "serve object via signed URL.\nServe signed."
       },
       "put": {
         "tags": [
           "storage"
         ],
-        "summary": "`PUT /v1/storage/signed/{token}` — store object via signed upload URL.\nHandle upload signed.",
+        "summary": "`PUT /v1/storage/signed/{token}`",
         "operationId": "signed.upload",
         "parameters": [
           {
@@ -1420,7 +1455,8 @@
           "403": {
             "description": "Signed URL expired or forged"
           }
-        }
+        },
+        "description": "store object via signed upload URL.\nHandle upload signed."
       }
     }
   },

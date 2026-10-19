@@ -1,13 +1,11 @@
 ---
 id: update-connection
-title: "`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection.
-Update connection."
-description: "`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection."
-sidebar_label: "`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection.
-Update connection."
+title: "`PUT /v1/admin/enterprise-connections/{id}`"
+description: "update an enterprise connection."
+sidebar_label: "`PUT /v1/admin/enterprise-connections/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vttu4zYQ/RVinlqAjnP1bvWWZrtAekGCbIw+uEFMi6OIuxKpJSkngiCgH9Ev7JcUIyqWFLnYJg/1i6wRz+EMOXNmavDiwUG0AlH6FO44mAKt8MroSwkRlIUUHu9jozXGZAUOhbAiR4+WcDVokSNEoCRwUBoiKIRPgYNEF1tVtKAILnYM7PIDcLD4tVQWJUTelsjBxSnmAqIafFUQn/NW6QfgkBibC0++lEpC09wFMDr/o5EVIWKjPWpPf0VRZCpu/Z9/drRzPaU2m88Y+4mLN4GVbYysWGIsiy0Kj33sByO/VyFyTp4Kjw8VnV5h6fy8Qtd6E7v70mb91qs+LF1mGSHGPtymyETs2PLm1wNoOMSZQu3vlXwFR8AwJVF7lSi0QyaHsUX/So86xoBt2aRysdmird4Q3w67i1KaXCh9nyr9Ws8CkhGyZcJcqOxeeG/VpvT4SrYWzXbowKi98tXrbiBgXt4A6u23aMa5PqXdvuRUzpVo33AJAbi7gRy9kMKLNzA9Q6dcT/mbuZ7yrOUK4jIVhSmUVu4gb84AAr9IABebIpTzM4+wVlQDGuUxd1Mvm30bBLZA/Kwb34zvI8pOlFlhjTexySK2NkrGa2YsWzuRZ+sDaBoOXvmMmC5a7epVtxM3aGjRWHxbgyuMdiHM48NTevyrfoeeICmE031Le8Fk2niWmFLL1jeHcWmVr9q24SiP9fuI+k4kZE6tY3XXTG5lfb28ZfPt0bxdM0ft0RZWOZz1+7h5rWSzZn//+VfnHROa9UvZQMP/0MuwYqzrOfrUUMcrSt/2OJ9CBP9pX+BAreamb0o/PYm8yHDUAvq7HWj6xPgsz4NMGCvt4MNQNHvzRAEHn3opGxqDKsFJIt6fJYvT2dm7o3ez07PF8WxzksSz4/iHxUmyWIhELGCsOD3LWD/22FstGFRgGBpG7/udfi4/WOov2jxqdlsVGLG2BnlbgcNKGtSe0olpS6uriC7hZu2g8zLLPoWPrHtG56VP23QKeusrzq7INr+6/HAx/3h+fcmZQ+coCTj7+fdfPjHiNZTelE6ZilG7NgO6UH+7vGVXN+y8EHGKs+ODQzrLnZjvXdBw2KJ1wcPDg6NgKozzudAD6v+pREYntpMsj09+XmRCaXKuax+hfFawPQIOobjb9NvjF3CIlCQZTY3zBKrrjXC4tFnTkPlriZYk447DVlglNnSbq5oKg/5LiBKROZz4t5sK4bubTu++Zy/H0L1BdEahSeS3IivpDTh8wSoMus1dwyFFIeniVnX34SJsOKMEHQAnIylp3E5urpe3wGHTTbK5kQSx4pFGTfEY9jVFOKmoDrYaMqEfSvFAawMl/f4BU2UTfA==
+api: eJydVttu2zgQ/RVinrYAHefqdvWWTbdA9oIEaYx9cIOYFkcRW4lUScqJIOjfixEVS7a82439ImvEczjDmTnDGrx4chAtQJQ+hQcOpkArvDL6WkIEZSGFx8fYaI0xWYFDIazI0aMlXA1a5AgRKAkclIYICuFT4CDRxVYVLSiCqw0Du/4IHCx+L5VFCZG3JXJwcYq5gKgGXxXE57xV+gk4JMbmwpMvpZLQNA8BjM7/ZmRFiNhoj9rTX1EUmYpb/6dfHe1cj6nN6ivGfuTiXWBlKyMrlhjLYovCYx/70ZbfixA5J0+Fx6eKTq+wdH5eoWu9id1jabN+60Ufli6zjBDbPtynyETs2PzuryNoOMSZQu0flXwDR8AwJVF7lSi0QyaHsUX/Ro86xoBt2aRysVmjrQ6Ib4PdRClNLpR+TJV+q2cByQjZMmEuVPYovLdqVXp8I1uLZht0YNRe+eptGQiY3QygXv+MZrvWx7TrXU7lXIn2gCQE4CYDOXohhRcHML1Cx1wv+cFcL3nWcgVxGYvCGEorN5CDK4DAOwXgYlOEdn7lEdaKakCjPOZu7GWzb4PAFohfdeOn8X1C2YkyK6zxJjZZxJZGyXjJjGVLJ/JseQRNw8ErnxHTVatdvep24gYNLdoW39bgCqNdCPP0+Jwe/6rfYSZICuF839JeMJk2niWm1LL1zWFcWuWrdmw4qmP9IaK5EwmZ0+hYPDSjrITdmNAMtUdbWOWQDTT5i56HFds6naNPDU2wovTtzPIpRDBdn0zbvaY92aQHummtZAMcaHTc9UPm9xeRFxluSXqfq4FGj4yvcjvI7LZyDj4MRbA3jxRt8KmXpqExqAycJeLDRTI7n1y8P3k/Ob+YnU5WZ0k8OY1/nZ0ls5lIxAy2FaRn2daDPfa2twcdFS4BW+/7nX5tJ5jrb9o8a3ZfFRixtqd421HDzhj0ktKJaVulq/CugCbtxWW3aj6Hj6x7RpelT9mkU09fcXZDlunN9cer6afL22vOHDpHJcDZH//8+ZkRq6FipWLKVIzatfnvAv37+p7d3LHLQsQpTk6PjukkN9K8d0HDYY3WBf+Oj06CqTDO50IPqJe383v2vwp1uRv24Cp0aN90QuTxxU+LTChNTnZDITTRAtYnwCG0bFuEe/wDDpGSJI6pcZ5Adb0SDuc2axoyfy/RkhA8cFgLq8SKcrqoqT3ov4QoEZnD/wjwl7tOxd6x3cvl3iA6o9Ak3WuRlfQGHL5hFa6vzUPDIUUhKYGLuvtwFTacUJkOgKOLJinXRnRu5/fAYdXdT3MjCWLFM10gxXPY1xThpKI62GrIhH4qxROtDZT0+wEVYwEV
 sidebar_class_name: "put api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection.\nUpdate connection."}
+  children={"`PUT /v1/admin/enterprise-connections/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection.
+update an enterprise connection.
 Update connection.
 
 <Heading

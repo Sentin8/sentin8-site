@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-auth",
-    "description": "Sentin8 Sentin8:Auth — identity, OAuth/OIDC/FAPI, sessions, JWKS authority.",
+    "description": "Sentin8 Sentin8:Auth - identity, OAuth/OIDC/FAPI, sessions, JWKS authority.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -15,7 +15,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "OIDC JSON Web Key Set — the verification keys for every ID/access\ntoken this issuer mints (fetched by every service + third-party IdP).",
+        "summary": "`GET /.well-known/jwks.json`",
         "operationId": "jwks_endpoint",
         "responses": {
           "200": {
@@ -29,7 +29,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "OIDC JSON Web Key Set - the verification keys for every ID/access\ntoken this issuer mints (fetched by every service + third-party IdP)."
       }
     },
     "/.well-known/openid-configuration": {
@@ -37,7 +38,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handle discovery.",
+        "summary": "`GET /.well-known/openid-configuration`",
         "operationId": "discovery",
         "responses": {
           "200": {
@@ -51,7 +52,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle discovery."
       }
     },
     "/delegate/access-token": {
@@ -59,8 +61,8 @@
         "tags": [
           "delegation"
         ],
-        "summary": "`POST /delegate/access-token` — issue a cert-bound delegated token.",
-        "description": "The caller (BFF) presents EITHER its workload certificate (the\n`bff-delegator` identity — the TLS layer CA-verifies and injects the\nsubject; the boot-loaded registry map grants `sentin8:delegate:read`,\nauth DESIGN §4.3f; group DESIGN.md §3.1) OR a valid M2M Bearer token\nwith `sentin8:delegate:read` scope. A cert-bound M2M token keeps its\n`cnf` propagated to the delegated token so it inherits the binding.\nHandle delegate access token.",
+        "summary": "`POST /delegate/access-token`",
+        "description": "The caller (BFF) presents EITHER its workload certificate (the\n`bff-delegator` identity - the TLS layer CA-verifies and injects the\nsubject; the boot-loaded registry map grants `sentin8:delegate:read`,\nauth DESIGN §4.3f; group DESIGN.md §3.1) OR a valid M2M Bearer token\nwith `sentin8:delegate:read` scope. A cert-bound M2M token keeps its\n`cnf` propagated to the delegated token so it inherits the binding.\nHandle delegate access token.\n\nissue a cert-bound delegated token.",
         "operationId": "delegate_access_token",
         "requestBody": {
           "content": {
@@ -98,8 +100,8 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /device/verify` — the signed-in user submits the user_code to\napprove a device sign-in (RFC 8628 ).",
-        "description": "SEC-: this endpoint **requires a valid session** (cookie or\nBearer). The approving user is the session's user — `user_id`, `org_id`,\nand `env_id` are taken from the session, NEVER from the request body,\nso knowledge of a user_code alone can no longer mint tokens for an\narbitrary user.\nHandle device verify.",
+        "summary": "`POST /device/verify`",
+        "description": "SEC-: this endpoint **requires a valid session** (cookie or\nBearer). The approving user is the session's user - `user_id`, `org_id`,\nand `env_id` are taken from the session, NEVER from the request body,\nso knowledge of a user_code alone can no longer mint tokens for an\narbitrary user.\nHandle device verify.\n\nthe signed-in user submits the user_code to\napprove a device sign-in (RFC 8628 ).",
         "operationId": "device_verify",
         "requestBody": {
           "content": {
@@ -124,7 +126,7 @@
             "description": "Unknown user_code"
           },
           "401": {
-            "description": "No session — approval requires an authenticated user"
+            "description": "No session - approval requires an authenticated user"
           },
           "410": {
             "description": "user_code expired"
@@ -138,7 +140,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /mtls/oauth/revoke` — the standard revocation handler behind a\nclient-certificate-presence guard.",
+        "summary": "`POST /mtls/oauth/revoke`",
         "operationId": "mtls_revoke",
         "parameters": [
           {
@@ -165,10 +167,11 @@
             "description": "Revoked (RFC 7009)"
           },
           "401": {
-            "description": "invalid_client — no verified client certificate"
+            "description": "invalid_client - no verified client certificate"
           }
         },
-        "security": []
+        "security": [],
+        "description": "the standard revocation handler behind a\nclient-certificate-presence guard."
       }
     },
     "/mtls/oauth/token": {
@@ -176,7 +179,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /mtls/oauth/token` — the standard token handler behind a\nclient-certificate-presence guard. Delegates to `oauth::token` so\nbehavior is identical to `POST /oauth/token` apart from the guard.",
+        "summary": "`POST /mtls/oauth/token`",
         "operationId": "mtls_token",
         "parameters": [
           {
@@ -210,10 +213,11 @@
             }
           },
           "401": {
-            "description": "invalid_client — no client certificate presented / thumbprint not registered"
+            "description": "invalid_client - no client certificate presented / thumbprint not registered"
           }
         },
-        "security": []
+        "security": [],
+        "description": "the standard token handler behind a\nclient-certificate-presence guard. Delegates to `oauth::token` so\nbehavior is identical to `POST /oauth/token` apart from the guard."
       }
     },
     "/oauth/authorize": {
@@ -221,7 +225,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "The authorize endpoint validates the request and redirects to the Auth hosted UI\n(`/sign-in`) with the OAuth params preserved. After the user authenticates,\nthe UI calls back to issue an auth code. For non-interactive flows (already\nhas a session), it issues the code directly.\nAuthorize it.",
+        "summary": "`GET /oauth/authorize`",
         "operationId": "authorize",
         "parameters": [
           {
@@ -302,7 +306,7 @@
           {
             "name": "request_uri",
             "in": "path",
-            "description": "PAR request_uri (RFC 9126) — when PAR is required, the client submits\na `request_uri` instead of inline params.\nThe request URI.",
+            "description": "PAR request_uri (RFC 9126) - when PAR is required, the client submits\na `request_uri` instead of inline params.\nThe request URI.",
             "required": true,
             "schema": {
               "type": [
@@ -314,7 +318,7 @@
           {
             "name": "screen_hint",
             "in": "path",
-            "description": "UI hint indicating which hosted UI page to show first. Currently\nsupports `signup` — when present, the authorize handler redirects\nto `/sign-up` (instead of `/sign-in`) with the full OAuth context\ninline so the sign-up page can preserve redirect_uri/state/code_challenge.\nThe screen hint.",
+            "description": "UI hint indicating which hosted UI page to show first. Currently\nsupports `signup` - when present, the authorize handler redirects\nto `/sign-up` (instead of `/sign-in`) with the full OAuth context\ninline so the sign-up page can preserve redirect_uri/state/code_challenge.\nThe screen hint.",
             "required": true,
             "schema": {
               "type": [
@@ -326,7 +330,7 @@
           {
             "name": "nonce",
             "in": "path",
-            "description": "OIDC `nonce` — echoed into the ID token (SEC-).\nThe nonce.",
+            "description": "OIDC `nonce` - echoed into the ID token (SEC-).\nThe nonce.",
             "required": true,
             "schema": {
               "type": [
@@ -338,7 +342,7 @@
           {
             "name": "response_mode",
             "in": "path",
-            "description": "OAuth response mode — `query` (default) or `jwt` (JARM, SEC-).\nThe response mode.",
+            "description": "OAuth response mode - `query` (default) or `jwt` (JARM, SEC-).\nThe response mode.",
             "required": true,
             "schema": {
               "type": [
@@ -374,7 +378,7 @@
           {
             "name": "authorization_details",
             "in": "path",
-            "description": "RFC 9396 Rich Authorization Requests — JSON array of\n`authorization_details` objects. Validated against the client's\nregistered `authorization_details_types`; stored in the code record\nand echoed into the ID token.\nThe authorization details.",
+            "description": "RFC 9396 Rich Authorization Requests - JSON array of\n`authorization_details` objects. Validated against the client's\nregistered `authorization_details_types`; stored in the code record\nand echoed into the ID token.\nThe authorization details.",
             "required": true,
             "schema": {}
           }
@@ -387,7 +391,8 @@
             "description": "Invalid authorization request (unknown client, bad redirect_uri/response_type)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "The authorize endpoint validates the request and redirects to the Auth hosted UI\n(`/sign-in`) with the OAuth params preserved. After the user authenticates,\nthe UI calls back to issue an auth code. For non-interactive flows (already\nhas a session), it issues the code directly.\nAuthorize it."
       }
     },
     "/oauth/authorize/continue": {
@@ -395,7 +400,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Authorize continue.",
+        "summary": "`POST /oauth/authorize/continue`",
         "operationId": "authorize_continue",
         "requestBody": {
           "content": {
@@ -418,7 +423,8 @@
             "description": "Session invalid or expired"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Authorize continue."
       }
     },
     "/oauth/backchannel-logout": {
@@ -426,7 +432,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.\nHandle trigger backchannel logout.",
+        "summary": "`POST /oauth/backchannel-logout`",
         "operationId": "trigger_backchannel_logout",
         "requestBody": {
           "content": {
@@ -450,14 +456,15 @@
             }
           },
           "403": {
-            "description": "Admin guard — internal trigger"
+            "description": "Admin guard - internal trigger"
           }
         },
         "security": [
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "Handler - `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.\nHandle trigger backchannel logout."
       }
     },
     "/oauth/bc-authorize": {
@@ -465,7 +472,7 @@
         "tags": [
           "ciba"
         ],
-        "summary": "`POST /oauth/bc-authorize` — issue a CIBA auth_req_id.",
+        "summary": "`POST /oauth/bc-authorize`",
         "operationId": "bc_authorize",
         "requestBody": {
           "content": {
@@ -495,7 +502,8 @@
             "description": "Client authentication failed"
           }
         },
-        "security": []
+        "security": [],
+        "description": "issue a CIBA auth_req_id."
       }
     },
     "/oauth/credentials": {
@@ -503,7 +511,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "Handle credential offer.",
+        "summary": "`POST /oauth/credentials`",
         "operationId": "credential_offer",
         "requestBody": {
           "content": {
@@ -531,7 +539,8 @@
             "description": "Session required"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle credential offer."
       }
     },
     "/oauth/credentials/issue": {
@@ -539,7 +548,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "Handle credential issue.",
+        "summary": "`POST /oauth/credentials/issue`",
         "operationId": "credential_issue",
         "requestBody": {
           "content": {
@@ -567,7 +576,8 @@
             "description": "Unknown offer"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle credential issue."
       }
     },
     "/oauth/credentials/revoke/{id}": {
@@ -575,7 +585,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "`POST /oauth/credentials/revoke/{id}` — revoke (admin).\nHandle credential revoke.",
+        "summary": "`POST /oauth/credentials/revoke/{id}`",
         "operationId": "credential_revoke",
         "parameters": [
           {
@@ -609,7 +619,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "revoke (admin).\nHandle credential revoke."
       }
     },
     "/oauth/credentials/status/{id}": {
@@ -617,7 +628,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "`GET /oauth/credentials/status/{id}` — Status List 2021 endpoint: the\ncompressed bitstring for this issuer's credentials (index = the\ncredential's issuance ordinal, per-credential status lists).\nHandle credential status.",
+        "summary": "`GET /oauth/credentials/status/{id}`",
         "operationId": "credential_status",
         "parameters": [
           {
@@ -644,7 +655,8 @@
             "description": "Unknown status list"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Status List 2021 endpoint: the\ncompressed bitstring for this issuer's credentials (index = the\ncredential's issuance ordinal, per-credential status lists).\nHandle credential status."
       }
     },
     "/oauth/device": {
@@ -652,8 +664,8 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /oauth/device` — request a device code.",
-        "description": ".5 (design ): the requesting client is authenticated and\nthe device code is bound to it — the polling grant must present the\nsame client.\nHandle device authorization.",
+        "summary": "`POST /oauth/device`",
+        "description": ".5 (design ): the requesting client is authenticated and\nthe device code is bound to it - the polling grant must present the\nsame client.\nHandle device authorization.\n\nrequest a device code.",
         "operationId": "device_authorization",
         "parameters": [
           {
@@ -701,7 +713,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /oauth/grants` — create/record a grant (admin/client API).",
+        "summary": "`POST /oauth/grants`",
         "operationId": "create_grant",
         "requestBody": {
           "content": {
@@ -732,7 +744,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create/record a grant (admin/client API)."
       }
     },
     "/oauth/grants/{id}": {
@@ -740,7 +753,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`GET /oauth/grants/{id}` — query a grant's status/actions.",
+        "summary": "`GET /oauth/grants/{id}`",
         "operationId": "get_grant",
         "parameters": [
           {
@@ -772,13 +785,14 @@
             "description": "Unknown grant"
           }
         },
-        "security": []
+        "security": [],
+        "description": "query a grant's status/actions."
       },
       "delete": {
         "tags": [
           "oauth"
         ],
-        "summary": "`DELETE /oauth/grants/{id}` — revoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key — same read path as the jti\ndenylist, so no DB hit on the hot path).",
+        "summary": "`DELETE /oauth/grants/{id}`",
         "operationId": "delete_grant",
         "parameters": [
           {
@@ -803,13 +817,14 @@
             "description": "Unknown grant"
           }
         },
-        "security": []
+        "security": [],
+        "description": "revoke the grant and cascade-revoke the\ndependent tokens. Tokens carry `grant_id`; the token-endpoint verify\npath treats a revoked grant as a hard 401 (checked via the Valkey\n`auth:grant:revoked:{grant_id}` key - same read path as the jti\ndenylist, so no DB hit on the hot path)."
       },
       "patch": {
         "tags": [
           "oauth"
         ],
-        "summary": "`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope.\nThe new scope must be a subset-or-superset of the current one; the\ncaller must be the grant's user or an env admin.\nHandle patch grant.",
+        "summary": "`PATCH /oauth/grants/{id}`",
         "operationId": "patch_grant",
         "parameters": [
           {
@@ -854,7 +869,8 @@
             "description": "Unknown grant"
           }
         },
-        "security": []
+        "security": [],
+        "description": "upgrade/downgrade the granted scope.\nThe new scope must be a subset-or-superset of the current one; the\ncaller must be the grant's user or an env admin.\nHandle patch grant."
       }
     },
     "/oauth/introspect": {
@@ -862,7 +878,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Introspect it.",
+        "summary": "`POST /oauth/introspect`",
         "operationId": "introspect",
         "parameters": [
           {
@@ -908,7 +924,8 @@
             "description": "Caller authentication failed (RFC 7662 requires client auth)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Introspect it."
       }
     },
     "/oauth/logout": {
@@ -916,7 +933,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handle logout.",
+        "summary": "`GET /oauth/logout`",
         "operationId": "logout",
         "parameters": [
           {
@@ -934,7 +951,7 @@
           {
             "name": "id_token_hint",
             "in": "path",
-            "description": "OIDC RP-Initiated Logout — the ID token issued to the client;\nits `aud` identifies the client for allow-list validation.\nThe id token hint.",
+            "description": "OIDC RP-Initiated Logout - the ID token issued to the client;\nits `aud` identifies the client for allow-list validation.\nThe id token hint.",
             "required": true,
             "schema": {
               "type": [
@@ -961,7 +978,8 @@
             "description": "Redirect to the registered post_logout_redirect_uri (or the local sign-in page when unregistered)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle logout."
       }
     },
     "/oauth/par": {
@@ -969,7 +987,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handle pushed authorization request.",
+        "summary": "`POST /oauth/par`",
         "operationId": "pushed_authorization_request",
         "parameters": [
           {
@@ -1072,7 +1090,8 @@
             "description": "Client authentication failed"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle pushed authorization request."
       }
     },
     "/oauth/register": {
@@ -1080,7 +1099,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Register it.",
+        "summary": "`POST /oauth/register`",
         "operationId": "register",
         "requestBody": {
           "content": {
@@ -1107,7 +1126,8 @@
             "description": "invalid_client_metadata / invalid_redirect_uri (RFC 7591 §3.3)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Register it."
       }
     },
     "/oauth/register/{client_id}": {
@@ -1115,7 +1135,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Fetch client.",
+        "summary": "`GET /oauth/register/{client_id}`",
         "operationId": "get_client",
         "parameters": [
           {
@@ -1146,13 +1166,14 @@
             "description": "Unknown client"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Fetch client."
       },
       "put": {
         "tags": [
           "oauth"
         ],
-        "summary": "Update client.",
+        "summary": "`PUT /oauth/register/{client_id}`",
         "operationId": "update_client",
         "parameters": [
           {
@@ -1193,13 +1214,14 @@
             "description": "Unknown client"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Update client."
       },
       "delete": {
         "tags": [
           "oauth"
         ],
-        "summary": "Delete client.",
+        "summary": "`DELETE /oauth/register/{client_id}`",
         "operationId": "delete_client",
         "parameters": [
           {
@@ -1223,7 +1245,8 @@
             "description": "Unknown client"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Delete client."
       }
     },
     "/oauth/revoke": {
@@ -1231,8 +1254,8 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`POST /oauth/revoke` — RFC 7009 token revocation.",
-        "description": "The caller MUST authenticate (client auth, SEC-). Refresh\ntokens are denylisted by `jti` AND their matching DB sessions are\nrevoked; access tokens are denylisted by `jti` for their remaining\nlifetime. Per RFC 7009 the endpoint returns 200 even for unknown\ntokens (after client auth) — never an oracle.\nRevoke it.",
+        "summary": "`POST /oauth/revoke`",
+        "description": "The caller MUST authenticate (client auth, SEC-). Refresh\ntokens are denylisted by `jti` AND their matching DB sessions are\nrevoked; access tokens are denylisted by `jti` for their remaining\nlifetime. Per RFC 7009 the endpoint returns 200 even for unknown\ntokens (after client auth) - never an oracle.\nRevoke it.\n\nRFC 7009 token revocation.",
         "operationId": "revoke",
         "parameters": [
           {
@@ -1279,7 +1302,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handle token.",
+        "summary": "`POST /oauth/token`",
         "operationId": "token",
         "parameters": [
           {
@@ -1391,7 +1414,8 @@
             "description": "invalid_client (Basic auth rejected)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle token."
       }
     },
     "/oauth/userinfo": {
@@ -1399,7 +1423,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "Handle userinfo.",
+        "summary": "`GET /oauth/userinfo`",
         "operationId": "userinfo",
         "responses": {
           "200": {
@@ -1414,7 +1438,8 @@
             "description": "Missing/invalid/expired bearer token"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle userinfo."
       }
     },
     "/oauth/vp/response": {
@@ -1422,7 +1447,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "`POST /oauth/vp/response` — the wallet's `direct_post` callback.\nHandle vp response.",
+        "summary": "`POST /oauth/vp/response`",
         "operationId": "vp_response",
         "requestBody": {
           "content": {
@@ -1450,7 +1475,8 @@
             "description": "Presentation verification failed"
           }
         },
-        "security": []
+        "security": [],
+        "description": "the wallet's `direct_post` callback.\nHandle vp response."
       }
     },
     "/scim/v2/Bulk": {
@@ -1458,7 +1484,7 @@
         "tags": [
           "scim"
         ],
-        "summary": "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) — no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch.",
+        "summary": "`POST /scim/v2/Bulk`",
         "operationId": "bulk",
         "requestBody": {
           "content": {
@@ -1489,7 +1515,8 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "batch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) - no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch."
       }
     },
     "/scim/v2/Groups": {
@@ -1497,8 +1524,8 @@
         "tags": [
           "scim"
         ],
-        "summary": "`GET /scim/v2/Groups` — list groups (read-only, env-scoped).",
-        "description": "Enterprise IdP directory sync (Entra/Okta/Google) reads group\nmemberships to mirror them. Group *management* (create/update/delete)\nstays on the Auth admin API — SCIM group writes are not exposed.\nList groups.",
+        "summary": "`GET /scim/v2/Groups`",
+        "description": "Enterprise IdP directory sync (Entra/Okta/Google) reads group\nmemberships to mirror them. Group *management* (create/update/delete)\nstays on the Auth admin API - SCIM group writes are not exposed.\nList groups.\n\nlist groups (read-only, env-scoped).",
         "operationId": "list_groups",
         "parameters": [
           {
@@ -1565,7 +1592,7 @@
         "tags": [
           "scim"
         ],
-        "summary": "`GET /scim/v2/ResourceTypes` — supported resource types.",
+        "summary": "`GET /scim/v2/ResourceTypes`",
         "operationId": "resource_types",
         "responses": {
           "200": {
@@ -1581,7 +1608,8 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "supported resource types."
       }
     },
     "/scim/v2/ServiceProviderConfig": {
@@ -1589,7 +1617,7 @@
         "tags": [
           "scim"
         ],
-        "summary": "`GET /scim/v2/ServiceProviderConfig` — capabilities metadata.",
+        "summary": "`GET /scim/v2/ServiceProviderConfig`",
         "operationId": "service_provider_config",
         "responses": {
           "200": {
@@ -1605,7 +1633,8 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "capabilities metadata."
       }
     },
     "/scim/v2/Users": {
@@ -1613,8 +1642,8 @@
         "tags": [
           "scim"
         ],
-        "summary": "`GET /scim/v2/Users` — list/search users.",
-        "description": "Supports SCIM filter: `userName eq \"email\"`, `emails.value co \"text\"`,\n`name.familyName sw \"prefix\"`. Falls back to listing all if no filter.\nList users.",
+        "summary": "`GET /scim/v2/Users`",
+        "description": "Supports SCIM filter: `userName eq \"email\"`, `emails.value co \"text\"`,\n`name.familyName sw \"prefix\"`. Falls back to listing all if no filter.\nList users.\n\nlist/search users.",
         "operationId": "list_users",
         "parameters": [
           {
@@ -1684,7 +1713,7 @@
         "tags": [
           "scim"
         ],
-        "summary": "`POST /scim/v2/Users` — create a user.",
+        "summary": "`POST /scim/v2/Users`",
         "operationId": "create_user",
         "requestBody": {
           "content": {
@@ -1718,7 +1747,8 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "create a user."
       }
     },
     "/scim/v2/Users/{id}": {
@@ -1726,7 +1756,7 @@
         "tags": [
           "scim"
         ],
-        "summary": "`GET /scim/v2/Users/{id}` — get a user.",
+        "summary": "`GET /scim/v2/Users/{id}`",
         "operationId": "get_user",
         "parameters": [
           {
@@ -1761,13 +1791,14 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "get a user."
       },
       "put": {
         "tags": [
           "scim"
         ],
-        "summary": "`PUT /scim/v2/Users/{id}` — replace a user.",
+        "summary": "`PUT /scim/v2/Users/{id}`",
         "operationId": "replace_user",
         "parameters": [
           {
@@ -1812,13 +1843,14 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "replace a user."
       },
       "delete": {
         "tags": [
           "scim"
         ],
-        "summary": "`DELETE /scim/v2/Users/{id}` — deactivate a user.",
+        "summary": "`DELETE /scim/v2/Users/{id}`",
         "operationId": "delete_user",
         "parameters": [
           {
@@ -1846,13 +1878,14 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "deactivate a user."
       },
       "patch": {
         "tags": [
           "scim"
         ],
-        "summary": "`PATCH /scim/v2/Users/{id}` — partial update.",
+        "summary": "`PATCH /scim/v2/Users/{id}`",
         "operationId": "patch_user",
         "parameters": [
           {
@@ -1900,7 +1933,8 @@
           {
             "sentin8:auth:scim": []
           }
-        ]
+        ],
+        "description": "partial update."
       }
     },
     "/v1/actor-tokens/revoke": {
@@ -1908,7 +1942,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/actor-tokens/revoke` — revoke an actor token by token_id (jti).\n`POST /v1/actor-tokens/revoke` — revoke an actor token by token_id.\nRevoke actor token.",
+        "summary": "`POST /v1/actor-tokens/revoke`",
         "operationId": "revoke_actor_token",
         "requestBody": {
           "content": {
@@ -1932,7 +1966,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "revoke an actor token by token_id (jti).\n`POST /v1/actor-tokens/revoke` - revoke an actor token by token_id.\nRevoke actor token."
       }
     },
     "/v1/admin/actor-events": {
@@ -1940,7 +1975,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/actor-events` — query the actor event audit log.\n`GET /v1/admin/actor-events` — query the actor event audit log.\nList actor events.",
+        "summary": "`GET /v1/admin/actor-events`",
         "operationId": "list_actor_events",
         "parameters": [
           {
@@ -2003,7 +2038,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "query the actor event audit log.\n`GET /v1/admin/actor-events` - query the actor event audit log.\nList actor events."
       }
     },
     "/v1/admin/actor-tokens": {
@@ -2011,7 +2047,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/actor-tokens` — list recent actor token issuances (audit).\n`GET /v1/admin/actor-tokens` — list recent actor token issuances.\nList actor tokens.",
+        "summary": "`GET /v1/admin/actor-tokens`",
         "operationId": "list_actor_tokens",
         "parameters": [
           {
@@ -2074,14 +2110,15 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list recent actor token issuances (audit).\n`GET /v1/admin/actor-tokens` - list recent actor token issuances.\nList actor tokens."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/actor-tokens` — issue an actor token.",
-        "description": "The caller must be authenticated (session cookie) and have the\n`sentin8:auth:actor:issue` scope via a tenant or platform admin role/group\n(e.g. `sentin8:org:admin`, `sentin8:org:owner`, `sys-admin`).\n`POST /v1/admin/actor-tokens` — issue an actor token.\nIssue actor token.",
+        "summary": "`POST /v1/admin/actor-tokens`",
+        "description": "The caller must be authenticated (session cookie) and have the\n`sentin8:auth:actor:issue` scope via a tenant or platform admin role/group\n(e.g. `sentin8:org:admin`, `sentin8:org:owner`, `sys-admin`).\n`POST /v1/admin/actor-tokens` - issue an actor token.\nIssue actor token.\n\nissue an actor token.",
         "operationId": "issue_actor_token",
         "requestBody": {
           "content": {
@@ -2129,7 +2166,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/api-keys` — list API keys (paginated).\nList API keys.",
+        "summary": "`GET /v1/admin/api-keys`",
         "operationId": "api-key.list",
         "parameters": [
           {
@@ -2181,13 +2218,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list API keys (paginated).\nList API keys."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/api-keys` — create an API key.\nCreate API key.",
+        "summary": "`POST /v1/admin/api-keys`",
         "operationId": "api-key.create",
         "parameters": [
           {
@@ -2225,7 +2263,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create an API key.\nCreate API key."
       }
     },
     "/v1/admin/api-keys/{id}/revoke": {
@@ -2233,7 +2272,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/api-keys/{id}/revoke` — revoke an API key.\nRevoke API key.",
+        "summary": "`POST /v1/admin/api-keys/{id}/revoke`",
         "operationId": "api-key.revoke",
         "parameters": [
           {
@@ -2271,7 +2310,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "revoke an API key.\nRevoke API key."
       }
     },
     "/v1/admin/attributes": {
@@ -2279,7 +2319,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`GET /v1/admin/attributes` — the env's principal attributes.",
+        "summary": "`GET /v1/admin/attributes`",
         "operationId": "policy_attributes",
         "responses": {
           "200": {
@@ -2301,13 +2341,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "the env's principal attributes."
       },
       "put": {
         "tags": [
           "policy"
         ],
-        "summary": "`PUT /v1/admin/attributes` — store a principal attribute.",
+        "summary": "`PUT /v1/admin/attributes`",
         "operationId": "policy_put_attribute",
         "requestBody": {
           "content": {
@@ -2339,13 +2380,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "store a principal attribute."
       },
       "delete": {
         "tags": [
           "policy"
         ],
-        "summary": "`DELETE /v1/admin/attributes` — delete an attribute by id (query\nparam).",
+        "summary": "`DELETE /v1/admin/attributes`",
         "operationId": "policy_delete_attribute",
         "parameters": [
           {
@@ -2370,7 +2412,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "delete an attribute by id (query\nparam)."
       }
     },
     "/v1/admin/audit": {
@@ -2378,7 +2421,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/audit` — list audit events (paginated).\nList audit events.",
+        "summary": "`GET /v1/admin/audit`",
         "operationId": "audit.list",
         "parameters": [
           {
@@ -2439,7 +2482,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list audit events (paginated).\nList audit events."
       }
     },
     "/v1/admin/enterprise-connections": {
@@ -2447,7 +2491,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/enterprise-connections` — list enterprise connections.\nList connections.",
+        "summary": "`GET /v1/admin/enterprise-connections`",
         "operationId": "connection.list",
         "parameters": [
           {
@@ -2480,13 +2524,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list enterprise connections.\nList connections."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/enterprise-connections` — create an enterprise connection.\nCreate connection.",
+        "summary": "`POST /v1/admin/enterprise-connections`",
         "operationId": "connection.create",
         "requestBody": {
           "content": {
@@ -2520,7 +2565,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create an enterprise connection.\nCreate connection."
       }
     },
     "/v1/admin/enterprise-connections/{id}": {
@@ -2528,7 +2574,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection.\nFetch connection.",
+        "summary": "`GET /v1/admin/enterprise-connections/{id}`",
         "operationId": "get_connection",
         "parameters": [
           {
@@ -2561,13 +2607,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "get an enterprise connection.\nFetch connection."
       },
       "put": {
         "tags": [
           "auth"
         ],
-        "summary": "`PUT /v1/admin/enterprise-connections/{id}` — update an enterprise connection.\nUpdate connection.",
+        "summary": "`PUT /v1/admin/enterprise-connections/{id}`",
         "operationId": "update_connection",
         "parameters": [
           {
@@ -2603,13 +2650,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "update an enterprise connection.\nUpdate connection."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/enterprise-connections/{id}` — delete an enterprise connection.\nDelete connection.",
+        "summary": "`DELETE /v1/admin/enterprise-connections/{id}`",
         "operationId": "delete_connection",
         "parameters": [
           {
@@ -2635,7 +2683,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete an enterprise connection.\nDelete connection."
       }
     },
     "/v1/admin/enterprise-connections/{id}/delete": {
@@ -2643,7 +2692,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/enterprise-connections/{id}/delete` — RFW alias of\n`DELETE /v1/admin/enterprise-connections/{id}`.",
+        "summary": "`POST /v1/admin/enterprise-connections/{id}/delete`",
         "operationId": "enterprise_connection_delete",
         "parameters": [
           {
@@ -2681,7 +2730,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/enterprise-connections/{id}`."
       }
     },
     "/v1/admin/groups": {
@@ -2689,7 +2739,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/groups` — list groups (paginated).\nList groups.",
+        "summary": "`GET /v1/admin/groups`",
         "operationId": "group.list",
         "parameters": [
           {
@@ -2741,13 +2791,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list groups (paginated).\nList groups."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/groups` — create a new group.\nCreate group.",
+        "summary": "`POST /v1/admin/groups`",
         "operationId": "group.create",
         "parameters": [
           {
@@ -2795,7 +2846,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a new group.\nCreate group."
       }
     },
     "/v1/admin/groups/{group_id}/members": {
@@ -2803,7 +2855,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/groups/{group_id}/members` — list group members.\nList group members.",
+        "summary": "`GET /v1/admin/groups/{group_id}/members`",
         "operationId": "group.get",
         "parameters": [
           {
@@ -2838,13 +2890,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list group members.\nList group members."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/groups/{group_id}/members` — add a member to a group.\nHandle add group member.",
+        "summary": "`POST /v1/admin/groups/{group_id}/members`",
         "operationId": "group.member-add",
         "parameters": [
           {
@@ -2889,7 +2942,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "add a member to a group.\nHandle add group member."
       }
     },
     "/v1/admin/groups/{group_id}/members/{user_id}": {
@@ -2897,7 +2951,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/groups/{group_id}/members/{user_id}` — remove a member from\na group.\nRemove group member.",
+        "summary": "`DELETE /v1/admin/groups/{group_id}/members/{user_id}`",
         "operationId": "group.member-remove",
         "parameters": [
           {
@@ -2942,7 +2996,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "remove a member from\na group.\nRemove group member."
       }
     },
     "/v1/admin/groups/{group_id}/roles": {
@@ -2950,7 +3005,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/groups/{group_id}/roles` — list roles assigned to a group.\nList group roles.",
+        "summary": "`GET /v1/admin/groups/{group_id}/roles`",
         "operationId": "list_group_roles",
         "parameters": [
           {
@@ -2985,13 +3040,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list roles assigned to a group.\nList group roles."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/groups/{group_id}/roles` — assign a role to a group.\nHandle add group role.",
+        "summary": "`POST /v1/admin/groups/{group_id}/roles`",
         "operationId": "group.role-assign",
         "parameters": [
           {
@@ -3036,7 +3092,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "assign a role to a group.\nHandle add group role."
       }
     },
     "/v1/admin/groups/{group_id}/roles/{role_id}": {
@@ -3044,7 +3101,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/groups/{group_id}/roles/{role_id}` — remove a role from a group.\nRemove group role.",
+        "summary": "`DELETE /v1/admin/groups/{group_id}/roles/{role_id}`",
         "operationId": "group.role-unassign",
         "parameters": [
           {
@@ -3089,7 +3146,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "remove a role from a group.\nRemove group role."
       }
     },
     "/v1/admin/groups/{id}": {
@@ -3097,7 +3155,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/groups/{id}` — the group's members (the same\n`list_group_members` handler is bound at both this path and\n`/v1/admin/groups/{group_id}/members`; one spec entry documents the\ncontract, a second entry records this duplicate binding so the drift\nguard passes and both forms are visible on the site page).",
+        "summary": "`GET /v1/admin/groups/{id}`",
         "operationId": "group_members_alias",
         "parameters": [
           {
@@ -3140,13 +3198,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "the group's members (the same\n`list_group_members` handler is bound at both this path and\n`/v1/admin/groups/{group_id}/members`; one spec entry documents the\ncontract, a second entry records this duplicate binding so the drift\nguard passes and both forms are visible on the site page)."
       },
       "put": {
         "tags": [
           "auth"
         ],
-        "summary": "`PUT /v1/admin/groups/{id}` — update a group.\nUpdate group.",
+        "summary": "`PUT /v1/admin/groups/{id}`",
         "operationId": "group.update",
         "parameters": [
           {
@@ -3201,13 +3260,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "update a group.\nUpdate group."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/groups/{id}` — delete a group.\nDelete group.",
+        "summary": "`DELETE /v1/admin/groups/{id}`",
         "operationId": "group.delete",
         "parameters": [
           {
@@ -3245,7 +3305,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a group.\nDelete group."
       }
     },
     "/v1/admin/groups/{id}/delete": {
@@ -3253,7 +3314,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/groups/{id}/delete` — RFW alias of\n`DELETE /v1/admin/groups/{id}`.",
+        "summary": "`POST /v1/admin/groups/{id}/delete`",
         "operationId": "group_delete",
         "parameters": [
           {
@@ -3291,7 +3352,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/groups/{id}`."
       }
     },
     "/v1/admin/groups/{id}/update": {
@@ -3299,7 +3361,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/groups/{id}/update` — RFW alias of\n`PUT /v1/admin/groups/{id}` (raw JSON body passthrough).",
+        "summary": "`POST /v1/admin/groups/{id}/update`",
         "operationId": "group_update",
         "parameters": [
           {
@@ -3354,7 +3416,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`PUT /v1/admin/groups/{id}` (raw JSON body passthrough)."
       }
     },
     "/v1/admin/invitations": {
@@ -3362,7 +3425,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/invitations` — list invitations (proxy → sys).\nList invitations.",
+        "summary": "`GET /v1/admin/invitations`",
         "operationId": "list_invitations",
         "parameters": [
           {
@@ -3417,13 +3480,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list invitations (proxy → sys).\nList invitations."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/invitations` — create an invitation (proxy → sys).\nCreate invitation.",
+        "summary": "`POST /v1/admin/invitations`",
         "operationId": "invitation.send",
         "parameters": [
           {
@@ -3465,7 +3529,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create an invitation (proxy → sys).\nCreate invitation."
       }
     },
     "/v1/admin/invitations/{id}/revoke": {
@@ -3473,7 +3538,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/invitations/{id}/revoke` — revoke an invitation\n(proxy → sys).\nRevoke invitation.",
+        "summary": "`POST /v1/admin/invitations/{id}/revoke`",
         "operationId": "revoke_invitation",
         "parameters": [
           {
@@ -3508,7 +3573,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "revoke an invitation\n(proxy → sys).\nRevoke invitation."
       }
     },
     "/v1/admin/memberships": {
@@ -3516,7 +3582,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/memberships` — list memberships.\nList memberships.",
+        "summary": "`GET /v1/admin/memberships`",
         "operationId": "membership.list",
         "parameters": [
           {
@@ -3571,13 +3637,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list memberships.\nList memberships."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/memberships` — create a membership.\nCreate membership.",
+        "summary": "`POST /v1/admin/memberships`",
         "operationId": "create_membership",
         "parameters": [
           {
@@ -3619,7 +3686,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a membership.\nCreate membership."
       }
     },
     "/v1/admin/memberships/{id}": {
@@ -3627,7 +3695,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/memberships/{id}` — delete a membership.\nDelete membership.",
+        "summary": "`DELETE /v1/admin/memberships/{id}`",
         "operationId": "delete_membership",
         "parameters": [
           {
@@ -3662,7 +3730,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a membership.\nDelete membership."
       }
     },
     "/v1/admin/oauth-clients": {
@@ -3670,7 +3739,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/oauth-clients` — list OAuth clients (paginated).\nList OAuth clients.",
+        "summary": "`GET /v1/admin/oauth-clients`",
         "operationId": "application.list",
         "parameters": [
           {
@@ -3722,13 +3791,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list OAuth clients (paginated).\nList OAuth clients."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/oauth-clients` — create an OAuth client.\nCreate OAuth client.",
+        "summary": "`POST /v1/admin/oauth-clients`",
         "operationId": "application.register",
         "parameters": [
           {
@@ -3776,7 +3846,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create an OAuth client.\nCreate OAuth client."
       }
     },
     "/v1/admin/oauth-clients/{id}": {
@@ -3784,7 +3855,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID.\nFetch OAuth client.",
+        "summary": "`GET /v1/admin/oauth-clients/{id}`",
         "operationId": "get_oauth_client",
         "parameters": [
           {
@@ -3829,13 +3900,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "get an OAuth client by ID.\nFetch OAuth client."
       },
       "put": {
         "tags": [
           "auth"
         ],
-        "summary": "`PUT /v1/admin/oauth-clients/{id}` — update an OAuth client.\nUpdate OAuth client.",
+        "summary": "`PUT /v1/admin/oauth-clients/{id}`",
         "operationId": "update_oauth_client",
         "parameters": [
           {
@@ -3890,13 +3962,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "update an OAuth client.\nUpdate OAuth client."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/oauth-clients/{id}` — delete an OAuth client.\nDelete OAuth client.",
+        "summary": "`DELETE /v1/admin/oauth-clients/{id}`",
         "operationId": "delete_oauth_client",
         "parameters": [
           {
@@ -3934,7 +4007,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete an OAuth client.\nDelete OAuth client."
       }
     },
     "/v1/admin/oauth-clients/{id}/delete": {
@@ -3942,7 +4016,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/oauth-clients/{id}/delete` — RFW alias of\n`DELETE /v1/admin/oauth-clients/{id}`.",
+        "summary": "`POST /v1/admin/oauth-clients/{id}/delete`",
         "operationId": "oauth_client_delete",
         "parameters": [
           {
@@ -3980,7 +4054,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/oauth-clients/{id}`."
       }
     },
     "/v1/admin/oauth-clients/{id}/federated-credentials": {
@@ -3988,7 +4063,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/oauth-clients/{id}/federated-credentials` — list federated credentials for an OAuth client.\nList federated credentials.",
+        "summary": "`GET /v1/admin/oauth-clients/{id}/federated-credentials`",
         "operationId": "list_federated_credentials",
         "parameters": [
           {
@@ -4033,13 +4108,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list federated credentials for an OAuth client.\nList federated credentials."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/oauth-clients/{id}/federated-credentials` — create a federated credential.\nCreate federated credential.",
+        "summary": "`POST /v1/admin/oauth-clients/{id}/federated-credentials`",
         "operationId": "create_federated_credential",
         "parameters": [
           {
@@ -4100,7 +4176,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a federated credential.\nCreate federated credential."
       }
     },
     "/v1/admin/oauth-clients/{id}/federated-credentials/{cred_id}": {
@@ -4108,7 +4185,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/oauth-clients/{id}/federated-credentials/{cred_id}` — delete a federated credential.\nDelete federated credential.",
+        "summary": "`DELETE /v1/admin/oauth-clients/{id}/federated-credentials/{cred_id}`",
         "operationId": "delete_federated_credential",
         "parameters": [
           {
@@ -4156,7 +4233,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a federated credential.\nDelete federated credential."
       }
     },
     "/v1/admin/oauth-clients/{id}/roles": {
@@ -4164,7 +4242,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/oauth-clients/{id}/roles` — list roles assigned to an OAuth client.\nList client roles.",
+        "summary": "`GET /v1/admin/oauth-clients/{id}/roles`",
         "operationId": "list_client_roles",
         "parameters": [
           {
@@ -4209,13 +4287,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list roles assigned to an OAuth client.\nList client roles."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client.\nHandle add client role.",
+        "summary": "`POST /v1/admin/oauth-clients/{id}/roles`",
         "operationId": "add_client_role",
         "parameters": [
           {
@@ -4263,7 +4342,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "assign a role to an OAuth client.\nHandle add client role."
       }
     },
     "/v1/admin/oauth-clients/{id}/roles/{role_id}": {
@@ -4271,7 +4351,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/oauth-clients/{id}/roles/{role_id}` — remove a role from an OAuth client.\nRemove client role.",
+        "summary": "`DELETE /v1/admin/oauth-clients/{id}/roles/{role_id}`",
         "operationId": "remove_client_role",
         "parameters": [
           {
@@ -4316,7 +4396,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "remove a role from an OAuth client.\nRemove client role."
       }
     },
     "/v1/admin/policy-sets": {
@@ -4324,7 +4405,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`GET /v1/admin/policy-sets` — the env's policy sets.",
+        "summary": "`GET /v1/admin/policy-sets`",
         "operationId": "policy_list_sets",
         "responses": {
           "200": {
@@ -4346,7 +4427,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "the env's policy sets."
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -4354,7 +4436,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`POST /v1/admin/policy-sets/disable` — disable the named sets (RFW row\naction).",
+        "summary": "`POST /v1/admin/policy-sets/disable`",
         "operationId": "policy_disable",
         "requestBody": {
           "content": {
@@ -4378,7 +4460,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "disable the named sets (RFW row\naction)."
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -4386,7 +4469,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`POST /v1/admin/policy-sets/enforce` — switch the named sets to\nenforce mode (RFW row action).",
+        "summary": "`POST /v1/admin/policy-sets/enforce`",
         "operationId": "policy_enforce",
         "requestBody": {
           "content": {
@@ -4410,7 +4493,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "switch the named sets to\nenforce mode (RFW row action)."
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -4418,7 +4502,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`POST /v1/admin/policy-sets/shadow` — switch the named sets to shadow\nmode (RFW row action).",
+        "summary": "`POST /v1/admin/policy-sets/shadow`",
         "operationId": "policy_shadow",
         "requestBody": {
           "content": {
@@ -4442,7 +4526,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "switch the named sets to shadow\nmode (RFW row action)."
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -4450,7 +4535,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`GET /v1/admin/policy-sets/{name}` — one policy set.",
+        "summary": "`GET /v1/admin/policy-sets/{name}`",
         "operationId": "policy_get_set",
         "parameters": [
           {
@@ -4483,13 +4568,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "one policy set."
       },
       "put": {
         "tags": [
           "policy"
         ],
-        "summary": "`PUT /v1/admin/policy-sets/{name}` — store a policy set.",
+        "summary": "`PUT /v1/admin/policy-sets/{name}`",
         "operationId": "policy_put_set",
         "parameters": [
           {
@@ -4532,13 +4618,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "store a policy set."
       },
       "delete": {
         "tags": [
           "policy"
         ],
-        "summary": "`DELETE /v1/admin/policy-sets/{name}` — delete a policy set.",
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`",
         "operationId": "policy_delete_set",
         "parameters": [
           {
@@ -4563,7 +4650,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "delete a policy set."
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -4571,7 +4659,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`POST /v1/admin/policy-sets/{name}/test` — dry-run evaluate against\nthe set.",
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`",
         "operationId": "policy_test_set",
         "parameters": [
           {
@@ -4611,7 +4699,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "dry-run evaluate against\nthe set."
       }
     },
     "/v1/admin/provision/group": {
@@ -4619,7 +4708,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision group.",
+        "summary": "`POST /v1/admin/provision/group`",
         "operationId": "provision.group",
         "requestBody": {
           "content": {
@@ -4643,7 +4732,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision group."
       }
     },
     "/v1/admin/provision/group_member": {
@@ -4651,7 +4741,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision group member.",
+        "summary": "`POST /v1/admin/provision/group_member`",
         "operationId": "provision.group_member",
         "requestBody": {
           "content": {
@@ -4675,7 +4765,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision group member."
       }
     },
     "/v1/admin/provision/group_role": {
@@ -4683,7 +4774,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision group role.",
+        "summary": "`POST /v1/admin/provision/group_role`",
         "operationId": "provision.group_role",
         "requestBody": {
           "content": {
@@ -4707,7 +4798,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision group role."
       }
     },
     "/v1/admin/provision/role": {
@@ -4715,7 +4807,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision role.",
+        "summary": "`POST /v1/admin/provision/role`",
         "operationId": "provision.role",
         "requestBody": {
           "content": {
@@ -4739,7 +4831,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision role."
       }
     },
     "/v1/admin/provision/role_nesting": {
@@ -4747,7 +4840,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision role nesting.",
+        "summary": "`POST /v1/admin/provision/role_nesting`",
         "operationId": "provision.role_nesting",
         "requestBody": {
           "content": {
@@ -4771,7 +4864,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision role nesting."
       }
     },
     "/v1/admin/provision/user_role": {
@@ -4779,7 +4873,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle provision user role.",
+        "summary": "`POST /v1/admin/provision/user_role`",
         "operationId": "provision.user_role",
         "requestBody": {
           "content": {
@@ -4803,7 +4897,8 @@
           {
             "sentin8:auth:admin:write": []
           }
-        ]
+        ],
+        "description": "Handle provision user role."
       }
     },
     "/v1/admin/relations": {
@@ -4811,7 +4906,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`GET /v1/admin/relations` — the env's ReBAC relations.",
+        "summary": "`GET /v1/admin/relations`",
         "operationId": "policy_relations",
         "responses": {
           "200": {
@@ -4833,13 +4928,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "the env's ReBAC relations."
       },
       "put": {
         "tags": [
           "policy"
         ],
-        "summary": "`PUT /v1/admin/relations` — store a relation tuple.",
+        "summary": "`PUT /v1/admin/relations`",
         "operationId": "policy_put_relation",
         "requestBody": {
           "content": {
@@ -4871,13 +4967,14 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "store a relation tuple."
       },
       "delete": {
         "tags": [
           "policy"
         ],
-        "summary": "`DELETE /v1/admin/relations` — delete a relation by id (query param).",
+        "summary": "`DELETE /v1/admin/relations`",
         "operationId": "policy_delete_relation",
         "parameters": [
           {
@@ -4902,7 +4999,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "delete a relation by id (query param)."
       }
     },
     "/v1/admin/relations/check": {
@@ -4910,7 +5008,7 @@
         "tags": [
           "policy"
         ],
-        "summary": "`GET /v1/admin/relations/check` — dry-run relation check.",
+        "summary": "`GET /v1/admin/relations/check`",
         "operationId": "policy_check_relation",
         "parameters": [
           {
@@ -4958,7 +5056,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "description": "dry-run relation check."
       }
     },
     "/v1/admin/roles": {
@@ -4966,7 +5065,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/roles` — list roles (paginated).\nList roles.",
+        "summary": "`GET /v1/admin/roles`",
         "operationId": "role.list",
         "parameters": [
           {
@@ -5018,13 +5117,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list roles (paginated).\nList roles."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/roles` — create a new role.\nCreate role.",
+        "summary": "`POST /v1/admin/roles`",
         "operationId": "role.create",
         "parameters": [
           {
@@ -5072,7 +5172,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a new role.\nCreate role."
       }
     },
     "/v1/admin/roles/{id}": {
@@ -5080,7 +5181,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/roles/{id}` — list role members.\nList role members.",
+        "summary": "`GET /v1/admin/roles/{id}`",
         "operationId": "role.get",
         "parameters": [
           {
@@ -5125,13 +5226,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list role members.\nList role members."
       },
       "put": {
         "tags": [
           "auth"
         ],
-        "summary": "`PUT /v1/admin/roles/{id}` — update a role.\nUpdate role.",
+        "summary": "`PUT /v1/admin/roles/{id}`",
         "operationId": "role.update",
         "parameters": [
           {
@@ -5186,13 +5288,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "update a role.\nUpdate role."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/roles/{id}` — delete a role.\nDelete role.",
+        "summary": "`DELETE /v1/admin/roles/{id}`",
         "operationId": "role.delete",
         "parameters": [
           {
@@ -5230,7 +5333,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a role.\nDelete role."
       }
     },
     "/v1/admin/roles/{id}/delete": {
@@ -5238,7 +5342,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/roles/{id}/delete` — RFW alias of\n`DELETE /v1/admin/roles/{id}`.",
+        "summary": "`POST /v1/admin/roles/{id}/delete`",
         "operationId": "role_delete",
         "parameters": [
           {
@@ -5276,7 +5380,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/roles/{id}`."
       }
     },
     "/v1/admin/roles/{id}/update": {
@@ -5284,7 +5389,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/roles/{id}/update` — RFW alias of\n`PUT /v1/admin/roles/{id}` (form body passthrough).",
+        "summary": "`POST /v1/admin/roles/{id}/update`",
         "operationId": "role_update",
         "parameters": [
           {
@@ -5339,7 +5444,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`PUT /v1/admin/roles/{id}` (form body passthrough)."
       }
     },
     "/v1/admin/roles/{role_id}/members": {
@@ -5347,7 +5453,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/roles/{role_id}/members` — add a member to a role.\nHandle add role member.",
+        "summary": "`POST /v1/admin/roles/{role_id}/members`",
         "operationId": "role.member-add",
         "parameters": [
           {
@@ -5392,7 +5498,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "add a member to a role.\nHandle add role member."
       }
     },
     "/v1/admin/roles/{role_id}/members/{user_id}": {
@@ -5400,7 +5507,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/roles/{role_id}/members/{user_id}` — remove a member from a role.\nRemove role member.",
+        "summary": "`DELETE /v1/admin/roles/{role_id}/members/{user_id}`",
         "operationId": "role.member-remove",
         "parameters": [
           {
@@ -5445,7 +5552,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "remove a member from a role.\nRemove role member."
       }
     },
     "/v1/admin/security": {
@@ -5453,7 +5561,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/security` — read the current high-level selection\n(prefill for the security page + CLI verify).",
+        "summary": "`GET /v1/admin/security`",
         "operationId": "get_security_selection",
         "parameters": [
           {
@@ -5488,13 +5596,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "read the current high-level selection\n(prefill for the security page + CLI verify)."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/security` — the high-level submit. Selecting a new\nprofile / extensions / overlay **resets the detail flags** to the\nprofile's defaults (adjusted for the chosen extensions/overlay),\nthen upserts the env row. The overlay row is written alongside.",
+        "summary": "`POST /v1/admin/security`",
         "operationId": "put_security_selection",
         "parameters": [
           {
@@ -5542,7 +5651,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "the high-level submit. Selecting a new\nprofile / extensions / overlay **resets the detail flags** to the\nprofile's defaults (adjusted for the chosen extensions/overlay),\nthen upserts the env row. The overlay row is written alongside."
       }
     },
     "/v1/admin/security/detail": {
@@ -5550,7 +5660,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/security/detail` — the detail-page submit: write the\nindividual `require_*` flags onto the env row **without** touching the\nhigh-level selection. Only the provided fields change (partial update).",
+        "summary": "`POST /v1/admin/security/detail`",
         "operationId": "put_security_detail",
         "parameters": [
           {
@@ -5595,7 +5705,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "the detail-page submit: write the\nindividual `require_*` flags onto the env row **without** touching the\nhigh-level selection. Only the provided fields change (partial update)."
       }
     },
     "/v1/admin/sessions": {
@@ -5603,7 +5714,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/sessions` — list sessions (paginated).\nList sessions.",
+        "summary": "`GET /v1/admin/sessions`",
         "operationId": "session.list",
         "parameters": [
           {
@@ -5665,7 +5776,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list sessions (paginated).\nList sessions."
       }
     },
     "/v1/admin/sessions/{id}": {
@@ -5673,7 +5785,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/sessions/{id}` — terminate a session.\nTerminate session.",
+        "summary": "`DELETE /v1/admin/sessions/{id}`",
         "operationId": "session.terminate",
         "parameters": [
           {
@@ -5711,7 +5823,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "terminate a session.\nTerminate session."
       }
     },
     "/v1/admin/sessions/{id}/revoke": {
@@ -5719,7 +5832,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/sessions/{id}/revoke` — RFW alias of\n`DELETE /v1/admin/sessions/{id}`.",
+        "summary": "`POST /v1/admin/sessions/{id}/revoke`",
         "operationId": "session_revoke",
         "parameters": [
           {
@@ -5757,7 +5870,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/sessions/{id}`."
       }
     },
     "/v1/admin/ui/{page}": {
@@ -5765,7 +5879,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -5807,7 +5921,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/users": {
@@ -5815,7 +5930,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/users` — list users (paginated).\nList users.",
+        "summary": "`GET /v1/admin/users`",
         "operationId": "user.list",
         "parameters": [
           {
@@ -5867,13 +5982,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list users (paginated).\nList users."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/users` — create a new user.\nCreate user.",
+        "summary": "`POST /v1/admin/users`",
         "operationId": "user.create",
         "parameters": [
           {
@@ -5921,7 +6037,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a new user.\nCreate user."
       }
     },
     "/v1/admin/users/{id}": {
@@ -5929,7 +6046,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/users/{id}` — get a user by ID.\nFetch user.",
+        "summary": "`GET /v1/admin/users/{id}`",
         "operationId": "user.get",
         "parameters": [
           {
@@ -5974,13 +6091,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "get a user by ID.\nFetch user."
       },
       "put": {
         "tags": [
           "auth"
         ],
-        "summary": "`PUT /v1/admin/users/{id}` — update a user.\nUpdate user.",
+        "summary": "`PUT /v1/admin/users/{id}`",
         "operationId": "user.update",
         "parameters": [
           {
@@ -6035,13 +6153,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "update a user.\nUpdate user."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/users/{id}` — delete a user.\nDelete user.",
+        "summary": "`DELETE /v1/admin/users/{id}`",
         "operationId": "user.archive",
         "parameters": [
           {
@@ -6079,7 +6198,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a user.\nDelete user."
       }
     },
     "/v1/admin/users/{id}/delete": {
@@ -6087,7 +6207,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/users/{id}/delete` — RFW alias of\n`DELETE /v1/admin/users/{id}`.",
+        "summary": "`POST /v1/admin/users/{id}/delete`",
         "operationId": "user_delete",
         "parameters": [
           {
@@ -6125,7 +6245,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/users/{id}`."
       }
     },
     "/v1/admin/users/{id}/groups": {
@@ -6133,7 +6254,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/users/{id}/groups` — list group names for a user.\nList user groups.",
+        "summary": "`GET /v1/admin/users/{id}/groups`",
         "operationId": "user.groups",
         "parameters": [
           {
@@ -6178,7 +6299,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list group names for a user.\nList user groups."
       }
     },
     "/v1/admin/users/{id}/roles": {
@@ -6186,7 +6308,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/users/{id}/roles` — list resolved role names for a user.\nList user roles.",
+        "summary": "`GET /v1/admin/users/{id}/roles`",
         "operationId": "user.roles",
         "parameters": [
           {
@@ -6231,7 +6353,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list resolved role names for a user.\nList user roles."
       }
     },
     "/v1/admin/webhooks/attempts/{outbox_id}": {
@@ -6239,7 +6362,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/webhooks/attempts/{outbox_id}` — list delivery attempts for an outbox entry.\nList attempts.",
+        "summary": "`GET /v1/admin/webhooks/attempts/{outbox_id}`",
         "operationId": "list_attempts",
         "parameters": [
           {
@@ -6272,7 +6395,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list delivery attempts for an outbox entry.\nList attempts."
       }
     },
     "/v1/admin/webhooks/attempts/{outbox_id}/replay": {
@@ -6280,7 +6404,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay` — reset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery.",
+        "summary": "`POST /v1/admin/webhooks/attempts/{outbox_id}/replay`",
         "operationId": "replay_failed",
         "parameters": [
           {
@@ -6306,7 +6430,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "reset a failed\nwebhook delivery to pending (mirrors post's `replay_dlq`, auth DESIGN\n§10). Admin-gated; the relay picks the row up on its next tick.\nReplay a failed webhook delivery."
       }
     },
     "/v1/admin/webhooks/endpoints": {
@@ -6314,7 +6439,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/webhooks/endpoints` — list webhook endpoints.\nList endpoints.",
+        "summary": "`GET /v1/admin/webhooks/endpoints`",
         "operationId": "list_endpoints",
         "parameters": [
           {
@@ -6347,13 +6472,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list webhook endpoints.\nList endpoints."
       },
       "post": {
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/admin/webhooks/endpoints` — create a webhook endpoint.\nCreate endpoint.",
+        "summary": "`POST /v1/admin/webhooks/endpoints`",
         "operationId": "create_endpoint",
         "requestBody": {
           "content": {
@@ -6377,7 +6503,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "create a webhook endpoint.\nCreate endpoint."
       }
     },
     "/v1/admin/webhooks/endpoints/{id}": {
@@ -6385,7 +6512,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/webhooks/endpoints/{id}` — get a webhook endpoint.\nFetch endpoint.",
+        "summary": "`GET /v1/admin/webhooks/endpoints/{id}`",
         "operationId": "get_endpoint",
         "parameters": [
           {
@@ -6418,13 +6545,14 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "get a webhook endpoint.\nFetch endpoint."
       },
       "delete": {
         "tags": [
           "auth"
         ],
-        "summary": "`DELETE /v1/admin/webhooks/endpoints/{id}` — delete a webhook endpoint.\nDelete endpoint.",
+        "summary": "`DELETE /v1/admin/webhooks/endpoints/{id}`",
         "operationId": "delete_endpoint",
         "parameters": [
           {
@@ -6450,7 +6578,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "delete a webhook endpoint.\nDelete endpoint."
       }
     },
     "/v1/admin/webhooks/outbox": {
@@ -6458,7 +6587,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/admin/webhooks/outbox` — list recent outbox entries.\nList outbox.",
+        "summary": "`GET /v1/admin/webhooks/outbox`",
         "operationId": "list_outbox",
         "parameters": [
           {
@@ -6491,7 +6620,8 @@
           {
             "sentin8:auth:admin": []
           }
-        ]
+        ],
+        "description": "list recent outbox entries.\nList outbox."
       }
     },
     "/v1/auth/consent/accounts": {
@@ -6499,8 +6629,8 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts\nfrom consent data providers registered via `sentin8-cli vertical enroll`.",
-        "description": "This endpoint is called by the Auth Flutter consent page (served on the\nprovider's auth domain, e.g. `auth.ibank.local`) to fetch the customer's\naccounts at this Data Provider. The accounts are displayed with\ncheckboxes so the customer can select which ones to share (FDX UX\nGuidelines \"Select Accounts\").\n\nAuth looks up consent data providers from the `sentin8_consent_providers`\ntable (populated at runtime by `sentin8-cli vertical enroll`). For each\nprovider, auth mints a short-lived JWT with the registered scope and\ncalls the registered service via its platform domain URL.\nNo vertical service URLs, paths, or scopes are hardcoded in auth.\nHandle consent accounts.",
+        "summary": "`GET /v1/auth/consent/accounts`",
+        "description": "This endpoint is called by the Auth Flutter consent page (served on the\nprovider's auth domain, e.g. `auth.ibank.local`) to fetch the customer's\naccounts at this Data Provider. The accounts are displayed with\ncheckboxes so the customer can select which ones to share (FDX UX\nGuidelines \"Select Accounts\").\n\nAuth looks up consent data providers from the `sentin8_consent_providers`\ntable (populated at runtime by `sentin8-cli vertical enroll`). For each\nprovider, auth mints a short-lived JWT with the registered scope and\ncalls the registered service via its platform domain URL.\nNo vertical service URLs, paths, or scopes are hardcoded in auth.\nHandle consent accounts.\n\nfetch the authenticated customer's accounts\nfrom consent data providers registered via `sentin8-cli vertical enroll`.",
         "operationId": "consent_accounts",
         "parameters": [
           {
@@ -6544,7 +6674,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle proxy consent approve.",
+        "summary": "`POST /v1/auth/consent/approve`",
         "operationId": "proxy_consent_approve",
         "requestBody": {
           "content": {
@@ -6572,7 +6702,8 @@
             "description": "No consent flow registered for the requested scopes"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle proxy consent approve."
       }
     },
     "/v1/auth/consent/deny": {
@@ -6580,7 +6711,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle proxy consent deny.",
+        "summary": "`POST /v1/auth/consent/deny`",
         "operationId": "proxy_consent_deny",
         "requestBody": {
           "content": {
@@ -6608,7 +6739,8 @@
             "description": "No consent flow registered for the requested scopes"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle proxy consent deny."
       }
     },
     "/v1/auth/consent/ui": {
@@ -6616,8 +6748,8 @@
         "tags": [
           "auth"
         ],
-        "summary": "`GET /v1/auth/consent/ui` — proxy to the vertical service's consent UI endpoint.",
-        "description": "Looks up the consent flow from `sentin8_consent_flows`, resolves the\nvertical service URL, and proxies the request. If no consent flow\nmatches, returns a 404 (auth-ui falls back to the platform-default\nconsent page).\nHandle proxy consent ui.",
+        "summary": "`GET /v1/auth/consent/ui`",
+        "description": "Looks up the consent flow from `sentin8_consent_flows`, resolves the\nvertical service URL, and proxies the request. If no consent flow\nmatches, returns a 404 (auth-ui falls back to the platform-default\nconsent page).\nHandle proxy consent ui.\n\nproxy to the vertical service's consent UI endpoint.",
         "operationId": "proxy_consent_ui",
         "parameters": [
           {
@@ -6741,7 +6873,7 @@
         "tags": [
           "wallet"
         ],
-        "summary": "`GET /v1/auth/wallet/metadata` — public wallet metadata (formats, trusted\nissuers, the required presentation definition, the response endpoint).\nHandle wallet metadata.",
+        "summary": "`GET /v1/auth/wallet/metadata`",
         "operationId": "wallet_metadata",
         "responses": {
           "200": {
@@ -6753,7 +6885,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "public wallet metadata (formats, trusted\nissuers, the required presentation definition, the response endpoint).\nHandle wallet metadata."
       }
     },
     "/v1/branding": {
@@ -6761,7 +6894,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Handle branding.\nMerged org→env branding for the hosted Auth UI (env overrides org per-field).",
+        "summary": "`GET /v1/branding`",
         "operationId": "branding",
         "responses": {
           "200": {
@@ -6776,7 +6909,8 @@
             "description": "No valid tenant context could be resolved from the request"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle branding.\nMerged org→env branding for the hosted Auth UI (env overrides org per-field)."
       }
     },
     "/v1/ciba/approve": {
@@ -6784,8 +6918,8 @@
         "tags": [
           "ciba"
         ],
-        "summary": "`POST /v1/ciba/approve` — user approves or denies from their device.",
-        "description": "SEC- — the approving user is the **session's** user; the\n`user_id` field in the body is ignored. Knowledge of an `auth_req_id`\nalone can no longer bind an arbitrary user to a CIBA request.\nHandle CIBA approve.",
+        "summary": "`POST /v1/ciba/approve`",
+        "description": "SEC- - the approving user is the **session's** user; the\n`user_id` field in the body is ignored. Knowledge of an `auth_req_id`\nalone can no longer bind an arbitrary user to a CIBA request.\nHandle CIBA approve.\n\nuser approves or denies from their device.",
         "operationId": "ciba_approve",
         "requestBody": {
           "content": {
@@ -6810,7 +6944,7 @@
             "description": "Unknown auth_req_id"
           },
           "401": {
-            "description": "No session — approval requires an authenticated user"
+            "description": "No session - approval requires an authenticated user"
           }
         },
         "security": []
@@ -6821,8 +6955,8 @@
         "tags": [
           "ciba"
         ],
-        "summary": "`GET /ciba/assisted/{auth_req_id}` — Assisted Login page metadata.",
-        "description": "Returns the CIBA request details so the Flutter Auth UI can render the\nassisted sign-in page: `binding_message`, `short_code`, requesting client,\nand requested scopes. The UI then calls `POST /v1/ciba/assisted/complete`\nafter the customer signs in.\nHandle CIBA assisted page.",
+        "summary": "`GET /v1/ciba/assisted/{auth_req_id}`",
+        "description": "Returns the CIBA request details so the Flutter Auth UI can render the\nassisted sign-in page: `binding_message`, `short_code`, requesting client,\nand requested scopes. The UI then calls `POST /v1/ciba/assisted/complete`\nafter the customer signs in.\nHandle CIBA assisted page.\n\n`GET /ciba/assisted/{auth_req_id}` - Assisted Login page metadata.",
         "operationId": "ciba_assisted_page",
         "parameters": [
           {
@@ -6856,8 +6990,8 @@
         "tags": [
           "ciba"
         ],
-        "summary": "`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request.",
-        "description": "Called by the Flutter Assisted Login page after the customer signs in.\nReads the customer's `__session` cookie, resolves the `user_id` /\n`org_id` / `env_id`, and marks the CIBA request `approved`. Single-use:\na second call returns the existing status without re-binding.\nHandle CIBA assisted complete.",
+        "summary": "`POST /v1/ciba/assisted/{auth_req_id}/complete`",
+        "description": "Called by the Flutter Assisted Login page after the customer signs in.\nReads the customer's `__session` cookie, resolves the `user_id` /\n`org_id` / `env_id`, and marks the CIBA request `approved`. Single-use:\na second call returns the existing status without re-binding.\nHandle CIBA assisted complete.\n\n`POST /v1/ciba/assisted/complete` - bind customer session to CIBA request.",
         "operationId": "ciba_assisted_complete",
         "parameters": [
           {
@@ -6897,8 +7031,8 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/email/verify` — request an email verification token.",
-        "description": "The email is scoped to the current tenant (resolved from the\n`Host` / TLS headers) because the same email can exist as a\nseparate user in each tenant.\n\nSEC- — enumeration-safe: unknown emails and\nalready-verified emails return the same `{\"status\":\"sent\"}` shape\n(previously 404 / 409 revealed account existence). The short_code is\nno longer returned to unauthenticated callers (SEC-) —\nit is logged for dev workflows and delivered via Sentin8:Post.\nHandle email verify request.",
+        "summary": "`POST /v1/email/verify`",
+        "description": "The email is scoped to the current tenant (resolved from the\n`Host` / TLS headers) because the same email can exist as a\nseparate user in each tenant.\n\nSEC- - enumeration-safe: unknown emails and\nalready-verified emails return the same `{\"status\":\"sent\"}` shape\n(previously 404 / 409 revealed account existence). The short_code is\nno longer returned to unauthenticated callers (SEC-) -\nit is logged for dev workflows and delivered via Sentin8:Post.\nHandle email verify request.\n\nrequest an email verification token.",
         "operationId": "email_verify_request",
         "requestBody": {
           "content": {
@@ -6933,7 +7067,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/email/verify/confirm` — confirm email verification with a token.\nHandle email verify confirm.",
+        "summary": "`POST /v1/email/verify/confirm`",
         "operationId": "email_verify_confirm",
         "requestBody": {
           "content": {
@@ -6960,7 +7094,8 @@
             "description": "Token required, invalid, or expired"
           }
         },
-        "security": []
+        "security": [],
+        "description": "confirm email verification with a token.\nHandle email verify confirm."
       }
     },
     "/v1/health": {
@@ -6968,7 +7103,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.\nLiveness (captain monitor payload: status, service, version, build).",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -6980,7 +7115,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health.\nLiveness (captain monitor payload: status, service, version, build)."
       }
     },
     "/v1/internal/keys/rotate": {
@@ -6988,7 +7124,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/internal/keys/rotate` — Sentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap.",
+        "summary": "`POST /v1/internal/keys/rotate`",
         "operationId": "internal_keys_rotate",
         "requestBody": {
           "content": {
@@ -7002,7 +7138,8 @@
           "200": {
             "description": "Signing key rotated"
           }
-        }
+        },
+        "description": "Sentin8:Cron proxy-back target for\nautomated JWKS rotation (AUTH-1, auth DESIGN §10). Generates and\npersists a new signing key; the JWKS reader keeps every key published,\nso tokens signed by the previous key stay verifiable for overlap."
       }
     },
     "/v1/me/app-passwords": {
@@ -7010,7 +7147,7 @@
         "tags": [
           "app-passwords"
         ],
-        "summary": "`GET /v1/me/app-passwords` — list the user's app passwords (no\nhashes, no secrets).\nList app passwords.",
+        "summary": "`GET /v1/me/app-passwords`",
         "operationId": "list_app_passwords",
         "responses": {
           "200": {
@@ -7025,13 +7162,14 @@
             "description": "Not the caller's own identity"
           }
         },
-        "security": []
+        "security": [],
+        "description": "list the user's app passwords (no\nhashes, no secrets).\nList app passwords."
       },
       "post": {
         "tags": [
           "app-passwords"
         ],
-        "summary": "Create app password.",
+        "summary": "`POST /v1/me/app-passwords`",
         "operationId": "create_app_password",
         "requestBody": {
           "content": {
@@ -7045,7 +7183,7 @@
         },
         "responses": {
           "200": {
-            "description": "Created — the raw secret is returned ONCE",
+            "description": "Created - the raw secret is returned ONCE",
             "content": {
               "application/json": {
                 "schema": {}
@@ -7056,7 +7194,8 @@
             "description": "Not the caller's own identity (self-service only)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Create app password."
       }
     },
     "/v1/me/app-passwords/{id}": {
@@ -7064,7 +7203,7 @@
         "tags": [
           "app-passwords"
         ],
-        "summary": "`DELETE /v1/me/app-passwords/{id}` — revoke one app password.\nRevoke app password.",
+        "summary": "`DELETE /v1/me/app-passwords/{id}`",
         "operationId": "revoke_app_password",
         "parameters": [
           {
@@ -7091,7 +7230,8 @@
             "description": "Not the caller's own identity"
           }
         },
-        "security": []
+        "security": [],
+        "description": "revoke one app password.\nRevoke app password."
       }
     },
     "/v1/mfa/disable": {
@@ -7099,7 +7239,7 @@
         "tags": [
           "mfa"
         ],
-        "summary": "`POST /v1/mfa/disable` — disable an MFA factor (password re-confirmation).\nHandle disable.",
+        "summary": "`POST /v1/mfa/disable`",
         "operationId": "disable",
         "requestBody": {
           "content": {
@@ -7125,7 +7265,8 @@
             "description": "Password re-confirmation failed or CSRF check failed"
           }
         },
-        "security": []
+        "security": [],
+        "description": "disable an MFA factor (password re-confirmation).\nHandle disable."
       }
     },
     "/v1/mfa/enroll": {
@@ -7133,8 +7274,8 @@
         "tags": [
           "mfa"
         ],
-        "summary": "`POST /v1/mfa/enroll` — start TOTP enrollment.",
-        "description": "Generates a random secret, stores it encrypted (status=pending), and\nreturns the `otpauth://` URL + base32 secret for the QR code. The user\nmust then call `/v1/mfa/verify` with a valid TOTP code to confirm\nenrollment.\nEnroll it.",
+        "summary": "`POST /v1/mfa/enroll`",
+        "description": "Generates a random secret, stores it encrypted (status=pending), and\nreturns the `otpauth://` URL + base32 secret for the QR code. The user\nmust then call `/v1/mfa/verify` with a valid TOTP code to confirm\nenrollment.\nEnroll it.\n\nstart TOTP enrollment.",
         "operationId": "enroll",
         "requestBody": {
           "content": {
@@ -7172,8 +7313,8 @@
         "tags": [
           "mfa"
         ],
-        "summary": "`POST /v1/mfa/verify` — verify a TOTP code.",
-        "description": "Behavior depends on the request:\n- `factor_id` present → enrollment verification: confirm the pending\n\nfactor, set status=active, set `mfa_enabled=true` on the user, clear\n`secret_preview`.\n- `pending_token_id` present → sign-in MFA verification: look up the\n\nuser's active TOTP factor, verify the code, and activate the pending\nsession.\n\nVerify it.",
+        "summary": "`POST /v1/mfa/verify`",
+        "description": "Behavior depends on the request:\n- `factor_id` present → enrollment verification: confirm the pending\n\nfactor, set status=active, set `mfa_enabled=true` on the user, clear\n`secret_preview`.\n- `pending_token_id` present → sign-in MFA verification: look up the\n\nuser's active TOTP factor, verify the code, and activate the pending\nsession.\n\nVerify it.\n\nverify a TOTP code.",
         "operationId": "verify",
         "requestBody": {
           "content": {
@@ -7214,7 +7355,7 @@
         "tags": [
           "passkey"
         ],
-        "summary": "`POST /v1/passkey/enroll/begin` — start passkey enrollment.",
+        "summary": "`POST /v1/passkey/enroll/begin`",
         "operationId": "enroll_begin",
         "requestBody": {
           "content": {
@@ -7241,7 +7382,8 @@
             "description": "Not authenticated (bearer or session)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "start passkey enrollment."
       }
     },
     "/v1/passkey/enroll/finish": {
@@ -7249,7 +7391,7 @@
         "tags": [
           "passkey"
         ],
-        "summary": "`POST /v1/passkey/enroll/finish` — validate attestation, store public key.",
+        "summary": "`POST /v1/passkey/enroll/finish`",
         "operationId": "enroll_finish",
         "requestBody": {
           "content": {
@@ -7285,7 +7427,8 @@
             "description": "Challenge expired"
           }
         },
-        "security": []
+        "security": [],
+        "description": "validate attestation, store public key."
       }
     },
     "/v1/passkey/verify/begin": {
@@ -7293,7 +7436,7 @@
         "tags": [
           "passkey"
         ],
-        "summary": "`POST /v1/passkey/verify/begin` — start passkey sign-in.",
+        "summary": "`POST /v1/passkey/verify/begin`",
         "operationId": "verify_begin",
         "requestBody": {
           "content": {
@@ -7320,7 +7463,8 @@
             "description": "Pending session not found or no active passkey factor"
           }
         },
-        "security": []
+        "security": [],
+        "description": "start passkey sign-in."
       }
     },
     "/v1/passkey/verify/finish": {
@@ -7328,7 +7472,7 @@
         "tags": [
           "passkey"
         ],
-        "summary": "`POST /v1/passkey/verify/finish` — validate assertion, activate session.",
+        "summary": "`POST /v1/passkey/verify/finish`",
         "operationId": "verify_finish",
         "requestBody": {
           "content": {
@@ -7367,7 +7511,8 @@
             "description": "Challenge expired"
           }
         },
-        "security": []
+        "security": [],
+        "description": "validate assertion, activate session."
       }
     },
     "/v1/password/reset": {
@@ -7375,8 +7520,8 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/password/reset` — request a password reset token.",
-        "description": "Always returns `{\"status\":\"sent\"}` even when the email is unknown\n(to prevent user enumeration). The `short_code` is only present when a\nuser was found.\n\nThe email is scoped to the current tenant (resolved from the\n`Host` / TLS headers) because the same email can exist as a\nseparate user in each tenant.\nHandle password reset request.",
+        "summary": "`POST /v1/password/reset`",
+        "description": "Always returns `{\"status\":\"sent\"}` even when the email is unknown\n(to prevent user enumeration). The `short_code` is only present when a\nuser was found.\n\nThe email is scoped to the current tenant (resolved from the\n`Host` / TLS headers) because the same email can exist as a\nseparate user in each tenant.\nHandle password reset request.\n\nrequest a password reset token.",
         "operationId": "password_reset_request",
         "requestBody": {
           "content": {
@@ -7411,7 +7556,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "`POST /v1/password/reset/confirm` — set a new password with a reset token.\nHandle password reset confirm.",
+        "summary": "`POST /v1/password/reset/confirm`",
         "operationId": "password_reset_confirm",
         "requestBody": {
           "content": {
@@ -7438,7 +7583,8 @@
             "description": "Invalid or expired token"
           }
         },
-        "security": []
+        "security": [],
+        "description": "set a new password with a reset token.\nHandle password reset confirm."
       }
     },
     "/v1/saml/acs/{connection_id}": {
@@ -7446,8 +7592,8 @@
         "tags": [
           "sso"
         ],
-        "summary": "`POST /v1/saml/acs/{connection_id}` — SAML Assertion Consumer Service.",
-        "description": "SEC- — **default deny**. Without a vendored SAML signature\nvalidation library, unsigned assertions are rejected in production\n(`SENTIN8_AUTH_ALLOW_UNSIGNED_SAML=1` opts in for dev/test). When\nallowed, we additionally validate: RelayState session (below),\n`InResponseTo`, audience restriction, and `NotOnOrAfter`. Full XML\nsignature validation remains a documented gap — SAML connections are\nnot used by any vertical today; use OIDC connections for SSO.\nHandle SAML acs.",
+        "summary": "`POST /v1/saml/acs/{connection_id}`",
+        "description": "SEC- - **default deny**. Without a vendored SAML signature\nvalidation library, unsigned assertions are rejected in production\n(`SENTIN8_AUTH_ALLOW_UNSIGNED_SAML=1` opts in for dev/test). When\nallowed, we additionally validate: RelayState session (below),\n`InResponseTo`, audience restriction, and `NotOnOrAfter`. Full XML\nsignature validation remains a documented gap - SAML connections are\nnot used by any vertical today; use OIDC connections for SSO.\nHandle SAML acs.\n\nSAML Assertion Consumer Service.",
         "operationId": "saml_acs",
         "parameters": [
           {
@@ -7488,7 +7634,7 @@
         "tags": [
           "sso"
         ],
-        "summary": "`GET /v1/saml/metadata/{connection_id}` — return the SP metadata XML.",
+        "summary": "`GET /v1/saml/metadata/{connection_id}`",
         "operationId": "saml_metadata",
         "parameters": [
           {
@@ -7515,7 +7661,8 @@
             "description": "Unknown or non-SAML connection"
           }
         },
-        "security": []
+        "security": [],
+        "description": "return the SP metadata XML."
       }
     },
     "/v1/security-profile": {
@@ -7523,7 +7670,7 @@
         "tags": [
           "oauth"
         ],
-        "summary": "`GET /v1/security-profile` — return the effective security profile for\nthe resolved tenant (platform/org/env).",
+        "summary": "`GET /v1/security-profile`",
         "operationId": "get_security_profile_api",
         "parameters": [
           {
@@ -7551,14 +7698,15 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "return the effective security profile for\nthe resolved tenant (platform/org/env)."
       },
       "put": {
         "tags": [
           "oauth"
         ],
-        "summary": "`PUT /v1/security-profile` — update (or insert) the security profile for\nthe given scope + tenant.",
-        "description": "SEC- — admin guard. `sentin8:sys:admin`/`sentin8:dash:admin` (platform\noperators) may manage any scope row; org/env rows additionally require\nthe caller to have access to that org/env (RBAC) — enforced by passing\nthe target as `target_env_id` for env-scoped rows.\nHandle PUT security profile API.",
+        "summary": "`PUT /v1/security-profile`",
+        "description": "SEC- - admin guard. `sentin8:sys:admin`/`sentin8:dash:admin` (platform\noperators) may manage any scope row; org/env rows additionally require\nthe caller to have access to that org/env (RBAC) - enforced by passing\nthe target as `target_env_id` for env-scoped rows.\nHandle PUT security profile API.\n\nupdate (or insert) the security profile for\nthe given scope + tenant.",
         "operationId": "put_security_profile_api",
         "requestBody": {
           "content": {
@@ -7600,7 +7748,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Fetch session.",
+        "summary": "`GET /v1/session`",
         "operationId": "get_session",
         "responses": {
           "200": {
@@ -7617,7 +7765,8 @@
             "description": "No session or the session expired"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Fetch session."
       }
     },
     "/v1/sign-in": {
@@ -7625,7 +7774,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Sign in.",
+        "summary": "`POST /v1/sign-in`",
         "operationId": "sign_in",
         "requestBody": {
           "content": {
@@ -7658,7 +7807,8 @@
             "description": "Sign-in rate limit (bot protection) exceeded"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Sign in."
       }
     },
     "/v1/sign-out": {
@@ -7666,7 +7816,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Sign out.",
+        "summary": "`POST /v1/sign-out`",
         "operationId": "sign_out",
         "responses": {
           "200": {
@@ -7676,7 +7826,8 @@
             "description": "Missing X-Sentin8-CSRF header for a cookie-authenticated call"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Sign out."
       }
     },
     "/v1/sign-up": {
@@ -7684,7 +7835,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Sign up.",
+        "summary": "`POST /v1/sign-up`",
         "operationId": "sign_up",
         "requestBody": {
           "content": {
@@ -7714,7 +7865,8 @@
             "description": "Email already registered for this environment"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Sign up."
       }
     },
     "/v1/sso/{connection_id}/authorize": {
@@ -7722,8 +7874,8 @@
         "tags": [
           "sso"
         ],
-        "summary": "`GET /v1/sso/{connection_id}/authorize` — start the SSO flow.",
-        "description": "For OIDC connections, generates a state + PKCE pair, stores the SSO\nsession, and redirects to the IdP's authorize endpoint. For SAML\nconnections, redirects to the IdP's SSO URL (extracted from the\nmetadata — when not available, returns 501).\nHandle sso authorize.",
+        "summary": "`GET /v1/sso/{connection_id}/authorize`",
+        "description": "For OIDC connections, generates a state + PKCE pair, stores the SSO\nsession, and redirects to the IdP's authorize endpoint. For SAML\nconnections, redirects to the IdP's SSO URL (extracted from the\nmetadata - when not available, returns 501).\nHandle sso authorize.\n\nstart the SSO flow.",
         "operationId": "sso_authorize",
         "parameters": [
           {
@@ -7759,7 +7911,7 @@
         "tags": [
           "sso"
         ],
-        "summary": "`GET /v1/sso/{connection_id}/callback` — OIDC code exchange callback.",
+        "summary": "`GET /v1/sso/{connection_id}/callback`",
         "operationId": "sso_callback",
         "parameters": [
           {
@@ -7784,7 +7936,8 @@
             "description": "IdP returned an error or token exchange failed"
           }
         },
-        "security": []
+        "security": [],
+        "description": "OIDC code exchange callback."
       }
     }
   },
@@ -8254,7 +8407,7 @@
         ],
         "properties": {
           "authorization_details": {
-            "description": "RFC 9396 authorization_details — validated against the\nclient's registered types; stored in the code record and echoed\ninto the ID token.\nThe authorization details."
+            "description": "RFC 9396 authorization_details - validated against the\nclient's registered types; stored in the code record and echoed\ninto the ID token.\nThe authorization details."
           },
           "client_id": {
             "type": "string",
@@ -8272,7 +8425,7 @@
               "string",
               "null"
             ],
-            "description": "OIDC nonce — bound into the ID token (SEC-).\nThe nonce."
+            "description": "OIDC nonce - bound into the ID token (SEC-).\nThe nonce."
           },
           "redirect_uri": {
             "type": "string",
@@ -8290,7 +8443,7 @@
               "string",
               "null"
             ],
-            "description": "OAuth response mode — `jwt` triggers a JARM response (SEC-).\nThe response mode."
+            "description": "OAuth response mode - `jwt` triggers a JARM response (SEC-).\nThe response mode."
           },
           "scope": {
             "type": "string",
@@ -8326,7 +8479,7 @@
         ],
         "properties": {
           "authorization_details": {
-            "description": "RFC 9396 Rich Authorization Requests — JSON array of\n`authorization_details` objects. Validated against the client's\nregistered `authorization_details_types`; stored in the code record\nand echoed into the ID token.\nThe authorization details."
+            "description": "RFC 9396 Rich Authorization Requests - JSON array of\n`authorization_details` objects. Validated against the client's\nregistered `authorization_details_types`; stored in the code record\nand echoed into the ID token.\nThe authorization details."
           },
           "client_id": {
             "type": "string",
@@ -8351,7 +8504,7 @@
               "string",
               "null"
             ],
-            "description": "OIDC `nonce` — echoed into the ID token (SEC-).\nThe nonce."
+            "description": "OIDC `nonce` - echoed into the ID token (SEC-).\nThe nonce."
           },
           "redirect_uri": {
             "type": [
@@ -8372,7 +8525,7 @@
               "string",
               "null"
             ],
-            "description": "PAR request_uri (RFC 9126) — when PAR is required, the client submits\na `request_uri` instead of inline params.\nThe request URI."
+            "description": "PAR request_uri (RFC 9126) - when PAR is required, the client submits\na `request_uri` instead of inline params.\nThe request URI."
           },
           "resource": {
             "type": [
@@ -8386,7 +8539,7 @@
               "string",
               "null"
             ],
-            "description": "OAuth response mode — `query` (default) or `jwt` (JARM, SEC-).\nThe response mode."
+            "description": "OAuth response mode - `query` (default) or `jwt` (JARM, SEC-).\nThe response mode."
           },
           "response_type": {
             "type": [
@@ -8404,7 +8557,7 @@
               "string",
               "null"
             ],
-            "description": "UI hint indicating which hosted UI page to show first. Currently\nsupports `signup` — when present, the authorize handler redirects\nto `/sign-up` (instead of `/sign-in`) with the full OAuth context\ninline so the sign-up page can preserve redirect_uri/state/code_challenge.\nThe screen hint."
+            "description": "UI hint indicating which hosted UI page to show first. Currently\nsupports `signup` - when present, the authorize handler redirects\nto `/sign-up` (instead of `/sign-in`) with the full OAuth context\ninline so the sign-up page can preserve redirect_uri/state/code_challenge.\nThe screen hint."
           },
           "state": {
             "type": "string",
@@ -8444,7 +8597,7 @@
       },
       "BackchannelLogoutTrigger": {
         "type": "object",
-        "description": "Trigger request — fired when a session ends.\nThe backchannellogouttrigger type.",
+        "description": "Trigger request - fired when a session ends.\nThe backchannellogouttrigger type.",
         "required": [
           "session_id",
           "user_id"
@@ -8455,7 +8608,7 @@
               "string",
               "null"
             ],
-            "description": "Optional — restrict to a single client_id (e.g. for RP-initiated logout).\nclient identifier."
+            "description": "Optional - restrict to a single client_id (e.g. for RP-initiated logout).\nclient identifier."
           },
           "session_id": {
             "type": "string",
@@ -8499,28 +8652,28 @@
               "string",
               "null"
             ],
-            "description": "— staff member's email (for audit alongside `act_sub`).\nThe act email."
+            "description": "- staff member's email (for audit alongside `act_sub`).\nThe act email."
           },
           "act_sub": {
             "type": [
               "string",
               "null"
             ],
-            "description": "(Option A): the initiating staff member's Auth user ID.\nSent by the platform BFF (Delegation Gateway) from its authenticated\nstaff session — NOT by the staff app's request body. Embedded in the\nCIBA token's `act` claim (RFC 8693 ) so every customer-data\naccess is attributable to a human.\nThe act sub."
+            "description": "(Option A): the initiating staff member's Auth user ID.\nSent by the platform BFF (Delegation Gateway) from its authenticated\nstaff session - NOT by the staff app's request body. Embedded in the\nCIBA token's `act` claim (RFC 8693 ) so every customer-data\naccess is attributable to a human.\nThe act sub."
           },
           "binding_message": {
             "type": [
               "string",
               "null"
             ],
-            "description": "Binding message — displayed to the user on the decoupled device.\nThe binding message."
+            "description": "Binding message - displayed to the user on the decoupled device.\nThe binding message."
           },
           "client_assertion": {
             "type": [
               "string",
               "null"
             ],
-            "description": "SEC- — private_key_jwt client assertion (RFC 7523).\nThe client assertion."
+            "description": "SEC- - private_key_jwt client assertion (RFC 7523).\nThe client assertion."
           },
           "client_id": {
             "type": "string",
@@ -8538,7 +8691,7 @@
               "string",
               "null"
             ],
-            "description": "SEC- — client authentication (client_secret_post). Public\nclients omit it.\nThe client secret."
+            "description": "SEC- - client authentication (client_secret_post). Public\nclients omit it.\nThe client secret."
           },
           "delivery": {
             "type": [
@@ -8559,7 +8712,7 @@
               "string",
               "null"
             ],
-            "description": "User identifier — one of: login_hint, login_hint_token, id_token_hint, sub.\nThe login hint."
+            "description": "User identifier - one of: login_hint, login_hint_token, id_token_hint, sub.\nThe login hint."
           },
           "login_hint_token": {
             "type": [
@@ -8644,14 +8797,14 @@
               "string",
               "null"
             ],
-            "description": "Short code (last 6 of auth_req_id) — present when `delivery=assisted_link`.\nStaff reads aloud / displays for the customer to cross-check on the sign-in page.\nThe short code."
+            "description": "Short code (last 6 of auth_req_id) - present when `delivery=assisted_link`.\nStaff reads aloud / displays for the customer to cross-check on the sign-in page.\nThe short code."
           },
           "verification_uri_complete": {
             "type": [
               "string",
               "null"
             ],
-            "description": "Shareable approval link — present when `delivery=assisted_link`.\n`GET /ciba/assisted/{auth_req_id}`.\nThe verification URI complete."
+            "description": "Shareable approval link - present when `delivery=assisted_link`.\n`GET /ciba/assisted/{auth_req_id}`.\nThe verification URI complete."
           }
         }
       },
@@ -8831,7 +8984,7 @@
       },
       "ConsentAccountsQuery": {
         "type": "object",
-        "description": "Query params for `GET /v1/auth/consent/accounts` — fetch the customer's\naccounts at this Data Provider so the consent screen can show\nthem for selection.\nThe consentaccountsquery type.",
+        "description": "Query params for `GET /v1/auth/consent/accounts` - fetch the customer's\naccounts at this Data Provider so the consent screen can show\nthem for selection.\nThe consentaccountsquery type.",
         "required": [
           "session_token",
           "user_id"
@@ -8850,7 +9003,7 @@
       },
       "ConsentApproveProxyRequest": {
         "type": "object",
-        "description": "`POST /v1/auth/consent/approve` — proxy consent approval to the vertical service.\nRequest body for consentapproveproxy.",
+        "description": "`POST /v1/auth/consent/approve` - proxy consent approval to the vertical service.\nRequest body for consentapproveproxy.",
         "properties": {
           "client_id": {
             "type": [
@@ -8895,7 +9048,7 @@
               "string",
               "null"
             ],
-            "description": "SEC- — the session authorizing this approval.\nThe session token."
+            "description": "SEC- - the session authorizing this approval.\nThe session token."
           },
           "state": {
             "type": [
@@ -8915,7 +9068,7 @@
       },
       "ConsentDenyProxyRequest": {
         "type": "object",
-        "description": "`POST /v1/auth/consent/deny` — proxy consent denial to the vertical service.\nRequest body for consentdenyproxy.",
+        "description": "`POST /v1/auth/consent/deny` - proxy consent denial to the vertical service.\nRequest body for consentdenyproxy.",
         "properties": {
           "consent_flow": {
             "type": [
@@ -8943,7 +9096,7 @@
               "string",
               "null"
             ],
-            "description": "SEC- — the session authorizing this denial.\nThe session token."
+            "description": "SEC- - the session authorizing this denial.\nThe session token."
           },
           "state": {
             "type": [
@@ -9029,7 +9182,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Optional — the RFW form does not send it (env is resolved from the\ntoken's tenant context); the auth-context env is used when absent.\nenv identifier."
+            "description": "Optional - the RFW form does not send it (env is resolved from the\ntoken's tenant context); the auth-context env is used when absent.\nenv identifier."
           },
           "expires_at": {
             "type": [
@@ -9048,7 +9201,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Accepts either a JSON array or a single comma-separated string —\nthe RFW form sends text fields as strings (the field label is\n\"Scopes (comma-separated)\"). Same contract as role permissions.\nThe scopes."
+            "description": "Accepts either a JSON array or a single comma-separated string -\nthe RFW form sends text fields as strings (the field label is\n\"Scopes (comma-separated)\"). Same contract as role permissions.\nThe scopes."
           },
           "user_id": {
             "type": [
@@ -9062,7 +9215,7 @@
       },
       "CreateAppPasswordRequest": {
         "type": "object",
-        "description": "`POST /v1/me/app-passwords` — mint a new app password. Returns the\nraw secret ONCE; only the bcrypt hash is stored.\nRequest body for createapppassword.",
+        "description": "`POST /v1/me/app-passwords` - mint a new app password. Returns the\nraw secret ONCE; only the bcrypt hash is stored.\nRequest body for createapppassword.",
         "required": [
           "label"
         ],
@@ -9277,7 +9430,7 @@
           "env_id": {
             "type": "string",
             "format": "uuid",
-            "description": "The tenant the grant lives in — REQUIRED (SEC-: no silent\nfallback to the caller's env).\nenv identifier."
+            "description": "The tenant the grant lives in - REQUIRED (SEC-: no silent\nfallback to the caller's env).\nenv identifier."
           },
           "scope": {
             "type": "string",
@@ -9329,7 +9482,7 @@
           "ttl_days": {
             "type": "integer",
             "format": "int64",
-            "description": "TTL in days. RFW forms submit number fields as strings (\"7\") —\naccept both JSON numbers and numeric strings.\nThe ttl days."
+            "description": "TTL in days. RFW forms submit number fields as strings (\"7\") -\naccept both JSON numbers and numeric strings.\nThe ttl days."
           }
         }
       },
@@ -9504,14 +9657,14 @@
       },
       "CredentialIssueRequest": {
         "type": "object",
-        "description": "`POST /oauth/credentials/issue` — the wallet presents its authorization\n(the pending credential id + its key) and receives the signed SD-JWT.\nRequest body for credentialissue.",
+        "description": "`POST /oauth/credentials/issue` - the wallet presents its authorization\n(the pending credential id + its key) and receives the signed SD-JWT.\nRequest body for credentialissue.",
         "required": [
           "credential_id",
           "cnf_jwk"
         ],
         "properties": {
           "cnf_jwk": {
-            "description": "The wallet's key JWK — must match the offer's `cnf_jwk`.\nThe cnf jwk."
+            "description": "The wallet's key JWK - must match the offer's `cnf_jwk`.\nThe cnf jwk."
           },
           "credential_id": {
             "type": "string",
@@ -9522,7 +9675,7 @@
       },
       "CredentialOfferRequest": {
         "type": "object",
-        "description": "`POST /oauth/credentials` — credential offer: records the issuance\nintent and returns the offer the wallet presents at its issuer.\nAuthenticated via the user's session (the credential is about THEM).\nRequest body for credentialoffer.",
+        "description": "`POST /oauth/credentials` - credential offer: records the issuance\nintent and returns the offer the wallet presents at its issuer.\nAuthenticated via the user's session (the credential is about THEM).\nRequest body for credentialoffer.",
         "required": [
           "type_",
           "cnf_jwk"
@@ -9583,7 +9736,7 @@
       },
       "DelegateAccessTokenResponse": {
         "type": "object",
-        "description": "Response — same shape as OAuth token response.\nResponse payload for delegateaccesstoken.",
+        "description": "Response - same shape as OAuth token response.\nResponse payload for delegateaccesstoken.",
         "required": [
           "access_token",
           "token_type",
@@ -9625,7 +9778,7 @@
               "string",
               "null"
             ],
-            "description": "RFC 8628 — requested audience for the issued token.\nThe CLI passes `sentin8` for platform-wide access.\nThe audience."
+            "description": "RFC 8628 - requested audience for the issued token.\nThe CLI passes `sentin8` for platform-wide access.\nThe audience."
           },
           "client_id": {
             "type": "string",
@@ -9693,7 +9846,7 @@
         "properties": {
           "user_code": {
             "type": "string",
-            "description": "The device user_code being approved. The approving user identity\ncomes from the session (SEC-) — never the body.\nThe user code."
+            "description": "The device user_code being approved. The approving user identity\ncomes from the session (SEC-) - never the body.\nThe user code."
           }
         }
       },
@@ -9752,7 +9905,7 @@
             "items": {
               "type": "string"
             },
-            "description": "RFC 9396 RAR — the authorization_details types the AS\nserves (union of all client-registered types). Absent when no client\nis registered for RAR.\nThe authorization details types supported."
+            "description": "RFC 9396 RAR - the authorization_details types the AS\nserves (union of all client-registered types). Absent when no client\nis registered for RAR.\nThe authorization details types supported."
           },
           "authorization_endpoint": {
             "type": "string",
@@ -9785,7 +9938,7 @@
               "string",
               "null"
             ],
-            "description": "FAPI 2.0 Grant Management (/) — the grants API.\nThe grant management endpoint."
+            "description": "FAPI 2.0 Grant Management (/) - the grants API.\nThe grant management endpoint."
           },
           "grant_types_supported": {
             "type": "array",
@@ -9820,7 +9973,7 @@
               },
               {
                 "$ref": "#/components/schemas/MtlsEndpointAliases",
-                "description": "mTLS endpoint aliases (RFC 8705) — present when mTLS is advertised.\nThe mtls endpoint aliases."
+                "description": "mTLS endpoint aliases (RFC 8705) - present when mTLS is advertised.\nThe mtls endpoint aliases."
               }
             ]
           },
@@ -9829,7 +9982,7 @@
               "string",
               "null"
             ],
-            "description": "PAR endpoint (RFC 9126) — present when the security profile requires PAR.\nThe pushed authorization request endpoint."
+            "description": "PAR endpoint (RFC 9126) - present when the security profile requires PAR.\nThe pushed authorization request endpoint."
           },
           "request_object_signing_alg_values_supported": {
             "type": "array",
@@ -10185,11 +10338,11 @@
           },
           "otpauth_url": {
             "type": "string",
-            "description": "`otpauth://totp/...` URL — the client renders this as a QR code.\nThe otpauth URL."
+            "description": "`otpauth://totp/...` URL - the client renders this as a QR code.\nThe otpauth URL."
           },
           "secret": {
             "type": "string",
-            "description": "Base32-encoded secret — shown to the user as a fallback to QR scan.\nThe secret."
+            "description": "Base32-encoded secret - shown to the user as a fallback to QR scan.\nThe secret."
           }
         }
       },
@@ -10716,7 +10869,7 @@
               "string",
               "null"
             ],
-            "description": "Target env (BFF proxy contract — design Fix A/B/C: admin\nendpoints resolve their tenant from this param; required).\ntarget env identifier."
+            "description": "Target env (BFF proxy contract - design Fix A/B/C: admin\nendpoints resolve their tenant from this param; required).\ntarget env identifier."
           }
         }
       },
@@ -10741,7 +10894,7 @@
             "description": "The pagination."
           }
         ],
-        "description": "Query params for `GET /v1/admin/users` — extends [PaginationQuery].\nThe listusersquery type."
+        "description": "Query params for `GET /v1/admin/users` - extends [PaginationQuery].\nThe listusersquery type."
       },
       "LogoutQuery": {
         "type": "object",
@@ -10759,7 +10912,7 @@
               "string",
               "null"
             ],
-            "description": "OIDC RP-Initiated Logout — the ID token issued to the client;\nits `aud` identifies the client for allow-list validation.\nThe id token hint."
+            "description": "OIDC RP-Initiated Logout - the ID token issued to the client;\nits `aud` identifies the client for allow-list validation.\nThe id token hint."
           },
           "post_logout_redirect_uri": {
             "type": [
@@ -11006,7 +11159,7 @@
       },
       "ParRequest": {
         "type": "object",
-        "description": "PAR endpoint (RFC 9126) — accepts a pushed authorization request.\nRequest body for par.",
+        "description": "PAR endpoint (RFC 9126) - accepts a pushed authorization request.\nRequest body for par.",
         "required": [
           "response_type",
           "client_id",
@@ -11032,7 +11185,7 @@
               "string",
               "null"
             ],
-            "description": "Client secret (client_secret_post — RFC 9126 client auth).\nThe client secret."
+            "description": "Client secret (client_secret_post - RFC 9126 client auth).\nThe client secret."
           },
           "code_challenge": {
             "type": [
@@ -11200,7 +11353,7 @@
       },
       "ProvisionGroupMemberRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/group_member` — add a user to a group\n(idempotent; returns the post-state membership count — 0 when the group\nis absent, which the caller treats as an error, fail-closed).\nRequest body for provisiongroupmember.",
+        "description": "`POST /v1/admin/provision/group_member` - add a user to a group\n(idempotent; returns the post-state membership count - 0 when the group\nis absent, which the caller treats as an error, fail-closed).\nRequest body for provisiongroupmember.",
         "required": [
           "env_id",
           "group_name",
@@ -11225,7 +11378,7 @@
       },
       "ProvisionGroupRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/group` — upsert a group (idempotent).\nRequest body for provisiongroup.",
+        "description": "`POST /v1/admin/provision/group` - upsert a group (idempotent).\nRequest body for provisiongroup.",
         "required": [
           "env_id",
           "name"
@@ -11244,7 +11397,7 @@
       },
       "ProvisionGroupRoleRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/group_role` — assign a role to a group (idempotent).\nRequest body for provisiongrouprole.",
+        "description": "`POST /v1/admin/provision/group_role` - assign a role to a group (idempotent).\nRequest body for provisiongrouprole.",
         "required": [
           "env_id",
           "group_name",
@@ -11268,7 +11421,7 @@
       },
       "ProvisionRoleNestingRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/role_nesting` — nest child under parent (idempotent).\nRequest body for provisionrolenesting.",
+        "description": "`POST /v1/admin/provision/role_nesting` - nest child under parent (idempotent).\nRequest body for provisionrolenesting.",
         "required": [
           "env_id",
           "parent_name",
@@ -11292,7 +11445,7 @@
       },
       "ProvisionRoleRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/role` — upsert a role (idempotent).\nRequest body for provisionrole.",
+        "description": "`POST /v1/admin/provision/role` - upsert a role (idempotent).\nRequest body for provisionrole.",
         "required": [
           "env_id",
           "name"
@@ -11318,7 +11471,7 @@
       },
       "ProvisionUserRoleRequest": {
         "type": "object",
-        "description": "`POST /v1/admin/provision/user_role` — assign a role to a user (idempotent).\nRequest body for provisionuserrole.",
+        "description": "`POST /v1/admin/provision/user_role` - assign a role to a user (idempotent).\nRequest body for provisionuserrole.",
         "required": [
           "env_id",
           "user_id",
@@ -11362,7 +11515,7 @@
       },
       "PutAttributeBody": {
         "type": "object",
-        "description": "`PUT /v1/admin/attributes` body — one principal attribute.",
+        "description": "`PUT /v1/admin/attributes` body - one principal attribute.",
         "required": [
           "subject_id",
           "attr_key",
@@ -11413,7 +11566,7 @@
       },
       "PutRelationBody": {
         "type": "object",
-        "description": "`PUT /v1/admin/relations` body — one relation tuple.",
+        "description": "`PUT /v1/admin/relations` body - one relation tuple.",
         "required": [
           "subject_type",
           "subject_id",
@@ -11773,7 +11926,7 @@
               "string",
               "null"
             ],
-            "description": "RFC 7009 — a hint about the token type (optional).\nThe token type hint."
+            "description": "RFC 7009 - a hint about the token type (optional).\nThe token type hint."
           }
         }
       },
@@ -12276,7 +12429,7 @@
       },
       "ScimUser": {
         "type": "object",
-        "description": "SCIM 2.0 user resource (RFC 7643 — subset).\nThe scimuser type.",
+        "description": "SCIM 2.0 user resource (RFC 7643 - subset).\nThe scimuser type.",
         "required": [
           "schemas",
           "id",
@@ -12531,14 +12684,14 @@
             "items": {
               "type": "string"
             },
-            "description": "Enabled protocol extensions ( extensions) — additive.\nThe extensions."
+            "description": "Enabled protocol extensions ( extensions) - additive.\nThe extensions."
           },
           "overlay": {
             "type": [
               "string",
               "null"
             ],
-            "description": "Regulatory overlay ( overlays) — none | obie | cdr | brazil.\nThe overlay."
+            "description": "Regulatory overlay ( overlays) - none | obie | cdr | brazil.\nThe overlay."
           },
           "profile": {
             "type": "string",
@@ -12676,7 +12829,7 @@
               "string",
               "null"
             ],
-            "description": "Session token id — the CSRF header value (SEC-) for\ncookie-authenticated SPA mutations after a page reload. Same-origin\nexposure only, identical to the sign-in response body. Optional so\nolder internal callers parsing this struct stay compatible.\nThe session token."
+            "description": "Session token id - the CSRF header value (SEC-) for\ncookie-authenticated SPA mutations after a page reload. Same-origin\nexposure only, identical to the sign-in response body. Optional so\nolder internal callers parsing this struct stay compatible.\nThe session token."
           },
           "user_id": {
             "type": "string",
@@ -12901,7 +13054,7 @@
               "string",
               "null"
             ],
-            "description": "CIBA grant — the auth_req_id from bc-authorize.\nauth req identifier."
+            "description": "CIBA grant - the auth_req_id from bc-authorize.\nauth req identifier."
           },
           "client_assertion": {
             "type": [
@@ -12975,14 +13128,14 @@
               "string",
               "null"
             ],
-            "description": "The requested token type — must be `urn:ietf:params:oauth:token-type:access_token`.\nThe requested token type."
+            "description": "The requested token type - must be `urn:ietf:params:oauth:token-type:access_token`.\nThe requested token type."
           },
           "resource": {
             "type": [
               "string",
               "null"
             ],
-            "description": "RFC 8707 resource indicator (SEC-) — the audience for the\nissued access token.\nThe resource."
+            "description": "RFC 8707 resource indicator (SEC-) - the audience for the\nissued access token.\nThe resource."
           },
           "scope": {
             "type": [
@@ -13003,7 +13156,7 @@
               "string",
               "null"
             ],
-            "description": "Token type of the subject token — must be `urn:ietf:params:oauth:token-type:access_token`.\nThe subject token type."
+            "description": "Token type of the subject token - must be `urn:ietf:params:oauth:token-type:access_token`.\nThe subject token type."
           }
         }
       },
@@ -13073,7 +13226,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Optional list of role IDs — replaces the full set of roles.\nThe role ids."
+            "description": "Optional list of role IDs - replaces the full set of roles.\nThe role ids."
           },
           "user_ids": {
             "type": [
@@ -13084,7 +13237,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Optional list of user IDs — replaces the full set of members.\nThe user ids."
+            "description": "Optional list of user IDs - replaces the full set of members.\nThe user ids."
           }
         }
       },
@@ -13157,7 +13310,7 @@
       },
       "UpdateRequest": {
         "type": "object",
-        "description": "Update request (RFC 7592 ) — same shape as RegisterRequest but all\nfields are optional since the client may only update a subset.\nRequest body for update.",
+        "description": "Update request (RFC 7592 ) - same shape as RegisterRequest but all\nfields are optional since the client may only update a subset.\nRequest body for update.",
         "properties": {
           "client_name": {
             "type": [

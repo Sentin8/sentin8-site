@@ -1,13 +1,11 @@
 ---
 id: get-oauth-client
-title: "`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID.
-Fetch OAuth client."
-description: "`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID."
-sidebar_label: "`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID.
-Fetch OAuth client."
+title: "`GET /v1/admin/oauth-clients/{id}`"
+description: "get an OAuth client by ID."
+sidebar_label: "`GET /v1/admin/oauth-clients/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy1VtuO2zgM/RWBTy2gXKbtw8Jvg05bZBfFFNMU+5AGqcZmYrWO5Ep0sIFhYD9iv3C/pKBkJ3GSZtoO+uSLyKND6ohkDaRWHpIZqIpymEuwJTpF2ppJBgmskBaWlxZpodEQSCiVU2skdOxWg1FrhAR0BhK0gQRKRTlIyNCnTpeMBAncXleUi4ghJjcgweHXSjvMICFXoQSf5rhWkNRA25IRPTltViBhad1aESRQVTqDppG7TUk5Johms9jv/7VCtz0hMA2mAs1GLK0TqbPeD/hLZWttenyWqvAXCDXNnK19aY1Hz+vPxmN+fD9ikJBaQ/yW1KDKstBpyPHos2fj+nQze/8ZUzoJ467dV5RqW1iVhWDCAcWdhr1IZvFYdvmJNr33kEn2ybTDlBaV0x4krJwytGAuHvbR7n6Q/YJmgSYrrTa0CAJZI+WWkX1qo5UnRRW/pA4VYbZQHFBVZt3HXELpWHCkYyb3BM/ooJ+JVks6Q0N6qdENoelH9SDENMdOkuwQAfZUL0mRQxiQDrk74hUBBC8GxDb7Dwr7GIjFeRTd4ans8ZRzigWvCdf+jF7PhR2QREAKyL9CcNIn15fQ4+h1WIKxWvSeBB8L396ifQJa0T4ON4JEvKj9H9JgtA1uFy7WD0EFf9H5C/YX0T/AH9y9X1N3C9CpmxlrKrCrdy/DbeqKFDQNW7wYPz8tj2+199qsAsMk1OCYPQgOLy7XU2EsiaWtTGgH4DGtnKZt6EeeRWn+SPbAkMzmXLP7eJ/evJqK0eZqFGxGoYYOIrwf1TprPon///1PcNNQRvR2v9+Kyc3wo3mNlOa9JS6/3XFx7wztknJI4NJOoXMtbTiSNpttFIPQlY+pv4+Lon0mgQCTjeWCtjKSGt1Obl6OXl+/m0jh0XttjZfiz7//eh/SbjlnzLjQKfJxJbvG+nYyFbd34rpUaY6DZ8MxU9xd97MGjYQNOh8ZjodX8VdpPa2VOYD+bXnv5WgnbsJ/aFQWSpugf1fwWjyTGWyuQEI3APSYgIREZ9ygcuuJbev6Xnn84Iqm4d9xymDBZdqr++JgcDgisuv8D88gZzl/we2ZUWejioptgZW9UU4zh5/k8+SunRSeitP57CyXrjaa7SGFjiNPZ/NGQo4qY5XM6nbhOk2xpAOXkxGIo9hdnDevptA03wCk1qcJ
+api: eJylVk1v2zgQ/SvEnHYB+iNtDwvdgiQt3KJIkXqxB6/hMtLYYiuTKjky1hD034shJduyXSebnPTBmcc3w8eZqYHUykMyA1VRDnMJtkSnSFszySCBFdLC8tIiLTQaAgmlcmqNhI7dajBqjZCAzkCCNpBAqSgHCRn61OmSkSCB++uKchExxOQWJDj8WWmHGSTkKpTg0xzXCpIaaFsyoienzQokLK1bK4IEqkpn0DRytykpxwTRbBb7/X9W6LYnBKbBVKDZiKV1InXW+wF/qWytTY/PUhX+AqGmmbO1L63x6Hn9zXjMj99HDBJSa4jfkhpUWRY6DTkeffdsXJ9uZh+/Y0onYTy0+4pSbQurshBMOKC407AXySweyy4/0ab3HjLJPpl2mNKictqDhJVThhbMxcM+2t0Psj/QLNBkpdWGFkEga6TcMrJPbbTypKjil9ShIswWigOqyqz7mEsoHQuOdMzknuAZHfQz0WpJZ2hILzW6ITT9qJ6EmObYSZIdIsCe6iUpcggD0iF3R7wigODFgNhm/0lhHwOxOI+iOzyVPZ5yTrHgNeHan9HrubADkghIAfklBCd9cn0JvY5ehyUYq0XvSfC18O0t2iegFe3rcCNIxIvaf5YGo21wu3CxngUV/EXnL9hfRP8Af3D3XqbuFqBTNzPWVGBX727CbeqKFDQNW7wbvz0tj5+199qsAsMk1OCYPQgO7y7XU2EsiaWtTGgH4DGtnKZt6EeeRWn+SvbAkMzmXLP7eNwNlBE92MetmNwO/zXvkdK8t8R1tTsHdg19kHJIYLS5GoVtRqEMD6K9H9U6a0JLWtqQ6zZNLb1BaLfHnL7GRdE+k0Bg0FYB2spIaXQ/ub0Zvb/+MpHCo/faGi/Fx38+fQ3ZtJwK5lvoFPkUkl2//DyZivsHcV2qNMfBm+GYCe5u8VmDRsIGnY/8xsOr+Ku0ntbKHEB/+3A3FZdy8e042nrfE19wGK12Cf+jUVkobYK8XcG48WRmsLkCCV1/7zECCYnOuP/k1hPb1vWj8vi3K5qGf8chgvWUaa8ei4O54LdBPDlinOX8A7dnJpmNKiq2BRbuRjnNHP4nnz8e2kHgT3E6fp3l0pU+sz2k0HHk4WveSMhRZayWWd0uXKcplnTgcjLhcBS76/PhbgpN8ws6ZpiM
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID.\nFetch OAuth client."}
+  children={"`GET /v1/admin/oauth-clients/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/oauth-clients/{id}` — get an OAuth client by ID.
+get an OAuth client by ID.
 Fetch OAuth client.
 
 <Heading

@@ -1,15 +1,11 @@
 ---
 id: data-query
-title: "`POST /v1/data/query` — query rows with filters, sorts, pagination.
-Soft-deleted rows (`deleted_at IS NOT NULL`) are excluded.
-Handle query."
-description: "`POST /v1/data/query` — query rows with filters, sorts, pagination."
-sidebar_label: "`POST /v1/data/query` — query rows with filters, sorts, pagination.
-Soft-deleted rows (`deleted_at IS NOT NULL`) are excluded.
-Handle query."
+title: "`POST /v1/data/query`"
+description: "query rows with filters, sorts, pagination."
+sidebar_label: "`POST /v1/data/query`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNV9tu20YQ/ZXBvFQGKFm+REn5lhvQtHbsWM6TLIRL7lDamNyld5eWBUFAPqL/0P/op/RLilnSomSlSYHmoX6xtJc5M2dmzqxW6MXMYTxBmeI0QlORFV4Z/U5ijFJ4MbiryS4xQkt3NTn/ysglxivMjPakPX8UVVWoLFw7/OyM5jWXzakU/MkvK8IYTfqZMo8RSnKZVRWfxhivGquQGrmE3FhILi/G13B4f3TI6IcBPRm0+MqSZGe9SAtifyvLHntFjqFyVXiy4eMuykUl7mqCZh/oobLknDIaen5O4MjekwWlPdnKkndQkYWAcTDAdYSVmCktGltPTZ+pUvlDk+eOPCyUlmbB3j6NetdRkXuyHTkTdN4qPcMIdV0UHFhubCk8xljXSu6x9hstGS6rrTMWem9e9U8ikClcvX355vwt/PnH84MYLPnaarBm4YDtZ75YQkAGP1fuRidKJgO4FrfkoLKUkSSdERgmI2kiSmAxJw0M9teX38EFUqDWMvDlyHp3o1PyCyINlZiRi6DWhbolYGZ3aYFLwQmEhfJzSJyxPgGjgd240aRzYzOSbTb6TklqwNlQG6lyUDuSISkFE7/NIedvRvZrJCrtT473WDwXD6qsy4Yhb1rCOHul0ryD8XAdYRPEf0K6ahHcraqg17JSGsn1tYO2jtArX3DpXHZFt46Q2drqJmGt4KZUnkr3/S670ARsgXPmbZ3x8tOeykxRl3q/qdr1DmNTq7sYr8O5ECUjpcuQJT5DWvKFzkJqTEFC75kY88XuRpt+WxP0JOWiLjyIx03uzC22+OrrQtSOHlGfmM3CpgOlobLKWOWXYKwkG9xsBOW7MV7PqdEFDjNI064XH3iplTRc807HMMcRFlxltGu4PR4O9xUlGAFLri68w+jHKW0DDLk15b+TWW4M1jLjRbFfGJoe/KemMX+slB3EoecL4XzbkyS5SX9yQSuCElXCOVAeUpHdgmAx60R6EEQu4Rzl5LN5sMbeBoUaQMKeJZ248Cos2MgGtpfTgmyrDHOhIQlyk2z8aQZDIOifu3KvErl+SuGzeROQA+Hg1/HFe2hy5ppaDHR3Vju12VaZ0el+dfLFxj53jzULyEytPfTUTBvOCnQkfUN52ipuyoXLeB3h6fBkv1LPlXNsVaYxV1FsSUhwmakodIWjrOY+w3iyQkfaK/0i3j6L8WS6nj4N46ulGZJ+13QGExdmSDvvo6A4LtqKbnCjxyb3fUkF+Ueye0n79ZPw8G4M7y+u4f3Hs7PkAIQloIesqCXJwY3+RWhZ0GOHR1iSnxt+EVXGhWku/Bxj3PURI+SevOreSW8fRFk1urL7hGjnP57k4sWzfHTaf/b86Hn/9NnouJ+e5Fn/OPt5dJKPRiIXI9yMumE3i4abkTDpFHpXtR5VN+jOdCNxj4fWESqdm1Bnbd7bFPVluq/MzRa0/+M3r9r3AA+Tmod6RdYp57sXxKVxfmZp/OGsSdbV2XgQYsmIy4oFRJQMe/7uGi6u4GUlsjn1jwdD7iDJQLkKLO0fWEd4z3jBt+HgqFni5JRCb5n+H5bSDq+bHvf04A+rQqgw7GtbNDXDVTbB+yO+J7zACJtKm0Y450qMJ7hapcLRR1us17zc7MeTaYT3wqom55PpOsI5Ccl0TlZ4S8swsMNc6V+zC3y8qIOIPZ0x6+jxxssso8p/8+x0q1mYfIwwbX8x8HsHY7RiwWNGLDBG5F8cfDuoaFhbYSH0rBYzPtvY5L+/AU04YuI=
+api: eJzFV9tu20YQ/ZXBvFQGKFm+REn5lhvQtHbsWM6TLIQr7lDcmNyld5eWBUHf0//olxWzpExd0qRAA9QvlvYyZ+bMzJnVCr2YO4wnKGc4jdBUZIVXRn+QGKMUXgwearJLjNDSQ03OvzFyifEKU6M9ac8fRVUVKg3Xjr86o3nNpTmVgj/5ZUUYo5l9pdRjhJJcalXFpzHGm8YqzIxcQmYsJNdX41s4fjw5ZvTjgJ4MWnxlSbKzXswKYn8ryx57RY6hMlV4suHjLspVJR5qgmYf6Kmy5JwyGno+J3BkH8mC0p5sZck7qMhCwDga4DrCSsyVFo2tfdMXqlT+2GSZIw8LpaVZsLf7Ue86KjJPtiNngs5bpecYoa6LggPLjC2FxxjrWskD1v6gJcOltXXGQu/dm/5ZBHIGN+9fv7t8D3/9+fIoBku+thqsWThg+6kvlhCQwefK3elEyWQAt+KeHFSWUpKkUwLDZCRNRAksctLAYH1wgRKotQxsObLe3ekZ+QWRhkrMyUVQ60LdEzCvu6TAteD0wUL5HBJnrE/AaGAn7jTpzNiUZJuLvlOSGmg21MapHNSOZEhJwbRvM8jZm5P9FoVK+7PTAw4vxZMq67Lhx5uWLs5dqTTvYDxcR9gE8Z+QbloEd68q6LWslEZyde2grSP0yhdcONddya0jZLa2eklYK7gllafS/bjHrjQBW+CceVunvLzfUakp6lIftlS73mE8V+ouxttwLkTJSLNlyBKfIS35QmdhZkxBQh+YGPPF7kabflsT9CRloi48iM0m9+UWW3z1bSFqRxvUPbNp2HSgNFRWGav8EoyVZIObjZz8MMbbnBpV4DCDMO168YmXWkHDNe90DHMcYcFVRruG29Ph8FBPghGw5OrCO4x+ns42wJBZU/47keXGYCUzXhSHhaHpyX9pGvPnCtlRHHq+EM63PUmSm/QXF7QC+lAJ50B5mIn0HgQLWSfQgyBwCWcoI5/mwRb7GvRpAAn7lXTSwquwYCPPoL2MFmRbXciFhiSITfLsTTMUAj3/3JMHdcjVUwqf5k04DoSD38dXH6HJmGsqMZDdWe20ZltjRueHtckXG/vcO9YsIDW19tBTc204J9CR9B3daWu4KRYu4nWE58Ozwzq9VM6xVTmLuYZiS0KCS01FoSccpTV3GcaTFTrSXulX8fZZjCfT9XQ/jIem+pmeMCfaiR4FVXHRVgyDOz02me9LKshvKO0l7dcvwsOHMXy8uoWPny8ukiMQloCe0qKWJAd3+jehZUGbLo6wJJ8bfvNUxoV5LXyOMe62CEbIfXfTvYTeP4myarRj95HQTng8y8SrF9novP/i5cnL/vmL0Wl/dpal/dP019FZNhqJTIzweZwNu3kzfJb9SafCu8q0UdagLdNnGdscWkeodGZCNbXZbRPRl7ND9W22oP0fv3sTJj6Pi5rHdkXWKee7F8K1cX5uafzpoknVzcV4ECJJiUuHJUKUDHr54RaubuB1JdKc+qeDIXeJZJhMBY4OD6wjfGS84NlwcNIscWpKobdMf1PH9kPbeqv+f/XV9rOnJ39cFUKFsV7boqkcrrUJPp6w68ILjBpHWT9zrsd4gqvVTDj6bIv1mpeb/XgyjfBRWNVkfjJdR5iTkEzrZIX3tAyjOUTfv2UX+HhRB8HanybraHPjdZpS5b97drrVMpwEjHDW/jLglw3GaMWCB4pYYIzIvyz4dlDMsLbCQuh5LeZ8trHJf38D3WpV2g==
 sidebar_class_name: "post api-method"
 info_path: docs/api/db/sentin-8-db
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/data/query` — query rows with filters, sorts, pagination.\nSoft-deleted rows (`deleted_at IS NOT NULL`) are excluded.\nHandle query."}
+  children={"`POST /v1/data/query`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/data/query` — query rows with filters, sorts, pagination.
+query rows with filters, sorts, pagination.
 Soft-deleted rows (`deleted_at IS NOT NULL`) are excluded.
 Handle query.
 

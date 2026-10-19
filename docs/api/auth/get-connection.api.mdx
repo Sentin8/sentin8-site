@@ -1,13 +1,11 @@
 ---
 id: get-connection
-title: "`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection.
-Fetch connection."
-description: "`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection."
-sidebar_label: "`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection.
-Fetch connection."
+title: "`GET /v1/admin/enterprise-connections/{id}`"
+description: "get an enterprise connection."
+sidebar_label: "`GET /v1/admin/enterprise-connections/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9VtuO2zYQ/RVinlqAu/YGeSj0tsgN7gVbbDbog2s4XHJsMZUohRwZNQwB+Yh+Yb+kGFKWbclJvPvQJ1HknMO5kGe4A1LrANkcVEM5LCRUNXpFtnIzAxmskZa6cg41T4GEWnlVIqFn0A6cKhEysAYkWAcZ1IpykGAwaG/rCMrgVc8gZq9BgsfPjfVoICPfoISgcywVZDugbc18gbx1a5CwqnypCDJoGmugbRcMDnXlAga2fzGd8udr24EEXTlCR2yl6rqwOgY3+RTYdDfeunr8hJpGIdx3u4pabYtKGbGqvDhk5vokqnlKSEyO5GAU4Xobh4qawANd1cgDLJUtlorI28eG2Fx7VIRmqdiJpjb7n4WE2nN1yKbYlQ7LxhcH3+eHvLmmKBhxGsRDjkLpID7c/3oNrQRdWHS0tOYJHAkjrEFHdmXRJ6aD09+qIgdzRTamZUCbCAQvRkZjg6426LfPiLHH9pGaqlTWLXPr6KlcESkYGZmGBTsT7pgkgkQPSkSOLG2flvyEGSYf3eZ7NKf3aEy7GXIe833tOg5pZgOKEBr0zyhfAva1K5GUUaSewbSH9lxJry4pGVv2kHP1vsgBBg/q3l39gxPKe8XiYAnLMHauPcebSBJf0pSLgkq2HaxTpQuByTpCj0TpeZe9I9hf9lYCWSrwRLr3ggttywYvpy/HQn/QX+EqEquqcSbSBdSNt7SNPSrwqXQ/ZdzhMmVK7lPzRTuq18d3bx7EZHMziTYTdIS+9jbg1WGfMNlZ034U/375R6yRhHLiYHfcD/50b5F0PmgRJVJedX01NlPKIYOL9owNdlXFjHfJ6gK7iq17GM37tCi6b3bbUB7dThedtlLc8dzkbvb61eTt7e8zKQKGwBtK8fMfv7wXzFtxGtn1wmrkcmR90/9t9iDu7sVtrXSOVy+up+xiLwFnDVoJG/QheTi9vklTdRWoVO6I+n8oxUm2+lNM+DdN6kJZFw96EpxUpjlsbkBCOkBRvs/4BBIya1gL8ioQg3a7RxXwgy/alqc/N+j5WC4kbJS36pErOd9xu+OxgWylioAj//pnDPxw370zfhTDd9XZIPYq41hjNqpo+A8k/IXb9HJrF62EHJXhos133cKt1ljTEWT0euIb1B/od28eoG3/A9VQjc8=
+api: eJydVk2P2zYQ/SvEnBqAXnuDHArdFvmC0xZbbDbowTUcrji2mEqkQo6MGoL+ezGkLHtlJ/X6JIma9zhvhjPDFkhtAmQLUA0VsJTgavSKjLNzDRlskFa5sxZzXgIJtfKqQkLPoBasqhAyMBokGAsZ1IoKkKAx5N7UEZTB24FBzN+BBI/fG+NRQ0a+QQkhL7BSkLVAu5r5AnljNyBh7XylCDJoGqOh65YMDrWzAQPbv57N+PGj7UBC7iyhJbZSdV2aPIqbfgts2p5u7Z6+YU4nEh76XUWtdqVTWqydF4fI3DxTtUgBicGRLEYRbnbxVVET+CV3NfILVsqUK0XkzVNDbJ57VIR6pdiJptb7j6WE2nN2yCTtKg+rxpcH3xeHuNmmLBnxXMRjgULlQXx5+P0GOgl5adDSyugXcCSMMBotmbVBn5gOTv8siyxmQiaGZUSbCAT/jIzahNxt0e+u0DhgB6XaVcrYVWEsvZQrIgUjI9M4YWfknpJEkBhAiciSod3Lgp8w4+Cj3f4fzfM6OqXdjjmP+X5UjmOa+YgihAb9FelLwCF3FZLSitQVTHvowJX61SUpY8sBci7fFznA4FHe+9I/OKG8V9wcDGEVTp3rzvEmksSXespFopJtD+u70oXAZB2hR03pumLvCfbF3kkgQyU+a937hgtdxwZvZm9OG/2h/wrrSKxdY3WkC5g33tAuzqjAp9L+mvGEy5SueE4tlt1JvjZIQlmBltDX3gQ87u9/2w9IeTFq+RVS4fo5GYcjFZDBdHs7jftMD1yTAzBMW6O7ODDXLkawF987OomjeOzd5/RT9M/srqFCTPqypZ0U97wyvZ+/ezv9cPfnXIqAIfB2Unz667fPglkdB4UdL02OHNxsGOF/zB/F/YO4q1Ve4OT1zYwdHAr6rEEnYYs+JP9mN7dpqXaBKmWPqL9+fP8oLgrK17Hs9jC/r8lPfzYJ/6VpXSpj4/FNbSQlawHbW5CQjkVsymd8AwmZ0VzhhQvEoLZ9UgG/+LLrePl7g54P21LCVnmjnjifi5aHGL9ryNaqDPgTcb889LeHV2J8WzorYt87LHeOrSob/gIJ/+Au3ce6ZSehQKU5eYu2/3GX51jTEeTkTsR1MRzrj+8foev+A/yre4E=
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection.\nFetch connection."}
+  children={"`GET /v1/admin/enterprise-connections/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/enterprise-connections/{id}` — get an enterprise connection.
+get an enterprise connection.
 Fetch connection.
 
 <Heading

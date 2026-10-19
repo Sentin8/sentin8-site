@@ -1,19 +1,11 @@
 ---
 id: execute-product
-title: "`POST /v1/modules/product/{product_id}/execute` — execute a hook on the
-product's currently-ACTIVE version (the `latest` pointer; func DESIGN
-§4). The pinned-by-id route is the exact-version surface; this is the
-convenience route for callers that track products, not versions.
-Execute on product."
-description: "`POST /v1/modules/product/{product_id}/execute` — execute a hook on the"
-sidebar_label: "`POST /v1/modules/product/{product_id}/execute` — execute a hook on the
-product's currently-ACTIVE version (the `latest` pointer; func DESIGN
-§4). The pinned-by-id route is the exact-version surface; this is the
-convenience route for callers that track products, not versions.
-Execute on product."
+title: "`POST /v1/modules/product/{product_id}/execute`"
+description: "execute a hook on the"
+sidebar_label: "`POST /v1/modules/product/{product_id}/execute`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztV81uGzcQfhViLkmAlWSnRlFsTq7rFgaaOHCc9mAZMkWOJMZcckNyFS+EBfoQfYe8Rx6lT1IMSUkrS03dHnqqL9Zyv/n/Zoa7gsDnHsobmDVGwG0BtkbHg7LmQkIJ+ICiCTipnZWNCFCAw48N+vC9lS2UKxDWBDSBfvK61kpE2dEHbw2debHAitOv0NYIJdjpB4x6JHrhVE1oKOHu7eW7azZaHo8qKxuNfrRSshtl83csW2VTK9vh2Fz1HtnMOpaBw+ygcigpqIW191AkJx8ChVc7CjAo9NF7rvWUi/uJsGam5nRkDV7OoLzZeGwaraErVo88vl4gW4uzJE7WH4fZ92bKPU4ap6EA3oTFJNh7NFCAMgGd4XpS87DYd7KH3ebRB6fMfC+P5BXhWcQPoSu2Vp8kTGj2/urnKLqwPkyIGATwf19FUkAybCNDKeFSKnrg+u1OXLvOdJuw2ze8OojoHqfqSRGtRRiJDKOWoIImqbNcv7NU/e6223KlPFjw9DInx94/zQNCRhElsaptQCPayT22W+mbrXik2+1jNZd1yiDrqWD32LLntVNGqFqjZ18+nwyPT9gfv/3OcImuZcGp+Rzd2EiUTY2eWcPCAumtCc88KXhRMs4c1pq3KHMbKWvYJ0UkWiDzvMKxIVMOQ+OMj6eCiwVK5tDX1nhKsg/IJbMz5nDgGmOUmUdkDH5sYiV2fd+txXnq4NzZ0NG7bfME12A8SPYiO14eHe1X6XwTgUPf6LDu/v9iROVcbGZUfq55qy2XX5tTG18dku2JQ07eFSCVQxHUEj0F0vhgq4nkgUMBswb1pPEoCdakmT2p/IEh1xM7zOoIYASINO0ZPYjfvk/wnvFtFqnt5ujIUesqHtLRtycHO2StglVxYlTKqKqpoDzq+nH+S+WkgJGCPdW72X5SLycRlkRi+Ll2T5Qm7F8QP9GFmN8VcHL0zX7yXyvvqa9ovJaZSswLWyNEkZN9kTeW8VgrllgbWUh9ud7oZMyjaJwKbVx7Hk1Q5ruybwTKm9tubyjtd0RWOlrlH5OdDomDKXvN42DIA2lsMv6ZZ6JxDk3Q7eD07Pril3O2ROeJGs/J6zvNA/pwx2ob5/qrmAv2w/m7i5/ejM2XzycvhowyXStjUA6m7UBJ5iyZVGl04QMXYbDW6hs34wJfsbBQPkPGRlizRKPQCMzClDZa9+gIwgMLjhZ/9tsXzNiwdtUPxyZXlQLMmMg+DAtL96raemr3tMXgqSmEAmhqXW2vYOcPvKqJRgfuMmmVrBfVlpZ7W6i3gpWZ2UjlTM5MhkG8HT6u/7v0kuX/5Y9UCiqyD9xIrq1B9itOT73Haqrb3nbx6JZKxDGolUCifbkCwyuy+friml1esdOadszg5fAo+WyCmil0BwFdATn3UMLR8DgdUZIrbnqq/2fsP2XsTsU3I44uQaNac2Uoz/lymch8A8tjYnrKL8RllD8dym2OoVh/WtC+ojsjSa5WdP1873TX0fHHBh3NpNsCltwpPtVpEBWwQC6JCjcrSAw+Szt+cE3+EVw35Ofevqd7fJI4FQLr8FXsba9hiThQwDR/9lRWkozjn2hp809QAtC30+aiHM9WoLmZN3xO2KST/v4E/e3CgQ==
+api: eJzlV81uGzcQfhViLkmAlWSnRhFsTq7rFgYaO3Cc9mAZMkWOJMZcckNyFS+EBfoQfYe8Rx6lT1IMSUlrS3WNHnqpL9Zyv/n/Zoa7gsDnHsprmDVGwE0BtkbHg7LmTEIJeI+iCTipnZWNCFCAw88N+vCDlS2UKxDWBDSBfvK61kpE2dEnbw2debHAitOv0NYIJdjpJ4x6JHrhVE1oKOH2/cWHKzZaHo4qKxuNfrRSshtl87csW2VTK9vh2Fz2HtnMOpaBw+ygcigpqIW1d1AkJ+8DhVc7CjAo9NF7rvWUi7uJsGam5nRkDV7MoLzeeGwaraErVo88vlogW4uzJE7WH4fZ92bKPU4ap6EA3oTFJNg7NFCAMgGd4XpS87DYdbKH3ebRB6fMfCeP5BXhWcQPoSu2Vp8lTGj28fKXKLqwPkyIGATw/1xFUkAybCNDKeFSKnrg+v2DuB46023Cbs95tRfRPU7VsyJaizASGUYtQQVNUie5fiep+t1Nt+VKubfg6WVOjr17ngeEjCJKYlXbgEa0kztst9LXW/FIt5vHai7qlEHWU8HusGUva6eMULVGz759PRoeHrE/f/+D4RJdy4JT8zm6sZEomxo9s4aFBdJbE154UvCqZJw5rDVvUeY2UtawL4pItEDmeYVjQ6YchsYZH08FFwuUzKGvrfGUZB+QS2ZnzOHANcYoM4/IGPzYxEo89P1hLU5TB+fOho7ebZsnuAbjQbIX2fH64GC3SqebCBz6Rod19/8XIyrnYjOj8nPNW225fGpObXx1SLYnDjl5V4BUDkVQS/QUSOODrSaSBw4FzBrUk8ajJFiTZvak8nuGXE9sP6sjgBEg0rRndC9++z7Be8a3WaS2m6MjR62reEhH3x/t7ZC1ClbFiVEpo6qmgvKg68f5L5WTAkYKdlQ/zPazejmJsCQSw8+1e6Y0Yf+G+IkuxPyugKOD73aT/055T31F47XMVGJe2BohihztipxbxmOtWGJtZCH15XqjkzGPonEqtHHteTRBmTdl3wiU1zfdzlBae8Bjk+fhMjZZ8wvPROMcmqDbwfHJ1dmvp2yJzlOZX5IHt5oH9OGW1TbO6LcxLvbj6Yezn8/H5tvXo1dDRlmrlTEoB9N2oCRzlkyqNIbwnoswWGv1jZtxgW9ZWCifIWMjrFmiUWgEZmFKAa1udAThgQVHSzz77QtmbFi76odjkytEAWZMZBKGhaU7Um09tW7aSNAfEBk9WuUfk97AgAJoAl1ur1On97yqiRJ77iVpLayXzpZiOxult06VmdlIy0y0XNhBvOk9ruWH9JLl/+VPVAraJD5wI7m2BtlvOD32HqupbnubwqNbKhFHmlYCicLlCgyvyOa7syt2ccmOa9oXg9fDg+SzCWqm0O0FdAXk3EMJB8PDdERJrrjpqd6dx0+l+/ZxxL2r6/+cyHls0cVmVGuuDOU7XxgTqa9heUiMT3mGuGDy50C5zTUU60TSDqJ7IEmuVnSl/Oh019Hx5wYdzZmbApbcKT7VabgUsEAuiRLXK0hMPkn1GVyRfwTXDfm5s8Ppbp4kjoXAOjyJvek1LhEICpjmT5nKSpJx/AstYv4FSgD6HtpcfuPZCjQ384bPCZt00t9fJv6wNA==
 sidebar_class_name: "post api-method"
 info_path: docs/api/func/sentin-8-func
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/modules/product/{product_id}/execute` — execute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product."}
+  children={"`POST /v1/modules/product/{product_id}/execute`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/modules/product/{product_id}/execute` — execute a hook on the
+execute a hook on the
 product's currently-ACTIVE version (the `latest` pointer; func DESIGN
 §4). The pinned-by-id route is the exact-version surface; this is the
 convenience route for callers that track products, not versions.

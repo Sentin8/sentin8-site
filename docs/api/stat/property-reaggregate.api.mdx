@@ -1,27 +1,11 @@
 ---
 id: property-reaggregate
-title: "`POST /v1/admin/properties/{id}/reaggregate`
-Delete and rebuild the property's day-granularity `metrics` rollups over
-a raw-events window (stat README §7). v1 reaggregates from `stat.events`
-ONLY — a window reaching past the property's retention horizon is a 400
-(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6
-the archive spill is the source-of-truth boundary and the Storage-archive
-replay path is out of scope for this endpoint). The recomputation shares the
-background rollup's SQL via
-`crate::worker::rollups::reaggregate_property`."
-description: "`POST /v1/admin/properties/{id}/reaggregate`"
-sidebar_label: "`POST /v1/admin/properties/{id}/reaggregate`
-Delete and rebuild the property's day-granularity `metrics` rollups over
-a raw-events window (stat README §7). v1 reaggregates from `stat.events`
-ONLY — a window reaching past the property's retention horizon is a 400
-(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6
-the archive spill is the source-of-truth boundary and the Storage-archive
-replay path is out of scope for this endpoint). The recomputation shares the
-background rollup's SQL via
-`crate::worker::rollups::reaggregate_property`."
+title: "`POST /v1/admin/properties/{id}/reaggregate`"
+description: "Delete and rebuild the property's day-granularity `metrics` rollups over"
+sidebar_label: "`POST /v1/admin/properties/{id}/reaggregate`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVttu20YQ/ZXBvsQGqItjoxcGfUhitxCQxK7tPhSWYY24I3GT5S6zO6SjCgL6Ef2H/Ec+pV9SDEldHLlA07zGL7aXc58zZ2apGOdRpTcqMrK6TZQvKSAb70ZapaoM8j8v+oFwPg80RyaVqBIDFsQURHWpHBakUmW0SpRxooacq0RpilkwpVhTqbrobMHoVCUq0PvKBNIq5VBRomKWU4EqXSpelGItcjBurhI186FAVqmqKqPVapVsHDKGOfEdufpu6/t9RWGx5/y6EQVyNRysXR9+QRir1W0rTJFfeL0Qicw7JsfyJ5alNVlTt8HbKB6X+6b89C1lvBfaZWsVpl4vYOYDTC7Or65hUB8NUBfGDbomGIqDpdGrwU4vJvD3n38B5zR2Ae97VJPjCPfGaX8P7CHQtDJW9+GF5xxmhqyOgFlGJcPlzy/h+Pj4R2BTUGQsyvhs7HxhmEmvZTXNsLIMJQWYlBgi3e24v2s9TeBgVlkLvjAxGu/gp7GzGBmOh6BxEQ/7Y3edE+xodqUEKU1fELXJUQo2C77YFu5miwVXWSsofVjBkctsFU1N68wjY2A4WGd42FerRLH/GpPk9EODYtGwpaaDm7y6ZqqVfH8IruYhlt7FNsmnw6H8+gwM3tqqjF3jGHxNQfrbhSF5nDymN3I1WqM7sWQd9ZQW3unGQCABq3Qn98H84V0CPsB6wMF5BuNkQFofx/s+Xkt33Vyqy2kDTYiZL6lVONlXuNg1PvOVa8ZXRcqqYHjRcEeUoNwP6daoSm9uV3sN+ZKhGLtTssQE6PR6BJoarLN9EgWXvXlAV1mUWGBSEAeTxQmErgVS+rFD2B+sAwkWLs+en74+g08fvz/sQ320i+4IgmCYiFy/1Z2M3fmbV78384prQ4Ewy6WkpUzLZxHuNQxMBIST4XDsDkQ2lsZa0hIgaGQEa2qK0sUr9gHnBBiyXN6eNfPbRH16djX65Q18+njSP+5/N3ZiqBNrDYqXxrqvQkY9P+txqDiHqfQPw6Ipqgh0Tnqd9tgFKi0uQMhfjPiKwc9aiDS8xrmJMkelN44P+9BSQuaLsuKGOiHmGCi2fDbF7N08iNOuI08iXP36CmqDYzfJAjKl6b0P7yikadezNN0lp3UtJ0IwBXHum5XmIzcrjHOVqv8EKJUoIfXLLf2ffcCilNlfc9WWT4RmNltDdtKs5Z2OKzq895p9+znIr9qP0P1Or6RjDWIc2gWbLA6YLAlUF2DcnCInAiINzy9GMWlaQ8WUtCYNpSnJGkfQFkmKYE1GLjZhdyv09egazi/heYlZTr2n/aGsUS3uZ4bCowKrRNUUYhvxsH/UPklZC3Q7pr9N7LeJ/ZqJfTAamyOK6QMPSovGCeqqYOVbO8w3qj5SiWqXyIOTIlFpcyDuzvRtonKhgvRGLZdTjPRbsKuVPLcXpCwnbSJOrSzwGdpIezFtLkB1cLk+KuHfTs1HE3hHi0cO2RptJbJK9mCNwUgU/z+ih5f3o3F0j+gWu+7X8cndfbtKVE6ohRVult2Hl6273rWobxX3zmHJY8PAwgsqUdPujC68Fp2A99IhvG8d+yal5lBq3pbKoptXOBfZ1qb8/AMFG4JX
+api: eJztVttu20YQ/ZXBvsQGqItjoxcGfUhitzCQi2u7D4VlWCPuSNxkucvsDumwgoB+RP8h/5FP6ZcUQ1KWbLlF077GL7JWM2duZy5LxbiIKr1SkZHVdaJ8SQHZeHeqVarKIN+5GQbCxSLQAplUokoMWBBTENWlcliQSpXRKlHGiRpyrhKlKWbBlIKmUnXWY8HpsUpUoA+VCaRVyqGiRMUspwJVulTclIIWORi3UIma+1Agq1RVldFqtUruDDKGBfENufpmY/tDRaHZMX7ZigK5GvbWpve/wI3V6roTpsgvvG5EIvOOybH8i2VpTdbmbfQuisXlLpSfvaOMd1w771Bh5nUDcx9gevb24hJG9cEIdWHcqC+CoThaGr0abdViCn/+/gdwThMX8HZANTmOcGuc9rfAHgLNKmP1EF54zmFuyOoImGVUMpz/+BIODw+/BzYFRcaijM8mzheGmfRaVtMcK8tQUoBpiSHSzZb5m87SFPbmlbXgCxOj8Q5+mDiLkeFwDBqbuD+cuMucYEuzTyVIaobCqLsYJWHz4ItN4q42XHCVtcLS+xk8dZmtoqlpHXlkDAx76wj3h2qVKPb/B5Kcvg8oiIYttRW8i6svplrJ7/fJ1T7E0rvYBfl0PJaPB2Tw1lZl7AvH4GsKUt/eDYnj6DG9U1ejNboXS9Zez6jxTrcAgYSsUp3cB/Obdwn4AOsGB+cZjJMG6Wwc7tp4LdV1C8kupy01IWa+pE7haFfhbBt87ivXtq+KlFXBcNPOjihOue/SDahKr65XOwU5JktMgE6vSd1Gtfb/SRSmDRYBXWVR0GFaEAeTxSmEPqmSzIlD2G2VPTEP5yfPj1+fwOdP3+4PoT7Y5msE4SRMRW7Y6U4n7u2bV7+2HYhroECY5ZKkUvj/wMOdEoCJgHA0Hk/cnsjG0lhLWhwEjYxgTU1R6nLBPuCCAEOWy9uztiNbr49PLk5/egOfPx0ND4ffTJwA9WIdoFhp0X0VMhr4+YBDxTnMpCIYmjapItAbGfTaExeotNiAjHMB8RWDn3dFbycV5yZKZ5TeON4fQtfkmS/KitthCDHHQLGbUDPM3i+CGO0r8iTCxc+voDY4cdMsIFOa3vrwnkKa9jVL0+1xs87lVEZGQZz7dkn5yO1S4lyl6l/NTZUoGdPnm4F+8hGLUrp5PX02E0IGx90ekC0z7yZJ3/09gwftBn1I24vuR+g/0wupWMsYh7Zhk8URkyWhagPGLShyIiTS8PzsNCZtaaiYkdakoTQlWeMIuiRJEqzJyMXW7X4pvj69hLfn8LzELKfB0+FYFqMW83ND4VGBVaJqCrHzeDw86J4krQW6LegvWUwPM7G1Lr/28tdeftDL/YXE9JFHpUXjhIBVsMKbrq+vVH2gEtVtiHv3QqLS9vrbbu/rROUyFdIrtVzOMNIvwa5W8tydh7J5tIk4s7Kd52gj/QNf987XFyP83R35aADvqXnkSq3RViKrZMnVGIx48d89un9WP+pH/4iu2Ta/9k+O6utVonJCLQPiatn/8LIzN7gU9Y3izq0rcdwNYxkRKlGz/kYuvBadgLdSIbztDPs2pPYKat+WyqJbVLgQ2Q5T/v4Cx990Ww==
 sidebar_class_name: "post api-method"
 info_path: docs/api/stat/sentin-8-stat
 custom_edit_url: null
@@ -39,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/properties/{id}/reaggregate`\nDelete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY — a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."}
+  children={"`POST /v1/admin/properties/{id}/reaggregate`"}
 >
 </Heading>
 
@@ -53,7 +37,6 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/properties/{id}/reaggregate`
 Delete and rebuild the property's day-granularity `metrics` rollups over
 a raw-events window (stat README §7). v1 reaggregates from `stat.events`
 ONLY — a window reaching past the property's retention horizon is a 400

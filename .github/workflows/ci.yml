@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: Copyright Contributors to the Sentin8:Site
 # SPDX-License-Identifier: Apache-2.0
 
-# ci.yml — site lane caller (Sentin8/sentin8-ci site.yml @ci-v1).
+# ci.yml - site lane caller (Sentin8/sentin8-ci site.yml @ci-v1).
 # Push to main → harvest + build + deploy to GitHub Pages (sentin8.dev).
 
 name: ci

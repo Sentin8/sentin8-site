@@ -1,17 +1,11 @@
 ---
 id: put-attribute
-title: "`PUT /v1/admin/attributes` — upsert one principal attribute.
-Values must be JSON scalars or arrays of scalars (Shield restricted
-expressions cannot represent nested objects — 422 otherwise).
-Handle PUT attribute."
-description: "`PUT /v1/admin/attributes` — upsert one principal attribute."
-sidebar_label: "`PUT /v1/admin/attributes` — upsert one principal attribute.
-Values must be JSON scalars or arrays of scalars (Shield restricted
-expressions cannot represent nested objects — 422 otherwise).
-Handle PUT attribute."
+title: "`PUT /v1/admin/attributes`"
+description: "upsert one principal attribute."
+sidebar_label: "`PUT /v1/admin/attributes`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVc1u2zgQfhViTgmg2E62h4VuaVGg7f4kSJy9OEZKUxOLDUWy5EiJIAjYh9gn3CfZHUpx4lU27bm+WBjO//fxYwcktxHyFXhntGphnYHzGCRpZz8WkIOv6UYSBb2pCSEDL4OskDBwVAdWVgg5kAxbpBu0zY0uIANtIYevNYYWMigwqqA9p4QclslVoG3EwcWvl0I5S/hAh5BBwK+1DlhATqHGDKIqsZKQd0Ct5zKRgrZb6Pv14IyR3rqiZY+UxhJ/Su+NVmmE+ZfIRbtpKrf5goom3X0+v1qKeXM8l0Wl7Xw3efwsNq5oxd9//iWcReGDtkp7acTOZXZtlyUKX9POlEK44GxvuhXEOpUflsXuN3fYPn420tTISPjAWJDGmMZ6dJvsY7LiElNb4g7bGfR7afPu/5zTeXJ/1t03a42+QhdoSd9qDDPo+wxIk+Gw85pOH9eRsOr5dB/pZIje2ThMerJYTPs8+wWy70a5T1XeLH6a5nknjcEgjFR3URADlpgvonIeU+sRVR00tYngkceyP+feRcoH1zygZBTXTMPvpg8zp/YRA71CoD8YgyiqOpLYoPh0efa7iEoaGaJwQcgQZBuFu90ZDy5LjaYQARkfRVhcW3zwAWPUzkahpLWOREA2oSVhMRIWYqB/TF29OTkRjkoM9zri4ezafpC2MCh4lqfmIIMKqXSjKCQpoBJyeGlcyIAxuXi6o+8fZOUN7hP5iVTPKbe75qwjty5xcGTTiMYRozGh4uVwKMb//Nz9u0UesKoN6SNVSmvRiApjlFsUBRrdYGhFxNBolSY0WqGNqctR2X77uBRnF+LUS1Xi0clsweq24/qLDn0GDYY4NLWYHQ8mbrmS9lnqH5sse9jsVISlfu6N1JZ3UgfDZwORVtAcswTyMkYpHMm0zqBkwPMVdN1GRrwKpu/ZPDwxfE8LHeXGsKLcShNxUn+nHHBwMYrPoXjlLXqx34G0/33sRmEFYD1oZNDcSNKHDEqUBdNk1Y3B74Y+jpac/yl2omZ99hhxqhR6etV3/exunl8tIYPN+CxWruCQIO/5BZL33CY/8RyctDbZOjDSbmu5Zd8hJf/+AYhf298=
+api: eJzVVUtv4zYQ/iuDOSWA/Ei6h0K3dFGg21eCxOnFMbK0NLG4oUguOXIiCPrvi6EUx15n017ri4XhN8N5fPOxQ1abiPkSvTO6aHGVofMUFGtnP5WYo2/4XjEHvW6YMEOvgqqJKYhXh1bVhDmyChvie7Lbe11ihtpijl8bCi1mWFIsgvYSEnNcJCiQ3cLJ9Z83UDjL9MynmGGgr40OVGLOoaEMY1FRrTDvkFsv10QO2m6w71cDmCL/4spWECmMZflU3htdpBJmX6Jc2h2HcusvVPBRdp+vbhcw257NVFlrO9tVHj/D2pUtTMBZAh+0LbRXBnaA6Z1dVAS+4Z0pOch104PalhibdPnQKoHfP1L78rlVpiGZgw8yCdYUU1EvsKNuHDW4opQWPFI7xf4gbN79CJzOE3wvu3+9a8SCLsmyftAUptj3GbJmI25XDV+8tCNNqpfTwzknQ/TOxqHS8/n8OM/LPzD7zzPu0y0f5j8dx/mojKEARhWPEVgGlngPsXCeUuqRiiZobhO9o5Rlf869i5wP0DyQkimuhISHwRsfKfA7DPlHmhyhbiLDmuD3m8u/IRbKqBDBBVAhqDaCe9gZT24qTaaEQDKAgqm8s/TsA8WonY1QKGsdQyAxkWWwFJlKGNgdYQIfzs/BcUXhSUc6nd7Z35QtDYHw/DU1zLAmrty48WnPucIc31oFzFBafv26gL8+q9obOuTpK2f2GbXbYRGJB5coNpJlbPZEmn3EtJvhEMb//MpFhgnUjWE9KSplLRmoKUa1ISjJ6C2FFiKFrS5SfUYXZGPKcRStvz4t4PIaLrwqKpqcT+ciXDsivwnoM9xSiENK8+nZYJKEa2X3Qv9YRr4vbE+5/t/8GYVCtHzmjdJWOtMEIyUOZFri9kxUTloyqt1IqFWGlQw9X2LXrVWk22D6XszDGyKrWOqo1kZE40GZSO+08eR61JdTeOexeTPfgbjfv2ajdiLKym9V0JJIkoAMK1KlkGXZjc4fhzwmC4n/6nskWH324nFRFOT5Xexqbz+vbheY4Xp892pXiktQT/LIqCdJU95wcU5ymmwdGmU3jdoIdggpv28ADcrb
 sidebar_class_name: "put api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/attributes` — upsert one principal attribute.\nValues must be JSON scalars or arrays of scalars (Shield restricted\nexpressions cannot represent nested objects — 422 otherwise).\nHandle PUT attribute."}
+  children={"`PUT /v1/admin/attributes`"}
 >
 </Heading>
 
@@ -43,9 +37,9 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/attributes` — upsert one principal attribute.
+upsert one principal attribute.
 Values must be JSON scalars or arrays of scalars (Shield restricted
-expressions cannot represent nested objects — 422 otherwise).
+expressions cannot represent nested objects - 422 otherwise).
 Handle PUT attribute.
 
 <Heading

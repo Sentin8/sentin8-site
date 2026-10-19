@@ -1,13 +1,11 @@
 ---
 id: get-security-profile-api
-title: "`GET /v1/security-profile` — return the effective security profile for
-the resolved tenant (platform/org/env)."
-description: "`GET /v1/security-profile` — return the effective security profile for"
-sidebar_label: "`GET /v1/security-profile` — return the effective security profile for
-the resolved tenant (platform/org/env)."
+title: "`GET /v1/security-profile`"
+description: "return the effective security profile for"
+sidebar_label: "`GET /v1/security-profile`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzFVttu4zYQ/RVinhJA8a0F2urN2BuSIkjguNgHryEz0khiViK55MiNYQjoR/QL+yXFyLJsxe42QR/qF5mXOTwzczjDLZDMPIQLMLKiHJYBGItOkjL6OoEQMqTIY1w5RZvIOpOqAiNpFQRgpZMlEjq234KWJUIIPjYWIQClIQQrKYcAEvSxU5ZBIYSVLSSlxpWrQKyMy1aBME6sUK9Xgy96nqNoMAYQgMNvlXKYQEiuwgB8nGMpIdwCbSwybU9O6QwC0FVRwLKul2zlrdEePW+cjEb86VPgQzBNMSa1RrH3T7T+QQCx0YSa2FJaW6i4icjwybP59oQHmMcnjOnE1VnLRKTs4acPczFcj4f7867a89jtbqeVm8LIpLHYb2z39SOy6EJ9oN2uRla6o1FJhT8aPklXHg0Ta+zRMCeykVeZllQ57Nn9TpHS5Iy3HDijj9aU552lfI7IfEUdFSpFUuWOU+rQ55Ez1ASRNWYdq4zULkWo15FKvpPVAFgukiCEqlLJSZhRr4VKUJNKFboB1GepHLKlNGGGHKIOV2n6YXICfCufVVmVokESe6TmAOOy/0bauOwl6X0iD0w7zFP9dqKoz8T4gPBoTIFSn4VozcTerMU60sVrcRoT8f7e3PcwXorp3+FmH9+JX36cjBtM9CQO1uLi4/T+WkwGI3GL3ssMxYPKtNLZZVs39jz42CPDHiVW6tu8Ur6P0Nyft0HcTGe3fYyTu/TK0Pw0GjeeYSJ69qIrei9icfN53t/Z49GUhrf5wiY9DC42b4Owcqf3XQF7ldrbllDXAZAiviPw0FbH+91F2FdQqPkXwL54QrhYnrSgfyzF4q8//hQOqXJa0He7BFfoL5oat7wp1pgIQi01iYt9gxsalw1Rry+5cpdIuWlbatM9KYcQzpFoumdqmsC0vnquE/rnq6ZJv/TmYbco2m84rShv/NiVF9oE4o7nhnfX798N+RIFwqP3ymgfiJvPvz4IxjXMgZkWKkYOZNg19dvrubibiamVcY5Xk8GIKXa16+yGOoA1Or9jOBqMd1PWeCqlPoL+P1LRC1+nPsJnGtpCKs1MK1fw2i5NC1iP4SCpLlHLAHLjiTdst4/S42+uqGue/laha6W3lk7JR07jYguJ8vw/gTCVhccTLt3DAy5mbau/FG94MZ31pZ2UegNMp6h4BAF8xU33YquXdQA5yoTzudi2a9M4RktHVievIX5wddL+9GEOdf03jJyfRA==
+api: eJy1Vttu4zYQ/RVinhJA8a0F2urN2BuSIkjguNgHr2Ez0lhiViK55MiNYejfFyNLsmW7aYyifpFJzpw5c+EMt0Ay8RDOwMiCUpgHYCw6Scro2xhCSJAWHqPCKdosrDMrleFCWgUBWOlkjoSO9begZY4Qgo+MRQhAaQjBSkohgBh95JRlUAhhaTNJK+PyZSCWxiXLQBgnlqjXy943PU1RVBg9CMDhj0I5jCEkV2AAPkoxlxBugTYWmbYnp3QCAegiy2BelnPW8tZoj54FR4MBf7oU2AiuVhiRWqNo/BO1fxBAZDShJtaU1mYqqiLSf/Gsvj3hAeb5BSM6cXVSMxEr9vDLp6nor4f9xt5NbY/dbiWt3GRGxpVGI1jLdSMya0O9p12fLqx0B6ucMn+wfJEuP1jG1tiDZUpkF14lWlLhsKP3Ny2UJme85cAZfXCmPEvm8nVB5jvqRaZWSCrfcVo59OnCGaqCyDVmHVcZqV2KUK8XKn4jqwFwuUiCEIpCxSdhRr0WKkZNaqXQ9aA8S2WfLaUJE+QQtbhK0y+jE+B7+aryIhcVkmiQKgPGJf+NtHHJMekmkXumLeZp/bZFUZ6J8R7h2ZgMpT4LUauJRq3GOqiL9+JUKuLjo3nsYBwX07/DTT5/EH/8OhpWmOhJ7LXF1efx460Y9QbiHr2XCYonlWilk+u6bzQ82OyBYocSV+plXinfRajuz2UQd+PJfRfj5C69MzS/DYaVZxiLjr5om95RLO6+TruSHR5Va7jMF1bpYHCzuQzCyl297xrYu6q9HgllGQAp4jsCT3V3fNxdhKaDQsm/AJrmCeFsfozokAqnBb05BrgFf9NU8fYmW2MsCLXUJK6aCdY3LumjXl9za86RUlPPzGo8UgohnGv41Xhcmcrz2hnPjUD/flNN4WO6T7tDUX/DcUGpuKm7B20C8cA7/Yfbjx/6fEcC4dF7ZbQPxN3XP58EoxpmwDwzFSHHKWxn9v3tVDxMxNjKKMWbUW/ABNvWdFagDGCNzu/4DXrD3ZY1nnKpD6D/eegde7ndD93/Jz91kRG+Ut9mUmlmXLiMTe+SNYP1EPaV06ZrHkBqPLHAdvssPf7lsrLk7R8FurrC1tIp+czJnG0hVp7/xxCuZObxDVevJvVEvxYXPIzO+lJvSr0BppMVvIIAvuOmfZiV8zKAFGXMeZ1t67NxFKGlA62TRw+/q9oC//JpCmX5E9iRk50=
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/security-profile` — return the effective security profile for\nthe resolved tenant (platform/org/env)."}
+  children={"`GET /v1/security-profile`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/security-profile` — return the effective security profile for
+return the effective security profile for
 the resolved tenant (platform/org/env).
 
 <Heading

@@ -1,11 +1,11 @@
 ---
 id: audit-ingest
-title: "`POST /v1/audit` — canonical audit ingest (M2M, `sentin8:sys:audit:write`)."
+title: "`POST /v1/audit`"
 description: "DBX : every service pushes its audit events here; Sys persists to"
-sidebar_label: "`POST /v1/audit` — canonical audit ingest (M2M, `sentin8:sys:audit:write`)."
+sidebar_label: "`POST /v1/audit`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztV81u20YQfpXBXpoAlPyXOCl7cpqg9cF1YbtAAckQR+RQ3GS5y+wu5RCCgD5En7BPUswubSqS7CRF0VN9sbE7881w5ptvxyvhceFEOhGuc+I2EQW53MrGS6NFKt6++R1SoCXZDhzZpcwJmtZV5EB6B9gW0vO19g4qsvQDXHcOGrJOOu/Am6nOXOfGwXAWDTO4k76CrMfLwHmsGyqgtKYGXxEsycpSUgFZriRpP5NFlky1r0gD1Rw4c6S91K9T17k0gKeWcmMLKjIOH3OCZyXWUnXAOWTPoTR2qq89+u8coEbVeZm7MZxBY03R5mThA1HjAEGZHBVkqz7Hdf8B701rNapsqlEXYMlbSQ6MhhKlai3BX3/82RdFc9GgsKYJBhgKY1qPCxpP9c+oC0Ug9YKcjx5jkQjTkEUu/XkhUhGPo41IhKWPLTn/xhSdSFciN9qT9vwnNo2SeXA8eO+4cSvh8opq5L9815BIhZm/p5xxPu/wVUSFuSk6LlBMJgYd91GlpYIpEvvHLGksp+olOY7Qnw+x0FrsRCKkp9p9OYdLTZtUAqkB9X1x5ujzarxBF+ng/KdfLq/evQ2UJDtysgiln2oucqAT83MPoS6OLzZJBc9im3JUinFaLiQVz8dTfVPRZin4S4C/YqcmejmThUgE5uFrdorTnw9FcN5KvdgpQggYbMdiHeCMnbk2VGwWXe8hJgOGbpXaHdsey1joAfrUH3BbR5bT/nrICMd+IAsevlKSjYilJztzHn1IcU8mbADBIDjMqTSWnvKIFhsuubGWVGD4t6W94bidd0EepXL7M+gvg2Hf4j0dLI2t0YtUtG3gwOc4pJfbMR3TTfruG3t57xYwPNoF+ZklZ1qb07fVIzrDvfN2ftvY/4B32xF65jG49IrLd8ZjdR7G6txTHXuxDRM15VHHXrbEmu+HefS2pXDgGqNdHMDjw8PdHr9hVQHMc2o8cev+NTmNkaHBThksviSpGxn0ArdPQXqbIbrUnhZkHxGRaM6haqll3dYiPVwPAb5KinrjJxoQP5Q7sE7Ei8Oj3SJfSOekXhxIvUQlC/DmA2kRrE8etYbhSb+z0hO43DQU0nCUt3F6JiuxuwEEc5FObte3iajJV4Zf0caE17NBX4lUHCyPDoK1SAT39mp4VN99wrpRtPmgTQb5Hmq1T5m3bx/0dbjYlrDh5l5fxEmJr1+Wpy9GL18dvRq9eHl6PJqflPnoOP/+9KQ8PcUST8WmiAwY+0Th8dvPk17frhMhdWkCM/pW9+Ud8Vq4zY/reAf975RfXd58eIasUdAo1JSAsYsD1kAlS8q7XFECDhcIxuYVOR83HWapkjkxldKV0Fhz9IvzG7i8grMG84pGx+NDXiYepGqvwToRS947Q4aH46N4xN2vUW9AZ79eXt/AAw+ymDlqoyXvfHEP6XePZxfHF8m+ZTNQLXs+3i7Nxlr2/+783+7OPac9ffIHjUIZhKa1ipsSh38ilkc8oWH8bxNRsTKkE7FazdHRb1at13z8sSXLEnObiCVaiXMVRSURFWHB7JusxAfi8fsxNnt0w7HZXLVh/d1+QNbJvcdZEOcnbTfFi7kqEjHvd/7aFOxj8Y6fEbwTqQj/NbB3eCrC2Uoo1IsWF2wbMfnnb6qw6v8=
+api: eJztV81uGzcQfpUBL02AlfyXOOn25DRB64PrwnaBApLhHXFntUy45IbkylkIAvoQfcI+STHk2lJk2UmKXgpUFwnkzDfDmW8+UksRcO5FPhG+9+I6EyV56VQblDUiF2/f/A450IJcD57cQkmCtvM1eVDBA3alCrxtgoeaHP0Al72HlpxXPngIdmoK3/txNLxJhgXcqlBDMeAV4AM2LZVQOdtAqAkW5FSlqIRCakUm3KiyyKYm1GSAGg5ceDJBmde5730ewXNH0rqSyoLDp5zgWYWN0j1wDsVzqKybmsuA4TsPaFD3QUk/hhNonS07SQ4+ELUeELSVqKFYDjmuhgO8t50zqIupQVOCo+AUebAGKlS6cwR//fHnUBTDRYPS2TYaYCyM7QLOaTw1P6MpNYEyc/IheYynZmokGmsUx04og8Gzs8OzbNehb50KVDwfi0zYlhxy205LkYsEmdxFJhx97MiHN7bsRb4U0ppAJvBPbFutZHTce++56UvhZU0N8q/QtyRyYWfvSTLO5+y4SKgws2XPxU1Jp6DjIapyVDK9Uu+ZYa3jVIMizxGG9XUsdA57kQkVqPFfzuHc0CYNQRlAc1e3GQZZjzeopjyc/vTL+cW7t5HO5EZelbFtU8MNilRkbu8g49nh2SYh4VlqsUStGafjQlL5fDw1VzVtloJPAnyKBzUxixtVikygjKd5UJxhfV0EH5wy8wdFiAGj7VisIpx1N76LFbtJrncQkzWG6bR+OPIDlnUwAAyp3+N2nhyn/fWQCY79QJXM4UqRS4hVIHfjA4aY4o5M2ACiQXSYUWUdPeWRLDZcpHWOdGT4t6W94bidd0kBlfa7Mxg2o+HQ4h0drKxrMIhcdF3kwOc4ZBbbMT3TTYX+G3t55xYxAro5hRtH3nZO0rfVIznDnfN2ftvY/4B32xEG5jG4CprLd8JjdRrH6jRQk3qxDZM05VHHQbbEivfX8xhcR3HBt9b4NICH+/sPe/yGVQVQSmoDcev+NTlNkaHFXlssvySpGxkMArdLQQabdXRlAs3JPSIiyZxDNcqopmtEvr9aB/gqKRqMn2hAOih3YJWJF/sHD4t8prxXZr6nzAK1KiHYD2REtD561Bq2bkbw0rYU0/AkuzQ9k6V45CIV+eR6dZ2JhkJt+RZtbbw9Wwy1yMXe4mAvWotMcG8v1pfqu0/YtJo2L7TJWr7XtdqlzNu79/q63tiWsPXOnb6Iowpfv6yOX4xevjp4NXrx8vhwNDuq5OhQfn98VB0fY4XHYlNE1hi7ROHx3c+TXl2vMqFMZSMzhlYP5R3xk3KbH5dpD4bvnG9dfjXxDDmrodVoKAPr5nusgVpVJHupKQOPcwTrZE0+pJcOs1QrSUylfCkMNhz97PQKzi/gpEVZ0+hwvM+PiXup2mmwysSC36wxw/3xQVri7jdoNqCLX88vr+CeB8X26TZeVv8/nf87T+eB0oE+hb1Wo4o60znNDU2zPxGLAx7QOP3XmahZGPKJWC5n6Ok3p1crXv7YkWOFuc7EAp3CmU6akomasGTyTZbiA/H0/ZiIMrri2Gyuu/j63b4/Vtmdx0nU5idtN7WLqSoyMRue/I0t2cfhLd8ieCtyEf80sHe8KeLaUmg08w7nbJsw+fM3+6YAGA==
 sidebar_class_name: "post api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/audit` — canonical audit ingest (M2M, `sentin8:sys:audit:write`)."}
+  children={"`POST /v1/audit`"}
 >
 </Heading>
 
@@ -43,6 +43,8 @@ then emits `sentin8:sys:audit:recorded` per event (family `sys`) for
 Stat's analytics. A producer keeps a local `{service}.audit_journal`
 and retries on failure — audit never drops on a Sys outage.
 Handle ingest audit.
+
+canonical audit ingest (M2M, `sentin8:sys:audit:write`).
 
 <Heading
   id={"request"}

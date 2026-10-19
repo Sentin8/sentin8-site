@@ -1,19 +1,11 @@
 ---
 id: ai-internal-schedules-run
-title: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
-. Runs stale-index maintenance: re-enqueue embedding jobs for
- sources whose embedding is older than the freshness window. Authenticated
- by the cron ticker's M2M token (verified the same way as user tokens —
- `token_tp: m2m` principals evaluate like any other under Shield)."
-description: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target"
-sidebar_label: " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
-. Runs stale-index maintenance: re-enqueue embedding jobs for
- sources whose embedding is older than the freshness window. Authenticated
- by the cron ticker's M2M token (verified the same way as user tokens —
- `token_tp: m2m` principals evaluate like any other under Shield)."
+title: "`POST /v1/internal/schedules/run`"
+description: "Sentin8:Cron proxy-back target"
+sidebar_label: "`POST /v1/internal/schedules/run`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVMtu2zAQ/JXFXtoCsp3kVOjm5pRDkKJJT7ZRr8W1xZhaMnzYEQwD/Yh+Yb+kWNtJkz6OvVUXSavZ5ZAzmh1mWiWsJ0gWZxX6wJGy9XJlsEayQyuZo5AbpqZlUxynYSyCFUZ+KJzyB296rHfYeMksWR8pBGebw5TRffKiNe3uCOvdfr8/9trIBuscCx8KKXhJnBR7cXamN8OpiTboGKzxmpSJkDQMsQg0vguOMxvUga+xMP94c3sHo8356In+6Jn+KBaZw/ev3+CWJVt5X19GLxCif+wHC2rWkCmuOE9lCJ+KJEiZHA+sGH6E7ieLGiIPWB4KFwbuFmyMlRXc+0WCpY9TgeRLbDjBtvXpJcQm8M5whNySQG4ZlpFTK5wSbK0Yvx3CuORW6TWU2UwFFv0B2CjVbJs1xzcJri+uIfs1C7zdcLRLy+aAStQxbKkHSlCSLqSgpJueCswPb19yqKG76OYQopXGBnIJeEOuUGZwds1A0oPPLUcoonRvW8vOvBtihR3n1qtDgk8ZKwyUW6zx7yeOFSZuSrS5x3oyq9DK0qvK2WbHWGM6ijEgi7/KedLpWa/x1UG+4CgvfexgfAUNBVpYZ3MPjnqOytHZhiWxLiLU6RrXV3dw8wnGgZqWBxfDM6zQGp26tBz/CNhXuOGYjkTOhufHku66I3kx+r/l/rXlXnlih7kPeu6ZH/MoOLKiupTo9NvRjRPcnKvAJznUgU+CaHwV0bxr1b/1BHe7BSX+HN1+r+WHwvFk1A1FSwv16GS2r7BlMuqVyQ7X3GONl8fgG9wpIYW7osR+C8H97MVvo2bBChen8Oy80Z5IW2VGW6wRNYu1+xCJh9oOHcmq0Eqxx5l6/QDfSQeR
+api: eJztVMtu20AM/BWCl7aA/EhOhW5uTjkYKZL05AQ1raWtjVfczT7sCIaBfkS/sF9S0E5a95FLz9VFEjEkhzuz3GGmVcJ6hmTxvkIfOFK2Xi4N1kh2aCVzFHLD1LRsiuM0jEWwwsiPhVP+4E2P9Q4bL5kl6yeF4GxzqDJ6SF40ptkdYb3b7/fHXBvZYJ1j4UMgBS+Jk2LPx2N9GU5NtEHLYI1TUiZC0jDEItD4LjjObFAL/oq9YclW3tcX0QuE6J/6wYKaNWSKK853MoTrIglSJscDK4afoPtZvobIA5bHwoWBuwUbY2UFD36RYOnjnUDyJTacYNv6dAqxCbwzHCG3JJBbhmXk1AqnBFsrxm+HMCm5VXoNZTZ3Aov+AGyUarbNmuObBNPzKWS/ZoG3G452adkcUIk6hi31QAlK0kYKSvDty9c7gfnh73MONXTn3RxCtNLYQC4Bb8gVygzOrhlIevC55QhFlO5Na9mZd0OssOPcepU++JSxwkC5xRpHm7PRixNGP5wwOjohcVOizT3Ws/sKrSy9ypdtdow1pqMYA7L4ik7wotfkUieB4CgvfexgcgkNBVpYZ3MPjnqOytHZhiWxNhHqtMf08haurmESqGl5cD4cY4XWaNWl5fhXwL7CDcd0JDIenh1DOnVHclJ6/vHq5hZen3/++1QnV+G/Ef/diLkPevyZn/IoOLKi8pTo9ICPppzh5kx1fpZFjfgijK6nIrrPWrVxPcPdbkGJP0W332v4sXB89uuGoqWFWnV2v6+wZTJqmdkO19xjjRdHNQe3SkjhriixP5bc/v7k9qhpsMLF83LsvNGcSFtlRlusEXXXavZh5R1iO3Qkq0IrxR5r6vMdzLz6xA==
 sidebar_class_name: "post api-method"
 info_path: docs/api/ai/sentin-8-ai
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={" `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield)."}
+  children={"`POST /v1/internal/schedules/run`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
- `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target
+Sentin8:Cron proxy-back target
 . Runs stale-index maintenance: re-enqueue embedding jobs for
  sources whose embedding is older than the freshness window. Authenticated
  by the cron ticker's M2M token (verified the same way as user tokens —

@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -130,7 +133,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -159,7 +163,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -188,7 +193,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -217,7 +223,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -257,7 +264,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -303,7 +311,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -333,7 +342,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -378,7 +388,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -407,7 +418,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -442,7 +454,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -472,7 +485,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -527,7 +541,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -535,7 +550,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -577,7 +592,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -585,7 +601,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nFetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -627,7 +643,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/health": {
@@ -635,7 +652,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -647,7 +664,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health."
       }
     },
     "/v1/modules": {
@@ -655,7 +673,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`GET /v1/modules`\nList it.",
+        "summary": "`GET /v1/modules`",
         "operationId": "module.list",
         "parameters": [
           {
@@ -699,13 +717,14 @@
           {
             "sentin8:func:read": []
           }
-        ]
+        ],
+        "description": "List it."
       },
       "post": {
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules` — upload a new WASM module.\nHandle upload.",
+        "summary": "`POST /v1/modules`",
         "operationId": "module.upload",
         "requestBody": {
           "content": {
@@ -742,7 +761,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "upload a new WASM module.\nHandle upload."
       }
     },
     "/v1/modules/product/{product_id}/execute": {
@@ -750,7 +770,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules/product/{product_id}/execute` — execute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product.",
+        "summary": "`POST /v1/modules/product/{product_id}/execute`",
         "operationId": "execute_product",
         "requestBody": {
           "content": {
@@ -784,7 +804,8 @@
           {
             "sentin8:func:execute": []
           }
-        ]
+        ],
+        "description": "execute a hook on the\nproduct's currently-ACTIVE version (the `latest` pointer; func DESIGN\n§4). The pinned-by-id route is the exact-version surface; this is the\nconvenience route for callers that track products, not versions.\nExecute on product."
       }
     },
     "/v1/modules/{id}": {
@@ -792,7 +813,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`GET /v1/modules/{id}`\nFetch it.",
+        "summary": "`GET /v1/modules/{id}`",
         "operationId": "module.get",
         "parameters": [
           {
@@ -825,13 +846,14 @@
           {
             "sentin8:func:read": []
           }
-        ]
+        ],
+        "description": "Fetch it."
       },
       "delete": {
         "tags": [
           "func"
         ],
-        "summary": "`DELETE /v1/modules/{id}`\nDelete it.",
+        "summary": "`DELETE /v1/modules/{id}`",
         "operationId": "module.delete",
         "parameters": [
           {
@@ -860,7 +882,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "Delete it."
       }
     },
     "/v1/modules/{id}/activate": {
@@ -868,7 +891,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules/{id}/activate`\nHandle activate.",
+        "summary": "`POST /v1/modules/{id}/activate`",
         "operationId": "module.activate",
         "parameters": [
           {
@@ -897,7 +920,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "Handle activate."
       }
     },
     "/v1/modules/{id}/delete": {
@@ -905,7 +929,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules/{id}/delete` — RFW alias of `DELETE /v1/modules/{id}`.",
+        "summary": "`POST /v1/modules/{id}/delete`",
         "operationId": "module_delete",
         "parameters": [
           {
@@ -940,7 +964,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "RFW alias of `DELETE /v1/modules/{id}`."
       }
     },
     "/v1/modules/{id}/execute": {
@@ -948,7 +973,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules/{id}/execute`\nExecute it.",
+        "summary": "`POST /v1/modules/{id}/execute`",
         "operationId": "module.execute",
         "parameters": [
           {
@@ -1003,7 +1028,8 @@
           {
             "sentin8:func:execute": []
           }
-        ]
+        ],
+        "description": "Execute it."
       }
     },
     "/v1/modules/{id}/validate": {
@@ -1011,7 +1037,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`POST /v1/modules/{id}/validate` — re-validate the stored binary.\nValidate it.",
+        "summary": "`POST /v1/modules/{id}/validate`",
         "operationId": "module.validate",
         "parameters": [
           {
@@ -1047,7 +1073,8 @@
           {
             "sentin8:func:read": []
           }
-        ]
+        ],
+        "description": "re-validate the stored binary.\nValidate it."
       }
     },
     "/v1/modules/{id}/wasm": {
@@ -1055,7 +1082,7 @@
         "tags": [
           "func"
         ],
-        "summary": "`GET /v1/modules/{id}/wasm` — download the raw WASM binary from Storage.\nFetch wasm.",
+        "summary": "`GET /v1/modules/{id}/wasm`",
         "operationId": "module.download",
         "parameters": [
           {
@@ -1096,7 +1123,8 @@
           {
             "sentin8:func:write": []
           }
-        ]
+        ],
+        "description": "download the raw WASM binary from Storage.\nFetch wasm."
       }
     }
   },

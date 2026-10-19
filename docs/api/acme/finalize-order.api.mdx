@@ -1,21 +1,11 @@
 ---
 id: finalize-order
-title: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the
-certificate (RFC 8555 §7.4). Local orders require a VALID
-authorization (defense in depth — the challenge short-circuit set it;
-an order that never proved control is never signed) and are signed
-by the Intermediate CA; external orders are finalized upstream
-through the relay and the certificate cached (DESIGN §4.2)."
-description: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the"
-sidebar_label: "`POST /acme/order/{id}/finalize` — submit the CSR and issue the
-certificate (RFC 8555 §7.4). Local orders require a VALID
-authorization (defense in depth — the challenge short-circuit set it;
-an order that never proved control is never signed) and are signed
-by the Intermediate CA; external orders are finalized upstream
-through the relay and the certificate cached (DESIGN §4.2)."
+title: "`POST /acme/order/{id}/finalize`"
+description: "submit the CSR and issue the"
+sidebar_label: "`POST /acme/order/{id}/finalize`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVcGO00gQ/ZVSnSaSk8yOZgTrOUWBXUUCBiWwl0kEPe5K3MLuNtXlQIgs7UfsP/AffApfgqrtgQGGO4c9tV1dXfWq3qvuI4rZRcyv0RQ14SbD0BAbccEvLOa4dd5U7gO9CmyJMcPGsKlJiPXQEb2pCXN0FjN0HnNsjJSYoaVYsGs0DuZ4pYchOTG9bR2TxVy4pQxjUVJtMD+iHBoNFYWd32HXbdQ5NsFHirp/dnqqy32Rb1FaOJmvltBwKChGspfQVEa2gevxfAaBoW2iMJl6HN3Ok4WiNM6PsMvw/L7oC783lbMwXy17n/OffV76Nz6889A3KHn9+SucPgg4D0zGHiCKEcKuyzBS0bKTA+bXmx9b9/r51eoFTJWdaUoxPTrbTW8rfg2f//0PYntTOwEpSaGC8RZcjC2pZe0LYnFbVxghOFn+NYeHFxcX8Onjg8n5aAJPQmGqHn2EgR0w8M/syeLR2ptWysDuQ1IEnFjako+kRVhqpEzZNW1RmqoivyOIZWAZF46L1glEEnByufZm6BBIaQQ87YmVp72SELxwqMDFwd6TM0p1GKbhf+1vDinXwgtxTdZpQfPZJdB7IfbfqtAz3yRxy/naS8mh3ZUpCFNlDilDgn+nRYUpSlXSo8erxd/P4NPH88nZaIIZ1iRl0KFoQpQ0ClJijr/kJo3ENiRtO6mSuMmL8w/Hadh+pHrVb8Kw5rOiptRg54f6ZvOnj7/DOtAjB4jEe2KFWblCOdK0w3Q+XbyAqyXMGq1sfDY5VWRWs2wd8b0OXYZ74tgDO5380Zu08Nr4O6H/l+dvI8/vxPT1OhV6L9OmMs4rgS1Xutcrd7jzM7y92/N0Q3+V7ybDUpWeX+PxeGMiveSq69T8tiUebqu9YWduVNzXR7Qu6rfFfGuqSD9h0laSF8zxZDm8AyO48zjci3kwGn9ATVe1+ocZvqFD//J0m+7OcKogseu+ADC/YNs=
+api: eJztVcFu20gM/RWCpxiQ7TRIsK1yMtzuwkC7WdjtXmKjnWhoa1BpRuVQ3rqGgH7E/kP/o5/SLyk4UtpsNu1xT3saDYdDPvK9oY4oZhcxv0ZT1ISbDENDbMQFv7CY49Z5U7kP9DqwJcYMG8OmJiHWS0f0pibM0VnM0HnMsTFSYoaWYsGu0TiY45VehuTE9K51TBZz4ZYyjEVJtcH8iHJoNFQUdn6HXbdR59gEHynq+dnpqS4PRb5FaeFkvlpCw6GgGMleQlMZ2Qaux/MZBIa2icJk6nF0O08WitI4P8Iuw/OHoi/83lTOwny17H3O/+3zyr/14S8PfYOS15Mf4fRBwHlgMvYAUYwQdl2GkYqWnRwwv97cb11sb2onICUpCjDegouxJbWsfUEsbusKIwQny1/n8Pji4gI+f/plcj6awPNQmKoHFmFoPBj4c/Z88XTtTStlYPchkQ0nlrbkIyk+S42U8OXj3yltUZqqIr8jiGVgGReOi9YJRBJwcrn2ZigepDQCnvbESsFe+xu8cKjAxcHe932U6jBMw37tbw4p18ILcU3WaUHz2SXQeyH236vQO9/ZvqVz7aXk0O7KFISpMoeUIcG/06LCFKWK5Omz1eK33+Hzp/PJ2WiCGdYkZVC9NyFKUrmUmONUH8U0pZ4ene2mt6mT2rchydZJlXRLXpx/PE7v6D6Lq/4QhjWfFTWlBjs/1Debv3j2D6wDPXKASLwnVpiVK5QjTTs8vBeLl3C1hFmjlY3PJqeKzGqWrSN+0KHLcE8ce2Cnk0e9SQuvjb8T+s0fV6uX8MMWvLlf5BGVbfLyv2r/I9UOE1PovUybyjivRLZcKRe9goexnuHt+M7TEP4m402GpSo+v8bj8cZEesVV16n5XUs8DKS9YWduVOTXR7Qu6rfFfGuqSD/RwMlyGPUjuDP/H8Q8GI0/oKarWt1hhm/p0P9cuk1355GqMLHrvgKHulSt
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -33,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /acme/order/{id}/finalize` — submit the CSR and issue the\ncertificate (RFC 8555 §7.4). Local orders require a VALID\nauthorization (defense in depth — the challenge short-circuit set it;\nan order that never proved control is never signed) and are signed\nby the Intermediate CA; external orders are finalized upstream\nthrough the relay and the certificate cached (DESIGN §4.2)."}
+  children={"`POST /acme/order/{id}/finalize`"}
 >
 </Heading>
 
@@ -47,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /acme/order/{id}/finalize` — submit the CSR and issue the
+submit the CSR and issue the
 certificate (RFC 8555 §7.4). Local orders require a VALID
 authorization (defense in depth — the challenge short-circuit set it;
 an order that never proved control is never signed) and are signed

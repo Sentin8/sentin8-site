@@ -1,19 +1,11 @@
 ---
 id: get-admin-data
-title: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
-SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
-The caller must explicitly specify which env they are administering.
-RLS context is set before querying to enforce tenant isolation.
-Fetch admin data."
-description: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
-sidebar_label: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
-SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
-The caller must explicitly specify which env they are administering.
-RLS context is set before querying to enforce tenant isolation.
-Fetch admin data."
+title: "`GET /v1/admin/{resource}`"
+description: "returns a JSON array of admin data rows."
+sidebar_label: "`GET /v1/admin/{resource}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVcFu20YQ/ZXBXJIAtCSnORS8Ga4SOGgbVJYRFLZgj5Yjc6PVLrM7lEMIBPIR+cJ8STCkLMuVUCA990Rgd+bN25k3jxsUuk+YXyMVK+tPaouzDEPFkcQGf1Fgjvcst93tbUFCmGFFkVYsHDVxg55WjDlGTqGOhjFD6zHHiqTEDAtOJtpK0TDHM8UBxYG9+Mifaxu5wFxizRkmU/KKMN+gNJViJ4nW32PbZrtyQlGJsV/f2uKx5ueaY3NQdNqFAvs1vJz8fgkmeOEv8uqnKs80OFXBJ056/3o00s8/KpW8e9eLBDE8JFiECFIyTN5+BKG50wd3DLwoAFWVs6br9vBTUpTNE4u2bdsM34x+OSx1Ts5xBEdmmYDAxOAhMhXDblSQTKgYu+Q3h8lXfunDg3+agZZJbOpopemGmtiL9b/mipsrLubXM23Cc6C7d+MpDNenfdXh5hGwvYPvX79BZKmjV37vLz/8CRQjNRAWQHsyCA9pcOMvx+dXk4vp3zncPZvsHdgEk/FfVxeT8W8dpg+wIOfmZJYgoWuthCX7Fwn6lMGN1zmYvkGrOgnwF22yFddAqtjYRQMPpTVlpwkpuQGK3LOySVhHPrjxe1pRFokF5rwIkaHTmfX3SoD9IkTDIOzJa2Bw3TQHN/4tiyn3HjvADFcsZdiuVbdLUmKOx1rYiXoROjFacZ0a+6mc6FQOZH7ZX8L2m5+rJLRjScgX5IJnKKwKel4LF6AqK2rHUWk5a9gn1mLbBfvjYgofJnBWkSn55PVgpHwKxV5YjkcD2gzXHFNPZzQ47Y+qkGRFfg/6f9X8rGqeTXpnTlpjWDmyXvtcR6d3vaKucX2KWe/qmGG+2/RZhmVIohGbzZwSX0XXtnrcm6cuf2GTGlWB+YJc4oPyO/vCl5Otgb6Cf3HZo3SX3Byx8TW5WmNRvWZN0XaO+Z9JHf/fHOWzPSTf7NN45PnklLM2w5Kp0B243myvz4zhSvYSD2xd37Pb/XfjKbbtD/ymmz4=
+api: eJztVcFu20YQ/ZXBXJIAtCQnORS8Ga4SOGgTVJZRFLZgj5ZDc6PVLrM7lCMQBPoR/cJ+STGkbCuREKA990Rgd/bNmzczjy0K3SfMr5GKtfUnjcVFhqHmSGKDvygwx3uW2/72tiAhzLCmSGsWjvqwRU9rxhwjp9BEw5ih9ZhjTVJhhgUnE22taJjjmeKA4sBefOQvjY1cYC6x4QyTqXhNmLco21qxk0Tr77Hrsqd0QlGJsd/c2uIx55eG4/Yg6bwPBfYbeDn75RJM8MJf5dW/yrzQ4FQHnzjp/evJRD/fZar4qa4XCWJ4SFCGCFIxzN79DkJLpwX3DLwoANW1s6ZXe/w5KUr7zKLrui7Dt5M3h6nOyTmO4MisEhCYGDxEpmLctwqSCTVj//jt4eMrv/LhwT/3QNMkNk20su2bmtiL9T/lipsrLubXCxXhW6DI0kSvBD5cfvoIFCNtIZRAe30OD2l04y+n51ezi/kfOdx907o7sAlm09+uLmbTn+HvP/8CH6Ak55ZkViCh107Civ2LBMOT0Y1Xoc2gwLpJAvxVVbTitpBqNrbcwkNlTdU3XSreAkUeWNkkrD0d3fi9YVAWiQWWXIbI0A+S9fdKgH0ZomEQ9uQ1MLi+XaMb/47FVHvFjjDDNUsVdnvTL4tUmON4czp0Ztw+it71U1uGftqsuH7cBtlPVPaDOb4cLmH3zc+156pYEvIFueAZCqsTu2yEC9AxKhrHUWk5a9gn1mS7Dfr1Yg6fZnBWk6n45PVoonwKxS4tx6MBXYYbjmmgMxmdDkd1SLImvwd99346h2Ml331fVPu8C/8P0+Ew7VxIQce1I+tV7yY6FW6YrGvcnGI22DdmmD+t9CLDKiTRiLZdUuKr6LpOjweX1C0vbFJHKjAvySX+QW9eznZO+Qp+YKdH6a54e8SvN+QajUU1lQ1F21vjfyZ1/MdylM/ukPx2n8Yjz2dLXHQZVkyF7sJ1u7s+M4Zr2Xt44N9az5MHvJ/Osev+AYDakV4=
 sidebar_class_name: "get api-method"
 info_path: docs/api/cron/sentin-8-cron
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data."}
+  children={"`GET /v1/admin/{resource}`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
+returns a JSON array of admin data rows.
 SECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.
 The caller must explicitly specify which env they are administering.
 RLS context is set before querying to enforce tenant isolation.

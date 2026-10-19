@@ -1,23 +1,11 @@
 ---
 id: admin-delete-relation-path
-title: "`POST /v1/admin/relations/{id}/delete` — row-action alias.
-`id` is the colon-joined tuple the RFW list emits
-(`subject_type:subject_id:relation:object_type:object_id`); parsed
-back-first (the last three segments are relation/object_type/object_id,
-the first is subject_type, the middle rest is subject_id — tolerant of
-colons inside subject ids).
-Handle admin delete relation path."
-description: "`POST /v1/admin/relations/{id}/delete` — row-action alias."
-sidebar_label: "`POST /v1/admin/relations/{id}/delete` — row-action alias.
-`id` is the colon-joined tuple the RFW list emits
-(`subject_type:subject_id:relation:object_type:object_id`); parsed
-back-first (the last three segments are relation/object_type/object_id,
-the first is subject_type, the middle rest is subject_id — tolerant of
-colons inside subject ids).
-Handle admin delete relation path."
+title: "`POST /v1/admin/relations/{id}/delete`"
+description: "row-action alias."
+sidebar_label: "`POST /v1/admin/relations/{id}/delete`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVcFuGzcQ/RViTjawkuw0h4I5FQ2CBkgRQ3bRgyRI9HKknZhLrjncbQVhgXxEv7BfEgx35Uqw0SA95dATsZzZN48zj48HSGbHoBfQBEflHlYFhAajSRT8ewsajK3Jry06TLiO6HJk3ZhUQQGNiabGhFEgDuBNjaCBLBRAHjSMaRa5jNTIn6BhPoKonBfxsaWIFnSKLRbAZYW1AX2AtG8EjVMkv4O+L54KJBN3mNbou/U/tR5bjPtnxe5yqkLfqYv5h1tVBp/wz3T5TZVXksxN8Iws8VdXr2U5r/Q2eIS+gNdXPzwP/mycw6icKR9YpQrV0G7FZWhQzgaMZRsp7XMjGX0i/6NuAic9pOqIxoJerITNOfjm5uPtnZp117M8rNlxSjw7kO1nw+w26u/Pf6kY/piYMnffODI8XfoN2Y2igVUZXPCTT4E8WpXaxmHenr/7XTnipLCmxEt/seH2/hOWaS2d0scPsvpYWoeTeDiGN5dvVGMio136e1M+TLYUOakLqeEMJ5WqiKgYdzX6xMpEVEfE2Qni7AmxWHr5ecAhVqe8isy9JmudwJwnkM39SMFhND6psF36fHpW5JksHjMVWb6cLv0vxgtO7rAaWvrETYnOp1BAjakKcmtkcPl+pAo0fGU0WcHbkJVHyWXpDQKYjDjn874dgmpc9U3glE9Tty7RpKyM9+hUjcxmh0KWOox7xRg7KlGIOirRM0rJ8U79+v5OfZyrnxpTVjh5Nb0SVlYqbAnjiwl9AR1GHkhdTa+HLaFcG38C/b8+vxd9nunoyefEEGeNM+Rlfm10Ehuku4DuGorhEciWOU4OCtDZekcFrwqoRKp6AYfDvWH8Lbq+l+3BlsXULLG5d+K3W+MYn7HJ1uwTaLiYj9Z8qf7Fv19k/4D7Fx6IzrhWckHMszORhMh/J3X+gr3IY9w0fn9a/siPLPSr/sQv5IZA338BBK2sRQ==
+api: eJztVcFuGzcQ/ZXBnGxgJdlODgV7KlIENdDAgeyiB0uQ6OVIOzaXXHO42wrC/ntB7sqVEsNBCvSW00Kc4XuPnMenPUa9FVT32HjL5Q6XBfqGgo7s3bVBhdrU7FaGLEVaBbK5smp0rLDARgddU6SQIPbodE2okA0WyA4Vjm2GpAzcpJ2ocD6CQO4L9NxyIIMqhpYKlLKiWqPaY9w1CU1iYLfFvi9eCKIOW4orct3qX67nlsLuK7K73ArkOjib/34LpXeR/o7n38W8TM3SeCckqX518T59Tpl+9Y6wL/D9xbuvix+0tRTA6vJJIFYEw3WDlL6hdDYUKtvAcZcvUshFdj+pxktUQ6sKpA2q+2VScwoe/F8TXeYr1Za1TBduzWYNPFCV3no3efTsyEBsG0t5ef7xT7AsEajmKAt3tpb24ZHKuErHV4cfbNRh6sof1f2hvD7/GRodhMzCPejyabLhIBHOEofVEiFWgQiEtjW5KKADwQFxdoQ4e0EsFi5tHnBY4FhXkbXXbIxNMKcNbGAC0VsK2kXwm4XLZxdgJ2zo0Ads5Hy6cL9pl1Cyw2Fw+IsySNadYoE1xcqnh5BmkS0fK1Q46y5neePssENmezb9bMDJptz4bCaONrtpmOlkxDkd4e1QhPGrPnuJMIG6tZEnZaWdIws1iegtJancUdiBUOi4pCTTcklOKBGOj+TT9R3czOGXRpcVTa6mF0mTSfgbpvBqQ19gR0EGSRfTy2EpCa61O4Jef765vYNvXMH6y0PuMT8+F39Y9v+17BhfKedmjdXs0hTbYNMIBvveY3eJxZDtOQnH+WGBKifq6OJlgVWyq7rH/f5BC/0RbN+n5SFtU1YZFv1gU4xutBV6Y+hn8zFxz+GNWH5V/RPtXsn9Tts29WLKxE4HTkL+u6jTP6ZXdYyL2u2O6Q/62GC/7I8yI70T7Pt/ABwpmJ0=
 sidebar_class_name: "post api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -35,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/relations/{id}/delete` — row-action alias.\n`id` is the colon-joined tuple the RFW list emits\n(`subject_type:subject_id:relation:object_type:object_id`); parsed\nback-first (the last three segments are relation/object_type/object_id,\nthe first is subject_type, the middle rest is subject_id — tolerant of\ncolons inside subject ids).\nHandle admin delete relation path."}
+  children={"`POST /v1/admin/relations/{id}/delete`"}
 >
 </Heading>
 
@@ -49,11 +37,11 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/relations/{id}/delete` — row-action alias.
+row-action alias.
 `id` is the colon-joined tuple the RFW list emits
 (`subject_type:subject_id:relation:object_type:object_id`); parsed
 back-first (the last three segments are relation/object_type/object_id,
-the first is subject_type, the middle rest is subject_id — tolerant of
+the first is subject_type, the middle rest is subject_id - tolerant of
 colons inside subject ids).
 Handle admin delete relation path.
 

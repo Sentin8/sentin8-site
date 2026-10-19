@@ -1,15 +1,11 @@
 ---
 id: mtls-token
-title: "`POST /mtls/oauth/token` — the standard token handler behind a
-client-certificate-presence guard. Delegates to `oauth::token` so
-behavior is identical to `POST /oauth/token` apart from the guard."
-description: "`POST /mtls/oauth/token` — the standard token handler behind a"
-sidebar_label: "`POST /mtls/oauth/token` — the standard token handler behind a
-client-certificate-presence guard. Delegates to `oauth::token` so
-behavior is identical to `POST /oauth/token` apart from the guard."
+title: "`POST /mtls/oauth/token`"
+description: "the standard token handler behind a"
+sidebar_label: "`POST /mtls/oauth/token`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVc1qHEcQfpWiTjKMdtfGhDA3YRNQQpCRFHJYC6m3p3an7J7uUXeN8LIM5CHyhHmSUD2zf1qRODrmNExX1Vdf/W9QzCphOcdgOqnxrsDQUjTCwV9WWGIjLt1L+EoeC2xNNA0JRbXYoDcNYYmraLzcy7olLJA9lvjYUVxjgRUlG7lVMCzxg2PyAjZSRV7YuATZFM4sReElWyN0vgidr8Bm3fQGC4z02HGkCkuJHRWYbE2NwXKD2WWJSSL7FfZ9saOUbPg3Ntf02FESqmCr/P2O7lQ5tcEnSip/N5vp59jBrSYNOKWOKjjjHLM1DmzwEo0VkADTnPVpzq/GqjLyomCmbZ1mhIOffkmKuDllFBZfyMoLsQ3koDVrF0wFyxAhO5kcxTlHYy2lfYHzd1tK+tZypHTPXtuijdoYwkPER3YnGXrO57YmGCy2LPoj+D0Ae6EVRSxwGWJjZHj64f2LkCMCcA6rYc9N12A56wvk6jm3+Z6c75zTkE4RuTogGGkZKdWvAhptD9CGLvtvKNkmWx8U5ruynfVB9SY6GCgsjrZNuW0P7HuVvZ+9Pe1e9k/GcXU/DCL89cef4MM4lnAwr9BGSuR1jqYgddcs2shewAeBSCtOQtpq6ieR7SLLGsv5SbQPn65ubmGq2+ZwJh6yY9FUiPGViWN9oDa+chRhQTX7CsxnP1A7P1wlAzVLsOpMrCbwkRytjJB2ITxkN2U5+knhs19QbZ44ROAE+3lV3YHdETHTmiiwjKHJ/AYX2oYkddDN2YYkeWdKjSWehJa30zLkco7F0Tyy//E8b+LnGboZhDB+y4tO6pydgamsC7jSt+nV5ccP058uPl0WkCglDj4V8PPvv9yA4gatgPJ0bEl7oNwtzV8vb+HqGi5aY2s6fzeZKcUMvmSKLyr0BT5RTAPD2eTt8KSRN8YfQP9/yntUlN0kCn2TaesMe42/i05lQ+Xn+YRiMR7YcZR13mttkHKOm83CJPotur7X5+Fc6X2tOJmF00W9NC7RifPdtcCz63Gnv4FXXtkXA/lK6+f3/cm4ThVRr+2rCJ4e3n/wvVXZu73Tn8jqVxdJX2BNptL+nG9GowtrqZUDq5Nbqii7QdXqY9//DX7RKHk=
+api: eJzVVU1v20gM/SsETykgx25RLBa6BS0KZBeLFEkWe3CDZDyiLbajGWWGCmoY+u8LjuT4K+h2c+tJkEQ+Pj5+bVDMKmE5x2A6qfGuwNBSNMLBX1ZYYiMu3Uv4Rh4LbE00DQlF9digNw1hiatovNzLuiUskD2W+NhRXGOBFSUbuVUwLPGDY/ICNlJFXti4BNkVzixF4SVbIzRZhM5XYLNteoMFRnrsOFKFpcSOCky2psZgucEcssQkkf0K+754ppRs+C821/TYURKqYGv884Hu1Di1wSdK+v/dbKaPwwC3KhpwSh1VcMY5Z2sc2OAlGisgAaZZ9WnWV3PVf+RFwUzbOlWEg59+TYq4OWUUFl/Jygu5DeSgNWsXTAXLECEHOT/Ic47GWkq7AufntpT0veVI6Z69tkUbtTGEh4wP/E4UOuZzWxMMHlsW/QH8DoC90IoiFrgMsTEyfPrt/YuQIwJwTqthz03XYDnrC+TqmNt8R853zmlKp4hc7RGMtIyU6lcBjb57aEOX/T+U7JO99wrzU2pne1C7cx0MFBZH26bctgf2vf57P3t72r3sn4zj6n4YRJiAD+NQwt60QhspkdcpmoLUXbNoI3sBHwQirTgJaaNplES2iyxrLOcnuYrmKsZXJo4FgNr4ylGEBdXsKzBf/BB9sr8rhuiWYNWZWJ3DR3K0MkLaZvCQZ6ssM94DpPDFL6g2TxwicILdQKrt56ub24NpfADTmiiwjKEB5TeE0D4jqYOuxjYkyUtRaixxqptyHyGvn2XI9RrVV6nY/z7Jq/ZYhJvhJ4zP8qKTGiYjT1kXcKVfpleXHz9MP118viwgUUocfCrgj3/+vAFFDSqxsnRsSUtcPu/Evy5v4eoaLlpja5q8O58pwQy+ZIovGvQFPlFMA7/Z+dvhk+bdGL8HPcp3rMDDcY6b3YL7tWo+DpzQd5m2zrBXHbroNKWh/vN8KbEY7+g4sTrWtbZJOcfNZmES/R1d3+vn4SrpGa04mYXTfbw0LtEPNDu7Hlf3G3jlMX0xkW+0Pj7jT8Z1aoh6VF9F8PS+/iD21mQX9k5fImtc3Rh9gTWZSvt0vhmdLqylVva8Tk6mojyPq5Yb+/5ftGYbrw==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /mtls/oauth/token` — the standard token handler behind a\nclient-certificate-presence guard. Delegates to `oauth::token` so\nbehavior is identical to `POST /oauth/token` apart from the guard."}
+  children={"`POST /mtls/oauth/token`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /mtls/oauth/token` — the standard token handler behind a
+the standard token handler behind a
 client-certificate-presence guard. Delegates to `oauth::token` so
 behavior is identical to `POST /oauth/token` apart from the guard.
 

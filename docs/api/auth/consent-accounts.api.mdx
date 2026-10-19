@@ -1,13 +1,11 @@
 ---
 id: consent-accounts
-title: "`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts
-from consent data providers registered via `sentin8-cli vertical enroll`."
+title: "`GET /v1/auth/consent/accounts`"
 description: "This endpoint is called by the Auth Flutter consent page (served on the"
-sidebar_label: "`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts
-from consent data providers registered via `sentin8-cli vertical enroll`."
+sidebar_label: "`GET /v1/auth/consent/accounts`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVdtuGzcQ/ZUBXyID65Ud9KHQm1DHrtO0DmwZCeA1LJocaVlzSYaclS0IC+Qj+oX9kmJ2V5dGTooa6EOBPK1EDoeH55yZWQmS8yRGN0LWVIrbTGhMKppAxjsxEpPSJECngzeOwCRQ0lrUcL8EKhHGNZVwamsijKC8S+gIgpwjDBLGBWrwjgMLF6JfGI3xVQK+CbSvpHEZYD7PYcpLubmX7iG3Xkk7PQDyMENSZXuPqhP5ik8XTirla0cJJAExvBNJEt73+XOYlAjbmIigTQpWLlHDo6GycKpE9XDvnzBB8n9LD0o6SGhRETyWRpXgHSaGkkrONDg9+QjXHwt3VhuN1vBmIa66A+P+zkIc5IUrXMuN9f4hQR025GgGuyYjwSz6qoUw5V3jfrzrA+82MdPCkby3CIPgQ20loeanx9qRqZCVWJ89VNbAAiMZJS2gi97a6UEOpz4CSlVuVcg6ESrTcgSp9JEOrWHB3n6YtDy1qCLOTSKMqCEpHxCk04VjD6S9fYwLoxAWRoKhBMFKmvlY9UrD9eW7vHC/+S3A9Ynry3cpgyCpTBn42N3USVfKqJXXqMG4FnJeuJ+l0xY3hK6lzkUmfMAo2bnnWozEmsl1hMhEkFFWSBjZ8ivhZIViJBKmZLy7I/+ATmTCsPMZj9gvB4Q+GtpoGGwUTGbuDo2DmfWPrX0ZLwujJGHP1qcaE+WF28vD6HnbRNRiRLHGTCRVYiXFaCVoGVqcFI2bi6bJNtDrhPHO6H8E3cc9AzdiCkwUm5ajwGgGPTMY/w2oTLDYkhhTbbRomls+3OVOHP/66Ig/+9jWSjJxr9K2GDdFPAjYu6IvTuPdgchYYEJHnFWGYJlo493w98SpV1uoTdM0mfjh6Hj//qteBOMW0hrN9sOn0D6YzyRUdTS0FKOb20xUSKVnZ82RWjNRKUZiuDgestTD/h3DHb8ZN/MtV4Zs57SuUNtm+6VOV90m9N9R20D+/PxHrwgtM7jgteHF+clPw9Px+/NsbaKUwdsPv1y1lvMMmKWzRqFLyPf3bvn1fAIXlzAOUpV4+Do/YogbuZ8NaDKxwJg6hEf5cbcUfKJKup3U07M3E/gqFdP2Hdt+vlsaeqe7bzQvXGvUr3TNnbbD7eab/S//kufV1jffx9v38fY/Gm99xyV8omGw0jguxTpa9nTXjG7E4lhkom8vfQ5eWLek20yUPhFHrlb3MuF1tE3Dy59qjH2fW8hoWJJ2RmqT+LcWo5m0Cb9RTIPLflYcwH86J5+loV+Ubin4AbbmfyITD7jcm/A8P1/8rBdP0hfAXk/35rbJRIlSc5O+WfW7Y6Uw0M65vSHY7A6tszcT0TR/AdckPTo=
+api: eJztVU1vGzcQ/SsDXiID9MoOeih0M+rYdZrWgS0jAbyGRZMjLWuKZMhZ2YKw/72Y3dVHIydtA/Tm00rkcObNe/OxEqRmWYxuhaqpEndSGMw62Ug2eDES48pmQG9isJ7AZtDKOTTwsASqEE5qquDM1USYQAef0RNENUMYZEwLNBA8G5Y+prCwBtObDBwJTJgr6yVgMStgwkeFfVD+sXBBKzc5AAowRdJVG0fXmcKcX5deaR1qTxkUATG8U0UKPvb+CxhXCFubhGBsjk4t0cCTpar0ukL9+BCeMUMOf3MPWnnI6FATPFVWVxA8ZoaSK/Y0ODv9DDefS39eW4PO8mUprrsHJ33MUhwUpS99y40L4TFDHTfkGAa7JiPDNIV5C2HCt9b/fN8b3m9sJqUn9eAQBjHE2ilCw6mn2pOdIyuxfnuonYUFJrJaOUCfgnOTgwLOQgJUutqqIDsR5rblCHIVEh06y4K9/zRueWpRJZzZTJjQQNYhIihvSs81kPfuMS2sRlhYBZYyRKdoGtK8Vxpurj4Upf8jbAGuX9xcfcgSoqIqSwipi9RJV6lkdDBowPoWclH6X5U3DjeErqVuOd9WDBszK7rla1s/G/vSt9x/Q5edxDih7zJcCClCxKS4Zy6MGIm1hutYQoqokpojYeJmWwmv5ihGImPONvh7Co/ohRSWe46ZEPuNiNBbQ2sNg03tZDvzh9bD1IWntnF2k+91+lJjpqL0e34YPV/bhEaMKNUoRdYVzpUYrQQtY4uTkvUz0TRyA73OmO6t+UfQvd0LcBPmyERxu7AVWMOgpxbTfwElBZeZIsZUWyOa5o4fd74z2789OuLPPra1+Ezcm7wdA5vxMYjY12M/FmzwB0KywISe2KuK0THRNvjhn5ldr7ZQm6ZppPjp6Hg//nUvgvUL5azhwsfn2CbMbzLqOllaitHtnRRzpCpwZc2Q2mKiSozEcHE8ZKmHfR7DnXqzfhpariy5rtK6Am7H/Nc6XXeX0H9H7eg67PWgpYRLPhleXpz+Mjw7+Xgh1yWUJbz/9Nt1W3CB4bJwzmr0GTl6Xyu/X4zh8gpOotIVHr4tjhjgRuwXDRopFphyh++oOO6OYsg0V37H9eT83Ri+ScTk61RXW+led9vrbnvdbf9it/XjlvCZhtEp67kT6+S4m7pJdCsWx0KKfrb0YflgPY/upKhCJrZcrR5UxpvkmoaPv9SY+iG3UMlyMbQL0tjMv40YTZXL+J02Hlz1i+IA/tcl+SIN/aHyS8EJuJr/CSkecbm33nl5/nBaP7xGfwD2erU3d40UFSrDM/p21d+eaI2Rdt7tbcBmd2OdvxuLpvkLB85pXQ==
 sidebar_class_name: "get api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/auth/consent/accounts` — fetch the authenticated customer's accounts\nfrom consent data providers registered via `sentin8-cli vertical enroll`."}
+  children={"`GET /v1/auth/consent/accounts`"}
 >
 </Heading>
 
@@ -51,6 +49,9 @@ provider, auth mints a short-lived JWT with the registered scope and
 calls the registered service via its platform domain URL.
 No vertical service URLs, paths, or scopes are hardcoded in auth.
 Handle consent accounts.
+
+fetch the authenticated customer's accounts
+from consent data providers registered via `sentin8-cli vertical enroll`.
 
 <Heading
   id={"request"}

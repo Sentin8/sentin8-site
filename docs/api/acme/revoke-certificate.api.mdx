@@ -1,11 +1,11 @@
 ---
 id: revoke-certificate
-title: "`POST /v1/admin/certificates/{id}/revoke` — revoke an issued certificate."
+title: "`POST /v1/admin/certificates/{id}/revoke`"
 description: "Delegates to the existing `acme::revoke_cert` flow (updates metadata,"
-sidebar_label: "`POST /v1/admin/certificates/{id}/revoke` — revoke an issued certificate."
+sidebar_label: "`POST /v1/admin/certificates/{id}/revoke`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVMFO3DAQ/RVrTiCZzUI5VLmtaCshFVEtoB62q66xZzcuiWPsycIqstSP6Bf2S6pJUhGx0PbYUxzP+M174zdugdQmQr4AZSrrjhoLSwkGow7Wk60d5PAOS9wowiioFlSgwEcbybqNWCldYZ4H3NZ3+FVjoJVYl/WDOGi86U5USMooUvKL881taWOBUZzNPx5OxBypCS4K5cT8w2cR0NiAmn4XYTS7trqD8WqDE5BQewyKaZ0byGFUd8gECV4FVSFhYFUtOFUh5GANSLCsxisq4LnEsycIoZUuUHQHAt43NqCBnEKDEqIusFKQt0A7z7CRgnUbSGnJydHXLmLk+Ml0yp/Xq/TcjTj4J+2HIEHXjtARwyrvS47a2mXfImO3T9xSSknC6fTNPoGrwmJphEG3gy7ndD/nxt25+sGNOQADRtRNsLSDfLGUUCEVNd+BryN1XacCcsi2x1lnpGwsIWutSVmvuLuGdd310FLZNREdWff2iM20dzNXfVAM33ymKxQ/v/8Q1hEGp0oxO7t4P2YrVENFzVRFxLDFwMYprUYXkcsOjrg4vxaXczHzfN1HJ5MpMzNcZW0xvJiQJGwxxJ7YdHLcb3EHKuVG0KtPl1fX4u+9WHVC+jWPgY2xQTPWMnnej/bJBv/TXA7jQPhImS+VddyYJpRMuLfGArbHIPtXhs08QgEJ+TBunUOWEgp2Vb6Atr1VEW9CmRJv3zcYBgNuVbDqlv2zaMHYyGsD+VqVEf/Qs4P5MNKH4pWZf1HKsKncDrh02fAfSLjDXf+4pGWSUKAybJ1FOwRmWqOn0ZG9wU3jWWLbQEq/AHMg7Mo=
+api: eJzVVM1O3DAQfhVrTiCZzUI5VL6taCshFVEtVD0sq66JZzcuiWPsycIqstSH6BP2SapJUhGx0PbakxPP3zfffOMWSG8iqAVoU1l31FhYSjAY82A92dqBgndY4kYTRkG1oAIFPtpI1m3ESucVKhVwW9/h1xwDrcS6rB/EQeNNF1EhaaNJyxvnm9vSxgKjOJt/PJyIOVITXBTaifmHLyKgsQFz+l2Es9m1zbs0Xm9wcuNuXF+KY2yMDZqx2wQk1B6DZtznBhSMgA0+IMHroCskDNx2C05XCAqsAQmW2/WaCnjOwdlTCpHrvEDRBQS8b2xAA4pCgxJiXmClQbVAO89pIwXrNpDSkp2jr13EyPaT6ZSP16v02I04+CdyDkFCXjtCR5xWe1+y1dYu+xY5d/uELaWUJJxO3+wDuCoslkYYdDvofE73fT67O1c/uDEG4IQR8yZY2oFaLCVUSEXNM/B1pI51KkBBtj3OOqVl4xay1pqU9R13Y1jXHYeWyo5EdGTd2yNW295krnqjGE41yysUP7//ENYRBqdLMTu7eD9GK3RDRc1QRcSwxcDCKW2OLiKXHRRxcX4tLudi5nncRyeTKSMzXGVtMbzokCRsMcQe2HRy3F8xA5V2o9SrT5dX1+LvXKyed9s+Dfm/WsthGwgfKfOlto55aULJHfXKWMD2GGT/CrGWR2VAghq2rRPIUkLBolILaNtbHfFzKFPi6/sGw6C/rQ5W37J8Fi0YG/nbgFrrMuIfSD2YDxt9KF5Z+RdbGS612wGXLhv+Awl3uOvflrRMEgrUhpWzaAfDLM/R0yhkb2/TeJVYNZDSL9J1+LU=
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/certificates/{id}/revoke` — revoke an issued certificate."}
+  children={"`POST /v1/admin/certificates/{id}/revoke`"}
 >
 </Heading>
 
@@ -39,6 +39,8 @@ import Translate from "@docusaurus/Translate";
 
 Delegates to the existing `acme::revoke_cert` flow (updates metadata,
 publishes CRL). Returns an RFW redirect to the certificates page.
+
+revoke an issued certificate.
 
 <Heading
   id={"request"}

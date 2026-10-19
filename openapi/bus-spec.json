@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-bus",
-    "description": "Sentin8 Sentin8:Bus — Valkey Streams message bus with tenant isolation.",
+    "description": "Sentin8 Sentin8:Bus - Valkey Streams message bus with tenant isolation.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -15,7 +15,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle ack.",
+        "summary": "`POST /v1/ack`",
         "operationId": "ack.send",
         "requestBody": {
           "content": {
@@ -39,7 +39,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "Handle ack."
       }
     },
     "/v1/admin/attributes": {
@@ -68,7 +69,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -103,7 +105,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -133,7 +136,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -162,7 +166,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -191,7 +196,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -220,7 +226,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -249,7 +256,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -289,7 +297,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -335,7 +344,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -365,7 +375,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -410,7 +421,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -439,7 +451,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -474,7 +487,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -504,7 +518,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -559,7 +574,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -567,7 +583,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -609,7 +625,8 @@
           {
             "sentin8:bus:read": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -617,7 +634,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -659,7 +676,8 @@
           {
             "sentin8:bus:read": []
           }
-        ]
+        ],
+        "description": "Fetch admin data."
       }
     },
     "/v1/consume": {
@@ -667,7 +685,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle consume.",
+        "summary": "`POST /v1/consume`",
         "operationId": "consume.list",
         "requestBody": {
           "content": {
@@ -698,7 +716,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "Handle consume."
       }
     },
     "/v1/consume/sse": {
@@ -706,7 +725,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Long-lived SSE consume (server → client one-way) — the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`.",
+        "summary": "`GET /v1/consume/sse`",
         "operationId": "sse_handler",
         "parameters": [
           {
@@ -766,7 +785,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "Long-lived SSE consume (server → client one-way) - the direct-consumer\ntransport (bus DESIGN §4.3): the client receives every stream message\nas an SSE event and ACKs via `POST /v1/ack`."
       }
     },
     "/v1/dlq": {
@@ -774,7 +794,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "List dlq.",
+        "summary": "`GET /v1/dlq`",
         "operationId": "dlq.list",
         "parameters": [
           {
@@ -808,7 +828,8 @@
           {
             "sentin8:bus:admin": []
           }
-        ]
+        ],
+        "description": "List dlq."
       }
     },
     "/v1/dlq/replay": {
@@ -816,7 +837,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle replay dlq.",
+        "summary": "`POST /v1/dlq/replay`",
         "operationId": "dlq.replay",
         "requestBody": {
           "content": {
@@ -840,7 +861,8 @@
           {
             "sentin8:bus:admin": []
           }
-        ]
+        ],
+        "description": "Handle replay dlq."
       }
     },
     "/v1/health": {
@@ -848,7 +870,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Liveness (captain monitor payload).",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -860,7 +882,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Liveness (captain monitor payload)."
       }
     },
     "/v1/metrics": {
@@ -868,7 +891,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle metrics.",
+        "summary": "`GET /v1/metrics`",
         "operationId": "metrics.get",
         "responses": {
           "200": {
@@ -885,7 +908,8 @@
           {
             "sentin8:bus:admin": []
           }
-        ]
+        ],
+        "description": "Handle metrics."
       }
     },
     "/v1/nack": {
@@ -893,7 +917,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle nack.",
+        "summary": "`POST /v1/nack`",
         "operationId": "nack.send",
         "requestBody": {
           "content": {
@@ -917,7 +941,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "Handle nack."
       }
     },
     "/v1/produce": {
@@ -925,7 +950,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle produce.",
+        "summary": "`POST /v1/produce`",
         "operationId": "produce.send",
         "requestBody": {
           "content": {
@@ -956,7 +981,8 @@
           {
             "sentin8:bus:produce": []
           }
-        ]
+        ],
+        "description": "Handle produce."
       }
     },
     "/v1/produce/batch": {
@@ -964,7 +990,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) — the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings.",
+        "summary": "`POST /v1/produce/batch`",
         "operationId": "produce.batch",
         "requestBody": {
           "content": {
@@ -1001,7 +1027,8 @@
           {
             "sentin8:bus:produce": []
           }
-        ]
+        ],
+        "description": "produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) - the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings."
       }
     },
     "/v1/schedule": {
@@ -1009,7 +1036,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle schedule.",
+        "summary": "`POST /v1/schedule`",
         "operationId": "schedule.create",
         "requestBody": {
           "content": {
@@ -1040,7 +1067,8 @@
           {
             "sentin8:bus:produce": []
           }
-        ]
+        ],
+        "description": "Handle schedule."
       }
     },
     "/v1/scheduled": {
@@ -1048,7 +1076,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "List scheduled.",
+        "summary": "`GET /v1/scheduled`",
         "operationId": "scheduled.list",
         "responses": {
           "200": {
@@ -1062,7 +1090,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "List scheduled."
       }
     },
     "/v1/streams": {
@@ -1070,7 +1099,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "List streams.",
+        "summary": "`GET /v1/streams`",
         "operationId": "stream.list",
         "responses": {
           "200": {
@@ -1084,7 +1113,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "List streams."
       }
     },
     "/v1/streams/{stream_family}/lag": {
@@ -1092,7 +1122,7 @@
         "tags": [
           "bus"
         ],
-        "summary": "Handle stream lag.",
+        "summary": "`GET /v1/streams/{stream_family}/lag`",
         "operationId": "stream.lag",
         "parameters": [
           {
@@ -1117,7 +1147,8 @@
           {
             "sentin8:bus:consume": []
           }
-        ]
+        ],
+        "description": "Handle stream lag."
       }
     }
   },
@@ -1214,7 +1245,7 @@
               "string",
               "null"
             ],
-            "description": "The verified producer's vertical claim (VDC-2) — recorded at\nproduce from the M2M token; consumers assert it against the\nevent_type's first colon segment (`require_publisher`)."
+            "description": "The verified producer's vertical claim (VDC-2) - recorded at\nproduce from the M2M token; consumers assert it against the\nevent_type's first colon segment (`require_publisher`)."
           },
           "schema_version": {
             "type": "string",
@@ -1278,7 +1309,7 @@
       },
       "DeleteAttributeQuery": {
         "type": "object",
-        "description": "`DELETE /v1/admin/attributes` query — identifies the attribute.",
+        "description": "`DELETE /v1/admin/attributes` query - identifies the attribute.",
         "required": [
           "subject_id",
           "attr_key"
@@ -1300,7 +1331,7 @@
       },
       "DeleteRelationQuery": {
         "type": "object",
-        "description": "`DELETE /v1/admin/relations` query — identifies the tuple.",
+        "description": "`DELETE /v1/admin/relations` query - identifies the tuple.",
         "required": [
           "subject_type",
           "subject_id",
@@ -1368,7 +1399,7 @@
       },
       "ListAttributesQuery": {
         "type": "object",
-        "description": "`GET /v1/admin/attributes` query — list attributes for one subject (or\nall subjects in the env when omitted).",
+        "description": "`GET /v1/admin/attributes` query - list attributes for one subject (or\nall subjects in the env when omitted).",
         "properties": {
           "subject_id": {
             "type": [
@@ -1416,7 +1447,7 @@
               "null"
             ],
             "format": "int32",
-            "description": "How many retries this message has already burned (nack count —\nmaintained by the consumer across redeliveries). At `MAX_RETRIES`\nthe reaper routes the message to the DLQ instead of the retry set.\nThe retry count.",
+            "description": "How many retries this message has already burned (nack count -\nmaintained by the consumer across redeliveries). At `MAX_RETRIES`\nthe reaper routes the message to the DLQ instead of the retry set.\nThe retry count.",
             "minimum": 0
           },
           "stream_family": {
@@ -1480,7 +1511,7 @@
       },
       "ProduceBatchRequest": {
         "type": "object",
-        "description": "Request body for `POST /v1/produce/batch` — N events in ONE call\n(bus DESIGN §4.3 / README §7). Rows are independent: the batch is a\ntransport-level optimization, not a transaction.",
+        "description": "Request body for `POST /v1/produce/batch` - N events in ONE call\n(bus DESIGN §4.3 / README §7). Rows are independent: the batch is a\ntransport-level optimization, not a transaction.",
         "required": [
           "events"
         ],
@@ -1490,7 +1521,7 @@
             "items": {
               "$ref": "#/components/schemas/ProduceRequest"
             },
-            "description": "The batched events (max 100 per call — matches the outbox relay\ndrain batch)."
+            "description": "The batched events (max 100 per call - matches the outbox relay\ndrain batch)."
           }
         }
       },
@@ -1506,7 +1537,7 @@
             "items": {
               "$ref": "#/components/schemas/ProduceBatchItem"
             },
-            "description": "Per-row results, in request order. A failed row carries `error`\nand no `message_id` — the batch is best-effort per row."
+            "description": "Per-row results, in request order. A failed row carries `error`\nand no `message_id` - the batch is best-effort per row."
           }
         }
       },
@@ -1532,11 +1563,11 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Tenant env — must match the JWT-derived tenant context (a\ndefense-in-depth server check). Absent → the server uses the JWT\nclaims."
+            "description": "Tenant env - must match the JWT-derived tenant context (a\ndefense-in-depth server check). Absent → the server uses the JWT\nclaims."
           },
           "event_type": {
             "type": "string",
-            "description": "Platform event name — `vertical:service:resource:operation`."
+            "description": "Platform event name - `vertical:service:resource:operation`."
           },
           "idempotency_key": {
             "type": [
@@ -1553,7 +1584,7 @@
               "string",
               "null"
             ],
-            "description": "Publisher identity token — optional. If absent, the server derives\nit from the Authorization header."
+            "description": "Publisher identity token - optional. If absent, the server derives\nit from the Authorization header."
           },
           "publisher_subject": {
             "type": [
@@ -1588,7 +1619,7 @@
       },
       "PutAttributeBody": {
         "type": "object",
-        "description": "`PUT /v1/admin/attributes` body — one principal attribute.",
+        "description": "`PUT /v1/admin/attributes` body - one principal attribute.",
         "required": [
           "subject_id",
           "attr_key",
@@ -1639,7 +1670,7 @@
       },
       "PutRelationBody": {
         "type": "object",
-        "description": "`PUT /v1/admin/relations` body — one relation tuple.",
+        "description": "`PUT /v1/admin/relations` body - one relation tuple.",
         "required": [
           "subject_type",
           "subject_id",
@@ -1667,7 +1698,7 @@
       },
       "RelationCheckQuery": {
         "type": "object",
-        "description": "`GET /v1/admin/relations/check` query — Zanzibar-style dry-run.",
+        "description": "`GET /v1/admin/relations/check` query - Zanzibar-style dry-run.",
         "required": [
           "subject_type",
           "subject_id",
@@ -1837,7 +1868,7 @@
   "tags": [
     {
       "name": "bus",
-      "description": "Sentin8:Bus admin API — produce, consume, ack, DLQ, streams, metrics"
+      "description": "Sentin8:Bus admin API - produce, consume, ack, DLQ, streams, metrics"
     }
   ]
 }

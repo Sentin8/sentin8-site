@@ -1,21 +1,11 @@
 ---
 id: resolve-hostname
-title: "`GET /v1/resolve/hostname` — : the single cache-miss path for
-every service's embedded sentin8-tls DomainResolver. Returns the
-hostname → (service, org_id, env_id, app_id) mapping so no service
-needs SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,
-Shield-gated, audited.
-Resolve hostname."
-description: "`GET /v1/resolve/hostname` — : the single cache-miss path for"
-sidebar_label: "`GET /v1/resolve/hostname` — : the single cache-miss path for
-every service's embedded sentin8-tls DomainResolver. Returns the
-hostname → (service, org_id, env_id, app_id) mapping so no service
-needs SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,
-Shield-gated, audited.
-Resolve hostname."
+title: "`GET /v1/resolve/hostname`"
+description: ": the single cache-miss path for"
+sidebar_label: "`GET /v1/resolve/hostname`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVc1u1DAQfpXRXAAp+9OqB5RbBaVUokLqLqfdqnXj2cTg2K7HiYhWkTjxAIgn7JMgJ9n0h+VH4srJkT0z38w3M1+2GETOmK6QG8bLBK0jL4Ky5kxiip7Y6pquCsvBiJIwQSe8KCmQj15b7G5TfGCgDKZ4W5FvMEFJnHnlYkBM8U2ldTO5rYRWG0USdl4QLAxQmKCn20p5kphuhGZKkLOCSoHpFkPjIhoHr0yObXsZrdlZw8Tx/XA+j8dj1Lc7lFI4p0wOz5l8rTJKwPr8SskEyNTdKZy7UvIFJphZE8iEGE04p1XWkTL7yDHk9j6ltm3bBI/24Y7VdWRARxwohrG+zvHoNwkbGwZexI0mjEhMWeVVaDrymUxQ5mXKDafKcBAmI049CYnp6jKy8zjw9enJEmb1wWwge7ZL8RruvnyHFEJBwMrkmiATWUGTUjGDE6GAjfVrQ3WsZKDvGQOVNyQlSRgymQTN8NqWQpmLHsJP4YJC5Q3H4GszknL39dufGzG2jC0YuwNeG0MkGRYn705eLSH3wgQGa4AbfsYgO3wIkTOewvnhOVz/mqnrZG0WhSItJ7kIFLErqQLJ6XpXwzinU0ywpFDYuBs5hW4dQoEp7iO124WN7eZWBd0N7kBTXLanzVn0bzCc6aLhritxEr3V4LQwPVMzMjVotaGsyTQlwCIXYH1WEId+eWOiWmVkmCL8sKTnZ0t4fwHHrmvt4XQeM5QRbqPI7zVoE6zJc5/hfHrQXznLoRTmQej/k/Xvk/VoHEatC/Q5zJwWykTmK6/jWz91K6wPOr3cKec4eZf9dzTZbm8E0wev2zZe98IcxUMqjnXcy+wT/FEB/1K29+b7iZrHf4da6CqaYVSnWnjVKVtUqwQLEjLO4Wo7+B1nGbnwwOsnKY5Rxo08PVli2/4ARsVn7g==
+api: eJztVcFu2zAM/RWCl26Am6RFD4NvxZZ1BVYMaLpTEzSqxdjaZEkVZWNGYGCnfcCwL+yXDLKdtOnSrR+wkwKZ5CMfn17WGETOmF4jN4yLBK0jL4Ky5lxiip7Y6ppuCsvBiJIwQSe8KCmQj1lr7G5TfBSgDKZ4V5FvMEFJnHnlYkFM8X2ldXN4VwmtVookbLIgWBigMEFPd5XyJDFdCc2UIGcFlQLTNYbGRTQOXpkc23YRo9lZw8Tx+/FkEo9d1A8blFI4p0wOr5h8rTJKwPr8RskEyNTdKZy7UfI1JphZE8iEWE04p1XWkTL+wrHk+qGltm3bBE/24W6n68iAjjhQDNv5usSTvzRsbBh4EbeaMCIxZZVXoenIZzJBmTcpN5wqw0GYjDj1JCSm14vIzm7hFEJBwMrkmiATWUGHpWIGJ0IBK+vnhurY6sDPAQOVtyQlSRigDoNmeGdLocxlvzA/gksKlTcci8/Ndur7Hz//zfR2J2zB2A3w3BgiyTCbfpy+vYLcCxMYrAFu+IBBdvgQIik8govjC1g+T8UymZtZoUjLw1wEitiVVIHkaL6ZYSvEESZYUihsFH9OodN7KDDFcX00HiQ63hH7ynbCVEF3yhxoiq/pKfuz/hsMZzprGO6//4IoNW81OC1Mz9SYTA1arShrMk0JsMgFWJ8VxKF/nbFRrTIyTBF+eIUX51fw6RJOXbfa49Ekdigj3EqR3xvQJliT577Dyeiov3KWQynMo9LLs+kV7CNh+XTO9cPb+S+4lwhuMLVA38LYaaFM3EDldaSyV9811kedMW4scqvARf87hqzXt4Lps9dtG697B44uIRXHxh/89Nl1vcyf9/b7lZrdv4Fa6CqGYbShWnjVWVi0pQQLEjLq8Xo95J1mGbnwKOsPz41Vti/zbHqFbfsbwTJeGA==
 sidebar_class_name: "get api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -33,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/resolve/hostname` — : the single cache-miss path for\nevery service's embedded sentin8-tls DomainResolver. Returns the\nhostname → (service, org_id, env_id, app_id) mapping so no service\nneeds SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,\nShield-gated, audited.\nResolve hostname."}
+  children={"`GET /v1/resolve/hostname`"}
 >
 </Heading>
 
@@ -47,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/resolve/hostname` — : the single cache-miss path for
+: the single cache-miss path for
 every service's embedded sentin8-tls DomainResolver. Returns the
 hostname → (service, org_id, env_id, app_id) mapping so no service
 needs SELECT grants on sys's domain tables. M2M `sentin8:sys:instances:read`,

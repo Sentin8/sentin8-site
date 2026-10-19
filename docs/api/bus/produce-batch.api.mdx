@@ -1,19 +1,11 @@
 ---
 id: produce-batch
-title: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
-DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
-core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
-batch is a transport-level optimization, not a transaction: rows are
-independent and a failed row does not roll back its siblings."
-description: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus"
-sidebar_label: "`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
-DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
-core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
-batch is a transport-level optimization, not a transaction: rows are
-independent and a failed row does not roll back its siblings."
+title: "`POST /v1/produce/batch`"
+description: "produce N events in one call (BUS-3, bus"
+sidebar_label: "`POST /v1/produce/batch`"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/bus/sentin-8-bus
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus\nDESIGN §4.3 / README §7). Each row runs through the SAME single-produce\ncore (validation, rate limit, inbox persist, XADD, stamp, audit) — the\nbatch is a transport-level optimization, not a transaction: rows are\nindependent and a failed row does not roll back its siblings."}
+  children={"`POST /v1/produce/batch`"}
 >
 </Heading>
 
@@ -45,9 +37,9 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/produce/batch` — produce N events in one call (BUS-3, bus
+produce N events in one call (BUS-3, bus
 DESIGN §4.3 / README §7). Each row runs through the SAME single-produce
-core (validation, rate limit, inbox persist, XADD, stamp, audit) — the
+core (validation, rate limit, inbox persist, XADD, stamp, audit) - the
 batch is a transport-level optimization, not a transaction: rows are
 independent and a failed row does not roll back its siblings.
 

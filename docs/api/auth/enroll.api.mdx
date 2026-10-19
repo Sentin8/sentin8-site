@@ -1,11 +1,11 @@
 ---
 id: enroll
-title: "`POST /v1/mfa/enroll` — start TOTP enrollment."
+title: "`POST /v1/mfa/enroll`"
 description: "Generates a random secret, stores it encrypted (status=pending), and"
-sidebar_label: "`POST /v1/mfa/enroll` — start TOTP enrollment."
+sidebar_label: "`POST /v1/mfa/enroll`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzlVs1u4zYQfpXBnBJUlvPr3QroIdlmi7TbJut4sQc7iGlpZHEjkVqSctYwDPQh+oR9kmJIOYrjNO2ht/oimeT8ffPNR63QibnFZIxVLvA2woxsamTtpFaY4E+kyAhHFgQYoTJdgaXUkIvAOm3IgnRAKjXL2lEGe9YJ19gfalKZVPP9CITKJsqQa4yy4AqCqXa1aFyR9PtT+DT8AN/BTFg6PmodQ66NP/hxCKnOKIZRQdBYMhNVNdbxnoJUlCVM+4vDfpWL/oKMzJdTeJCuAAELUcoMRleja+8BnIZUq1yaaqJIGV2WFSkXT9SF/wPSxRihrrlSqdVlhgmGcxihoa8NWXeusyUmK0y1cqQcv4q6LmXqTfpfLMO1QpsWVAl+c8uaMEE9+0Kpw+e4DoNXmOls6SsO8TiP2nAmTpJlN0pU1Lkbo3VGqjlGqJqy3O3XeyNJZeUS2O4RylykThvYo3gewwTPGlcsJ7gfTxRjy0djXEfIIN/J7NVwuTaVcJhg08hsp6xzEoYMiDQla8Hpe1KgDViyVmoFqdb3kkBmpJzMJQVGcNgYPhOI0uqJYuPawbTNZuqrEFklVU8q6aRgonVthD2/BzbVNXFJbNeFMDGu1xE66UpuR+h4iz6ueYsbLA1lmDjTkF+wtVY24H90cMCP7TIvuujWCeMoS3wlHbX/DbMx+u/YFDKGWixLLbJnjOoqHGOgwp3vXZvuXWOY6CFJ7vE2AzuLLo9HWrxOh5Z3W83YDvuCy20XT+TCaVf34zgOsvHn7394MNNSch8MqYwME0paECxXG/0IJG/dsKlPoq32H+Of+w72SLGvbNNJDm4L/aBYWzYcDmFzUZYzkd7zzsch2FSoNoVg+zIfQ/+YkOsITw4Odzn3m3bAFTCUqZ+BvVmYtm7A9tFbH+9an/39/LTsCLP4ZJZ8npbSxki3xGR8G2FFrtCsjrW2zMJauAIT3Mjwo2Yyf4edbl58E1VdUidnHdiPkoPHuXh7mg9OeqdvDt/0Tk4HR73ZcZ72jtLvB8f5YCByMeDypMq1b1uLoGVA1NseY7PTvZuwCe0zYeXzzQuUdMsIrnitf3X547v++7Pry2iDpY3g58+/3HjMNUPAk1TKlLhPXSW/Xo7gaghntUgL6h3FBxhhx/cXD6wjXJCxIcOD+DAsMaSVUE9cT6+vbkawDe40UI9FJ1xwT+6z59U/uaz+T/d4O8+Ovrl+XQqp/NUWtCYQdoyLQ4z8B0+0uehvIyyY1MkYVysu5JMp12te/tqQafm/EEaKGdNufLuOsCCRcY/HK7ynJSb4LuDdG3EKfLxsOJUdaV9HG4szf9m9evbp3DEjMMJZ+zFS8S2SoBEPrPLiARP0HzJs7bXbr62wFGreiDmfDT759xcE9nJs
+api: eJztVktz2zYQ/is7e7KnFOWnknKmBzt1Ou7LjqxMDpLHgsiliJgEGACUo9Hov3cWoEzJct0eeqwupADs6/u+XXCFTswtJmOscoH3EWZkUyNrJ7XCBH8hRUY4siDACJXpCiylhlwE1mlDFqQDUqlZ1o4yOLBOuMb+VJPKpJofRiBUNlGGXGOUBVcQTLWrReOKpN+fwufh7/ADzISl05PWMeTa+IOfhpDqjGIYFQSNJTNRVWMd7ylIRVnCtL847le56C/IyHw5hSfpChCwEKXMYHQzuvUewGlItcqlqSaKlNFlWZFy8URd+T8g+X2irBPGBbOtUxihrhkDqdV1hgmGPYzQ0LeGrLvU2RKTFaZaOVKOX0VdlzL1Jv2vloFcoU0LqgS/uWVNmKCefaXU4UvEh8ErzHS29FiEeJxHbTgTJ8myGyUq6tyN0Toj1RwjVE1Z7jP50UhSWbkEtnsGORep0wYOKJ7HMMGLxhXLCR7GE8Wo89EY1xEy/A8yezNcrk0lHCbYNDLbK+uShCEDIk3JWnD6kRRoA5aslVpBqvWjJJAZKSdzSUErHDaGLwSitHqi2Lh2MG2zmfoqRFZJ1ZNKOilYgh11cOD3wKa6Ji6J7boQJsb1OkInXcl0BC206OOat5hgaSjDxJmG/IKttbIB/5OjI37slnnVRfdyoizxlXSi/zeax+i/U1PIGGqxLLXIXiiqq3CMQQoPnrs23YfGsNBDkszxrgI7iy6PZ1m8LYdWdztk7IZ9xeWui61B4rSr+3Ech4HS81CmpWQWDKmMDMtJWhA8xjZzJUi8dcKGPoW21n+Mfun565FiX9mGxx7YQj8pnjgb/YaguSjLmUgfeefTEGwqVJtAsHxdi4E7FuM6wrOj4329/akdcP4MY+r1fzALndY11yF669N964u/751WGaEPt/rI52kpbYx0S0zG9xFW5ArNk7HWlhVYC1dggpvh/DwvWbvDbmZefRdVXVI3yjqon8cNnubi/Xk+OOudvzt+1zs7H5z0Zqd52jtJfxyc5oOByMWAy5Mq1560FkHLgKj3PcZmj7u7sAntM+GpB71WjG4ZwQ2v9G+uf/7Q/3hxex1tkLQR/PrltzuPuGYAuIdKmRKz1NXxx/UIboZwUYu0oN5JfIQRdkp/9cA6wgUZG/I7io/DEgNaCbXlenp7czeCXWinLwvcuov+v8CZoraVHX13/boUUvk7LQyZoNYxLo4x8t9A0eaGv4+wYEUnY1ytuMTPplyveflbQ6YV/0IYKWasufH9OsKCRMYUj1f4SEtM8ENgojfiFPh42XAqezN9HW0sLvwt9+bZ7aZjQWCEs/YrpOLrI0Ejnni8iydM0H/BsLUf2n5thaVQ80bM+Wzwyb+/AApGdiY=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/mfa/enroll` — start TOTP enrollment."}
+  children={"`POST /v1/mfa/enroll`"}
 >
 </Heading>
 
@@ -42,6 +42,8 @@ returns the `otpauth://` URL + base32 secret for the QR code. The user
 must then call `/v1/mfa/verify` with a valid TOTP code to confirm
 enrollment.
 Enroll it.
+
+start TOTP enrollment.
 
 <Heading
   id={"request"}

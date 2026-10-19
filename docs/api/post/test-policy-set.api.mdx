@@ -1,15 +1,11 @@
 ---
 id: test-policy-set
-title: "`POST /v1/admin/policy-sets/{name}/test` — dry-run candidate policy text
-against a sample context; returns decision + trace WITHOUT storing.
-Handle test policy set."
-description: "`POST /v1/admin/policy-sets/{name}/test` — dry-run candidate policy text"
-sidebar_label: "`POST /v1/admin/policy-sets/{name}/test` — dry-run candidate policy text
-against a sample context; returns decision + trace WITHOUT storing.
-Handle test policy set."
+title: "`POST /v1/admin/policy-sets/{name}/test`"
+description: "dry-run candidate policy text"
+sidebar_label: "`POST /v1/admin/policy-sets/{name}/test`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVs1u4zYQfhViLk1Q2U62PRTqKQ0KbNAWCRIv9uAY2Yk4sbihKC058q5gCOhD9An7JIsh5b/Y2LS91RcZw/n5ZuabIVfAuAiQz6CprSk6mGdQN+SRTe2uNOTAFPghHT4EYsigQY8VMXmxW4HDiiBPnwyMgxwa5BIy0BQKbxpxBTncRB8qEKtB19On1njSkLNvKYNQlFQh5CvgrhGfgb1xC+j7bBOG0S+IH8gtH4xex/vUku8OAk6jqiK3VCe3v9+ponZMX/j0X0WeJ2UK/EutO9GIbhzLX2waa4pYq8nHIEFXh67qx49U8CG6kpTUNpU2ED/WulNiM94DOHTGUIAMQhudSerzDBovrWI5EjBF8rwOPFsnkYFrrRWDfQQX0UBxrWiJtkWmTGl6wtZyECmXpAL5pSnou6A8oVahqBsa3zsBn+KNoc+2CA8K+DLmJTptNDKpu9KQ1Sqlr6Qx6sTVrDpiFXBJ+nSIs3YeI72s7qtJiodkNNjXzR5O9B6FOoapOoK/P+5PnCR/24a8mvsdVo0lVaC15Nds3C2/wgUaF3h87wa/ymhybJ4M+RiO62dyD9y8HizSS7QVN2OZIGDDVgymFDjN4h0lUvdyvD8SURCa2oVUrTdnZ/LZj3H9G2T/eBz6GOXHsx8O/VymilgsnkNk3UCKWOeIPVDResNdXDhBSuJ+yps6cJ5Uc2En5LN5f0CADzfXd1M1WZ5PUFfGTZLBKBCHyUqWSj+RMfyg/v7zL6V9N/KtU8WGpjv8vHdDfxSqMPQyNfFn5Ylb74LSVJggU/W9Yo8FqfdX07fX76YqcC19Gt+7t+i0TbO/SZRYhr4iLmvZuZJZXLRcQg6vYocMpNy32z3165eIb3ctbImyndatbN2mXUmalM2EzffZvtXcknJnaox7qiNLB9YNTRsNqb2YjHSohm9+UweO/ahay2ZUlOgcWVVRCLggpcmaJfluvZ2kdtYU5ELMeLgp/riaqutbddFgUdLozfhMpnwzTkcV+gyW5EMCdTY+TyKBXKHbcf0/4tReoTdLQwJMGovGSYKtt3KW6DaD5TlkEBNbkyWlBhnkw80dWTfPoJRu5jNYrR4x0Dtv+17E6T6WWdUm4KOVrfKENtABns32gJPbYQGdqm9c3EfxP1N35GUgS1V0QXbCEr0RIP8d1OHz5SiW9bXiul0Ia4zRsp/3GZSEWlg4Ww1HlynoaCoOtqYHO1XeQsnioiio4W/qzneWinAWMngcnjFVrcXG42d5buDnBLOORYgrP8pWYNEtWlyIbvIpv69JCo0n
+api: eJzFVk1v40YM/SsDXpqgsp1seyjUUzYosEFbJEi86MExsoyGsWYzGmlnKO8Khv77gjPyV2wk7V7qi4wR+fhIPnK0AsZFgHwGTW1N0cE8g7ohj2xqd6UhB6bAD+nlQyCGDBr0WBGTF78VOKwI8vTIwDjIoUEuIQNNofCmESjI4SZiqECsBltPX1rjSUPOvqUMQlFShZCvgLtGMAN74xbQ99kmDKNfED+QWz4YvY73pSXfHQScRlNFbqlObv+6U0XtmL7x6X+KPE/GFPh9rTuxiDCO5S82jTVFrNXkc5Cgq0Oo+vEzFXzIriQltU2lDcSPte6U+Iz3CA6dMRQgg9BGMEl9nkHjpVUsr4RMkZDXgWfrJDJwrbXisM/gIjoorhUt0bbIlClNT9haDnLKJalAfmkK+ikoT6hVKOqGxvdOyKd4Y+izLcODAr6MeYlOG41M6q40ZLVK6StpjDpxNauOWAVckj4d4qzBY6SX1X0zSUFIToN/3ezxRO9RpGOYqiP8++N4ApLwtg15M/c7rBpLqkBrya/VuFt+hQs0LvD43g24ymhybJ4M+RiO62dyD9y8HSzKS6wVN2OZIGDDVhymFDjN4h0lUffyen8k4kFoahdStd6dncljP8b1n5D963HoY5Rfz345xLlMFbFYPIeoukEUsc6Re6Ci9Ya7uHCClMT9ljd14DyZ5qJOyGfz/kAA2ncj3zpVbJS3I7l7N5RcoQpDe1JffleeuPUuKE2FCTIoPyv2WJD652r64frjVAWupfTje/cBnbZpnDfciWWOK+KyljUqZOPu5BJymCzPJ6gr4ybJfBSIw2QlO66fCAxkIBW83a6eP75FfruTvu39dgC3Z+vK754k8W+GZr4v4K3lVmc7g2DcUx2FNwhp6MNoSO2F2NNLNTzzmzqwGqmqtWxGRYnOkVUVhYALUpqsWZLv1utGKmdNQS7EfIfV//fVVF3fqosGi5JG78ZnMrab+Thq0GewJB8SpbPxeToSwhW6HehPN9d3U/VmVz69THPnNvifhTZsA0GcNBaNk0Rbb4VjEt0MlueQQUxwLZmUImSQD1dy1N48g1J6ms9gtXrEQB+97Xs5ThetDKE2AR+trIsntIFeqcvJ7bBZTtUrN/JR/s/UHbnyZVuKLciwL9EbIfLjpA6/S45yWd8XrtulsOYYPft5n0FJqEWNs9Xw6jIFHU0FYOt6sCzlIyd5XBQFNfyq7XxntYh2IYPH4fukqrX4ePwq3xH4NdGsYxHiLo9nK7DoFi0uxDZhyu87Skd8RQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/policy-sets/{name}/test` — dry-run candidate policy text\nagainst a sample context; returns decision + trace WITHOUT storing.\nHandle test policy set."}
+  children={"`POST /v1/admin/policy-sets/{name}/test`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/policy-sets/{name}/test` — dry-run candidate policy text
+dry-run candidate policy text
 against a sample context; returns decision + trace WITHOUT storing.
 Handle test policy set.
 

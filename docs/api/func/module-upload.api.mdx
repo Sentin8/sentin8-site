@@ -1,13 +1,11 @@
 ---
 id: module-upload
-title: "`POST /v1/modules` — upload a new WASM module.
-Handle upload."
-description: "`POST /v1/modules` — upload a new WASM module."
-sidebar_label: "`POST /v1/modules` — upload a new WASM module.
-Handle upload."
+title: "`POST /v1/modules`"
+description: "upload a new WASM module."
+sidebar_label: "`POST /v1/modules`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzFV9tuGzcQ/RVinlpgJV+SBs32yS1a1A+BA9tBHhRBpsixlvEuuSG5klVhgXxEv6Efli8JhqS0q0tiuzBavWg15Jyd4Zw5HK3A85mDfAS3jRYwzsDUaLlXRp9LyKEysilx2NSl4RIysPipQed/NXIJ+QqE0R61p0de16USwfPoozOabE4UWHF68ssaIQcz/YjCQwYSnbCqpt2Qw2VEZVMjl+zWWBbfN0wvVBYlhShNxZWGDGprZCP8RFFIc7ROGT0p+RRLyGDBXTWZKs3tcv2r5HrW8BlSfrWlDL1CR3FtxbEOcwTOW6VnkIFuypK8tuO9LpD1LENos3VwXa4bjAO+YW9wK4y5cz0vbi2nuJXHyu2jtYfgAkZAq7nlFXq0+8mFnd163N6d44Nxp71MSdRe3Sq0AWL79B+VfXJhwSWA9Ev2IMSUO3z1coBaGImSvT+7esOi7/CDJnxCW1s26AV3xRMqfBEeeMlEqVD7QW3NXNHrCIf9cOMKfvrTq7zA+y+f/7n58RdKig5FMod2jnbglMR+POTXRbMh5KMOLACsXYbQthl45UvyehcaJfUPtLTUdYy3DQaDq412kfCnx8f71HgTujx1HVJTPVNjv6VSO4+SRSFhFoWxe40d+vgJ3R2KmZ6d+gv3+nzdV1sdkYHz3Df0gHoe4YVF7lFOuN/Xht7agTLdGlvRCkjuceBVhXvZJwBGi8O91v0/1Cbl/b10miZWYwsG9Xy38Z9XuP5NUOfbAf332ufol/554ryxfIaT2ASTO1w+sboJiCUgFoHYHUYBS7R9VLHj3meW5m3xfFCqnlPr+l3eASjtcYa2TxGl/YvTb0MSwLZ0RtG7DIJEytlm8PKQOJ7rOS+VTDdKFm+ASrmKe1FkrNF32ix04HLGjGVTLpnndoZ+ktotIL84ILvKOaVnjEavfGGVR+aEqTE6vP6mTq+rxEuLXC4Z3ivnXUjOoWis8kvIR6s1P/MOH/LRuN2j4M3bi6trdjQ/OYoq7W7Yl89/p+uAcaZxEa/ZNA1+0H9yLTcXBql5hb4wNDDWxvkgu76AHHqYkAHdHpfdAPn7Pa/qEvfT7OiRVK6zJNXZdNV4u5G7jTvk7xa2Zo0dc+T5jrHjb0/LlL41gY+JTOmoB2GK3j3fq9Te6Tv/o9EinLDzXEteGo3sPU7PnMNqWlI9UTTkG4YJJZBOuFQCtQunpXkVCHx+zS4u2VnNRYGD0+Exqe9GoQ5u6FQBcjgenkQT1aziugf9DIw4eNeBx3t/VJdU1TaDxgZdimQZwfyEmJToMqZiO0/21Ypmvne2bFsyf2qQajcaZzDnVvFpGXmdQYFcUuajFQQRht/iGDO4prfT9rIJd9XuSNNma48zIbD239077tGdzgkymKb/Q5WR5GP5giYcvoAcgP5SkXcQ8GBbQY9TEZM+XwHHXLUq
+api: eJzFV9tuGzcQ/RVinlpgJV+SBs32yS1a1A+BA9tBHhRBpsixlvEuuSG5klVhgXxEv6Efli8JhqS0q0tiuzBavWg15Jyd4cw5HK3A85mDfAS3jRYwzsDUaLlXRp9LyKEysilx2NSl4RIysPipQed/NXIJ+QqE0R61p0de16USwfPoozOabE4UWHF68ssaIQcz/YjCQwYSnbCqpt2Qw2VEZVMjl+zWWBbfN0wvVBYlhShNxZWGDGprZCP8RFFIc7ROGT0p+RRLyGDBXTWZKs3tcv2r5HrW8BlSfrWlDL1CR3FtxbEOcwTOW6VnkIFuypK8tuO9LpD1LENos3VwXa4bjAO+YW9wK4y5cz0vbi2nuJXHyu2jtYfgAkZAq7nlFXq0+8mFnd163N6d44Nxp71MSdRe3Sq0AWL79B+VfXJhwSWA9Ev2IMSUO3z1coBaGImSvT+7esOi7/CDJnxCW1s26AV3xRMqfBEeeMlEqVD7QW3NXNHrCIf9cOMKfvrTq7zA+y+f/7n58RdKig5FMod2jnbglMR+POTXRbNpyEcdWABYuwyhbTPwypfk9S4QJfEHWlrqGONtg8HgaqNdbPjT4+P91ngTWJ5Yh0SqZyL2Wyq18yhZFBJmURi7R+zA4yewOxQzPTv1F+7xfM2rLUZk4Dz3DT2gnkd4YZF7lBPu97Wht3agTLfGVrQCknsceFXhXvYJgNHicI+6/4fapLy/l07TxGpswaCe7xL/eYXr3wR1vh3Qf699jn7pnyfOG8tnOIkkmNzh8onVTUAsAbEIxO4wClhq20cVO+59ZmneFs8Hpeo5ta7P8g5AaY8ztP0WUdq/OP02JAFsS2cUvcsgSKScbQYvD4njuZ7zUsl0o2TxBqiUq7gXRcYafafNQodezpixbMol89zO0E8S3QLyiwOyq5xTesZo9MoXVnlkTpgao8Prb+r0ukq8tMjlkuG9ct6F5ByKxiq/hHy0Wvdn3uFDPhq3ey0YdZ9xpnER79M09n3Qf3ItNzcDyXaFvjA0GdbG+aCvvoAcjuYnR9GJ5JWuictuUvz9nld1ifv5dH2Q5KyzJHnZ0Ge8zdhu406XdwtbQ8WOOTb0jrFr1J5oKX1rQuOlrklnOgjj8u5BXiUep+/8j0YL9uXz38RKLXlpNLL3OD1zDqtpSYVD0ZBvmBqUQDrhUgnULpyW5lXo1PNrdnHJzmouChycDo9JZjdSdHBDR3/I4Xh4Ek1Us4rrHvTN24ura9ar3s1uUr0h/0mNkpjq8d4f1SVVt82gsUGIYtOMYH5CHZXaZkxFd57sqxUNee9s2bZk/tQg1XA0zmDOreLTMjZyBgVySScwWkFQXfgtxjq4prfT9rIJl9PuDNNma48zIbD239077rU9nRdkME1/gCojycfyBY00fAE5AP2HIu+g2MG2gl5vRUz6fAU3266D
 sidebar_class_name: "post api-method"
 info_path: docs/api/func/sentin-8-func
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/modules` — upload a new WASM module.\nHandle upload."}
+  children={"`POST /v1/modules`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/modules` — upload a new WASM module.
+upload a new WASM module.
 Handle upload.
 
 <Heading

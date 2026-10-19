@@ -1,13 +1,11 @@
 ---
 id: tenants-snapshot
-title: "`GET /v1/tenants/{env_id}` — VDC-4 tenant-snapshot API
-(design/sentin8-vertical-data-plane-contract.md §VDC.5)."
+title: "`GET /v1/tenants/{env_id}`"
 description: "The sanctioned on-demand read for a vertical service to obtain tenant"
-sidebar_label: "`GET /v1/tenants/{env_id}` — VDC-4 tenant-snapshot API
-(design/sentin8-vertical-data-plane-contract.md §VDC.5)."
+sidebar_label: "`GET /v1/tenants/{env_id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVl1u20YQvspgXyo7FGU7LlCwyIPiuKnbqDZsJ21gGdaaOxK3Xs4yO0sqrCCgTz1A0Tv0Hj1KTlLskv6JHRc9gJ8kkrPz833fzM5KeLlgkZ0JblmcJ0Ih505XXlsSmTgtEFhSHh5RgaWhwlKSAodSwdw6kNCg8zqXBhhdo3MEb8FeeqkJPJIkPyWtkLz2LQyQmpF1C2BTLzgBZUupiROQtS/6pw349Ptf4AsEJb2Eufo4ZN8anFJuiesSHQMhqhBHodMNgmau0Y1++PnHk1EujbmU+RUUlj3JEoN3UtGhJu21NFNikhUX1t8vwRfSw6W1nkHOPToweo55mxsEbJA8wxIdApbae1TplKY0rn1hnf5NBoxg4AuHCAvpY1xjYC61GebGMqqNbErbKbxE6dCFoHrewjOY7EyGlkwLg5m3V0gXvoIXL2Aqyp1yKmYdHjWjGyk0GFyrKQFANObwJRYXLIZcu7nMEaxbjJAaGB8dMGhijzKku5PCSaHRqJghWIIZB2rom4xbzjq+OAvszmCwcJK8vDSR0qV1V8ZKxTF2zLfREmblTnkRDXl2QxzntkIwusEQPB6YHb0Zn353eDy5ONk7PNq/eHe4N3759s34+P0sAcIGHWiKNYCzBoERFW+kU3qewubmSXCoQGnObYOu3dzMYqBANrqv+EZ7N0rT3ItDwdzZsgOswA51jQpmudFI/kKrGXz640+YccvptRAuen88A4cLzd61UMqq0rT49saVQ64sMYIkXgZVHv705n1UFFLDsCyCVD7L0i7pNtMOSKQAsILB7tYuWF+gW2rGjRTGt6rMJfUQIQX9B+p6qqJio6NCNghkPfjahV7VHixFhb56+ctdtHpX3tZ5gdzVvTmDSDT3FGoOAIYzdknogozSKX0vSRmEBfo+PFz3USoSYauQmbZ0oEQm+vzSawuRiEo6WaJHF+bNSoTeFJlAai60EonQYeBU0hfiwRSSLsREarSzVCJ5iCccfqi1QyUy72pMBOcFllJkK+HbKvhm7zQtRCLm1pXSi0zUtVZivT4Phzv2ONjvbG2Fn3thP68Rnj1OZsdiyEwkIrfkw79sJWRVGZ1HVEa/cvC6us1yvV6vE7G7tf0w9EQza1qMNDXSaNW1uojWzx+1hrvt2/egdUCWhpOdyV0fuw997FMDNV1RqMq6R5qLo8CuJeujwAd8rzc3RCiLMa+d9m2k+rEZI7Kz88BFib6wQTUL7ITiC5GJUbM96q1Hq04m66iTuY0ca28iyZ3zYbjA7ivnpPsG/W920nYKDxQ5a6AykjC5mZY30z4BlgsJ1oUW8Z2sg8aNzpEYQ/hevpODUzg8hnEl8wKHO+lWyDAOoblG90WDdSIadNxluJVud68qy76UdMf17PX+KXwJhG7Qvnu1N9ztOR/eiHR8dDClgULWCxpdQ3M9SYbhRh3GoocRApn7tFTwz9/vXu2lX2+k9wFc3Yr5aRd42gWedoGnXeB/7QL9/evxox9VRup479TOhInSTfcz0WwHwy51kYisXwTOExG6NVisVpeS8a0z63V4/aFGF+6T80Q00umQY7xdlOaIm8jm0jD+xwgbHPcbwwY8tlN8MfP+paRWhNimDk8iEVfY3m4w6/N1IgqUKoz9s1X/cZznWPk7xx6sBJ9dgK/3T8V6/S/uB86p
+api: eJztVktu3EYQvUqhNxnJnBlJVoCAgRdjWXGUeCJBkp0YGkFssWuGHTWr6a4mx8xggKxygCB3yD1yFJ8k6Cb1sWRlm41W/HR1/d6rz0p4uWCRngluWZwnQiHnTldeWxKpOC0QWFIePlGBpaHCUpICh1LB3DqQ0KDzOpcGGF2jcwRvwV56qQk8kiQ/I62QvPYtDJCasXULYFMvOAFlS6mJE5C1L/qvDfj0+1/gCwQlvYS5+jhk3xqcUW6J6xIdAyGqYEeh0w2CZq7RjX/4+ceTcS6NuZT5FRSWPckSg3ZSUaEm7bU0M2KSFRfW3w/BF9LDpbWeQc49OjB6jnmbGwRskDzDEh0Cltp7VKMZzWhS+8I6/ZsMOYKBLxwiLKSPdo2BudRmmBvLqDbSGW2P4CVKhy4Y1fMWnsF0Zzq0ZFoYZN5eIV34Cl68gJkod8qZyLp81IxurNBgUK1mBABRmMNJDC5IDLl2c5kjWLcYIzUwOTpg0MQeZXB3ZwQnhUajoodgCTIO0NA3KbecdnhxGtDNYLBwkry8NBHSpXVXxkrF0Xb0t9ESsnKnvIiCnN0Ax7mtEIxuMBiPF7KjN5PT7w6Ppxcne4dH+xfvDvcmL9++mRy/zxIgbNCBphgDOGsQGFHxxmhGz0ewuXkSFCpQmnPboGs3N9NoKICN7iu+4d4N0zT35FAwd7bsElZgl3WNCrLcaCR/oVUGn/74EzJueXRNhIteH2fgcKHZuxZKWVWaFt/eqHLIlSVGkMTLwMrDn968j4xCahiWRaDKZ17aJd162iUSKSRYwWB3axesL9AtNePGCCa3rMwl9SlCCvwP0PVQRcZGRYVsEMh68LULtao9WIoMffXyl7vZ6lV5W+cFchf3ZgYRaO4h1BwSGO7YJaELNBrN6HtJyiAs0Pfm4bqOop13r/aGu/3J8KbCJkcHMxooZL2gcU+24XVow1Diw8pIwmFuyTuZ+1Gp4J+/373aG329MRKJsFWIWFs6UCIVfdyja/0iEZV0skSPLvSxlQg1L1KB1FxoJRKhQyOrpC/Eg+4mXYgFqdHOUonkId5w+KHWDpVIvasxEZwXWEqRroRvq6CbvdO0EImYW1dKL1JR11qJ9fo8XO5YwUF+Z2srPO6Z/Tx38OxxknTsCJ6JRIQEhbd0JWRVGZ3HrIx/5aB1devler1eJ2J3a/uh6alm1rQYa2qk0aprISJKP39UGu62hb62rQOyNJzuTO/q2H2oY58aqOmKQlTWPVK0HIl7XQo+Fs6A79X8hghhMea1076NUD/Wu0R6dh6wKNEXNrBmgR1RfCFSMW62x730eNXRZB15MrcRY+1NBLnnahiM95lz0p1B/0xP2q5yIoetgcjo5KYL30yRBFguJFgXSs93tA4cNzpHYgzme/pOD07h8BgmlcwLHO6MtoKHsbnNNbovCqwT0aDjzsOt0Xb3q7LsS0l3VGev90/hS0nI7se5uuXc0yrwtAo8rQJPq8D/ugr049fjRz+ujNRx7NTOhE7VNfcz0WwHwS4lIhFpvwecJyJ0gSCxWl1KxrfOrNfh94caXRgn54lopNMh9jhclOaIh0jn0jD+R2scHPcLwwY8tlJ80fP+p6RWBNumDl8iEVfY3i4w6/N1IgqUKnT9s1V/OMlzrPydaw82gs/m3+v9U7Fe/wspoO2z
 sidebar_class_name: "get api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/tenants/{env_id}` — VDC-4 tenant-snapshot API\n(design/sentin8-vertical-data-plane-contract.md §VDC.5)."}
+  children={"`GET /v1/tenants/{env_id}`"}
 >
 </Heading>
 
@@ -58,6 +56,9 @@ Authorization (three gates, all fail-closed):
 
 DBX: the caller never touches `sys.*` tables — this is the owner API.
 Handle get tenant snapshot.
+
+VDC-4 tenant-snapshot API
+(design/sentin8-vertical-data-plane-contract.md §VDC.5).
 
 <Heading
   id={"request"}

@@ -1,1 +1,1 @@
-{"responses":{"200":{"description":"Revoked (RFC 7009)"},"401":{"description":"invalid_client — no verified client certificate"}}}
+{"responses":{"200":{"description":"Revoked (RFC 7009)"},"401":{"description":"invalid_client - no verified client certificate"}}}

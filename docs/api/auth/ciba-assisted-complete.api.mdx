@@ -1,11 +1,11 @@
 ---
 id: ciba-assisted-complete
-title: "`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."
+title: "`POST /v1/ciba/assisted/{auth_req_id}/complete`"
 description: "Called by the Flutter Assisted Login page after the customer signs in."
-sidebar_label: "`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."
+sidebar_label: "`POST /v1/ciba/assisted/{auth_req_id}/complete`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVU1v2zgQ/SuDuWwC0JZT9LCrm5uiqLsfKZIWe3AMixYnEjcyqXAot4YgoD+iv7C/ZDGSnLh1dg973hOp4eMM+d7jqMWoC8Z0ibndaFwpNMR5sHW03mGKl7qqyMBmD7EkeFM1MVKAObPlSAZ+84V1UOuCQN/JiqDyhqPfUgC2hWOwbnrrrkkb/m71J4ZsvWZitt5lkHt/b0lBIPbVjgZs1jCFtTUZJLcu86EY5pCR28lUgXYGtjrcD/jLxas5BHpoiCNkuq6D35HJpnBjXVHRpGFKb50Gptw7A7muKggUm+CG/fTZcrSuAI46NgyfbCx9EyHQZGOdsa6Y3rq32plqrKUPROR+W1cUaYoKfU1BC38Lg2nP6/qAWx9wqLDWQW8pUhD6W3R6S5iibmK5DvSwtgYVWtGg1rHEE2H68k0sH+/bb5APG8hgGkNDCjkvaasxbTHua8nPMVhXYNetBMy1d0ws6y9mMxmeqXIosPGNMxB9T5VoS2Zi3ZPcZ/zI8jkqzL2L5KIk1XVd2bznJPmLJXP7dLKu6zqFL2cXp+X/8EdmGpyCPfblKfaju3f+k4NjAnvsL6fYeRVIm/2jagbORsUHN5BR4PxB9nOUAzLlTbBxj+lypXBLsfQib+059mLGElNMdheJCJ4cBE/ao/N0yZH81t35Xhcbq14YctG6nyeCP1H7ZliEcUznIvy3L1/BGonEvYIriSVXi9eXyZv5+4U6EMYK3v35603Pi5cLiEUrm5Njkvqj735ffICra5jXOi9p8mI6kyP2ye8shWcBncIdBR5OOJteDCEhZKvdUers/dXNBzil5kBG1t9EmD5RW9x27MHpj8y0Tzb7v1f9h141doVIn2NSV9r276sJlTA7eHqJuwt5zfJ7UHhIggrT71vVo7VXCkt5FOkS23ajmT6Gqusk/NBQGN/PTgerN2L8ZYvGsswNpne6YvoXic+ux/52Dv/QAJ+90BjUbo9SumrkCxXe0/6HltutOoUlaSOeX7YjYp7nVMejvScNrTvuCeJ37Lq/AdPPkCY=
+api: eJztVUtv20YQ/iuDudQGVqIc5NDyproIqr4c2Al6kARxxR2TW1Oz9O5SiUDwvwdDUrYcObnm0hP38e08vm9m2GLURcB0ibndalwrNBRyb+toHWOK17qqyMD2ALEkeFc1MZKHeQg2RDLwlyssQ60LAn0vN4LKmxDdjjwEW3AAy9MV35I24cXtTwGyzSZQCNZxBrlzD5YUeAqu2tOAzZpAfmNNBsmKM+eLYQ0Z8V6WCjQb2Gn/MOCvF7/OwdNjQyFCpuvauz2ZbAp3louKJk2gdMUaAuWODeS6qsBTbDwP7+mzDdFyASHq2AT4ZGPpmgieJlvLxnIxXfHvmk01+tJHInK3qyuKNF3xirP3N3cfINlfJUJqcgQlR1AGExB7J0wNNEB0L3KYokJXk9eixsJg2qu0ORrcHA2iwlp7vaNIXsRskfWOMEXdxHLj6XFjDSq0omitY4lnMvfJNLF8Yq9/IBvryWAafUMKQ17STmPaYjzUYj9Eb7nArlsLONSOAwW5fzObyecVL0cHW9ewkYSFeKkUMhPLz5RchCfNLlFh7jgSRzGq67qyec9J8l8Qy+1zZF3XdQrfzq7O3f/jzgjHHvv2HPuRH9h9YjglsMf+co6dV560OTzVgIGLsX6G2iKjgN2xiC5RAgyUN97GA6bLtcIdxdKJvLULsRczlpjieQW1J/F0yYn8lu9dr4uNVS8McbT880TwZ2rfDZcwftO5CD8Ba2QfDwpu5CS5Wfx2nbybv1+oI11BwR///nnXs+IkfCnQyubEgcT7WHV/Lz7AzS3Ma52XNHkznUmAvfF7S/5VQKdwTz4M8c2mV8OR0LHTfGL6W631OjHZ16m3z3X0/2j74aNtHCKRPsekrrTt27Hxleg0tMAS91fS/PJvUnj0hgrTl5PtqRPWCkvpoXSJbbvVgT76quvk+LEhP7bbXnurt9InyxaNDbI2mN7rKtB3CubidhyHl/CNeflqQuOh5gOK66qRHSp8oMNXE7pbdwpL0kaaZNmOiHmeUx1P3p7Nv+50hIhA2HVfALJgu1M=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/ciba/assisted/complete` — bind customer session to CIBA request."}
+  children={"`POST /v1/ciba/assisted/{auth_req_id}/complete`"}
 >
 </Heading>
 
@@ -42,6 +42,8 @@ Reads the customer's `__session` cookie, resolves the `user_id` /
 `org_id` / `env_id`, and marks the CIBA request `approved`. Single-use:
 a second call returns the existing status without re-binding.
 Handle CIBA assisted complete.
+
+`POST /v1/ciba/assisted/complete` - bind customer session to CIBA request.
 
 <Heading
   id={"request"}

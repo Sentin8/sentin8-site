@@ -1,17 +1,11 @@
 ---
 id: list-policy-decisions
-title: "`GET /v1/admin/policy-decisions` — deny / would-deny feed for the UI
-. Reads the shared audit trail rows the runtime writes
-(`event->>'action' IN ('policy.deny','policy.would_deny')`).
-List policy decisions."
-description: "`GET /v1/admin/policy-decisions` — deny / would-deny feed for the UI"
-sidebar_label: "`GET /v1/admin/policy-decisions` — deny / would-deny feed for the UI
-. Reads the shared audit trail rows the runtime writes
-(`event->>'action' IN ('policy.deny','policy.would_deny')`).
-List policy decisions."
+title: "`GET /v1/admin/policy-decisions`"
+description: "deny / would-deny feed for the UI"
+sidebar_label: "`GET /v1/admin/policy-decisions`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdlEtu2zAQhq9CzMY2ID+SdlFoESAogsBA+oDjrhzDZsixxYaiFHKk1BAE9BA9YU9SDOW4Tp32ANVGIGc4/PjPowGS2wDpAsrCGrWDZQJFiV6SKdxUQwrWBFp1xpVGZYIpXIAESulljoSeTzfgZI6QAkm/RVqhq1dGQwLGQQqPFfodJKAxKG9KDg0pzKOrQFeL/uzmVqjCEX6jASTg8bEyHjWk5CtMIKgMcwlpA7Qr+ZpA3rgttO2SnUNZuICB7eeTCf9e3jRDhY7EM72wxVb0uyeNNLqdGIunorJ6FRe+eAoMEXkccThZltaoqMn4a+CYzSmT9F7yKw1hziwtfwm8nbw5JXovrUUvrFQPQVCGoqMRQRUlAh8LqCpvaBfFDejIuHdpWQRKO9fUo9SQLpYswcvg6+uruRjXZ2Opc+PGnf/wkLu1+Pn9hzh+9zAuNohabAofeb5M79xIzFDqji9k0qMWstKGBHlpbNQp2nzlyOQonrwhDHeuv8YaHQ0vLnpSMVNPTD+Kfu9I8V7yvPotfG+wHozu3I0J9CzHgXkECeRIWcEVuUWK9UcZpPD3d8bq2xQxQ4ZsLJtOxyHreFKPt51R7P/p5yJQlCqvLJmhyqRzaEWOIcgtCo3W1Oh3IqCvjUJGtEahC8hX7vvhw3QuPs3EZSlVhsPz0YSpNN+wMehfdWgTqNGHDmoyOuu2GDmX7ij0f5rmF0k5NBdPhnFppXEsRuUt27oSWEB9BglEFbgu/iyDZQIZ5ztdQNPcy4BfvG1b3u7mEjeYNkHeWx44G2kDnlAcZgH0Z/vZNBD/GGCvUj/g7pUJWUtbsS9wI9fSGwaJjZ1AhlJzlSya/eFLpbCko1Mnk4mjHDrl+moObfsLaXwKlA==
+api: eJzVVEtP4zAQ/ivWXNpK6QN2D6sckNAKoUrsQ6WcStUae9p4cexgT8JWUf47mqRAoSz3zcWy5/XNl2+mBpLbCOkCCm+N2sEyAV9gkGS8m2pIwZpIq8640qhMNN5FSKCQQeZIGDi6BidzhBRIhi3SCl21MhoSMA5SeCgx7CABjVEFU3BqSGHeugp0lejPrq6F8o7wLw0ggYAPpQmoIaVQYgJRZZhLSGugXcFlIgXjttA0S3aOhXcRI9tPJxM+3laaoUJH4hm9sH4r+l1LI41uJ8bi0ZdWr9pL8I+RQbR4HHE6WRTWqJaT8Z/IOetjTDIEyV0awpyxNPwl8HXy5RjRd2ktBmGluo+CMhQdGhGVLxA4LKIqg6FdS25ER8Z9SwsfKe1c04BSQ7pYMgVvkx+2NGwvG0QtNj60pW6mt24kZih1VzpmMqAWstSGBAVpbEtBawulI5OjeAyGMN66/hordDQ8O+tJxeV6YvpT9HsHZPaS59srp73BejC6dVcm0nOnL1IaQQI5UuZZbFukVlqUQQrj6mQsdW7cuIsZHsrPuI1vyTdkW0V0FA2ZoiOpXXdGsT/T3z6SGIq8tGSGKpPOoRU5xii3KDRaU2HYiYihMgoZoDUKXUQuuBf6j+lc/JqJ80KqDIenowlj0px/YzB86NAkUGGIHaTJ6KR7YsC5dAep15cXc/Hv5tfv26tfpfof/vv99PDojwsrjWNSymC5r04IC6hOIIGWDVbHezEsE8j4r6cLqOs7GfEm2Kbh527x8ARpE+Wd5Y2ykTbiJwz2Z/vlMxCfbKgPUd/j7oMVWElbsi/wpFYyGAbSTm4CGUrNalnU++BzpbCgg6ij1cNZXubl8mIOTfMEB1b8vg==
 sidebar_class_name: "get api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/policy-decisions` — deny / would-deny feed for the UI\n. Reads the shared audit trail rows the runtime writes\n(`event->>'action' IN ('policy.deny','policy.would_deny')`).\nList policy decisions."}
+  children={"`GET /v1/admin/policy-decisions`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/policy-decisions` — deny / would-deny feed for the UI
+deny / would-deny feed for the UI
 . Reads the shared audit trail rows the runtime writes
 (`event->>'action' IN ('policy.deny','policy.would_deny')`).
 List policy decisions.

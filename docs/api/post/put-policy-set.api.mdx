@@ -1,17 +1,11 @@
 ---
 id: put-policy-set
-title: "`PUT /v1/admin/policy-sets/{name}` — create/update with write-time
-validation. Platform rows are returned read-only (400); tenant
-rows (or new rows) are validated then stored, starting in `shadow`.
-Handle PUT policy set."
-description: "`PUT /v1/admin/policy-sets/{name}` — create/update with write-time"
-sidebar_label: "`PUT /v1/admin/policy-sets/{name}` — create/update with write-time
-validation. Platform rows are returned read-only (400); tenant
-rows (or new rows) are validated then stored, starting in `shadow`.
-Handle PUT policy set."
+title: "`PUT /v1/admin/policy-sets/{name}`"
+description: "create/update with write-time"
+sidebar_label: "`PUT /v1/admin/policy-sets/{name}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzlVtuO2zYQ/RVinnYB+bJpHgr1KQ0KNGiLGHt58hq7Y2nWYkKRCjmyYxgC8hH9wn5JMaR82chdbPtav8gi58wczuVQO2BcBcjn0Dijiy0sMnANeWTt7IcScmhafkh7D4EYMmjQY01MXmA7sFgT5OmRgbYCQa4gg5JC4XUjniCHWfShArHqbT19abWnEnL2LWUQiopqhHwHvG3EZ2Cv7Qq6LjuEYfQr4gey6wdd7uN9aclvBwFvo6kiu1YX17/fqMJZpq98+a8iL5IxBf7ZlVuxiG4sy19sGqOLmKrJpyBBd0NXbvmJCh6yq0g1LafMBuKlK7dKIONn/Pq6aApSmcZLbVje8t1zh99TPxfvZGUMXQZkcWkkyh48h6VzhtBCBrY1RmIO3fSw6KJ2JZ3iD9H/GS6QiD2c7FXk99YR+n2WXxU4gcbST8CajQSctZwa84ZShTvZfd4fcSE0zobE9c10Okg/fPwNslf3RhejvJ3+MPTzHo0hrwwWn4Pi/bm3KhSuoUg9UNF6zds4fYEsa/tj3rjAeTLNPaF0zqIbZOFxdnerJuurCZa1tpNkPwrEYbKTAese1V/f/lSFJ2SatE2JTGqjuVIbr5lGrGu6t2s0uownG6uZQX5yvlbebYJCT8oTt95SqYTGyFmzVRdvp9PLnxSTRcv3NppeOK8sbSLuMgJ7t1TKsa0K7DyVmQqMnrVdKW3VY6iwdJvH8b39FW1pSMmBmoOyyOzUxJXrhSuqFVeQw0uHhgykQtfHOf/lK9aNoWF1Dl12GJ0kIGkMjtvH1j6u7at/EBdRrycXm7jvxr6aI6nmYAhu0qbqn/nMBY7lqlvDelRUaC0ZVVMIuJJhN3pNXvLi17qIumJ0QTbEc/V6+seHW/XxWr1rsKho9GY8FU0tJcKTJn/WoMtgTT4kUtPxVVoSyjXaE9f/h2Y7L8FyzUwag9pKZlpvZC814hzWV5BBTMm+T1JSIIM8Zm6RQSX1z+ew2y0x0J03XSfL6Z6TsS916PvvCU2gAZGDEMHFda9ll+qFC/Es8c+0PXPjrtG0YgsiL2v0Woj8d1LDz4KzXPpFtNtTCnuOEdktugwqwlL6dr7rt96noKNbcXCEDuRZvjES4l1RUMMv2i5OZGZ2dwsZLPuvg14IPG7kGsdNYuliDuLlEdd2YNCuWlyJbXIpv78BsJ5Pfg==
+api: eJzVVk1vGzcQ/SvEnGxg9eE0h2J7SoMCDdoigj9OsmCPdsdaJlxyQ85KEYT978WQqw97VcPJrbpIJufNPA4f33gHjKsA+RwaZ3SxhUUGriGPrJ39VEIOTcsPae8hEEMGDXqsickLbAcWa4I8fWWgrUCQK8igpFB43UgmyGEWc6hArPpYT99a7amEnH1LGYSiohoh3wFvG8kZ2Gu7gq7LDmUY/Yr4gez6QZf7et9a8ttBwdsYqsiu1cX13zeqcJbpO1/+UOVFCqbAv7tyKxExjWX5iU1jdBFbNfkSpOhumMotv1DBQ3YVqabl1NlAvHTlVglk/Ixffy+agtxM4+VuWP7Kd88TvqR+rt7Jyhi6DMji0kiVPXgOS+cMoYUMbGuM1Bym6WExRe1KOsUfqv83XCARezjZm8jvoyP0ZZffVDiBxqInYM1GCs5aTsK8oXTDnew+10dcCI2zIXF9N50O2g+f/4LszdroYpX301+GeT6iMeSVweJrULw/91aFwjUUqQcqWq95G19fIMva/po3LnCeQnNPKMpZdIMuFJ6QadI2JTKpjeZKbbxmGrGu6d6u0egyUh6rmUF+cr5W3m2CQk/KE7feUqkk/8hZs1UX76fTy98Uk0XL9zaGXjivLG0i7jIC+7RUynmsCuw8lZkKjJ61XSlt1WOosHSbx/G9/RNtaUjN7m4PRyeWR1ETV653pGhDXEEOk/XVBMta20mKHgXiMNmJXXSQgbT++viA//iOdWNo2PaDfA5vIjlD0vdx+6jZ49r+Wg+uIbb05KI6e5n11zSSaxqo+yZtqv47n7nAaqTq1rAeFRVaS0bVFAKu5A0bvSYvXfFrXUS7MLogG+Kpepv859Ot+nytPjRYVDR6N56KVZaS/0mTPxvQZbAmHxKl6fgqLQnhGu1J6ke5mde6/vjygCee+f9WYG9SMkUmjUFtpUOtN3LEJMc5rK8gg9iavVpScyCDPHZwkUElKsjnsNstMdCdN10ny2mMyasudehV+IQm0Cv9vLjurepSvTLvzhL/StszA3WNppVYEPdYo9dC5OdJDaf+WS79ItrtKYU9x4jsFl0GFWEp+p3v+q2PqejoVhIcoQP3lX8hEuJDUVDDr8YuTsxmdncLGSz74d/bgceNTGncJJYu9iDOhri2A4N21eJKYlNK+fwL8xdA2A==
 sidebar_class_name: "put api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/policy-sets/{name}` — create/update with write-time\nvalidation. Platform rows are returned read-only (400); tenant\nrows (or new rows) are validated then stored, starting in `shadow`.\nHandle PUT policy set."}
+  children={"`PUT /v1/admin/policy-sets/{name}`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/policy-sets/{name}` — create/update with write-time
+create/update with write-time
 validation. Platform rows are returned read-only (400); tenant
 rows (or new rows) are validated then stored, starting in `shadow`.
 Handle PUT policy set.

@@ -1,11 +1,11 @@
 ---
 id: revoke
-title: "`POST /oauth/revoke` — RFC 7009 token revocation."
+title: "`POST /oauth/revoke`"
 description: "The caller MUST authenticate (client auth, SEC-). Refresh"
-sidebar_label: "`POST /oauth/revoke` — RFC 7009 token revocation."
+sidebar_label: "`POST /oauth/revoke`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVcFu00AQ/ZXRnBLJTdwKCTCnNKVSQKVVkopDE5GtPYmXOLNmdxyIIkt8BF/Il6C10zQtoUW0R06Wd8czb2bee16jqJnD6AqNKiTFcYAJudjqXLRhjHCYEsQqy8jC2eVgCD6KWHSshKARZ5pYqsMABm+7B80W9GlqyaUjFjMndqAsQUK8yrQTSuB6BZPPoifQ+XACkpK2sFASp5pncHIMjpzTpv5sxJaWZk7JG1BxTM7BIymnxm5SWloozZpnI870lEQvqAUXZKF/2oWXYfjaxwFxkhvNApaksOzgKAyBlsRVpoLnbL7ytpGGmgpZ2Om5CT+//wCmJVlQDMaqOKPWiPsVbNDSwgBNTlb5afYSjLDuCAPMlVULErJ++mtktSCMsCqFAWo/+y8F2RXu20gVBmJgm87Sl0JbSjASW1CALk5poTBao6xyn9mJ1TzDsgy2xepOPunk4YLdev2bvhvGwrFyOq4n8LTSjmJL8lfl69AnlR/7YJcbduT8/VEY+sfdcvXuEmjcMCXay4oNFZtYBvgiPPw9T/eWJhu9aMMwVTqjxI8CHcWF1bLC6Goc4IIkNZ4guXFS0UNSjLBdybK9XbPmqala05JVvfnc/OqgEu/9yQ3qS9g8o04hacVYnfgTWQVw7s/a572Tbvu0c9ELtvoL4N3H94MKvvEoPZMzHRM78vU3azzrDeG8D51cxSkdHLVCD7FKPtVk9waUAS7Juhph2Dqsj3zXC8U7qScX54Mh3Ol/UoG/VXAlAn9VD7d1fwBrjA0Lsfz3sWfwsY2ahL5JO8+UZr+3wmZ+zjVbb34iwY3LjQNMPZ2jK1yvr5WjS5uVpT+upe6NL9FOXXtNRFOVOXpghY3+RulN2O+BexHOabXjq0uVFT4GvRf9U+nH3PABELt++2xA/uiLjwPZuu8tmLF/sdqj8b5U7hiT1yOW5S+D+NGv
+api: eJztVU1v00AQ/SujOaWSk7gVEmBObQpSQaVVkopDE9GtPamXOrPu7jgQRf7vaOw0DRBaxMeNk7Xr8Xtvvp5XKOYmYHKJzlSS4zTCjELqbSnWMSY4zglSUxTk4fRiNAaNIhabGiHopIUlluYygtHrQXevB0OaeQr5hMXdEgcwniAjXhY2CGVwvYSrT2Kv4PD9MUhO1sPcSJpbvoHjIwgUgnXtZxP2tHC3lL0Ck6YUAjwBOXN+DelpbixbvplwYWckdk49OCcPwzcDeB7HLzUOiLPSWRbwJJXnAAdxDLQgbpAqvmX3mTeJdMxMyMNWznvQBaYFeTAMzpu0oN6Eh41osNKb8IQfCBUFNKPUaHF7GKEryTeHkwwTbLPFCEvjzZyEvHZmhWzmhAk2ABih1b7cVeSXuKtbLY842MB5uquspwwT8RVFGNKc5gaTFcqyVOQg3vIN1nW0IWuz/GizxwkH7Wisa9JxHo5MsGlbnT+jDpR6kl+ib0P/iH6qwaF0HCjo+4M41se3dG1nM+jcNzXZOTHrMd3DOsJn8f6POIOHEVrvknUMM2MLyrQUGCitvJUlJpfTCOckudMBKV2QZjwkxwT7zcr2N222PHNNalaKJjfF5hfdZrG/r9yofQnrZ3JYSQ5dsJmeZRnBmd70z06OB/03h+cn0WYzI3j74d2oEe9Uo85xYVPiQMq+buLpyRjOhnBYmjSn7kEvVoEN+MyS3xlQR7ggH1p9cW+/vdKc54a3oK/Oz0Zj+Cb7q+/zW2HqWIjlv4X9YwtbL5LQF+mXhbGsTat8oT1oB/X+3xLdG9w0wlwnObnE1eraBLrwRV3rdbvl6nmZDeZa1yGZmSLQI+3tDNdLvge77W+nwltablnqwhSVxqDa0G9RP2WEj4jYttq/JuSnlvi0kI3xPoiZ6sFbVaOWVG95ki4j1vVXAsfV2g==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /oauth/revoke` — RFC 7009 token revocation."}
+  children={"`POST /oauth/revoke`"}
 >
 </Heading>
 
@@ -41,8 +41,10 @@ The caller MUST authenticate (client auth, SEC-). Refresh
 tokens are denylisted by `jti` AND their matching DB sessions are
 revoked; access tokens are denylisted by `jti` for their remaining
 lifetime. Per RFC 7009 the endpoint returns 200 even for unknown
-tokens (after client auth) — never an oracle.
+tokens (after client auth) - never an oracle.
 Revoke it.
+
+RFC 7009 token revocation.
 
 <Heading
   id={"request"}

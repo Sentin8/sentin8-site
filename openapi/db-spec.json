@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "sentin8-db",
-    "description": "Sentin8 Sentin8:DB — structured persistence over PostgreSQL with RLS.",
+    "description": "Sentin8 Sentin8:DB - structured persistence over PostgreSQL with RLS.",
     "license": {
       "name": "MIT OR Apache-2.0",
       "identifier": "MIT OR Apache-2.0"
@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/attributes/{id}/delete": {
@@ -133,7 +136,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/attributes/{id}/delete`"
       }
     },
     "/v1/admin/policy-decisions": {
@@ -162,7 +166,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-decisions`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -191,7 +196,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       },
       "post": {
         "tags": [
@@ -226,7 +232,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -255,7 +262,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -284,7 +292,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -313,7 +322,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -353,7 +363,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -399,7 +410,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -429,7 +441,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/save": {
@@ -474,7 +487,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/save`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -519,7 +533,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/policy-sets/{name}/{action}": {
@@ -568,7 +583,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/{action}`"
       }
     },
     "/v1/admin/relations": {
@@ -597,7 +613,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -632,7 +649,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -662,7 +680,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -717,7 +736,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/relations/{id}/delete": {
@@ -749,7 +769,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/relations/{id}/delete`"
       }
     },
     "/v1/admin/tables": {
@@ -757,7 +778,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "GET handler for the literal `/v1/admin/tables` route (the POST alias\nshares the path; without an explicit GET registration axum answers 405).\nFetch admin data for tables.",
+        "summary": "`GET /v1/admin/tables`",
         "operationId": "get_admin_data_for_tables",
         "parameters": [
           {
@@ -787,13 +808,14 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "GET handler for the literal `/v1/admin/tables` route (the POST alias\nshares the path; without an explicit GET registration axum answers 405).\nFetch admin data for tables."
       },
       "post": {
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/tables` — create-table form submission (RFW renderer\nonly supports POST). Delegates to the main create handler.\nHandle admin create table.",
+        "summary": "`POST /v1/admin/tables`",
         "operationId": "admin_create_table",
         "parameters": [
           {
@@ -836,7 +858,8 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "create-table form submission (RFW renderer\nonly supports POST). Delegates to the main create handler.\nHandle admin create table."
       }
     },
     "/v1/admin/tables/{id}/archive": {
@@ -844,7 +867,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/tables/{id}/archive` — archive row action.\nHandle admin archive table.",
+        "summary": "`POST /v1/admin/tables/{id}/archive`",
         "operationId": "admin_archive_table",
         "parameters": [
           {
@@ -887,7 +910,8 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "archive row action.\nHandle admin archive table."
       }
     },
     "/v1/admin/tables/{id}/drop": {
@@ -895,7 +919,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`POST /v1/admin/tables/{id}/drop` — drop row action.\nHandle admin drop table.",
+        "summary": "`POST /v1/admin/tables/{id}/drop`",
         "operationId": "admin_drop_table",
         "parameters": [
           {
@@ -938,7 +962,8 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "drop row action.\nHandle admin drop table."
       }
     },
     "/v1/admin/ui/{page}": {
@@ -946,7 +971,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -988,7 +1013,8 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -996,7 +1022,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nRegistry-backed for `tables`, live posture findings for `posture`,\nrecent DDL audit entries for `audit`. Cross-env via `target_env_id`\nrequires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).\nFetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -1038,7 +1064,8 @@
           {
             "sentin8:db:admin": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows.\nRegistry-backed for `tables`, live posture findings for `posture`,\nrecent DDL audit entries for `audit`. Cross-env via `target_env_id`\nrequires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).\nFetch admin data."
       }
     },
     "/v1/audit": {
@@ -1046,7 +1073,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`GET /v1/audit` — DDL audit log (Stories).\nHandle audit log.",
+        "summary": "`GET /v1/audit`",
         "operationId": "audit.list",
         "parameters": [
           {
@@ -1071,7 +1098,8 @@
           {
             "sentin8:db:audit:read": []
           }
-        ]
+        ],
+        "description": "DDL audit log (Stories).\nHandle audit log."
       }
     },
     "/v1/data/delete": {
@@ -1079,7 +1107,7 @@
         "tags": [
           "db"
         ],
-        "summary": "Delete it.",
+        "summary": "`POST /v1/data/delete`",
         "operationId": "data.delete",
         "requestBody": {
           "content": {
@@ -1103,7 +1131,8 @@
           {
             "sentin8:db:data:write": []
           }
-        ]
+        ],
+        "description": "Delete it."
       }
     },
     "/v1/data/insert": {
@@ -1111,8 +1140,8 @@
         "tags": [
           "db"
         ],
-        "summary": "`POST /v1/data/insert` — insert rows with mandatory system columns.",
-        "description": "Each row is split per design : `env_id` system column, the full JSON\nbody into `data`, and any keys matching a declared typed column into that\ncolumn. Typed columns are resolved from the physical table schema at\ninsert time.\nHandle insert.",
+        "summary": "`POST /v1/data/insert`",
+        "description": "Each row is split per design : `env_id` system column, the full JSON\nbody into `data`, and any keys matching a declared typed column into that\ncolumn. Typed columns are resolved from the physical table schema at\ninsert time.\nHandle insert.\n\ninsert rows with mandatory system columns.",
         "operationId": "data.insert",
         "requestBody": {
           "content": {
@@ -1144,7 +1173,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`POST /v1/data/query` — query rows with filters, sorts, pagination.\nSoft-deleted rows (`deleted_at IS NOT NULL`) are excluded.\nHandle query.",
+        "summary": "`POST /v1/data/query`",
         "operationId": "data.query",
         "requestBody": {
           "content": {
@@ -1175,7 +1204,8 @@
           {
             "sentin8:db:data:read": []
           }
-        ]
+        ],
+        "description": "query rows with filters, sorts, pagination.\nSoft-deleted rows (`deleted_at IS NOT NULL`) are excluded.\nHandle query."
       }
     },
     "/v1/data/update": {
@@ -1183,7 +1213,7 @@
         "tags": [
           "db"
         ],
-        "summary": "Update it.",
+        "summary": "`POST /v1/data/update`",
         "operationId": "data.update",
         "requestBody": {
           "content": {
@@ -1207,7 +1237,8 @@
           {
             "sentin8:db:data:write": []
           }
-        ]
+        ],
+        "description": "Update it."
       }
     },
     "/v1/health": {
@@ -1215,7 +1246,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -1227,7 +1258,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health."
       }
     },
     "/v1/posture": {
@@ -1235,7 +1267,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`GET /v1/posture` — RLS drift detection (Stories).\nHandle posture.",
+        "summary": "`GET /v1/posture`",
         "operationId": "posture.get",
         "parameters": [
           {
@@ -1260,7 +1292,8 @@
           {
             "sentin8:db:posture:read": []
           }
-        ]
+        ],
+        "description": "RLS drift detection (Stories).\nHandle posture."
       }
     },
     "/v1/tables": {
@@ -1268,7 +1301,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`GET /v1/tables` — list active tables for the resolved env.\nList tables.",
+        "summary": "`GET /v1/tables`",
         "operationId": "table.list",
         "parameters": [
           {
@@ -1300,14 +1333,15 @@
           {
             "sentin8:db:data:read": []
           }
-        ]
+        ],
+        "description": "list active tables for the resolved env.\nList tables."
       },
       "post": {
         "tags": [
           "db"
         ],
-        "summary": "`POST /v1/tables` — create a table with mandatory system columns + RLS.",
-        "description": "Creates the physical PostgreSQL table with the mandatory system column set\n(`id`, `env_id`, `data` JSONB, `created_at`, `updated_at`,\n`resource_version`, `deleted_at`), enables + forces RLS, creates the four\nenv-scoped policies, registers the table in `table_registry`, writes the\n`create` DDL audit row, and emits the `sentin8:db:table:created` event —\nregistry, audit, and event all in the SAME transaction as the domain\nchange.\nCreate table.",
+        "summary": "`POST /v1/tables`",
+        "description": "Creates the physical PostgreSQL table with the mandatory system column set\n(`id`, `env_id`, `data` JSONB, `created_at`, `updated_at`,\n`resource_version`, `deleted_at`), enables + forces RLS, creates the four\nenv-scoped policies, registers the table in `table_registry`, writes the\n`create` DDL audit row, and emits the `sentin8:db:table:created` event -\nregistry, audit, and event all in the SAME transaction as the domain\nchange.\nCreate table.\n\ncreate a table with mandatory system columns + RLS.",
         "operationId": "table.create",
         "requestBody": {
           "content": {
@@ -1346,7 +1380,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`GET /v1/tables/{id}` — get table metadata. Env-scoped + authenticated\n; a foreign-env id 404s.\nFetch table.",
+        "summary": "`GET /v1/tables/{id}`",
         "operationId": "table.get",
         "parameters": [
           {
@@ -1391,7 +1425,8 @@
           {
             "sentin8:db:data:read": []
           }
-        ]
+        ],
+        "description": "get table metadata. Env-scoped + authenticated\n; a foreign-env id 404s.\nFetch table."
       }
     },
     "/v1/tables/{id}/alter": {
@@ -1399,7 +1434,7 @@
         "tags": [
           "db"
         ],
-        "summary": "Handle alter table.",
+        "summary": "`POST /v1/tables/{id}/alter`",
         "operationId": "table.alter",
         "parameters": [
           {
@@ -1447,7 +1482,8 @@
           {
             "sentin8:db:table:admin": []
           }
-        ]
+        ],
+        "description": "Handle alter table."
       }
     },
     "/v1/tables/{id}/archive": {
@@ -1455,7 +1491,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`POST /v1/tables/{id}/archive` — mark a table as archived (Stories).\nEnv-scoped; registry update, audit row, and event commit together.\nArchive table.",
+        "summary": "`POST /v1/tables/{id}/archive`",
         "operationId": "table.archive",
         "parameters": [
           {
@@ -1493,7 +1529,8 @@
           {
             "sentin8:db:table:admin": []
           }
-        ]
+        ],
+        "description": "mark a table as archived (Stories).\nEnv-scoped; registry update, audit row, and event commit together.\nArchive table."
       }
     },
     "/v1/tables/{id}/drop": {
@@ -1501,7 +1538,7 @@
         "tags": [
           "db"
         ],
-        "summary": "`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories).\nEnv-scoped; registry status, physical DROP, audit row, and event commit\ntogether — a failed DROP rolls the registry status back.\nHandle drop table.",
+        "summary": "`POST /v1/tables/{id}/drop`",
         "operationId": "table.drop",
         "parameters": [
           {
@@ -1539,7 +1576,8 @@
           {
             "sentin8:db:table:admin": []
           }
-        ]
+        ],
+        "description": "pending-delete then drop (Stories).\nEnv-scoped; registry status, physical DROP, audit row, and event commit\ntogether - a failed DROP rolls the registry status back.\nHandle drop table."
       }
     }
   },
@@ -1547,7 +1585,7 @@
     "schemas": {
       "AlterTableRequest": {
         "type": "object",
-        "description": "`POST /v1/tables/{id}/alter` — safe schema alteration (ADD COLUMN only).\nEnv-scoped; audited + event emitted in the same transaction.\nRequest body for altertable.",
+        "description": "`POST /v1/tables/{id}/alter` - safe schema alteration (ADD COLUMN only).\nEnv-scoped; audited + event emitted in the same transaction.\nRequest body for altertable.",
         "required": [
           "add_columns"
         ],
@@ -1618,7 +1656,7 @@
       },
       "DeleteRequest": {
         "type": "object",
-        "description": "`POST /v1/data/delete` — soft-delete rows by filter (`deleted_at = now`).\nNo hard-delete fallback: physical removal happens only via the controlled\ndrop flow.\nRequest body for delete.",
+        "description": "`POST /v1/data/delete` - soft-delete rows by filter (`deleted_at = now`).\nNo hard-delete fallback: physical removal happens only via the controlled\ndrop flow.\nRequest body for delete.",
         "required": [
           "table"
         ],
@@ -1661,7 +1699,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Keyset cursor (DB-3, db README §7): return rows strictly after this\n`id`. Takes precedence over `offset` when set — stable under inserts\nbetween pages, unlike the offset window. Paired with `sort` on `id`\nenforced server-side when the cursor is used."
+            "description": "Keyset cursor (DB-3, db README §7): return rows strictly after this\n`id`. Takes precedence over `offset` when set - stable under inserts\nbetween pages, unlike the offset window. Paired with `sort` on `id`\nenforced server-side when the cursor is used."
           },
           "limit": {
             "type": [
@@ -1724,7 +1762,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Keyset cursor (DB-3): the last returned row's `id` — pass it back as\n`pagination.after` to fetch the next page. `null` when the page was\nthe last (fewer rows than `limit` returned)."
+            "description": "Keyset cursor (DB-3): the last returned row's `id` - pass it back as\n`pagination.after` to fetch the next page. `null` when the page was\nthe last (fewer rows than `limit` returned)."
           },
           "rows": {
             "type": "array",
@@ -1787,7 +1825,7 @@
       },
       "TargetEnvQuery": {
         "type": "object",
-        "description": "Query parameter for cross-env operations — allows callers (e.g. BFF) to\ntarget a specific env. Only honored when the caller carries platform-admin\nauthority (`sentin8:sys:admin`) or targets their own env.\nThe targetenvquery type.",
+        "description": "Query parameter for cross-env operations - allows callers (e.g. BFF) to\ntarget a specific env. Only honored when the caller carries platform-admin\nauthority (`sentin8:sys:admin`) or targets their own env.\nThe targetenvquery type.",
         "properties": {
           "target_env_id": {
             "type": [
@@ -1800,7 +1838,7 @@
       },
       "UpdateRequest": {
         "type": "object",
-        "description": "`POST /v1/data/update` — update rows by filter with resource version check.\nRequest body for update.",
+        "description": "`POST /v1/data/update` - update rows by filter with resource version check.\nRequest body for update.",
         "required": [
           "table",
           "set"
@@ -1836,7 +1874,7 @@
     },
     {
       "name": "db",
-      "description": "Sentin8:DB admin API — tables, data CRUD, posture, audit"
+      "description": "Sentin8:DB admin API - tables, data CRUD, posture, audit"
     }
   ]
 }

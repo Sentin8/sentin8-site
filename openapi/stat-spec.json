@@ -105,7 +105,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -140,7 +141,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -170,7 +172,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -199,7 +202,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -228,7 +232,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -257,7 +262,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -286,7 +292,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -326,7 +333,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -372,7 +380,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -402,7 +411,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -447,7 +457,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/properties": {
@@ -706,7 +717,7 @@
         "tags": [
           "stat"
         ],
-        "summary": "`POST /v1/admin/properties/{id}/alert-rules`\nCreate a per-property custom alert rule (stat README §7). The request\nis validated against the known rule types, comparators, and metric\nvocabulary (400 on unknown); the property must exist in the target\nenv (404). The INSERT runs in one explicit transaction with the RLS\ncontext set on the same connection (stat DESIGN §5).",
+        "summary": "`POST /v1/admin/properties/{id}/alert-rules`",
         "operationId": "alert_rule.create",
         "parameters": [
           {
@@ -764,7 +775,8 @@
           {
             "sentin8:stat:admin": []
           }
-        ]
+        ],
+        "description": "Create a per-property custom alert rule (stat README §7). The request\nis validated against the known rule types, comparators, and metric\nvocabulary (400 on unknown); the property must exist in the target\nenv (404). The INSERT runs in one explicit transaction with the RLS\ncontext set on the same connection (stat DESIGN §5)."
       }
     },
     "/v1/admin/properties/{id}/alert-rules/{rule_id}": {
@@ -828,7 +840,7 @@
         "tags": [
           "stat"
         ],
-        "summary": "`POST /v1/admin/properties/{id}/delete` — RFW alias of\n`DELETE /v1/admin/properties/{id}`.",
+        "summary": "`POST /v1/admin/properties/{id}/delete`",
         "operationId": "property_delete",
         "parameters": [
           {
@@ -866,7 +878,8 @@
           {
             "sentin8:stat:admin": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/admin/properties/{id}`."
       }
     },
     "/v1/admin/properties/{id}/reaggregate": {
@@ -874,7 +887,7 @@
         "tags": [
           "stat"
         ],
-        "summary": "`POST /v1/admin/properties/{id}/reaggregate`\nDelete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY — a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`.",
+        "summary": "`POST /v1/admin/properties/{id}/reaggregate`",
         "operationId": "property.reaggregate",
         "parameters": [
           {
@@ -925,7 +938,8 @@
           {
             "sentin8:stat:admin": []
           }
-        ]
+        ],
+        "description": "Delete and rebuild the property's day-granularity `metrics` rollups over\na raw-events window (stat README §7). v1 reaggregates from `stat.events`\nONLY — a window reaching past the property's retention horizon is a 400\n(the spilled raw data lives in Storage archives; per stat DESIGN §4.3.6\nthe archive spill is the source-of-truth boundary and the Storage-archive\nreplay path is out of scope for this endpoint). The recomputation shares the\nbackground rollup's SQL via\n`crate::worker::rollups::reaggregate_property`."
       }
     },
     "/v1/admin/properties/{id}/retention": {
@@ -1074,7 +1088,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -1109,7 +1124,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -1139,7 +1155,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -1194,7 +1211,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -1202,7 +1220,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -1244,7 +1262,8 @@
           {
             "sentin8:stat:admin": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -1252,7 +1271,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nFetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -1294,7 +1313,8 @@
           {
             "sentin8:stat:admin": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/data/funnels": {
@@ -1302,7 +1322,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`POST /v1/data/funnels` — define a funnel.\nCreate funnel.",
+        "summary": "`POST /v1/data/funnels`",
         "operationId": "create_funnel",
         "requestBody": {
           "content": {
@@ -1333,7 +1353,8 @@
           {
             "sentin8:stat:data:write": []
           }
-        ]
+        ],
+        "description": "define a funnel.\nCreate funnel."
       }
     },
     "/v1/data/funnels/{id}": {
@@ -1341,7 +1362,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/funnels/{id}` — funnel report.\nFetch funnel.",
+        "summary": "`GET /v1/data/funnels/{id}`",
         "operationId": "get_funnel",
         "parameters": [
           {
@@ -1374,7 +1395,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "funnel report.\nFetch funnel."
       }
     },
     "/v1/data/metrics": {
@@ -1382,7 +1404,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/metrics` — server-telemetry time-series from\n`sentin8_stat_aggregate_metrics_daily`.\nHandle metrics.",
+        "summary": "`GET /v1/data/metrics`",
         "operationId": "metrics",
         "parameters": [
           {
@@ -1445,7 +1467,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "server-telemetry time-series from\n`sentin8_stat_aggregate_metrics_daily`.\nHandle metrics."
       }
     },
     "/v1/data/query": {
@@ -1453,7 +1476,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`POST /v1/data/query` — arbitrary aggregate query (JSON DSL, aggregates only).\nHandle query.",
+        "summary": "`POST /v1/data/query`",
         "operationId": "query",
         "requestBody": {
           "content": {
@@ -1483,7 +1506,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "arbitrary aggregate query (JSON DSL, aggregates only).\nHandle query."
       }
     },
     "/v1/data/realtime": {
@@ -1491,8 +1515,8 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/realtime` — real-time active users (last 5 min, in-memory).",
-        "description": "Uses a Valkey sorted-set counter keyed by minute.\nHandle realtime.",
+        "summary": "`GET /v1/data/realtime`",
+        "description": "Uses a Valkey sorted-set counter keyed by minute.\nHandle realtime.\n\nreal-time active users (last 5 min, in-memory).",
         "operationId": "realtime",
         "responses": {
           "200": {
@@ -1519,7 +1543,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/reports` — list available report templates.\nList reports.",
+        "summary": "`GET /v1/data/reports`",
         "operationId": "list_reports",
         "parameters": [
           {
@@ -1582,7 +1606,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "list available report templates.\nList reports."
       }
     },
     "/v1/data/reports/{report_id}": {
@@ -1590,7 +1615,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/reports/{report_id}` — run a pre-canned report.\nRun report.",
+        "summary": "`GET /v1/data/reports/{report_id}`",
         "operationId": "run_report",
         "parameters": [
           {
@@ -1623,7 +1648,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "run a pre-canned report.\nRun report."
       }
     },
     "/v1/data/retention": {
@@ -1631,7 +1657,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/retention` — cohort retention (reads sessions aggregate).\nHandle retention.",
+        "summary": "`GET /v1/data/retention`",
         "operationId": "retention",
         "parameters": [
           {
@@ -1691,7 +1717,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "cohort retention (reads sessions aggregate).\nHandle retention."
       }
     },
     "/v1/data/sessions": {
@@ -1699,7 +1726,7 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/sessions` — session breakdown.\nHandle sessions.",
+        "summary": "`GET /v1/data/sessions`",
         "operationId": "sessions",
         "parameters": [
           {
@@ -1762,7 +1789,8 @@
           {
             "sentin8:stat:data:read": []
           }
-        ]
+        ],
+        "description": "session breakdown.\nHandle sessions."
       }
     },
     "/v1/data/traffic": {
@@ -1770,8 +1798,8 @@
         "tags": [
           "data"
         ],
-        "summary": "`GET /v1/data/traffic` — TLS inter-service traffic matrix.",
-        "description": "Returns per-`(from_service, to_service)` summary rows (count, average\nlatency, errors) aggregated from the `tls.traffic.*` metrics that\nTLS flushes every 10 seconds. Used by Dash's `MetricsTable` widget\nfor system/org/env metrics.\nHandle traffic.",
+        "summary": "`GET /v1/data/traffic`",
+        "description": "Returns per-`(from_service, to_service)` summary rows (count, average\nlatency, errors) aggregated from the `tls.traffic.*` metrics that\nTLS flushes every 10 seconds. Used by Dash's `MetricsTable` widget\nfor system/org/env metrics.\nHandle traffic.\n\nTLS inter-service traffic matrix.",
         "operationId": "traffic",
         "parameters": [
           {
@@ -1842,7 +1870,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -1854,7 +1882,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health."
       }
     },
     "/v1/m/batch": {
@@ -1862,7 +1891,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/batch` — server-side batch (M2M required, higher limits).\nHandle batch.",
+        "summary": "`POST /v1/m/batch`",
         "operationId": "batch",
         "requestBody": {
           "content": {
@@ -1880,7 +1909,8 @@
             "description": "Property unknown"
           }
         },
-        "security": []
+        "security": [],
+        "description": "server-side batch (M2M required, higher limits).\nHandle batch."
       }
     },
     "/v1/m/collect": {
@@ -1888,7 +1918,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "Handle pixel.",
+        "summary": "`GET /v1/m/collect`",
         "operationId": "pixel",
         "parameters": [
           {
@@ -1906,13 +1936,14 @@
             "description": "1x1 transparent GIF (beacon)"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle pixel."
       },
       "post": {
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/collect` — batch ingest (max 100 events / 1 MiB).\nHandle collect.",
+        "summary": "`POST /v1/m/collect`",
         "operationId": "collect",
         "requestBody": {
           "content": {
@@ -1935,7 +1966,8 @@
             "description": "Property unknown / origin mismatch"
           }
         },
-        "security": []
+        "security": [],
+        "description": "batch ingest (max 100 events / 1 MiB).\nHandle collect."
       }
     },
     "/v1/m/conversion": {
@@ -1943,7 +1975,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/conversion`\nHandle conversion.",
+        "summary": "`POST /v1/m/conversion`",
         "operationId": "conversion",
         "requestBody": {
           "content": {
@@ -1961,7 +1993,8 @@
             "description": "Property unknown"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle conversion."
       }
     },
     "/v1/m/event": {
@@ -1969,7 +2002,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/event`\nHandle event.",
+        "summary": "`POST /v1/m/event`",
         "operationId": "event",
         "requestBody": {
           "content": {
@@ -1987,7 +2020,8 @@
             "description": "Property unknown"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle event."
       }
     },
     "/v1/m/metric": {
@@ -1995,7 +2029,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/metric` — server-only telemetry (requires `sentin8:stat:measure`).\nHandle metric.",
+        "summary": "`POST /v1/m/metric`",
         "operationId": "metric",
         "requestBody": {
           "content": {
@@ -2013,7 +2047,8 @@
             "description": "Property unknown"
           }
         },
-        "security": []
+        "security": [],
+        "description": "server-only telemetry (requires `sentin8:stat:measure`).\nHandle metric."
       }
     },
     "/v1/m/pageview": {
@@ -2021,7 +2056,7 @@
         "tags": [
           "ingest"
         ],
-        "summary": "`POST /v1/m/pageview`\nHandle pageview.",
+        "summary": "`POST /v1/m/pageview`",
         "operationId": "pageview",
         "requestBody": {
           "content": {
@@ -2039,7 +2074,8 @@
             "description": "Property unknown"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle pageview."
       }
     },
     "/v1/readiness": {
@@ -2047,7 +2083,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle readiness.",
+        "summary": "`GET /v1/readiness`",
         "operationId": "readiness",
         "responses": {
           "200": {
@@ -2062,7 +2098,8 @@
             "description": "Not ready"
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle readiness."
       }
     }
   },

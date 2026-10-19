@@ -1,17 +1,11 @@
 ---
 id: put-security-selection
-title: "`POST /v1/admin/security` — the high-level submit. Selecting a new
-profile / extensions / overlay **resets the detail flags** to the
-profile's defaults (adjusted for the chosen extensions/overlay),
-then upserts the env row. The overlay row is written alongside."
-description: "`POST /v1/admin/security` — the high-level submit. Selecting a new"
-sidebar_label: "`POST /v1/admin/security` — the high-level submit. Selecting a new
-profile / extensions / overlay **resets the detail flags** to the
-profile's defaults (adjusted for the chosen extensions/overlay),
-then upserts the env row. The overlay row is written alongside."
+title: "`POST /v1/admin/security`"
+description: "the high-level submit. Selecting a new"
+sidebar_label: "`POST /v1/admin/security`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVs1u4zYQfpXBXGoHjJ1seyh0S9MtkP4giySLHhwjS0tjiwlNaknKjusV0FMfoOgT7pMUQ/1Yjt1FD0FP9UUWNf/fNzPcYpALj8kEZRlynAq0BTkZlDVXGSZYlOHBU1o6FTYPnjSl/AkFFtLJJQVyrLxFI5eECQbpFhQeyKweVIYClWEbMuQoMCOfOlVE/VYSyKxAZWSCmityIxTo6GOpHGWYBFeSQJ/mtJSYbDFsCuJIfXDKLFCgKbXGaVVNay3y4TubbVg0tSaQCfxXFoVWacxo/OjZ9/bAJtrZI6XhIMi7nCBXi/xU04o0dPnDYG7dEmY224CdQ8gJ2iJBIRc0HN2bmzqiWmhuXSfRWdnPdoKFs3OliUEoHMMQFHkOkp4DGa+s8b2QpXNywyUOtOyfN9WpXuby1siZpgwKZ4NNrYadVRj0Xobw+fe/QGaZCmpFo3vDRdh9HrFluyKn5eYLoLz0fkOLUstg3QYaZRi0/xqXxhqCT2Bnih9p5uATzJz8TekmiEY8RtDW6iDvYxA2wiOsKoFBBdbD2waO2xaOBjCsWGqfhfHAF9b4GpA3Z2f82PfUGQIfrKMMBhkFqTTMtVx4cOQpQLCRLU1EkNFcljr4IYrX5KwjkxGHcJy8TFEoHM2V1jCGy5+vYEVOzTfgc1k07K3ThUJutJXZv2Nw1/ctPKLPXRG/O7t+oGflgz9C9Fr/CKjcbzJggmUZHezn/HKKVAeudiZn1mqS5rBuriRY52QiQGzR2TXU6jCYS+0JPv/xJxRahtj9DXagTE5OBcqGbbPs6dbRvEYHv0oj/ieNVHOHO6kS+M2xZnlvnoxdm64RrNulhlHp60OlS6k1OdAyffIRJd5ZILOlMuBTW1CMq2Vp3EueSWG+TVgyiZKYTKbVQVk+vLu+vYPx6nwchcatkQ9xNIUXe6CcLVUYQZOxWYAEQ+t702Yz7g/XcTfxTk7iEKhj7w+Hk5NmMHQmvvLdbICBzB5LH6huQtZNc+vJ9JyMGxdDcW8Cc7gsPLnGU8PHEfSwjwRVHtZOhUAGpLZm4VVG3NJLCrmN29/6EHd9yDHBw+qgQB5PN7vl+/ZZLouaTn3Od7Sc9ji7Y1pHwh73lZnbyMqGZg2Sp/Ge8hK+2/ojNM/kgonByNVTIWwEXPPZ+Prq+8vxDxfvrgR48jE6AT/++tNt5JLlpLgCWqXEDE66m80vV3dwfQMXhUxzOn0zOuPG7UbOUYFK4IqcryM8G53XR1zTpTQ90/9zr8e9PVy7mRToOYwLLVUcDqXT/K2m5QRX5yiw7u1e908F5kzfZILb7Ux6eu90VfHxx5IcT4epwJV0iq9FcVZkyscrEiZx2h/E0i1oHNw0S28I/3iPPRp5O/kNt85K6pLfUOATbQ5uz9W0EpiTzJhek20jc1kHcXrHlnY2Dm4MlWg1LtKUivBF2Wmv55mMKHDW3KSXNmMdJ9e86+W6jtfGosSlFc+2qKVZlHLBsrVN/v0Nhhtcsw==
+api: eJzlVs1u20YQfpXBXCoba8lJeyh4c90UcH/gwnbQgy04K3IkbrLaZXaHklWF1z5AH7FPUsySomhLDXoIeqkuFJfzP983O1tkvYiY3aOuucSpQl9R0Gy8uyoww6rmx0h5HQxvHiNZyuUTKqx00EtiCqK8RaeXhBmyDgviR3KrR1OgQuPEhuYSFRYU82CqpL+TBHIrMAU5NnNDYYwKA32sTaACMw41KYx5SUuN2RZ5U5FEGjkYt0CFrrYWp00zbbUo8ne+2Iho7h2TY/mrq8qaPGU0eR/F9/bAJvrZe8r5IMi7kqA0i/LM0oos9PnDaO7DEma+2ICfA5cEuyJBpRd0Mn5wN21ErdDch16it/I823usgp8bS9KEKkgb2FCUIOmJyUXjXRyErEPQGykx03J43lWneZnLG6dnlgqogmefewt7qzAavJzAGeiiMGxWNH5wUoL9x7HY9SsKVm8+05KXvm9oUVvNPmygU4bR7l9y6Lwj+AR+ZuSRFwE+wSzo343tQuiEk/9dnQ5yPta+TniMTaOQDYse3natuN21omsWNiL1HIHpIFbexbYZr8/P5fHcU28IIvtABYwKYm0szK1eRAgUiYF9QkoXERQ017XleILqS+I1kCtIQjgOXIEnVIHmxlqYwOXPV7CiYOYbiKWuOuS26UKlN9br4t+ht+f8rj1qiFuVvge/fqQnEzkeAXmrf6SpwjXNmGFdJwfPc345QZoDV3uTM+8taXdYt1ATrEtyqUFiMfg1tOowmmsbCf7640+orObE/K53YFxJwTAVJzuqPNNto/kS7P0iNPxPiNRiR5jUKPzmGFneug/Or11PBB/2qWFS+vpQ6VJbSwGszj/E1CW5r0AXS+Mg5r6iFNcOpelOigIK920mklmSxOx+2hyUhV9M+Xq2NDyGLie3AA2O1g9uF+9kODon/UQ7PU00b6Mb0v/0tKN+b+Kr2LMfRrp4X0emlmaim5c+khs4mXQuTtSDY0FpXUUKnacOcWMYdDdB0ERYB8NMDrT1bhFNQULaJXHp093uI6ebnEvMcLJ6NUlFmvRFVCgD6GZ/tb550suqBcwQ1T3wpgNU7rHUw2yAbuPmPuGuA1LXq7O0hbxs0G37EbpndiGtP+tYzxsF13Iyub76/nLyw8WvVwoixRSbgh9/++k2YcVLSpK/NTkJQrN+a/nl6g6ub+Ci0nlJZ6/H50LMfqQcFWgUrijENr7z8av2SCq61G5g+t2v17d3cFjbdy+THOws/zdAdrOH6YknldUmDYE6WClKC857XL1ChS2HByyfKiwFxNk9brczHeltsE0jxx9rCjIFpgpXOhhZfdJMKExMaxBmaap/pgmjm+5yO4F/3FWPRr6b8E4ItNK2ljdU+IE2BxtyM20UlqQLgdn9tpO5bIM4uxNLexsHm0GjdhoXeU4Vf1Z2OmC+gBIVzrpteekL0Ql6LXe6Xrfx+lSUdDmlsy1a7Ra1Xohsa1N+fwNNqU36
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/security` — the high-level submit. Selecting a new\nprofile / extensions / overlay **resets the detail flags** to the\nprofile's defaults (adjusted for the chosen extensions/overlay),\nthen upserts the env row. The overlay row is written alongside."}
+  children={"`POST /v1/admin/security`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/security` — the high-level submit. Selecting a new
+the high-level submit. Selecting a new
 profile / extensions / overlay **resets the detail flags** to the
 profile's defaults (adjusted for the chosen extensions/overlay),
 then upserts the env row. The overlay row is written alongside.

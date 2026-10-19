@@ -1,4 +1,4 @@
-/* Site accent override — the engine theme CSS itself is loaded by the
+/* Site accent override - the engine theme CSS itself is loaded by the
  * engine's config factory (theme.customCss); @import here never resolved. */
 :root {
   --site-accent: #D4AF37;

@@ -1,15 +1,11 @@
 ---
 id: admin-disable-policy-set
-title: "`POST /v1/admin/policy-sets/disable` — disable a set (no-match → deny for
-its actions; use `shadow` for pure observation-off).
-Handle admin disable policy set."
-description: "`POST /v1/admin/policy-sets/disable` — disable a set (no-match → deny for"
-sidebar_label: "`POST /v1/admin/policy-sets/disable` — disable a set (no-match → deny for
-its actions; use `shadow` for pure observation-off).
-Handle admin disable policy set."
+title: "`POST /v1/admin/policy-sets/disable`"
+description: "disable a set (no-match → deny for"
+sidebar_label: "`POST /v1/admin/policy-sets/disable`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVc1u2zgQfhViTgkg20nbw4J7arMFWqBFg8R7sgN7LI4tthSpkpRSQxDQUx9gsc+wD5YnKYZS7ToKcl9fbJMz33zz8w1biLgLIBdQOaPzPdxl4CryGLWz7xVIQFVqu1I64MbQqrdaBYqQQYUeS4rkGaAFiyWBhIh+R3FFtllpBRloCxK+1uT3kIGikHtdMTpImCdTQbYRZzcfbkXubKRv8Rwy8PS11p4UyOhryiDkBZUIsoW4rzhMiF7bHXTdXW9MIb5xas8WCcZG/olVZXSespl9Dhy0HUO5zWfK44jdbYGelNg4tRdb50UsSJRO0WRrdCXQaAwUpFi3SziWZcVVWIIUS3j4/t8SMrEEslw7xacb50y3ni7tvCDRezFkisFspiepLx4Dc3sqzw2KmgKnMGAfs1kAxyC0kIGtjWGXR1UvSAxuU+iyUYxRjZ8C6J1EoCjYaQpdl0HU0bDfdbr86BSllnR8d9rQdBAqZ0OfxouLV/x1GucvZ4kJvrp4Ob68QmPIC4P5l5Ba84tR7ipKbALltddxn4YzkI3a/iErF6LsTaUn5CLfdaMSra8/3c7FrLmcpfGf9Q6TQDHMBimsxcP3f8XwR2CqxJl1kxJjXoiHH/8IRTYNztLqGATmjB3+FHUgsQ4FKne/TnNV1Z6E2wTyTRrUidtuz6dL+w6tYmhmcAh0rDuPSkmxcKxSTispMhYg4VnikAEr4eaombffsKwMnYxTr7rRaBxkx7reujQrQ9OHCk8GKo+01F+K4VteuxBTAcvaRD3JC7SWjCgpBNyRUGR0Q57z9I3OkyyMzsmGxHLg8vH9XHy6Ea8rzAuavJhe8LZRHGGryT9p0GXQkA89qYvpZX/ElEu0v0H/XwbgpMoH3fISnVUGteXsam/4rp+NBTSXkPVbHX41OOXFaMOE3GVQcBflAtp2g4H+9qbr+Ljf4yyowVaB3KIJNKJyWMJwdjNI/1w8s/CfpP6F9k+8KA2amm2Bhdug14k0CzmDglBx7xft4HzV85jMGf/oO3oYGOsgJ+4+ZLAZHhRe0SDB4z2vZ7zn2PxOpoayQTprwaDd1bhj2x6TPz8BP+WUoQ==
+api: eJzFVcFuEzEQ/RVrTq20m7SFAzInKEgggajacEqqZLKeZA1ee7G9W6LVSpz4AD6CD+uXoPFuCW2qXsllI3vmzZuZN+MOIm4DyDnUzuhiB9cZuJo8Ru3sewUSUFXaLpUOuDa0HKyWgSJkUKPHiiJ5BujAYkUgIaLfUlySbZdaQQbagoRvDfkdZKAoFF7XjA4SZslUkG3F0eWHK1E4G+l7PIYMPH1rtCcFMvqGMghFSRWC7CDuag4Totd2C31/PRhTiK+d2rFFgrGR/2JdG12kbKZfAgftDqHc+gsV8YDdVYmelFg7tRMb50UsSVROUb4xuhZoNAYKUqy6BezLsuQqLECKBdz++L2ATCyALNdO8enaOdOvJgs7K0kMXgyZYjCbyb3U5w+BuT215wZFTYFTGLH32cyBYxBayMA2xrDLg6qXJEa3CfTZQYyDGj8GMDiJQFGw0wT6PoOoo2G/i3T50SlKLen57n5D00GonQ1DGmcnz/lzP84bZ4kJPj95dnh5jsaQFwaLryG15o5R4WpKbAIVjddxl8QZyEZtX8jahSgHU+kJucjX/UGJRrkLTAkeWZdXGItS3P78JRTZpIeF1TEILNglvBRNILEKJSp3s0pyqRtPwq0D+TbpL3ebzfFkYd+hVQzNcyXuAu3LyQqoKJaOh4/ZpkGLJUiYtqfT5DYdzPNAMUxHCMiABX65H4W337GqDd1TyTBMBx3/O008rhuXJDD2cixcPlJ5MCLDpRi/8sKFKHJRNSbqvCjRWjKiohBwS0KR0S15ztK3ukhaN7ogGxLHkcnH9zPx6VK8qrEoKT+bnPAKUYy/0eQfNegzaMmHgdLJ5HQ4YsIV2n+gVxefrmbiySquHqb4zzb536oYh5I35LQ2qC1n2XjDJAeFzKE9hWxY2XDX5pQfpzXq5DqDknsp59B1awz02Zu+5+NhSfO0jLYK5AZNoCdqcnQ5zvWxeGKbP0r9K+0eeS5aNA3bAk9li14n0jylGZSEijUw70bn84FHPmP8ve/B1mesv0PFKoAM1uNrwfsXJHi84d2LNxybH8HUQTZIZx0YtNsGt2w7YPLvD77lhXM=
 sidebar_class_name: "post api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/policy-sets/disable` — disable a set (no-match → deny for\nits actions; use `shadow` for pure observation-off).\nHandle admin disable policy set."}
+  children={"`POST /v1/admin/policy-sets/disable`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/policy-sets/disable` — disable a set (no-match → deny for
+disable a set (no-match → deny for
 its actions; use `shadow` for pure observation-off).
 Handle admin disable policy set.
 

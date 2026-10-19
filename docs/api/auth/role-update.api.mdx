@@ -1,13 +1,11 @@
 ---
 id: role-update
-title: "`PUT /v1/admin/roles/{id}` — update a role.
-Update role."
-description: "`PUT /v1/admin/roles/{id}` — update a role."
-sidebar_label: "`PUT /v1/admin/roles/{id}` — update a role.
-Update role."
+title: "`PUT /v1/admin/roles/{id}`"
+description: "update a role."
+sidebar_label: "`PUT /v1/admin/roles/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJytVs2O2zYQfhViTglA/2yaQ6HbNmkBt0h3sbHRg2M4tDS2mFCkQlLeCIaAPkSfsE9SDClbkm1suml9sU0Ov5n5vpkhD+DFzkGyBFH5HFYcTIlWeGn0LIMErFE4rspMeAQOpbCiQI+WThxAiwIhAZkBB6khgVL4HDhk6FIrSwKBBB6MQjZ7CxwsfqmkxQwSbyvk4NIcCwHJAXxdEpLzVuodcNgaWwgPCVSVzKBp+MmZF3aHfo16v+78fqnQ1heO58GUod6zrbEstca5Ef0TWSH1IJ6tUO6JgJpmFa3R+Z9MVpNFarRH7emnKEsl00Da5JMj34dLKLP5hKm/ZCeiso3J6hBmJDvwToxb0sNLdAQVOThCLju+dKUUiXdGQI6Mjoyh4VCiLaRz0mjXhxDWirqHID0W7goD17B7kGMSCbz0ig4tQg4kfJseNLQ91D8suNJoF5N7NZ3S15XiiZSQ2v8b6dEvK0WtjMgC8UfKuyiXsbRPtRboHzLJIbVIwa0FuWkjpT+rc/F6hk9VPAGMvAyehlG3AIw2g6RtYN/sn3Mg6gGZofZyK9EGqO+BmZ1B6FRVGfaL51hc/7aofhcFOma2LM2lyoIijml0lHWlM7TM59KFdfZia03BHIWgf1zT9FrT+prMpd69HH/QVKPBVuocrfSOCaX6VUuufI4OBw4tppV1co+qbkGOqYU8h03YkfXc3ns2O5ctNyi47yuqFuBYVL0mju0bG4X6t+HwevrDZYu+o3j0jpEESRitzKWmRAgHXl8eCJJo49nWVDpMd3BEufR1uFZaTZMOEJLlqrkYbx/vF3M22d9Mgs0kiDc5yKz5yP7+8692ajARG/uDjkPp1OYF+tzQFVdWPlxtPocErsEBBxowD938//mrKEqF3UjuKB9IDQv9WZtHzeZ1iQkLgvMwaUO/bE0QreW7TXsULuLzXN/HTdZ+J7eVz0OWsY99zdkdrU3uZm/fTH65vZ9x5jDGwdmvf/z2PuhjiGTKXskUSdcug3ezObt7YLelSHMcvRpPqTJPHX7VoOGwR+tihNPxTVwqjfOF0D3o/ybUgIhTjXv86ielElKHNrCK9qKIS9jfAIfTLU/ugEMiMxrKuXGebA6HjXC4sKppaDk+Iaj8MunERvVeBWcBnO6gbz8wrsb6Gesr75i9UBXZAtX5XlhJMTwznhcP7dX1knWPrqsxHCeQrvuuj7HRk2vVcMhRZCT98tBuvImuRlTOvYMXVzG91+KJ2zTF0j9pu+r14v1iDhw27ROrMBkdseKRZBSPMUYTMg8DM6wdQAm9q8SObCMkff4BE3G8WQ==
+api: eJytVtuO2zYQ/RVinhKAvmyah0Jv26QF3CLdxcZGHxzDoaWxxYQiFZLyRhD078GQsiVfutsN6hdZ1PDMmTMXsgEvdg6SJYjK57DiYEq0wkujZxkkYI3CcVVmwiNwKIUVBXq0tKMBLQqEBGQGHKSGBErhc+CQoUutLAkEEngwCtnsPXCw+K2SFjNIvK2Qg0tzLAQkDfi6JCTnrdQ74LA1thAeEqgqmUHb8qMzL+wO/Rr1ft37/VahrS8cz4MpQ71nW2NZao1zI3oTWSH1CZ+tUO4JQm27itbo/G8mq8kiNdqj9vRXlKWSaRBt8sWR7+YSymy+YOov1YmobGOyOtCMYgfdSXFL+fASHUFFDQ6Qy14vXSlFyTsTIEdGW8bQcijRFtI5abQbQghrRT1AkB4Ld0WBa9gDyDElCbz0ijYtQgyU+C48aOnzaf7DgiuNdjG4N9MpPa4UT5SEsv2/iR79slLUyogsCH+QvGe5jKV9rLUg/6mSHFKLRG4tyE3HlF5W58kbGD5V8QQw8jJ4OmXdATD6GFLaEXu2f86BqAdkhtrLrUQboH4GZnYGoVNVZTgsnkNx/dei+lsU6JjZsjSXKgsZcUyjo6grnaFlPpcurLNXW2sK5oiC/nVN02tN62syl3r3evxJU40GW6lztNI7JpQaVi258jk6PHFoMa2sk3tUdQdyCC3EedqEvVgv7b0Xq3PZcicF93NF1QEcimrQxLF9Y6NQ/7Yc3k5/uWzRD8RH7xilIAmjlbnUlAhhw9vLDSEl2ni2NZUO0x0cSS59HY6VLqdJDwjJctVejLdInYnYuZ90nDrHPi7Q54bOsLLy4ezyOSQw2d9MAuYkJHvSyKwFDjRBHvoB//t3UZQK+5nba3qSS1jor9o8ajavS0xYyCgPozQ0xNaErHSCdnGNwkl7HszH+JF1z+S28jkbdW3qa87uaGVyN3v/bvLH7f2MM4eRBWd//vPXxyC/IQ0pdiVTpLT1/D/M5uzugd2WIs1x9GY8pcI7NvBVg5bDHq2L/Kbjm7hUGucLoQfQn+8Xc3ZN18/nUQ5Ozeey15Wyx+9+Uiohdah2qwgkpnIJ+xvgcDzMyS1wSGRGszc3zpNN02yEw4VVbUvL8aZAVZZJJzZqcPj/K9Nn7xFXuX7F+sp1ZS9URbZA5bwXVhKHF/J59dCdUK9Zf7e6yuEwaHQ9dH3gRjerVcshR5FRCSyb7sO76GpERT3YeHHi0rUs7rhNUyz9k7arQUfeL+bAYdPdpAqT0RYrHimN4jFyNCHyMBfDWgNK6F0ldmQbIen3A4n7sN4=
 sidebar_class_name: "put api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/roles/{id}` — update a role.\nUpdate role."}
+  children={"`PUT /v1/admin/roles/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/roles/{id}` — update a role.
+update a role.
 Update role.
 
 <Heading

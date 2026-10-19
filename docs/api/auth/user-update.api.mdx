@@ -1,13 +1,11 @@
 ---
 id: user-update
-title: "`PUT /v1/admin/users/{id}` — update a user.
-Update user."
-description: "`PUT /v1/admin/users/{id}` — update a user."
-sidebar_label: "`PUT /v1/admin/users/{id}` — update a user.
-Update user."
+title: "`PUT /v1/admin/users/{id}`"
+description: "update a user."
+sidebar_label: "`PUT /v1/admin/users/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy1VtuO2zYQ/RVinlqAvmyah0JvbtIATrHYxcZGH1zDoaWxxUQiFZJyYhgC+hH9wn5JMSQt+RZvd5P4xTbFORzNOYczO3BibSGZgahdDnMOukIjnNRqnEECtUXTr6tMOAQOlTCiRIeGInagRImQgMyAg1SQQCVcDhwytKmRFYFAAlOLho1fAweDn2ppMIPEmRo52DTHUkCyA7etCMk6I9UaOKy0KYWj82uZQdPw9jAnzBrdAtVm0Z37qUazPTt44rcyVBu20oalRlvbo38iK6U6ymclCnsloaaZh91o3W8629KOVCuHytFPUVWFTH3RBh8snb07h9LLD5i6syQfAipb6mzr0wzF9nWnihviw0m0BIWlkMVig0auJKW9B5/BUusCBb2UqouCeDypRY7MR7N9dB8aDitprFuE0nZgLQ1fx/KBjAI9TiGeB0NxHUq5EgtUYlk8/d1u34xYDPVQ1glX2ydmE4L6pDdw0hVE29TTQRqOTEFDj4+l7BdspZUNPL0YDunrgg8CuyTc76afcC6rxLbQIgsaiurpspwFl7a28VqAtk78VFrHZHBIDVLeC0EZxJegP/NTiR5svOZrAug5WeLZC0UARg89lSHVC2BfUXgXdMEpB2L6XwaJBXv0ijqFo2tGZqgcQZnv6rXnpDM+TuUH2vVqgR9z6TVuW3Me6e95GosAe40d2t0bPViKnN5weDn85dzMt9JaqdaMumbi+wmzqa4QfMDL8wCyJFPasZWulW9pYDGtjXRb30stEaR+TTpASGbz5oyG9/fTCRtsbgZ+z4Bg7WAns+Y9+/fvf+L9wkS4Av5S4fpqL4QSXa6pr1e18/3c5ZDAJTjgQFfRQ9f0fv8iyqrAS30otPNDgXd0HGitWzySThwGohbanku9faU9w5GcWKOeH1VOC/MuPGTxOxnVLvclCTZ0W87uaG1wN379avBmdD/mzKK1UivL2ds//3jnydTECJWqkCmSCJJ29LgdT9jdAxtVIs2x96I/pPGjNdbFDQ2HDRobMhz2b8JSpa0rhTqA/jZWjwrRGsLhFzeoCiGV94zxd2hgfAabG+Cwn4P8ccAhkRn5PtfW0Z7dbiksTk3RNLQchizSaiZtpC7OTScJtK3t8RHsYq4fcXth0tuIoqa9QKbYCCMphyfm89ND7Ig/s24svZhDXBRqe3j0PjcaSucNhxxFRtTPdvHBq3BUb0LhXeBZh6eJNkSM0hQrd3Xv/MC499MJcFjGIbTUGYUY8Zm6vfgcctT+zf296td2UAi1rsWa9gZI+vwHmSEbeQ==
+api: eJy1Vk1v2zgQ/SvEnFqA/ki3h0I3b7sF3EWQILWxB6/h0tLYYiuRKkm5NQz998WQtOSvOE3Q9cU2xXkczntPMztwYm0hmYGoXQ5zDrpCI5zUapxBArVF06+rTDgEDpUwokSHhiJ2oESJkIDMgINUkEAlXA4cMrSpkRWBQAJTi4aNPwAHg99raTCDxJkaOdg0x1JAsgO3rQjJOiPVGjistCmFo/NrmUHT8PYwJ8wa3QLVZtGd+71Gsz07eOK3MlQbttKGpUZb26N/IiulOspnJQp7JaGmmYfdaN2fOtvSjlQrh8rRT1FVhUx90QZfLZ29O4fSy6+YurMkHwIqW+ps69MMxfZ1p4ob4sNJtASFpZDFYoNGriSlvQefwVLrAgVdStVFQTye1CJH5qPZProPDYeVNNYtQmk7sJaGx7F8IKNAj1OIl8FQXIdSrsQClVgWz7/b7ccRi6EeyjrhavvMbEJQn/QGTrqCaJt6OkjDkSlo6PGxlP2CrbSygac3wyF9XfBBYJeE+9v0E85lldgWWmRBQ1E9XZaz4NLWNl4L0NaJn0rrmAwOqUHKeyEog3gJ+jM/lejBxmu+JoCekyWeXSgCMHroqQypXgB7ROFd0AWnHIjplwwSC/bkK+oUjl4zMkPlCMr8Vq+9JJ3xcSr/o12vFvgpl17jtjXnkf5eprEIsNfYod290YOlyOkNh7fDP87NfCutlWrNqGsmvp8wm+oKwQe8PQ8gSzKlHVvpWvmWBhbT2ki39b3UEkHqXdIBQjKbN2c0hNSZCB7/V4X3U+v4El2uqXFXtfMN2+WQwGBzM/CYA9pnBzuZNcCB3jUPXVf766coqwIvNZrQrw8V3NX7QEzd4pE2YrePZLdNlZr3SnsKY/VjEXp+Fjm9+efwkMXvZFS7nPWiy9yWsztaGdyNP7wffBzdjzmzaK3UynL26Z+/P3uuNBWcClXIFInjpJ0sbscTdvfARpVIc+y96Q9pumh9c3FDw2GDxob8hv2bsFRp60qhDqC/3E8n7BIJX05veTBXPEV11L3Dn25QFUIqbw3jX5WB9xlsboDDftzxxwKHRGZk71xbR3t2u6WwODVF09BymKVIkpm0kcA4Hj2a6ZOT1sVcv+H2wkC3EUVNe4G0vxFGUg7PzOfVQ2x8r1k3fV7MIS4KtT08ep8bzZ7zhkOOIiMJzHbxwftwVG9C4V3gWSOnwTVEjNIUK3d17/zAvvfTCXBYxlmz1BmFGPGDmrr4EXLU/ub+9enXdlAIta7FmvYGSPr8B4xwD/E=
 sidebar_class_name: "put api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/users/{id}` — update a user.\nUpdate user."}
+  children={"`PUT /v1/admin/users/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/users/{id}` — update a user.
+update a user.
 Update user.
 
 <Heading

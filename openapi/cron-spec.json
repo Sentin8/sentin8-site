@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -130,7 +133,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -159,7 +163,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -188,7 +193,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -217,7 +223,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -257,7 +264,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -303,7 +311,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -333,7 +342,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -378,7 +388,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -407,7 +418,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -442,7 +454,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -472,7 +485,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -527,7 +541,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -535,7 +550,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -577,7 +592,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -585,7 +601,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -627,7 +643,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows.\nSECURITY: `target_env_id` is REQUIRED — no fallback to the token's env_id.\nThe caller must explicitly specify which env they are administering.\nRLS context is set before querying to enforce tenant isolation.\nFetch admin data."
       }
     },
     "/v1/dlq": {
@@ -635,7 +652,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/dlq`\nList dlq.",
+        "summary": "`GET /v1/dlq`",
         "operationId": "dlq.list",
         "responses": {
           "200": {
@@ -659,7 +676,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "List dlq."
       }
     },
     "/v1/dlq/{id}": {
@@ -667,7 +685,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/dlq/{id}` — DLQ item detail.\nFetch dlq.",
+        "summary": "`GET /v1/dlq/{id}`",
         "operationId": "dlq.get",
         "parameters": [
           {
@@ -700,7 +718,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "DLQ item detail.\nFetch dlq."
       }
     },
     "/v1/dlq/{id}/republish": {
@@ -708,7 +727,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/dlq/{id}/republish` — republish a DLQ item as a new pending\njob and delete the DLQ row.\nHandle republish dlq.",
+        "summary": "`POST /v1/dlq/{id}/republish`",
         "operationId": "dlq.republish",
         "parameters": [
           {
@@ -734,7 +753,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "republish a DLQ item as a new pending\njob and delete the DLQ row.\nHandle republish dlq."
       }
     },
     "/v1/health": {
@@ -742,7 +762,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "`GET /v1/health` — status, ticker heartbeat, active schedule count.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -754,7 +774,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "status, ticker heartbeat, active schedule count."
       }
     },
     "/v1/jobs": {
@@ -762,7 +783,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/jobs`\nList jobs.",
+        "summary": "`GET /v1/jobs`",
         "operationId": "job.list",
         "parameters": [
           {
@@ -798,7 +819,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "List jobs."
       }
     },
     "/v1/jobs/{id}": {
@@ -806,7 +828,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/jobs/{id}` — job detail.\nFetch job.",
+        "summary": "`GET /v1/jobs/{id}`",
         "operationId": "job.get",
         "parameters": [
           {
@@ -842,7 +864,8 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "job detail.\nFetch job."
       }
     },
     "/v1/jobs/{id}/retry": {
@@ -850,7 +873,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/jobs/{id}/retry` — reset a failed job to `pending` with\n`next_attempt_at = now`; the ticker drains it on the next tick\n.\nRetry job.",
+        "summary": "`POST /v1/jobs/{id}/retry`",
         "operationId": "job.retry",
         "parameters": [
           {
@@ -876,7 +899,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "reset a failed job to `pending` with\n`next_attempt_at = now`; the ticker drains it on the next tick\n.\nRetry job."
       }
     },
     "/v1/schedules": {
@@ -884,7 +908,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/schedules`\nList schedules.",
+        "summary": "`GET /v1/schedules`",
         "operationId": "schedule.list",
         "responses": {
           "200": {
@@ -908,13 +932,14 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "List schedules."
       },
       "post": {
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/schedules`\nCreate schedule.",
+        "summary": "`POST /v1/schedules`",
         "operationId": "schedule.create",
         "requestBody": {
           "content": {
@@ -945,7 +970,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "Create schedule."
       }
     },
     "/v1/schedules/{id}": {
@@ -953,7 +979,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`GET /v1/schedules/{id}` — schedule detail.\nFetch schedule.",
+        "summary": "`GET /v1/schedules/{id}`",
         "operationId": "schedule.get",
         "parameters": [
           {
@@ -989,13 +1015,14 @@
           {
             "sentin8:cron:read": []
           }
-        ]
+        ],
+        "description": "schedule detail.\nFetch schedule."
       },
       "delete": {
         "tags": [
           "cron"
         ],
-        "summary": "`DELETE /v1/schedules/{id}`\nDelete schedule.",
+        "summary": "`DELETE /v1/schedules/{id}`",
         "operationId": "schedule.delete",
         "parameters": [
           {
@@ -1024,13 +1051,14 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "Delete schedule."
       },
       "patch": {
         "tags": [
           "cron"
         ],
-        "summary": "Update schedule status.",
+        "summary": "`PATCH /v1/schedules/{id}`",
         "operationId": "schedule.update",
         "parameters": [
           {
@@ -1072,7 +1100,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "Update schedule status."
       }
     },
     "/v1/schedules/{id}/delete": {
@@ -1080,7 +1109,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/schedules/{id}/delete` — RFW renderer alias of\n`DELETE /v1/schedules/{id}` (same operation, same gates).",
+        "summary": "`POST /v1/schedules/{id}/delete`",
         "operationId": "delete_schedule_alias",
         "parameters": [
           {
@@ -1109,7 +1138,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "RFW renderer alias of\n`DELETE /v1/schedules/{id}` (same operation, same gates)."
       }
     },
     "/v1/schedules/{id}/pause": {
@@ -1117,7 +1147,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/schedules/{id}/pause`\nPause schedule.",
+        "summary": "`POST /v1/schedules/{id}/pause`",
         "operationId": "schedule.pause",
         "parameters": [
           {
@@ -1143,7 +1173,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "Pause schedule."
       }
     },
     "/v1/schedules/{id}/resume": {
@@ -1151,7 +1182,7 @@
         "tags": [
           "cron"
         ],
-        "summary": "`POST /v1/schedules/{id}/resume`\nResume schedule.",
+        "summary": "`POST /v1/schedules/{id}/resume`",
         "operationId": "schedule.resume",
         "parameters": [
           {
@@ -1177,7 +1208,8 @@
           {
             "sentin8:cron:write": []
           }
-        ]
+        ],
+        "description": "Resume schedule."
       }
     }
   },

@@ -1,13 +1,11 @@
 ---
 id: role-create
-title: "`POST /v1/admin/roles` — create a new role.
-Create role."
-description: "`POST /v1/admin/roles` — create a new role."
-sidebar_label: "`POST /v1/admin/roles` — create a new role.
-Create role."
+title: "`POST /v1/admin/roles`"
+description: "create a new role."
+sidebar_label: "`POST /v1/admin/roles`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVs2O2zYQfhViTi1A/2zaQ6vbdtsCbpFusLtFD47hjKWxxZQiFZLyrmAIyEP0CfskxZDyj2wjBZIe6ottcubjzPfNDLmDgBsP2RywCSUsJNiaHAZlzayADJzVNM4dYSCQUKPDigI59tiBwYogg4BuQ2FJZrtUBUhQBjL40JBrQUJBPneqZkDI4CmaCjJbsbZO5M56P+J/WFTKgARHHxrlqIBsjdqTBJ+XVCFkOwhtzaf54JTZQNctkjX58IMtWrbIrQlkAv/EutYqj3lM3ns+e3cJZVfvKQ8XQT4kVLGyRduHyflHKgYhzhMDCwm1Y9qCIs/wiZfziC+4KEmw5Rg6CTW5SnmvrPEnnugcMokqUOWvcHAN8gRpDF0nIaig2ekuZvFgNfUJQsfbx3SCaygu+Noan1J5Nb3hrzOCrKaeFNb7P6M9nStqbLXFIlJ/jfRYZIdqi2QPCZTQB7dEPqapi/2fC6lODK8Itrau4h1ggFFQ8aRh1D2A4M2oZB/Yp9CaJkY+BOIuUAWZoNaKXIT6HJjZGYTJdVPQlxTVb1iRF3Yt8lLpIirihSHPWTemICdCqXxcF1+tna2E5xDMd0seKUteX7K5Mpuvx28N12i0VaYkp4IXqPVp1fJRoSRPgwMd5Y3zaku67UH2qcU8/0ctNyi4zyuqHmBfVCdNnNo3NQr3byfh2+n0skVnZotaJfJiyhAtv7m0fM2Rm41gsbI4hoXPbd07fH/pcIAUqB1h0Qp6UT74GKdnmVRo4/3Q10F2hIZsvuDBPUR89+b+8UlMtjeTaDSJir8Tf3/8q58yAoWh5zQM3po0yA6joaJQWr6rautDvKRCCRmcwYEEHkgPxxvjpxesak3HgX2UaFAa8/36IvbT2kZRez36FEfx9jzP6zFtiv47u21CGbNKfR5aKe55bXI/+/Fu8vPtm5kUntK5Uvzyx6+PURXLhHKmWuXEuh8jfj17EvcP4rbGvKTRq/GUK/cwAa4adBK25HyKcDq+SUvMXYXmBPrLRBkQceiBQC9hUmtUJraJ07yX9JrD9gYkHN4BUbOFhJJFzeaw263Q0+9Odx0vp+cFF1mhPK70yYvh7OjD7fTvj4+rUf5J7ZU3zhZ1w7bA1bxFpziGWN0SSsKCyZ/veue7FMLoifGPvheXZSf3Hrd5TnX4pO3ipPJZKpCw6t9BlS3Yx+EzM4nPHCc/7MJ+1sW1HWg0mwY3bJsw+fMP0xN6fQ==
+api: eJzNVk2P2zYQ/SvEnFqA/ti0h1a37bYF3CLdYHeLHhzDGUtjiylFKiTlXcHQfw+GlG35I2mQ9lBfZFEzj2/ezHC4g4AbD9kcsAklLCTYmhwGZc2sgAyc1TTOHWEgkFCjw4oCOfbYgcGKIIOAbkNhSWa7VAVIUAYy+NCQa0FCQT53qmZAyOApmgoyW7G2TuTOej/iNywqZUCCow+NclRAtkbtSYLPS6oQsh2EtubdfHDKbKDrFsmafPjJFi1b5NYEMoH/Yl1rlcc4Ju897727hLKr95SHC5IPCVWsbNH2NDn+KMUJxXlSYCGhdixbUOQZPulyzvhCi5IEW46hk1CTq5T3yho/8ETnkEVUgSp/RYNrkAOkMXSdhKCCZqe7GMWD1dQHCB1/PoYTXENxwdfW+BTKq+kNP84Espp6UTjf/5nsaV9RY6stFlH6a6LHIjtUWxT7VEAJPbkl8jZNXexfLlI1MLySsLV1FX8BBhgFFXc6Zd0DCP4YM9kT+xxa00Tmp0DcBaogE9RakYtQXwMzO4MwuW4K+jdF9QdW5IVdi7xUuogZ8cKQ56gbU5AToVQ+rotv1s5WwjMF88OSj5Qlry/ZXJnNt+O3hms02ipTklPBC9R6WLW8VSjJ08mGjvLGebUl3fYg+9BinP+jljspuK8rqh5gX1SDJk7tmxqF+7eT8P10etmiM7NFrZJ4MWSIlt9dWr5m5mYjOFlZPIaFz23dO/x46XCAFKgdYdEKelE++MjTc5pUaON86OsgO0JDNl/wwX2thwQKQ8+p49+adFod+r+iUFoeSLX1IU6iUEIGk+3NJAJPYpWABD51Ho5j4ZcXrGpNx1P5mIeT/M/364vYNGsbM9eL3scxiiPynPxj+ij6Z3bbhFKM+lYOrRT3vDK5n/18N/n19s1MCk9pVyl+++v3xyi8Zc04Tq1y4tQe+b6ePYn7B3FbY17S6NV4ysV5aPKrBp2ELTmf+E3HN2mJlavQDKDfvbl/fBJnGr47j3AwV78kU325B3oJk1qjMrEjnGaglLU5bG9AwmHkx8wtJJSc2mwOu90KPf3pdNfxcrpJcD0VyuNKDy4Hn+T5j/eMqyz/pvbKdWaLumFb4MLdolPMIRayhJKw4CTMd73zXaIwemL8o+/FXOzk3uM2z6kOn7VdDOqfUwYSVv2Vp7IF+zh8ZiXxmXnyHS7sj7W4tgONZtPghm0TJv8+Ah2XcKk=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/roles` — create a new role.\nCreate role."}
+  children={"`POST /v1/admin/roles`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/roles` — create a new role.
+create a new role.
 Create role.
 
 <Heading

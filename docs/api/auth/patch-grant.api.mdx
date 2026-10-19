@@ -1,17 +1,11 @@
 ---
 id: patch-grant
-title: "`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope.
-The new scope must be a subset-or-superset of the current one; the
-caller must be the grant's user or an env admin.
-Handle patch grant."
-description: "`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope."
-sidebar_label: "`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope.
-The new scope must be a subset-or-superset of the current one; the
-caller must be the grant's user or an env admin.
-Handle patch grant."
+title: "`PATCH /oauth/grants/{id}`"
+description: "upgrade/downgrade the granted scope."
+sidebar_label: "`PATCH /oauth/grants/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVs1uGzcQfhViLk0ASnLTHIrtSXV/ohaFDdlBD7LgUMuRlskuuSFnrWyFBfoQfcI+STHk6s8S4tZoL9VFXM7Mx2/+ONwAqVWAbAZONVTAXIKr0Ssyzk40ZFAryov7lVeWQEKtvKqQ0LPJBqyqEDIwGiQYm7QLkKAx5N7UDAIZ/MjGIip5/NgYjxoy8g1KCHmBlYJsA9TWDBXIG7sCCUvnK0WQQdMYDV03T8YY6FunW7bInSW0xEtV16XJI+nR+8CHbk6h3eI95nTCbppQxcLpViydF9Hj6PDwiPEMQu5q5BDVnoNEBkM8vaHCefNbPP9eIylTRsHxQbcFiiNV0asOoZM99plAnIJE1SF0nQQyVLL2NXOOce7dgY7Fx+GOG6F2NiTery4uTlneMLhoaq0IOWP/UpTHIkZUeMyd1+LF+HoiQqFqfDm8s9OelahVWzqlYxrOZiAWEdqH+7jIS4OW0roJ6NMqRVJCIEVNYDWP7My9Ylq9Z/zx3yRyT+rJZCZVYTRaMkuDPgHs6X6uL9iNAZkKT2ETgGBhROwD9mSXPQZC+/CY3HNgJscQz6j0XTL/nlXUjWYH2X5eLHuAfSy3dfaPo8CGx9E86N++dVMbcO92El6fa8+JfVCl0SkygryywURRNPjq1OBSlSUfHIR1JKjA1FhfBBEJOS+UFZxopSvTw7w+hXlrP1i3tsk4Ug+YN95QC9ls/tjXd9fj28s3YhRnyijahNHG6O6d+PP3P0RTr7zSONJubeNqzwt714Z3llNpcd27WjV8R6NQIjSLgDRwfhCaGn1AEm4ZEfLGe24oZ/Eb3rizefJ+a/yU+8M7+0ZZXWIaAvs7qEIq3G4cxkFIBWRw6iFI4Ltxup9V339SVV1iui3dYclwP9mli7XUF0Lg+rBfD+IwfhzWmyQU/X82bqiIAU1lRa0UV7w3upp8dzn6YXw9kSJgCMbZIMVPv/58s723qGWvSpMj11u2m+S/TG7F1VSMa5UXOHg1vODBvqvZswqdhAf0ITG8GH6ZtmoXqFL2APp/VxNHudndBoSfaFSXKvVS40uWpWrZvrEkJO9BQmY0j6HCBWL5ZrNQAd/6sut4+2ODvu+vB+WNWnCJzDagTeC1hmypyoAnVHYzG15M++H5Uhy8ws5S7TeVbYGPKxv+AgkfsE1PvG7eSShQaS6E2aYXXKazBrdtHLpbw5O3Qie3FuM8x5o+qzs/6LhYNiBh0T/7KqfZyKs1vw3UOrF00fk4IOLeBkplV41asW4C5d9fCVPJbQ==
+api: eJzVVt9vGzcM/lcEvqwFZDvr+jDcnrzsR71hSOCk2INjpPKJ9qm9k64Sz+7VuP99oHSO7dhItmB7mF+sk8iP5EdS1BZIrQJkM3CqoQLmElyNXpFxdqIhg1pRXtyvvLIEEmrlVYWEnlW2YFWFkIHRIMHYJF2ABI0h96ZmEMjgV1YWUcjj58Z41JCRb1BCyAusFGRboLZmqEDe2BVIWDpfKYIMmsZo6Lp5UsZAPzrdskbuLKElXqq6Lk0enR59DGx0ewrtFh8xpxPvpglVLJxuxdJ5ESOOAQ+PPJ5ByF2NTFHtmSQyGKL1hgrnzddo/14jKVPGg2NDtwWKI1HRiw6hkz32GSJOQaLoELpOAhkqWfqafY489+FAx8fHdMeNUDsbkt9vLi5OvbxhcNHUWhFyxv4llsciMio85s5r8Wp8PRGhUDW+Ht7Zae+VqFVbOqVjGs5mIBYR2vV9XOSlQUtp3QT0aZWYlBBIURNYzCMHc6/YrT4y/vhvErl36tlkJlFhNFoyS4M+AezdfaovOIwBmQpPYROA4MOI2BP2bJc9BkK7fuzcS2AmxxAvqPSHZP49rSgb1Q6y/TIue4A9l7s6+8cssOIxmwf927duagPu3U7C23PtObFrVRqdmBHklQ0mHkWF704VLlVZsuEgrCNBBabG+iaI6JDzQlnBiVa6Mj3M21OY9/aTdRublKPrAfPGG2ohm81PWVt5pXGk3cbG1d4w9r4P7yznyuKmj6Vq+BJGoURoFgFp4PwgNDX6gCTcMiLkjffcMc7iD7xxZ/MU3k75ufiGd/adsrrEdMvvL5kKqXAP8y5OOiogg1Eci6MoF0ZbozuQwJffdD+Mfv6iqrrEdB26w5rghrFLF4ulz3TgArDfD+K0fczbTToU/X82bqgQg75qqJXiindGV5OfLke/jK8nUgQMwTgbpPjtz99vdtcStRxTaXLkcsoeBvUfk1txNRXjWuUFDt4ML3huP5TkWYFOwhp9SP5dDL9NW7ULVCl7AP3henx7+U6c8vXhcZQHk/t/WCh90xN+oVFdqtQyjS85rlQzu6eUhMQCSMiM5mlTuEB8vt0uVMD3vuw63v7coO/baK28UQsulNkWtAm81pAtVRnwCRpfTfsZ+VocPLbOutpvKtsCmysb/gIJn7BNL7lu3kkoUGkuiNm2P7hMtga3bZytO8WTJ0EndxrjPMeanpSdH/RdLB+QsOhfd5XTrOTVhp8AapO8dDH4OAfi3hZKZVeNWrFsAuXfX++1vc8=
 sidebar_class_name: "patch api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope.\nThe new scope must be a subset-or-superset of the current one; the\ncaller must be the grant's user or an env admin.\nHandle patch grant."}
+  children={"`PATCH /oauth/grants/{id}`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PATCH /oauth/grants/{id}` — upgrade/downgrade the granted scope.
+upgrade/downgrade the granted scope.
 The new scope must be a subset-or-superset of the current one; the
 caller must be the grant's user or an env admin.
 Handle patch grant.

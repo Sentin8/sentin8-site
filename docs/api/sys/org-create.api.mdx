@@ -1,13 +1,11 @@
 ---
 id: org-create
-title: "`POST /v1/o` — create organization.
-Create org."
-description: "`POST /v1/o` — create organization."
-sidebar_label: "`POST /v1/o` — create organization.
-Create org."
+title: "`POST /v1/o`"
+description: "create organization."
+sidebar_label: "`POST /v1/o`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVs1u2zgQfhViTrsAIzvdPezqli168KFIkWRPdpCMxbHEliJVknKiCgL2IfYJ+ySLoRQ7atyiKPZQXyyT8/PNfN+M3EPEMkC+htAFuJXgGvIYtbMrBTk4X2aFJ4wEEjx9bCnEv5zqIO+hcDaSjfyITWN0kdwW74OzfBaKimrkp9g1xLG276mIIEFRKLxu2BpyuBqjiq1Tndg5L8Z8nHnKqT2phNC0Jbvr0Bjs7izWxIgbz5ijppBQtSG6+k65GrU9Zl9DiF5b9retMew3h3GZHtCI0TMhiRUJ50vxC2VlJjagt2g/ZMYVaDbwa7axq52wLorGu71WpKRQtMPWxCCiEz3jHTKX9YFs1PaPCdSQbew1eY1GfyIlMIj7Gej7lPvi3UoUrm4w6q02OnbiQccqQdr51HmVbexNRRPgDIYvWnPs/KH0ecnJefQQ7JFCpCZ/lytbZjAMEqKOho1fJ+YufTlxCgPfHimMvqV0EBpnw8jXq+WSv74gw5do9ackqEkPCuT/p7gxv2iwMw5V6vcJvWnOeUp0EkLE2AaGNJObhAnsHcYT0jzenWjwzvmab0BhpLOoU5458CmA4MtE1lfE/jXWfl7VafXNlrRt4mIeaKV4rHaa/I8J98Di9zkl27nek9JHLbHUBwm/L397qea3OgRtSxG6kDtf5qhqbUUoXEOQfP48OQEJp0DjCVUn6FGHGFL6QEXrdewgX/cw7ZZ8Fhzy9e3wYsXdv7u8vhGL/fnC3YvP//w7TRZL/zBt2ca+PpzyQNQUK8evgsYFHqUGYwU5pCgggWfv6vheePOIdWPoxCJ+1tuZXI7nI4FPv1kUducSOVO7p1LP+E31UtrpTkzf+XUXxhKdjd4Z0Ri0JLmoBdm9MHpHRVcYkiJgicL5oqIQxzcfl210QUxr3sOE8+3qRlxeiYsGi4rOXmVLYNk+SfCkwSBhTz6MCJfZ+XjEjazRPgv9Q8TM6j8oONJjXDSGWz5IaL3hu5GzNezPQYLjxVQxmfka+n6Lgf72Zhj4+GNLnmV1K2GPXuOW+76+HSRUhIqrXPfwgTre9eMuPrvhvGxuWs7/Yi8P8snjoiioid+0vX2mN+4JSNhO/zZqp9jH4wNvaXyAHLiYVH8a4XTWg0Fbtliy7RiTP/8BtdIX9Q==
+api: eJzNVs1u4zYQfhViTi3AyM62h1a3dNGDD4sskvRkG8lYHEvcpUgtSTnRCgL6EH3CPkkxlBJHiXcRFD3UF8nk/Hwz38eheohYBsjXELoAWwmuIY9RO7tSkIPzZVZ4wkggwdOXlkL8zakO8h4KZyPZyK/YNEYXyW3xKTjLa6GoqEZ+i11DHGv3iYoIEhSFwuuGrSGHqzGq2DnVib3zYszHmaec2pNKCE1bsrsOjcHu1mJNjLjxjDlqCglVG6Krb5WrUdtj9jWE6LVlf9saw35zGJfpBY0YPROSWJFwvhQ/UFZmYgN6h/ZzZlyBZgM/Zhu72gvromi8O2hFSgpFe2xNDCI60TPeIXNZH8hGbX+ZQA3Zxl6T12j0V1ICg7ibgb5LuS8+rkTh6gaj3mmjYyfudawSpL1PnVfZxt5UNAHOYHjRmmPnn0qfl5ycRw/BHilEavKbXNkyg2GQEHU0bPw+MXfpy4lTGHj3SGH0LaWF0DgbRr7eLZf8eEGGL9Hqr0lQkx4UyP9OcWN+0WBnHKrU7xN605zzlOgkhIixDQxpJjcJE9hbjCekedw70eC98zXvgMJIZ1GnPHPgUwDBm4msb4j9W6z9f1Wn1Xdb0raJi3mgleJjtdfk/51wn1h8m1Oynes9KX3UEkt9kPDz8qfXav6gQ9C2FKELufNljqrWVoTCNQTJ59eTJyDhFGg8oeoEPegQQ0ofqGi9jh3k6x6m2ZLPgkO+3g6vRtwoH1b60+HKNvb90yrrv6ZYOZ78jQt8chqMFeSwOJwvHEjgo3Z1vAZ+f8C6MXRi7j5r5Uwdx/WRr8f/rAG7d4mLqbtTZWd8Mb1WctoT0zO/7oL4+8+/BE8I74xoDFqSXNSC7EEYvaeiKwxJEbBE4XxRUYjjRcdlG10Qs5j3MOH8sLoRl1fiosGiorN32RJYpY+KO2kwSDiQDyPCZXY+LnEja7TPQt99vLy+Eamldy8re3atvomvSbiRHuKiMdz6QULrDUcauVvD4RwkOJ5HFZOar6HvdxjoD2+GgZe/tORZTVsJB/Qad9z/9XaQUBEqrnbdw2fqeMSP6M5uOC+bm5bzvxrHg3z0uCgKauJ3bbfPdMe9AQm76SOjdop9PN7zcMZ7yIGLSd1KJzet9WDQli2WbDvG5N8/daYT2A==
 sidebar_class_name: "post api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/o` — create organization.\nCreate org."}
+  children={"`POST /v1/o`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/o` — create organization.
+create organization.
 Create org.
 
 <Heading

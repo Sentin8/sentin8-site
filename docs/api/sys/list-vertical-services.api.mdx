@@ -1,15 +1,11 @@
 ---
 id: list-vertical-services
-title: "`GET /v1/verticals/services?orgId={uuid}&envId={uuid}` — discover registered
-vertical services and their admin_ui entries, filtered by feature enablement
-for the given org/env."
+title: "`GET /v1/verticals/services`"
 description: "Used by Sentin8:Dash at boot to build the dynamic sidebar. Returns an array"
-sidebar_label: "`GET /v1/verticals/services?orgId={uuid}&envId={uuid}` — discover registered
-vertical services and their admin_ui entries, filtered by feature enablement
-for the given org/env."
+sidebar_label: "`GET /v1/verticals/services`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVs2O2zYQfpXBHIoE0Mq7aQ+BgKII0CRYIEWB/ellvbBH4khiQpEKSbkVDAN9iD5hn6Qg9WOv7QRJe+khvhgiv/nlzDezRU+Vw+wBXe/wMUHBrrCy9dJozPDesYC8h1vWXuqX2c/kaiAPuTEevIG8k0qArxlEr6mRBTgpOCebwg37zmoHpIGspX6pTQkbtl4WpGAyY6xLgKmooTDak9RSV9lSX8Dasd3Igtfw959/RQvjAfi+ZXjGaZXCOif94eWFYlGxXSfTd0t9w9q79fOoSVHOatAjpGsV9RCPRiVLfBfllzjAZWH0gG7Is5WkIByBpoYPPVuViqoz7tXkoemch5yBNeWKxWxJPbE03g46fq/Z12yjrpLJd5ZBullDacKVdGBstWC9iQpaqtgN4jHHYEog0Ui96iSESxBcSi3Dazp4Zk3nORmCT6CTK9aiNVL7BAR5mj+fL/Utcwg0vvpF2oj16ADDDTfGM9xfA9milp6L4Gq61Ou3r+9gsblaTI/sFmNO3Jz8wmzYguVKOs+Wxb4gJmi61O+k82cuMEHTsqUQzLXADJV0fjXhVhMOE2zJUsOebSjsLYaHwwyNrVZSYIIyVPbHjm2Px/X+RirPNlS8sRUmaPljJy0LzEpSjhN0Rc0NYbbFUIaYofNW6gAtjW3IY4ZdJwXudslsmPXmKwyz3vw3w49B2rVGO3YB/+LyMvw9tffbcXoxwdCBrH0AU9sqWcRUL967ILE99SCWXAjLc+MOzk3+ngt/EuLN6BS01CtDQ0nPtTK4kT4J/QHHY0wwFm0wVhiNCR72ICY4dkl8+4ojkbU2VIuXQxImwN7L3BjFpE/cvKvntk1xNxo8k/ZTqYCMIoOvXyQToVFocPzkoQIoXkXQlI8v0j3ndHeUr6+RhiCRhnpGL73ig9q5HRDTu+Iu/BL84fL70zDeGJtLIVhHTY6Lzkrfx/YcWSZzvcsieWH28BiquGFfm9DoFfv4sr7GDM8zTOyu0sTQRjcn9gqD7TjAcZ7Nc+22d5GiQgtYo6BVpDmZuBaULLnoC8UJOKoIjC1qdn7golCzShYcUpDNTf/L9R38egOvWipqvniRXgYPRTBXSrZnAbsEN2zd4OFlejUctcb5hvSB6s8Q7U/GVtfix22ggt13rDfzxycpeKlPqBZIx6Eu7X6asPZWskugjEw1rAXTnBr6JczcpZ7mRCU3rKcMpscvsN2zzbcl49uS8X9aMkZq9PyHX7SKpA5d2NlI6AMHPeDmCmOzDi7s51GcPLVxPoC225wc31u124XjYfAHxhPSjdNoHO6fbI3jfeSsbx+4P1xvNqS6AMKwgvwbU8MG8hlT80KzN/UYPqwMtiJ9J1gziUB0D9tR6lVRcOsPpE6WjCek//b1He52/wD0dHZ1
+api: eJztVtuO2zYQ/ZXBPBQJoJV30z4EAooiQJNggRQF9tKX9cIeiSOJCUUqJOVWMAzkI/qF/ZKC1MXetRNs2tf1iyFyLodzOTNb9FQ5zO7Q9Q7vExTsCitbL43GDG8dC8h7uGbtpX6d/UquBvKQG+PBG8g7qQT4mkH0mhpZgJOCc7IpXLHvrHZAGsha6pfalLBh62VBCiY3xroEmIoaCqM9SS11lS31Gawd240seA3/fPk7ehgPwPctwwtOqxTWOelPr88Ui4rtOpm+W+ob1t6tX0ZLinJWgx0hXauoh3g0Glnih6i/xEFcFkYP0g15tpIUhCPQ1PAhslWpqDoBryYPTec85AysKVcsZk/qgafxdrDxZ82+ZhttlUy+swzSzRZKE66kA2OrBetNNNBSxW5QjzEGUwKJRupVJyFcguBSahmy6eCFNZ3nZHh8Ap1csRatkdonIMjT/Plyqa+Zw0Nj1s/SRqxHAAxX3BjPcHsJZItaei4C1HSp1+/f3sBic7GYkuwWY0zcHPzCbNiC5Uo6z5bFviAm0XSpP0jnT14s9S/GVpfi523XSbH7gfVm/viqi6U+MgWkY9FKu48Wa28luwRKqQZoeT/nYUhCqKmlnuJQyQ3rKRspJmhathQifSkwQyWdX02eV5NnTLAlSw17tqHrthiqCjM0tlpJgQnK0HafO7Y9Pm7GdxFZwGVshQla/txJywKzkpTjBF1Rc0OYbTH0CGbovJU6iJbGNuQxwxAr3O2S2THrzXc4Zr35f47vg7ZrjXbsgvyr8/Pw99DfH48ThgkGemDtgzC1rZJFDPXiowsa22MEsR/Cszw37uDc5B+58EdPvBpBQUu9MjT021zIA4z0wdPvcDzGBGNHBWeF0ZjgIUFggmMLx9xXHFm2taFavByCMAnsUebGKCZ9BPOmnjklxd3o8ETYj7WCZFQZsD5JJ4pGpQH4UaKCULyKQlM8nmR7junuUby+RxuCRhrqGb30ig9q53qQmPKKu/BL8KfzH4+f8c7YXArBOlpyXHRW+j6250iBmetdFrkCs7v7UMUN+9qERq/Yx8z6GjM8TX+xu0oTnzbCnKg1TN3HDxyH7Tx0r3sXyS20gDUKWkWak4l6QMmSi75QnICjisDYombnBy4KNatkwSEE2dz0v13ewO9X8KalouazV+l5QCiCu1KyPSmwS3DD1g0Iz9OL4ag1zjekD0x/awo8ful239XPm8bzpvG8aTxx0xj50fNfftEqkjq0Ymcjqw9EdIebC4wdO8RnP5Ti+KmN80Fou83J8a1Vu104HqZ/oD0h3TiSxgn/1b59vJScxPaJ+8MdZ0OqC0IY9pD/4mpYQ77hat5q9q7uw4eVwVfk8ARrJhHY7m47ar0pCm79gdbRpvGA+d+/vcHd7l/pLbS1
 sidebar_class_name: "get api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/verticals/services?orgId={uuid}&envId={uuid}` — discover registered\nvertical services and their admin_ui entries, filtered by feature enablement\nfor the given org/env."}
+  children={"`GET /v1/verticals/services`"}
 >
 </Heading>
 
@@ -52,6 +48,10 @@ of vertical descriptors, each containing:
 See `sentin8-.md` for the Remote UI architecture.
 `GET /v1/verticals/services` — discover registered vertical services.
 List vertical services.
+
+?orgId=\{uuid\}&envId=\{uuid\}` — discover registered
+vertical services and their admin_ui entries, filtered by feature enablement
+for the given org/env.
 
 <Heading
   id={"request"}

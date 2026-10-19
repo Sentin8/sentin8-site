@@ -1,13 +1,11 @@
 ---
 id: binding-create
-title: "`POST /v1/env/{env_id}/bindings` — create app-environment binding.
-Create binding."
-description: "`POST /v1/env/{env_id}/bindings` — create app-environment binding."
-sidebar_label: "`POST /v1/env/{env_id}/bindings` — create app-environment binding.
-Create binding."
+title: "`POST /v1/env/{env_id}/bindings`"
+description: "create app-environment binding."
+sidebar_label: "`POST /v1/env/{env_id}/bindings`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vttu2zgQ/RVinnYB+pKb2+qtt4c8FF0k6ZPXaMfSyGYrkSxJuREEAf2I/cL9ksWQsmPHSTcotusXWdRcz5yZYQcBVx6yOfjWw0KCseQwKKMvC8hgqXSh9GqcO8JAIMGiw5oCOdbpQGNNkAHpzUdVgASlIQOLYQ0SCvK5U5ZtQQZv9UY5o2vSQVy+AQmOvjbKUQFZcA1J8PmaaoSsg9BaNuqDU3oFEkrjagyQQdOoAvp+kZTJh1emaFkjNzqQDvwXra1UHjOYfPbsujs2bZafKQ9HMV4lq2JpilaUxomU9haEg6Dn+55S8hEMCb5qVoykdYxlUOSHuD4m78cJHkZxsyaB1gqWGkMv7zv6V4TuG9zTF6ogHVSpyEXTqX5PiYglo0pM70kqLDmGvpcQVKhY+HXE81XCc0AbepY4ZEM88NZon8A7nU75cehiMDMUidP+z2iQXAuLbWWwiFR4hAQR7h8yQSZvEnzA0PgHmfGryvsz5i7/f4bssHmaUpSNaj/VUHt83DExFZyp2Es4n54ds+2d8p7Z5lufobUZFrXSwufGEkSdF48zlNMUWDnCohV0q3zwMQxPeeNUaOMo9Qy7fp4dOIBsvuB5d2j30x/vr2/EZHMyIb2ZdGn69pOBov6T+Pv7X0NbcOIj2pu9Wx7/qVMz7hO7prA2PPat8SEO+7CGDB51BBK4t67uhvHbW6xtRYcD764u96kOZyU+vyhn56OLZyfPRucXs9PR8qzMR6f5i9lZOZthibNtP+3ZSQzbvjPRdWkiEYbCDmCOeKndR+86fRPDM7tufQLM6OBMJWyFmqQwbsVZi0qVlLd5RVJ4XKEwLl+TD2lJMmqVyonJk+3W4bvLG/H+Sry0mK9pdDqe8mbctdWDAr2EDTmfIpyOT9IR16FGvWf6V5X+AKJdQwW6DRNbodIcTeMq/pZYMYfNCUje/CAh210AdtRYSFgzi7I5dN0SPX1wVd/z8deGHFN+IWGDTuGSKzbvoFCe/xeQlVh5OoppN93ht6thAv8ujq4VD0Y+HKJugZ1WDb+BhC/U3t1e+kUvYU1YcInm3fDxdfI6uklDfKt8tF96udV4medkww9lF3u9xgVl4IarTG0K1nH4jTcNfkuBmohCHJDxrIMK9arBFcsmm/z7Bz5aXso=
+api: eJy9Vs1u20YQfpXFnFpgZcl/SsJbkubgQ5DCdk+qkIzIobQpubvZXSomCAJ5iD5hn6SYXUrWj+0aRlteSC7n95tvZthBwKWHbAa+9TCXYCw5DMroqwIyWChdKL08yR1hIJBg0WFNgRzrdKCxJsiA9PqzKkCC0pCBxbACCQX53CnLtiCDD3qtnNE16SCufgEJjr41ylEBWXANSfD5imqErIPQWjbqg1N6CRJK42oMkEHTqAL6fp6UyYd3pmhZIzc6kA78iNZWKo8ZjL96dt0dmzaLr5SHoxivk1WxMEUrSuNESnsDwl7Qs11PKfkIhgRfNUtG0jrGMijyQ1yfk/fjBPejuF2RQGsFS51ALw8d/SNChwZ39IUqSAdVKnLRdKrfcyJiyagS03uWCkueQN9LCCpULPw+4vku4TmgDT1L7LMhHnhrtE/gnU0mfNt3MZgZisRp/2s0SK6FxbYyWEQqPEKCCPeTTJDJmwQfMDT+QWb8V+V9ibmr/58hW2yepxRlo9qLGmqHj1smpoIzFXsJF5PzY7Z9VN4z23zrM7Q2w6JWWvjcWIKo8+ZxhnKaAitHWLSC7pQPPobhKW+cCm0cpZ5h16+zPQeQzeY87/btJsZzTiPaGasbiv6uU5/tcramsDI80a3xIc7xsIIMxuvTMen1uEsTvB8PKh4kcNtc38/ZD3dY24r2Z9k95IcshvMSX1+W04vR5avTV6OLy+nZaHFe5qOz/M30vJxOscTpplV27CTybN6Zw7o0scZDzQacRryvDoG5Sd/EcM9uWi/++vGn4MHgTCVshZqkMG7JWYtKlZS3eUVSeFyiMC5fkQ9p/zFqlcqJeZFtN93Hq1vx6Vq8tZivaHR2MuGlt+2YBwV6CWtyPkU4OTlNR1yHGvWO6S+/frq5FY9W5Mthtjtr7yWMGAoY6C6MbYVKc1SNq9hwYscM1qcgebmDhGy747cUmUtYMZuyGXTdAj395qq+5+NvDTlm9VzCGp3CBVdu1kGhPD8XkJVYeXoioZ+uhyH7szj6c3gw8uEQdQvstGr4DST8Qe39D0o/7yWsCAsu1awbPr5PXke3aU5vlI9WSC83Gm/znGx4Una+03NcWAZu+FupTcE6Dr/zMsHvKVATUYgzMJ51UKFeNrhk2WSTr78BL8xSug==
 sidebar_class_name: "post api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/env/{env_id}/bindings` — create app-environment binding.\nCreate binding."}
+  children={"`POST /v1/env/{env_id}/bindings`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/env/{env_id}/bindings` — create app-environment binding.
+create app-environment binding.
 Create binding.
 
 <Heading

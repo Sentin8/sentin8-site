@@ -1,11 +1,11 @@
 ---
 id: table-create
-title: "`POST /v1/tables` — create a table with mandatory system columns + RLS."
+title: "`POST /v1/tables`"
 description: "Creates the physical PostgreSQL table with the mandatory system column set"
-sidebar_label: "`POST /v1/tables` — create a table with mandatory system columns + RLS."
+sidebar_label: "`POST /v1/tables`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVs1u4zYQfhViTi3KOMm2h0K3ZLOHFEmzjVPswTaisTi2uJVILUnZEQwDfYg+YZ9kMaQcK3G2WaB7KppLZHJ+vpn5ZjgbCLj0kE1AzWEmQZEvnG6CtgYyeOsIA3kRShJN2XldYCXeWx+Wjsa/XYmA84rEWocyitRoFAbrOuE7H6gWha3a2ghPYWq+y7XKpcjJrO7Tl8KAufhlfPPruRR5EX2pewx81zbq8dfU5I68bV1B9ytyXlsT1amiXuR7KcgwFi9+EAvrCvLi9mosRTEIYGFbNzVkVke+sA0p0dhKF5q8FI6W2gdySTBFpY3I49d9unVdLsXa6d7c1PSIc3FxcSWwVToIZ9dSoFGCah2SsdyTCdr8nKl5Fs1lfaC5oBWZIP7+86+p2bmQyVBvJN5jVTEWtjU+u34ngkPjseAKCUw+lK1Rm6kpSjRLGk1NqlsKZAQSbEMOWeNSQQbpOMEACY4+teTDuVUdZBsorAlkAn9i01S6iIrHHz0zYgO+KKlG/gpdQ5CBnX+kIsBz6twmq2JuVccl6UvxCIm9akeKqZfSbLBmOEr7psIu/ZxJaByjD5p8QseM8gP/6Bx2IEEHqv3ruG4M7WipaKGNjom0C4E9QiVexLhDhwHvowcJpq0qFj1EuZfa4/HBabM8wHNll7GrWEWw6Ai2LLPAtgp79clen90etupN/MBKcF/26oIeGkeeGyZajTG8iuhtyg4LJ61dmHvNubUVoTlQ/VBSKMkJVvECHTF77ZrUCLZbCUEHNtN7uKBFCnVo4a7clcenRAzZ8Cp01u419vgH7PoqA6n9e/Uh6kiPO77tyQ1bvt+zJLiW4oFvrPGJCm9OTiIjnrqJLnq+gfx2PZcciwa7yqKKffcimzV7/XLbSfABQ+tfYPa/r4dWLykurKsxQAZtG8E9NXSpeIouNLlookf3Vf6T7DdlQs+BlGwmwVbCTyc/Htb5WnuvzVI8zn5UtTYivj/RoqeidTp0kE02cPBSRGnIJrPtTEJNobQ8vhvrufQNhhIyOF6dHkdpDxKYMLf7cf7uAesmNe7j3Jw8mU7D6PuJMxg0MVFPB08aBJHos+fduZccJnp3ypU3Cxsz3+exD/hIzQ/SP05Xov+fXZzzQyl8cG0RWsevN28CPpApSNgVueFeEjeS26sx077SBXGZss0uoOvLO3FzK84aLEo6ejM64dfjkWAvCmwl9JsHZHAyOk1HXIkazcB0/v5mfCf2Nckj6tToAof70hd2JV5geuBPEjJ4l//fyv4jW1nfgoEewnFToTbMqdZVXO3U3RNYne7aKQ7jkns/m8BmM0dPv7tqu+XjTy05niEzCSt0OjXpZLaVUBIq5vRkA39QF9/eSKOju7TDrLBq4xb1/NnZyp3GWVFQE/5RdjieuANAwrxfJ2urWMfhmp8gXEMGcSFl7TjB49kGKjTLFpcsm2zy32c5p2uP
+api: eJztVk1v4zYQ/SvEnFqUdpJtD4VuyWYPKZJmG6fowTaisTi2uJVILUnZEQz/98WQcqzE2WaB7q3NJTI5H29m3sxwCwFXHrIpqAXMJSjyhdNN0NZABu8dYSAvQkmiKTuvC6zER+vDytHkj2sRcFGR2OhQRpEajcJgXSd85wPVorBVWxvhKczMD7lWuRQ5mfVD+lIYMBe/TW5/v5AiL6Iv9YCB79pGPf2amdyRt60r6GFNzmtrojpV1Iv8KAUZxuLFT2JpXUFe3F1PpCgGASxt62aGzHrkC9uQEo2tdKHJS+FopX0glwRTVNqIPH49pFvX5VJsnO7NzUyPOBeXl9cCW6WDcHYjBRolqNYhGcs9maDNr5laZNFc1geaC1qTCWI0M3sHMpnpTcRbrCpGwpYm5zcfRHBoPBZcH4HJg7I1ajMzRYlmReOZSVVLYYxnfJMOcFivr9SKE3h3PRmDBNuQQ3Z0pSCDZC1ZAgmOPrfkw4VVHWRbKKwJZAJ/YtNUuoiKJ58802gLviipRv4KXUOQgV18oiLAS77dJatiYVXHdezrl3z3XrUjxXxNtTFYMxylfVNhl37OJTSO0QdNPqGLoQ38o3PYgQQdqPZv47o1tOeyoqU2OubfLgX2CJV4FeMeHQZ8iB4kmLaqWPQY5UHqgMcHp83qCM+1XcVWZBXBomPYscwS2yoc1KcHfXZ73N+38QMrwc3cqwt6bBx57rJoNcbwJqL3KTssnLT2YR40F9ZWhOZI9a+SQklOsIoX6IhJbzekxrDbSQg6sJnewyUtU6hDC/flvjw+JWLIhjehs3avccA/YNc3GUid1asPUUd63PNtT27Y8f2BJcG1FA98Y41PVHh3ehoZ8dxNdNHzDeT367nkWDTYVRZV7LtX2azZ69fbToIPGFr/CrP/fT20ek1xaV2NATJo2wjuuaErxaN3qclFEz26b/KfZL8rE3oOpGQzCXYSfjn9+bjON9p7bVbiaWGgqrURcWlFi56K1unQQTbdwtF6idKQTee7uYSaQml5fDfWc+kbDCVkcLI+O4nSHiQwYe4O4/zDI9ZNatynuTl9Np2G0fcTZzBoYqKeD540CCLR5y+78yA5TPT+lCtvljZmvs9jH/BILY7SP0lXov+fXV6IkfDBtUVoHS98fjz4QKYgYdfkhk+ZuBT7zVfpgrhI2XYfzs3Vvbi9E+cNFiWN3o1PeXc80etVgZ2E/rECGZyOz9IR16FGMzCdf7yd3ItDRfKXYQ226/8Psv/yg6zvvkCP4aSpUBsmVOsqpkhq7Cmsz/adFOdwyW2fTWG7XaCnP1212/Hx55Ycj4+5hDU6nfpzOt9JKAkVE3q6hb+pi2s3cm90n54va6za+IB6uXF2cq9xXhTUhH+UHU4mpj9IWPQvydoq1nG44e2DG8ggvkVZOw7veLaFCs2qxRXLJpv89wVRZHl+
 sidebar_class_name: "post api-method"
 info_path: docs/api/db/sentin-8-db
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/tables` — create a table with mandatory system columns + RLS."}
+  children={"`POST /v1/tables`"}
 >
 </Heading>
 
@@ -41,10 +41,12 @@ Creates the physical PostgreSQL table with the mandatory system column set
 (`id`, `env_id`, `data` JSONB, `created_at`, `updated_at`,
 `resource_version`, `deleted_at`), enables + forces RLS, creates the four
 env-scoped policies, registers the table in `table_registry`, writes the
-`create` DDL audit row, and emits the `sentin8:db:table:created` event —
+`create` DDL audit row, and emits the `sentin8:db:table:created` event -
 registry, audit, and event all in the SAME transaction as the domain
 change.
 Create table.
+
+create a table with mandatory system columns + RLS.
 
 <Heading
   id={"request"}

@@ -1,21 +1,11 @@
 ---
 id: alert-rule-create
-title: "`POST /v1/admin/properties/{id}/alert-rules`
-Create a per-property custom alert rule (stat README §7). The request
-is validated against the known rule types, comparators, and metric
-vocabulary (400 on unknown); the property must exist in the target
-env (404). The INSERT runs in one explicit transaction with the RLS
-context set on the same connection (stat DESIGN §5)."
-description: "`POST /v1/admin/properties/{id}/alert-rules`"
-sidebar_label: "`POST /v1/admin/properties/{id}/alert-rules`
-Create a per-property custom alert rule (stat README §7). The request
-is validated against the known rule types, comparators, and metric
-vocabulary (400 on unknown); the property must exist in the target
-env (404). The INSERT runs in one explicit transaction with the RLS
-context set on the same connection (stat DESIGN §5)."
+title: "`POST /v1/admin/properties/{id}/alert-rules`"
+description: "Create a per-property custom alert rule (stat README §7). The request"
+sidebar_label: "`POST /v1/admin/properties/{id}/alert-rules`"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/stat/sentin-8-stat
 custom_edit_url: null
@@ -33,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/properties/{id}/alert-rules`\nCreate a per-property custom alert rule (stat README §7). The request\nis validated against the known rule types, comparators, and metric\nvocabulary (400 on unknown); the property must exist in the target\nenv (404). The INSERT runs in one explicit transaction with the RLS\ncontext set on the same connection (stat DESIGN §5)."}
+  children={"`POST /v1/admin/properties/{id}/alert-rules`"}
 >
 </Heading>
 
@@ -47,7 +37,6 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/properties/{id}/alert-rules`
 Create a per-property custom alert rule (stat README §7). The request
 is validated against the known rule types, comparators, and metric
 vocabulary (400 on unknown); the property must exist in the target

@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -130,7 +133,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -159,7 +163,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -188,7 +193,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -217,7 +223,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -257,7 +264,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -303,7 +311,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -333,7 +342,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -378,7 +388,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -407,7 +418,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -442,7 +454,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -472,7 +485,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -527,7 +541,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -535,7 +550,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/admin/ui/{page}` — RFW definition for the page.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "ai.admin.ui",
         "parameters": [
           {
@@ -551,7 +566,8 @@
           "200": {
             "description": "RFW page definition"
           }
-        }
+        },
+        "description": "RFW definition for the page."
       }
     },
     "/v1/admin/{resource}": {
@@ -559,7 +575,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/admin/{resource}` — RFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED — Fix A).",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "ai.admin.data",
         "parameters": [
           {
@@ -583,7 +599,8 @@
           "200": {
             "description": "Admin data rows"
           }
-        }
+        },
+        "description": "RFW data endpoint (env-scoped, RLS on the\nsame connection; `target_env_id` REQUIRED — Fix A)."
       }
     },
     "/v1/agent/execute": {
@@ -591,7 +608,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/agent/execute` — controlled agent execution. The model\nemits intent only; this endpoint maps an allowed intent to a\nSentin8:Flow workflow whose domain steps proxy-back to the owning\nservice. `requires_confirmation` intents pause in a ManualDecisionStep.",
+        "summary": "`POST /v1/agent/execute`",
         "operationId": "ai.agent.execute",
         "parameters": [
           {
@@ -635,7 +652,8 @@
           {
             "sentin8:ai:chat:write": []
           }
-        ]
+        ],
+        "description": "controlled agent execution. The model\nemits intent only; this endpoint maps an allowed intent to a\nSentin8:Flow workflow whose domain steps proxy-back to the owning\nservice. `requires_confirmation` intents pause in a ManualDecisionStep."
       }
     },
     "/v1/budgets/{feature}": {
@@ -643,7 +661,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`PUT /v1/budgets/{feature}` — create/update a token budget.",
+        "summary": "`PUT /v1/budgets/{feature}`",
         "operationId": "ai.budget.upsert",
         "parameters": [
           {
@@ -682,13 +700,14 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "create/update a token budget."
       },
       "delete": {
         "tags": [
           "ai"
         ],
-        "summary": "`DELETE /v1/budgets/{feature}` — disable/remove a budget.",
+        "summary": "`DELETE /v1/budgets/{feature}`",
         "operationId": "ai.budget.delete",
         "parameters": [
           {
@@ -717,7 +736,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "disable/remove a budget."
       }
     },
     "/v1/budgets/{feature}/delete": {
@@ -725,7 +745,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/budgets/{feature}/delete` — RFW alias of\n`DELETE /v1/budgets/{feature}`.",
+        "summary": "`POST /v1/budgets/{feature}/delete`",
         "operationId": "budget_delete",
         "parameters": [
           {
@@ -756,7 +776,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/budgets/{feature}`."
       }
     },
     "/v1/chat": {
@@ -764,7 +785,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/chat` — chat inference through the prompt registry + provider\nrouter. Idempotency-Key honored; trace emitted.",
+        "summary": "`POST /v1/chat`",
         "operationId": "ai.chat",
         "parameters": [
           {
@@ -808,7 +829,8 @@
           {
             "sentin8:ai:chat:write": []
           }
-        ]
+        ],
+        "description": "chat inference through the prompt registry + provider\nrouter. Idempotency-Key honored; trace emitted."
       }
     },
     "/v1/chat/stream": {
@@ -816,7 +838,7 @@
         "tags": [
           "ai"
         ],
-        "summary": " `POST /v1/chat/stream` — streaming chat over a chunked HTTP body\n. NOT the SSE subscription tier — synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting.",
+        "summary": "`POST /v1/chat/stream`",
         "operationId": "ai.chat.stream",
         "parameters": [
           {
@@ -847,7 +869,8 @@
           {
             "sentin8:ai:chat:write": []
           }
-        ]
+        ],
+        "description": "streaming chat over a chunked HTTP body\n. NOT the SSE subscription tier — synchronous inference streams\n the response body directly (transport-tier rule).\n Content is emitted as newline-delimited JSON chunks; the final chunk\n carries the token accounting."
       }
     },
     "/v1/completions": {
@@ -855,7 +878,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/completions` — completion inference. Same pipeline as\nchat; the action scope differs.",
+        "summary": "`POST /v1/completions`",
         "operationId": "ai.completion",
         "parameters": [
           {
@@ -899,7 +922,8 @@
           {
             "sentin8:ai:completion:write": []
           }
-        ]
+        ],
+        "description": "completion inference. Same pipeline as\nchat; the action scope differs."
       }
     },
     "/v1/costs": {
@@ -907,7 +931,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/costs` — per-feature/model spend rollup for the env,\nreading the AI's own trace aggregates (Stat cross-service rollup lands\nwith the Dash integration).",
+        "summary": "`GET /v1/costs`",
         "operationId": "ai.cost.report",
         "parameters": [
           {
@@ -928,7 +952,8 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "per-feature/model spend rollup for the env,\nreading the AI's own trace aggregates (Stat cross-service rollup lands\nwith the Dash integration)."
       }
     },
     "/v1/dlq": {
@@ -936,7 +961,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/dlq` — list dead-lettered AI jobs.",
+        "summary": "`GET /v1/dlq`",
         "operationId": "ai.dlq.list",
         "parameters": [
           {
@@ -967,7 +992,8 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "list dead-lettered AI jobs."
       }
     },
     "/v1/dlq/{id}/replay": {
@@ -975,7 +1001,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/dlq/{id}/replay` — re-enqueue a dead-lettered job (cron\nrepublish pattern: re-insert the pending job, delete the DLQ row, emit\nthe republished event inbox-first).",
+        "summary": "`POST /v1/dlq/{id}/replay`",
         "operationId": "ai.dlq.replay",
         "parameters": [
           {
@@ -1005,7 +1031,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "re-enqueue a dead-lettered job (cron\nrepublish pattern: re-insert the pending job, delete the DLQ row, emit\nthe republished event inbox-first)."
       }
     },
     "/v1/documents/ingest": {
@@ -1013,7 +1040,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/documents/ingest` — chunk → embed → store (/).\nChunk text lives in Sentin8:Storage (object per chunk under the document\nkey), vectors + metadata in `ai.embeddings` with source refs.\nRLS env match + the caller's data_scope on chunk metadata.",
+        "summary": "`POST /v1/documents/ingest`",
         "operationId": "ai.document.ingest",
         "parameters": [
           {
@@ -1047,7 +1074,8 @@
           {
             "sentin8:ai:embedding:write": []
           }
-        ]
+        ],
+        "description": "chunk → embed → store (/).\nChunk text lives in Sentin8:Storage (object per chunk under the document\nkey), vectors + metadata in `ai.embeddings` with source refs.\nRLS env match + the caller's data_scope on chunk metadata."
       }
     },
     "/v1/embeddings": {
@@ -1055,7 +1083,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/embeddings` — batch embedding via the provider router.",
+        "summary": "`POST /v1/embeddings`",
         "operationId": "ai.embedding",
         "parameters": [
           {
@@ -1096,7 +1124,8 @@
           {
             "sentin8:ai:embedding:write": []
           }
-        ]
+        ],
+        "description": "batch embedding via the provider router."
       }
     },
     "/v1/evaluations/run": {
@@ -1104,7 +1133,7 @@
         "tags": [
           "ai"
         ],
-        "summary": " `POST /v1/evaluations/run` — score a prompt version against a golden set\n. Each case runs a synchronous inference and checks the\n expectation; the aggregate score lands in `ai.evaluations`.",
+        "summary": "`POST /v1/evaluations/run`",
         "operationId": "ai.evaluation.run",
         "parameters": [
           {
@@ -1135,7 +1164,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "score a prompt version against a golden set\n. Each case runs a synchronous inference and checks the\n expectation; the aggregate score lands in `ai.evaluations`."
       }
     },
     "/v1/filters": {
@@ -1143,7 +1173,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/filters` — list env filter rules.",
+        "summary": "`GET /v1/filters`",
         "operationId": "ai.filter.list",
         "parameters": [
           {
@@ -1174,7 +1204,8 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "list env filter rules."
       }
     },
     "/v1/filters/{name}": {
@@ -1182,7 +1213,7 @@
         "tags": [
           "ai"
         ],
-        "summary": " `PUT /v1/filters/{name}` — create/update an env safety filter rule\n. The baseline prompt-injection rule is code and unaffected.",
+        "summary": "`PUT /v1/filters/{name}`",
         "operationId": "ai.filter.upsert",
         "parameters": [
           {
@@ -1224,13 +1255,14 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "create/update an env safety filter rule\n. The baseline prompt-injection rule is code and unaffected."
       },
       "delete": {
         "tags": [
           "ai"
         ],
-        "summary": "`DELETE /v1/filters/{name}` — remove an env filter rule. The baseline\ninjection rule is code and cannot be removed.",
+        "summary": "`DELETE /v1/filters/{name}`",
         "operationId": "ai.filter.delete",
         "parameters": [
           {
@@ -1259,7 +1291,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "remove an env filter rule. The baseline\ninjection rule is code and cannot be removed."
       }
     },
     "/v1/filters/{name}/delete": {
@@ -1267,7 +1300,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/filters/{name}/delete` — RFW alias of\n`DELETE /v1/filters/{name}`.",
+        "summary": "`POST /v1/filters/{name}/delete`",
         "operationId": "filter_delete",
         "parameters": [
           {
@@ -1298,7 +1331,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "RFW alias of\n`DELETE /v1/filters/{name}`."
       }
     },
     "/v1/health": {
@@ -1306,13 +1340,14 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/health` — service health (custom payload; shell health suppressed).",
+        "summary": "`GET /v1/health`",
         "operationId": "ai.health",
         "responses": {
           "200": {
             "description": "Service healthy"
           }
-        }
+        },
+        "description": "service health (custom payload; shell health suppressed)."
       }
     },
     "/v1/internal/schedules/run": {
@@ -1320,7 +1355,7 @@
         "tags": [
           "ai"
         ],
-        "summary": " `POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield).",
+        "summary": "`POST /v1/internal/schedules/run`",
         "operationId": "ai.internal.schedules.run",
         "requestBody": {
           "content": {
@@ -1334,7 +1369,8 @@
           "200": {
             "description": "Maintenance run completed"
           }
-        }
+        },
+        "description": "Sentin8:Cron proxy-back target\n. Runs stale-index maintenance: re-enqueue embedding jobs for\n sources whose embedding is older than the freshness window. Authenticated\n by the cron ticker's M2M token (verified the same way as user tokens —\n `token_tp: m2m` principals evaluate like any other under Shield)."
       }
     },
     "/v1/internal/traces/archive": {
@@ -1342,7 +1378,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/internal/traces/archive` — age out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) — never by\nclients directly.",
+        "summary": "`POST /v1/internal/traces/archive`",
         "operationId": "ai.traces.archive",
         "requestBody": {
           "content": {
@@ -1356,7 +1392,8 @@
           "200": {
             "description": "Archive run completed"
           }
-        }
+        },
+        "description": "age out hot traces older than the\nper-env retention window to Sentin8:Storage (Stat pattern). Called by the\ncron proxy-back (`/v1/internal/schedules/run` maintenance) — never by\nclients directly."
       }
     },
     "/v1/prompts": {
@@ -1364,7 +1401,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/prompts` — list prompts (latest or all versions).",
+        "summary": "`GET /v1/prompts`",
         "operationId": "prompt.list",
         "parameters": [
           {
@@ -1411,13 +1448,14 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "list prompts (latest or all versions)."
       },
       "post": {
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/prompts` — create a new prompt version (immutable per version).",
+        "summary": "`POST /v1/prompts`",
         "operationId": "prompt.create",
         "requestBody": {
           "content": {
@@ -1448,7 +1486,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "create a new prompt version (immutable per version)."
       }
     },
     "/v1/prompts/{name}/{version}": {
@@ -1456,7 +1495,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`DELETE /v1/prompts/{name}/{version}` — retire a version (never hard-delete\nplatform history; tenant rows may be removed).",
+        "summary": "`DELETE /v1/prompts/{name}/{version}`",
         "operationId": "prompt.delete",
         "parameters": [
           {
@@ -1494,7 +1533,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "retire a version (never hard-delete\nplatform history; tenant rows may be removed)."
       }
     },
     "/v1/providers": {
@@ -1502,7 +1542,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/providers` — list provider configs (credential refs only).",
+        "summary": "`GET /v1/providers`",
         "operationId": "provider.list",
         "parameters": [
           {
@@ -1533,7 +1573,8 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "list provider configs (credential refs only)."
       }
     },
     "/v1/providers/{provider}": {
@@ -1541,7 +1582,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`PUT /v1/providers/{provider}` — upsert a provider config (secret ref only).",
+        "summary": "`PUT /v1/providers/{provider}`",
         "operationId": "provider.upsert",
         "parameters": [
           {
@@ -1580,13 +1621,14 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "upsert a provider config (secret ref only)."
       },
       "delete": {
         "tags": [
           "ai"
         ],
-        "summary": "`DELETE /v1/providers/{provider}` — remove a provider config.",
+        "summary": "`DELETE /v1/providers/{provider}`",
         "operationId": "provider.delete",
         "parameters": [
           {
@@ -1615,7 +1657,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "remove a provider config."
       }
     },
     "/v1/registry": {
@@ -1623,7 +1666,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/registry` — list pinned model→dimension mappings.",
+        "summary": "`GET /v1/registry`",
         "operationId": "ai.registry.list",
         "parameters": [
           {
@@ -1644,7 +1687,8 @@
           {
             "sentin8:ai:embedding:write": []
           }
-        ]
+        ],
+        "description": "list pinned model→dimension mappings."
       }
     },
     "/v1/registry/{model}": {
@@ -1652,7 +1696,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`PUT /v1/embedding-registry/{model}` — pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422.",
+        "summary": "`PUT /v1/registry/{model}`",
         "operationId": "ai.registry.pin",
         "parameters": [
           {
@@ -1691,7 +1735,8 @@
           {
             "sentin8:ai:prompt:write": []
           }
-        ]
+        ],
+        "description": "`PUT /v1/embedding-registry/{model}` — pin a model→dimension mapping for\nthe env. Mismatched embeddings are rejected with 422."
       }
     },
     "/v1/retrieval": {
@@ -1699,7 +1744,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`POST /v1/retrieval` — hybrid retrieval: vector similarity (pgvector) +\nkeyword (tsvector, when pgvector is absent) + metadata filters +\npermission filter from the caller's `data_scope`. Standard RLS env_id\nmatch is the backstop; the data_scope filter is defense-in-depth.",
+        "summary": "`POST /v1/retrieval`",
         "operationId": "ai.retrieval",
         "parameters": [
           {
@@ -1740,7 +1785,8 @@
           {
             "sentin8:ai:retrieval:read": []
           }
-        ]
+        ],
+        "description": "hybrid retrieval: vector similarity (pgvector) +\nkeyword (tsvector, when pgvector is absent) + metadata filters +\npermission filter from the caller's `data_scope`. Standard RLS env_id\nmatch is the backstop; the data_scope filter is defense-in-depth."
       }
     },
     "/v1/traces": {
@@ -1748,7 +1794,7 @@
         "tags": [
           "ai"
         ],
-        "summary": "`GET /v1/traces` — recent inference traces (env-scoped).",
+        "summary": "`GET /v1/traces`",
         "operationId": "trace.list",
         "parameters": [
           {
@@ -1796,7 +1842,8 @@
           {
             "sentin8:ai:prompt:read": []
           }
-        ]
+        ],
+        "description": "recent inference traces (env-scoped)."
       }
     }
   },

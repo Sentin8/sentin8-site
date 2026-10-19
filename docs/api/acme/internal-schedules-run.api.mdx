@@ -1,23 +1,11 @@
 ---
 id: internal-schedules-run
-title: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
-the daily leaf-cert renewal sweep. Scans the certificates directory
-for locally-issued (`source = 'local'`) certs whose `expires_at` lands
-within the next 14 days and re-issues each one (new key + full chain
-via the same `sign_leaf` path as order finalize); the previous cert
-stays on disk until its natural expiry (overlap). Authenticated by the
-cron ticker's M2M token."
-description: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for"
-sidebar_label: "`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
-the daily leaf-cert renewal sweep. Scans the certificates directory
-for locally-issued (`source = 'local'`) certs whose `expires_at` lands
-within the next 14 days and re-issues each one (new key + full chain
-via the same `sign_leaf` path as order finalize); the previous cert
-stays on disk until its natural expiry (overlap). Authenticated by the
-cron ticker's M2M token."
+title: "`POST /v1/internal/schedules/run`"
+description: "Sentin8:Cron proxy-back target for"
+sidebar_label: "`POST /v1/internal/schedules/run`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVc1u40YMfhWClyaobCdBD4WKPaRBD3sIttikJzuI6RFtTT3iaIczdlTDQB+iT7hPsqCcDdL9eYGiukjgkB8/kt9QB8y0UaznSK5jfKgw9pwo+yhvG6zRS+YkFB7VtdyUwPqYimCFiT8U1vxrbAasD+iiZJZsn9T3wbsRYvanRjGbRXeE9eF4PJ5ifeIG65wKjwbtoyir+V5dXNirYXXJ9waDNb5n4T0F0D1zDy52feDMDRqcsivJ5wHr+UP1Rdzy93d39zDbXc4+VzJ7qWSWiizh49//wB1L9vJzfZOiQJ/i0zBZkdtCprThDOuYFpJbhoZ8GCAwrSeOU4b0mtUU7hyJgjnaqV9bF1ih8YldjmlYyDomCNFRCMPEqxZu4GypsSTH8AYWOJ4tcHk+Iijs26gMS37qfWJ9pLyEQNLoQvY+t17GZMJPGS5/goYGBZIGEp/AFZhcC1EYzoT3sOUBfoR1CQFcS14WsvM0Qih1DEv1G3m06pbQU26BFGJqOMHaCwX/F5//Mnr3iXc+Fh1JLkSzJY4CjdctFMk+gM8KQrkkCjCyH+As7jgF6s+ncF1yay23/jSwGgx1Ic66n73bcvpB4fbqFnLcskyxwo5zG02PfdSMFRo9rPH7c8UKvayjCSn7HBhr1NOQJ6PQv9TJswJelHDtOh6l8Rkerm9uf3s9V6CS22i6A+W042Q8g3csypZWqLOst2/v4d17uO7JtTy5ml4Ys8ayrD2nbzocK9xx0hOxi+nlyWSVdySvoP/X9n9C2/8S4gHz0NtwMz/lWR/Iiw2/pGBnJ9nPcXc56vs0dKzwZey2mIvYGm/totRzPBxWpPxHCsejmT8UTs+LckfJ08quxvzhWGHL1Jgg5wfc8oA13pxW+uTeCJl7KEbsq/V+fHh1P02SWOHq+bfQxcZiEu2NGe2xRrRfjEWPy360HTCQbAptzPeEac8nhxRV2Q==
+api: eJztVc1uG0cMfhWCl9qofmyjh2KLHlwjhxyMBLF7kgyLmqG0U81yNsNZyVtBQB+iT9gnKbgbB0La3HPIXnbBIT9+JL/hHrHQVrFaILmG8WmCqeVMJSR567HCIIWzUHxWV7PvIutz7gQnmPljx1p+S77H6oguSWEp9kltG4MbIOZ/aBKzWXRDWB1Pp9MYGzJ7rErueDBom0RZzffm6spentXl0BoMVviBhQ8UQQ/MLbjUtJELezQ4ZdflUHqsFk+TL+IeWEqQn6u7nATanF766ZrcDgrlLRfYpLyUUjN4CrGHyLSZOs4F8nm+GTw4EgVztNOwsfpYwYfMrqTcL2WTMsTkKMZ+GlQ79nCx0tRlx/ArLHE4W+LqckBQONRJGVb80obM+kxlBZHE61IOodRBhmTCLwWufwJPvQKJh8wjuAKTqyEJw4XwAXbcw4+w6WIEV1OQpewDDRBKDcNKw1aerboVtFRqIIWUPWfYBKEY/uTLXwbvNvM+pE4HkkvRYomTgA+6g05KiBCKglDpMkUY2PdwkfacI7WXM7jtSm0tt/54WPeGuhRn3S/B7Tj/oHB/cw8l7VhmOMGGS51MaW3SghM0eljhfH89f9Xe/LP25qP2gmySSaSEEhkr1HHI00HCX1EAvCrh1jUM//z1N7zCw+3d/ZvzuQJ1pU6mKFDOe87GMwbHomxphRrLev/2Ed59gNuWXM3Tm9mVMfOWZRM4/6/DaYJ7zjoSu5pdjyarvCE5g169f/fwCF/vwerLKs8u4HfJf+uSL31rQy78UuZtpCAmgi5HG+Mo/wXurwedj8PHCX4ev63eTmxR13ZhqgUej2tS/j3H08nMHzvOn1bhnnKgtV2RxdNpgjWTN2EujrjjHiu8GzUzfTRC5h47I/afBX56OrunJk2c4PrT4m+St5hMB2NGB6wQ7Sdi0cM6H2xHjCTbjrbmO2La8y/MHElb
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -35,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for\nthe daily leaf-cert renewal sweep. Scans the certificates directory\nfor locally-issued (`source = 'local'`) certs whose `expires_at` lands\nwithin the next 14 days and re-issues each one (new key + full chain\nvia the same `sign_leaf` path as order finalize); the previous cert\nstays on disk until its natural expiry (overlap). Authenticated by the\ncron ticker's M2M token."}
+  children={"`POST /v1/internal/schedules/run`"}
 >
 </Heading>
 
@@ -49,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/internal/schedules/run` — Sentin8:Cron proxy-back target for
+Sentin8:Cron proxy-back target for
 the daily leaf-cert renewal sweep. Scans the certificates directory
 for locally-issued (`source = "local"`) certs whose `expires_at` lands
 within the next 14 days and re-issues each one (new key + full chain

@@ -1,17 +1,11 @@
 ---
 id: table-drop
-title: "`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories).
-Env-scoped; registry status, physical DROP, audit row, and event commit
-together — a failed DROP rolls the registry status back.
-Handle drop table."
-description: "`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories)."
-sidebar_label: "`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories).
-Env-scoped; registry status, physical DROP, audit row, and event commit
-together — a failed DROP rolls the registry status back.
-Handle drop table."
+title: "`POST /v1/tables/{id}/drop`"
+description: "pending-delete then drop (Stories)."
+sidebar_label: "`POST /v1/tables/{id}/drop`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdlM9O3DAQxl9lNKcief9AOVTuqRWVigSC7tLTsgJvPJtYJLaxJ6GrVaQ+RJ+wT1I52cICaaVee7Jkj+c3M/78bZFVHlEuUK9wKdB5CoqNs6caJbJalTTWwXkU6FVQFTGFFL5FqypCiUajQGNRoldcoEBNMQvGpxwo8SplgNMTFBjovjaBNEoONQmMWUGVQrlF3viUKnIwNkeBaxcqxSixro3GthWPNFYhJ74h29w8ge9rCpsBcgoFss1L/FqV8S/8tl2m6OidjRTT+dF0mpahztJsPGlsBR5P376OOjcxGpuDXslumFLpyliImfPUXzr+U2rrGNauthpcAFUGUnrzxGsFRsrqYHjTPUcky8a+k89BKBfL1M7z/LeXF/MrmDSHky40TrZGt5OU+hZ+fv8Bnqw2Nh9pKokJuCDbgeHNnF0wFA/G1/aTbUZdG/o9BMpN5LCByIrrKMAXm2gyVcLJ7OJSgKq1YQjuQYCyGqghy5C5qjJ8bdnlxAWFDq1grUxJursIwZVlTPyXBFip7G58bT8rq3evAL1YUWBFXLgkX+8id8LlAiUO9dtJaO06ERguOxX0gxzp1StJzfsj2K3y5GNXc+RQZ1wH0uApRBOZbEbgGgpw6SLngeZfzuDBcAGzs3kqsTQZ2UiJu1P2+ekVXMzgg1dZQaOj8TSVphNobSgMBrQCm8TrapuOD/ut1HSl7F7q//y5n73R42dm+sYTXypj01DqUKazXgkLbA5R9OYWUaDsrKSTw1JgkUQjF7jdrlSkr6Fs27Tdm0z6adrEdPPJSF4UkDnLZHnAggZLu6PNgLE1qqxTLKbf26hgEvIf8W9mO8s7gD0bHixit6nsZp/9u7hkwst272MlQWHb/gIZ0ySW
+api: eJzVVE1PGzEQ/SujOYHkfEA5VO6pFZWKBIIm9BQicNaTXYvd8WLPLo2i/e+VN2kJIVTqsSdL9vN7M+Pnt0YxeUQ9Q7vAuUJfUzDiPF9Y1ChmUdLQBl+jwtoEU5FQSPA1sqkINTqLCh2jxtpIgQotxSy4OnGgxtvEABfnqDDQU+MCWdQSGlIYs4Iqg3qNsqoTVZTgOEeFSx8qI6ixaZzFrlN/1MSEnOSeuL1/EX5qKKwOKCcoELf78ktTxr/od908oWPtOVJM56fjcVoOdZZmU5PFTuHZ+MNb1JWL0XEOdqH7YWpjK8cQM1/T5tLZe9TsBZa+YQs+gCkDGbt60esURsqa4GTVP0ckFscf9Wsh1LN5auc1f01sHecDSyUJgRTEPTEcTcUHR/F4eMdfuR30ZdpPECh3UcIKohhpooK6WEWXmRLOJ9c3CkxjnUDwzwoMW6CWWCDzVeXkjsXnJAUFGICBpXEl2f4aBF+WManv88PCZI/DO/5m2G5nDBsrosKKpPDJnLWP0ttSCtQ4ak9GPSaO1s52o61pHS99/8ROyv6NN2Ma2MUbw0w3R7Bd9fkXGECU0GTSBLJQU4guCnFG4FsKcOOj5IGm3y/h2UkBk8tpKrB0GXGkpLp17dXFLVxP4HNtsoIGp8NxKswmmaWjcBDQKWyTXl/ZeHiy2UotV4Z3qB9urqe3cKj5h/0G15h5FmL53x2w/a5CP2VUl8ZxGk0TytTixg0zbE8SsB8JKtR9WPSWmCssknH0DNfrhYn0I5Rdl7Y3MZL+knUx3XyJinfnuB8yB0t7pNWB6GpN2SQspv/ZmuCS5D/KH022oXYMO0F7sIjtpuHVrvbv4lLMzrudz5VshV33Cx15FTo=
 sidebar_class_name: "post api-method"
 info_path: docs/api/db/sentin-8-db
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories).\nEnv-scoped; registry status, physical DROP, audit row, and event commit\ntogether — a failed DROP rolls the registry status back.\nHandle drop table."}
+  children={"`POST /v1/tables/{id}/drop`"}
 >
 </Heading>
 
@@ -43,9 +37,9 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/tables/{id}/drop` — pending-delete then drop (Stories).
+pending-delete then drop (Stories).
 Env-scoped; registry status, physical DROP, audit row, and event commit
-together — a failed DROP rolls the registry status back.
+together - a failed DROP rolls the registry status back.
 Handle drop table.
 
 <Heading

@@ -1,15 +1,11 @@
 ---
 id: ai-evaluation-run
-title: " `POST /v1/evaluations/run` — score a prompt version against a golden set
-. Each case runs a synchronous inference and checks the
- expectation; the aggregate score lands in `ai.evaluations`."
-description: " `POST /v1/evaluations/run` — score a prompt version against a golden set"
-sidebar_label: " `POST /v1/evaluations/run` — score a prompt version against a golden set
-. Each case runs a synchronous inference and checks the
- expectation; the aggregate score lands in `ai.evaluations`."
+title: "`POST /v1/evaluations/run`"
+description: "score a prompt version against a golden set"
+sidebar_label: "`POST /v1/evaluations/run`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVc1u4zYQfpXBnBnZSS+FekqLoMih2CKbnmwjHlNjibsUySUpJ4YgoA/RJ+yTFCNp/dMEfYD6ImM4883P9w3ZY6Y6YblCMrhR6ANHysa7xwpLJFPwgWw3WorYOVQYKFLLmaNE9eioZSwxU6w5v7A7vJgKFRqHJX7rOB5RYeRvnYlcYbknm1hh0g23hGWP+RgkPOVoXI3DsJm8OeWffXUUD+1dZpflL4VgjR6LWXxJ3ontHZTffWGdr7KuMETfhvwyFqtQU+Ik3YYo/WbDacw0ms9IFCNJ+SZzK/ZBYcVJRxOkAizxV28rdpA4l7Bd9bBG40KX11jCGgtYo4I18ltgnbl6kUbIuHQ+hkEVsNkWOCjcM+Uu8gczUVfV/8f5gWMy01QmlxUal7nmiApdZ620vPexpYylHP1wJ9HX1F0Ezwm+xw7ia7KV3E+dezgJ42kiDAfxOE89x45HQwrezZO9Wy7lcz3GMxLEzoH2bbCcuULBS6y7aPJxFFtil437sSRTTj2Xr9FkKXYjyrmGhe3vnz4/w+JwuziLOC1i57bw959/QdI+MhBMSDBPD6gWkjIQ1Cd6166AB9INiESkyAQE6eh0E73zXQLj9hzZaQZyFeiG9dcEueG1g4n/MflPYgKq68g1ZZ4rsOQqQYDt1bqlbYEKW86Nl1UMPuVx+3KDJX7QFCqUnXg6b8/DG8kkL6S9EiY3F2I7c3ylsXfmk7SW7/RyoUPj9n4U0KySma4bMvhvcj5PRzB/y/vHkZNgKYtC4f4RNAXaGWvyESwdOco4rNHs0tjSXOlvj8/w6QnuA+mGb+6KpSxsJah7w/FDh0HhqR9cFreTSQbckruA/l8I6Grsp7sj81teBEvGSetdtHI2aWuFh1tUeIEjd2nn5PJoRITlCvt+R4n/iHYYxDzd87KglUm0sxc3/Vc+fvA6CLaUgbK1B4pGgsYtVtgwVULcqp+Df5kegJtnKf0c++4xEKzTughzqHA3PyKtryQm0qs0Q6+SWx67qb+yn2w9WnJ1R7X4Tpjy+wdqF3qa
+api: eJzVVcFu40YM/RWCZ8V20kuhntIiKHIotsimJ9uI6REtze5oNDtDOTEEAf2IfmG/pKCk2vIm6L2+yOCQnMfHR06HQmXCfI1kcZthEziS2MY/Fpgj2QUfybWDZRFbjxkGilSzcNSoDj3VjDkKxZLlhf3xxRaYofWY47eW4wkzjPyttZELzA/kEmeYTMU1Yd6hnIKGJ4nWl9j329Gbk/zcFCf1MI0X9qJ/KQRnzQBm+SU1Xm3vUjX7L2zk6tY1htjUQV4GsBkaSpy02hC1XrGchpsG8yUTxUgK3wrXau8zLDiZaIMiwBx/bVzBHhJLDrt1Bxu0PrSywRw2uIANZrBBfgtshIsXLYSsT5dj6LMFbHcL7DM8MEkb+QNOsiv0/3F+5JjsyMroskbrhUuOmKFvndOSD02sSTDXox/uNPq6dbPg6YJ/Y3v1teL07qfWP5yF8TQ2DHv1uLAuseXBkELjJ2bvViv9XNN4yQSx9WCaOjgWLlDzJTZttHIaxJbYi/U/5mTzseb8NVpRsFtVznXaZJrIQDB6wsQOUKlNECAoz+3b+AU8kKlAJaAgEhCkkzdVbHzTJrD+wJG9YSBfgKnYfE0gFW88jP0d4P+kJqCyjFySMIwIHPlCM8DuapzSboEZ1ixVo6MWmiTDdEmFOS6Pt8uZ63IcPdX802U6Ht5ImZpJd62d2s7EdOnhlYbemc/SWb3Tw0xn1h+aQSCTCqZ23JDF78n/PB7B9M3vH+HvP/+C4EhUgXD/CIYC7a2zcgJHJ45Kh7OGfRpKmpD+9vgMn57gPpCp+OZusdKBLDTrwXL80KHP8FwPrha3o0kJrsnPUu9+//T5GT6gevd9ObMt9P+Q1bQihN9kGRxZrwy00Wkpo8TWeLzFDGeBujJbrzuiUi3ma+y6PSX+I7q+V/O4znUOC5to72YL/SufPngENLfCQB3OI0WrQcOwZlgxFdq/dTcF/zIyfPOs0C+x73a+5jpPjXYQM9xPb0XdFBoT6VWLoVe9W9+0sb68G20dOvJlS6X6jjn19w/yB3B9
 sidebar_class_name: "post api-method"
 info_path: docs/api/ai/sentin-8-ai
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={" `POST /v1/evaluations/run` — score a prompt version against a golden set\n. Each case runs a synchronous inference and checks the\n expectation; the aggregate score lands in `ai.evaluations`."}
+  children={"`POST /v1/evaluations/run`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
- `POST /v1/evaluations/run` — score a prompt version against a golden set
+score a prompt version against a golden set
 . Each case runs a synchronous inference and checks the
  expectation; the aggregate score lands in `ai.evaluations`.
 

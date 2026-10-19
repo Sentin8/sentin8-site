@@ -1,13 +1,11 @@
 ---
 id: module-execute
-title: "`POST /v1/modules/{id}/execute`
-Execute it."
-description: "`POST /v1/modules/{id}/execute`"
-sidebar_label: "`POST /v1/modules/{id}/execute`
-Execute it."
+title: "`POST /v1/modules/{id}/execute`"
+description: "Execute it."
+sidebar_label: "`POST /v1/modules/{id}/execute`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vt1OKzcQfhVrbgrSkgClVbV3lFIJqRQEHPUiRDnOepL44LX3+CewilbqQ/Qd+h59lD5JNfYm2bA5HNqLckPW/r7x/M+swPO5g3wEs6ALGGdgKrTcS6OvBORQGhEUDvAFi+ARMqi45SV6tERageYlQg5SQAZSQw4V9wvIQKArrKxIDuRwHaWwq58gA4ufg7QoIPc2YAauWGDJIV+BryuS5byVeg4ZzIwtuYccQpACmmacyOj8j0bUxCiM9qg9/eRVpWQRFR9+cvTqqi/aTD9h4Xvqfby9uX9gw+XJMJnrhispmmFr9EfWvsqmRtSDR33X+WQzY1kLHOxYN4KFMU+QJSVfPPm2suRdL9FF7blSU148TQqjZ3JOR0bjzSw6ttVYB6WgyVavNH5YIFvTWaLT66/N7Goz5Q4nwSrIgAe/mHjzhDpGzaPVXE1i5HpKdrB7QtTXivAs4gfQZNtX30UmNPtw90ukLozzE8pKArivR5EEEIdtOOQSLoSkD65ud+zaVabZmF3/ysu9iOa1q95l0ZrCiDKIUrz0ilgXbfwuUvSbcbPNlXxvwNNl6xzz9D4NCBkpUmBZGY+6qCdPWG/Zoy09ptv4tZibKnmQdUSwJ6zZQWWlLmSl0LG//jwbnJyxv3//g+ESbc28lfM52kctUIQKHTOa+QXSrfbfOBJwmDPOLFaK1yjaMpJGs2dJSbRA5niJj5qesuiD1S6eFrxYoGAWXWW0Iyc7j1wwM2MWj2zQWup5REbjH3WMxK7uu7G4TBXcVjY0dLfbqOJBei9mx+nxcT9KlxsLLLqg/Lr6/48W1fpi06Pa74rXynDxVp/a6GqR3p5Y5KRdBkJaLLxcoiNDgvOmnAjuOfXmgGoSHFLfFyENjEnp9jS5Dm1/VkcAI0BM086je/Hb+wTvPL71IpXdHG13iEjtvz/bWyFrEayMHaOUWpahhPy46dr5H4WTAEYCeqJ3vf2uWk4UlijR/DZ272QT9guJn9KFMr/J4Gxfcl/pJVdSsJSAzNhYXRDh3/bh19I5KkPqxnmbecwVpsJEOdtDSZK18WxmghYE/O7tOptxqYJFdkB+HnpZogl+6C2vDhP7tM++tealPoqj01h2743lc1xLit5xWAQrfR0nsUPtpf4h7xoC+Wjc9PrkV4r0UbfeZtLHbEC/MLRkVcb5uFrRVIEv8SED6hp32xXo8oWXFYVxzy6RWvl6UGzTojcFOiNQ6pmJqdQmR2v5UVwNXxt7ny5Z+z//Oegidn/nuRZcGY3sN5yeO4flVNWd7u7QLmUR25CSBVLa5ZtN8vrqgd3csfOKevzR6eA46ay9nEm0ewFNBku0Lql1PDhJR+TUkuuO6H8Znh1zN/VFE3hYKS41PdJuNilyI1ieUFiTcMggj2vxOnzjtNIQbrWiTeeDVU1Dx58DWsq1cQZLbiWfkvdHKxDS0W8B+Ywrhz2VNrMFDu7afn7Iurv2Xp3bQ65roPdUoC/IIGUDbdq0iSyQC/L3aNVeXKTHjh6IviX2hhotq4lxXhRY+Tex404VUHQgg2m725dGEMfyZ5pM/DkpaarNNhjPVqC4ngc+J2ySSX//AM5peE8=
+api: eJy9Vl1OI0cQvkqrXgLSYAMhq2jeCCESUggIWOXBWN72dNnudU/3bP8YRtZIOUTukHvkKDlJVN1je/yzLMpDeMHTXV/9fVXVtQTPpw7yAUyCLmCYganQci+NvhGQQ2lEUNjDVyyCR8ig4paX6NESaAmalwg5SAEZSA05VNzPIAOBrrCyIj2Qw23Uwm5+hgwsfgnSooDc24AZuGKGJYd8Cb6uSJfzVuopZDAxtuQecghBCmiaYQKj8z8ZUROiMNqj9vSTV5WSRXS8/9mR1eW+ajP+jIXfc+/T/d3jE+svzvopXNdfStH026A/sdYqGxtR9571Q+eTTYxlrWBvK7oBzIyZQ5acfPWU28pSdr1EF73nSo15MR8VRk/klI6MxrtJTGzrsQ5KQZMtdzx+miFbwVmCk/XdMLvejLnDUbAKMuDBz0bezFFH1jxazdUoMrfnZEf2AEX7XpE8i/I9aLKN1XeBSZp9fPg1QmfG+RFVJQm4b7NICgjD1hhKCRdC0gdX91txbTvTrMOuf+PlQYlmN1XvimgFYQTpRS1eekWoq5a/q8R+M2w2tZIfJDxdtskx8/d5QJIRIgWWlfGoi3o0x3qDHmzgsdyGu2ruqpRB1lHB5lizo8pKXchKoWN//3XRO7tg//zxJ8MF2pp5K6dTtM9aoAgVOmY08zOkW+2/c6TgOGecWawUr1G0bSSNZi+SimiGzPESnzWZsuiD1S6eFryYoWAWXWW0oyQ7j1wwM2EWT2zQWupplIzBP+vIxLbv21xcpw5uOxsautseVPEg2YvVcX56us/S9ToCiy4ov+r+/2NEtblYz6j2u+K1Mly8NafWvlok2yOLnLzLQEiLhZcLdBRIcN6UI8E9p9kcUI2CQ5r7IqQHY1S6A0OuAztc1VGAkUAs047Rg/Kb+yTeMb7JIrXdFG33EZHaf7g42CErFayME6OUWpahhPy06cb5H5WTAkYK9lRvZ/tdvZwgLEFi+C1370ST7FcKP5ULVX6TwcWh4r7RC66kYKkAmbGxuyCKf78vfiudozakaZy3lcdcYSpMkIsDkKRZG88mJmhBgj+83WcTLlWwyI4oz30vSzTB973l1XFCn++j7615rU/i02kse/TG8imuNMXsOCyClb6OL7FD7aX+Me8GAvlg2OzNyTaZTPpINvqZoR2qMs7HzYkeDfhaD0MGNBQeNhvO9SsvK2LpwKqQJvXqHdiwvjfkOy+c1BMTK6Xlvg3sJG5+u7E8pkvW/s9/CbqIw915rgVXRiP7HceXzmE5VnVneDu0C1nEKaNkgVRV+XpRvL15YncP7LKiEX5y3jtNPmsvJxLtQYEmgwVal9w67Z2lI0pqyXVH9TdG5G6Ene1xh7i2k+it7VeKS0322h0mkTiAxRkxnOxABnlcgFdMDtPyQnLLJe00H61qGjr+EtBSVQ0zWHAr+ZiIGCxBSEe/BeQTrhy+4erRQzu5j1l3qz7oc3vIdQ1kTwX6ggxSYdBOTTvHDLmg1A+W7cVVMnbyRPANcO/5orU0IS6LAiv/puyw0xBEFGQwbrf40gjCWP5CbxB/SU6aar33xbMlKK6ngU9JNumkv38B33Fvag==
 sidebar_class_name: "post api-method"
 info_path: docs/api/func/sentin-8-func
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/modules/{id}/execute`\nExecute it."}
+  children={"`POST /v1/modules/{id}/execute`"}
 >
 </Heading>
 
@@ -39,7 +37,6 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/modules/{id}/execute`
 Execute it.
 
 <Heading

@@ -1,19 +1,11 @@
 ---
 id: get-admin-data
-title: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
-Registry-backed for `tables`, live posture findings for `posture`,
-recent DDL audit entries for `audit`. Cross-env via `target_env_id`
-requires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).
-Fetch admin data."
-description: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
-sidebar_label: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
-Registry-backed for `tables`, live posture findings for `posture`,
-recent DDL audit entries for `audit`. Cross-env via `target_env_id`
-requires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).
-Fetch admin data."
+title: "`GET /v1/admin/{resource}`"
+description: "returns a JSON array of admin data rows."
+sidebar_label: "`GET /v1/admin/{resource}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVdtu2zgQ/ZXBvGwCyJe0fVjoLW3Soov0ZqfoQ2JENDm2uJFJdUgpNQwB+xH7hf2SYijHcdfGAt3nfRJADuccnjk82mBUy4D5DSqzsm7QWJxl6GtiFa13bw3muKR4l3bvjIoKM6wVqxVFYjm4QadWhDkyBd+wJszQOsyxVrHEDA0FzbaWbpjjufQB6QN79UxfG8tkMI/cUIZBl7RSmG8wrmvpHSJbt8Suy3ZwUbEQI9feWfOI+bUhXh+AXqdSINfCyeRqCtq7SN/i6S8hz6Q41N4FCrL/bDyWzz+QStrd67cA7B8CLDxDLAkmr79AVPNKLpwYuCgNVF1XVie1R38G6bJ5YtF1XZfhi/HzQ6hXqqqIoVL6PoACMwcmZUZpUBC0rwnT0ReHRz+7e+cf3NMEBCSQbtjGdRppIBet+z038zw1xPxmJgr83Kd4c3kNo/asBx1tHvt1BXz/629gig07IffH9MN7UMxqDX4Bas8D/iEMb92EljZEXg/mSt+TSZIVSatQZFDZlqD2ITZMsLDOWLfsZS22q0V265g0uQgXF1egGmNl3JEtbQvTUjGEV+xDGIgTWqsEY89EhTRJdghQPCoQ1qGXoICTUjlTEYc87x116dpPYjhoVWVNGiGkcVI4Hd661xR1uXfbIWa4olj67aNKLymWmOMxDZOlFz5Z0cYqebHnNDDzA4tP+y3YfvOLl2kEIXKjRSEDNXGwIZLTBL4lho8+xCXT9NMVPNhYwuRqKgwrq8kFEtztS3v39ho+TOC8VrqkwbPhWKgZAVpY4qMFXYat4CVu4+FZvyTTWim31/p/B/2yg36a+y6mJM9GdaWsE6EbrmSvd9cNtmeY9fmOGea7Vz/LsPQhSsVmM1eBPnPVdbLcx6gEgbFBRDSYL1QV6AB+F2R4MtlG6Sn8S94epXtP6yOB3qqqkVqU4GkV25Sd/5nU8T/PUT7bReXW+zQeeT6l5qzLsCRl5BHcbLbb51pTHfcOHgS83GeXA28ur7HrfgBfxKB3
+api: eJztVU1v3DYQ/SuDudQGtB9Ocyh0c2MnSOE2za6DHuyFxSVnV6y1pDKk5C4E/fdiKNneZhcB2nNPAsjhvDfzZp46jGobML9DZXbWTRqLqwx9Tayi9e6jwRy3FB/S7YNRUWGGtWK1o0gsDzt0akeYI1PwDWvCDK3DHGsVS8zQUNBsa8mGOV5KHpA8cBDP9LWxTAbzyA1lGHRJO4V5h3FfS+4Q2bot9n32AhcVCzFy7YM1z5hfG+L9EehtCgVyLZwtbpagvYv0Vzz/V8grCQ61d4GC3L+Zz+XzDVJJL3X9EID9U4CNZ4glweL9HxDVupKCEwMXJYGq68rq1O3Zn0GydK8s+r7vM3w7//EY6p2qKmKolH4MoMCsgUmZWRIKgvY1YXr69vjpF/fo/JN7VUBAAumGbdwnSQO5aN1PuVnnKSHmdyvpwD/zMMWGnaD/svz0GyhmtQe/AXUgsn8K03u3oK0NkfeTtdKPZFJPitSMUGRQ2Zag9iE2TLCxzli3HfpWjKdFdu+YNLkIV1c3oBpjRc/IlsbAdFRM4R37ECYidWuVYBxMSSFJkt4BiucSwz4MNRZwVipnKuKQ58PIXLv2s0wUtKqyJmkESS8K59N7956iLg+qnWKGO4qlH7cmrUosMcdZezEoM+uem96nmd34NGs2VmnYBk4Tsz6a4eVwBeM3v/oZJhAiN1r6Y6AmDjZEcprAt8Twuw9xy7T8fANPNpawuFkKv8pqcoEEdVykXz/ewqcFXNZKlzR5M50LMSMwG0t8MqDPsBW8xGw+vRiORKudcgepiw/Xt3Cq9uLb+rrXlfh/rE6M1ehGYluzulLWScMbrqRzw4zdYXuB2WDjmGH+styrDEsfokR03VoF+sJV38vx4Jay78YG6ZrBfKOqQN8R52wxOuY5fMdWT9J9pP0J325V1Ugsir+0im2yyP9M6vQP5iSf8VC5/SGNZ56v5rjqMyxJGVmGu268vtSa6njw8MjHpZ4XN/hwfYt9/zdHzpTO
 sidebar_class_name: "get api-method"
 info_path: docs/api/db/sentin-8-db
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nRegistry-backed for `tables`, live posture findings for `posture`,\nrecent DDL audit entries for `audit`. Cross-env via `target_env_id`\nrequires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).\nFetch admin data."}
+  children={"`GET /v1/admin/{resource}`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.
+returns a JSON array of admin data rows.
 Registry-backed for `tables`, live posture findings for `posture`,
 recent DDL audit entries for `audit`. Cross-env via `target_env_id`
 requires `sentin8:sys:admin` (handlers::TargetEnvQuery validation applies).

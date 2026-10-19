@@ -1,17 +1,11 @@
 ---
 id: instances-customer-mode
-title: "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the
-customer-mode (`allow_signup`) instances installed in an env (auth
-DESIGN invariant 12: the owner-API replacement for auth's retired
-direct read of `sys.app_instances`)."
+title: "`GET /v1/app/instances/customer-mode`"
 description: "M2M-only service surface: the sign-up closure provisioning (Sentin8:"
-sidebar_label: "`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the
-customer-mode (`allow_signup`) instances installed in an env (auth
-DESIGN invariant 12: the owner-API replacement for auth's retired
-direct read of `sys.app_instances`)."
+sidebar_label: "`GET /v1/app/instances/customer-mode`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVc1u20YQfpXBXiKjlGwrPRQsgsJtg9QHNUHsnizD2nBH5CbL2c3OkooqEMhD9Bn6YHmSYpaSY+WnvRc5ESB2Zr75Zr5vdirpmlV5o3QI6rZQBrmKNiTrSZVqMV9MPbktMMbeVgjcxbWusITUILCtadoFqJznLiKE6HvL1pOlGiZXSMnSD+WSLrrUnEClnWNIjWXY2NSATQx+Q7Dx8Y3z2kDyb5AgeXCoI8GmsVWzpBXv8+gQyp0lTpoqvLNmWEEdfRcYNBBuoOo4+RYjcOM7Z+C1tzRb0ljeR/unlqZgstbWTQUymgJSExGh1gn5pFzS+Qx+Rh0xQo/RrrfwHdxTMFllgHcpwJMnsFTtvF2q1Ql8eP/X2JVl0EsCOJA1TX564M1YrnyPcXtgsADCHiNo6Fgwj39nS5rP4Kqx6ExGBZ7giIEDAVxG1GY1W9LjGTzfkOSofLBUj7MRtjE+YonOEO7SNuAKKqdtC23HCSKydz1C8hm1JjgkB7+G698ur0CHcOjm0Tgt41ttKTetiTcY0UCmZ+1jToPUM1iSdD7WsGkwYs5jGZD0K4fmx4zwbSd02MTo1sBJb/kQP5VO0AB70JIXbU3yPzMsKI3lZKnuLDeSELANaSv9dC7lJBPykJA0pSm+s5wwNxV15fBkpgrlA8a8DpdGleqe09lhhxbeoCpU0FG3mDCKQnaKdIuqVEj9nTWqUFYkkttQnwrnWscak4C20VOLlCCHRHzb2YhGlSl2WCiuGmy1KndKxqNKxSlaqlWh1j62OqlSdZ01ahhuJZiDJ0aW9/OzM/kcl/1lj3/aeoP348zzEMqRelWoylNCShKtQ3C2ykycvmZJsfsIaRiGoVDff6nOwjKLyPdU5GePv/7s88XNyyojAfI0XcwXo/qVVGSsumjTNnP+9d1X5c2tsNJiaryMscaUZ5YaVarT/vxUh3B6H3NaPeQmT2/tM/E2ucz8WGkqRvjpOPdeBgdPuwjhoPtopkHHtB21knzE4qOOWk26Rhm/bJ2zFRKjFN2v0uLyGp6/hIugqwan89mZ4DJSZG0xfvHBUKgeI4+4zmbn46/gObWaHqRePXt6Df/Bwk/j/J58eP/3KveD1LWiDJR1WdLRY5istHN+cye234XVydF+cRLDMXvli1gnukvNkn59enX57Hew1OtoNSU4n48O5cW0phcvLiFicLrKNIncQQIfMURMIpUlGRuxEr/SRpxpxVue6RDu7uuvsqiPRrb7uObfrti3K/a/vGL7k5HwXToNTlsSJ+iik+0fbfBG9eeqUKOl3ZMuN+DIDG8L1XhO8n63e6UZ/4huGOT3eN3EiI3l3LYq19ox/ovcJi/3R+4EvnYGv4j8DW4fXtdeu04eKTH5bB6vxKdvbodCNaiN+OPNbh91UVUY0oOozy7b0al49vRaDcM/2B3kjA==
+api: eJztVc1u20YQfpXBXiKhpGwrPRQsgsJtg9QHNUHsnizD3JAjcpPl7GZnSUUVCOQh+gx9sDxJMUvJsfPTXnvIScJyfr75ZuabvYq6YVVcK+29uslUjVwF46NxpAq1Wq5yR3YHjGEwFQL3YaMrLCC2CGwaynsPlXXcBwQf3GDYODLUwOwSKRr6oVjTeR/bOVTaWobYGoatiS2YyOC2BFsX3lina4juDRJEBxZ1INi2pmrXVPIhjva+2BviqKnCW1OPJTTB9Z5BA+EWqp6j6zAAt663Nbx2hhZrmtK7YP7UUhTMNtrYXCBjnUFsAyI0OiLPizWdLeBn1AEDDBjMZgffwR0FszIBvI0enjyBteqW3VqVc/jw/q+pKsOg1wRwJCuPLj/yVhuu3IBhd2QwA8IBA2joWTBPr4s1LRdw2Rq0dUIFjuABA0cCuAio63KxpscLeL4liVE5b6iZeiNsY3jE4p0g3MadxxIqq00HXc8RArKzA0J0CbUmOAYHt4Gr3y4uQXt/rObR1K3addpQKloTbzFgDYmejQspDNLAYEjCudDAtsWAKY5hQNKvLNY/JoRve6HDREa7AY56x0f/XCrBGtiBlrhoGpL3xLCgrA1HQ01vuJWAgJ2PO6mntzEFmZGDiKQp5vjOcMRUVNCVxXmaiZ+QhltTP/nw/u8yFYPUdxiE8djimo7DlHeuRpiV2lq3vZWB7305vyOKp3/WYn2oWWDOdB/bNf369PLi2e9gaNDBaIpwtpx646Rd+fmLCwjora6wQ4pSKIjjI4aA0QSs11SbgJV0StfSk5J3vNDe397lL+cLlSnnBbpxdFGrQt19XByrWLkaVaa8DrrDiEEWfq9Id6gKNTGhMmVk41NX1Kc6cKVDg1GKM8FRgptcAr7tBakqYugxU1y12GlV7JVMmyoUx2CoUZnauNDpqArV96ZW43gjzuwdMbLYL09P5edh2l8edOE+6YlHpEFlqnIUkaJ4a++tqRITJ69ZQuw/QhrHcczU91/KszLMolkHKpLZ46+bfb6HafdkwoAc5avlahIzJRkZqz6YuEucf32VVXF9I6x0GFsnbWwwpp7FVhXqZDg70d6f3PmcPJjQ1L2NS8SbaBPzU6ZcdP3Tdh6kGY4Sfe79UcZCnXsd4m5a/egCZh9lodOkmzStMnXWVEiMkvQwSquLK3j+Es69rlrMl4tTwVVLko3B8EWDMVMDBp5wnS7OpifvOHaa7oUunz29gv9gofy00P3H4fh2yr6dsm+n7P9/yg53I+K7eOKtNiRy0Acryzxp4bUazlSmJl2785ZD8EARbzLVOo5iv9+/0ox/BDuO8jydOFHj2nDqoio22jL+i3rMXh4u3Ry+dgu/iPwN7u6f2EHbXoyUKH3i8pWI9fXNmKkWdS0ieb0/eJ1XFfp4z+uz8/bgXjx7eqXG8R9TgzPR
 sidebar_class_name: "get api-method"
 info_path: docs/api/app/sentin-8-app
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/app/instances/customer-mode?env_id=…` — enumerate the\ncustomer-mode (`allow_signup`) instances installed in an env (auth\nDESIGN invariant 12: the owner-API replacement for auth's retired\ndirect read of `sys.app_instances`)."}
+  children={"`GET /v1/app/instances/customer-mode`"}
 >
 </Heading>
 
@@ -56,6 +50,11 @@ Authorization (fail-closed, three gates):
    envs in an org where app is enabled; the query itself stays
    env-scoped so a foreign env is an indistinguishable empty result
    (no tenant-existence oracle).
+
+?env_id=…` — enumerate the
+customer-mode (`allow_signup`) instances installed in an env (auth
+DESIGN invariant 12: the owner-API replacement for auth's retired
+direct read of `sys.app_instances`).
 
 <Heading
   id={"request"}

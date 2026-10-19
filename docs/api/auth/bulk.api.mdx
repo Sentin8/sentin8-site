@@ -1,19 +1,11 @@
 ---
 id: bulk
-title: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
-each operation dispatches through the SAME per-user SQL paths the
-individual endpoints run (create/replace/delete; patch maps to
-replace) — no second write path, no partial-batch semantics beyond
-`failOnErrors`. Authenticated once for the whole batch."
-description: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:"
-sidebar_label: "`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
-each operation dispatches through the SAME per-user SQL paths the
-individual endpoints run (create/replace/delete; patch maps to
-replace) — no second write path, no partial-batch semantics beyond
-`failOnErrors`. Authenticated once for the whole batch."
+title: "`POST /scim/v2/Bulk`"
+description: "batch users provisioning (AUTH-5). Thin wrapper:"
+sidebar_label: "`POST /scim/v2/Bulk`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztWF1y2zYQvsoOXiJPoZ84adNhpw+O40zcJpVrydMHSRNCxNpETAIMAMrRaDTTQ/QOvUeP0pN0FqRE/cV2pulb/WIOCCx2v/3226UWzIsbx6IRc4nK2YQzU6AVXhl9LlnEpmV2yziz+LFE518aOWfRgiVGe9SeHkVRZCoJB7ofnNG05pIUc0FPfl4gi5iZfsDEM84kusSqgnaziF1WVmFq5BzMNcQX/cEQuuRJd3bcfVlmt3FnrB+1rXZSWZQUTX8VhaOYCktReYWOnNp417gorBVzxpnymLuHXe9rBLoY1nB1IM7Rp0bG38SF8GkMSqL26noOPkUo0LZLhxZmaKdj3doJ4sqhdTGH+OJq2L04GZ6+6b46e3s2PNvZ0l0ouYyP+FjHlJpzGUNirMVMeHQgILEoPIJFVxjtEKYiuQVvgguJyDK0TxxMhU/SsUbtrULHIZbCixiUC9vWET1xYDeg34W4ipZxRtHuo0zuvVeygXLEnLdK3zDOdJlldGIb09PgX9uVRCmU68CU0aAktDBJDUpQOri5DpHCmB912JIzioMu3LY73AlqcHr+Dn4a9H+pGNWqMOtaLDKRYGWpDq7hwdr3fdtvhsOLkFYiJ7l2Z0VRoGxy3pCEbAe8HmV5ZciiM6VNEOgotOId2oCxEHc6nS2KdNhyyZlXPqNLBonKia9r7ge49i4MzGjcddAKYN0pi6BFjhA3xRNXSF0LlfX1mbXGus1kK+3xBu1Gtq+NzYVnEb16drwX8DvxCchYadHBFK+NxYBm5ZPzpnDQunx9Ci++e/4c/vrzWefFUQd68COUOlO58iiJornSKi9zFvWWvFaiLb9Whb7yarfg63TswROAqOzB1eW5g1ayzVcOSlchKqNF9pkE1GLGlvSyKSdvSwwLFamDQ8e93j6ZL9C21/khYpSZd4x/PUleCcdDmvyYfTuKscoGZ954kb1veMY4c2WSIEokRSEahIf/WsYPoVkJSmes73l5rxRy5rzw5QGXv1wTqShr3duWwy9WqdrKWqy+UIrq43QgnFwx9bDckvIFRbRbPGkZG0o61BKSZEAh5pkRstKSGrfGoUZEHhCPEFZ1fN1ugwOp0DJDC4U1skz2JOI+ibwMGd9XgoMl+EilRHkwup3hotFfnwoPFn1pNUoQukativRhuftsPTxW5aq0rEvz3/gOwYxzn3N+TxMevmxIRzbblSunufL7neCgENcEXgYpft57uk/laiIBUfqURrlKU6HOI51ymJRW+TmLRgvmaI/+PqLtURino9FkuVfSh5QS/v79j7rR0cDgiK4z5ZTRSt9A6+Rq+Kb97VEHhqnS9VRgo7FGsdmtQSpXkA0k7K0pb9Kq2k7enTWzyODXt6GKQ52MtdJSzZQsRQaoZWGU9g5sqXfHoq7EDD3+AOEGyEXhwJuxXk1NIQJtwGFitIQ7q3w1rnBaLYT1SmTtupdjLghOavNzo+VYx5tTRNyBkwZxlGB0gnBda8ddarJ6KAhJriWQFcb5lQJHbAtexhn1wcvmI+bsk8iLDHfbyGhDohsxXF+xXqkvWRXRZHcK6m2UIrvSt9rcaRjOC4wgFCQPYr/kjCaGwPOanDWF2kShPbYPqpdQ/48IpAB79aHh5xz6tNbtn7867b4+uTjn4NARixyHn377eRCYbIiwBF2mEqwVnBSLRrDzIfQv4aQQSYrt406PlKP6ilFoD25YcjZD6yoPe52n1RIlIxd6w/T/rP+arN8ixlomPX7y3SITKkz3pc3oXcXV+vuesxn1zlAUE85SqploxBaLqXB4ZbPlkpY/lmhJ0iaczYRVYkrcHE2WnKUoJBFhtGC3OCeFrMbONpGbrIusDG1ndwRd8tWJkyTBwt+7d7JRc0Qbxtm0/uUhN5LOWHFHI5i4YxFj9JvFumOEtQXLhL4pxQ3trWzS3z+g++Sx
+api: eJztWNty2zYQ/ZUdvESeQpc4adNhpw+O40ycS+Va8vRB0oQQsTYRkwADgHI0Gn1P/6Nf1lmQEnWLL9P2rX4xBwQWu2fPnl1qwby4cSwaMZeonE04MwVa4ZXR55JFbFpmt4wzi19LdP61kXMWLVhitEft6VEURaaScKD7xRlNay5JMRf05OcFsoiZ6RdMPONMokusKmg3i9hlZRWmRs7BXEN80R8MoUuedGfH3ddldht3xvpR22onlUVJ0fRXUTiKqbAUlVfoyKmNd42LwloxZ5wpj7l72PW+RqCLYQ1XB+IcfWpk/ENcCJ/GoCRqr67n4FOEAm27dGhhhnY61q2dIK4cWhdziC+uht2Lk+Hpu+6bs49nw7OdLd2Fksv4iI91TKk5lzEkxlrMhEcHAhKLwiNYdIXRDmEqklvwJriQiCxD+8zBVPgkHWvU3ip0HGIpvIhBubBtHdEzB3YD+l2Iq2gZZxTtPsrk3mclGyhHzHmr9A3jTJdZRie2MT0N/rVdSZRCuQ5MGQ1KQguT1KAEpYOb6xApjPlRhy05ozjowm27w52gBqfnn+D9oP9bxahWhVnXYpGJBCtLdXAND9a+79t+NxxehLQSOcm1OyuKAmWT84YkZDvg9SjLK0MWnSltgkBHoRXv0AaMhbjT6WxRpMOWS8688hldMkhUTnxdcz/AtXdhYEbjroNWAOtOWQQtcoS4KZ64QupaqKyvz6w11m0mW2mPN2g3sn1tbC48i+jVi+O9gD+Jb0DGSosOpnhtLAY0K5+cN4WD1uXbU3j108uX8NefLzqvjjrQg1+h1JnKlUdJFM2VVnmZs6i35LUSbfm1KvSVV7sFX6djD54ARGUPri7PHbSSbb5yULoKURktsu8koBYztqSXTTl5W2JYqEgdHDru9fbJfIG2vc4PEaPMvGP835PklXA8pMmP2bejGKtscOaNF9nnhmeMM1cmCaJEUhSiQXj4r2X8EJqVoHTG+p6X90ohZ84LXx5w+emaSEVZ6962HD5ZpWora7F6ohTVx+lAOLli6mG5JeULimi3eNIyNpR0qCUkyYBCzDMjZKUlNW6NQ42IPCAeIazq+LrdBgdSoWWGFgprZJnsScR9EnkZMr6vBAdL8JFKifJgdDvDRaO/PhUeLPrSapQgdI1aFenDcvfdenisylVpWZfmP/Edghnnvuf8niY8fNmQjmy2K1dOc+X3O8FBIa4JvAxS/LL3fJ/K1UQCovQpjXKVpkKdRzrlMCmt8nMWjRbM0R79c0TbozBOR6PJcq+kq35Gc4EjVs6UU0YrfQOtk6vhu/aPRx0YpkrXzd9GY41isymDVK4gG0gQW1PepFVRnXw6a0aOwe8fQ7GGchhrpaWaKVmKDFDLwijtHdhS704/XYkZevwFwg2Qi8KBN2O9Go6gDdqAw8RoCXdW+Wom4bRaCOuVyNp1w8ZcEGbUy+dGy7GON0eFuAMnDawowegE4boWiLvUZHXnD5msdY4VxvmVzEZsq9swzqjZXTZfKmffRF5kuNsrRhs63Cje+or1Sn3JqlImu6NOb6Pe2JW+1eZOw3BeYASh6nhQ9CVnNBYEMtcMrHnSJp7sUXpQvYT6f0QgQbv+lvBzDn1a6fbP35x2355cnHNw6IhBjsP7Pz4MAlkNcZKAy1SCtUiTKNGUdT6E/iWcFCJJsX3c6ZE4VB8qCu3BDUvOZmhd5V+v87xaolTkQm+YPjQC7Ma38e34fyE8vRBqPfT4zXeLTKgwxpc2I2ArvtYf8pzNqEmGwphwllLdRCO2WEyFwyubLZe0/LVES9o14WwmrBJT4udosuQsRSGJDqMFu8U5SWGVtjYRnKyLrAz9ZXfWXPLViZMkwcLfu3eyUXdEHsbZtP6JITeSzlhxR7OWuGMRY/TjxLo1hLUFy4S+KcUN7a1s0t/fLH/YPg==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:\neach operation dispatches through the SAME per-user SQL paths the\nindividual endpoints run (create/replace/delete; patch maps to\nreplace) — no second write path, no partial-batch semantics beyond\n`failOnErrors`. Authenticated once for the whole batch."}
+  children={"`POST /scim/v2/Bulk`"}
 >
 </Heading>
 
@@ -45,10 +37,10 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /scim/v2/Bulk` — batch users provisioning (AUTH-5). Thin wrapper:
+batch users provisioning (AUTH-5). Thin wrapper:
 each operation dispatches through the SAME per-user SQL paths the
 individual endpoints run (create/replace/delete; patch maps to
-replace) — no second write path, no partial-batch semantics beyond
+replace) - no second write path, no partial-batch semantics beyond
 `failOnErrors`. Authenticated once for the whole batch.
 
 <Heading

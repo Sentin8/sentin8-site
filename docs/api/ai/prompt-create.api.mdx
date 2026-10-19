@@ -1,11 +1,11 @@
 ---
 id: prompt-create
-title: "`POST /v1/prompts` — create a new prompt version (immutable per version)."
-description: "`POST /v1/prompts` — create a new prompt version (immutable per version)."
-sidebar_label: "`POST /v1/prompts` — create a new prompt version (immutable per version)."
+title: "`POST /v1/prompts`"
+description: "create a new prompt version (immutable per version)."
+sidebar_label: "`POST /v1/prompts`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVls2O2zYQx1+FmFMDaL1et4dCQQ+bIIc9FAk2m14MwzuWxjazFMmQI3/AENCH6BP2SYrRhyV/bIsCObS+WCaHw9F/fn/SB2BcRUingBpmCThPAVk7+5BDCj64wvMoC4RMkECgbyVFfufyPaQHyJxlsiyP6L3RWb3y9mt0VsZitqYC5Yn3niAFt/hKGbd5dKBc9rVYSOq4j0zFnGknAYXLycx90AWGvdTlg1TGmqLkK3A3Z/dCNvbZp6At04oCJGBLY2TV0oUCGVKZ+nECVZd4icYsMHsZro4ctF0dF1fnRfSv0UZWSVP7tQkX9Erby6kEcopZ0F6EghSevUGWKp9VcNuoMJByGwrboJnJqsVekQ3OmLfqmcmi5TbQ0oaChI/q7Ur2Jc+Pglenel6rkKmoW10GGqpgy2JxXcLclQtD9VLnTGx2KSOF1/fYUIja2X/Vo3OFPuwELM2qTfZWuUKz+kVZ2h0H1dIFxWtS0pARVFKkZiPVfPGRAn+qQX5s8IVKAnoGOZRUD0TvbGwIm4zH8nVay/vaB7lqbNFtDsn3MYLOIenc0Kc+9UWv9zmeXVsSiIxcykMLYQKNf/M58qWVBnPXWqjzaxAfe1aWOq9t9X815CvmaSS8Fv2f9NVA6XOFB1boTJC5kIsHqgR+mkwuMf8Njc5rgtUStaG8zhIpK4PmPaTTA0SyrO3PKeq0MUMqJ5a86ayaXRxynz5+flK3m7vbJjY+qz9//0M15ClUlrZnllI/6KIoGReGlKfQDb8ZCfbEa1dfTi6KDTzyGlIYpIcExHmP/WX1YYeFN3R+dYwv8eupO4NtgGPNWP+7Q2sw8g/HcR95Qsv4NQT6+GPnx+JNu3Q1A21/26bcoL44RT83U6r9Tu8f6hZ0t4+6f1AZelxoo3mvDO4piNZGZ2RjrVv71r8+PKmPj+reY7amm8loDHJGSNalpnA1YAgsjEd3zZB0r0A7SP19MTl5/6NPRM9bb1BbqaEMRuYagqawuYMEOoZmCawFsHQKh8MCI30Jpqpk+FtJAsR0lsAGg5bda+4TWBPmIsL0AC8kzLxv7oWbJ9ldwk0pVVzcEVXSrbjPMvL8t7GzgQdEMkhg0f4hE2YhhYBbuVtwCykIjrUK9XFWjx3AoF2VuJLYJqd8/gK2unvE
+api: eJzVls2O2zYQx1+FmFMDaL1et4dCQQ+bIIc9FAk2m14Mwx5LY5tZimTIkT9gCOhD9An7JMXow9La3hYtemh9sUwOh6P//P6kj8C4jpBOATXMEnCeArJ29iGHFHxwhedRFgiZIIFA30qK/M7lB0iPkDnLZFke0Xujs3rl7dforIzFbEMFyhMfPEEKbvmVMm7z6EC57GuxkNTxEJmKOdNeAgqXk5n7oAsMB6nLB6mMNUXJV+B+zu6ZbOyzT0FbpjUFSMCWxsiqlQsFMqQy9f0Eqi7xCo1ZYvY8XB05aLs+La7Oi+hfo42skqb2axMu6LW2l1MJ5BSzoL0IBSksvEGWKhcquF1UGEi5LYVd0Mxk1fKgyAZnzFu1YLJouQ20tKUg4aN6u5J9yfOT4NVLPa9VyFTUrS4DDVWwZbG8LmHuyqWheqlzJja7lJHC63tsKUTt7N/q0blCH/YClmbVJnurXKFZ/aQs7U+DauWC4g0pacgIKilSs5FqvvhIgT/VID82+EIlAT2DHEqqB6J3NjaETcZj+XpZy/vaB7lqbNFtDsm/YwSdQ9K5oU/90he93ud4dm1JIDJyKQ8thAk0/s3nyJdWGsxda6HOr0F86llZ6ry21f/VkK+Yp5HwWvR/0lcDpc8VHlihM0HmQi4eqBL4YTK5xPwXNDqvCVYr1IbyOkukrAyaD5BOjxDJsrY/pqjTxgypnFjyprNqdm7hBjGFytLuzDvqO10UJePSkPIUuuE3I+GbeOPqW8hF4d0jbyCF2+3dbZNEGBeLPfa30oc9Ft7Q+R0xvuSsx+uMqgF3NUz9746hwchfnLt95Assxq/1uo8/tXgsJrQrVze7bWSr/g3qi+PyczOl2u/0/kH9/utvqrtm1P2DytDjUhvNB2XwQEG0NjojG2vd2rf++eFJfXxU9x6zDd1MRmOQw0CyrjSFqwFDMmE8umuGpHsF2kHqxaePn5/UoI+L89cY/LX4p/S0xhBdb71BbaWWMhhJ3pA0he0dJNCxNEtgI6ClUzgelxjpSzBVJcPfShIwprMEthi0bFeDnsCGMBcxpkd4JmHnfVP2zZPsLuGmlCouLoUq6VbcZxl5/tPY2cALIh0ksGz/gQm7kELAnVwmuIMUBMtaxvr8qseOYNCuS1xLbJNTPn8ACFB1AQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/ai/sentin-8-ai
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/prompts` — create a new prompt version (immutable per version)."}
+  children={"`POST /v1/prompts`"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/prompts` — create a new prompt version (immutable per version).
+create a new prompt version (immutable per version).
 
 <Heading
   id={"request"}

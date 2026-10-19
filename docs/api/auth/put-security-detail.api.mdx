@@ -1,15 +1,11 @@
 ---
 id: put-security-detail
-title: "`POST /v1/admin/security/detail` — the detail-page submit: write the
-individual `require_*` flags onto the env row **without** touching the
-high-level selection. Only the provided fields change (partial update)."
-description: "`POST /v1/admin/security/detail` — the detail-page submit: write the"
-sidebar_label: "`POST /v1/admin/security/detail` — the detail-page submit: write the
-individual `require_*` flags onto the env row **without** touching the
-high-level selection. Only the provided fields change (partial update)."
+title: "`POST /v1/admin/security/detail`"
+description: "the detail-page submit: write the"
+sidebar_label: "`POST /v1/admin/security/detail`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdV81uGzcQfhViTraxlpykh2JvrtMCThvYsF3koAgyvTvSMuGSDDkrWRAW6KkPUPQJ8yTFkCvJ61UC1Oipukjiznzz/w13AyQXAfIJyIYqmGZgHXpJyprLEnJwDc0CFo1XtJ6VSFJpyMBJL2sk9Ky5ASNrhBxI+gXSDM1ypkrIQBkGkFRBBiWGwivHuDtJgWYpVImG1FyhH0EGHr80ymMJOfkGMwhFhbWEfAO0dshuBvLKLCAD02gN07adJi0M9JMt1yxaWENoiH9K57QqYjjjT4FtbwaYYB8+YUEDJ+8qFCni07mWiyBWXhGKo7n1tXiw5VrYuaCdkHBygcejj+YmeZNE5taLbf6SHIfpPGeZFAZ2o5aPM7Kf0cy0miMpTuY+YGUIF+h3EWfADkiCnB+9eT3w+718VHVTiwgptpAjaDlRc4+hmnlLMknv7TxYq1GaJ3aG6ej0xVa/A401m5XOun8PGHXF22t73QOriNwsqIWR1PiUppfgMozYw/RMqPBiWBX6UJ+kr1+K9e785n0fbEUzZcjb4LB4WZU65A93ogfUM1OTfnH8rNsDc9K/FMtJP4K2zYAUaR7H225c3sZx6aYJ2rZ9Tg/xIDhrQmqQ12dn/NU3lVBEmuBA1mMpjpz0pKQWjSsl4TFk/yVneDQlsplKLapTjUvUIqBOJWDbCxTO41xpLcbi4rdLsUSv5msRKuk6BklRCSfX2sqyxyI7qD5fTmDHu87budIIGeAjoQnKmsB/zHLm7WqGjypQ4KL0aajT38e4o9od4TRNNNCP+TmLtwNTe8h9YzzLm29QrCo0kVAZ0duVSOriaC51QPH1z7+E05Ii/5Y4l40moUyFTMsl5+1uoJu82Wdh74n0Xq55SRHWYRh0e6iye6CIa5fotVx/ZzsdAum0IsK2UgdyPlTshA8Py+22K7a9wwPTZvDD2ZvhTFxIrdELLYvPISacd7+QZa2MCIV1GE1sGy6u+MD1NT/mLJlHScgn03YQ4f311e2dGC9fjaPQeAsyTsvvXnz94+8nS/M0TkNoHmpFebdgqcKPRplSLVXZSC3utyRzct+NsTVke41ycrJSVNmGTk4E2aaolFkknEMzOBJXRq8jgPN2qUosxVyhLoMoKmkWOCAIHrUaqbLxSmQDxTsQVZDDN0OFDJg9bvZ3k58fZe1StQ+t/LND+zldg/ortn822JT9x3HL9Y/Stnp2Nlw6fYG0LvpnkfU7JlZmbmMfd43ZNcxpvFY+75Lb9FB03/k59x93RuIRWmfiis/GV5dvL8a/nF9fZiJgiKOXiXcffr2NLWs53VwbrQrkns93d9H3l3fi6kacO1lUePp6dMajviOpgwJtBkv0IXl4NnqVjrjatTRPoP+/Ld4r0o6SCB9p7LRUhvPReM3PUvdPYPkKMkh88IQxGCrOwDSDiscln8Bm8yAD/u512/LxlwY9U8s0g6X0Sj5w10w2UKrAv0vII+sPnNotaji66Zbfsfjm+8TBELYbwLCjS6kb/gcZfMb14C2mnbYZVChLbprJppO5SE6c3jHSHmNwc2izrcZ5UaCj78pOn3AMtxhk8NC90dS2ZB0vV7zz5Sr5a2NS4vKKZxvQ0iwauWDZhMmffwCyJOW6
+api: eJzVV81u20YQfpXFnByDkuykh4I312kBpw1s2C5yUAR5RQ7FTZa7m92hZEHgNQ/QR+yTFLOkJNNUDNTopbpIWs588//NcgsklwHSKciaSpglYB16ScqaqxxScDXNA2a1V7SZ50hSaUjASS8rJPSsuQUjK4QUSPol0hzNaq5ySEAZBpBUQgI5hswrx7h7SYFmJVSOhlSh0I8hAY/fauUxh5R8jQmErMRKQroF2jhkNwN5ZZaQgKm1hlnTzFotDPSLzTcsmllDaIh/Sue0ymI4ky+BbW8HmGAXXzCjgZP3JYo24lGh5TKItVeE4qSwvhILm2+ELQTthYSTS3wz/mxuW29akcJ6sctfK8dhOs9ZJoWB3ajk45zsVzRzrQokxck8BKwM4RL9PuIE2AFJkPKjd28Hfn+Uj6qqKxEhxQ5yDA0nqvAYyrm3JFvpg52FtRqleWJnmI5OX+z0O9BYs3nurPv3gFFXvL+xNz2wksjNg1oaSbVv0/QaXIYRB5ieCRVeDatCH+qL9NVrsT5c3H7sg61prgx5Gxxmr6tSh/zpXvSAemYq0q+On3V7YE7612I56cfQNAmQIs3jeNeNy/s4Lt00QdM0z+khHgRnTWgb5O3ZGX/1TbUoop3gQNZjLk6c9KSkFrXLJeEbSP5LzvBocmQzpVqWI40r1CKgbkvAtpconMdCaS0m4vKPK7FCr4qNCKV0HYO0UQknN9rKvMcie6g+X05hz7vO20JphATwkdAEZU3gP2Y193Y9x0cVKHBR+jTU6R9i3FPtnnDqOhrox/ycxZuBqQPkoTGe5c3XKNYlmkiojOjtWrTq4qSQOqD4+/tfwmlJkX9zLGStSShTItNyznm7H+i23hyycPBEei83vKQIqzAMujlW2QNQxLUr9FpuXthOx0A6rYiwq9SRnA8VO+Hjw3K364pd7/DANAn8dPZuOBOXUmv0Qsvsa4gJ590vZF4pI0JmHUYTu4aLKz5wfc3PKUumURLS6awZRHjYh6PY6KFeVIrSbndSiZ+NMrlaqbyWWjzs+OP0oZtQa8j2euD0dK2otDWdngqydVYqs2xxjo3XWFwbvYkAztuVyjEXhUKdB5GV0ixxMPs8RRVSaeNtxwaK1xsqIYXJ6nwSQ53sUjHZ34CYGG4P145fH2Xl2kIe2+Znx1Zve8Ppb8/+2WAJ9h/HBdY/ahfRs7PhPukLtJugfxYJvSNZZQobW7Trua4XRvHG+LwB7tqHovtOL7i1Rh1B0CYR13wyub56fzn57eLmKhEBQ5ypRHz49Ptd7EXLyebKaJUhN3O6v2R+vLoX17fiwsmsxNHb8RnP8J59jgo0CazQh9a/s/F5e8S1rqR5Av1wc313L35Y9YfnsT65af4/+77jHMJHmjgtleG81F5zaO0MTGF1Dgm0A/+EEjgTcRJmCZQ8NOkUttuFDPin103Dx99q9MwdswRW0iu54N6ZbiFXgX/nkEZafyGnJ7fddnsjfvjCcDSEHcUbdnQldc3/IIGvuBm8pjSzJoESZc7NM912MpetE6N7RjpgDK4GTbLTuMgydPSi7OwJ03CrQQKL7pWlsjnreLnmpS7Xrb82JiVup3i2BS3NspZLlm0x+fMPUlfX8Q==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/security/detail` — the detail-page submit: write the\nindividual `require_*` flags onto the env row **without** touching the\nhigh-level selection. Only the provided fields change (partial update)."}
+  children={"`POST /v1/admin/security/detail`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/security/detail` — the detail-page submit: write the
+the detail-page submit: write the
 individual `require_*` flags onto the env row **without** touching the
 high-level selection. Only the provided fields change (partial update).
 

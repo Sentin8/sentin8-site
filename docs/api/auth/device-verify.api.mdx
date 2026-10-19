@@ -1,13 +1,11 @@
 ---
 id: device-verify
-title: "`POST /device/verify` — the signed-in user submits the user_code to
-approve a device sign-in (RFC 8628 )."
+title: "`POST /device/verify`"
 description: "SEC-: this endpoint **requires a valid session** (cookie or"
-sidebar_label: "`POST /device/verify` — the signed-in user submits the user_code to
-approve a device sign-in (RFC 8628 )."
+sidebar_label: "`POST /device/verify`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVdtu20YQ/ZXBvNQ2KMk2isLgm+M4qFs0DmQnfZAMa8UdkRuRs8zuUrYgCOhH9Av7JcUsKVOxjKJAX6sXUnuZOXPOmeEGg8o9phO0qgkFPiSoyWfO1MFYxhTvrq8GKYTCeCDWtTUc4OTE0bfGOPKgYKVKo8GT98byyQkcZdYuDYF1U35HypE7HsJ9QaDq2tmV4RwaTw6Mh1DQ7uIPvl39648/YSZvj0bPEphZl8e3KSvWMCNeyV9QjiCoJTEsnK32AyXw8frL9bhfF6jkA8ytXidT9haWbJ9K0jmBXYCKeR8zqwlUaZkgUwxsobSck4NKCg52SexhYR0onrJycxOccut4dzjlnxXrkkDTymQEK3JmsR5igrYmp4TIG40pttuP7TYm2CF7Z/Ua0w1mlgNxkFdV16XJ4s3RVy86bNBnBVVK3sK6JkzRzr9SFvC1YOO9eiPiNm0PqtNOi+gvtYvwtRO8wZCXLP1Wn9IHZzg/SCnqdrX3ZM5JpG5FJ/22BTRxMGE95cxW5A+0hCNx33E0BUsFcVMKG05Z4sUokm2I222CwYRSYL6PWL7Eijs6cCsH+tKDaygu+Nqybys+Pz2Vx/e1tbHAm5wHhl/qgaPalqVUkjvFAZSrSEe6Y6sIsGNM/rWm2wjvx7cAfGbxK/fMYjx5dnjyo30hThhroaoS+mZlkCYX0jMVSMeYMdzZG4l7Kem5jqwJRk9Z40xYYzp5SLCiUFjxdm29WLFWocAUR60bRi9Wl4LHvd2vn1VVl/TKZjt7bRM0vLDRd52iXjDzxSDOqIMR1W5C90wvm1BEBnb+SuBW1ka3N++vRh8uP90kO6J8Ar/8/utdpMVKWdIgpcmIfUTHqpL0v93cw+0YLmuVFTQ4H55igm3whSH35oFtgityvkV4Ojxrl4SmSvFe6Nmn27t7+J6wWUQfG8HkTFqMF63um3llQjs4e3mCnXLnS1C7RtwZ9mj84Qoufjq/gOPha+b2Zs7/c/6/zPluPAZ6DqO6VIZF68aVQnHbEpNu+mO0hTTFQ4KFNE06wc1mrjx9duV2K8vfGnJdf62UM2ouLTB52CZYkNLit8kGl7TGFK9a/Qb3AkCOl40AOZg122R34zLLqA7/eHa/r8WdmOC8+0ZVbaM69SQfEvWEKcbPnNyOMzSubbBUnDcql7NtTPn9DYzo9bc=
+api: eJztVcFu2zgQ/ZXBXDYJZDsJFotAtzRJsdnFNoXjdg9WENPSWGItDVWScmIY+vdiKDl24mDRYw/ri2RqyHnvzZvhBr3KHcZTNKrxBT5EmJFLra69Nowx3t9cDWLwhXZAnNVGs4eTE0vfG23JgYKVKnUGjpzThk9O4Cg1ZqkJjE34AylL9ngIk4JA1bU1K805NI4saAe+oO3G31y3OoCZPB91NotgZmwe3hJWnMGMeCV/QVkCr5bEsLCm2j8mgk83X2/Gu3UBSs7D3GTrKGFnYMnmqaQsJzALUCHrY2oyAlUaJkgVAxsoDedkoRK63iyJHSyMBcUJKzvX3iq7DnuHCf+pOCsJMlrplGBFVi/Ww4QTDsB0zpQNNHf8XDOvtO+o71J7k3AnD4HaHiQ7Zd/R+OMVXPxxfgHHQ4zQ1GSVFOc2wxi72McuKUbY8/1gsjXGG0wNe2Ivr6quS52GnaNvTmq7QZcWVCl58+uaMEYz/0apx7cmGO+pGHTo0vZU+7TaUiZGeqElZqqt4PWanGTZfdqldN5qzg9SimN6IXY6zUns0yuVvW+rjNhrv044NRW5A4fAkTj6GAbAgj98ElrDhCd9TUByDbFtI/TalwLyOiD5Gvj2YmArATvi3jYUFlxt2HV8z09P5fGa2fXr8m7ZwFFtylJ45FaxB2UryoLYofkE2DFGP13RNsD7/T0AX1h6gHe6Yog8O4z8ZF5kG/RAVQm75meQoSGCp8pTFk4Mh529k3ZXRnqug2aC0FHaWO3XGE8fIqzIF0Z8XRsnNqyVLzDGUeeE0YvNhe54Z/WbZ1XVJb2x2NZabYSaFyZ4rq+nE8x8MQgz72DkdR+hf8aXjS9g8OKsCO5kZXR3e301+nj5+TbaiuQi+Ovfv++DKEZISWuUOiV2ARurSpL/czuBuzFc1iotaHA+PMUIu8MXmuy7AW2EK7Kuw3c6POuWRKRK8d7Rs8939xN4LdfsLcG9sfD/eP/Vxns/FT09+1FdKs1S6MaWUrauG6b90MfgCemHhwgL6Zd4ipvNXDn6Ysu2leXvDdm+tVbKajUX908f2ggLUpmYbbrBJa0xxqvOE4OJAJDwshEgB0OmjbY7LtOUav+fsfstLdbECOf91VR1PWrVk9wf6gljDLeb7A7DM6xtsFScNyqX2O5M+f0AKjAKLA==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /device/verify` — the signed-in user submits the user_code to\napprove a device sign-in (RFC 8628 )."}
+  children={"`POST /device/verify`"}
 >
 </Heading>
 
@@ -40,11 +38,14 @@ import Translate from "@docusaurus/Translate";
 
 
 SEC-: this endpoint **requires a valid session** (cookie or
-Bearer). The approving user is the session's user — `user_id`, `org_id`,
+Bearer). The approving user is the session's user - `user_id`, `org_id`,
 and `env_id` are taken from the session, NEVER from the request body,
 so knowledge of a user_code alone can no longer mint tokens for an
 arbitrary user.
 Handle device verify.
+
+the signed-in user submits the user_code to
+approve a device sign-in (RFC 8628 ).
 
 <Heading
   id={"request"}

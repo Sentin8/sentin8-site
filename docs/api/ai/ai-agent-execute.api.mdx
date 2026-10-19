@@ -1,17 +1,11 @@
 ---
 id: ai-agent-execute
-title: "`POST /v1/agent/execute` — controlled agent execution. The model
-emits intent only; this endpoint maps an allowed intent to a
-Sentin8:Flow workflow whose domain steps proxy-back to the owning
-service. `requires_confirmation` intents pause in a ManualDecisionStep."
-description: "`POST /v1/agent/execute` — controlled agent execution. The model"
-sidebar_label: "`POST /v1/agent/execute` — controlled agent execution. The model
-emits intent only; this endpoint maps an allowed intent to a
-Sentin8:Flow workflow whose domain steps proxy-back to the owning
-service. `requires_confirmation` intents pause in a ManualDecisionStep."
+title: "`POST /v1/agent/execute`"
+description: "controlled agent execution. The model"
+sidebar_label: "`POST /v1/agent/execute`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVs1uG0cMfhWClzjAWnacHIotcnD/AANOE9gOerANidqlpIlnZyYzs5IXgoCe+gBFnzBPUnB2Vz+W7Fx6rC8yZocc8uNHflxipGnA/BZJ4X2G1rGnqKy5KDFHUgOasokDfuSijowZOvJUcWQvRks0VDHmGMlPOQ7ZzIeqxAyVwRy/1uwbzNDz11p5LjGfkA6cYShmXBHmS4yNE/MQvTJTXK3u29sc4k+2bORGYU1kE+Vfck6rIkV38iVYI2d7ruz4Cxdx59VbdN5WLg5TsBlGCg+Sq/OSbVQc0kOk9ZiKh+GYAg9rrzdOb/sAMzS11mJbcii8chIL5vibtgvoHYA4gM9Xl2Dn7L0qGY5KnlCtY4BoIc5UgMB+rgp+FeTi6wGuMpwwxdrzAViynQT2vj+N5lO6DJ6nKkTfgFjBtz//ARUDjKK1OoyAvKcGVIA4Yzi/vPz4x+XF9Q3YCVAhfsKdkS+VLVlDRQ1wpSIcVeQcl5JGylnbqSoCzBXBKLCJyvwwIDVs32jT6kKfsw+qrVkPqjKRp+y3UJ1YX1HEXD69PRPrXWI9X5FVV9bvgnMzY6gD+1cBxACOKvZTLmGh4ixh0cb7KkBoQuQKIj9GyUReUFGL63PpiauWp7iSLxuyRV9zOgjOmtBS6+z0VH52A0lOQCV2y6MFh8DSO/8J41u/mOFE28UwlantTNLaLrjc53//YeN4bK1mMombO16+D7K1QhrnlJkK2iUctayCb3/9vcWcliFqne9+qUL0dSFtUfZQbVjpvC3rgsuB9PQLWLRPH8i4PT/YbzLl5NKmtmFYWDNRQtBdqzVMTxly0eaVXFDY5f4+fRfWPySYX+T5U6R/t4bhfY9NHypshwpkyoRawr1/Rlp/QSoqM70zygDBBzI16V+4UNKo15HdAK5txUeqfA3vN4aFZ4qC+oGWaEkvPbHK8N3p2wO0b3lgrHB/t+FkakCioVYh4fbu7Gzfw4dUfFtHV0fJQlwRzEmrniMpssBF7VVskkx1syknlRczivnCqyjw3q/2EB19+nh9AyfzNydJ+k466RulCSq96a3WXEL6Cu1XZc0Abnpi3hmZlaEvijW6+bGd+mxKZ5WJ0hsByEDXdGtuW6A7c90Fu1uvxcwGhtJWpAyEyC4Ico/NcdKcpCsMdmFSQTt5GcDoIHtH3YMBHNWB4bn6Y4YVx5mVXcDZEJP+xxnmuIcPZigT6mqj3r8+UuU0P6OtG2KvdW9ztCN3e8drKTnd04fN3VYNtlpamYlNjdUxtqPEMam98dUVAPpCnF+k4jtNURQKzi+gIEdjpVVsQFPDXqDSqmBhf75eiz5c3MDHKzh3VMz4+GxwKqtRKV4niv3BC6sM1/nh6eBNeyTgV2S2XP9P0x2a7hRwPZpFu0+cJpVErNvpWgbf4vyNyOG0lcmexfcZzoTo+S0ul8LWz16vVnLcbrMyTEoVaKy39tkHbg7swHPStQSBMmPm5JUYpZmT4YypFALcLjvjn1vRP76RwDe2ewvAKustzouCXXzx7v1W+wpdMMNxt1YLAzBHTwsRS1pInLL9p9VPLqSzJWoy05qmcrf1KX//Ai09TRA=
+api: eJzlVs1uG0cMfhViLnGAtfyTHIotcnD/AAN2E9gOerANidqlJMazM5OZWckLQUBPfYCiT5gnKTi7qx9LSS691RcZsySH/PiR3yxVxGlQ+b1CVo+Zso48RrbmslS5Qh7glEwc0DMVdSSVKYceK4rkxWmpDFakchXRTykOycyHXKpMsVG5+lyTb1SmPH2u2VOp8gnqQJkKxYwqVPlSxcaJe4iezVStVo+tNYX4ky0bsSisiWSi/IvOaS5SdiefgjVythfKjj9REXduvVfO28rFYUo2UxHDk9TqvFQbmUK6CLUeY/E0HGOgYe31Juh9n2CmTK21+JYUCs9OclG5+k3bBfQBQALAx5srsHPynkuCo5ImWOsYIFqIMw4QyM+5oFdBDF8P1CpTE8JYezoAS7ZTwN73l9l8SMbgacoh+gbEC778+Q9wDDCK1uowAvQeG+AAcUZwcXX1/o+ry9s7sBPAQuKEByNfKluShgoboIojHFXoHJVSRqpZ2ykXAeaMMApkIpsfBsjD9o62rC71OfnAbc96UNlEmpLfQnVifYVR5fLpzbl47xLr6x1ZdW39Ljh3M4I6kH8VQBzgqCI/pRIWHGcJizbfVwFCEyJVEOk5SiVyA0ctoS9kJm5anqqVfNmQLfqa0kFw1oSWWuenp/Kzm0gKApzYLZcWFALJ7PwnjG/jqkxNtF0MU5vayUSt7YLKff73HzaBx9ZqQpO4uRPl+yBbK6Rxjs1U0C7hqGUVfPnr7y3mtAzhdb37rQrR14WMRdlDtWGl87asCyoHMtPfwKK9+kDF7fnBeZMtJ0ab3oZhYc2EhaC7XmuYXjLksq0rhcCwy/19+i6sf0owf5PnL5H+3RqCdz02faqwnSqgKRNqCff+Ghn9BXJkM30wbADhGk2N+hcqWAb1NpIbwK2t6IjL1/Bu41h4wiioHxiJlvQyE6tMvT19c4D2LQ+MFe7vDpxsDUg01BwSbm/Pz/cjXKfm2zq6OkoVEgphjpp7jqTMAhW159gkmep2U46cFzOM+cJzFHgfV3uIyvh5qzWVkLQPWu1jawZw13Pvwcg6DD3u1ujmx3axkymdZROF/gHQQDdXa/pawAdz2+Wz25LFzAaC0lbIBkIkFwSc5+Y4yUqSDgK7MKlnnYIMYHSQoKPuwgAO60DwtRarTFUUZ1bk3tkQk8THmcrVyfzsJCFwslF/WUI3G4H+9Rkrp+kr8rnh7lraNkc7irZ3vFaL0z0J2Ni2C39ratlMbJqdjpRd14+R9zZU1wDoG3FxmRTSaYwiQnBxCQU6HLPm2IDGhrxApbkgIXi+fvlcX97B+xu4cFjM6Ph8cCqvn1KiTpj8QYNVptb1qdPBWXsk4FdotkKPPry/vYO9NoxeFrP1SPofsrfbwiLTJ04jJ73qnm8tk+/V/EyUb9oqYs/mx0zNhPD5vVouhbUfvV6t5Lh9uMreKDngWG89XZ+oOfDcnaOuJQkl62SOnsUprZdMzQhLIcL9snP+uW3W8Z0kvvHd0/pV1ntcFAW5+E3bx60xFtqoTI27F7S0XOXK40J0EReSpzz00ytPDNLZUmk00xqnYtvGlL9/Aa92RDE=
 sidebar_class_name: "post api-method"
 info_path: docs/api/ai/sentin-8-ai
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/agent/execute` — controlled agent execution. The model\nemits intent only; this endpoint maps an allowed intent to a\nSentin8:Flow workflow whose domain steps proxy-back to the owning\nservice. `requires_confirmation` intents pause in a ManualDecisionStep."}
+  children={"`POST /v1/agent/execute`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/agent/execute` — controlled agent execution. The model
+controlled agent execution. The model
 emits intent only; this endpoint maps an allowed intent to a
 Sentin8:Flow workflow whose domain steps proxy-back to the owning
 service. `requires_confirmation` intents pause in a ManualDecisionStep.

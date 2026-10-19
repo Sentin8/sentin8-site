@@ -1,15 +1,11 @@
 ---
 id: admin-create-table
-title: "`POST /v1/admin/tables` — create-table form submission (RFW renderer
-only supports POST). Delegates to the main create handler.
-Handle admin create table."
-description: "`POST /v1/admin/tables` — create-table form submission (RFW renderer"
-sidebar_label: "`POST /v1/admin/tables` — create-table form submission (RFW renderer
-only supports POST). Delegates to the main create handler.
-Handle admin create table."
+title: "`POST /v1/admin/tables`"
+description: "create-table form submission (RFW renderer"
+sidebar_label: "`POST /v1/admin/tables`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVsFuGzcQ/ZXBnGxgLdtpD8XeErtFDbhwKrvIQRGU0XKkZcIlNyRXjiAs0I/oF/ZLiiFXlmQZcY71xSty3syb4ZshNxhpGbCcIKlG27NO47RA17KnqJ29UVjmnVnlmSLPIs0NY4EteWo4shfwBi01jCVG8kuOM7armVZYoLZY4teO/RoLVBwqr1vxiyU+JFNgu4KT8e09VM5G/hZPsUDPXzvtWWEZfccFhqrmhrDcYFy3EiZEr+0S+36ajTnEd06txSK5sVE+qW2NrlIe55+DBN0cu3Lzz1zFI3bj7BXmTq1h4Tzk9FP2owOKE0yLs1SBApUOraF1/jktsPVSzKg5ZHama2zYi0/ekxRHR27C67zuLEN2AooX2mpZB7cAGhgqeJHjlh1FmqUIBdrOmHSYRyx3Vkclf87n1i11RQYEAmI6wl5sFtSZuINPdngJKyGf5ZU+yMD9n7cwwIG/tZ5D0M4mr1ljrzG6ytUR44zaprlDzp0zTPYI+qHmWLMHgQQgz0DGuEdWI+z7AqOO4maIcM2LnOqBqOvt8YRciH01vEpd0ANix39PXT/kINlv4fuskzweZHcQN/ayf9hsaSG0zoYshTcXF0kRz1pXQgx6w+KHe65PAX9+yeWNXZHRanB6lpNYON9gQvx0jLgiY9iDoepLAAI1hzSnIFSu5ZR54KrzOq7TgApso7a/lGpeJjssJ9P+SIaf3t/dP8D56vI8GZ0nHuET/Pv3P8fUIHTzRid9wsn4tw/g2Sr27D9aZ80aQte2zscA4vR0BNdseEmRA0QHsWZoSNvBLdRklWE/+mh/T19DNsPuU083HGsnQ7l1IaYxHGss8TljLFCqP97Nxl+/UdPmLngaQpODVt8X1dC+e12b5/tBF+euSqqZPpf6znJfv0+DW26GhUuCHuQ5nM+Zmh+p+j5vwfC/vH6XziNE31Wx86ygZR90iGwrBrdiD+9diEvPMkwedaxhfHsv1TO6YhtSEQZCf9w8wN0Y3rZU1Xz2ZnQho1hJoIVm/6JBX+BK4iVuF6PLvCTn0ZDdc/2/19JBlZ9Gi1zC560hbSWtzhvZyzKb4OoSi/we2J5skFleixjLCW42cwr8lzd9L8v54k8y00GMFZYLMoGPYj9NEDwZD/PoFL7zQniR6xdev/AEWZHpxBZFpCvyOst2Mu0LrJmUnPJkM4CvMo+zh3xFbrFHU60vtoi3VcVt/K7tdK9t5fiwwPnwWmmcEoynR7mv6VF4yvNL0Gn+prUNGrLLjpZim33K33+0sl6a
+api: eJzNVsFuGzkM/RWCpwSYOEl3D4u5tckuNkAW6TopenANlx7RHrUaaSppnBrG/PuC0jh27CDpcXPJWOIjH6lHShuMtAxYTpBUo+1Zp3FaoGvZU9TO3igs886s8kyRZ5HmhrHAljw1HNkLeIOWGsYSI/klxxnb1UwrLFBbLPFHx36NBSoOldet+MUSH5IpsF3Byfj2HipnI/+Mp1ig5x+d9qywjL7jAkNVc0NYbjCuWwkTotd2iX0/zcYc4gen1mKR3Ngon9S2Rlcpj/NvQYJujl25+Teu4hG7cfYKc6fWsHAecvop+9EzihNMi7NUgQKVDq2hdf45LbD1UsyoOWR2pmts2ItP3pMUR0duwtu87ixDdgKKF9pqWQe3ABoYKniR45YdRZqlCAXazph0mEcsd1ZHJT/kc+uWuiIDAgExHWEvNgvqTNzBJzu8hJWQB3mlDzJw/+8tDHDgn63nELSzyWvW2FuMrnJ1xDijtmnukHPnDJM9gn6uOdbsQSAByDOQMe6R1Qj7vsCoo7gZIlzzIqf6TNT19nhCLsS+Gt6kLugBseO/p65fcpDst/B91kkeD7I7iBt72X/ebGkhtM6GLIV3FxdJEQetKyEGvWHxyz3Xp4C/v+Tyxq7IaDU4PctJLJxvMCF+O0ZckTHswVD1PQCBmkOaUxAq13LKPHDVeR3XaUAFtlHbP0o1L5MdlpNpfyTDo/AQunmjkwbhZPzXZ/BsFXv2X6yzZg2ha1vnY4CPd/cPpyO4ZsNLihwgOog1Q0PaDllBTVYZ9qMv9u/0NTAedp/6tuFYOxm8rQsxjdpYY4nnq8vzBDhPlgELlAqPd/Pvz5/UtFnpT4Nm8qyd94UztOheZ+YZ/qxTc+ckZUwP5byz3Nfo03CW6b9wSbSDBIczOFPzI+Xe5y0Y/pfXH+AMQvRdFTvPClr2QYfItmJwK/bw0YW49Czj4lHHGsa391I7oyu2IZVgoPPPzQPcjeF9S1XNZ+9GFzJslYRZaPYvGvQFriReYnYxusxLchoN2T3XX+XQ4fBcvh4mt3cp/T8ENmhBrtvz1pC2kl7njVDNYpvg6hKLfPNvzzfI1K5FkuUEN5s5Bf7kTd/Lcr7ik9h0EGOF5YJM4FdKcTIeJs8pvPIWeJHrd16/8NhYkenEFkWqK/I6i3cy7QusmZSc9mQzgK8yj7OHfBlusUfzqy+2iPdVxW181Xa617xyXljgfHiXNE4JxtOj3Mz0KDzloSXoNGnT2gYN2WVHS7HNPuXvPyWoVHA=
 sidebar_class_name: "post api-method"
 info_path: docs/api/db/sentin-8-db
 custom_edit_url: null
@@ -27,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/tables` — create-table form submission (RFW renderer\nonly supports POST). Delegates to the main create handler.\nHandle admin create table."}
+  children={"`POST /v1/admin/tables`"}
 >
 </Heading>
 
@@ -41,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/tables` — create-table form submission (RFW renderer
+create-table form submission (RFW renderer
 only supports POST). Delegates to the main create handler.
 Handle admin create table.
 

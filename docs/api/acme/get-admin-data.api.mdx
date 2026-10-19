@@ -1,11 +1,11 @@
 ---
 id: get-admin-data
-title: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
+title: "`GET /v1/admin/{resource}`"
 description: "Resources:"
-sidebar_label: "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."
+sidebar_label: "`GET /v1/admin/{resource}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdVMFu20gM/RWCl6aAHDttD4VuRpAGKdAWSFPsIWvU7Ii2ppFmVJJS1hAE7EfsF+6XLEZSG7cJ9gOqi6Th8JF8fGSPRnvF/BapqH1YtB43GRasTnxjPgbM8Zo1tuJY8z8DwAK2sWPpPN9vIT3//v0PaFvXJAdwJIXCyfka1MhazcDFNpg+nz0di/mdd2Ss29HTq7ZcLI4M4EPHwaIcYCexBisZztdQkBEUXtgl04ynbObDXrffE3GtCAcDF8PO76GjqmXFDGPDQqmeqwJz3LN9Huv9nFAxw4aEajaWREWPgWrGHGUuHDP0iYiGrMRf2VknnCm7o/vC31ovXGBu0nKG6kquCfMe7dAkbDXxYY/DsEmXtYlBWZP9xWqVXj8HuSn5B/ozBYn3CrsoIzfXb/4Aoy9VCutiMA6WAKhpqsSnj2H5VRNK/5DFMAxDhq9WLx+HOqeqYoGK3J0CBSBXp9hULEfGQF1sGEfvV4+9P4W7EO/DAxUpjrJrxdth5FY5mA+v84Sbj5CY324SDTVbGef2jD2xEnNcdmdT5GX/HXQYG7KLI53eqpHPCXaRYB/16ONkhPmdr1NNo/qCsQSqYH3+7gKORUitlTElDcrSsZxihpV3HJRT2Fkh765u4MM1rBtyJS9enK5SZkWKsvMsT14YMuxYdEpsdXo2HTVRraZwBL29vLiBp4qf5kbYWgkKBG8/fngPJEIHiDugIznGez39lYv+QSO/xWDP42T8ly2binxIbLZSpUonBd1id4bZtN8ww/yHNDcZllEt3ej7L6T8SaphSMffWpak1k2GHYkfhytpt/CavgvMd1Qp/w+1J9fzAngOTy+IJ/OeDykcMEWu2vSHGd7x4XgdDZshw5KpSBK77Wfz2jlu7Mjx0Qb4acguL25wGP4DgsIUSQ==
+api: eJzlVMFu20gM/RWCl20BOXbaHha6GUFadIG2QJpiD4lRsyPamo00o5IjZQ1BQD9iv3C/pKCkJG4T9Aeqi6Qh+R75SE6PifaK+RVSUfuwaD1uMixYnfgm+RgwxwvW2Ipjza8DwAK2sWPpPN9uwZ7/v/0H2tY1yQEcSaHw7GwNmii1moGLbUj6fI50LMnvvKPEuh0jvWrLxeLIAD50HFKUA+wk1pBKhrM1FJQICi/szDTjKafkw163d4m4VoRDAhfDzu+ho6plvQ7XQTi1EhQI/vr44T2QCB0g7mAsewKXeKsnmGFsWMhqf1tgjntOn0enz+aEGTYkVHNiMdl6DFQz5iizSJihN9EaSiX+rOT6iOzBX/hr64ULzJO0nKG6kmvCvMd0aAxbk/iwx2HYmLM2MSir2V+sVvb6keSy5Hv0P3SsCnZRRh0vXv8Nib5URutiSBySAVDTVKa9j2H5jxpK/5DFMAxDhq9WLx9TnVFVsUBF7kaBApCrjZuK5SSrutgwjtGvHkd/Cjch3oYHKYxH2bXi02HUVjkkH/7MDTcfITG/2pgMNacyzu0Ze5JKzHHZnU7My/4OdBgbsoujnD5Vo54T7MJgH/Xo42SE+Z2vraZxUkNiCVTB+uzdORwPLLWpjJY0KEvHYkNUecdB2WjnCXn39hI+XMC6IVfy4sXJyjIrjGXnWZ50GDLsWHRKbHVyOh01UVNN4Qh6++b8Ep4qfvtzef1D23+7vZ63KfG/adlU5IOJ2UplqkwDdIXdKWbTVYgZ5veTucmwjJrMo++/kPInqYbBjr+2LDasmww7Ej/ulo1u4dW+C8x3VCn/og3PLub9fw5P3w9P5j0fUjigMVet/WGGN3w4vo2GzZBhyVTYhF31s3ntHDfpKPDRBfDDjr05v8Rh+A60RSNZ
 sidebar_class_name: "get api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/{resource}` — returns a JSON array of admin data rows."}
+  children={"`GET /v1/admin/{resource}`"}
 >
 </Heading>
 
@@ -41,6 +41,8 @@ Resources:
   - `overview`     — summary cards (CA status, counts)
   - `certificates` — issued-certificate inventory from the CA data directory
   - `settings`    — current config values
+
+returns a JSON array of admin data rows.
 
 <Heading
   id={"request"}

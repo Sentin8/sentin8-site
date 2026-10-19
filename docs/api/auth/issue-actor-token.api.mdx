@@ -1,11 +1,11 @@
 ---
 id: issue-actor-token
-title: "`POST /v1/admin/actor-tokens` — issue an actor token."
+title: "`POST /v1/admin/actor-tokens`"
 description: "The caller must be authenticated (session cookie) and have the"
-sidebar_label: "`POST /v1/admin/actor-tokens` — issue an actor token."
+sidebar_label: "`POST /v1/admin/actor-tokens`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVttu20YQ/ZXBvNQBKMm3KCnfVNcB3DRVYKtoAVmQV+RQ3JjaZXaXsgWBQD+iX9gvKWaXkmjJTpAij9ULxeHMzu2cnVmjE3OL8RhF5XKcRJiSTYwsndQKYxzlBIkoCjKwqKyDGQErknIyEY5SOLJkrdQKEq3vJb0CoVLIxZLA5XSr7iyrqrcxW8UicdrE0tqK7sAmuiRYSgECHCmhHGgDZSFcps0CRLqQCowuqDc3uipv1RF1513YnqjNPPZKd9FToX5QZLxwZTtB41X3Vt19HN6MoLc86XlZzwfTcfqelL2Df/76G3xgIBT4T+A/dW/VVRC3ZBihLskILtJVijF6y6lXmXoVjNDQ54qs+0mnK4zXmGjlSDn+K8qy4PJJrXqfLNd5jTbJaSH4n1uVhDHq2SdKHO435DqcCjOdriDTJgTtPW9jY8/SUMptdcLMyU0rS2YqU/9RsMtJhKXhJJwky24b+S4A64xU84MA3hmijqNHB8HCB+FyArkoyVitfF5wtAkiAlGl0lHKPWA4BbMu1hF6COxcjnc+VVUUh2hskqe0Ac/RFpNgq5klBzrbi4VS4Nx/sMHEbqLwbz6IvQo9UwDGo3AYY1X5Eh5ShI3B6bbf7q0KJ4ePMmWEZpJMcOqKqaXEtpOXytGcTCv7rWOpXP/80DM3HAqZkZMLAqnAUqJVauFopiuVUsoxfRj8OR1cjIbX09Hw/eVv09Ho1+nN5cXNphLOFWxnu1hzYNIVnLwH/YBh5b00lceadXb4cqYiL7ClVjYA6fT4mB9PQx3s2BMQy3X8bpQI3qEUq0KL1CPyZUaIJCFrtzT1z0ANeiylITuVXr5PnMDuzfsBf54c+1UWceGDxeZKqfc9fDMQww31HNpaie1O3cHtazDLCZoTQKrvwpkvMWPTj28/NKCrfVwL0G0sB7wwmOsIz5/Da3O3SQtb6HjVk0PVUPZnp2OwOXvJphDJvYX9yRiupmB6fmjaLp3SDjJmus/UUlIZ6VYYj9f4dO7ywMN4PKknES7I5ZqHVqktk6kULscYnx+MGCHT8Xo3yy4fxaIsqD0ydg1qLvSdYB8oeJaJt6+z/nnn9ZuTN53z1/3TzuwsSzqnyY/9s6zfF5noY/t+PK4jlCrTHg9NL5vkOn5n2YfBTfgIzTMeVC4P490jw60iGLKsN7z6+aL3bvDxKoJmibER/PLH+xvfEs2l5LujkAkxWuI1KrFg9x+uRjC8hkEpkpw6p91jjHAHu2cV6giXZGyI8Lh7EkTcgYVQraP/45KyX4TWuvH/CvfSCtfcLrzL9MpCSMUtqUzB5QukGOPyhG9+T5/mft4QYxJhzgSKx7hez4Sl301R1yz+XJFhEk4iXAojxYwxO57UEeYkUgbIeI33tMIYL0KXOiMOhdWLikM6mIZ1tLEYJAmV7ou6bY5zwTDCWbOELnTKNkY88FAUDxij32XZOmyBLFtjIdS8EnPWDWfy71+kQ0C/
+api: eJztVm1v2kgQ/iuj+XKpZCCvtOdvXC6Vcr0eVcLpTgJEFnvA25hdd3dNgpD/+2l2DThAU0Xqx+OL8Xhm5+15dmaNTswtxkMUpctwHGFKNjGycFIrjHGQESQiz8nAorQOpgSsSMrJRDhK4cSStVIrSLR+lPQOhEohE0sCl9FIPVhWVR9itopF4rSJpbUlPYBNdEGwlAIEOFJCOdAGily4mTYLEOlCKjA6p87c6LIYqRNqz9uwPVGbeeyVHqKXQv2kyHjhyraCxrv2SD186d8PoLM863hZxwfTcvqRlH2AFviwQCjwH8B/aI/UbRC/kI3UUWWMUBdkBNfuNsUYvdbEq0y8CkZo6FtJ1v2m0xXGa0y0cqQc/xVFkXNVpVadr5bLv0abZLQQ/M+tCsIY9fQrJQ73+3QXToWpTlcw0yZk4z1vY2PP0lDK3XbCzMlNSktmIlP/UbDLcYSF4SScJMtua/kuAOuMVPODAD4aopajZwfBwgfhMgK5KMhYrXxecLIJIgJRptJRyq1hlAWzNlYRemTsXA53PlWZ54cgrZOntMbUyRaqYMupJQd6thcLpcC5/2KDid1E4d98EHsVOlIAhqlwGGNZ+hIeMoeNwemm3/ZIhZPDR5kycGeSTHDq8omlxDaTl8rRnEwj+61jqVz38tAzNxxyOSMnFwRSgaVEq9TCyVSXKqWUY/rc+3fSux707yaD/qebvyaDwZ+T+5vr+00lnMvZzrax4sCkyzl5z4Yew8p7qSuPFevs8OVMSV5gC61sANL56Sk/Xoba27EnIJbr+NMoEbxDIVa5FqlH5PcZIZKErN3S1D8DNei5kIbsRHr5PnECuzfvB/x5cewPWcSFDxabK6Xa9/BmIIYb6hjaGontTt3B7UcwywjqE0Cqn8KZ15ix6cfbDw3oah7XAHQTywEvDOYqwstjeK3vNmlhCx2venaoGsp+dGgGm4vv2eQiebSwPzDD1RRMLw9Nm6VT2sGMme4ztZSURroVxsM1vhzHPAcxHo6rcYQLcpnmoVVoy2QqhMswxuPzEiNkOt7tZtnNs1gUOTVHxq5B9YW+E+wDBS9m4sPVrHvZunp/9r51edU9b00vZknrPPm1ezHrdsVMdLF5P55WEUo10x4PdS/r5Fp+ldmHwX34CPUz7pUu46nvceFWEfRZ0unf/n7d+dj7chtBvdnYCP7459O9b4jmQvLNkcuEGCvxGpVYsPPPtwPo30GvEElGrfP2KUa4A91RhSrCJRkb4jttnwUR138hVOPoVzeX/UQbK8X/29sbt7f6YuE1plPkQiruR2lyrmrgwxCXZ3zpe+bUV/OGE+MIM+ZOPMT1eios/W3yqmLxt5IM828c4VIYKaYM1+G4ijAjkTI6hmt8pBXGeB2a1xpwKKyelxzSwSCsoo1FL0mocK/qNunNdcQIp/X+udAp2xjxxPNQPGGMfo1l67AAsmyNuVDzUsxZN5zJv/8ACCtEFg==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/actor-tokens` — issue an actor token."}
+  children={"`POST /v1/admin/actor-tokens`"}
 >
 </Heading>
 
@@ -40,8 +40,10 @@ import Translate from "@docusaurus/Translate";
 The caller must be authenticated (session cookie) and have the
 `sentin8:auth:actor:issue` scope via a tenant or platform admin role/group
 (e.g. `sentin8:org:admin`, `sentin8:org:owner`, `sys-admin`).
-`POST /v1/admin/actor-tokens` — issue an actor token.
+`POST /v1/admin/actor-tokens` - issue an actor token.
 Issue actor token.
+
+issue an actor token.
 
 <Heading
   id={"request"}

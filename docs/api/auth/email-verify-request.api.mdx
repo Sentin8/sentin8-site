@@ -1,11 +1,11 @@
 ---
 id: email-verify-request
-title: "`POST /v1/email/verify` — request an email verification token."
+title: "`POST /v1/email/verify`"
 description: "The email is scoped to the current tenant (resolved from the"
-sidebar_label: "`POST /v1/email/verify` — request an email verification token."
+sidebar_label: "`POST /v1/email/verify`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVc1uIzcMfhWCpwQY/yTIoTu3NE2x6Q8SJGl78AQxPUN7tNFIs5LGjmEM0IfoE/ZJCkrjdTZZ7F56a33xgKLIjx8/UjsMtPKYz5C6UONDhhX70qk2KGswx/uagRtSGpQHX9qWKwgWQs1Qds6xCRDYkAlw5NhbveYKls424lGY+XvrwxwmcP/LHdRMFTt/DAsuqfMcg3hq9glKMsDPygcgD1QYzy05CgydZwfKAFNZD9nGhSnM3eXFCP7+8y9g0zXsSCCPPC05h848GbsxKbIHMlVhSDumajtas1NLxdX+0HHonDmgme8K9IFC5wvMC/RsQoH9HHxNLRfmqHW8Vrbzegtn0zOYwNn0HTheM2mugMrSdiakStiUfDwGIdHX1oXH0lYMyhfGWNDWrNgN6ROtnZEusAmqpMAVlKQ1Ow9HUuqx1FoYFaQV2q5WQrV1UPEaNtY9LbXdxFKhYq3W7LiCtSK4k3jmu/zGeuHtPZlK7zmPXGzB8ceOfRhjhrYdmLyqMMfo9Zi8HgcvzHD4+t5WW8x3WFoT2AT5pLbVAl5ZM/ngRUI79GXNDclX2LaMOdrFBy4lzudau01RYWGrbawsZk/Jx0NW5bgStcYjkWvrBHFQ7CVBMh8y+eCUWb3JdBmLD3aoP3UoyqzpRH9JKamH48J8GoIx9n2GQQXN+yi/xwgDdOzl/IAzuI6jwbfW+ATxdDqVv88BnesNbT3Mk+5yENHN4ei1sI8x+/fITpigpa22VH2L8ITsLeMHXR9yzg68m07rL2+VeBHk4hj7bB//m62LV6PvV5qRSpNu9Bmenb57S/itLBatGiWTWjJXXMVwnsvOqbDFfPaQYcOhtjIHrY26bynUmONkfTKJVE0SV5ih0H97mIrLZ2pazS8kua+nz1CZpY2FDtB9GtBR3MCv6x2m99MUn3ehjktPVWIJ2wyuxTa5vvrhYvLj+c1VBp69V9b4DH764+c7kLhWipKealWycJPv0FAj6X+9uofrWzhvqax5dDqeYoYp+FKx+6JDn+GanU8Ip+OTZBKSGjIvQs9vru/u4TVd84h/2CFA5uUuGuQMwT6xGb9m48Wq+f9l+q+9TMNeCPwcJq0mZURznYvrPg3mDNcnmA0TFyUqw/mQYS3jm89wt1uQ59+c7nsxf+zYDZO+JqdoIeM4e+gzTIrAfLbDJ95ijhdJd6N7ASHuuhMwbzZwn+1vnJclt+Grvi83jEwKZrgYntQmLlR0tJE9TBvMMT7OcjtuyWjboSaz6mglvimm/P4BpSt36w==
+api: eJztVU1v2zgQ/SuDOSWA/JEgh61uaTaLZj+QIEm3ByuIx9LYYkORKknZMQz998WQcp0mRXvZY3MJTZFv3rx5M9xhoJXHfIbUhRofMqzYl061QVmDOd7XDNyQ0qA8+NK2XEGwEGqGsnOOTYDAhkyAI8fe6jVXsHS2kROFmX+wPsxhAvd/30HNVLHzx7DgkjrPEcRTsw9QkgF+Vj4AeaDCeG7JUWDoPDtQBpjKeog2Lkxh7i4vRjACNl3DjoTwyNOSc+jMk7Ebk3A9kKkKQ9oxVdvRmp1aKq72Hx2HzpkDl/muQB8odL7AvEDPJhTYz8HX1HJhjlrHa2U7r7dwNj2DCZxN34HjNZPmCqgsbWdCyoNNycdjEAl9bV14LG3FoHxhjAVtzYrdED6J2hmpAZugSgpcQUlas/NwJIkew6gwKkgZtF2tRGbroOI1bKx7Wmq7iYlCxVqt2XEFa0VwJ2jmt/zGetHsA5lK7/WOSmzB8ZeOfVJ0WAOZl2eEjrIGgn1iM8YMbTvofVVhjvHkY0J7HBAww2H13lZbzHdYWhPYBFlS2+oBc/LZi8126MuaG5JV2LaMOdrFZy4F51s/3g4MF7baRgVi9BR8PERVjitxdPwklm6dMA6KvQRI24dIPjhlVm8iXUYBgh10SnWMVmw6kSj5KVV6XJivjTLGvs8wqKB5j/JvRBioYy/fDzyD6zhu+NYanyieTqfy71tC53pDWw/z5M4cxJpzOHpt/2PM/j+xEydoaastVT8TPDF7q/jB/YeYs4PuptP6+5MnXgS5OMY+2+P/tHTxajz7g2Kk1KQafYZnp+/eCn4rw0erRkk/l8wVVxHOc9k5FbaYzx4ybDjUVvqgtdH3LYUac5ysTyZRqknSCjMU+W8PXXH5TE2r+YUl9/n0GSqztDHRgbpPjTyKU/p1vkOXf+328y7UMAJVye+wzeBadibXV79fTP44v7nKwLP3yhqfwZ+f/roDQbWSklRUq5JFmXyHhhoJ/s/VPVzfwnlLZc2j0/EUM0zgS8Xuuwf6DNfsfOI3HZ+kLZGoIfMCen5zfXcPr8Wav07xxfz49ST9epLePknDQAj8HCatJmXEbp2Lcz515AzXJ5gNrRbdKV35kGEtfZvPcLdbkOePTve9bH/p2A0tvianaCF9OHvoM0yuwXy2wyfeYo4XyZujeyEhx3UnZN6M3j7b3zgvS27DD8++HC3SJJjhYnhLmzhJ0dFGBjBtMMf4KsvtOB7j3g41mVVHKzmbMOXvP1ZCfaI=
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/email/verify` — request an email verification token."}
+  children={"`POST /v1/email/verify`"}
 >
 </Heading>
 
@@ -41,12 +41,14 @@ The email is scoped to the current tenant (resolved from the
 `Host` / TLS headers) because the same email can exist as a
 separate user in each tenant.
 
-SEC- — enumeration-safe: unknown emails and
+SEC- - enumeration-safe: unknown emails and
 already-verified emails return the same `{"status":"sent"}` shape
 (previously 404 / 409 revealed account existence). The short_code is
-no longer returned to unauthenticated callers (SEC-) —
+no longer returned to unauthenticated callers (SEC-) -
 it is logged for dev workflows and delivered via Sentin8:Post.
 Handle email verify request.
+
+request an email verification token.
 
 <Heading
   id={"request"}

@@ -1,19 +1,11 @@
 ---
 id: admin-path-action-policy-set
-title: "`POST /v1/admin/policy-sets/{name}/{action}` — path-param row-action
-dispatcher (enforce | shadow | disable | delete). One route shape serves
-all four actions (axum's matchit router cannot register `{name}/delete`
-next to `{name}/{action}` without a conflict).
-Handle admin path action policy set."
-description: "`POST /v1/admin/policy-sets/{name}/{action}` — path-param row-action"
-sidebar_label: "`POST /v1/admin/policy-sets/{name}/{action}` — path-param row-action
-dispatcher (enforce | shadow | disable | delete). One route shape serves
-all four actions (axum's matchit router cannot register `{name}/delete`
-next to `{name}/{action}` without a conflict).
-Handle admin path action policy set."
+title: "`POST /v1/admin/policy-sets/{name}/{action}`"
+description: "path-param row-action"
+sidebar_label: "`POST /v1/admin/policy-sets/{name}/{action}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVc1u5DYMfhWClyaA5yfbHgrdFr100RYJkvQ0GUy0MmesrixpJdrJwGugD9En7JMUtJ1JggkWu3PuybBIkZ/Ijx87ZL3LqFYYg7Nmj+sCQ6Sk2Qb/oUSFuqyt30TN1UYbOd2MnptMjAVGnXRNTEmCdOh1TajGT4HWo0K5igWWlE2yUSKgwqshBmRimHwTfW5sohIVp4YKzKaiWqPqkPdRYmZO1u+w74tDmhHQVxNdhwcY3eCM/DYkQ/AFcqXL8ABfoLRZf3RyVJIjpvMTkbBOO+IN+XZjyydAnxtK+yNEt4MrkG/h7Pr3GzDBMz3y92Vei3OOwWfKYn+3XMrndabL37DAIbxnseoYnTVDaxd/ZXHpnlP0fd8X+NPyx+M4v2jnKIHT5lMGrgji1D0TIkkZMJNpkuX9wIFMnq3/WcWQWY2uKpEuUa3WAvx18Pury5tbWLQXi4Fpi/HCLBPnRSfV7Rfd2MD+Hv79+x+QNs8G2kEKD7PRdudLm6NmU1H6tkbP4dITpNAwiVckyJRayndeOwfb0KSJNxnO9GNT/5ChlviWx0sJjPY+MCTa2Sz/9xPcMcH9nff0yMDhYHh+x4PlKjQMWrq/ddbw+fzO/6p96QiGOgzPfGJuPEzLHAusiasgoykFHkaQK1T4TSUcqLkNA6Usu4FTY7tmU7TX3bkZjTB91VXIPHShbhzbmam09+Sgppz1jqS2tqW0H2ppDQlcZw35TJJyGpY/PtzC5TW8j9pUNHs3XwqqUjJsLaU3HfoCW0p5BLWcX4xHArnW/kXo/9n0vWx61e+D0IgiLaLT1kudm+TENhJthe0FFuNeEPY9VxgLVJOaq0ma1wVWwiu1wq77qDP9mVzfy/EojqIXUzFLVFvtMh1BOigYnl1PAnkOX1HRN5/wifZvyHSrXSO+KLrU6mQFyOmgjrfam1imQ+33LyE8YRxuymo5CcIJ++4EjFN3+3VfYEW6lKlddZPxvTEU+cW1o70j1T6omEws9v1/fBD8Og==
+api: eJztVU1v3DYQ/SuDudQGtB9Ocih4C3pp0BY2bOe0Xuwy1OyKDUUy5Ej2QtF/D0aSv2LDSPfckyDOcObxzeNjh6z3GdUKY3DWHHBdYIiUNNvgP5WoUJe19ZuoudpoI6ubMXOTibHAqJOuiSlJkQ69rgnV+CnQelQoW7HAkrJJNkoFVHgx1IBMDFNuom+NTVSi4tRQgdlUVGtUHfIhSs3Myfo99n3x0GYE9Gajy3ALYxqckN+FZAi+Q650GW7hO5Q26y9OlkpyxHR6JBLWaU+8Id9ubHkP6FtD6fAC0fWQCuRbOLn8+wpM8Ex3/N86ryU5x+AzZYm/Wy7l87zT+V9Y4FDes0R1jM6aYbSLf7OkdI8t+r7vC/ywfP+yzh/aOUrgtPmagSuCOE3PhEhCA2YyTbJ8GDSQybP1v6sYMqsxVSXSJarVWoA/Ly5Tmw0qghRuZ+Osbnxpc9RsKkq/Nrc5nHuCFBomyYoEmVJL+cZr52AXmjTJIMOJvmvq3zLUUt/yuCmB0d4HhkR7m+V/28ls+8XYYHvjPd0xcHgIdGPBfgu3lqvQMGgZ5s5Zw6fzG/+n9qUjGC4QyDHvhRgfxD/HAmviKshNE76GG8UVKly0Z4th62JMn2XivPip9aC0XRgUYtkNEhnZn03VnpN9NQZh+qqLkBlmUDeO7cxU2ntyUFPOek/CrG0pHQYmrSEB66whn0kaTsr/59M1nF/Cx6hNRbN386VgKqX+zlJ6NaEvsKWUR0jL+dm4JIBr7Z+U3l6cX13DLxGx/fmo3aPw/5fY5B5iM4votPXCd5Oc0DTKbYXtGRaj2YsGH5nGAtVk0Wry23WBlahLrbDrvuhMn5Pre1keHU9MYGKvRLXTLtMb0zm5nFzvFN6wxleP8JUOr3hvq10juShm0+pkBcjxoF4+Va9imRa1PzyFcI9x2CnvxVEQjnjEjsA4Tbdf9wVWpEu5vatuCn40hiI/2fbiMRG2H7xMbi72/Q8K/emi
 sidebar_class_name: "post api-method"
 info_path: docs/api/post/sentin-8-post
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/policy-sets/{name}/{action}` — path-param row-action\ndispatcher (enforce | shadow | disable | delete). One route shape serves\nall four actions (axum's matchit router cannot register `{name}/delete`\nnext to `{name}/{action}` without a conflict).\nHandle admin path action policy set."}
+  children={"`POST /v1/admin/policy-sets/{name}/{action}`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/policy-sets/{name}/{action}` — path-param row-action
+path-param row-action
 dispatcher (enforce | shadow | disable | delete). One route shape serves
 all four actions (axum's matchit router cannot register `{name}/delete`
 next to `{name}/{action}` without a conflict).

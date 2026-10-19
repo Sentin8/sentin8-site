@@ -1,17 +1,11 @@
 ---
 id: ai-document-ingest
-title: "`POST /v1/documents/ingest` — chunk → embed → store (/).
-Chunk text lives in Sentin8:Storage (object per chunk under the document
-key), vectors + metadata in `ai.embeddings` with source refs.
-RLS env match + the caller's data_scope on chunk metadata."
-description: "`POST /v1/documents/ingest` — chunk → embed → store (/)."
-sidebar_label: "`POST /v1/documents/ingest` — chunk → embed → store (/).
-Chunk text lives in Sentin8:Storage (object per chunk under the document
-key), vectors + metadata in `ai.embeddings` with source refs.
-RLS env match + the caller's data_scope on chunk metadata."
+title: "`POST /v1/documents/ingest`"
+description: "chunk → embed → store (/)."
+sidebar_label: "`POST /v1/documents/ingest`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVs1uG0cMfhWCl9jwWrKNHortyXUSwECDBHaKHizBpnYp7cSzM5sZrmxFENBTH6DoE+ZJCs6ufu22L1BdJM2SHJIfv2+5RKFZxPwOyeA4Q99wIDHeXZeYI5lB6Yu2ZicD42YcBTNsKFDNwkHdluioZsxRKMxY7tnN702JGRqHOX5tOSwww8BfWxO4xHxKNnKGsai4JsyXKItG3aME42a4Wo07a47ysy8XalF4J+xEf1LTWFOk/IZfond69iKUn3zhQvZuvcMoPtCM7x9Z8xF+VoPal2y16iZo3WI4pgur1j3eR/ONd6IaJzzjoF7GmbqtMT9bZViS0H0sfLNrSyGQXmOE6/hKkRmWHItgGi0Ec7wiazm8iaDRIEUDEqGi4hLEg1QMKan4BmoWSmZHgSUYnpMduYZDbWI03sHUWOFwPNBbuvpeuz/6NhSsSG2e3q0fZ+haa3GsZjtdexHmsIpbdmLcj/lt5wQdDvDIC6i8LY2bpULWAwUKQkpzf3T+NaEE3H9mcmkDU7k45WcJVIg2kZ8Fjvr/EIUbqKhp2EVomyiBqQYfwDiQysSR60cQvv/+F8zPgYqCG4kp/8aSmvGz/ASf3r6HPqj23kQgeN+6An67vP0wcrUvW8tQeFdwcIqJlmDEau5v+z5cJ17ddBfiSk22gyuh5XQQG+9iN54XZ2f6tV/yOhp0NOUSjrqJgROYcyE+RFA0uTzWlv9wcfEyxrt6wmXCaUrGtoFTvpGLNhhZJLLHHmMyOa+t86dgRPEaK3n3Qz58+nj7GYbz8+Ea9jjsMnxIvU05wvc//oQULv1KacLR8HgwclfpeULPmjlHRehwzo76QWs49PFaV3LYG7aRe+TFcbZpxcmWR8bBA5nBppz4AE9GKugoAoGncTByN7/cArs51CRFBScdJXdp24kAeNfnsI4/UMVgqbzqaeN7BZUKc3ytLZihCtvNVgLfPVPdWD4UprN97dmQZbyh/ZYdO2zfOdzl9vb4gIw7DxL1djTEuKlPXOwHup+NUzL/JA0b6C6vE/qNJZn6UMPlNRTU0MRYIwuwtOCgfbOmYBdT6f1b5sP1Z/h4A5eNauPpxeBMVbbUqFPD4VWDVYZzDrFL5Gxw3h0pEjW5ndD/j+rgELeNzmpVwyR82rs2pJdKN8V3OD9Xv3XP0qs/TfI4w0rnPb/D5XJCkX8NdrXS424tUD0pTaSJ3VkMumk8XCbmZFvNA1Vh5hSMOiXFybBiKhX6u2XvfNXtC6efNfet74vdQWNtmKngY4aTfudQCmGOgZ50j6AnvVuXI/VOIpzOlmjJzVqaqW0XUz9/A0A1RIQ=
+api: eJzlVs1uGzcQfpUBL7HhtSQbPRTbk+skgIEGCewUPUiCPdodaRlzSYacla0IAnrqAxR9wjxJMdyVtJLd9gGqiyRyZjg/3/eRa8W4iCofK9RqminnKSBrZ29KlSvUg9IVTU2WB9ouKLLKlMeANTEFcVsrizWpXDGGBfE92eW9LlWmtFW5+tpQWKlMBfra6EClyudoImUqFhXVqPK14pUX98hB24XabKatNUX+2ZUrsSicZbIsP9F7o4uU3/BLdFbWXoRysy9U8MGpYxXZBVzQ/SNJPkzPYlC7koxU7YPUzZpiOrBq7ON91N+oF1VbpgUF8dJW102t8tEmUyUy3sfC+b4thoByjGaq4ytFZqqkWATtpRCVq2s0hsKbCBINUjRAZiwqKoEdcEWQkopvoCbGZHYSiIOmJZqJ9RRqHaN2FubaMIXTgZzS1vfa+dE1oSCZ1G53vN3OlG2MUVMx63XtRZjjKu7IsrY/5netE7RzgEdaQeVMqe0iFbIFFMgQUpqH0PnXhNLg/jOTKxMIy9U5PXPAgqWJ9Mxw0v2HyOShQu/JRmh85EBYgwugLXCl48R2EITvv/8FywvAoiDPMeXvDYoZPfNP8Onte+iCSu91BIT3jS3gt6u7DxNbu7IxBIWzBQUrM5ESNBvJ/W3Xh5vEq9v2QLURkz1wOTSUFqJ3NrbwvByN5Ouw5G00aGlKJZy0iIEzWFLBLkSQaVJ5Ki3/4fLyZYx39YzKNKc5atMESvlGKpqgeZXIHrsZo85pa50/Bc0yr6mQ9zBkygG+//EnJPP0K6UBJ8PTwcRep/00HaOXFGUCxzg66YDkKbQsgMaWFA7ANLGPtDrNdqWe7XmiLTygHuzSjQ/wpLmClgIQaB4HE3v7yx2QXUKNXFRw1lKuT8uW5OBsl8M2/kAUgbhyopfedQrJlcrVcHkx3CYYhzv9FOG63Uvcu2esvaFj4RkdasuODNMdrffo77G5t9jn7n75iGy9jUStnkZoO3eJax1gu9mfo/4n6u9Gd3WTmOMN8tyFGq5uoECPM200r8DgioL0zeiCbEyld7fIh5vP8PEWrrxo3/nlYCQqWkrUuabwqsEmU0sKsU1kNLhol2QSNdpe6IdPH+8+w2szeTiup3fn/E8Q3OmplDFMAic9bEK6PFo0j9XyQvq07V264hOip5mqBPf5WK3XM4z0azCbjSy317/oRqkjzkzvAdCi8vjRsETTSB5KlGSJQYtTUpZMVYSlQGC87pyv2xmdf5bc974v3ggSa8dQAYHK1Kx7WwiVVK4CPsl7AZ/kbHkEiXcS27S2VgbtosGF2LYx5fM3FdA6Sw==
 sidebar_class_name: "post api-method"
 info_path: docs/api/ai/sentin-8-ai
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/documents/ingest` — chunk → embed → store (/).\nChunk text lives in Sentin8:Storage (object per chunk under the document\nkey), vectors + metadata in `ai.embeddings` with source refs.\nRLS env match + the caller's data_scope on chunk metadata."}
+  children={"`POST /v1/documents/ingest`"}
 >
 </Heading>
 
@@ -43,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/documents/ingest` — chunk → embed → store (/).
+chunk → embed → store (/).
 Chunk text lives in Sentin8:Storage (object per chunk under the document
 key), vectors + metadata in `ai.embeddings` with source refs.
 RLS env match + the caller's data_scope on chunk metadata.

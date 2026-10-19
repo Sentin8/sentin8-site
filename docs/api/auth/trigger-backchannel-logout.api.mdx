@@ -1,13 +1,11 @@
 ---
 id: trigger-backchannel-logout
-title: "Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.
-Handle trigger backchannel logout."
-description: "Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`."
-sidebar_label: "Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.
-Handle trigger backchannel logout."
+title: "`POST /oauth/backchannel-logout`"
+description: "Handler - `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`."
+sidebar_label: "`POST /oauth/backchannel-logout`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzFVttu4zYQ/RVinlqAsp2bd1dv2bRF0wsSOF70wTESWhpJ3EiklqSSNQwB+xH9wn7JYkjJl9hZZIsC9YsFaubwcOYcjlbgRG4hnoEWjStgzkHXaISTWl2mEIMzMs/R3C1E8pAUQiks70qd68YBB4OfGrTuvU6XEK8g0cqhcvQo6rqUiYcZfrRa0ZpNCqwEPblljRCDXnzEhHBStImRNUVDDNOwJevQ2T9f/maZNJiypwIVE8yitVIrhiq1g1s1LZBt0QvsOt6Mthp0VAmDjtrl38kUODQWDT3NOdSGzu4kWn+aUqJy9GrNeAbWGaly4KCasqScXepX/kGUnrNBik4cc5pIS5WXyNao7Acc5AOWacMm15FU0knhMGWB/o+DWxVCmUxROZlJNANo+Tb5TSXXtDJtKuEghqbxp9ul1xfuGWRfgu/Go8RdsJaDk64kjPeblvzhz9T1FVqK2vTDmQb9gq21sqH2x6MR/T0r7uVPF4xQo4sAywIuc/oBFaukovoJlbIUS/mIhM7/K1FOOnosLC+kypkrkGVCRcTBoG1KR3JcR9ZiWWqR+hbv6XNfk4o2zYQsMRTaCVnafVn2LzaMhTFiCRykw8q+wl5Fr8LA+aBFNuLnsG/9u8ZI4GCdcM0Bii8kHJDXPrOt3M4K7MPk0sv0gCFfQjpsHTRGm+9wM/HxOcF44bSvOkWI3fXDhec08TUnvP2srrV+t04Im91I3eSeLU9K5U6OD+4fsqmplVSyaiqIR/7uCEb4N5CU+wzwW2bvXUBubzmcjk72DX2eVlKxvBEm9Rcm8TF0e7r1TUGck8ZIt4R4tvIHkOptTLMqFpQO8Wze7nXuV6HSEo1Hvb++upmyoZ9vwy15RUFe92zYhzweHXg/7MjcD25VgO3pHdCqLxC6QtPorLUl99XCFRDDiwSAA11Gk80s/fmzqGoq684Q2uhtewTASSbenmXj0+jszdGb6PRsfBwtTrIkOk7ejU+y8VhkYrw15l6Z0HKQKtNeLF2Lu9pH/jvhecFvwkvW/cfnjStCT70F3ZKzK1ob0iU+/OX8+pL3Y9xy9ttfv98wwtXUaSpiKRMk9cQrUKKi7f+8nLKrCTuvRVJgdDwY0Y239vfBgJbDIxobGI4GR2GJ2lIJtQX9f6plp4xrZzr87IZ1KaTy89mU9C4Iqf9S27mXeynNORSkungGq9VCWPxgyral5U8NGvLQnMOjMFIsqKezecuhQJFSAWcreMAlXVRhYkZT4kLhZePHzPPp2fI+4zxJsHbfjJ1vGYPqR/y7z8ZKp5RjxBMNIfEEMQB9hlK2v2/92gpKofJG5BQbMOn3FV+JvQA=
+api: eJzFVttu4zYQ/RVinlqAsp2bd6u3bNqi6QUJHC/64BgJLY0kbiRSS1LJGob+fTGk5Hu22aJA/WKBmjk8nDmHoxU4kVuIZ6BF4wqYc9A1GuGkVtcpxOCMzHM0DwuRPCWFUArLh1LnunHAweDnBq37oNMlxCtItHKoHD2Kui5l4mGGn6xWtGaTAitBT25ZI8SgF58wIZwUbWJkTdEQwzRsyTp0FrFMGkzZS4GKCWbRWqkVQ5Xawb2aFsi2yAVuHWtGGw06ooRBB+3yH2QKHBqLhp7mHGpDJ3cSrT9LKVE5erXmOwPrjFQ5cFBNWVLOLvEb/yBKFjGDFJs45jRRliovka0x2Q84yAcs04ZNbiOppJPCYcoC+R8H9yqEMpmicjKTaAbQ8m3qmyquSWXaVMJBDE3jz7ZLri/bHmRfgO/Go8RdsJaDk64kjA+bhvzpz9T1FFqK2nTDmQb9gq21sqHyp6MR/e2V9vrnK0ao0VWAZQGXOf2EilVSUf2ESlmKpXxGQuf/lSAnHT0WlhdS5cwVyDKhIuJg0DalIzGuI2uxLLVIfYsP1HmoSEWbZkKWGArthCztoSj7FxvGwhixBA7SYWXfYK2iV2HgfNQgG+lzOLT9Q2MkcLBOuOYIxVcSjsjrkNlWbmcF9nFy7WV6xI6vIR23DhqjzXd4mfj4nGC8cNo3nSLE7vrhynOa+JoT3mFW11q/WyeEzW6kbnLPlielcmenR/cP2dTUSipZNRXEI393BCP8G0jK3QP8ltl7F5DbWw7no7NDQ1+mlVQsb4RJWcSIjaGb063vCWKcNEa6JcSzlacv1fuYplQsKBni2bw96NtvQqUlGhaxx9ubuykb+rk23JJWFKT1yIZ9yPPJkffDjsrj4F4F0J7cEZ364qArNI3MWltyXi1cATG8SgA40EU02czQX76IqqaS7oyfjda2r384y8T7i2x8Hl28O3kXnV+MT6PFWZZEp8lP47NsPBaZGG8NuDcmtBykyrQXStfervKR/z7YL/ddeMm6//iycQX105vPLTm7oZUhXd/DXy9vr3k/vi1nv//9xx0jVE1dphKWMkHSTbwCJSra/K/rKbuZsMtaJAVGp4MR3XVrZx8NaDk8o7GB32hwEpaoKZVQW9D/pI/9s2593/yPKuvs6/CLG9alkMoPcVMSv6C4/lNu5/LuNTfnUJA84xmsVgth8aMp25aWPzdoyGpzDs/CSLGg5s/mLYcCRUq1nq3gCZd0m4U6RFPiQuFl42fR/ohteZ9xmSRYu2/GzrccRAUj/t13ZaVTyjHihSaVeIEYgL5TKdtfyn5tBaVQeSNyig2Y9PsKUSzCCQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.\nHandle trigger backchannel logout."}
+  children={"`POST /oauth/backchannel-logout`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Handler — `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.
+Handler - `POST /oauth/backchannel-logout` / `POST /v1/backchannel-logout/trigger`.
 Handle trigger backchannel logout.
 
 <Heading

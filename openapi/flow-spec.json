@@ -36,7 +36,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/attributes`"
       },
       "put": {
         "tags": [
@@ -71,7 +72,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/attributes`"
       },
       "delete": {
         "tags": [
@@ -101,7 +103,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/attributes`"
       }
     },
     "/v1/admin/policy-sets": {
@@ -130,7 +133,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets`"
       }
     },
     "/v1/admin/policy-sets/disable": {
@@ -159,7 +163,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/disable`"
       }
     },
     "/v1/admin/policy-sets/enforce": {
@@ -188,7 +193,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/enforce`"
       }
     },
     "/v1/admin/policy-sets/shadow": {
@@ -217,7 +223,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/shadow`"
       }
     },
     "/v1/admin/policy-sets/{name}": {
@@ -257,7 +264,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/policy-sets/{name}`"
       },
       "put": {
         "tags": [
@@ -303,7 +311,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/policy-sets/{name}`"
       },
       "delete": {
         "tags": [
@@ -333,7 +342,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/policy-sets/{name}`"
       }
     },
     "/v1/admin/policy-sets/{name}/test": {
@@ -378,7 +388,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`POST /v1/admin/policy-sets/{name}/test`"
       }
     },
     "/v1/admin/relations": {
@@ -407,7 +418,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations`"
       },
       "put": {
         "tags": [
@@ -442,7 +454,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`PUT /v1/admin/relations`"
       },
       "delete": {
         "tags": [
@@ -472,7 +485,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`DELETE /v1/admin/relations`"
       }
     },
     "/v1/admin/relations/check": {
@@ -527,7 +541,8 @@
           {
             "sentin8:admin": []
           }
-        ]
+        ],
+        "summary": "`GET /v1/admin/relations/check`"
       }
     },
     "/v1/admin/ui/{page}": {
@@ -535,7 +550,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "Fetch admin ui.",
+        "summary": "`GET /v1/admin/ui/{page}`",
         "operationId": "get_admin_ui",
         "parameters": [
           {
@@ -577,7 +592,8 @@
           {
             "sentin8:flow:read": []
           }
-        ]
+        ],
+        "description": "Fetch admin ui."
       }
     },
     "/v1/admin/{resource}": {
@@ -585,7 +601,7 @@
         "tags": [
           "admin-ui"
         ],
-        "summary": "`GET /v1/admin/{resource}` — returns a JSON array of admin data rows.\nFetch admin data.",
+        "summary": "`GET /v1/admin/{resource}`",
         "operationId": "get_admin_data",
         "parameters": [
           {
@@ -627,7 +643,8 @@
           {
             "sentin8:flow:read": []
           }
-        ]
+        ],
+        "description": "returns a JSON array of admin data rows.\nFetch admin data."
       }
     },
     "/v1/handlers/register": {
@@ -635,7 +652,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/handlers/register` — register a domain's step handler profile.\nRegister handler.",
+        "summary": "`POST /v1/handlers/register`",
         "operationId": "register_handler",
         "requestBody": {
           "content": {
@@ -659,7 +676,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "register a domain's step handler profile.\nRegister handler."
       }
     },
     "/v1/health": {
@@ -667,7 +685,7 @@
         "tags": [
           "meta"
         ],
-        "summary": "Handle health.",
+        "summary": "`GET /v1/health`",
         "operationId": "health",
         "responses": {
           "200": {
@@ -679,7 +697,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "description": "Handle health."
       }
     },
     "/v1/internal/callbacks/async": {
@@ -687,7 +706,7 @@
         "tags": [
           "internal"
         ],
-        "summary": "`POST /v1/internal/callbacks/async` — external callback to resume a waiting workflow.\nHandle internal async callback.",
+        "summary": "`POST /v1/internal/callbacks/async`",
         "operationId": "internal_async_callback",
         "requestBody": {
           "content": {
@@ -722,7 +741,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "external callback to resume a waiting workflow.\nHandle internal async callback."
       }
     },
     "/v1/internal/schedules/run": {
@@ -730,7 +750,7 @@
         "tags": [
           "internal"
         ],
-        "summary": "`POST /v1/internal/schedules/run` — Cron calls this to resume due scheduled workflows.\nHandle internal schedule run.",
+        "summary": "`POST /v1/internal/schedules/run`",
         "operationId": "internal_schedule_run",
         "responses": {
           "200": {
@@ -749,7 +769,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "Cron calls this to resume due scheduled workflows.\nHandle internal schedule run."
       }
     },
     "/v1/workflows": {
@@ -757,7 +778,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`GET /v1/workflows`\nList workflows.",
+        "summary": "`GET /v1/workflows`",
         "operationId": "workflow.list",
         "parameters": [
           {
@@ -807,13 +828,14 @@
           {
             "sentin8:flow:read": []
           }
-        ]
+        ],
+        "description": "List workflows."
       },
       "post": {
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/workflows` — create + start workflow.\nCreate workflow.",
+        "summary": "`POST /v1/workflows`",
         "operationId": "workflow.create",
         "requestBody": {
           "content": {
@@ -844,7 +866,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "create + start workflow.\nCreate workflow."
       }
     },
     "/v1/workflows/{id}": {
@@ -852,7 +875,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`GET /v1/workflows/{id}`\nFetch workflow.",
+        "summary": "`GET /v1/workflows/{id}`",
         "operationId": "workflow.get",
         "parameters": [
           {
@@ -888,7 +911,8 @@
           {
             "sentin8:flow:read": []
           }
-        ]
+        ],
+        "description": "Fetch workflow."
       }
     },
     "/v1/workflows/{id}/cancel": {
@@ -896,7 +920,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/workflows/{id}/cancel`\nCancel workflow.",
+        "summary": "`POST /v1/workflows/{id}/cancel`",
         "operationId": "workflow.cancel",
         "parameters": [
           {
@@ -932,7 +956,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "Cancel workflow."
       }
     },
     "/v1/workflows/{id}/repair": {
@@ -940,7 +965,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/workflows/{id}/repair` — rewind to a step and reprocess.\nRepair workflow.",
+        "summary": "`POST /v1/workflows/{id}/repair`",
         "operationId": "workflow.repair",
         "parameters": [
           {
@@ -986,7 +1011,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "rewind to a step and reprocess.\nRepair workflow."
       }
     },
     "/v1/workflows/{id}/resume": {
@@ -994,7 +1020,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/workflows/{id}/resume` — resume from waiting state (manual decision, async HTTP, schedule).\nResume workflow.",
+        "summary": "`POST /v1/workflows/{id}/resume`",
         "operationId": "workflow.resume",
         "parameters": [
           {
@@ -1040,7 +1066,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "resume from waiting state (manual decision, async HTTP, schedule).\nResume workflow."
       }
     },
     "/v1/workflows/{id}/retry": {
@@ -1048,7 +1075,7 @@
         "tags": [
           "flow"
         ],
-        "summary": "`POST /v1/workflows/{id}/retry` — retry a failed workflow from the failed step.\nRetry workflow.",
+        "summary": "`POST /v1/workflows/{id}/retry`",
         "operationId": "workflow.retry",
         "parameters": [
           {
@@ -1084,7 +1111,8 @@
           {
             "sentin8:flow:write": []
           }
-        ]
+        ],
+        "description": "retry a failed workflow from the failed step.\nRetry workflow."
       }
     }
   },

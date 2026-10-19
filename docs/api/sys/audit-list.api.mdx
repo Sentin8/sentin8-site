@@ -1,13 +1,11 @@
 ---
 id: audit-list
-title: "`GET /v1/audit` — query orchestration audit events.
-List audit."
-description: "`GET /v1/audit` — query orchestration audit events."
-sidebar_label: "`GET /v1/audit` — query orchestration audit events.
-List audit."
+title: "`GET /v1/audit`"
+description: "query orchestration audit events."
+sidebar_label: "`GET /v1/audit`"
 hide_title: true
 hide_table_of_contents: true
-api: eJytVlFu4zYQvQoxXy2gOE66KAr9pWi6CNqgxW4KFPAaWVoaydylSC05UqsaBnqInrAnKYaSZUt2ndhJfoxQM+89zpCPswKSuYd4Br7xMI/AlugkKWvuUohBVqmiiVaeIIJSOlkgoeP4FRhZIMSgVaH4qzIQw5cKXQMRpOgTp0rGgRh+lTkKr/5CiMDhl0o5TCHOpPYYgU+WWEiIV0BNyYDKEOboIILMukJSu/TtG1ivo57VZpnH59D2ga9ELJOAfpT4R6UJnVg0oo9+mt2TUyYfcHl0tUrwuWRYKCJlcrHNO4vWuvxRpc9ltS4/hWinuFWl0gExmvoEYjT1axHLjNA9kj9O/RM2HkkklfPWxcLZP7xg8IR0IxaYWYeClsoLUgV6kkV5pr5UEl4wyAGRT9VnIFKQwoVD+RldLGiJQktPLFyoVGTOFmGxdFgrW3lRyvykQ7Nf0jln+9Iaj57jr6dT/hlKvGFTEVijCRVPrCE0xHGyLLVKgv1cfvIcvNonl85J3rciLPzOul18woT2CvKu0yNK2WgrU5FZJ4KvBQWTwYZnEOq7vUD9Bd72dB5B6dgmSbWb7GIOlGeo5GGJnSFMYB2grXusfNvUPnu2TTeV1kw3hAl5gvOEStGQyhS6gNjdn2NQw4aNodHUY8xdvP/r+xjmbgjR+cn5sqzLx7I2HXqy6LcjUxRf/fD97+Lfv/8RoZuYspW8b/z2OtTomCcV99f3ItEKDT2q9OvJB8MN7GCCCJIuR3p06G3lEjytjW2y2CSPNzjGblGfjc5Sxwyc2mL3Z/l5LnQQfIMxYZMCUqRxc7dv+WJt7h2s+S+CN9Nv9q3gXnkfmtP4ONzJ2KFMhU9sGcwPPCaVU9SEicNzhcx38TAa4tl8vVeAj29vH8RlfXUZAj+GjgfHFNYlS/TUTjmtE3RmNPlgflae2jU2hgJpaXkOyrEdgGgJMfSowYkzG6rY7b+TeMHT1FjS+/ab6H5jPnUsiw3QWS1KLQ1G/KBe8kXUKsOkSTRGwstcDnWzOq0S5ALH/RNxf/cgfnknbkqZLPHiejJlhf25OhiwjqBG51uF08lVu1RaT4U0O9CvUs9BPfqjR/gnXZZaKsPUldP8ra31DOorduFQ7XkES+uJV1erhfT4m9PrNS+3TyEfkVR5udA7b9eIsn9sBkPpQSGfsdkZb2upK44BfpFPZOln0CM8fcyZRAdmziNsfcyL2Q4MnUd4t0EvJm7nzmMV3YyxL99jmDSPUPWD65lUZ02Wx9q7nWdfQ9F5Y+ST+kYVm/M/TrHAYOkRLFGmbFuzVZd3kyRY7l6SvYGRUXrXfnv7AOv1f8SBIWo=
+api: eJytVtuO2zYQ/RVinlpA6700KAq9bdFtsGgXLZItUMAxNrQ0kplQpEKO1CqGgX5EvzBfEgwly5bseNfe9YthenjO4QzncJZAMvcQT8E3HmYR2BKdJGXNbQoxyCpVNNHKE0RQSicLJHQcvwQjC4QYtCoU/6sMxPCpQtdABCn6xKmScSCGP2WOwqvPCBE4/FQphynEmdQeI/DJAgsJ8RKoKRlQGcIcHUSQWVdIapd+fAWrVdSz2izz+BTaPvCFiGUS0A8S/6o0oRPzRvTRj7N7csrkAy6PrlYJPpUMC0WkTC42+06itS5/UOlTWa3LjyHaSm5VqXRAjKY+ghhN/VLEMiN0D+QPU/+GjUcSSeW8dbFw9h8vGDwh3Yg5ZtahoIXyglSBnmRRnqgvlYRnDLJH5GP5GYgUpHDuUH5EFwtaoNDSEwsXKhWZs0VYLB3WylZelDI/6tLspnTGu31pjUfP8VcXF/w1lHjNpiKwRhMynlhDaIjjZFlqlQT7Of/gOXi5Sy6dk3xuRVj4rXU7/4AJ7STkTadHlLLRVqYis04EXwsKJoMDTyHkd9NAfQNvajqLoHRsk6TaQ3Yxe9IzVHK/wM4QJrAK0NY9VL4tar97utluKq2ZbggT9gneJ1SKhlSm0AXErn8OQQ0LNoZGU48xt/G+VfcxzO0QovOT02VZl49lrSv0aNJvRqYovvvl57/Fl//+F6GamLKVvG38ph1qdMyTirurO5FohYYeVPr95J3hAnYwQQRJlyM9OPS2cgkeV8Z2s1hvHh9wjN2iPhmdpY4ZeGuL3d/lp7nQXvA1xoRNCkiRxnVv33BjrfsOVvyJ4NXFD7tWcKe8D8VpfBx6MnYoU+ETWwbzA49J5RQ1YeLwnCHzUzyMhng6W+0kILijsC5ZoKd2omm7vjOeyTvzu/LUrrEJFEgLyzNPju2wQwuI4by+PA8hwXUzGzLWnbWTc8aT05j+bfuf6L5jvmF86djsnNWi1NJgxI/nOTedVhkmTaIxEl7mcqib1WmVICcz7p+Du9t78ccbcV3KZIFnV5MLVtjfob0BqwhqdL5VeDG5bJdK66mQZgv6/eube9Gf/P34cMuNZR+f5u66Ef5L56WWyrCEymmGbXM+hfqSnTdkfRbBwnri1eVyLj3+5fRqxcvt88fXIlVezvXWe/VNtduD6F4hH7HZGmlrqSuOAX6Fj2Tp584DPH3MiUR75swDbH3Ms9n2DJoHeDdBzyZuZ81DGV2Prs8/Y5guD1D1w+qJVCdNk4fKu5lhX0LRaaPjo/pGGZvxD6dYYLDxCBYoU7av6bLbd50kWG43yc6QyCi9e7++uYfV6isRjRwL
 sidebar_class_name: "get api-method"
 info_path: docs/api/sys/sentin-8-sys
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/audit` — query orchestration audit events.\nList audit."}
+  children={"`GET /v1/audit`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/audit` — query orchestration audit events.
+query orchestration audit events.
 List audit.
 
 <Heading

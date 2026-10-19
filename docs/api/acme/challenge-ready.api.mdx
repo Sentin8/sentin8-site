@@ -1,21 +1,11 @@
 ---
 id: challenge-ready
-title: "`POST /acme/challenge/{id}` — signal the challenge is ready for
-validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
-(the challenge target is the platform's own host network); external
-orders notify the upstream CA that its http-01 challenge is ready —
-the upstream then fetches the key authorization from the proxy's
-:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
-description: "`POST /acme/challenge/{id}` — signal the challenge is ready for"
-sidebar_label: "`POST /acme/challenge/{id}` — signal the challenge is ready for
-validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
-(the challenge target is the platform's own host network); external
-orders notify the upstream CA that its http-01 challenge is ready —
-the upstream then fetches the key authorization from the proxy's
-:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."
+title: "`POST /acme/challenge/{id}`"
+description: "signal the challenge is ready for"
+sidebar_label: "`POST /acme/challenge/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVUtu3DAMvQrBTWYAzyc/YOqugjQtAjRtkc8qEzSKzRkLI0sORU8yHRjIqgcocofcI0fJSQrZzj/tuotu/KEo8vHxiVqiqKnH+BhVkhOeROgKYiXa2d0UY0wyZQzZKX1nUukCIywUq5yEOOxaolU5YYw6xQi1xRgLJRlGmJJPWBchEMa4fR8Gakem81IzpRgLlxShTzLKFcZLlEURwnlhbadYVSfB2RfOevJhfW04DK8/Rc8VzyiFGit0CnaXC8hdSjFYJ3qiyYNkBGXhhUnlXawi3BhuvA55ZGfWXVh4qL/xfPe35NYJFGTTBnmEnpKStSwwPj55Scjpt68HhzAIpA8ecgyWOq1O4e7qGryeWmVqsMkjd76tbOJ4bOfK6LTuFHT2P27DaHNzE25vRv31bh8+u0QZcJwSe/CZY+klmpNSC4iD03rv6dh2nicQxVOSkCfYC6Nk4jhf8RCoyJwXsCQXjmfd90CXQmyVGds2S83w4hm/sL0FkikBLR4ykaI3XH2rnrur67F9tlEysjAhSbK2ZTNagColc6x/NEVP2OUNztDmFT+28WgIRnshSwx3P39BoHfFwwUZ02v6ya4Ugs6HnYPdT1/g9majvzYIz/VuHyPMSTIXZF84L7XWJcMY32pTLfeJqzWrxdSiJSvajnr1SXrZ8INmEdp3vJXkVHda24ZH2Nre24GEOOg0UUL35coCPPGcOCA0OiHrKaRtT97e7iF83YetQiUZ9db6w4AsDVkmmvhNhyrCObFvgA37q40p1Jwr+yT0f5H+iyJ9pquHiSl0KYPCKG1DL0s2Ya3Rbzvbo8dhjhHGOg3TPvAVPJbLM+XpiE1VBfN5SdzOrblirc6CwI+XmGofvlOMJ8p4egUmcVbICsbY2W9nfBdeDP83AbdGZcMVM1emDH8Y4YwWze1SnVRPzmcQJlbVb7uoXBI=
+api: eJztVUtu20AMvQrBTWxA/uQHpOoqcNMiQNMW+azioJ5ItDXwaEbhUE5cQ0BXPUDRO+QeOUpOUoykfJtm2003GonikO+RbzgrFDXzGJ+iSnLCswhdQaxEO7ufYoxJpowhO6OvTCpdYoSFYpWTEIddK7QqJ4xRpxihthhjoSTDCFPyCesiBMIYR3dhoHZkuig1U4qxcEkR+iSjXGG8QlkWIZwX1naGVXUWnH3hrCcf/m8Mh2H5W/Rc8ZxSqLFCp2B3tYTcpRSDdaKnmjxIRlAWXphU3sUqwq3h1p8hT+zcuksL9/wbzzevJbdOoCCbNsgj9JSUrGWJ8enZ84J4PbPK1GCSh9r4FvnU8dgulNFp3QnoHL4fwc729jbcXO/0N7t9+OgSZcBxSuzBZ46ll2hOSi0gDib13snYdp4mEMUzkpAn2AujZOo4X/MQqGbOC1iSS8fz7lugKyG2yoxtm6Wu4PJJ/WC0C5IpAS0eMpGiN1x/ic/t919j+2SjZGRhSpJkbUvmtARVSuZYf2tIT9nlDc7QxjU/tvHOEIz2QpYYbn/8hKDZNQ+XZEyv6Re7Ugg67/aO9j98gpvrrf7GIDw3u32MMCfJXJB14bzUWpYMYxyEOIN73IOVTqtazlNXa1KLqUVJVrTd6dUn5XlDj5qf0K7xbpJT4A3aNnWE3dHBHiTEQYeJErqjK0vwxAvigNDohKynkLY9WQf7x/D5EHYLlWTU2+gPA7I0ZJlq4hcdqggXxL4BNuyvN6bAOVf2UejJl89Hx/AS+8lzfitMnBWy8l+7/0i77WQUupJBYZS2oaclm9CbRsftDI8ehjZGGOs0TPVQoOCxWp0rTydsqiqYL0ridj4tFGt1HoR+usJU+/CeYjxVxtMrYugctrO8C8+G/IuAW6Oy4SpZKFOGL4xwTsvmFqnOqkfnNAgUq+o3hk9R3g==
 sidebar_class_name: "post api-method"
 info_path: docs/api/acme/sentin-8-acme
 custom_edit_url: null
@@ -33,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /acme/challenge/{id}` — signal the challenge is ready for\nvalidation (RFC 8555 §8.3). Local orders short-circuit to `valid`\n(the challenge target is the platform's own host network); external\norders notify the upstream CA that its http-01 challenge is ready —\nthe upstream then fetches the key authorization from the proxy's\n:80 listener → acme's well-known route (DESIGN §4.2/§4.3)."}
+  children={"`POST /acme/challenge/{id}`"}
 >
 </Heading>
 
@@ -47,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /acme/challenge/{id}` — signal the challenge is ready for
+signal the challenge is ready for
 validation (RFC 8555 §8.3). Local orders short-circuit to `valid`
 (the challenge target is the platform's own host network); external
 orders notify the upstream CA that its http-01 challenge is ready —

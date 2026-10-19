@@ -1,13 +1,11 @@
 ---
 id: group-update
-title: "`PUT /v1/admin/groups/{id}` — update a group.
-Update group."
-description: "`PUT /v1/admin/groups/{id}` — update a group."
-sidebar_label: "`PUT /v1/admin/groups/{id}` — update a group.
-Update group."
+title: "`PUT /v1/admin/groups/{id}`"
+description: "update a group."
+sidebar_label: "`PUT /v1/admin/groups/{id}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vs2O2zYQfhViTg1Ar71pDoVum2xbuEWwi80aPTjGhpbGFhOKZEjKG8EQkIfoE/ZJiiFlS/7pbpsW9cU2NfPNp5lvZriFINYesjmIOpSw4GAsOhGk0dMCMlg7U9uL2hYiIHCwwokKAzpy2YIWFUIGsgAOUkMGVoQSOBTocyctoUAGPxMGm14DB4efa+mwgCy4Gjn4vMRKQLaF0FiC8sFJvQYOK+MqESCDupYFtC3fRwvCrTE8oN489IE/1+iak8j30ZSh3rCVcSx3xvsR/RNFJfUBn5VQ/glCbbtI1ujDa1M0ZJEbHVAH+imsVTKPaRt/9BR7ewpllh8xDyck7xIqW5qiiTRTtlPmKeeOShIkesJKSdhhzvuE6Vopqt9RBkpk5HIBLQdnFD7Iwg/9hXOiGbjLgJX/GwU5DnQTfwjFlPSBmRWjYGx67dkfX39nDq0SOXoWSmSrWinmcW/lL95r4hk9ZOEj19qj+9+4UrDnuVZYLdHt2EafxLblEGRQRGEWaxcV39UVWnp+KPx44K3RPhX15WRCX+faJomBdP6fyS0FZlY0yogiSm4vtp7nPLX1vs2i8DjkDonPgyDkjhz9WRwLdWD4VIUIYBRkxD4k2gEwehgl0VF5tt7HQNTwskAd5Eqii1DfAjM9hDhsxB7kif4bpOvbUtIB7FIy0F2nuFRaklzL4dXk+1NVvZXeS71mNO6zOAaZz41FiA6vTh2iNJg2ga1MreMoBo957WRo4hLwlBb9Q9YjQjZftCej6MPt7J6NN5fjaDOOuH68lUX7IfZdejkmOjG+16mXem1WGEpDS8nWIe6iUEIGZxGBA/XFXT+wf/wiKquwH6F94vuxCDP9SZtHze4bixmL84bHaTMcSH9tRcrSKxOr2xWmy84ortfjlLxLD1n3nV3VoYy5SHINDWc3dDa+mV6/Gf90dTvlzKP30mjP2S+//fou1tFQLShDSuZI9e9f8u30nt3csSsr8hJHLy8mtDD3Qj5r0HLYoPOJ4eTiMh1Z40Ml9AD6X9fzIBf7fgj4JYytElLHlnGKnqVaz2FzCRx2yztFBA6ZLGj+lMYHMtpul8LjzKm2peN0NSClFtKLpRps+yMG+wn7/MXhLNlP2Jy5n2yEqskWqCU2wkni8A/5fHfXzeUXbHCbOkuiOxS6GcbekaN1uGg5lCgKqv982z14k2KNSNMDx5NNQxex5HGV52jDk7aLQdPezu6Bw7K7O1WmIBcnHqkBxWPiaOKrx/URz7aghF7XYk22CZI+fwJ8e63E
+api: eJy9Vk2P2zYQ/SvEnFqA/tg0h0K3bbYt3CLYxWaNHhxjQ0tjiwlFMiTljWDovxdDypb8kd0kKOqLbWrmzdPMmxnuIIiNh2wBog4lLDkYi04EafSsgAw2ztR2XNtCBAQOVjhRYUBHLjvQokLIQBbAQWrIwIpQAocCfe6kJRTI4E/CYLMb4ODwcy0dFpAFVyMHn5dYCch2EBpLUD44qTfAYW1cJQJkUNeygLblh2hBuA2GR9Tbxz7w5xpdcxb5IZoy1Fu2No7lzng/on+iqKQ+4rMWyj9DqG2XyRp9+M0UDVnkRgfUgX4Ka5XMY9omHz3F3p1DmdVHzMMZyfuEylamaCLNlO2Uecq5o5IEiZ6wUhL2mIs+YbpWiup3koESGbmMoeXgjMJHWfihv3BONAN3GbDy31CQ00C38YdQTEkfmFkzCsZmN56NmEOrRI6ehRLZulaKeTzY+PF7TSyjvSx8ZFp7dP8bUwr2EtMKqxW6Pdfokbi2HIIMigjMY92i2ruaQkvPj0UfD7w12qeCvppO6etSyyQhkMb/M6mlwMyKRhlRRLkdhNbzXKSWPrRYFB2H3CHxeRSE3JGjP8tTkQ4Mn6sPAYyCjNjHRDsARg+jIDoqL1b7FIiaXRaog1xLdBHqR2BmxxDHTdiDPNN7g3T9WEo6gH1KBrrrFJdKS5JrObye/nKuqrfSe6k3jEZ9Fkcg87mxCNHh9blDlAbTJrC1qXUcw+Axr50MTVwAntKif816RMgWy/ZsDCXyTHRie69Tr/TaqzCUhhaOrUPcM6GEDCbbq0lEnURDP9nJogUOpPv7fhj//kVUVmE/HvvE9iMP5vqTNk+aPTQWMxanCY+zZDhuvm5FytFrE6vXJb57+1Fcnaev/C49ZN13dl2Hko06MYaGs1s6mdzObt5M/ri+m3Hm0XtptOfsr3/+fherZCjTlB8lc6Tq9q/4dvbAbu/ZtRV5iaNX4ymtwoNMLxq0HLbofOI3HV+lI2t8qIQeQH+4mz+wi7n/cPqagy34cpE71Qf8EiZWCaljYzhFMKniC9heAYf9ek6RgUMmC5oypfGBjHa7lfA4d6pt6Tgtf9JjIb1YqcE+/yrZF68GF8l+wubCDWQrVE22QMLfCieJw3fy+em+m74/s8F96SKJ7lDoZhh7T45W3rLlUKIoSAeLXffgTYo1ImUPHM/2CV21ksd1nqMNz9ouB617N38ADqvudlSZglyceKI2FE+Jo4mvHpdEPNuBEnpTiw3ZJkj6/Aszx548
 sidebar_class_name: "put api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`PUT /v1/admin/groups/{id}` — update a group.\nUpdate group."}
+  children={"`PUT /v1/admin/groups/{id}`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`PUT /v1/admin/groups/{id}` — update a group.
+update a group.
 Update group.
 
 <Heading

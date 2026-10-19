@@ -1,13 +1,11 @@
 ---
 id: add-client-role
-title: "`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client.
-Handle add client role."
-description: "`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client."
-sidebar_label: "`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client.
-Handle add client role."
+title: "`POST /v1/admin/oauth-clients/{id}/roles`"
+description: "assign a role to an OAuth client."
+sidebar_label: "`POST /v1/admin/oauth-clients/{id}/roles`"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vdtu2zgQ/RVinnYByopzcVu9ZdMW610UKZwUfXCNdCxSFluJVEnKrSEI6Ef0C/slxZCyY8fBBvtSv8gi53LmzJlRBx5XDrI5YOtLWHAwjbToldFTARmgEHd5paT2d9ZUEjg0aLGWXlry6kBjLSEDJYCD0pBBg74EDkK63KqGAkEG15etL1kMxKYvgYOVX1plpYDM21ZycHkpa4SsA79pKKLzVukVcCiMrdFDBm2rBPQ93yX1aFfS30m9vrvP/6WVdnME4DaYMqnXrDCW5dY4l9AbilrpAzwFVu4/APX9IlpL5/8yYkMWudFeak9/sWkqlQcC00+OcnfHoczyk8z9EchZjMqWRmwCTBQickbcjw5QzoHOqO4Fh8ZS17ySjpJsL57k8mF+cmRKSO1VoaQdEdngla8oxqUQVwHLzFRyQAo9WRy2Mhy4xmgX0ZyejOnxoFLKhM6plZYCeg7nJ2fHVm+Uc0qvGEkzC41iLjeNjA7nxw4HMtPGs8K0OmgGnMxbq/wmiNZRifp5dh8YsvmCGnsY7+Pb65tblq7HaTBKDTkkMb5LOyX6lDhzH9nP7z+GehiywKM3DDXbRzT6oP9GLahyIbYot52tpS8NTVxjnA9j5kvI4OncwIF0NrtX5KtvWDfUsz0pwFmBzy+KyXly8Wz8LDm/mJwmy7MiT07zF5OzYjLBAifEq9KFCcoZ2j5QlYT18JCfm3jJhmcWiiUqooj8hkcC0uvpy6v09eXbKWdOOqeMdpz98/7fm9BbQ40hEiqVS+0C8mHE30xv2fWMXTaYlzI5HZ3QmO8U+qhBz2EtrYsIT0bjeES01qj3Qv/G5h6wtptKL7/5tKlQaQLY2oruYt/nsB4Dh+1yOoAGHLIwvLH9Cw4lSSabQ9ct0cl3tup7Oo6bkPQulMNltbfcHgDa7a+n9+Sj2D/LzSPreI1VS7ZAg7VGqwjD/8Tzx2xYLn+y42/Io1iGQ9SbfQhbjPQFWfQcSomC9DPvhourmDK5Jfd7x6N1TrXsZpUUBByWw2egNoJ8LH6l7uDXmNiEsuJmprMOKtSrFldkG2PS7xcxw5Ks
+api: eJylVd9v0zAQ/lesewLJadb9KJC3MUAUhIa6IR5KNa6x0xgSO9hOoYryv6Oz061dBxOiL2nsu/u+u/vu0oHHlYNsDtj6EhYcTCMtemX0VEAGKMRNXimp/Y01lQQODVqspZeWvDrQWEvIQAngoDRk0KAvgYOQLreqoUCQweV560sWA7HpK+Bg5Y9WWSkg87aVHFxeyhoh68BvGorovFV6BRwKY2v0kEHbKgF9z29BPdqV9DdSr2/u8H+00m4OCFwHUyb1mhXGstwa5xJ6Q1ErvcenwMr9hVDfL6K1dP6lERuyyI32Unv6i01TqTwUMP3mCLs7DGWW32TuD0jOYlS2NGITaKIQsWZU+9EeyznQGeW94NBY6ppX0hHI9uLRWt7HJ0emhNReFUraERUbvPIVxTgX4iJwmZlKDkyhJ4v9VoYD1xjtIpvjozE97mVKSOicWmkpoOdwenRyaPVBOaf0ipE0s9Ao5nLTyOhweuiwJzNtPCtMq4NmwMm8tcpvgmgdpaifZ3eBIZsvqLH78SJDhixUxhuGmu1ijL7ot6gF5SLEFnfbq1r60tAMNcb5MDi+hAzS9TgNkKkh+CR6ubRTok/J1wEHUs7sTmOvf2HdUBd2mgsnBT4/Kyanydmz8bPk9GxynCxPijw5zl9MTorJBAucUKWULkzQwtDIIfkkDPz9jK/iJRueWUg2GUThNzymn15OX12kb84/Tjlz0jlltOPs3ef3V6FXhgpNJahULrULvIeR/TC9Zpczdt5gXsrkeHREY3uruAcNeg5raV3kdzQaxyMqao16J/TXj5dX1+zx8n69n/TO/P5fx4dp8/KXT5sKlSaira0IInZ/DusxcNgunT2KwCELQxlFsOBQknCyOXTdEp38ZKu+p+O44UjHQjlcVjtL6495Pbr/HuT+XW4eWLNrrFqyBRqYNVpFHP6Rz5PZsDSessNvw4NchkPUm10KW470ZVj0HEqJgnQ074aLiwiZXJP7nePBmqZcbieWlAQclsN6r40gH4s/qTv4MwKbkFbcuHTWQYV61eKKbGNM+v0GUwCBdQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/auth/sentin-8-auth
 custom_edit_url: null
@@ -25,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client.\nHandle add client role."}
+  children={"`POST /v1/admin/oauth-clients/{id}/roles`"}
 >
 </Heading>
 
@@ -39,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`POST /v1/admin/oauth-clients/{id}/roles` — assign a role to an OAuth client.
+assign a role to an OAuth client.
 Handle add client role.
 
 <Heading

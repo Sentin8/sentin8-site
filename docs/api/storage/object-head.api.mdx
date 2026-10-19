@@ -1,17 +1,11 @@
 ---
 id: object-head
-title: "`HEAD /v1/storage/objects/{path}` — existence + size probe without
-reading the payload (the dedup fast path every
-content-addressed vertical uses before writing).
-Handle head object."
+title: "`HEAD /v1/storage/objects/{object_path}`"
 description: "`HEAD /v1/storage/objects/{path}` — existence + size probe without"
-sidebar_label: "`HEAD /v1/storage/objects/{path}` — existence + size probe without
-reading the payload (the dedup fast path every
-content-addressed vertical uses before writing).
-Handle head object."
+sidebar_label: "`HEAD /v1/storage/objects/{object_path}`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVNtuEzEQ/RVrnqjYJmnpA/JbBUitRFWphac2os56dtewsV3PbNoQrcRH8IV8CZpdE9I2fABPvsx4LucczwbY1AT6BohDMjXCvIAQMRl2wZ9b0BAWX7HkSYPGQgHRJLNExiSPNuDNErc+X6LhBgpwHjTkvUUqk4sSDTRcDn4q2xLedy6hBc2pwwKobHBpQG+A11HCEifna+j7uThTDJ6QxH48m8myNzg+OmJSv378VO+CZ/R8+BF9zY0iZOgLOJm9efn4whE5X6sMg6IyRBy9T/6ZygdWVei8hb4vgLDskuP1AAyhZ+ff6hxPo1/pJBDqm7m08zTe3dmH0/dqujqaZv/piChNN4JVfze0M3SGvkT1WpH7jiqmsED14LgJHd96iS89cIMqmnUbjFWv5GDRdlFVhkboFa4wrW99meEx1iYkQqtWmNiVplUdIakFViGhekiOna8PJrf+zHjbohItqKwLKGCJ3ASRylYj3ICGve3sKKUfpFKFgXDH7cD4CNvhHzU+B+p6tKu86utMl8Azhp5WrsUtjYKNim1X12bRojLWRNGuVN26Ej2hZM8qvjj/pC6v1Gk0ZYOHx5OZFGglU+Uw7XXoC1hhorG42eRovIqBeGn8Tuj/m+AnHGx/J+MjT2NrnJeeu9SKbeT+BlZHUMBfFnO3UIDenRXzAppALA82m4Uh/Jzavpfr+w6T/KR5ASuTnLA3/CvrSPYWdGVawhe15ZZBw6urPF4O1NOxs7f8fGn8GiRj28kJCviG62fzrZ/3O5IXXqHvfwPXENhz
+api: eJzVVM1O3DAQfhVrTqCG3YVyqHJDbSWQipCgPcGqeONJ4jZrG88ksI0i9SH6hH2SahKXLnTLvSf/jefn+76ZHlhXBPk1EPuoK4RlBj5g1Gy9OzOQg199wYJnNWoDGQQd9RoZo3zqwek1Ptp8DppryMA6yCHtDVIRbRBvkMPFaKfSW8S71kY0kHNsMQMqalxryHvgTRC3xNG6CoZhKcYUvCMkeT9aLGTZ6RwfLDGpn99/qLfeMTo++ICu4loRMgwZHC9e//353BJZV6kEg6LCB5ysj/8ZynlWpW+dgWHIgLBoo+XNCAyhY+ve5Mlfjq7Lo0CYXy+lnKf+bk/fn7xT8+5wnuznE6I07wWr4XYsZ6wMXYHqlSL7DVWIfoXq3nLtW75x4l9q4BpV0JvGa6P25GDQtEGVmiboFXYYNzeuSPBoYyISoVEdRraFblRLSGqFpY+o7qNl66r92Y071c40qEQLKukCMlgj116k8qgRriGHneVsKWUYpVL6kXDLzcj4BNvBbzU+B+pqeldpza8SXQLP5Hpe2gYfaRRsVGjaqtKrBpU2Ooh2JevGFugIJXpS8fnZR3VxqU6CLmo8OJotJEEjkUqLcafBkEGHkabkFrPD6Sp44rV2W65fIHgbkdvnBfeQSPrvRZJamvGB56HR1glQbWykxkkw19AdQgZ/qE/lQQb59oBZZlB7YvnQ9ytN+Ck2wyDXdy1Gab9lBp2OVigfm9FYkr2BvNQN4QsY712mmbSvns6qnemnS+02IBGbVk6QwVfcPBuKw3LY6hMhEobhF7c+6ws=
 sidebar_class_name: "head api-method"
 info_path: docs/api/storage/sentin-8-storage
 custom_edit_url: null
@@ -29,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`HEAD /v1/storage/objects/{path}` — existence + size probe without\nreading the payload (the dedup fast path every\ncontent-addressed vertical uses before writing).\nHandle head object."}
+  children={"`HEAD /v1/storage/objects/{object_path}`"}
 >
 </Heading>
 

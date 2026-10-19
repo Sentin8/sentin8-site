@@ -1,19 +1,11 @@
 ---
 id: list-buckets
-title: "`GET /v1/admin/buckets` — list buckets (top-level prefixes).
-This is a dedicated handler because the route `/v1/admin/buckets` also
-has a POST handler, so the catch-all `/v1/admin/{resource}` route is
-shadowed for GET requests.
-List buckets."
-description: "`GET /v1/admin/buckets` — list buckets (top-level prefixes)."
-sidebar_label: "`GET /v1/admin/buckets` — list buckets (top-level prefixes).
-This is a dedicated handler because the route `/v1/admin/buckets` also
-has a POST handler, so the catch-all `/v1/admin/{resource}` route is
-shadowed for GET requests.
-List buckets."
+title: "`GET /v1/admin/buckets`"
+description: "list buckets (top-level prefixes)."
+sidebar_label: "`GET /v1/admin/buckets`"
 hide_title: true
 hide_table_of_contents: true
-api: eJzlVM1u2zAMfhWCpxZzftrT4NsGFEWBDh2a7JQEjSIxsVpFckU5bWAY2EPsCfckA223S5FgLzBfDIj8yI/kR9aY1IYxn6EyW+sHlcVFhqGkqJIN/sZgjs5yelhV+okSY4alimpLiaLAavRqS5hjUnFD6YH87sEazNB6zPG5orjHDA2xjraUiJjjtHUF8js4u7+dgA4+0Ws6xwwjPVc2ksE8xYoyZF3QVmFeY9qXkoZTtH6DTbMQZy6DZ2KxX47H8vuY6WtLGoQiwycIq0fSCXSofFtJm9gnwamydFa3NY8eWcD13+SNfBky6SratG/LZvLJ+s85pxDVhvJIymA+WwixjySW11dTGO0uRm2HR30jl/D75y+Q1kL/AmcplANHO3JQRlrbV+Lz4dxPC8tgGRQYMsKRDBTKG0cRVqRVxQSpIIihSgTLE5mU4zD3hZIY3+8m0zd4BhxaqFZJFwPl3CG8jsShipqaZR/b8txzoUx4IQPrEEEqk5ERJx7O/e1BNUPMcEupCKKgDaVWOKnAHI8ItmpZh3bKNrl2zF13B313jyQ06ezQ//NJ59f2tJvyaG0dQY+HF5sKKF212aiVI1BGlSJgIemsJs8k2Xspf7uZwt09fCmVLmhwORwLQSOZ1pbiSYcmwx1F7siNhxfdUxk4bZU/CP3/auHD/N7XWfZ+VDplvfSrik5snU5muLvArDtLmOGbVhYZFoGT2Ot6pZh+RNc08twdG9lNY1nGbDBfK8d0lPx97/Hsvj845/CPq3SS7BPtT5y9nXKV+KLcgZ2KVoi0dyHDgpQR/czqHvxFayrTAeroCkmU9y26vppi0/wBjg36yA==
+api: eJzdVM1u2zAMfhWCpxZzftrT4NsGFEWBDh2a7JQEjSIxsVpFckU5bWAY2EPsCfckA213TZeiDzBdBEj8yI/kR9aY1IYxn6EyW+sHlcVFhqGkqJIN/spgjs5yultV+oESY4alimpLiaLAavRqS5hjUnFD6Y787s4azNB6zPGxorjHDA2xjrYUj5jjtDUF8js4ub2egA4+0XM6xQwjPVY2ksE8xYoyZF3QVmFeY9qXEoZTtH6DTbMQYy6DZ2L5Px+P5Xob6WtLGoQiwycIq3vSCXSofJtJG9gnwamydFa3OY/uWcD1a/BGToZMuoo27du0mXyy/nPOKUS1oTySMpjPFkLsLQkpH/Tlg5MUyoGjHTkoI63tM/HpcO6nhWWwDAoMGeFBBgrljaMIK9KqYoJUEMRQJYLlaHc2avs16v0uQTkOc18o8fH9ZjJ9gWfAoYVqlXQxUM4dwutIHKqoqVn2vi3PPRfKhCcysA4RLi+mIG0hTjyc++uDbIaY4ZZSEUQlG0qtOFKBOR4RbBWxDm0nbXJtK7sKDvoKHslk0v1Df+eTzg5+//zVd3K0to6gx8OTTQWUrtps1MoRKKNKEamQdFaTZ5LovVy/XU3h5ha+lEoXNDgfjoWgkUhrS/FdgybDHUXuyI2HZ91TGThtlT9wvZSKHXfo3/zqV/n95xLpR1dmfFQ6Zb3UrYpOatDpZYa7M8y6FYQZvmhmkWEROMl/Xa8U04/omkaeu8Uic2gsS7sN5mvlmD4o8sltv1xO4YMN9C7ZB9q/s+J2ylViizLzOxWtEGl3QIYFKSM6mtU9+IvWVKYD1NHGES9/p+nyYopN8wdEEPJX
 sidebar_class_name: "get api-method"
 info_path: docs/api/storage/sentin-8-storage
 custom_edit_url: null
@@ -31,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"`GET /v1/admin/buckets` — list buckets (top-level prefixes).\nThis is a dedicated handler because the route `/v1/admin/buckets` also\nhas a POST handler, so the catch-all `/v1/admin/{resource}` route is\nshadowed for GET requests.\nList buckets."}
+  children={"`GET /v1/admin/buckets`"}
 >
 </Heading>
 
@@ -45,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-`GET /v1/admin/buckets` — list buckets (top-level prefixes).
+list buckets (top-level prefixes).
 This is a dedicated handler because the route `/v1/admin/buckets` also
 has a POST handler, so the catch-all `/v1/admin/{resource}` route is
 shadowed for GET requests.
