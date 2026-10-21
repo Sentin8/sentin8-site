@@ -10299,7 +10299,7 @@
           },
           "audience": {
             "type": "string",
-            "description": "Target audience (RFC 8707 resource indicator, e.g. `https://ledger.sentin8.local`).\nThe audience."
+            "description": "Target audience (RFC 8707 resource indicator, e.g. `https://ledger.local.sentin8.dev`).\nThe audience."
           },
           "env_id": {
             "type": [

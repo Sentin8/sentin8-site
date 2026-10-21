@@ -325,7 +325,7 @@ graph TD
   would otherwise stall the skip path for minutes. The proxy test is
   opt-in (`SENTIN8_APP_URL`); it re-aims `SENTIN8_DOMAIN` at the provided
   base and asserts the relayed instance metadata (default probe hostname
-  `dash.ops.sys.sentin8.local`, override `SENTIN8_APP_TEST_HOSTNAME`).
+  `dash.ops.sys.local.sentin8.dev`, override `SENTIN8_APP_TEST_HOSTNAME`).
 - **Deliberately NOT tested here**: TLS termination / context-middleware
   header injection (live stack + e2e), the app proxy under outage (502
   path pinned by contract, exercised in e2e).
