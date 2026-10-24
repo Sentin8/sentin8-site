@@ -1,4 +1,4 @@
-# README.md: Sentin8:Site - sentin8.dev
+# Sentin8:Site - sentin8.dev
 
 > The public platform website at [sentin8.dev](https://sentin8.dev):
 > every platform service, app, and SDK explained for developers and
