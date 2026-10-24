@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Evidence bundle (request + per-signer evidence)"},"404":{"description":"Unknown request"}}}

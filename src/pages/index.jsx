@@ -18,7 +18,7 @@ const mapPlanes = [
   },
   {
     title: 'Data & events',
-    items: ['Sentin8:DB', 'Sentin8:Bus', 'Sentin8:Storage', 'Sentin8:Secrets', 'Sentin8:Post'],
+    items: ['Sentin8:DB', 'Sentin8:Bus', 'Sentin8:Storage', 'Sentin8:Secrets', 'Sentin8:Post', 'Sentin8:Sign'],
   },
   {
     title: 'Execution',
@@ -51,7 +51,7 @@ export default function Home() {
         <StartHere items={[
           {
             title: 'Platform overview',
-            description: 'What Sentin8 is and how the 17 services fit together - the one-page map of the platform.',
+            description: 'What Sentin8 is and how the 18 services fit together - the one-page map of the platform.',
             href: '/docs',
             primary: true,
           },

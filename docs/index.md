@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Sentin8 is a **post-quantum, zero-static-secret platform for regulated
 multi-vertical software**. Verticals are independent compositions on
-top of the same platform - each composes the 17 platform services,
+top of the same platform - each composes the 18 platform services,
 one identity plane, and one security model for its own domain
 (guarded money movement, hospitality, trading, communication, and
 more). The platform itself is vertical-agnostic: new verticals are
@@ -14,10 +14,10 @@ added by independent teams without platform changes.
 
 ## What the platform provides
 
-- **17 platform services** - identity, certificates, ingress, events,
-  data, storage, messaging, secrets, metrics, execution (WASM +
-  workflows + scheduling), AI, control plane, app store, BFF, web
-  hosting.
+- **18 platform services** - identity, certificates, ingress, events,
+  data, storage, messaging, secrets, signature ceremonies, metrics,
+  execution (WASM + workflows + scheduling), AI, control plane, app
+  store, BFF, web hosting.
 - **2 starters** - `sentin8-cli` (bootstrap, enrollment) and
   `Sentin8:Captain` (process supervision, rolling upgrades).
 - **2 SDKs** - the Rust workspace facade (`sentin8::*`, pinned git
@@ -37,6 +37,7 @@ graph TD
     BUS -->|SSE consumer groups| TRIGGERS[Func / Flow / Cron / consumers]
     SVC -->|RLS-scoped queries| PG[(PostgreSQL 18 - cert identity, FORCE RLS)]
     SVC -->|secret references| SECRETS[Sentin8:Secrets]
+    SVC -->|signature ceremonies| SIGN[Sentin8:Sign]
 ```
 
 Every request runs the **8-step authorization pipeline** (extract

@@ -1,0 +1,74 @@
+---
+id: get-admin-data-requests
+title: "`GET /v1/admin/requests`"
+description: "Get admin data requests."
+sidebar_label: "`GET /v1/admin/requests`"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVsFuIzcM/RVCpwQYJ852CxTTU9CmwQItUiQuerCNmJFoj3Y10izFcWIY8+8FZ2xvEhuLHnuoLwNIFPnIRz56awRX2ZRTg672cdR6My9MaohRfIqfnCnNiuSxv310KPjI9LWlLNkUpkHGmoRYPWxNxJpMaQRZn1BcP3pnCuOjKc3XlnhjCuMoW/aNOjelmfSmQHENZ/e/P4BNUehFzk1hNIxncqYUbqkw2VZUoym3RjaNhsnCPq5M183VODcpZsp6/2E81s+7SBXBHjlwes6wTAxSEdz/9jcIPgUyhenjR9Hn2DTB274Kl5+z+ti+wpAi3S37pHdo0tNnsnKcYEXgaIltEFhswQvVuYSpAphDt9DMKaSG3iIBJnT54k0VpqZ/rPQ0rASJH9Idjsv/IBJkRuV8f96dwsTpGVyybU1R8oXp9Dc/Zbi4vZnA5frqsu/Fyy1TTi1b6hYDnw1uQkJX9gk0xKO9gV7P4iHGIcFfUXCySzI64gxnCsZSCBkwujdOZtGm0NYRMkkGZIJMvPaWRo6WPpL7+eB38EY81E6P61l0m4i1txjC5lzLKV6C1uhak1Ek9+k599kX5uP4h+MG/gVDIIaA9ksGhOxXsQ8wlAOyTQ0ZfZ3Jtuxl03dnpig+/lSqedlbmnI6Py7wLQkMjnTGD5NyMYuzqHXH4HEYmcU3CvZWCxj1yf959zAZpRg2ELwQY4AU9WIWM9YEDUoFuUKnbKn94jSbFsVWIwyhj3d7M5nFw+Se4UtbA5O0HDN8HP8IPmYhdJCWsMQQfFyBVJzaVXVeQE59IM1JnaCDus0CT0r5ymchJgf0opPuJWwKqD1z4sGJUmxZ6W5QhDgqbzVJlXaq2CugVKY0xzXpdW+Z+mnYUb3jYqRcjLR7iI+m9GGwgd23fFCaR0CBrHCK3vbEo7RMYImpTnGz70SFF7ylmEnD7tT4j08TuLuH6wZtRaMPF2NF5tT90hOfNOgKsybOA6LxxdVw1KQsNcZXrt9N5KEd3me1/aar/zfav220nYbqOrxsAvqoHLQctJxD103N+soUw+LeCXTfefPCVCmLGmy3T5jpLw5dp8fDElZdcD6r8jlTLjFk+g5hZ/c74T+H72zrk2i/0ObE34E1hlZtjarQGtn3u1dVqTAVodOmnG53j6+tpUZevTpay+rlMJS3NxPTdf8Az/wWEQ==
+sidebar_class_name: "get api-method"
+info_path: docs/api/sign/sentin-8-sign-server
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/requests`"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/requests"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get admin data requests.
+
+GET alias for `/v1/admin/requests` - the POST-only literal on the
+same path shadows the `/v1/admin/{resource}` catch-all for GET
+requests (axum returns 405 instead of falling through), so the data
+read must be registered explicitly, mirroring the secrets pattern.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-admin-data-requests.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-admin-data-requests.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-admin-data-requests.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

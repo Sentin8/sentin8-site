@@ -1,0 +1,1 @@
+{"responses":{"201":{"description":"Request created (open)"},"400":{"description":"Invalid request (empty signers/documents/level)"},"409":{"description":"Idempotency key already used"}}}

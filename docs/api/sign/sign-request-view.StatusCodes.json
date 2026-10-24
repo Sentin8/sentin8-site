@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Ceremony document refs + level"},"403":{"description":"Caller is not a listed signer"},"404":{"description":"Unknown request"},"409":{"description":"Request not open"}}}

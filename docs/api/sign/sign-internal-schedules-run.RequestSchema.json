@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Schedule run request body.","required":["schedule_type"],"properties":{"schedule_type":{"type":"string","description":"The schedule type to run."}},"title":"ScheduleRunRequest"}}},"required":true}}

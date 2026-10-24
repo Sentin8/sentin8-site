@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Decision recorded (signature evidence on sign)"},"403":{"description":"Caller is not a listed signer / session mismatch"},"404":{"description":"Unknown request"},"409":{"description":"Request not open / signer already decided"},"502":{"description":"Provider dispatch failed"}}}

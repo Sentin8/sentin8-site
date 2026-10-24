@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Request reopened (open)"},"403":{"description":"Caller lacks a sign admin scope"},"404":{"description":"Unknown request"},"409":{"description":"Request is not in failed state"}}}

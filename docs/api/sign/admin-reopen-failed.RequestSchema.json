@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"application/json":{"schema":{"type":"object","description":"Reopen-failed admin action body.","required":["id"],"properties":{"id":{"type":"string","description":"The request id to reopen."}},"title":"AdminReopenRequest"}}},"required":true}}

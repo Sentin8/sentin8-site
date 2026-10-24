@@ -126,6 +126,18 @@
       ]
     },
     {
+      "slug": "sign",
+      "kind": "service",
+      "name": "Sentin8:Sign",
+      "repo": "sentin8-sign",
+      "org": "Sentin8",
+      "summary": "Electronic signature ceremonies (AdES/QES): session-bound signer approval, provider gateway seam, append-only evidence, outbox events.",
+      "scopes": [
+        "sentin8:sign:request:read",
+        "sentin8:sign:request:write"
+      ]
+    },
+    {
       "slug": "stat",
       "kind": "service",
       "name": "Sentin8:Stat",

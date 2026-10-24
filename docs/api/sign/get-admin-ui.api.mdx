@@ -1,0 +1,71 @@
+---
+id: get-admin-ui
+title: "`GET /v1/admin/ui/{page}`"
+description: "Get admin ui."
+sidebar_label: "`GET /v1/admin/ui/{page}`"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/api/sign/sentin-8-sign-server
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"`GET /v1/admin/ui/{page}`"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/admin/ui/{page}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get admin ui.
+
+RFW page definitions.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-admin-ui.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-admin-ui.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-admin-ui.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

@@ -55,6 +55,14 @@
       "categoryLinkSource": "info"
     }
   },
+  "sign": {
+    "specPath": "openapi/sign-spec.json",
+    "outputDir": "docs/api/sign",
+    "sidebarOptions": {
+      "groupPathsBy": "tag",
+      "categoryLinkSource": "info"
+    }
+  },
   "stat": {
     "specPath": "openapi/stat-spec.json",
     "outputDir": "docs/api/stat",
