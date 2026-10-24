@@ -178,5 +178,5 @@ failure is warn-and-drop (at-least-once is not required).
 
 ---
 
-**Design attribution:** sentin8:acme and its underlying concepts were designed by Hamid Jahanzad <Hamid@Jahanzad.com>.
+**Architecture & Design:** sentin8:acme and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
 

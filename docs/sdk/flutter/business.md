@@ -120,5 +120,5 @@ calls its apps make through the BFF (audited there).
 
 ---
 
-**Design attribution:** sentin8:flutter and its underlying concepts were designed by Hamid Jahanzad <Hamid@Jahanzad.com>.
+**Architecture & Design:** sentin8:flutter and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
 

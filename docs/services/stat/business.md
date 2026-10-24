@@ -190,5 +190,5 @@ metrics, group `stat-audit`), and Valkey `stat:metrics:{tls,log}`.
 
 ---
 
-**Design attribution:** sentin8:stat and its underlying concepts were designed by Hamid Jahanzad <Hamid@Jahanzad.com>.
+**Architecture & Design:** sentin8:stat and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
 
