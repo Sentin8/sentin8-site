@@ -301,13 +301,19 @@
       "href": "/docs/sdk/flutter"
     }
   ],
-  "showcaseLead": "Seven verticals, one platform: every domain composes the same services with zero platform changes.",
+  "showcaseLead": "One platform, many domains: every vertical composes the same services with zero platform changes.",
   "showcase": [
     {
       "slug": "bank8",
       "name": "Bank8",
       "accent": "#1B6CA8",
       "summary": "Banking, payments & open banking - core ledger, ISO 20022 orchestration, FDX v6.5."
+    },
+    {
+      "slug": "openfin8",
+      "name": "OpenFin8",
+      "accent": "#0E7C66",
+      "summary": "The open-finance vertical: consent-first open banking adapters; bank8 composes the OpenFin8:CA provider role."
     },
     {
       "slug": "hotel8",

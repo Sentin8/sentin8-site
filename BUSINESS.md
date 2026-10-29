@@ -14,7 +14,8 @@
   zero static secrets) are the platform's main selling point - they get
   first-page placement.
 - **Funnel to verticals**: one showcase section routes visitors to
-  each `{vertical}.dev` product site.
+  each family product site (`{vertical}.dev`, OpenFin8 included) -
+  card grids render only deployed family sites.
 - **Never drift from the truth**: architecture/business deep-dives are
   harvested from the unit repositories at build time - the site can't
   overpromise what the code doesn't do.
@@ -23,7 +24,7 @@
 
 | Capability | Delivered by |
 |---|---|
-| Landing with every unit | `site.json`-driven card grids (17 services, 2 starters, 2 apps, 2 SDKs) |
+| Landing with every unit | `site.json`-driven card grids (18 services, 2 starters, 2 apps, 2 SDKs) |
 | Security showcase | `/docs/security` + landing pillar strip |
 | Per-product detail | `/docs/services/{svc}` - use cases + API tables |
 | Developer onboarding | `/docs/developers` (single-repo story), `/docs/samples` |
@@ -38,7 +39,7 @@
 | Shared theme/components/harvester | `sentin8-site-engine` |
 | Vertical product content | each `{vertical}-site` repo |
 | Unit documentation itself | each unit repository |
-| DNS/domains | operator (WEB-10) |
+| DNS/domains | operator |
 
 ## 3. Business Capabilities
 

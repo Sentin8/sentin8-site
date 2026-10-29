@@ -13,7 +13,7 @@
 ## 1. Summary
 
 sentin8.dev is the platform's product + developer website: a landing
-page detailing all 17 services, 2 starters, 2 apps, and 2 SDKs as card
+page detailing all 18 services, 2 starters, 2 apps, and 2 SDKs as card
 grids; per-service pages with use cases and API surface tables; the
 five security pillars; developer quickstarts; sample code; Remote UI
 (RFW) explained; and a **Reference** section harvested at build time
@@ -33,7 +33,7 @@ harvester guarantees by construction.
 
 ```mermaid
 graph TD
-    SJ["site.json<br/>(17 services + 2 starters + 2 apps + 2 SDKs + showcase)"]
+    SJ["site.json<br/>(18 services + 2 starters + 2 apps + 2 SDKs + showcase)"]
     ENGINE["@sentin8/site-engine<br/>(pinned: git tag or local path)"]
     DOCS["docs/<br/>(hand-authored pages)"]
     REF["docs/reference/<br/>(harvested, gitignored)"]
@@ -52,7 +52,7 @@ graph TD
 
 | Route | Content |
 |---|---|
-| `/` | Hero · service cards (17) · apps · SDKs · starters · security pillars · vertical showcase (7 cards → `{vertical}.dev`) |
+| `/` | Hero · service cards (18) · apps · SDKs · starters · security pillars · vertical showcase (8 cards → `{vertical}.dev`) |
 | `/docs/` | Platform overview |
 | `/docs/security/` | The five pillars, fail-closed discipline, 8-step pipeline |
 | `/docs/services/{svc}` | Per service: use cases · API surface table · events |
@@ -78,7 +78,7 @@ the harvester picks up the repo trio automatically.
 Push to `main` → `ci.yml` calls `Sentin8/sentin8-ci site.yml@ci-v1` →
 harvest → build → deploy to GitHub Pages. A weekly schedule rebuilds so
 sibling-repo doc edits land without a site commit. Custom domain
-(`sentin8.dev`) via `static/CNAME` (operator DNS step: WEB-10).
+(`sentin8.dev`) via `static/CNAME` (operator DNS step:).
 
 ## 7. Unresolved questions
 

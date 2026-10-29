@@ -64,12 +64,12 @@ graph TD
 
 | Field | Role |
 |---|---|
-| `units[17]` | platform services: `slug` (route id), `name`, `repo`, `org`, `summary`, `scopes` |
+| `units[18]` | platform services: `slug` (route id), `name`, `repo`, `org`, `summary`, `scopes` |
 | `starters[2]` | cli + captain |
 | `apps[2]` | dash, auth-ui |
 | `sdks[2]` | rust (`sentin8-sdk`), flutter (`sentin8-flutter`) |
 | `pillars[5]` | the SECURITY.md five pillars (landing strip) |
-| `showcase[7]` | vertical cards → `{vertical}.dev` absolute links |
+| `showcase[8]` | vertical cards → `{vertical}.dev` absolute links |
 | `accent` | Royal Gold `#D4AF37` (platform) |
 
 ## 4. Content Pipeline

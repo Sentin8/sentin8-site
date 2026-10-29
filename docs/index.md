@@ -56,6 +56,7 @@ enrollment). A few that exist today:
 | Vertical | Domain | Website |
 |---|---|---|
 | Bank8 | Banking, payments, open banking (FDX) | [bank8.dev](https://bank8.dev) |
+| OpenFin8 | Open finance - consent-first open banking adapters | [openfin8.dev](https://openfin8.dev) |
 | Hotel8 | Hospitality - PMS, POS, distribution, loyalty | [hotel8.dev](https://hotel8.dev) |
 | Exchange8 | Capital markets - ME, OMS, SOR, clearing | [exchange8.dev](https://exchange8.dev) |
 | Trade8 | Trading - desk, router, risk, feeds | [trade8.dev](https://trade8.dev) |
