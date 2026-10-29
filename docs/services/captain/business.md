@@ -59,7 +59,7 @@ rules. The business value it delivers:
 | Bootstrap enrollment | Sealed enrollment record (AES-256-GCM, 0600, TTL re-stamped) brokered to workloads + acme so first-boot mTLS issuance works |
 | Metrics | procfs/cgroup sampling (CPU/RSS/FDs), per-instance traffic counters, host samples (saturation annotation) |
 | Fleet readiness | Ungated readiness endpoint (every catalog type has minimum Active instances) |
-| Failure visibility | `GET /v1/captain/alerts` - the CURRENT give-up set; `make status` / `captain services` print it as the ❌ MANUAL INTERVENTION REQUIRED block after the instance table (services parked at give-up appear in NEITHER view - their registry row is deleted), so a failed service is visible from one command |
+| Failure visibility | `GET /v1/captain/alerts` - the CURRENT give-up set; `make status` / `captain services` print it as theMANUAL INTERVENTION REQUIRED block after the instance table (services parked at give-up appear in NEITHER view - their registry row is deleted), so a failed service is visible from one command |
 
 ### What the service does NOT own (business boundary)
 
@@ -282,11 +282,11 @@ subscriber); traffic counters from the shared metrics channel.
 - One captain per machine is the contract; the Valkey registry is the
   consensus point - a second captain per machine is split-brain by
   design.
-- The docker-macvlan E2E acceptance (backlog FLEET-6) is the remaining
+- The docker-macvlan E2E acceptance  is the remaining
   proof of the provisioning lifecycle end-to-end; prerequisites are
   documented in `tofu/README.md`.
 - Edge/DNS framing: the operator's LB fronting the pinned edge
-  machine(s) is operator infrastructure (FLEET-7 documents the story).
+  machine(s) is operator infrastructure (documents the story).
 - Predictive scaling is a non-goal: reactive thresholds + never-scale
   pins cover the platform's scale model.
 

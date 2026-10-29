@@ -75,7 +75,7 @@ on the persistence side.
 | `handlers.rs` | Produce/consume/ack/nack/DLQ/streams/lag/schedule/metrics + `validate_stream_family` + `stream_key` + **event-type ownership gate** (`event_vertical_prefix()` - see VDC §VDC.4). |
 | `inbox_relay.rs` | Bus-internal durability: LISTEN/NOTIFY (`bus_inbox_changed`) + 2s safety poll; drain batch 1000; startup drain-until-empty. The LISTEN connection is built from `sentin8_config::pg_pool::connect_options_for(database_url)` - the same certificate-presenting `PgConnectOptions` as the service pool (`PgListener::connect` on a raw DSN would present no client certificate and be refused by the TLS-only `cert`-auth plane, silently degrading the relay to poll-only at every boot). |
 | `sse.rs` | `GET /v1/consume/sse`: dedicated connection per client, `XGROUP CREATE … "$"`, 5s `XAUTOCLAIM` sweep (min-idle 60s, COUNT 20), `XREADGROUP COUNT 10 BLOCK 10s`, 15s heartbeat, pending-depth warn > 100. |
-| `consume_pool.rs` | The blocking-consume connection pool: a fixed set of GLIDE clients reserved per `POST /v1/consume` call for the lifetime of its `XREADGROUP … BLOCK` - blocking reads never share the shared command client (the same discipline `sse.rs` and the SDK `StreamSubscriber` enforce; BUSCONNP-1). |
+| `consume_pool.rs` | The blocking-consume connection pool: a fixed set of GLIDE clients reserved per `POST /v1/consume` call for the lifetime of its `XREADGROUP … BLOCK` - blocking reads never share the shared command client (the same discipline `sse.rs` and the SDK `StreamSubscriber` enforce;). |
 | `auth.rs` | Bearer verify (JWKS) + token-tp filter (`access|m2m|delegated`) + jti replay guard + audience check + TLS-header cross-check (skipped for delegated). |
 | `admin_ui.rs` | RFW pages (overview, streams, consumers, metrics, dlq, policy) + data endpoints (SQL inbox, SCAN+XINFO consumers, ZRANGE dlq). |
 | `policy.rs` / `registration.rs` / `config.rs` / `openapi.rs` | Shield bridge + hot reload; self-description; env config; OpenAPI. |
@@ -145,7 +145,7 @@ and again via the relay (different field sets, same logical event);
 consumers dedupe on `idempotency_key`.
 
 **HTTP consume lifecycle** (`POST /v1/consume` - the blocking read runs
-on a dedicated pooled connection, BUSCONNP-1):
+on a dedicated pooled connection,):
 
 ```mermaid
 sequenceDiagram
@@ -257,9 +257,9 @@ stateDiagram-v2
 
 | Endpoint | Audience | Gate | Notes |
 |---|---|---|---|
-| `POST /v1/produce` | producers (M2M) | Shield `sentin8:bus:produce` | 200 `{message_id, stream}`; body `env_id` must equal token env (403). VDC-2 event-ownership: the event type's FIRST colon segment must equal the producer token's `vertical` claim (mint-stamped from `auth.m2m_scope_grants`); user tokens carry no claim → fail-closed 403 `event_ownership`. |
+| `POST /v1/produce` | producers (M2M) | Shield `sentin8: bus: produce` | 200 `{message_id, stream}`; body `env_id` must equal token env (403). event-ownership: the event type's FIRST colon segment must equal the producer token's `vertical` claim (mint-stamped from `auth.m2m_scope_grants`); user tokens carry no claim → fail-closed 403 `event_ownership`. |
 | `POST /v1/produce/batch` | producers (M2M) | Shield `sentin8:bus:produce` | N ≤ 100 events in ONE call; per-row results in request order - a failed row carries `error` and no `message_id`, siblings are unaffected (rows are independent, not a transaction). |
-| `POST /v1/consume` | consumers | Shield `sentin8:bus:consume` | `XGROUP CREATE … 0 MKSTREAM`; reads new entries. The blocking `XREADGROUP` executes on a dedicated pooled connection (`consume_pool.rs`) - never on the shared command client (BUSCONNP-1); `block_ms` is server-capped at 5000 (a longer request is truncated, not rejected - the caller observes the cap as a sooner empty batch). |
+| `POST /v1/consume` | consumers | Shield `sentin8: bus: consume` | `XGROUP CREATE … 0 MKSTREAM`; reads new entries. The blocking `XREADGROUP` executes on a dedicated pooled connection (`consume_pool.rs`) - never on the shared command client; `block_ms` is server-capped at 5000 (a longer request is truncated, not rejected - the caller observes the cap as a sooner empty batch). |
 | `POST /v1/ack`, `POST /v1/nack` | consumers | Shield `sentin8:bus:consume` | NACK enqueues `bus:retry:{env}` (+`retry_after_secs`, default 30). |
 | `GET /v1/consume/sse` | direct consumers | scope check `sentin8:bus:consume` (+ token via `?token=`) | XAUTOCLAIM sweep + heartbeat; ACK via API. |
 | `GET /v1/dlq`, `POST /v1/dlq/replay` | admins | Shield `sentin8:bus:admin` | replay XADDs `{event_type}.replayed` with `replayed_from_dlq`. |
@@ -467,7 +467,7 @@ graph LR
    for the original.
 10. A blocking `XREADGROUP` (HTTP consume) NEVER executes on the shared
     command client - it holds a pooled dedicated connection for the
-    duration of the read (BUSCONNP-1). The `block_ms` a caller sends is
+    duration of the read . The `block_ms` a caller sends is
     a hint, capped server-side at 5000ms: the bus, not the caller, owns
     its connection occupancy budget.
 

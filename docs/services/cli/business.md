@@ -42,7 +42,7 @@ The business value it delivers:
 | Vertical init (`vertical init`) | Per-vertical database + schemas + SQL + RLS from per-repo `sql/` directories |
 | Vertical enrollment (`vertical enroll` / `unenroll`) | Composable per-repo registration: services, admin scopes, declarative policies, relations, **schedules**, M2M workload grants, error codes, consent providers, app store listings, captain catalog entries, Valkey ACL keys |
 | Fleet control (`captain …`) | Fleet start/stop/restart; per-instance restart/stop/start/rolling-upgrade (multi-key parallel); status tables with version+build |
-| **Fleet placement (`captain place`)** | Operator hand-placement of a service onto a named machine (FLEET-4); the target's placement gate answers with a refusal reason on violation |
+| **Fleet placement (`captain place`)** | Operator hand-placement of a service onto a named machine; the target's placement gate answers with a refusal reason on violation |
 | Autoscaler operations (`captain autoscaler*`) | Machine provisioning state (profile, backend, fleet size, leader), pending provision/deprovision requests, approve/reject |
 | Declarative service commands (`sentin8 <svc> …`) | Commands resolved from the registry - every enrolled service's command surface is call-table-driven, no CLI rebuild |
 | Secrets (`secrets …`) | Secret-reference management (set/list/reveal by reference - values never in logs) |
@@ -63,6 +63,7 @@ The business value it delivers:
 | Capability | Business rule |
 |---|---|
 | Two bootstrap states | The platform is either uninitialized (superuser DSN works) or initialized (every CLI action requires the signed-in operator); `db bootstrap` refuses to run twice - a reset is a development-only, guarded operation |
+| Guarded dev reset (full-tree data) | The guarded repo script deletes EVERY database on the dev cluster (all verticals + platform) and brings back ONLY the core platform (bootstrap + platform enroll + platform-core-scoped boot); no vertical data is preserved and no vertical service is started - a vertical re-joins on its own group flow when the operator chooses |
 | One-time initialization | Platform SQL is applied as one converged unit (idempotent DO-blocks) - a re-run after a database-only restore heals drift instead of failing the fleet |
 | Composable enrollment | Each repo ships one `service-registration.json` + `catalog.json`; enroll merges fragments per vertical; re-running enroll converges to the same rows (idempotent) |
 | Runtime command surfaces | Service subcommands live in the registry's call table - adding a command to a service needs no CLI release |
@@ -143,10 +144,9 @@ SSE/HTTP status streams from captain (upgrade/startup/shutdown progress).
 
 ## 10. Open Business Questions
 
-- Packaged-install (deb) enrollment flows track the packaging backlog
-  (SD-7).
+- Packaged-install (deb) enrollment flows land with the packaged-install rollout.
 - Remote-machine enrollment convenience (drive a fresh machine's enroll
-  from anywhere) may follow the fleet E2E story (FLEET-6).
+  from anywhere) may follow the fleet E2E story .
 
 ---
 

@@ -230,7 +230,7 @@ No endpoint changes; the SDK ships no servers.
 - **Authentication**: `m2m` + `auth-client` unchanged - cert-bound
   (RFC 8705) cached token sourcing; the SDK itself performs no DCR for
   telemetry (MemBus needs none - tenant isolation by key derivation).
-- **Outbox relay rate-limit discipline (WARN-5)**: a retryable produce
+- **Outbox relay rate-limit discipline **: a retryable produce
   failure (429/5xx/transport) sets the row's `next_retry_at` (Bus's 429
   body carries `retry-after: 60`; other retryables take the 2s tick) and
   the drain predicate skips rows whose `next_retry_at` is in the future.
@@ -302,11 +302,11 @@ flowchart TD
 
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
-- **SDD-1**: placement by shared-plane linkage; the shared plane links no
+- ****: placement by shared-plane linkage; the shared plane links no
   service-scoped client - a future need is a design defect, route through
   MemBus/domain events.
-- **SDD-6**: facade never re-exports a mini-facade.
-- **CERTFREE-1 (identity/m2m → workload-identity)**: the platform M2M plane
+- ****: facade never re-exports a mini-facade.
+- **(identity/m2m → workload-identity)**: the platform M2M plane
   carries NO token. The crate's job narrows to certificate identity
   management: mint-if-missing from Acme (bootstrap-enrollment channel),
   persist the `{workload}.crt/.key` pair (0700/0600), and provide the
@@ -319,9 +319,20 @@ flowchart TD
   inputs travel via the enroll-published `m2m:workloads` Valkey hash
   (workload → {vertical, service_type, scopes, enabled}), boot-loaded +
   TTL-cached by every service, fed into Shield `RequestCtx` and Bus's
-  VDC-2 vertical gate; revocation = `enabled=false`, observed within the
+  vertical gate; revocation = `enabled=false`, observed within the
   cache TTL. JWTs remain for user/delegated flows; DCR remains for
   interactive + out-of-band tenant clients.
+- **(tls → cert cache)**: minted server leaves are caller-custodied
+  artifacts exactly like the workload client pairs - persisted under
+  `{SENTIN8_SECRETS_DIR}/tls-certs/` (0700/0600) and pre-warmed at boot with
+  expiry pruning and a hostname cap (`SENTIN8_TLS_CERT_CACHE_MAX`, default
+  256; the SNI key space is client-controlled). The on-demand Acme mint
+  remains the fallback for genuinely new hostnames; the prewarm path is a
+  LOCAL DISK READ ONLY (no new boot-time cross-service edge - runtime
+  dependency discipline). Revocation is honored at natural expiry/re-mint
+  (dev posture; the Storage-backed revocation-list seam is the production
+  path). The `acme` crate gains the matching reuse-before-mint rule at
+  finalize (acme DESIGN §4.0) so re-requests are idempotent.
 - No `unsafe` in the SDK plane (`facade` forbids it; membus uses only
   safe RESP APIs).
 - Rejected: durable Streams for telemetry (imposes retry/DLQ semantics on

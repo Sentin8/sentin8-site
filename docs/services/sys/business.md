@@ -194,7 +194,7 @@ best-effort, scope-tagged).
 
 - The bootstrap surface stays platform-level by design; per-app dashboards are RFW pages served by the owning service.
 - `GET /v1/scopes/catalog` stays open as a documented pre-login exception (gating it is the alternative posture if exposure concerns grow).
-- `sys.app_environment_bindings` RLS policy is a known gap tracked in the platform backlog (single-role server reads today).
+- `sys.app_environment_bindings` RLS policy is a known gap deferred out of this design (design-doc scope) (single-role server reads today).
 
 
 ---

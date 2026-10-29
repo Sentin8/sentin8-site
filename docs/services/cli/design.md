@@ -13,14 +13,14 @@ custom_edit_url: https://github.com/Sentin8/sentin8-cli/edit/main/DESIGN.md
 ## 1. Scope & Context
 
 The CLI is the **bootstrap + enrollment + control** starter. It links
-ONLY the SDK plane (invariant RS-2 - starters never link services) and
+ONLY the SDK plane (invariant - starters never link services) and
 executes two kinds of authority:
 
 - **Database-plane authority** (pre-identity): `db bootstrap` and
   `vertical init` run SQL directly as the DDL superuser - the only
   credential available before Sentin8:Auth exists. `db bootstrap` is the
   ONLY command that applies platform SQL; it refuses when the
-  `sys.platform_bootstrap` scout exists (BOOTSTRAP-1: the database has
+  `sys.platform_bootstrap` scout exists (the database has
   exactly two states).
 - **Identity-plane authority** (post-identity): every other command
   (enroll, captain control, secrets, service commands) requires a
@@ -46,7 +46,7 @@ graph TD
 | `auth.rs` | Device-flow operator sign-in (PKCE, token persistence + refresh); `get_valid_token_blocking`. |
 | `db.rs` | `db bootstrap` (`migrations/platform.sql` + `public_helpers.sql`, scout-gated), `db migrate` (`--sql-dir` service SQL), `db seed-listings`. |
 | `vertical_registry.rs` | Composable enrollment: read `--print-registration --section=…` JSON from each repo, merge fragments per vertical, upsert registry tables (`sentin8_vertical_services`, admin scopes, policies, relations, **schedules** (SDD §2.4), error codes, consent providers, app store listings, captain catalog entries, Valkey keys) - idempotent. |
-| `captain.rs` | Fleet control: start/stop/restart, per-instance restart/stop/start/upgrade (+ UDS transport), status tables, autoscaler view + approve/reject, **`captain place`** (FLEET-4 hand placement). |
+| `captain.rs` | Fleet control: start/stop/restart, per-instance restart/stop/start/upgrade (+ UDS transport), status tables, autoscaler view + approve/reject, **`captain place`** (hand placement). |
 | `transport.rs` | Captain transport resolution: local UDS (`SO_PEERCRED`) when on the same machine; HTTP for remote hosts. |
 | `commands.rs` | Declarative service commands - subcommands resolved from the registry (`service_commands` table), no hardcoded per-service command list. |
 | `secrets.rs`, `func.rs`, `infra.rs` | Secret-reference management, func tooling, infra helpers. |
@@ -89,9 +89,46 @@ graph LR
 Command families (see `README.md` §4): `db`, `vertical`, `captain`,
 per-service registry-declared commands, `secrets`.
 
+### 4.1 `captain start [TYPES]` - the scope argument contract
+
+`captain start` optionally takes ONE comma-separated token string naming
+the service types to ensure (`sentin8:captain,sentin8:acme,auth,bff` -
+legacy hyphen forms are accepted and canonicalized, whitespace is
+trimmed, empty segments dropped). The handler resolves the typed list
+and routes it by captain state:
+
+```mermaid
+flowchart TD
+    ARG["captain start arg (one comma-joined string)"] --> SPLIT["split → trim → canonicalize → drop empties"]
+    SPLIT -->|"empty list"| DEF["platform-core default<br/>(no SENTIN8_SERVICES export -<br/>captain's unset-env default, <br/>)"]
+    SPLIT -->|"non-empty"| UP{"captain process<br/>up?"}
+    UP -->|"yes"| API["POST /v1/captain/start-services<br/>{service_types: [typed tokens]}<br/>(bearer / UDS peer-cred)"]
+    UP -->|"no"| COLD["export SENTIN8_SERVICES=joined list<br/>→ spawn captain (cold-boot<br/>allow-list, D6 tier spawn)"]
+    DEF --> COLD2["spawn captain<br/>(scope = platform-only default)"]
+```
+
+- **API path (captain up)**: the SPLIT list is posted - the handler
+  looks each token up in the live catalog and spawns missing types.
+  Posting the raw comma-joined string as one element would match
+  nothing ("not in catalog" skip per token) and no-op the whole call -
+  the defect this section forbids.
+- **Cold-boot path (captain down)**: the typed list is re-joined with
+  commas into `SENTIN8_SERVICES` for the spawned captain - the boot
+  allow-list filters ONLY the boot-spawn loop (D6); the catalog stays
+  the full union so later `start-services`/per-instance actions can
+  join pruned-at-boot types without a captain restart.
+- **Group Makefiles** (sentin8 core, the six vertical groups,
+  per-service repos) pass their scope as one comma-joined argument in
+  both branches - the contract here is what makes that argument reach
+  the right consumer every time ('s three-level rule rides
+  on it).
+- `captain` itself may appear in a passed list without risk: the boot
+  loop skips its own type, and the singleton placement gate refuses any
+  second supervisor spawn.
+
 ## 5. Cross-Cutting Concerns
 
-- **Auth states**: BOOTSTRAP-1's two-state contract - pre-identity
+- **Auth states**: 's two-state contract - pre-identity
   commands work only with the DDL superuser; post-identity, every CLI
   action requires the signed-in operator. `db bootstrap` refuses to run
   on an initialized platform (the scout + table-presence guard also
@@ -106,28 +143,47 @@ per-service registry-declared commands, `secrets`.
   `pg_roles`, `commands`).
 - **Captain control channel**: UDS with kernel-proven `SO_PEERCRED` for
   same-machine control; Shield-gated HTTP for remote; `captain place`
-  builds a per-machine HTTP call (FLEET-4).
+  builds a per-machine HTTP call .
 - **Secrets posture**: the CLI never stores DSNs or secrets it provisions
   - they live in the operator env (`.env`) and flow via `database_env_vars`
   declarations at spawn; the device-flow token store is user-scoped.
 - **Operator env loading**: every CLI subcommand loads the tree-root
   operator `.env` via `dotenvy::dotenv()` - and `scripts/dev-destroy.sh`
-  (the destructive local reset, DEVRESET-1) sources the SAME file
+  (the destructive local reset,) sources the SAME file
   explicitly before its first step, refusing loudly when absent: the
   script's maintenance connection (certificate identity, `postgres-ops`
   pair) and its `captain stop` precondition must behave identically from
   a fresh shell and an operator session, and a half-destroyed workspace
   (fleet stopped, databases untouched) must never result from a missing
   environment.
-- **The dev reset is PLATFORM-scoped (STARTSCOPE-1, RS §4.5.2)**:
-  `dev-destroy.sh` drops and recreates ONLY the `sentin8` platform
-  database and the `sentin8_*_service` platform roles - vertical
-  databases (`bank8`, `hotel8`, …) and vertical roles
-  (`bank8_*_service`, …) are NEVER touched (they are owned by their
-  groups' `vertical init`). The post-bootstrap `captain start` runs
-  under the platform-core `SENTIN8_SERVICES` pin, so a reset boots only
-  the platform fleet; a vertical rejoins the fresh platform via its own
-  group `make enroll && make start` at the operator's choice.
+- **The dev reset drops ALL data but re-initializes ONLY the platform core
+  (boot scope from / RS §4.5.2)**:
+  `dev-destroy.sh` is a FULL-TREE data reset - every non-template database
+  on the dev cluster is dropped: vertical databases (`bank8`, `hotel8`, …)
+  first, enumerated vertically-agnostically from `pg_database` (the script
+  never names a vertical, AGENTS rule 1), then the `sentin8` platform
+  database is dropped and recreated. The platform database carries the
+  registry tables, so the reset also un-enrolls every vertical by
+  construction. Vertical `_service` ROLES survive on the cluster (they are
+  passwordless certificate-identity rows; the vertical's own
+  `vertical init`/`vertical enroll` converges them idempotently), while
+  the `sentin8_*_service` platform roles are dropped for re-seeding.
+  Re-initialization covers the CORE PLATFORM ONLY: `db bootstrap`, the
+  platform-fragment enrollment, and the post-bootstrap `captain start` -
+  which runs under the platform-core `SENTIN8_SERVICES` pin (spawning a
+  vertical service against its dropped database would crash-loop it). A
+  vertical re-joins the fresh platform via its own group
+  `vertical init && make enroll && make start` at the operator's choice;
+  the dropped vertical state is disposable by design (greenfield data).
+- **The dev reset force-recreates BOTH infra containers : ** the
+  reset recreates the whole `.run/secrets` tree (infra TLS material, CAs),
+  and Docker Desktop/WSL bind-mount hashes freeze at container-creation
+  time - a container whose bind-mount source was replaced underneath it
+  sees empty/stale mounts until recreated (observed: postgres initdb EPERM
+  crash-loop; valkey `unhealthy` probe streak with an empty `/tls`).
+  The script therefore runs `docker compose up -d --force-recreate` for
+  the group's compose project (both services) after the drop phase -
+  never a per-container patch, and never from a service process.
 - **Infra probes bypass captain by design** (`infra.rs`): captain owns
   the Valkey service registry and intentionally has no PostgreSQL
   dependency - it must boot and report status even when PostgreSQL is
@@ -161,7 +217,7 @@ command run; enrollment merges fragments in memory before upserting
    re-initialization.
 2. No destructive command exists in the shipped CLI (dev reset is the
    guarded repo script).
-3. Starters link no service binary (RS-2); every service surface is
+3. Starters link no service binary; every service surface is
    registry-declared.
 4. All enrollment upserts are idempotent - convergence on re-run.
 5. The operator token never leaves the local store; secrets flow
@@ -179,7 +235,7 @@ command run; enrollment merges fragments in memory before upserting
 ## 10. Open Questions
 
 - Packaged-install enrollment (the vendored-registry path) tracks with
-  the packaging backlog (SD-7).
+  the packaged-install rollout.
 - A `captain enroll-remote` convenience (drive a fresh machine's enroll
   from the CLI) may follow the FLEET E2E story.
 

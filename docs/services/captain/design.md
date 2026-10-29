@@ -199,7 +199,7 @@ catalog stays complete, so `POST /start-services`, per-instance actions
 registered service type at any time - a second repo's `start` after a
 trimmed boot works without restarting the captain.
 
-**Boot scope default (STARTSCOPE-2).** When `SENTIN8_SERVICES` is unset,
+**Boot scope default .** When `SENTIN8_SERVICES` is unset,
 boot spawns the PLATFORM services only (`sentin8:*` from the built-in
 catalog) - never the external vertical catalog entries. The operator
 opts into a full-fleet boot explicitly (`SENTIN8_SERVICES=all` or an
@@ -214,6 +214,19 @@ multi-vertical fleet bring-up. The explicit services argument
 path too: the CLI resolves the types through the catalog and exports
 them as the boot allow-list for the spawned captain, so the argument
 can no longer be silently dropped when the API is not yet listening.
+
+**Readiness accounting rides the boot scope .** The
+`GET /v1/captain/startup-stream` SSE feed computes `total` and the
+`pending` list over the EFFECTIVE BOOT SET - the resolved boot
+allow-list threaded into `AppState` - never over the live catalog
+union. A scoped boot reports its own denominator (e.g. the
+platform-core scope → `⏳ 18/19 ready - waiting on: sentin8:sign`) and
+turns `ready` the moment the scoped types are Active; an unscoped
+(`all` or unset-with-union-default) boot keeps union accounting.
+Vertical types deliberately NOT spawned are invisible to the stream -
+they are catalog knowledge for `start-services`/per-instance actions,
+not pending boot work. The scoped stream completes instead of hanging
+to the 300 s cap on types no caller asked to spawn.
 
 | Key | Type | Contents |
 |---|---|---|
@@ -237,9 +250,9 @@ can no longer be silently dropped when the API is not yet listening.
 | `/v1/health` | GET | none | liveness. |
 | `/v1/captain/readiness` | GET | **ungated** | 200 when every catalog type has ≥`MIN_INSTANCES` Active. |
 | `/v1/captain/services` (list/get/post-action) | GET/POST | Shield `sentin8:captain:admin` | instance lifecycle: `restart|stop|start|upgrade`; captain-self → 409. |
-| `/v1/captain/upgrade-status|upgrade-stream|startup-stream|shutdown-stream` | GET | gate | 2s polls; terminal `complete/aborted/rolled_back`. The **startup-stream** additionally emits a first-class `alert` SSE event per crash-looped service (give-up after `MAX_RESTARTS`): `{service, restarts, reason, log_path}` - read from the `captain:alerts` HASH, cleared when the service next reaches `Active` - **on ANY path** (self-heal respawn, last-resort spawn, boot adoption, manual start): the monitor clears the alert on every healthy probe of an Active instance (idempotent HDEL), not only the `Starting → Active` transition - an adopted instance never passes through `Starting`, and a transition-only clear left stale alerts on healthy services for a whole session (DUPROW-1 follow-up, 2026-10-17) (supervisor records on give-up, monitor clears on recovery; a failed boot is an operator-visible event, never a bare "waiting on" loop ending in timeout). |
+| `/v1/captain/upgrade-status|upgrade-stream|startup-stream|shutdown-stream` | GET | gate | 2s polls; terminal `complete/aborted/rolled_back`. The **startup-stream** additionally emits a first-class `alert` SSE event per crash-looped service (give-up after `MAX_RESTARTS`): `{service, restarts, reason, log_path}` - read from the `captain: alerts` HASH, cleared when the service next reaches `Active` - **on ANY path** (self-heal respawn, last-resort spawn, boot adoption, manual start): the monitor clears the alert on every healthy probe of an Active instance (idempotent HDEL), not only the `Starting → Active` transition - an adopted instance never passes through `Starting`, and a transition-only clear left stale alerts on healthy services for a whole session (follow-up, 2026-10-17) (supervisor records on give-up, monitor clears on recovery; a failed boot is an operator-visible event, never a bare "waiting on" loop ending in timeout). |
 | `/v1/captain/machines` | GET | gate | `captain:host:*` scan. |
-| `/v1/captain/alerts` | GET | gate | **WARN-10 give-up alert list** - every service captain gave up on (`MAX_RESTARTS`) and that has not recovered yet; consumed by `captain services` (the ❌ MANUAL INTERVENTION REQUIRED block after the instance table) and the RFW surfaces. Cleared when the service reaches `Active`. |
+| `/v1/captain/alerts` | GET | gate | **give-up alert list** - every service captain gave up on (`MAX_RESTARTS`) and that has not recovered yet; consumed by `captain services` (theMANUAL INTERVENTION REQUIRED block after the instance table) and the RFW surfaces. Cleared when the service reaches `Active`. |
 | `/v1/captain/catalog` · `POST /merge-catalog` · `POST /start-services` | GET/POST | gate | runtime catalog + local start (RCE boundary - catalog-resolved only). |
 | `/v1/captain/instances` | POST | **M2M `sentin8:captain:instances:write`** (remote-spawn workload) or `sentin8:captain:admin` | **§11.4 remote spawn**: body `{service_types:[…]}`; the local start-services path restricted to the caller's own catalog + placement gates. A leader calling this on another machine places services there. |
 | `/v1/captain/shutdown` | POST | gate (or UDS peer) | graceful leave of self + children. |
@@ -260,7 +273,7 @@ rule, `{ip}:{port}` union-key identity, port reservations, never-scale pin
 retune procedure (§8.1 there), and the pure-unit + Valkey-gated live test
 layering.
 
-### 5.10.2 Duplicate-instance minting - one live row per service (DUPROW-1)
+### 5.10.2 Duplicate-instance minting - one live row per service
 
 **The invariant**: at any instant, at most ONE registry row per
 `(service_type, local_ip)` points at a process that is alive or being
@@ -343,7 +356,7 @@ the affected services one at a time (`make restart-instance` on the
 younger row's key - the stop path deletes its row, the fleet returns to
 one row per service). No migration code: the registry is runtime state.
 
-### 5.10.2b Self-heal must probe the PORT, not just the row (ORPHANLOOP-1)
+### 5.10.2b Self-heal must probe the PORT, not just the row
 
 **The defect** (verified live 2026-10-17, the 25-second kill-respawn
 loop): after a `stop & start` that leaves live ORPHAN processes
@@ -366,7 +379,7 @@ backoff cap (~25 s with defaults) and NEVER converges: the kill branch
 acts on a stale snapshot's pid without re-verifying liveness, and
 `self_heal`'s same-key respawn checks SIBLING ROWS but never checks
 whether a live process already holds the target port (seam 3 of
-DUPROW-1 guards only the give-up/last-resort paths).
+guards only the give-up/last-resort paths).
 
 **The fix - two seams, one rule ("the port is the truth; the row is a
 cache")**:
@@ -401,7 +414,7 @@ adopt-first rule.
 When self-heal exhausts `MAX_RESTARTS` (3), the give-up is a FIRST-CLASS
 operator event AND a self-recovery contract - never a permanent park:
 
-1. **Alert (WARN-10, unchanged)**: `store::record_alert` upserts
+1. **Alert (unchanged)**: `store:: record_alert` upserts
    `captain:alerts` → the hash field `{service_type}`; the SSE
    startup-stream emits a first-class `alert` event; the CLI surfaces it.
 2. **Give-up terminal state (unchanged)**: the dead instance row is
@@ -592,7 +605,7 @@ at spawn time via `SENTIN8_CAPTAIN_EDGE_IP` (unset = the machine is not
 the edge; the operator sets it on the edge host only, like any other
 placement).
 
-**Single-machine self-election (CPT-2).** When `SENTIN8_CAPTAIN_EDGE_IP`
+**Single-machine self-election .** When `SENTIN8_CAPTAIN_EDGE_IP`
 is unset AND the fleet observed in the registry is one machine or empty,
 `pin:edge` admits on that machine - the sole machine self-elects as the
 edge (the single-machine dev fleet has no other honest choice; refusing
@@ -767,7 +780,7 @@ flowchart TD
   (401/403/200 paths against a real M2M token); leader selection
   filtering with a fake fleet registry.
 - **Deliberately NOT tested here**: real `tofu apply` against a cloud
-  (docker-macvlan covered by the E2E story FLEET-6), operator env file
+  (docker-macvlan covered by the E2E story), operator env file
   materialization (module-owned).
 
 ---

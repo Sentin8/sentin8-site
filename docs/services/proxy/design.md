@@ -23,7 +23,7 @@ Valkey instance registry.
   domain resolver caches, the in-memory rate limiter, L7 metrics, and
   the optional plain-HTTP `:80` listener that exists solely to hand
   `/.well-known/acme-challenge/*` requests to acme (everything else a
-  fixed 404 - DEVDOM-2, acme DESIGN §4.3).
+  fixed 404 -, acme DESIGN §4.3).
 - **Does NOT own**: tenant data (read-only `sys.*` caches), TLS
   certificates (resolved per-SNI via `sentin8-tls`; a self-signed 24h
   bootstrap cert breaks the first-boot chicken-and-egg), and
@@ -95,7 +95,7 @@ can never spoof tenant identity. The L4 path never decrypts anything.
 | `header_injector.rs` | Strip client `X-Sentin8-*` (11 headers) → inject `env-id`, `app-id`, `service`, `hostname`, `correlation-id`, `caller-service: proxy`. |
 | `policy_engine.rs` | WAF (SQLi/XSS/path-traversal), per-IP token-bucket rate limit, header-count cap. |
 | `upstream_tls.rs` | Backend connect: `Offload` (plain TCP) / `Bridge` (rustls + optional mTLS + native root store incl. Acme Root CA). |
-| `upstream_idle_pool.rs` | Per-`(backend_addr, sni)` idle-connection pool for L7 upstreams (PROXY-5): warmed TLS/TCP sessions reused across requests; stale pooled connections fail transport once and the request **retries once on a fresh connection** - a handoff-warm pool, not a per-request handshake. |
+| `upstream_idle_pool.rs` | Per-`(backend_addr, sni)` idle-connection pool for L7 upstreams : warmed TLS/TCP sessions reused across requests; stale pooled connections fail transport once and the request **retries once on a fresh connection** - a handoff-warm pool, not a per-request handshake. |
 | `bootstrap_cert.rs` | Self-signed 24h leaf for `proxy.ops.sys.{domain}` (SAN = local IP) until Acme is healthy. |
 | `l7_metrics.rs` / `mapping_cache.rs` / `pipe.rs` / `traffic_split.rs` | Counters + flush; always-empty mapping stats; bidirectional copy; internal/external decision. |
 
@@ -167,7 +167,7 @@ sequenceDiagram
     end
 ```
 
-The upstream-connect step is pool-first (PROXY-5):
+The upstream-connect step is pool-first :
 
 ```mermaid
 sequenceDiagram
@@ -203,7 +203,7 @@ The proxy owns no tables; its working state is caches:
 | `MappingCache` | resolver | always empty (stats surface for the mgmt API only). |
 | Rate limiter | in-memory | per-IP token bucket (`rate_limit_rps`, default 100). |
 
-**Platform-plane SNIs resolve statically - no domain-model read (TLS-RLS-4
+**Platform-plane SNIs resolve statically - no domain-model read (
 parity, story D7-PXY).** A `{label}.ops.sys.{domain}` hostname resolves
 in-process from well-known constants: `SYSTEM_ORG_ID` / `SYSTEM_ENV_ID`
 (sentin8-config) + the `SENTIN8_TLS_PLATFORM_LABELS` label→service map
@@ -347,7 +347,7 @@ graph LR
 - Per-connection tasks; the hot path is `peek` + cache hit + `pick` +
   byte copy (L4) or terminate-parse-inject-forward (L7) - no queuing
   infrastructure, backpressure is inherent to TCP.
-- **Upstream connection pooling (PROXY-5)**: L7 upstreams are served
+- **Upstream connection pooling **: L7 upstreams are served
   from a per-`(backend_addr, sni_hostname)` idle pool before a fresh
   `upstream_tls::connect` - a warm pooled session removes the ~40 ms
   PQ-handshake (X25519MLKEM768 + ML-DSA-65) from every proxied request
