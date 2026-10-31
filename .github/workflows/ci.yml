@@ -7,18 +7,28 @@
 # Regenerate with a sync run from the tree root.
 
 name: ci
+# Site lane caller (Sentin8/sentin8-ci site.yml @ci-v1).
+# Push to main: harvest + build + deploy to GitHub Pages.
+
 on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+  schedule:
+    # Weekly harvest refresh: rebuild so sibling-repo doc changes land
+    # on the site without a site-repo commit (harvest pulls public main).
+    - cron: '0 5 * * 1'
 
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: read
 
 jobs:
   ci:
-    uses: Sentin8/sentin8-ci/.github/workflows/docs-group.yml@ci-v1
+    uses: Sentin8/sentin8-ci/.github/workflows/site.yml@ci-v1
     with:
-      has-compose: false
+      site-dir: .
+      deploy: ${{ github.event_name != 'pull_request' }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
