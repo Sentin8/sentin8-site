@@ -122,7 +122,7 @@ Event family `secrets`; metadata-only payloads - values never.
 
 | Persona | What they do with Sentin8:Secrets |
 |---|---|
-| Consuming service (ai, post, bank8-fdx…) | Stores provider credentials by reference; resolves them at call time with a workload-scoped token |
+| Consuming service (ai, post, openfin8-ca…) | Stores provider credentials by reference; resolves them at call time with a workload-scoped token |
 | Platform operator | Creates/rotates/disables secrets via the admin UI; reviews the reveal audit trail; runs re-encrypt after key rotation |
 | Compliance/audit | Verifies zero plaintext at rest, zero unaudited reveals, and the never-pruned audit history |
 | Key administrator | Rotates the master key and runs the re-encrypt sweep (resumable, per-row failure isolation) |

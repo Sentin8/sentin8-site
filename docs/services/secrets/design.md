@@ -30,7 +30,7 @@ graph TD
     subgraph CALLERS["Consumers"]
         AI["sentin8:ai (provider creds)"]
         POST["sentin8:post (gateway creds)"]
-        FDX["bank8:fdx (provider tokens by ref)"]
+        FDX["openfin8:ca (provider tokens by ref)"]
         CRON["sentin8:cron (daily version-prune)"]
         ADM["Admins (RFW)"]
     end
