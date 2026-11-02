@@ -159,6 +159,10 @@ export default function Home() {
               title: 'Cloud-native resilience, no operational tax',
               summary: 'With Sentin8, you get cloud-native resilience and elite performance, stripped of the operational tax.',
             },
+            {
+              title: 'The computationally sustainable platform',
+              summary: 'Built entirely on compiled Rust and isolated WASM edge functions - processing high-velocity transactions with up to 75 times less energy than traditional VM-based and Python-driven engines.',
+            },
           ]} />
         </Section>
 
