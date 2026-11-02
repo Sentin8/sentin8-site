@@ -133,6 +133,35 @@ export default function Home() {
           </Section>
         ) : null}
 
+        <Section
+          id="platform"
+          title="Infrastructure independence"
+          lead="The Sentin8 platform underneath every vertical."
+        >
+          <SecurityPillars items={[
+            {
+              title: 'Massive scale, anywhere',
+              summary: 'Sentin8 and its verticals deliver massive scale directly onto bare-metal, private cloud, and all major public cloud environments - including AWS, GCP, and Azure.',
+            },
+            {
+              title: 'No Kubernetes, no service-mesh tax',
+              summary: 'Engineered to bypass the complexity and overhead of Kubernetes or heavy service meshes, with native auto-scaling and self-healing built directly into the core - minimal to no external dependencies.',
+            },
+            {
+              title: '5,000,000 TPS, proven in testing',
+              summary: 'Purpose-built for ultra-low latency and maximum efficiency, proven in testing to power real-time services with a blistering throughput of 5,000,000 transactions per second (TPS).',
+            },
+            {
+              title: 'From Tier 1 enterprises to garage startups',
+              summary: 'Designed and tested to power infrastructure across the entire business spectrum - massive legacy workloads at the highest enterprise scale or a lean, high-velocity application from a garage: the exact same battle-tested reliability and performance.',
+            },
+            {
+              title: 'Cloud-native resilience, no operational tax',
+              summary: 'With Sentin8, you get cloud-native resilience and elite performance, stripped of the operational tax.',
+            },
+          ]} />
+        </Section>
+
         {site.showcase ? (
           <Section id="verticals" title={site.showcaseTitle || 'The Sentin8 family'} lead={site.showcaseLead}>
             <VerticalShowcase items={site.showcase} />
