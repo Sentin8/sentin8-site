@@ -19,6 +19,9 @@
 - **Never drift from the truth**: architecture/business deep-dives are
   harvested from the unit repositories at build time - the site can't
   overpromise what the code doesn't do.
+- **Carry the platform's legal surface**: the Privacy Policy and Terms of
+  Service pages state the platform's data and usage terms - and serve as
+  the default links the hosted sign-in UIs show when a tenant sets none.
 
 ## 2. Business Scope
 
@@ -30,6 +33,7 @@
 | Developer onboarding | `/docs/developers` (single-repo story), `/docs/samples` |
 | Remote UI explanation | `/docs/developers/remote-ui` |
 | Harvested deep-dives | `/docs/reference/{unit}` - README/DESIGN/BUSINESS/SECURITY per unit |
+| Legal pages | `/privacy` + `/terms` - platform Privacy Policy and Terms of Service (the hosted-UI footer defaults) |
 | Vertical routing | showcase cards → `{vertical}.dev` |
 
 **Not owned (business boundary):**

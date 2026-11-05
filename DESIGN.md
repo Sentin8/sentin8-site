@@ -8,7 +8,8 @@
 ## 1. Scope & Context
 
 **Owns:** the sentin8.dev content (landing, 19 service/starter pages,
-apps, SDKs, security, developers, samples) and its build/deploy wiring.
+apps, SDKs, security, developers, samples, legal pages) and its
+build/deploy wiring.
 
 **Does not own:** the engine (theme/components/factories -
 `sentin8-site-engine`), vertical sites, or the unit repos' documentation
@@ -20,6 +21,7 @@ graph TD
         SJ["site.json"]
         DOCS["docs/**"]
         LANDING["src/pages/index.jsx (generated)"]
+        LEGAL["src/pages/privacy.md + terms.md<br/>(/privacy, /terms)"]
         CSS["src/css/custom.css (accent override)"]
         WF[".github/workflows/ci.yml"]
     end

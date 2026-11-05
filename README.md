@@ -53,6 +53,7 @@ graph TD
 | Route | Content |
 |---|---|
 | `/` | Hero · service cards (18) · apps · SDKs · starters · security pillars · vertical showcase (8 cards → `{vertical}.dev`) |
+| `/privacy` · `/terms` | Platform legal pages: Privacy Policy and Terms of Service (also the hosted-UI footer defaults) |
 | `/docs/` | Platform overview |
 | `/docs/security/` | The five pillars, fail-closed discipline, 8-step pipeline |
 | `/docs/services/{svc}` | Per service: use cases · API surface table · events |
