@@ -8,7 +8,10 @@
 
 name: ci
 # Site lane caller (Sentin8/sentin8-ci site.yml @ci-v1).
-# Push to main: harvest + build + deploy to GitHub Pages.
+# Push to main: harvest + build + deploy to GitHub Pages. The weekly
+# schedule refreshes harvested sibling-repo docs; workflow_dispatch
+# allows a manual rebuild (e.g. after a cancelled deploy or a sibling
+# doc fix that should go live before the next cron tick).
 
 on:
   push:
@@ -18,6 +21,7 @@ on:
     # Weekly harvest refresh: rebuild so sibling-repo doc changes land
     # on the site without a site-repo commit (harvest pulls public main).
     - cron: '0 5 * * 1'
+  workflow_dispatch:
 
 permissions:
   contents: read
