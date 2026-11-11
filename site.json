@@ -3,7 +3,7 @@
   "name": "Sentin8",
   "org": "Sentin8",
   "domain": "sentin8.dev",
-  "tagline": "Open-Source Post-Quantum Enterprise Platform (Apache 2.0): Rust services that heal and scale automatically, built for regulated industries.",
+  "tagline": "Open-Source Post-Quantum Enterprise Platform That Heals and Scales Itself, Built for Regulated Industries.",
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
   "pillarsLead": "Every service - platform or vertical - inherits the five pillars by construction, not configuration.",
@@ -352,5 +352,6 @@
       "summary": "Health - in design; the eighth vertical of the platform."
     }
   ],
-  "crossrefs": []
+  "crossrefs": [],
+  "heroTagline": "Open-Source Post-Quantum Enterprise Platform - heals and scales itself, built for regulated industries."
 }
