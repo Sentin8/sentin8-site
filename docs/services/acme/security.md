@@ -179,7 +179,12 @@ platform refuses to wait for it:
 
 - **Two-tier hierarchy** - SLH-DSA root → ML-DSA intermediate → leafs, for
   both server certificates (HTTPS on every domain) and client certificates
-  (workload identity, below).
+  (workload identity, below). CA subjects are namespaced by the TLS
+  posture they were minted under (`CN=Sentin8 Exclusive Root CA`,
+  `CN=Sentin8 Hybrid Intermediate CA`, `CN=Sentin8 Classical Root CA`,
+  ...) with the intermediate carrying `OU=Sentin8:ACME` and the root
+  carrying no OU (CABF root profile) - no two distinct CA certificates
+  ever share one subject.
 - **Trust distribution** - the root CA is installed into the OS trust store
   *and* the Chromium/NSS store at bootstrap; every process in the tree, and
   every headless browser test, verifies the same anchor.

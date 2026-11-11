@@ -131,6 +131,47 @@ generate) → trust-store install (OS + NSS, best-effort) → PG pool connect
 flush loop → outbox-relay spawn → `Sentin8Tls::builder().bootstrap_cert(...)`
 → `tls.serve`.
 
+**Offline CLI modes (CAMINT-1).** The same binary doubles as the
+operator's CA-plane mint CLI - two flags, both offline (no network, no
+database, no fleet interaction), both driven by the SAME engine the
+service boots (`offline_config()` pins the per-mode data dir exactly as
+`AcmeConfig::from_env` does, so a CLI mint and a service boot address one
+store):
+
+```mermaid
+flowchart TD
+    A["operator"] -->|"make ca-tls [--MODES=...]"| B["sentin8-acme --ensure-ca"]
+    A -->|"make infra-tls [INFRA_SANS=...]"| C["sentin8-acme --ensure-infra-tls"]
+    B --> D["per requested mode:\nensure CaFamily (load-or-mint)"]
+    C --> E["ACTIVE mode only:\nensure CaFamily + infra leafs/pairs/seeds"]
+    D --> F["{acme_data}/{mode}/ca/\nroot + intermediate"]
+    E --> G["{secrets}/infra-tls/\nvalkey+pg server leafs, pairs, hba/ident"]
+```
+
+- `--ensure-ca [--modes=a,b,c]` ensures the CA hierarchy (root +
+  intermediate) per requested mode - default is the ACTIVE mode, and the
+  full set (`classical,hybrid,exclusive`) pre-stages every family. Safe to
+  name multiple modes because CA material is per-mode directory scoped
+  (PQCA-1): one mode's ensure never touches another's store.
+- `--ensure-infra-tls` stays ACTIVE-MODE ONLY: the infra leafs are
+  singletons at fixed paths (`{secrets}/infra-tls/*.crt`), so minting
+  them for two families would overwrite each other; the material must
+  match the running posture. It is family-aware (PQCA-2): under
+  `classical` the leafs mint through the ECDSA `CaHierarchy`, under
+  `hybrid`/`exclusive` through the PQ `PqCaHierarchy` - the CA chain copy
+  (`{secrets}/acme-ca/root-ca.crt` = root + intermediate) is republished
+  from the ACTIVE family on every run so verifiers always hold the chain
+  that actually signed the leafs.
+- **Leaf reuse is family-checked**: a still-valid leaf of the WRONG
+  signature family is re-minted, never reused - the reuse predicate checks
+  the leaf's signature-algorithm family (ECDSA vs ML-DSA) in addition to
+  expiry and SAN coverage, so a posture flip (`SENTIN8_TLS_PQ_MODE`
+  change) re-mints the infra plane instead of serving leafs the trust
+  store cannot chain.
+- `SENTIN8_ACME_DATA_DIR` (operator `.env`) is the ONLY data-dir source
+  for both modes - no CLI override exists; the tree's `.env` is the single
+  operator truth (the same rationale as the appliance hand-off contract).
+
 **Outbox relay - the DBX producer path.** Acme boots custom (not via the
 shell), so `server.rs` spawns the shared outbox relay itself
 (`sentin8::bus::outbox::spawn_relay`) with a `build_with_dcr` client for
@@ -217,17 +258,125 @@ erDiagram
     }
 ```
 
-Filesystem layout under `$SENTIN8_ACME_DATA_DIR`:
+Filesystem layout under `$SENTIN8_ACME_DATA_DIR` - **per-PQ-mode subdirectory**
+(PQCA-1): the operator sets `SENTIN8_TLS_PQ_MODE` once in the shared `.env`
+(both planes source it); the acme data dir resolves as
+`{SENTIN8_ACME_DATA_DIR}/{pq_mode}/` (`classical`, `hybrid`, or `exclusive`)
+so every minted surface - CA hierarchy, accounts, orders, certificates -
+lives in the mode's own directory. A mode flip populates the other
+directory from scratch (a fresh CA per mode) and can never serve a leaf
+minted for a different transport posture; host and appliance resolve the
+SAME mode dir (the appliance mounts the base dir), so cross-plane
+divergence is structurally impossible.
 
-| Path | Content | Protection |
+| Path (relative to `{data_dir}/{pq_mode}/`) | Content | Protection |
 |------|---------|------------|
-| `ca/root-ca.key`, `intermediate-ca.key` | CA private keys (SLH-DSA-PQ) | 0600, never distributed |
+| `ca/root-ca.key`, `intermediate-ca.key` | CA private keys (SLH-DSA-PQ in the PQ families, ECDSA P-256 in `classical`) | 0600, never distributed |
 | `ca/root-ca.crt`, `intermediate-ca.crt` | public CA certs | OS + NSS trust store install |
 | `accounts/{uuid}.json` | ACME accounts | service-only |
 | `orders/{uuid}.json`, `orders/authz-{uuid}.json` | order/authz/challenge state | service-only |
-| `certificates/{cert-id}/cert.pem`, `key.pem`, `metadata.json` | leaf + key + metadata | keys 0600 |
+| `certificates/{cert-id}/cert.pem`, `key.pem`, `metadata.json` | leaf + key + metadata (`metadata.json` records `pq_mode` - the reuse-before-mint lookup filters on it) | keys 0600 |
 | `upstream-account.json` | upstream ACME account key + kid (ES256) | 0600 |
 | `.run/bootstrap-enrollment.json.enc` (captain-owned) | sealed enrollment claim | AES-256-GCM sealed, 0600 |
+
+**CA families per mode (PQCA-2)**: the `classical` mode mints the ECDSA
+P-256 chain via `rcgen` (the exact chain dev runs today). The PQ families
+(`hybrid`, `exclusive`) mint a **post-quantum signature chain**: an
+SLH-DSA-SHA2-128s root and ML-DSA-65 intermediate + leaves, built by the
+in-repo X.509 builder (`x509-cert` + `ml-dsa`/`slh-dsa`; `rcgen` cannot
+carry PQ signature algorithms). Served TLS in these modes carries
+ML-DSA-65 handshake signatures through `sentin8-tls`'s custom
+`SigningKey`/`KeyProvider` (rustls 0.23 accepts the ML_DSA_65 scheme on
+TLS 1.3 suites) and verifies through the platform's PQ verification
+algorithms (PQCLIENT-1: the pure-Rust ML-DSA/SLH-DSA
+`SignatureVerificationAlgorithm` impls in `sentin8-tls`).
+
+**The infra plane mints through the ACTIVE mode's family (PQCLIENT-2)**:
+the PostgreSQL/Valkey server leafs and every infra client pair mint
+through the active PQ mode's CA family - `classical` → ECDSA, `hybrid`/
+`exclusive` → the PQ chain (SLH-DSA root, ML-DSA intermediate). The
+sqlx transport that presents these keys is native-tls (system OpenSSL
+3.5.x): OpenSSL parses ML-DSA-65 private keys and verifies ML-DSA
+chains (verified live), so the Rust client plane serves the exclusive
+posture on the data-plane links. Every non-sqlx TLS surface
+(sentin8-tls service plane, reqwest, valkey-glide) runs the platform's
+pure-Rust PQ provider (`install_platform_provider`). The infra
+containers themselves are PQ-capable (the trixie PostgreSQL image and
+the alpine Valkey image ship OpenSSL 3.5.x, verified to build, verify,
+and handshakes ML-DSA-65/SLH-DSA certs with X25519MLKEM768) - the
+server and client halves of every infra link share one crypto stack
+under the exclusive posture. The service→service plane
+(sentin8-tls terminated, Graviola + PQCLIENT-1 verification) carries
+the exclusive posture; the browser edge stays classical until
+Chromium's ML-DSA chain verification is confirmed on
+this tree's build.
+
+**The family dispatch is one function (`ensure_ca_family`)**: every
+mint-or-load site (service boot, `--ensure-ca`, `--ensure-infra-tls`,
+the client-cert endpoint, the renewal sweep) resolves the ACTIVE mode's
+family through it - `classical` → the ECDSA `CaHierarchy`, `hybrid`/
+`exclusive` → the PQ `PqCaHierarchy` - never by ad-hoc mode checks. The
+RUNTIME serves the resolved family: `AppState.ca` holds the `CaFamily`
+itself (the boot ensure returns it), and the runtime mint/serve sites
+(`acme.rs` order issue + the renewal sweep) call the family's
+`sign_leaf`/`sign_client_leaf`, which delegate to the classical or PQ
+hierarchy by the same dispatch - an exclusive-mode acme instance mints
+and serves ML-DSA leafs end to end. PQ
+end-entity leafs mint through the CABF **Subscriber** profile
+(`BasicConstraints ca:false`, `DigitalSignature`, EKU `serverAuth` +
+`ClientAuth`) - never the `Subordinate` CA profile: an end-entity
+certificate that can sign other certificates is a defect, not a
+convenience (`sign_leaf` covers server leafs, `sign_client_leaf` the
+mTLS workload pairs).
+
+**CA subject names per mode (PQCA-3)**: every CA certificate's subject is
+namespaced by the mode it was minted under, and the intermediate carries
+the issuing service as its Organizational Unit. The two chains share one
+naming helper (`ca_subject_common_names` in `src/ca.rs`), so a mode's
+classical and PQ material can never drift apart:
+
+| Mode | Root subject | Intermediate subject |
+|------|-------------|----------------------|
+| `exclusive` | `CN=Sentin8 Exclusive Root CA, O=Sentin8, C=CA` | `CN=Sentin8 Exclusive Intermediate CA, OU=Sentin8:ACME, O=Sentin8, C=CA` |
+| `hybrid` | `CN=Sentin8 Hybrid Root CA, O=Sentin8, C=CA` | `CN=Sentin8 Hybrid Intermediate CA, OU=Sentin8:ACME, O=Sentin8, C=CA` |
+| `classical` | `CN=Sentin8 Classical Root CA, O=Sentin8, C=CA` | `CN=Sentin8 Classical Intermediate CA, OU=Sentin8:ACME, O=Sentin8, C=CA` |
+
+Three rules govern the subjects:
+
+- **The root carries NO OU** (CABF BR 7.1.2.10.2 - the root CA subject
+  admits only country, state, locality, postal, street, organization, and
+  common name; the `x509-cert` builder's `cabf::Root` profile enforces
+  this and the platform follows the standard). The intermediate carries
+  `OU=Sentin8:ACME` (BR 7.1.2.10.2 admits OU on non-root CA subjects) -
+  the OU names the issuing service so a chain view names its mint
+  authority, while the root stays minimal per the profile.
+- **The country is Canada (`C=CA`, ISO 3166-1)** on every CA subject,
+  root and intermediate alike - one uniform nationality across both
+  chains and all three modes.
+- **The mode word is the CA's display identity.** PQCA-1 gives each mode
+  its own hierarchy (own keys, own directory); PQCA-3 gives each hierarchy
+  its own name so trust-store listings, browser chain viewers, and
+  forensic timelines never show two distinct CA certificates under one
+  subject.
+- **The CN is derived at mint time, never stored** -
+  `ca_subject_common_names()` reads `SENTIN8_TLS_PQ_MODE` through
+  `sentin8::config::pq_mode()` (the same knob that scopes the data dir),
+  so a hierarchy minted under a mode is named for that mode by
+  construction. On load the issuer DN is parsed from the stored cert
+  (the on-disk subject is the truth, never the env).
+
+The leaf-signing paths stay DN-faithful to the on-disk issuer. The PQ
+chain clones the issuer DN from the parsed on-disk intermediate cert
+(`tbs_certificate().subject()`); the classical chain's rcgen issuer
+reconstruction is built from the on-disk cert's subject DN
+(`reconstruct_ca_cert_from_pem` parses the stored PEM and mirrors every
+attribute in order) - the reconstruction never re-derives the DN from
+the env, so a hierarchy minted under one mode keeps its subject when the
+active mode later changes (the on-disk cert is the truth; the per-mode
+directory boundary keeps fresh mints aligned with the active mode).
+Existing hierarchies are never renamed on load - a mode directory minted
+under an earlier name keeps that name until the operator wipes the data
+dir (fresh mint takes the new name).
 
 **Owned table - `acme.outbox`** (the service's ONLY table; FORCE-RLS'd on
 `env_id`, drained by the local post-commit relay): `id` PK, `env_id`,
@@ -676,12 +825,30 @@ flowchart TD
     service hostname only (`acme.ops.sys.{SENTIN8_DOMAIN}`, port 443 at
     the ingress / `.resolve()`-pinned address in-fleet). The listen port
     is a per-boot transport detail, never URL state .
+14. **CA subjects are mode-namespaced and role-true (PQCA-3)** - the CN
+    carries the mint mode (`Sentin8 {Exclusive|Hybrid|Classical} Root /
+    Intermediate CA`), the intermediate carries `OU=Sentin8:ACME`, the
+    root carries NO OU (CABF BR 7.1.2.10.2), and every CA subject
+    carries `C=CA`. Two distinct CA certificates never share one
+    subject: each mode's hierarchy is named for the mode it was minted
+    under. The leaf-signing issuer DN is always parsed from the on-disk
+    CA cert - never re-derived from the env - so a leaf's issuer DN
+    byte-matches the served intermediate under any later mode change.
+15. **One family dispatch for every mint site (CAMINT-1)** - the active
+    mode's CA family resolves through `ensure_ca_family` alone; a mint
+    path that hardcodes a hierarchy type is a defect. PQ end-entity
+    leafs carry `BasicConstraints ca:false` (Subscriber profile) - an
+    end-entity cert that can sign other certs is a defect. Infra leaf
+    reuse checks the signature family: a wrong-family leaf is re-minted,
+    never served. The infra mint is active-mode only (leafs are
+    singletons); `--ensure-ca` may address every mode (CA stores are
+    per-mode scoped).
 
 ## 9. Testing Strategy
 
 | Layer | Coverage | Not covered (by design) |
 |-------|----------|------------------------|
-| Unit/integration (`tests/integration.rs`) | CA generation + reload stability, leaf signing, local-domain classification (builtin + `SENTIN8_ACME_LOCAL_DOMAINS` suffixes), finalize's authz-valid enforcement, challenge-token serving route, upstream JWS envelope shape + RFC 7638 thumbprint, upstream relay against a mock RFC 8555 server (JWS validation, badNonce replay, cert download + caching), admin-UI certificate listing + revocation metadata, proxy-mode detection, settings rendering, mint-shed state machine (budget → full → refused → drained; constants pinned) | Live Let's Encrypt flows (external network), the proxy's :80 listener wiring (proxy repo's tests) |
+| Unit/integration (`tests/integration.rs`) | CA generation + reload stability, leaf signing, CA subject naming per PQ mode (CN carries the mode word, intermediate carries `OU=Sentin8:ACME`, root carries no OU - PQCA-3; both chains), load-path DN fidelity (a minted subject survives a later mode flip - leaf issuer DN byte-matches the served intermediate), CA family dispatch (`ensure_ca_family` routes per active mode; PQ leafs are end-entity `ca:false` with the right EKU; wrong-family infra leafs are re-minted - CAMINT-1), local-domain classification (builtin + `SENTIN8_ACME_LOCAL_DOMAINS` suffixes), finalize's authz-valid enforcement, challenge-token serving route, upstream JWS envelope shape + RFC 7638 thumbprint, upstream relay against a mock RFC 8555 server (JWS validation, badNonce replay, cert download + caching), admin-UI certificate listing + revocation metadata, proxy-mode detection, settings rendering, mint-shed state machine (budget → full → refused → drained; constants pinned) | Live Let's Encrypt flows (external network), the proxy's :80 listener wiring (proxy repo's tests) |
 | E2E (`e2e-ts`) | TLS-terminated flows through proxy, RFW admin round-trip | Upstream public-ACME provider (external network) |
 
 Test pyramid: unit (CA hierarchy, domain classification) → integration

@@ -103,7 +103,7 @@ graph TD
         end
         APICLIENT["AuthApi + DTOs + AuthApiException"]
         BRAND["BrandingScope → BrandingProvider"]
-        THEME["theme.dart design system"]
+        THEME["theme.dart design system<br/>+ AuthUiFooter (legal links + Powered by)"]
         OBS["observability.dart"]
     end
     ENTRY --> ROUTER --> Pages
@@ -112,7 +112,17 @@ graph TD
     OBS -.-> Pages
 ```
 
-### 2.2 Request Lifecycle - Sign-in with MFA and OAuth completion
+### 2.2 Request Lifecycle - Identifier-first sign-in with MFA and OAuth completion
+
+`SignInPage` is a two-step state machine on ONE route (`/sign-in`):
+step 1 collects the email and calls the identify endpoint; step 2
+renders the credential UI the identify answer prescribes (password
+field, passkey button, MFA expectation label). All 13 OAuth context
+params live in widget state across the steps - they never round-trip
+through URLs. A refresh lands back on step 1 (standard identifier-first
+behavior). `POST /v1/sign-in` itself is unchanged: the same single-shot
+password path serves the HTML `/oauth/login` surface, the one-shot
+test bridge, and the device/assisted operator forms.
 
 ```mermaid
 sequenceDiagram
@@ -121,24 +131,37 @@ sequenceDiagram
     participant UI as auth-ui (SignInPage)
     participant A as Auth API
     B->>UI: GET /sign-in?client_id&redirect_uri&state&code_challenge&scope
-    UI->>A: POST /v1/sign-in {email, password} (cookie, CSRF, correlation id)
-    alt mfa_required
-        A-->>UI: {mfa_required: true, session_id}
-        UI->>B: navigate /mfa?sessionId=...
-        B->>UI: GET /mfa
-        UI->>A: POST /v1/mfa/verify {code, session_id}
-        alt ok
-            A-->>UI: {redirectUri}
-        else invalid code
-            A-->>UI: 401 → inline error, retry
+    UI->>B: step 1 - email field + Continue
+    B->>UI: email submitted
+    UI->>A: POST /v1/sign-in/identify {email}
+    A-->>UI: {continuation_token, methods, mfa_required}
+    UI->>B: step 2 - locked email chip + password field / passkey button
+    alt password path (always available)
+        UI->>A: POST /v1/sign-in {email, password}
+        alt mfa_required
+            A-->>UI: {status: needs_mfa, pending_token_id, factor_id}
+            UI->>B: navigate /mfa?pending_token_id=...
+        else ok
+            UI->>A: POST /oauth/authorize/continue {...} (consent-gated)
+            UI->>B: location.href = redirect_url
         end
-    else authenticated, consent handled
-        A-->>UI: session + redirect context
-        UI->>A: POST /oauth/authorize/continue {client_id, redirect_uri, scope, state, code_challenge}
-        A-->>UI: {redirect_url}
+    else passkey path (methods contains passkey)
+        UI->>A: POST /v1/passkey/sign-in/begin {continuation_token}
+        A-->>UI: {challenge, rp_id, allow_credentials, challenge_id}
+        UI->>B: navigator.credentials.get() (userVerification=required)
+        UI->>A: POST /v1/passkey/sign-in/finish {challenge_id, assertion fields}
+        A-->>UI: {status: active, session_cookie}
+        UI->>A: POST /oauth/authorize/continue {...}
+        UI->>B: location.href = redirect_url
     end
-    UI->>B: location.href = redirect_url (code + state at relying client)
+    Note over UI,A: The one-shot test bridge fills email, advances to step 2,<br/>fills password, and submits - `sentin8TestSignIn(email, password)`<br/>keeps its single-call contract for the OIDF battery.
 ```
+
+The WebAuthn browser calls go through the typed `package:web`
+bindings (`webauthn.dart`: `PublicKeyCredentialRequestOptions`,
+`CredentialsContainer.get()`); the former JS-unsafe
+getProperty/callMethod helpers are deleted with the dead unrouted
+passkey pages they served.
 
 ### 2.3 Request Lifecycle - Consent with FDX account selection
 
@@ -166,29 +189,53 @@ sequenceDiagram
 
 ### 2.4 Request Lifecycle - Device approval (RFC 8628)
 
+The device page is a state machine over the verification journey:
+`enter-code → sign-in (if needed) → MFA (if required) → confirm →
+terminal(approved|denied|expired)`. Both entry modes are supported: a
+`verification_uri_complete` link (`?user_code=XXXX-XXXX`) AND manual code
+entry at the bare `verification_uri` (the RFC's canonical typed-code
+interaction - the page shows its own code input when the URL carries no
+`user_code`).
+
 ```mermaid
 sequenceDiagram
     autonumber
     participant B as Browser
     participant D as DevicePage
     participant A as Auth API
-    B->>D: GET /device?user_code=...
+    B->>D: GET /device (with or without ?user_code=)
+    alt user_code absent
+        D->>B: render code input (uppercase-normalized XXXX-XXXX)
+        B->>D: user types code
+    end
     D-->>+A: GET /v1/session (deferred 50ms, cookie auth)
-    alt session exists
+    alt active session
         A-->>D: {session_token, user_id}
-        D->>A: POST /device/verify {user_code} (cookie + CSRF)
+        D->>B: show code + Approve / Deny buttons
     else no session
         D->>B: render inline sign-in form
         B->>D: credentials
         D->>A: POST /v1/sign-in {email, password}
-        A-->>D: {token}
-        D->>A: POST /device/verify {user_code} (Authorization: Bearer token)
+        alt needs_mfa (status == "needs_mfa")
+            A-->>D: {status:"needs_mfa", pending_token_id, factor_id}
+            D->>B: render TOTP input
+            B->>D: 6-digit code
+            D->>A: POST /v1/mfa/verify {code, pending_token_id}
+            A-->>D: 200 {status:"active", session_cookie}
+            Note over D: cookie is now set - approval proceeds cookie-authenticated
+        else ok
+            A-->>D: {token}
+        end
     end
-    alt approved
-        A-->>D: 2xx
-        D->>B: terminal "approved" state
+    D->>A: POST /device/verify {user_code, action} (cookie+CSRF or Bearer)
+    alt action=approve → 2xx
+        D->>B: terminal "approved" state (CLI completes on next poll)
+    else action=deny → 2xx
+        D->>B: terminal "denied" state (CLI poll answers access_denied)
     else 404
         D->>B: terminal "expired/invalid" state
+    else 401 mfa required
+        D->>B: render TOTP step (pending_mfa session rejected)
     end
 ```
 
@@ -221,8 +268,10 @@ state (all in-memory, never persisted):
 |---|---|---|---|
 | Session token id (`_restoredSessionToken`) | `AuthApi` | page session | Arms `x-sentin8-csrf` on cookie-authenticated mutations |
 | Correlation id (`a8u-<epoch>-<rand>`) | `observability.dart` | page session | Request tracing across pages of one session |
-| Branding (`logoUrl, logoIconUrl, primaryColor, accentColor, fontFamily, themeMode, customCss, signInText, organizationName`) | `BrandingProvider` | page session | Theme + logo + sign-in text |
+| Branding (`logoUrl, logoIconUrl, primaryColor, accentColor, fontFamily, themeMode, customCss, signInText, organizationName, privacyUrl, termsUrl`) | `BrandingProvider` | page session | Theme + logo + sign-in text + footer legal links |
+| Identify answer (`continuationToken, methods, mfaRequired, email`) | `SignInPage` state machine | step 2 of one page visit | Credential step routing (password / passkey / MFA expectation); dropped on Back |
 | OAuth context (`client_id, redirect_uri, state, code_challenge, scope, consent_required`) | constructor args + URL params | single page + query-string round-trip | Resume the authorization flow |
+| Client display (`logoUri, clientUri, policyUri, tosUri, clientName`) | `SignInPage` state (fetched in initState) | page session | The REQUESTING client's DCR display metadata (RFC 7591 §2.1: the OP displays the client's `logo_uri`/`policy_uri`/`tos_uri` to the End-User) - rendered as the client identity strip |
 | Form state (inputs, errors, strength meter) | per-page `StatefulWidget` | page lifecycle | Input and error display |
 | Logger ring buffer (500 entries) / metrics / alert windows | `observability.dart` | page session | In-memory diagnostics |
 
@@ -234,25 +283,29 @@ session token id is known; GETs do not):
 
 | Endpoint | Use | Auth |
 |---|---|---|
-| `POST /v1/sign-in` {email, password} | credential sign-in | anonymous → cookie session |
+| `POST /v1/sign-in` {email, password} | credential sign-in; response `ok` (token, cookie) or `needs_mfa` (pending_token_id, factor_id) | anonymous → cookie session |
 | `POST /v1/sign-up` {email, password, first_name?, last_name?} | registration | anonymous |
 | `GET /v1/session` | session probe (device, assisted, wallet polling) | cookie |
-| `POST /v1/mfa/verify` {code, session_id} | TOTP step | session token |
+| `POST /v1/mfa/verify` {code, pending_token_id} | TOTP step (sign-in activation; consumes the pending challenge and activates the session) | pending session token |
 | `POST /v1/password/reset-request` {email} | reset email send | anonymous (always-success response) |
 | `POST /v1/password/reset-confirm` {token, password} | reset completion | anonymous token |
 | `POST /v1/email/verify` {token} | email verification | anonymous token |
 | `POST /oauth/authorize/continue` {..., selected_account_ids?} | mint authorization code | session + CSRF |
 | `GET /v1/auth/consent/accounts?user_id&session_token` | FDX account list for consent | session token |
-| `POST /device/verify` {user_code} | device-code approval | cookie+CSRF or Bearer |
+| `POST /device/verify` {user_code, action: approve\|deny} | device-code approval/denial | cookie+CSRF or Bearer; active session only (pending_mfa → 401) |
 | `GET /v1/ciba/assisted/{auth_req_id}` / `POST .../complete` | Assisted Login read/confirm | cookie+CSRF |
 | `GET /v1/auth/wallet/metadata` | trusted issuer info for wallet UI | anonymous |
 | `GET /v1/branding` | tenant branding | cookie, credentials include |
+| `GET /v1/auth/client/display?client_id=` | the REQUESTING client's DCR display fields (RFC 7591 §2.1 - logo/policy/TOS rendering on the sign-in page) | anonymous (pre-session surface) |
+| `POST /v1/sign-in/identify` | step 1: email → continuation token + method hints (identifier-first) | anonymous, bot-gated |
+| `POST /v1/passkey/sign-in/begin` + `/finish` | step 2 passkey factor: assertion ceremony → active session | continuation token; WebAuthn userVerification=required |
 
 Client-side browser navigation surfaces (not API calls, part of flows):
 `/oauth/authorize?...` (authorization request, PAR-conserving), final
 `redirect_uri?code=&state=` (or `?error=access_denied`), in-app step URLs
-(`/mfa?sessionId=`, `/consent?...`, `/sign-up?...`, `/device?user_code=`,
-`/ciba/assisted/{id}`, `/wallet`).
+(`/mfa?sessionId=`, `/consent?...`, `/sign-up?...`, `/device` (typed code
+entry) or `/device?user_code=` (complete-link), `/ciba/assisted/{id}`,
+`/wallet`).
 
 Static hosting surface (Auth server): `ServeDir` over the built bundle with
 SPA fallback to `index.html`, so any unknown path (e.g. deep link) renders the
@@ -273,6 +326,19 @@ matching Flutter route.
   401/403/409/422/429 to friendly copy; network failures are generic retries.
 - **Branding resolution**: Auth resolves org-base → env-override; the UI
   falls back per-field (compiled default → branding value → bundled logo).
+  The footer legal links always render: tenant `privacyUrl`/`termsUrl` →
+  the platform defaults (`https://sentin8.dev/privacy`, `https://sentin8.dev/terms`)
+  when the tenant set none - an auth page never hides its legal surface.
+  Links open in a new tab (`window.open`) so a legal read never aborts the
+  in-progress sign-in/sign-up flow.
+- **Client identity (RFC 7591 §2.1 - CONFFIX-1)**: when the authorize
+  request carries a `client_id`, the sign-in page fetches the client's
+  DCR display metadata and renders the client identity strip - the
+  `logo_uri` image, the display name, and the `policy_uri`/`tos_uri`
+  links - so the End-User sees WHICH client they are authenticating
+  to (the OP's display SHOULD). Absent members render nothing; an
+  unknown client falls back to the platform branding alone. The strip
+  links open in a new tab (the same footer posture).
 - **TLS posture**: served only from the Auth TLS origin (platform post-
   quantum TLS); no external CDN dependencies (CanvasKit is force-served from
   `/canvaskit/` on the same origin - air-gapped-safe loading).

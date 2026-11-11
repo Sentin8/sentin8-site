@@ -349,12 +349,26 @@ row")**:
    declared health surface heals rows parked on protocol ports);
    (b) the recorded port the process holds → TRUST it; (c) neither →
    lowest-listener fallback (genuinely stale rows).
+6. **Tick-top duplicate sweep (repairs, not only prevents).** The five
+   seams above stop new minting; leaves from a botched upgrade still
+   survived when the terminal phases raced (the 2026-10-29
+   web@8017+8020 split-brain: the proxy round-robined a cert-holding
+   and a cert-less instance and dash answered `200/000` alternately).
+   The monitor tick now opens with `sweep_duplicate_instances`: group
+   live rows by service type; when two or more live siblings exist AND
+   no upgrade is in flight for the type, keep ONE (the `Active` row,
+   then the newest `started_at`) and stop + delete the rest through the
+   regular supervisor path (drain → SIGTERM → row delete). The sweep
+   re-reads each loser row before acting (the stale-snapshot rule,
+   seam 1) and skips entirely during shutdown. This repairs the live
+   registry inside one tick (2 s) without operator intervention -
+   `make status` doubles self-converge.
 
-**Convergence (operator surface)**: `make status` shows doubles today.
-The fix stops NEW minting; the existing doubles converge by restarting
-the affected services one at a time (`make restart-instance` on the
-younger row's key - the stop path deletes its row, the fleet returns to
-one row per service). No migration code: the registry is runtime state.
+**Convergence (operator surface)**: existing doubles converge
+automatically - the tick-top sweep (seam 6) stops the excess instance
+inside one tick, after any in-flight upgrade's terminal phase lands. No
+operator action, no migration code: the registry is runtime state. The
+`sweep` log lines name the loser key it stopped for the audit trail.
 
 ### 5.10.2b Self-heal must probe the PORT, not just the row
 
@@ -782,7 +796,93 @@ flowchart TD
 - **Deliberately NOT tested here**: real `tofu apply` against a cloud
   (docker-macvlan covered by the E2E story), operator env file
   materialization (module-owned).
+### 11.11 The core appliance profile (COREAP - dev/test split-plane)
 
+The fleet plane's second dev shape: the platform core runs as ONE docker
+container ("the appliance") on the dev host, while verticals (and any core
+service under active debugging) run as host processes. Two captains, one
+shared Valkey - the appliance's captain supervises the 17 core services,
+the host's captain supervises everything else. Vertical development gets a
+stable, never-touched core with zero workflow change.
+
+```mermaid
+graph TD
+    subgraph HOST["dev host - one loopback namespace"]
+        CLI["sentin8-cli"]
+        HC["host captain<br/>LOCAL_IP = host LAN IP<br/>verticals + handed-off core services"]
+        subgraph APP["appliance container (make core-up)"]
+            PG["postgres :5432"]
+            VK["valkey :6379"]
+            CC["core captain<br/>LOCAL_IP = 127.0.0.1<br/>17 core services + proxy :443"]
+        end
+    end
+    CLI -->|"per-key routing:<br/>key ip == appliance -> TCP 127.0.0.1:18000<br/>else -> local UDS"| CC
+    CLI -->|"UDS .run/captain.sock"| HC
+    CC -->|"registry rows key=127.0.0.1:800x"| VK
+    HC -->|"registry rows key=LAN:80xx"| VK
+    HC -->|"https://*.local.sentin8.dev -> 127.0.0.1:443"| CC
+    CC -->|"proxy dials LAN:80xx (bridge NAT)"| HC
+```
+
+- **Loopback truth model**: the proxy dials `{local_ip}:{local_port}` from
+  registry rows, and `SENTIN8_CAPTAIN_LOCAL_IP` is operator-set identity,
+  not detected truth. The appliance runs with `LOCAL_IP=127.0.0.1`, so its
+  services register and dial on loopback; the container's published ports
+  are exactly the four entry points (`443`, `5432`, `6379`, captain API on
+  `18000`). The service port range is NEVER published - which is also what
+  keeps host ports free for handed-off services.
+- **Bridge netns (the verified model - group DESIGN §3.3)**: postgres and
+  valkey are sibling containers on the appliance's bridge network; the
+  machine container dials them by compose service name, and the infra
+  TLS leaves carry those names as SANs (`--infra-sans`, acme
+  `--ensure-infra-tls`). A shared-netns variant was rejected in live
+  E2E: a `network_mode: service:core` join binds at infra start, so
+  every machine-container restart strands the listeners in the old
+  netns - fatal for a restartable supervisor container.
+- **Same binaries, no image build**: the container bind-mounts the group's
+  `sentin8-*/target/{profile}` trees and `.run/secrets`; its binary prefix
+  points at the mounted paths. `upgrade-instance` works verbatim against
+  appliance keys - the operator rebuilds on the host and the mounted
+  binary path is fresh.
+- **Hand-off** (the dev loop for debugging a core service):
+  `captain stop-instance 127.0.0.1:{port}` (CLI routes to the appliance
+  captain) then `captain place {host-lan-ip} sentin8:{svc}` (already
+  implemented, §11.4) - the host captain spawns it, the registry row
+  flips, the in-container proxy round-robins to the host LAN address on
+  the next request. Reverse: stop on the host, place back on the
+  appliance. Placement singletons compose: a stopped instance is not
+  Active, so the start is admitted.
+- **Locality guard (the correctness rule that makes this safe)**:
+  per-instance actions in `service_action` operate on PROCESS ids - a
+  non-local key would signal an unrelated pid in the caller's namespace.
+  Captain refuses any per-instance action whose instance `local_ip` is
+  not its own `SENTIN8_CAPTAIN_LOCAL_IP` (409, naming the owning
+  captain's address). The CLI is the router: it picks the transport per
+  KEY ip (`appliance ip -> appliance captain URL`, otherwise local UDS),
+  so a well-formed CLI call always lands on the owning captain and the
+  guard never fires in practice - it exists for direct API misuse.
+- **Fleet invariants preserved**: the appliance's `127.0.0.1` and the
+  host's LAN IP are DISTINCT machine identities in the shared registry -
+  the leader lock, singleton gates, host-sample TTLs, and port
+  reservations all key correctly. The single-machine `pin:edge`
+  self-election does NOT trigger: the fleet observed is two machines and
+  the appliance sets `SENTIN8_CAPTAIN_EDGE_IP=127.0.0.1` explicitly.
+- **Deliberate non-goals**: vertical containers (verticals run on the
+  host); macvlan (loopback is the whole point); building a packaged image
+  from the deb (bind mounts keep dev iteration zero-cost).
+
+**Operator surface** (the platform group Makefile):
+
+```
+make core-up      # build missing binaries, infra-tls, compose up the appliance,
+                  # wait for health, print the fleet
+make core-down    # graceful captain stop inside the container, compose down -v
+make core-logs    # follow the appliance captain log
+make start        # REFUSES while the appliance is up (double-boot guard)
+```
+
+`make stop`/`make status`/`make enroll` are fleet-wide (UDS + TCP to the
+appliance where relevant) and unchanged in meaning.
 ---
 
 **Architecture & Design:** sentin8:captain and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).

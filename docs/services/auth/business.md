@@ -38,21 +38,25 @@ mint tokens or publish signing keys. The business value it delivers:
   wallet credentials (EUDI-style) for regulated use cases.
 - **Certified conformance.** The service is conformance-tested against
   the OIDF suite locally per profile (OIDC Core Basic/Config/Dynamic,
-  Logout, FAPI 2 Security Profile + Message Signing, FAPI 1 Advanced,
-  CIBA poll + ping, OID4VCI issuer, OID4VP verifier, eKYC-IDA) with a
-  zero-warning gate before any certification submission.
+  Logout, Session Management, Third-Party-Initiated Login, the joint
+  Back-Channel + RP-Initiated Logout plan, the Implicit + Hybrid +
+  Form-Post OP families, FAPI 2 Security Profile + Message Signing,
+  FAPI 1 Advanced, CIBA poll + ping, OID4VCI issuer + OID4VCI HAIP
+  issuer (client-attestation wallets), OID4VP verifier, eKYC-IDA) with
+  a zero-warning gate before any certification submission - every
+  module-variant terminal green, no sanctioned failures or skips.
 
 ## 2. Business Scope (What the Service Provides)
 
 | Area | Capabilities |
 |---|---|
 | Identity & credentials | User accounts (sign-up, sign-in, sign-out, email verification, password reset), sessions, app passwords, MFA factors (TOTP, backup codes), passkeys (WebAuthn), recovery flows |
-| OAuth / OIDC | Authorization-code + PKCE, refresh rotation with replay detection, device code flow, CIBA (decoupled approval, poll + ping), token exchange, client credentials (M2M), PAR, JAR request objects, JARM, introspection (JSON + signed JWT), revocation, userinfo, RP-initiated + back-channel logout, issuer response parameter |
+| OAuth / OIDC | Authorization-code + PKCE, refresh rotation with replay detection (unconditional issuance under every sender-constrained profile - FAPI, CIBA, OID4VCI HAIP - with the attestation instance-key binding across refreshes), device code flow, CIBA (decoupled approval, poll + ping), token exchange, client credentials (M2M), PAR, JAR request objects, JARM, introspection (JSON + signed JWT), revocation, userinfo, issuer response parameter, the implicit + hybrid + form-post response channels (per security profile), and logout signaling: RP-initiated, Back-Channel (sid-bound fan-out to exactly the RPs the session logged in) and the OIDC Session Management state surface |
 | RBAC substrate | Roles (with hierarchy/nesting), groups, memberships, role assignment, API keys, OAuth client registry (including DCR + management), M2M scope grants |
 | Consent grants | FAPI 2.0 standing consent records; tokens embed a grant id so revocation cascades |
 | Enterprise federation | OIDC and SAML connections for enterprise single sign-on |
 | Provisioning | Membership provisioning API (roles/groups/users into a target environment) used by Sentin8:Sys for org/env/app provisioning; SCIM Bulk |
-| Wallet credentials | OID4VCI-style credential issuance (config + identifier forms, nonce, batch), SD-JWT selective disclosure, key binding (incl. key attestation verification), status lists (revocation), presentation handling |
+| Wallet credentials | OID4VCI-style credential issuance (config + identifier forms, nonce, batch), SD-JWT selective disclosure, key binding (incl. key attestation verification), status lists (revocation); OID4VP presentation verification (signed DCQL request objects, encrypted direct-post responses, key-binding + trusted-issuer + status checks) |
 | Actor tokens | Time-boxed, fully audited delegated-actor tokens for admin-assistant (sentin8or) flows |
 | Webhooks | Webhook endpoint registry, signed (HMAC) delivery with retries, delivery attempt history |
 | Security profiles | Per-platform / per-org / per-env security profile configuration (FAPI 2.0 default) |
@@ -78,11 +82,12 @@ mint tokens or publish signing keys. The business value it delivers:
 |---|---|
 | Sign-up | Self-service registration with email verification; per-environment user uniqueness (email unique per env) |
 | Sign-in | Password sign-in with anti-enumeration protection (uniform login failure; dummy bcrypt compare on unknown accounts) |
+| Identifier-first sign-in | The hosted sign-in asks for the email first, then shows the right credential step for that account: password, passkey, or MFA expectation. Unknown emails get the same experience shape so the flow never tells probers more than sign-up already does, and the same abuse limits throttle it |
 | Branded login page | Tenant-branded pages; a server-rendered HTML login additionally serves automated clients (conformance browsers, CI) |
 | Sessions | Server-verified sessions with expiry; sign-out and admin termination; every revocation pushes immediate invalidation events |
 | Password reset | Self-service reset tokens with expiry and one-time use |
-| MFA (TOTP) | Enrollment, verify, disable; secrets encrypted at rest |
-| Passkeys | WebAuthn enrollment + verification (passwordless login) |
+| MFA (TOTP) | Enrollment, verify, disable; secrets encrypted at rest; a TOTP user's sign-in session stays "pending MFA" (usable for nothing else) until their authenticator code activates it - the second factor gates every session-authenticated action, including device approval |
+| Passkeys | WebAuthn enrollment + verification (passwordless login). A user with an active passkey can sign in with the passkey alone - the account's credential step offers it directly |
 | App passwords | Per-app passwords for apps without OAuth support |
 | Enterprise SSO | OIDC and SAML connections to enterprise IdPs; federated credentials |
 | Bot protection | IP 10/min + email 5/min rate limits; 5 failures → durable account lockout |
@@ -100,11 +105,14 @@ mint tokens or publish signing keys. The business value it delivers:
 | Delegated tokens | Cert-bound delegated access via the Delegation Gateway (`act` chain audits the origin user) |
 | Authorization grants | Standing consent records per (env, user, client); idempotent - widened/narrowed not duplicated; grant_id embedded in tokens; revocation cascades |
 | CIBA | Decoupled approval bound to the approving user's session; poll and ping delivery modes |
-| Device flow | CLI and device-based sign-in with verification page |
+| Device flow | CLI and device-based sign-in (RFC 8628): the device displays a short code + verification URL; the user opens the URL on a second device (typed code or complete-link), signs in there - including MFA - and approves or DENIES; only a fully-authenticated (MFA-complete) session can approve |
 | Token exchange | OAuth token exchange grant (publisher/delegation paths) |
 | Introspection | Honest introspection - `none`-auth clients hard-rejected; signed JWT responses per profile |
 | OIDC claim scopes | All four claim scopes (`email`, `profile`, `phone`, `address`) are advertised and served: the consented scope selects the claim family; every advertised scope is demonstrable end-to-end, and delivers nothing when not consented |
 | Revocation | OAuth revocation with grant cascade; uniform protocol errors (no existence oracles) |
+| Session-state surface | The OP tracks per-session login state for the embedded status iframe: an Relying Party can live-poll whether its session is unchanged or changed; the state is minted on every interactive sign-in, destroyed with the logout (logout is therefore observable the moment it happens), and id_tokens carry the session id so the Back-Channel Logout token matches |
+| Third-party-initiated login | Clients can register an https initiate-login URI through dynamic registration or client management; the contract is validated and echoed back at both registration surfaces |
+| Response channels | Beyond the standard code redirect, per-profile environments serve the legacy fragment channels (implicit / hybrid response types at the authorize response) and the form-post channel (a 200 auto-submit HTML form to the client callback, no code/error in the URL) - each certified by its own OIDF plan; the standard platform profile keeps the code-only OAuth 2.1 posture |
 | Token binding | DPoP proof validation with jti replay protection; mTLS cert thumbprint binding; HTTP message signatures (FAPI2-MS); the PAR-to-token sender-constraint journey - the key bound at the pushed request must be the key at the token endpoint (mismatch = rejected grant); a reused `request_uri` after an authorization outcome is refused; an unresolvable or foreign (`different client`) `request_uri` rejects with the OAuth error redirect `invalid_request_uri` on the client's registered callback - the browser-driven RP always receives the error back, never an off-callback JSON body |
 | Wallet/SD-JWT issuance | SD-JWT selective disclosure, key binding (embedded jwk, key attestation verified against exactly one trusted key), status-list revocation enforcement, hour-rounded time claims (batch linkability protection) |
 
@@ -209,6 +217,8 @@ certs/Auth-local identity, DB, Valkey, and the owner-API seeds only).
 | Backend service (out-of-band M2M) | Registers via DCR with a certificate; sources cert-bound tokens |
 | Relying party (verifier) | Verifies presented credentials via the OID4VP verifier surface |
 | Admin assistant (sentin8or) | Operates via time-boxed actor tokens |
+| Verifier relying party (credential checker) | Creates signed OID4VP presentation requests and verifies presented wallet credentials through the verifier surface |
+| Session-aware RP | Embeds the OP status iframe and reacts to live session changes (single sign-on status tracking) |
 | Conformance auditor | Drives the OIDF suite against the local rig to certify each profile |
 
 ## 7. KPIs / Success Criteria
@@ -271,6 +281,13 @@ certs/Auth-local identity, DB, Valkey, and the owner-API seeds only).
 12. All admin surfaces are exposed via RFW admin UI pages.
 13. Build clean, zero warnings; all service tests pass; every OIDF
     profile in scope is conformance-green locally before submission.
+14. A verifier relying party can request a wallet credential
+    presentation and receive a verified, revocation-checked answer
+    (key binding + trusted-issuer signature + status list) with the
+    wallet always answered - success points at its redirect URI, errors
+    consume the request once.
+15. An embedded session-status iframe reports unchanged/changed for its
+    RP session, and the state flips at logout - no staleness window.
 
 ## 10. Open Business Questions
 

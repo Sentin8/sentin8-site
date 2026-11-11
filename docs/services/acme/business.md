@@ -39,7 +39,7 @@ business value it delivers:
 
 | Area | Capabilities |
 |---|---|
-| Certificate authority | Two-tier CA hierarchy (Root 10-year, Intermediate 5-year); leaf certificates (90-day default) |
+| Certificate authority | Two-tier CA hierarchy (Root 10-year, Intermediate 5-year); leaf certificates (90-day default); CA subjects named per PQ posture (`Sentin8 {Exclusive\|Hybrid\|Classical} Root/Intermediate CA`, intermediate with `OU=Sentin8:ACME`) so every mode's trust anchor is individually identifiable in trust stores and chain viewers |
 | TLS server certificates | ACME (RFC 8555) issuance for every platform domain - local domains (localhost, `.local`, private IPs, operator-declared `SENTIN8_ACME_LOCAL_DOMAINS` suffixes) signed directly; external domains relayed to an upstream public ACME provider (rejected outright when no upstream is configured) |
 | mTLS client certificates | `POST /v1/client-cert` - RFC 8705 client certificates for M2M workloads (CN `m2m-{service_name}`, ClientAuth EKU) |
 | Trust anchor distribution | Root CA download endpoints; automatic install into OS + Chromium/NSS trust stores |
@@ -74,6 +74,7 @@ business value it delivers:
 | Revocation | `POST /acme/revoke-cert` (event-announced); admin revoke path marks metadata + emits event |
 | Trust anchors | `GET /v1/ca/root.crt`, `GET /v1/ca/intermediate.crt` public downloads |
 | CA hierarchy validity | Root 3650d, Intermediate 1825d, leaf 90d (defaults, configurable) |
+| CA subject naming | The CN names the PQ posture the hierarchy was minted under (`Sentin8 Exclusive/Hybrid/Classical Root CA`, `... Intermediate CA`); the intermediate carries `OU=Sentin8:ACME` (the issuing service); the root carries no OU (CABF root profile) |
 
 ### 3.2 mTLS Client Certificates (M2M identity bootstrap)
 

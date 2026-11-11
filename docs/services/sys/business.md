@@ -47,7 +47,7 @@ canonical audit trail. The business value it delivers:
 | App-environment bindings | App↔env bindings with slug uniqueness |
 | Service enablement | Per-env service enablement (`GET/PUT /v1/env/{id}/services`) - emits `sentin8:sys:service:updated` so verticals react event-driven |
 | Memberships & invitations | List/remove memberships; invitations (create/list/revoke/accept) with one-time tokens, expiry, email-bound acceptance |
-| Branding | Org-level base + env-level override; merged view (non-empty wins) |
+| Branding | Org-level base + env-level override; merged view (non-empty wins) - logo, colors, fonts, sign-in text, and the footer's privacy/terms links |
 | Hostname resolver | `GET /v1/resolve/hostname` + auth-domain, scopes, auth-mode endpoints (BFF, Auth, Proxy, TLS all consume these) |
 | Bootstrap | `GET /v1/bootstrap` - the dash's first-screen data (orgs the caller can reach, via auth's live group listing) |
 | Audit trail | `POST /v1/audit` (M2M ingest, service stamped from the verified client_id) + `GET /v1/audit` (admin query with keyset pagination); canonical rows + local retry journal |

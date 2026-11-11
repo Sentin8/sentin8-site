@@ -37,7 +37,7 @@ custom_edit_url: https://github.com/Sentin8/sentin8-dash/edit/main/BUSINESS.md
 | Service discovery | Dynamic, runtime-registered service catalog per env/org - the console updates without releases. |
 | Remote admin applications | Every service's admin pages (tables, forms, dashboards, native widgets) rendered generically from RFW definitions. |
 | App store administration | Browse/create/publish/uninstall app listings and app instances (server-rendered RFW pages today; rich native pages exist unwired). |
-| Branding management | Org-level and env-level logo/colors/fonts/theme mode with a merged preview. |
+| Branding management | Org-level and env-level logo/colors/fonts/theme mode plus the footer's Privacy Policy and Terms of Service URLs, with a merged preview. |
 | Membership visibility | View organization members with user enrichment (invite action pending). |
 | Audit visibility | Environment audit timeline drawn from the platform audit record. |
 | Platform health visibility | Readiness across platform services (native page currently unwired). |
