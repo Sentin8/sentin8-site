@@ -3,7 +3,7 @@
   "name": "Sentin8",
   "org": "Sentin8",
   "domain": "sentin8.dev",
-  "tagline": "A Secure, Post-Quantum-Safe Enterprise Platform That Automatically Heals and Scales, Built for Regulated Industries.",
+  "tagline": "Open-Source Post-Quantum Enterprise Platform (Apache 2.0): Rust services that heal and scale automatically, built for regulated industries.",
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
   "pillarsLead": "Every service - platform or vertical - inherits the five pillars by construction, not configuration.",
