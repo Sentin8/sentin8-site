@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   ci:
-    uses: Sentin8/sentin8-ci/.github/workflows/site.yml@ci-v2
+    uses: Sentin8/sentin8-ci/.github/workflows/site.yml@ci-v3
     with:
       site-dir: .
       deploy: ${{ github.event_name != 'pull_request' }}
