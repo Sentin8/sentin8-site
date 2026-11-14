@@ -19,6 +19,7 @@ jobs:
     with:
       repo-class: 'site'
       sentin8-flutter-path: ''
+      build-web: false
     # The GitHub Release step inside the lane needs contents:write on
     # THIS repo - the caller grants it (see sdk-release caller note).
     permissions:
