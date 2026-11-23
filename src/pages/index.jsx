@@ -36,7 +36,7 @@ const mapPlanes = [
 
 export default function Home() {
   return (
-    <Layout description={site.tagline}>
+    <Layout title={site.heroTitle || site.name} description={site.heroDescription || site.tagline}>
       <div className="s8-landing">
         <Hero
           eyebrow={site.heroEyebrow}
