@@ -4,6 +4,9 @@
   "org": "Sentin8",
   "domain": "sentin8.dev",
   "tagline": "Open-Source Secure, Post-Quantum-Safe Enterprise Platform That Automatically Heals and Scales, Built for Regulated Industries.",
+  "heroEyebrow": "Open-Source Enterprise Platform",
+  "heroTitle": "Sentin8: Autonomous Quantum-Safe Enterprise Platform",
+  "heroDescription": "The regulated-industry platform underneath every Sentin8 vertical. One identity plane, post-quantum TLS on every connection, authorization decided live on every request, and mandatory tenant isolation - eighteen services that heal and scale themselves with no Kubernetes and no service-mesh tax. Build once here and banking, exchange, hospitality and open-finance products inherit the same security model, the same audit trail and the same engine.",
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
   "pillarsLead": "Every service - platform or vertical - inherits the five pillars by construction, not configuration.",
@@ -316,6 +319,12 @@
       "summary": "The open-finance vertical: consent-first open banking adapters; bank8 composes the OpenFin8:CA provider role."
     },
     {
+      "slug": "wallet8",
+      "name": "Wallet8",
+      "accent": "#F8B64C",
+      "summary": "Digital wallet - OID4VCI issuance, OID4VP presentation, sealed credential vault, device-bound proofs."
+    },
+    {
       "slug": "hotel8",
       "name": "Hotel8",
       "accent": "#C08A3E",
@@ -352,6 +361,5 @@
       "summary": "Health - in design; the eighth vertical of the platform."
     }
   ],
-  "crossrefs": [],
-  "heroTagline": "Open-Source Post-Quantum Enterprise Platform - heals and scales itself, built for regulated industries."
+  "crossrefs": []
 }

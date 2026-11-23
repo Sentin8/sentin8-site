@@ -39,8 +39,9 @@ export default function Home() {
     <Layout description={site.tagline}>
       <div className="s8-landing">
         <Hero
-          title={site.name}
-          tagline={site.tagline}
+          eyebrow={site.heroEyebrow}
+          title={site.heroTitle || site.name}
+          tagline={site.heroDescription || site.tagline}
           visual={<SystemMap name={site.name} planes={mapPlanes} />}
           actions={[
             { label: 'Read the docs', href: '/docs', primary: true },

@@ -62,6 +62,7 @@ enrollment). A few that exist today:
 | Trade8 | Trading - desk, router, risk, feeds | [trade8.dev](https://trade8.dev) |
 | Bill8 | Billing & payments for platforms | [bill8.dev](https://bill8.dev) |
 | Email8 | Email - MTA, store, access, webmail | [email8.dev](https://email8.dev) |
+| Wallet8 | Digital wallet - OID4VCI issuance, OID4VP presentation | [wallet8.dev](https://wallet8.dev) |
 | Health8 | Health (in design) | - |
 
 ## Where to go next

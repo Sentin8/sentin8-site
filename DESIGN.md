@@ -72,6 +72,9 @@ graph TD
 | `sdks[2]` | rust (`sentin8-sdk`), flutter (`sentin8-flutter`) |
 | `pillars[5]` | the SECURITY.md five pillars (landing strip) |
 | `showcase[8]` | vertical cards → `{vertical}.dev` absolute links |
+| `heroEyebrow` | short uppercase label above the hero `h1` ("Open-Source Enterprise Platform") |
+| `heroTitle` | hero `h1` positioning statement ("Sentin8: Autonomous Quantum-Safe Enterprise Platform") |
+| `heroDescription` | long business explanation in the hero body; `tagline` stays the short meta description |
 | `accent` | Royal Gold `#D4AF37` (platform) |
 
 ## 4. Content Pipeline
