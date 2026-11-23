@@ -6,7 +6,7 @@
   "tagline": "Open-Source Secure, Post-Quantum-Safe Enterprise Platform That Automatically Heals and Scales, Built for Regulated Industries.",
   "heroEyebrow": "Open-Source Enterprise Platform",
   "heroTitle": "Sentin8: Autonomous Quantum-Safe Enterprise Platform",
-  "heroDescription": "The regulated-industry platform underneath every Sentin8 vertical. One identity plane, post-quantum TLS on every connection, authorization decided live on every request, and mandatory tenant isolation - eighteen services that heal and scale themselves with no Kubernetes and no service-mesh tax. Build once here and banking, exchange, hospitality and open-finance products inherit the same security model, the same audit trail and the same engine.",
+  "heroDescription": "The platform underneath every Sentin8 vertical. One identity plane, post-quantum TLS everywhere, authorization decided live per request, and tenant isolation forced on every row.",
   "accent": "#D4AF37",
   "logo": "img/sentin8-logo.svg",
   "pillarsLead": "Every service - platform or vertical - inherits the five pillars by construction, not configuration.",
