@@ -10,7 +10,7 @@ description: Sentin8 is OpenID Certified by the OpenID Foundation across OpenID 
 Sentin8 has certified its implementations in the
 [OpenID Foundation conformance program](https://openid.net/certification/) and is published on the
 official [All Certified Implementations](https://openid.net/certification/all-certified-implementations/)
-catalog under **Organization: Hamid Jahanzad**.
+catalog.
 
 Two implementations are certified:
 
