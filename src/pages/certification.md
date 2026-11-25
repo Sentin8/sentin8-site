@@ -26,21 +26,6 @@ The mark is used under
 mark usage is described on the Foundation's
 [About the OpenID Certified Mark](https://openid.net/certification/mark/) page.
 
-## Why some catalog cells stay open
-
-- **Jurisdiction overlays** - UK Open Banking, Australia CDR, Brazil Open
-  Banking / Open Finance / Open Insurance, KSA Open Banking, CBUAE and AU
-  ConnectID - repackage the same plan families with ecosystem-specific client
-  configuration. They are certified per ecosystem, not per platform.
-- **RP-role** certification belongs to relying parties, not to the
-  OP / issuer / verifier platform.
-- The remaining OP-side gaps are engineering work, not scope decisions: FAPI 2.0
-  Client Credentials (endpoint exists, plan driver pending) and the OpenID4VCI
-  issuer `mdoc x issuer_initiated` cell (the plan runs green, not yet filed).
-- Shared Signals Framework (SSF/CAEP), OpenID Federation, AuthZEN and eKYC-IDA
-  have conformance **test** suites but no "Certified Implementations" catalog,
-  so there is no cell to publish.
-
 ## 1. OpenID Providers & Profiles
 
 Core OpenID Connect provider profiles: Basic, Implicit, Hybrid, Config, Dynamic,
