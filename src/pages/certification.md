@@ -16,7 +16,7 @@ Two implementations are certified:
 
 - **`Sentin8 v1.0`** - the OpenID Provider (OP) and FAPI profiles served by
   `Sentin8:Auth`.
-- **`Sentin8 - Wallet8 v1.0`** - the OpenID4VC wallet and issuer roles served by
+- **`Wallet8 1.0`** - the OpenID4VC wallet and issuer roles served by
   `Wallet8`.
 
 Every row below links to its **signed result** (the suite's signed evidence
