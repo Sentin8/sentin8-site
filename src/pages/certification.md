@@ -12,13 +12,6 @@ Sentin8 has certified its implementations in the
 official [All Certified Implementations](https://openid.net/certification/all-certified-implementations/)
 catalog.
 
-Two implementations are certified:
-
-- **`Sentin8 v1.0`** - the OpenID Provider (OP) and FAPI profiles served by
-  `Sentin8:Auth`.
-- **`Wallet8 1.0`** - the OpenID4VC wallet and issuer roles served by
-  `Wallet8`.
-
 Every row below links to its **signed result** (the suite's signed evidence
 archive) and its **public plan view** on `certification.openid.net`. These are
 not self-declared claims: each row is a published artifact the OpenID Foundation
