@@ -12,20 +12,6 @@ Sentin8 has certified its implementations in the
 official [All Certified Implementations](https://openid.net/certification/all-certified-implementations/)
 catalog.
 
-Every row below links to its **signed result** (the suite's signed evidence
-archive) and its **public plan view** on `certification.openid.net`. These are
-not self-declared claims: each row is a published artifact the OpenID Foundation
-lists against the implementation.
-
-A cell showing `(1/3)`, `(2/3)`, `(3/3)` is a **multi-plan cell** - the suite
-certifies each variant slice as its own plan, so a single catalog cell can
-publish several artifacts and therefore several table rows.
-
-The mark is used under
-[Section 3(d) of the OpenID Certification Terms and Conditions](https://openid.net/wordpress-content/uploads/2015/03/OpenID-Certification-Terms-and-Conditions.pdf);
-mark usage is described on the Foundation's
-[About the OpenID Certified Mark](https://openid.net/certification/mark/) page.
-
 ## 1. OpenID Providers & Profiles
 
 Core OpenID Connect provider profiles: Basic, Implicit, Hybrid, Config, Dynamic,
