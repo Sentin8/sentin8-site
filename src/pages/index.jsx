@@ -42,7 +42,18 @@ export default function Home() {
           eyebrow={site.heroEyebrow}
           title={site.heroTitle || site.name}
           tagline={site.heroDescription || site.tagline}
-          visual={<SystemMap name={site.name} planes={mapPlanes} />}
+          visual={
+            <SystemMap
+              name={site.name}
+              planes={mapPlanes}
+              certified={{
+                label: 'Certified',
+                mark: '/img/openid-certified.png',
+                alt: 'OpenID Certified',
+                href: 'https://sentin8.dev/certification',
+              }}
+            />
+          }
           actions={[
             { label: 'Read the docs', href: '/docs', primary: true },
             { label: 'Security', href: '/docs/security' },
