@@ -5,7 +5,7 @@ description: Sentin8 is OpenID Certified by the OpenID Foundation across OpenID 
 
 # Sentin8 is OpenID Certified
 
-<img class="s8-cert-mark" src="/img/openid-certified.png" alt="OpenID Certified" width="530" height="277" />
+<img className="s8-cert-mark" src="/img/openid-certified.png" alt="OpenID Certified" width="530" height="277" />
 
 Sentin8 has certified its implementations in the
 [OpenID Foundation conformance program](https://openid.net/certification/) and is published on the
@@ -53,7 +53,7 @@ mark usage is described on the Foundation's
 Core OpenID Connect provider profiles: Basic, Implicit, Hybrid, Config, Dynamic,
 Form Post, and Third-Party-Initiated login.
 
-Catalog page: <https://openid.net/certification/certified-openid-providers-profiles/>
+Catalog page: [https://openid.net/certification/certified-openid-providers-profiles/](https://openid.net/certification/certified-openid-providers-profiles/)
 
 | Profile cell | Certified | Evidence |
 |---|---|---|
@@ -72,7 +72,7 @@ Catalog page: <https://openid.net/certification/certified-openid-providers-profi
 OpenID Provider logout profiles: RP-Initiated, Session Management, Front-Channel,
 and Back-Channel logout.
 
-Catalog page: <https://openid.net/certification/certified-openid-providers-for-logout-profiles/>
+Catalog page: [https://openid.net/certification/certified-openid-providers-for-logout-profiles/](https://openid.net/certification/certified-openid-providers-for-logout-profiles/)
 
 | Profile cell | Certified | Evidence |
 |---|---|---|
@@ -87,7 +87,7 @@ Catalog page: <https://openid.net/certification/certified-openid-providers-for-l
 Financial-grade API 1.0 Advanced OP profiles - mTLS and private-key JWT client
 authentication crossed with PAR and JARM response modes.
 
-Catalog page: <https://openid.net/certification/certified-fapi1-adv-openid-providers-profiles/>
+Catalog page: [https://openid.net/certification/certified-fapi1-adv-openid-providers-profiles/](https://openid.net/certification/certified-fapi1-adv-openid-providers-profiles/)
 
 | Profile cell | Certified | Evidence |
 |---|---|---|
@@ -105,7 +105,7 @@ Catalog page: <https://openid.net/certification/certified-fapi1-adv-openid-provi
 Client-Initiated Backchannel Authentication: poll and ping modes over mTLS and
 private-key JWT.
 
-Catalog page: <https://openid.net/certification/certified-fapi-ciba-openid-providers-profiles/>
+Catalog page: [https://openid.net/certification/certified-fapi-ciba-openid-providers-profiles/](https://openid.net/certification/certified-fapi-ciba-openid-providers-profiles/)
 
 | Profile cell | Certified | Evidence |
 |---|---|---|
@@ -119,7 +119,7 @@ Catalog page: <https://openid.net/certification/certified-fapi-ciba-openid-provi
 The current financial-grade generation: the FAPI 2.0 Security Profile and the
 FAPI 2.0 Message Signing (JAR/JARM) OP profiles.
 
-Catalog page: <https://openid.net/certification/certified-fapi-2-0-op-security-profile-final-message-signing-final/>
+Catalog page: [https://openid.net/certification/certified-fapi-2-0-op-security-profile-final-message-signing-final/](https://openid.net/certification/certified-fapi-2-0-op-security-profile-final-message-signing-final/)
 
 ### 5a. Security Profile / Message Signing table
 
@@ -166,7 +166,7 @@ Same catalog page, second table. Every cell in this table is open:
 OpenID for Verifiable Presentations with the High Assurance Interoperability
 Profile - wallet and verifier roles.
 
-Catalog page: <https://openid.net/certification/certified-oid4vp-haip-final/>
+Catalog page: [https://openid.net/certification/certified-oid4vp-haip-final/](https://openid.net/certification/certified-oid4vp-haip-final/)
 
 ### 6a. VP Wallet
 
@@ -189,7 +189,7 @@ Catalog page: <https://openid.net/certification/certified-oid4vp-haip-final/>
 OpenID for Verifiable Credential Issuance with the High Assurance
 Interoperability Profile - wallet and issuer roles, SD-JWT VC and mdoc formats.
 
-Catalog page: <https://openid.net/certification/certified-oid4vci-haip-final/>
+Catalog page: [https://openid.net/certification/certified-oid4vci-haip-final/](https://openid.net/certification/certified-oid4vci-haip-final/)
 
 ### 7a. VCI Wallet SD_JWT_VC
 
