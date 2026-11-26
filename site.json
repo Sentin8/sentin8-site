@@ -117,6 +117,18 @@
       ]
     },
     {
+      "slug": "push",
+      "kind": "service",
+      "name": "Sentin8:Push",
+      "repo": "sentin8-push",
+      "org": "Sentin8",
+      "summary": "Push delivery adapter: device registry, live SSE delivery, APNs/FCM provider dispatch, retained backlog replay - transport chosen per device.",
+      "scopes": [
+        "sentin8:push:deliver:write",
+        "sentin8:push:admin"
+      ]
+    },
+    {
       "slug": "secrets",
       "kind": "service",
       "name": "Sentin8:Secrets",
